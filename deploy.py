@@ -1013,6 +1013,27 @@ def merge_watch():
     merge_watch_all(base_pull_dir, out_dir)
 
 
+def pull_fuzzing_all():
+    pull_tool_all_deep("tool_fuzzing")
+
+
+def merge_fuzzing():
+    import sys
+    module_dir = BASE_DIR / "0_tool_fuzzing"
+    sys.path.insert(0, str(module_dir))
+    from merge_stats import merge_fuzzing_all
+    sys.path.pop(0)
+
+    base_pull_dir = BASE_DIR / "pullFromVM"
+    out_dir = BASE_DIR / "analysisAllData" / "0_tool_fuzzing"
+
+    if not base_pull_dir.exists():
+        print(f"[ERRORE] Cartella non trovata: {base_pull_dir}. Esegui prima --pull-fuzzing")
+        return
+
+    merge_fuzzing_all(base_pull_dir, out_dir)
+
+
 def pull_scan_all():
     pull_tool_all_deep("tool_mcp_scan")
 
@@ -1680,6 +1701,8 @@ Esempi:
     parser.add_argument("--deploy-scan-all", nargs="*", help="Copia file mcp-scan su tutte le 9 VM (o solo su alcune, es: --deploy-scan-all VM4 VM6)")
     parser.add_argument("--pull-scan", action="store_true", help="Scarica mcp-scan results da TUTTE le 9 VM")
     parser.add_argument("--merge-scan", action="store_true", help="Merge dei risultati mcp-scan scaricati dalle VM")
+    parser.add_argument("--pull-fuzzing", action="store_true", help="Scarica fuzzing results da TUTTE le 9 VM")
+    parser.add_argument("--merge-fuzzing", action="store_true", help="Merge dei risultati fuzzing scaricati dalle VM")
     parser.add_argument("--status-scan", action="store_true", help="Mostra stato mcp-scan su tutte le 9 VM")
     parser.add_argument("--tail-scan", action="store_true", help="Mostra ultime righe dei log mcp-scan da tutte le VM")
     parser.add_argument("--deploy-shield-all", nargs="*", help="Copia file mcp-shield su tutte le 9 VM (opzionale specificarle)")
@@ -1789,6 +1812,17 @@ Esempi:
     # --merge-watch
     if args.merge_watch:
         merge_watch()
+        return
+
+    # --pull-fuzzing
+    if args.pull_fuzzing:
+        pull_fuzzing_all()
+        if not args.merge_fuzzing:
+            return
+
+    # --merge-fuzzing
+    if args.merge_fuzzing:
+        merge_fuzzing()
         return
 
     # --pull-scan

@@ -175,7 +175,8 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
             "runs": pt_runs,
             "successful": pt_successful,
             "errors": pt_errors,
-            "success_rate": pt.get("success_rate", 0.0)
+            "success_rate": pt.get("success_rate", 0.0),
+            "error_details": pt.get("error_details", [])
         }
 
     # Overall success rate across tools + protocol

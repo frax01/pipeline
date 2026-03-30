@@ -1,0 +1,63 @@
+{
+    "total": 4,
+    "entries": [
+        {
+            "server_url": "https://github.com/0xshariq/docker-mcp-server",
+            "server_name": "docker-mcp-server",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "error-handling-nonexistent-tool",
+                    "type": "ErrorHandlingFailure",
+                    "message": "Server did not return error for non-existent tool",
+                    "payload": null
+                }
+            ]
+        },
+        {
+            "server_url": "https://github.com/0xshariq/github-mcp-server",
+            "server_name": "github-mcp-server",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "error-handling-nonexistent-tool",
+                    "type": "ErrorHandlingFailure",
+                    "message": "Server did not return error for non-existent tool",
+                    "payload": null
+                }
+            ]
+        },
+        {
+            "server_url": "https://github.com/1Panel-dev/mcp-1panel",
+            "server_name": "mcp-1panel",
+            "language": "go",
+            "errors": [
+                {
+                    "test": "tool-create_database-basic-invocation",
+                    "type": "InvocationError",
+                    "message": "MCP error 0: database type is invalid, support mysql and postgresql",
+                    "payload": null
+                },
+                {
+                    "test": "tool-create_ssl-basic-invocation",
+                    "type": "InvocationError",
+                    "message": "MCP error 0: provider must be dnsAccount or http",
+                    "payload": null
+                }
+            ]
+        },
+        {
+            "server_url": "https://github.com/21st-dev/magic-mcp",
+            "server_name": "magic-mcp",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "error-handling-nonexistent-tool",
+                    "type": "ErrorHandlingFailure",
+                    "message": "Server did not return error for non-existent tool",
+                    "payload": null
+                }
+            ]
+        }
+    ]
+}

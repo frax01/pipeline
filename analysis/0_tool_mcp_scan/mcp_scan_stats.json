@@ -1,0 +1,118 @@
+{
+    "last_index": 60205,
+    "total": 60205,
+    "languages": {
+        "nodejs": 24518,
+        "python": 21558,
+        "go": 1847,
+        "unknown": 11085,
+        "docker": 1197
+    },
+    "mcp-scan": {
+        "total": 10710,
+        "percentage": 17.79,
+        "languages": {
+            "nodejs": 7566,
+            "python": 2493,
+            "go": 418,
+            "unknown": 206,
+            "docker": 27
+        },
+        "percentage_of_vulnerability": {
+            "untrusted-content": 17.26,
+            "potential-untrusted-content": 42.38,
+            "prompt-injection": 2.04,
+            "dangerous-words": 38.32
+        },
+        "categories": {
+            "untrusted-content": 924,
+            "potential-untrusted-content": 2268,
+            "prompt-injection": 109,
+            "dangerous-words": 2051
+        },
+        "vulnerabilities": {
+            "total": 5352,
+            "average_per_server": 0.5,
+            "counts": {
+                "medium": 924,
+                "low": 4319,
+                "critical": 109
+            },
+            "percentage_of_severity": {
+                "medium": 0.172646,
+                "low": 0.806988,
+                "critical": 0.020366
+            }
+        },
+        "server_vulnerabilities": {
+            "total": 3192,
+            "average_per_server": 0.298039,
+            "counts": {
+                "medium": 924,
+                "low": 2268
+            },
+            "percentage_of_severity": {
+                "medium": 0.289474,
+                "low": 0.710526
+            },
+            "categories": {
+                "untrusted-content": 924,
+                "potential-untrusted-content": 2268
+            },
+            "percentage_of_vulnerability": {
+                "untrusted-content": 28.95,
+                "potential-untrusted-content": 71.05
+            },
+            "issue_codes": {
+                "W015": 924,
+                "W016": 2268
+            }
+        },
+        "tool_vulnerabilities": {
+            "total": 2160,
+            "average_per_server": 0.201681,
+            "counts": {
+                "critical": 109,
+                "low": 2051
+            },
+            "percentage_of_severity": {
+                "critical": 0.050463,
+                "low": 0.949537
+            },
+            "categories": {
+                "prompt-injection": 109,
+                "dangerous-words": 2051
+            },
+            "percentage_of_vulnerability": {
+                "prompt-injection": 5.05,
+                "dangerous-words": 94.95
+            },
+            "issue_codes": {
+                "E001": 109,
+                "W001": 2051
+            },
+            "trigger_words": {
+                "important": 643,
+                "critical": 354,
+                "override": 536,
+                "crucial": 14,
+                "ignore": 482,
+                "urgent": 45,
+                "bypass": 112,
+                "vital": 34
+            }
+        },
+        "tools": {
+            "total": 132009,
+            "safe": 129889,
+            "vulnerable": 2120,
+            "average_vulnerable_per_server": 0.2,
+            "percentage_of_vulnerability": {
+                "safe": 98.39,
+                "vulnerable": 1.61
+            },
+            "average_per_server": 12.33
+        }
+    },
+    "percentage": 17.79
+}

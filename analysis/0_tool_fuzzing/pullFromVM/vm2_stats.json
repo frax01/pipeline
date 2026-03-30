@@ -1,0 +1,128 @@
+{
+    "last_index": 13378,
+    "total": 6689,
+    "range_start": 9197,
+    "range_end": 13378,
+    "remaining": 0,
+    "languages": {
+        "python": 2004,
+        "unknown": 1203,
+        "nodejs": 3455,
+        "go": 27
+    },
+    "fuzzing": {
+        "total_servers": 1141,
+        "percentage": 17.06,
+        "languages": {
+            "nodejs": 1126,
+            "go": 7,
+            "python": 8
+        },
+        "total_tools": 8705,
+        "total_fuzzing_runs": 174100,
+        "total_successful": 138117,
+        "total_exceptions": 35983,
+        "total_safety_blocked": 0,
+        "success_rate": 0.7933199310740954,
+        "exceptions_by_message": {
+            "No response received from stdio transport": 791,
+            "Failed to send message over stdio transport": 598,
+            "Server returned error": 31107,
+            "Failed to receive message from stdio transport": 3487
+        },
+        "protocol_types": {
+            "total_types_tested": 19397,
+            "total_runs": 195352,
+            "total_successful": 1612,
+            "total_errors": 193740,
+            "success_rate": 0.83,
+            "by_type": {
+                "InitializeRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "ProgressNotification": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "CancelNotification": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "ListResourcesRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "ReadResourceRequest": {
+                    "runs": 12427,
+                    "successful": 863,
+                    "errors": 11564
+                },
+                "SetLevelRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "GenericJSONRPCRequest": {
+                    "runs": 11410,
+                    "successful": 512,
+                    "errors": 10898
+                },
+                "CreateMessageRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "ListPromptsRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "GetPromptRequest": {
+                    "runs": 11775,
+                    "successful": 237,
+                    "errors": 11538
+                },
+                "ListRootsRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "SubscribeRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "UnsubscribeRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "CompleteRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "ListResourceTemplatesRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "ElicitRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                },
+                "PingRequest": {
+                    "runs": 11410,
+                    "successful": 0,
+                    "errors": 11410
+                }
+            }
+        }
+    }
+}

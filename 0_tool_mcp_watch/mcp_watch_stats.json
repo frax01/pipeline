@@ -1,0 +1,58 @@
+{
+    "last_index": 20,
+    "total": 20,
+    "range_start": 0,
+    "range_end": 20,
+    "remaining": 20,
+    "languages": {
+        "nodejs": 13,
+        "python": 6,
+        "go": 1
+    },
+    "mcp-watch": {
+        "total": 19,
+        "percentage": 95.0,
+        "languages": {
+            "nodejs": 13,
+            "python": 6
+        },
+        "categories": {
+            "toxic-flow": 2812,
+            "credential-leak": 2,
+            "tool-poisoning": 5,
+            "prompt-injection": 11,
+            "tool-mutation": 5,
+            "input-validation": 173,
+            "access-control": 29,
+            "server-spoofing": 2,
+            "protocol-violation": 22,
+            "data-exfiltration": 8
+        },
+        "percentage_of_vulnerability": {
+            "toxic-flow": 91.63,
+            "credential-leak": 0.07,
+            "tool-poisoning": 0.16,
+            "prompt-injection": 0.36,
+            "tool-mutation": 0.16,
+            "input-validation": 5.64,
+            "access-control": 0.94,
+            "server-spoofing": 0.07,
+            "protocol-violation": 0.72,
+            "data-exfiltration": 0.26
+        },
+        "vulnerabilities": {
+            "total": 3069,
+            "average_per_server": 153.45,
+            "counts": {
+                "critical": 40,
+                "high": 1001,
+                "medium": 2028
+            },
+            "percentage_of_severity": {
+                "critical": 0.013034,
+                "high": 0.326165,
+                "medium": 0.660802
+            }
+        }
+    }
+}

@@ -1,0 +1,93 @@
+{
+    "last_index": 15,
+    "total": 15,
+    "range_start": 0,
+    "range_end": 15,
+    "remaining": 0,
+    "languages": {
+        "nodejs": 7,
+        "python": 1,
+        "go": 1,
+        "unknown": 6
+    },
+    "mcp-check": {
+        "total": 8,
+        "percentage": 53.33,
+        "languages": {
+            "nodejs": 6,
+            "python": 1,
+            "go": 1
+        },
+        "suites": {
+            "handshake": {
+                "passed": 44,
+                "failed": 6,
+                "warnings": 0,
+                "total": 50
+            },
+            "tool-discovery": {
+                "passed": 48,
+                "failed": 8,
+                "warnings": 0,
+                "total": 56
+            },
+            "tool-invocation": {
+                "passed": 48,
+                "failed": 40,
+                "warnings": 12,
+                "total": 100
+            }
+        },
+        "tests": {
+            "total": 103,
+            "passed": 70,
+            "failed": 27,
+            "skipped": 0,
+            "warnings": 6,
+            "success_rate": 67.96,
+            "average_failed_per_server": 0.0
+        },
+        "errors": {
+            "Tool accepted invalid input without error": 8,
+            "Server did not return error for non-existent tool": 3,
+            "Duplicate tool names found: git_flow, git_sync": 1,
+            "Failed to establish connection: MCP error -32001: Request timed out": 1,
+            "Transport not connected": 6,
+            "MCP error 0: database type is invalid, support mysql and postgresql": 1,
+            "MCP error 0: provider must be dnsAccount or http": 1,
+            "MCP error 0: Panel API error: Unauthorized (code: 401)": 1,
+            "Expected timeout error but got: MCP error 0: database type is invalid, support mysql and postgresql": 1,
+            "MCP error -32001: Request timed out": 1,
+            "Expected timeout error but got: MCP error -32001: Request timed out": 1,
+            "Failed to establish connection: Transport not connected": 2
+        },
+        "errors_reorganized": {
+            "tool-invocation": {
+                "schema_violation": 8,
+                "other_errors": 5,
+                "not_connected": 3,
+                "unauthorized_or_auth_missing": 1,
+                "timeout": 3
+            },
+            "tool-discovery": {
+                "other_errors": 1,
+                "not_connected": 3
+            },
+            "handshake": {
+                "timeout": 1,
+                "not_connected": 2
+            }
+        },
+        "warnings": {
+            "Tool behavior appears non-deterministic with identical inputs": 6
+        },
+        "failure_reasons": {
+            "total": 7,
+            "percentage": 46.67,
+            "counts": {
+                "execution_timeout": 1,
+                "preparation_failed": 6
+            }
+        }
+    }
+}

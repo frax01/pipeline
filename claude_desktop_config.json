@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "magic-mcp": {
+      "command": "node",
+      "args": [
+        "C:\\Users\\francesco\\Desktop\\pipeline\\magic-mcp\\dist\\index.js"
+      ]
+    }
+  }
+}

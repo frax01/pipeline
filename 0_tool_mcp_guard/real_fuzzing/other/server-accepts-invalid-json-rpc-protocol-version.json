@@ -1,0 +1,15 @@
+{
+    "total": 1,
+    "vulnerabilities": [
+        {
+            "server_url": "https://github.com/21st-dev/magic-mcp",
+            "server_name": "magic-mcp",
+            "language": "nodejs",
+            "severity": "low",
+            "file": "dist/index.js",
+            "description": "Security vulnerability detected during runtime analysis. Method tested: tools/list. Issues found: Server accepts invalid JSON-RPC protocol version",
+            "payload": "{'jsonrpc': '1.0', 'id': 30, 'method': 'tools/list'}",
+            "remediation": "Review and strengthen input validation and error handling mechanisms."
+        }
+    ]
+}

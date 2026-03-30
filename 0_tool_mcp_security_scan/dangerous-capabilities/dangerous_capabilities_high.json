@@ -1,0 +1,53 @@
+{
+    "total": 3,
+    "findings": [
+        {
+            "server_url": "https://github.com/0xshariq/docker-mcp-server",
+            "server_name": "docker-mcp-server",
+            "id": "X-01",
+            "title": "Dangerous capability detection in tools",
+            "category": "dangerous-capabilities",
+            "severity": "high",
+            "details": "[{\"name\": \"docker-logs\", \"description\": \"Fetch logs for a specific Docker container\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"containerId\": {\"type\": \"string\", \"description\": \"ID of the Docker container\"}, \"tail\": {\"type\": \"number\", \"description\": \"Number of lines to fetch from the end of the log\"}, \"follow\": {\"type\": \"boolean\", \"description\": \"Follow log output\"}}, \"required\": [\"containerId\"]}}, {\"name\": \"docker-compose\", \"description\": \"Run Docker Compose commands\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"command\": {\"type\": \"string\", \"description\": \"Docker Compose command to run (e.g., 'up', 'down')\"}, \"filePath\": {\"type\": \"string\", \"description\": \"Path to the Docker Compose file\"}, \"projectName\": {\"type\": \"string\", \"description\": \"Project name for Docker Compose\"}}, \"required\": [\"command\"]}}, {\"name\": \"docker-exec\", \"description\": \"Execute a command in a running Docker container\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"containerId\": {\"type\": \"string\", \"description\": \"ID of the Docker container\"}, \"command\": {\"type\": \"string\", \"description\": \"Command to execute inside the container\"}, \"interactive\": {\"type\": \"boolean\", \"description\": \"Run in interactive mode\"}}, \"required\": [\"containerId\", \"command\"]}}]",
+            "remediation": [
+                "Split destructive ops; add strict schemas and confirmations.",
+                "Route high-blast tools through HIL (human-in-loop)."
+            ],
+            "references": [
+                "MCP Tools guidance (least privilege)"
+            ]
+        },
+        {
+            "server_url": "https://github.com/1Panel-dev/mcp-1panel",
+            "server_name": "mcp-1panel",
+            "id": "X-01",
+            "title": "Dangerous capability detection in tools",
+            "category": "dangerous-capabilities",
+            "severity": "high",
+            "details": "[{\"description\": \"show host system information, The unit of diskSize is bytes\", \"inputSchema\": {\"type\": \"object\", \"additionalProperties\": {\"not\": {}}}, \"name\": \"get_system_info\"}, {\"description\": \"install openresty, if not set name, default is openresty, if not set http_port, default is 80, if not set https_port, default is 443\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"http_port\": {\"type\": \"number\"}, \"https_port\": {\"type\": \"number\"}, \"name\": {\"type\": \"string\"}}, \"additionalProperties\": {\"not\": {}}}, \"name\": \"install_openresty\"}]",
+            "remediation": [
+                "Split destructive ops; add strict schemas and confirmations.",
+                "Route high-blast tools through HIL (human-in-loop)."
+            ],
+            "references": [
+                "MCP Tools guidance (least privilege)"
+            ]
+        },
+        {
+            "server_url": "https://github.com/AI-QL/mcp-devcontainers",
+            "server_name": "mcp-devcontainers",
+            "id": "X-01",
+            "title": "Dangerous capability detection in tools",
+            "category": "dangerous-capabilities",
+            "severity": "high",
+            "details": "[{\"name\": \"devcontainer_run_user_commands\", \"description\": \"Executes user-defined postCreateCommand and postStartCommand scripts within the devcontainer for the specified workspace. Use this to run setup or initialization tasks after container startup.\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"workspaceFolder\": {\"type\": \"string\", \"description\": \"Path to the workspace folder (string)\"}, \"stdioFilePath\": {\"type\": \"string\", \"description\": \"Path for output logs (string), default is /dev/null\"}}, \"required\": [\"workspaceFolder\"], \"additionalProperties\": false, \"$schema\": \"http://json-schema.org/draft-07/schema#\"}}, {\"name\": \"devcontainer_exec\", \"description\": \"Runs a custom shell command inside the devcontainer for the specified workspace. Useful for executing arbitrary commands or scripts within the devcontainer environment.\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"workspaceFolder\": {\"type\": \"string\", \"description\": \"Path to the workspace folder (string)\"}, \"stdioFilePath\": {\"type\": \"string\", \"description\": \"Path for output logs (string), default is /dev/null\"}, \"command\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}, \"minItems\": 1, \"description\": \"Command to execute (array of string)\"}}, \"required\": [\"workspaceFolder\", \"command\"], \"additionalProperties\": false, \"$schema\": \"http://json-schema.org/draft-07/schema#\"}}, {\"name\": \"devcontainer_cleanup\", \"description\": \"Runs docker command to cleanup all devcontainer environments.\", \"inputSchema\": {\"type\": \"object\", \"properties\": {}, \"additionalProperties\": false, \"$schema\": \"http://json-schema.org/draft-07/schema#\"}}, {\"name\": \"devcontainer_list\", \"description\": \"Runs docker command to list all devcontainer environments.\", \"inputSchema\": {\"type\": \"object\", \"properties\": {}, \"additionalProperties\": false, \"$schema\": \"http://json-schema.org/draft-07/schema#\"}}, {\"name\": \"devcontainer_workspace_folders\", \"description\": \"Runs find command to get all workspace folders with devcontainer config.\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"rootPath\": {\"type\": \"string\", \"description\": \"A path used to search its subdirectories for all workspace folders containing a devcontainer configuration.\"}}, \"additionalProperties\": false, \"$schema\": \"http://json-schema.org/draft-07/schema#\"}}]",
+            "remediation": [
+                "Split destructive ops; add strict schemas and confirmations.",
+                "Route high-blast tools through HIL (human-in-loop)."
+            ],
+            "references": [
+                "MCP Tools guidance (least privilege)"
+            ]
+        }
+    ]
+}

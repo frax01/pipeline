@@ -1,0 +1,19 @@
+{
+    "category": "data-exfiltration",
+    "severity": "high",
+    "total": 1,
+    "findings": [
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "UNUSED_SENSITIVE_PARAMETER",
+            "category": "data-exfiltration",
+            "description": "Unused parameter with sensitive name",
+            "file": "pixelle\\web\\chat\\chat_settings.py",
+            "line": 51,
+            "evidence": "async def _update_system_prompt_if_need(system_prompt: str):",
+            "source": "HiddenLayer research"
+        }
+    ]
+}

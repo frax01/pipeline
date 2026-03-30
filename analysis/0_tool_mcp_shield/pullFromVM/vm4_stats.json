@@ -1,0 +1,65 @@
+{
+    "last_index": 26756,
+    "total": 6689,
+    "range_start": 20067,
+    "range_end": 26756,
+    "remaining": 0,
+    "languages": {
+        "python": 2607,
+        "nodejs": 2350,
+        "go": 306,
+        "docker": 208,
+        "unknown": 1218
+    },
+    "mcp-shield": {
+        "total": 1062,
+        "percentage": 15.88,
+        "languages": {
+            "python": 271,
+            "nodejs": 685,
+            "docker": 7,
+            "go": 77,
+            "unknown": 22
+        },
+        "tools": {
+            "total": 8607,
+            "safe": 7866,
+            "vulnerable": {
+                "total": 741,
+                "average_vulnerable_per_server": 0.6977401129943502,
+                "static-analysis": {
+                    "categories": {
+                        "sensitive-file-access": 622,
+                        "hidden-instructions": 67,
+                        "potential-exfiltration": 169,
+                        "shadowing-detected": 7
+                    },
+                    "percentage_of_vulnerability": {
+                        "sensitive-file-access": 71.91,
+                        "hidden-instructions": 7.75,
+                        "potential-exfiltration": 19.54,
+                        "shadowing-detected": 0.81
+                    },
+                    "counts": {
+                        "high": 538,
+                        "medium": 203
+                    },
+                    "percentage_of_severity": {
+                        "high": 0.726046,
+                        "medium": 0.273954
+                    }
+                },
+                "llm-description-analysis": {
+                    "LOW": 368,
+                    "MEDIUM": 301,
+                    "HIGH": 7
+                }
+            },
+            "average_per_server": 8.1045197740113,
+            "percentage_of_vulnerability": {
+                "safe": 91.39,
+                "vulnerable": 8.61
+            }
+        }
+    }
+}

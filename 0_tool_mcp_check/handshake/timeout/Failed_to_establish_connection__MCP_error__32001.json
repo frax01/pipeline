@@ -1,0 +1,18 @@
+{
+    "total": 1,
+    "entries": [
+        {
+            "server_url": "https://github.com/13rac1/videocapture-mcp",
+            "server_name": "videocapture-mcp",
+            "language": "python",
+            "errors": [
+                {
+                    "test": "connection-establishment",
+                    "type": "ConnectionError",
+                    "message": "Failed to establish connection: MCP error -32001: Request timed out",
+                    "payload": null
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,128 @@
+{
+    "last_index": 60205,
+    "total": 6693,
+    "range_start": 57012,
+    "range_end": 60205,
+    "remaining": 0,
+    "languages": {
+        "python": 906,
+        "nodejs": 3990,
+        "unknown": 1611,
+        "go": 186
+    },
+    "fuzzing": {
+        "total_servers": 1044,
+        "percentage": 15.6,
+        "languages": {
+            "nodejs": 974,
+            "go": 69,
+            "python": 1
+        },
+        "total_tools": 8574,
+        "total_fuzzing_runs": 171480,
+        "total_successful": 136148,
+        "total_exceptions": 35332,
+        "total_safety_blocked": 0,
+        "success_rate": 0.7939584791229298,
+        "exceptions_by_message": {
+            "Failed to receive message from stdio transport": 2728,
+            "Server returned error": 31371,
+            "No response received from stdio transport": 735,
+            "Failed to send message over stdio transport": 498
+        },
+        "protocol_types": {
+            "total_types_tested": 17748,
+            "total_runs": 178990,
+            "total_successful": 1721,
+            "total_errors": 177269,
+            "success_rate": 0.96,
+            "by_type": {
+                "InitializeRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "ProgressNotification": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "CancelNotification": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "ListResourcesRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "ReadResourceRequest": {
+                    "runs": 11532,
+                    "successful": 968,
+                    "errors": 10564
+                },
+                "SetLevelRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "GenericJSONRPCRequest": {
+                    "runs": 10440,
+                    "successful": 446,
+                    "errors": 9994
+                },
+                "CreateMessageRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "ListPromptsRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "GetPromptRequest": {
+                    "runs": 10858,
+                    "successful": 307,
+                    "errors": 10551
+                },
+                "ListRootsRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "SubscribeRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "UnsubscribeRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "CompleteRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "ListResourceTemplatesRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "ElicitRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                },
+                "PingRequest": {
+                    "runs": 10440,
+                    "successful": 0,
+                    "errors": 10440
+                }
+            }
+        }
+    }
+}

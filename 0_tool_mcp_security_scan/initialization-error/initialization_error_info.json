@@ -1,0 +1,21 @@
+{
+    "total": 1,
+    "findings": [
+        {
+            "server_url": "https://github.com/21st-dev/magic-mcp",
+            "server_name": "magic-mcp",
+            "id": "BASE-01",
+            "title": "Fingerprint server capabilities",
+            "category": "initialization-error",
+            "severity": "info",
+            "details": "{\"jsonrpc\": \"2.0\", \"method\": \"window/logMessage\", \"params\": {\"type\": 3, \"message\": \"Starting server v0.0.46 (PID: 22180)\"}}",
+            "remediation": [
+                "Align capability advertisement with implemented features.",
+                "Return explicit errors for unsupported calls."
+            ],
+            "references": [
+                "MCP Spec: Initialize & Capabilities"
+            ]
+        }
+    ]
+}

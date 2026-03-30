@@ -1,0 +1,43 @@
+{
+    "total": 2,
+    "entries": [
+        {
+            "server_url": "https://github.com/0xshariq/docker-mcp-server",
+            "server_name": "docker-mcp-server",
+            "language": "nodejs",
+            "warnings": [
+                {
+                    "test": "tool-docker-images-deterministic-behavior",
+                    "message": "Tool behavior appears non-deterministic with identical inputs"
+                },
+                {
+                    "test": "tool-docker-containers-deterministic-behavior",
+                    "message": "Tool behavior appears non-deterministic with identical inputs"
+                },
+                {
+                    "test": "tool-docker-logs-deterministic-behavior",
+                    "message": "Tool behavior appears non-deterministic with identical inputs"
+                }
+            ]
+        },
+        {
+            "server_url": "https://github.com/0xshariq/github-mcp-server",
+            "server_name": "github-mcp-server",
+            "language": "nodejs",
+            "warnings": [
+                {
+                    "test": "tool-git_add_all-deterministic-behavior",
+                    "message": "Tool behavior appears non-deterministic with identical inputs"
+                },
+                {
+                    "test": "tool-git_add-deterministic-behavior",
+                    "message": "Tool behavior appears non-deterministic with identical inputs"
+                },
+                {
+                    "test": "tool-git_remove-deterministic-behavior",
+                    "message": "Tool behavior appears non-deterministic with identical inputs"
+                }
+            ]
+        }
+    ]
+}

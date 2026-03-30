@@ -1,0 +1,110 @@
+{
+    "last_index": 5,
+    "total": 5,
+    "range_start": 0,
+    "range_end": 5,
+    "remaining": 0,
+    "languages": {
+        "nodejs": 3,
+        "python": 1,
+        "go": 1
+    },
+    "mcp-guard": {
+        "total": 5,
+        "percentage": 100.0,
+        "languages": {
+            "nodejs": 3,
+            "python": 1,
+            "go": 1
+        },
+        "percentage_of_vulnerability": {
+            "unsafe-mcp-json-rpc-message-handling": 2.439,
+            "mcp-missing-capability-validation": 2.439,
+            "path-traversal-vulnerability": 24.3902,
+            "sensitive-information-disclosed:-password,-connection": 2.439,
+            "command-injection-vulnerability": 21.9512,
+            "code-injection-payload-accepted-by-tool": 7.3171,
+            "timeout-during-malicious-payload-processing---potential-dos-vulnerability": 4.878,
+            "authorization-bypass": 7.3171,
+            "debug-endpoint-exposure": 9.7561,
+            "sensitive-information-disclosed:-password,-root,-database": 2.439,
+            "sensitive-information-disclosed:-root": 2.439,
+            "server-accepts-invalid-json-rpc-protocol-version": 2.439,
+            "potential-resource-exhaustion-vulnerability": 9.7561
+        },
+        "categories_static": {
+            "unsafe-mcp-json-rpc-message-handling": 1,
+            "mcp-missing-capability-validation": 1
+        },
+        "categories_dynamic": {
+            "path-traversal-vulnerability": 1
+        },
+        "categories_real_fuzzing": {
+            "sensitive-information-disclosed:-password,-connection": 1,
+            "path-traversal-vulnerability": 9,
+            "command-injection-vulnerability": 9,
+            "code-injection-payload-accepted-by-tool": 3,
+            "timeout-during-malicious-payload-processing---potential-dos-vulnerability": 2,
+            "authorization-bypass": 3,
+            "debug-endpoint-exposure": 4,
+            "sensitive-information-disclosed:-password,-root,-database": 1,
+            "sensitive-information-disclosed:-root": 1,
+            "server-accepts-invalid-json-rpc-protocol-version": 1
+        },
+        "categories_robustness_fuzzing": {
+            "potential-resource-exhaustion-vulnerability": 4
+        },
+        "analysis_types": {
+            "static": {
+                "total": 5,
+                "percentage": 100.0
+            },
+            "real_fuzzing": {
+                "total": 4,
+                "percentage": 80.0
+            },
+            "dynamic": {
+                "total": 1,
+                "percentage": 20.0
+            },
+            "robustness_fuzzing": {
+                "total": 4,
+                "percentage": 80.0
+            }
+        },
+        "vulnerabilities": {
+            "total": 41,
+            "average_per_server": 8.2,
+            "counts": {
+                "medium": 13,
+                "critical": 14,
+                "high": 13,
+                "low": 1
+            },
+            "percentage_of_severity": {
+                "medium": 0.317073,
+                "critical": 0.341463,
+                "high": 0.317073,
+                "low": 0.02439
+            }
+        },
+        "failure_reasons": {
+            "total": 0,
+            "percentage": 0.0,
+            "counts": {}
+        },
+        "percentage_of_vulnerability_grouped": {
+            "unsafe-mcp-json-rpc-message-handling": 2.439,
+            "mcp-missing-capability-validation": 2.439,
+            "path-traversal-vulnerability": 24.3902,
+            "sensitive-information-disclosed": 7.3171,
+            "command-injection-vulnerability": 21.9512,
+            "code-injection-payload-accepted-by-tool": 7.3171,
+            "timeout-during-malicious-payload-processing---potential-dos-vulnerability": 4.878,
+            "authorization-bypass": 7.3171,
+            "debug-endpoint-exposure": 9.7561,
+            "server-accepts-invalid-json-rpc-protocol-version": 2.439,
+            "potential-resource-exhaustion-vulnerability": 9.7561
+        }
+    }
+}

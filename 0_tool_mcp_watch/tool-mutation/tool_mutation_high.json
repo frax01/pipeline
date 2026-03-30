@@ -1,0 +1,67 @@
+{
+    "category": "tool-mutation",
+    "severity": "high",
+    "total": 5,
+    "findings": [
+        {
+            "server_name": "docker-mcp-server",
+            "github_url": "https://github.com/0xshariq/docker-mcp-server",
+            "language": "nodejs",
+            "id": "DYNAMIC_TOOL_MUTATION",
+            "category": "tool-mutation",
+            "description": "Dynamic tool mutation detected - rug-pull risk",
+            "file": "docker-cli.js",
+            "line": 94,
+            "evidence": "basicCategories[category].push(tool);",
+            "source": "VulnerableMCP database"
+        },
+        {
+            "server_name": "docker-mcp-server",
+            "github_url": "https://github.com/0xshariq/docker-mcp-server",
+            "language": "nodejs",
+            "id": "DYNAMIC_TOOL_MUTATION",
+            "category": "tool-mutation",
+            "description": "Dynamic tool mutation detected - rug-pull risk",
+            "file": "docker-cli.js",
+            "line": 114,
+            "evidence": "advancedCategories[category].push(tool);",
+            "source": "VulnerableMCP database"
+        },
+        {
+            "server_name": "github-mcp-server",
+            "github_url": "https://github.com/0xshariq/github-mcp-server",
+            "language": "nodejs",
+            "id": "DYNAMIC_TOOL_MUTATION",
+            "category": "tool-mutation",
+            "description": "Dynamic tool mutation detected - rug-pull risk",
+            "file": "bin\\advanced\\glist.js",
+            "line": 223,
+            "evidence": "results.push({ ...tool, category: categoryName });",
+            "source": "VulnerableMCP database"
+        },
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "DYNAMIC_TOOL_MUTATION",
+            "category": "tool-mutation",
+            "description": "Dynamic tool mutation detected - rug-pull risk",
+            "file": "pixelle\\web\\chat\\chat_handler.py",
+            "line": 55,
+            "evidence": "if any(tool[\"function\"][\"name\"] == tool_name for tool in tools):",
+            "source": "VulnerableMCP database"
+        },
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "DYNAMIC_TOOL_MUTATION",
+            "category": "tool-mutation",
+            "description": "Dynamic tool mutation detected - rug-pull risk",
+            "file": "pixelle\\web\\chat\\chat_handler.py",
+            "line": 537,
+            "evidence": "mcp_tools[connection.name] = openai_tools",
+            "source": "VulnerableMCP database"
+        }
+    ]
+}

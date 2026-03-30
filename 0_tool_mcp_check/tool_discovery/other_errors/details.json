@@ -1,0 +1,18 @@
+{
+    "total": 1,
+    "entries": [
+        {
+            "server_url": "https://github.com/0xshariq/github-mcp-server",
+            "server_name": "github-mcp-server",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "unique-tool-names",
+                    "type": "DuplicateToolNames",
+                    "message": "Duplicate tool names found: git_flow, git_sync",
+                    "payload": null
+                }
+            ]
+        }
+    ]
+}

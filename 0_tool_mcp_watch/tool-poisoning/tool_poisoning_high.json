@@ -1,0 +1,67 @@
+{
+    "category": "tool-poisoning",
+    "severity": "high",
+    "total": 5,
+    "findings": [
+        {
+            "server_name": "docker-mcp-server",
+            "github_url": "https://github.com/0xshariq/docker-mcp-server",
+            "language": "nodejs",
+            "id": "DECEPTIVE_TOOL_NAMING",
+            "category": "tool-poisoning",
+            "description": "Tool with deceptive name/description mismatch",
+            "file": "src\\docker.ts",
+            "line": 1123,
+            "evidence": "return createResponse('docker-network', 'Error: Network name is required for remove action.', true, process.cwd(), startTime);",
+            "source": "Invariant Labs research"
+        },
+        {
+            "server_name": "docker-mcp-server",
+            "github_url": "https://github.com/0xshariq/docker-mcp-server",
+            "language": "nodejs",
+            "id": "DECEPTIVE_TOOL_NAMING",
+            "category": "tool-poisoning",
+            "description": "Tool with deceptive name/description mismatch",
+            "file": "src\\docker.ts",
+            "line": 1193,
+            "evidence": "return createResponse('docker-volume', 'Error: Volume name is required for remove action.', true, process.cwd(), startTime);",
+            "source": "Invariant Labs research"
+        },
+        {
+            "server_name": "docker-mcp-server",
+            "github_url": "https://github.com/0xshariq/docker-mcp-server",
+            "language": "nodejs",
+            "id": "DECEPTIVE_TOOL_NAMING",
+            "category": "tool-poisoning",
+            "description": "Tool with deceptive name/description mismatch",
+            "file": "src\\docker.ts",
+            "line": 1568,
+            "evidence": "return createResponse('docker-bridge', 'Error: Bridge name is required for remove action.', true, process.cwd(), startTime);",
+            "source": "Invariant Labs research"
+        },
+        {
+            "server_name": "github-mcp-server",
+            "github_url": "https://github.com/0xshariq/github-mcp-server",
+            "language": "nodejs",
+            "id": "DECEPTIVE_TOOL_NAMING",
+            "category": "tool-poisoning",
+            "description": "Tool with deceptive name/description mismatch",
+            "file": "src\\github.ts",
+            "line": 794,
+            "evidence": "return createResponse('git-remote-remove', 'Error: Remote name is required.', true, workingDir, startTime);",
+            "source": "Invariant Labs research"
+        },
+        {
+            "server_name": "github-mcp-server",
+            "github_url": "https://github.com/0xshariq/github-mcp-server",
+            "language": "nodejs",
+            "id": "DECEPTIVE_TOOL_NAMING",
+            "category": "tool-poisoning",
+            "description": "Tool with deceptive name/description mismatch",
+            "file": "src\\github.ts",
+            "line": 801,
+            "evidence": "return createResponse('git-remote-remove', `✅ Successfully removed remote '${name}'`, false, workingDir, startTime);",
+            "source": "Invariant Labs research"
+        }
+    ]
+}

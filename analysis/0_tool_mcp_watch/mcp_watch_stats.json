@@ -1,0 +1,71 @@
+{
+    "last_index": 60205,
+    "total": 60205,
+    "range_start": 58700,
+    "range_end": 60205,
+    "remaining": 1505,
+    "languages": {
+        "nodejs": 25143,
+        "python": 21842,
+        "go": 1893,
+        "docker": 1220,
+        "unknown": 10107
+    },
+    "mcp-watch": {
+        "total": 46982,
+        "percentage": 78.04,
+        "languages": {
+            "nodejs": 25141,
+            "python": 21841
+        },
+        "categories": {
+            "toxic-flow": 7161734,
+            "credential-leak": 1034432,
+            "tool-poisoning": 5981,
+            "prompt-injection": 61348,
+            "tool-mutation": 21803,
+            "input-validation": 828801,
+            "access-control": 471419,
+            "server-spoofing": 22406,
+            "protocol-violation": 260890,
+            "data-exfiltration": 24842,
+            "steganographic-attack": 17609
+        },
+        "percentage_of_vulnerability": {
+            "toxic-flow": 72.26,
+            "credential-leak": 10.44,
+            "tool-poisoning": 0.06,
+            "prompt-injection": 0.62,
+            "tool-mutation": 0.22,
+            "input-validation": 8.36,
+            "access-control": 4.76,
+            "server-spoofing": 0.23,
+            "protocol-violation": 2.63,
+            "data-exfiltration": 0.25,
+            "steganographic-attack": 0.18
+        },
+        "vulnerabilities": {
+            "total": 9911265,
+            "average_per_server": 210.95877,
+            "counts": {
+                "critical": 1226891,
+                "high": 2594966,
+                "medium": 6089408
+            },
+            "percentage_of_severity": {
+                "critical": 0.123788,
+                "high": 0.26182,
+                "medium": 0.614393
+            }
+        },
+        "failure_reasons": {
+            "total": 13223,
+            "percentage": 21.96,
+            "counts": {
+                "execution_failed": 11790,
+                "clone_failed": 1332,
+                "prepare_timeout": 101
+            }
+        }
+    }
+}

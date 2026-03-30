@@ -1,0 +1,75 @@
+{
+    "last_index": 33445,
+    "total": 6689,
+    "range_start": 26756,
+    "range_end": 33445,
+    "remaining": 0,
+    "languages": {
+        "nodejs": 1732,
+        "python": 3084,
+        "unknown": 1545,
+        "docker": 187,
+        "go": 141
+    },
+    "mcp-shield": {
+        "total": 774,
+        "percentage": 13.07,
+        "languages": {
+            "python": 231,
+            "nodejs": 466,
+            "go": 33,
+            "unknown": 43,
+            "docker": 1
+        },
+        "tools": {
+            "total": 6358,
+            "safe": 5935,
+            "vulnerable": {
+                "total": 423,
+                "average_vulnerable_per_server": 0.5465116279069767,
+                "static-analysis": {
+                    "categories": {
+                        "sensitive-file-access": 295,
+                        "hidden-instructions": 43,
+                        "potential-exfiltration": 118,
+                        "shadowing-detected": 3,
+                        "\"text\"-(default)": 1,
+                        "\"raw\"": 1,
+                        "\"annotations\"": 1,
+                        "png": 1,
+                        "svg": 1
+                    },
+                    "percentage_of_vulnerability": {
+                        "sensitive-file-access": 63.58,
+                        "hidden-instructions": 9.27,
+                        "potential-exfiltration": 25.43,
+                        "shadowing-detected": 0.65,
+                        "\"text\"-(default)": 0.22,
+                        "\"raw\"": 0.22,
+                        "\"annotations\"": 0.22,
+                        "png": 0.22,
+                        "svg": 0.22
+                    },
+                    "counts": {
+                        "high": 274,
+                        "medium": 149
+                    },
+                    "percentage_of_severity": {
+                        "high": 0.647754,
+                        "medium": 0.352246
+                    }
+                },
+                "llm-description-analysis": {
+                    "LOW": 209,
+                    "MEDIUM": 161,
+                    "HIGH": 5
+                }
+            },
+            "average_per_server": 8.214470284237725,
+            "percentage_of_vulnerability": {
+                "safe": 93.35,
+                "vulnerable": 6.65
+            }
+        }
+    }
+}

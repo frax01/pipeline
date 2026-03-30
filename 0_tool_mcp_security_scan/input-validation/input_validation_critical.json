@@ -1,0 +1,35 @@
+{
+    "total": 2,
+    "findings": [
+        {
+            "server_url": "https://github.com/0xshariq/docker-mcp-server",
+            "server_name": "docker-mcp-server",
+            "id": "X-02",
+            "title": "Input validation & injection fuzzing",
+            "category": "input-validation",
+            "severity": "critical",
+            "details": "[{\"tool\": \"docker-clean\", \"payload\": \"../../../../etc/passwd\", \"resp\": {\"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"\\ud83e\\uddf9 Docker cleanup (../../../../etc/passwd) completed:\\\"}],\\\"isError\\\":false,\\\"metadata\\\":{\\\"operation\\\":\\\"docker-clean\\\",\\\"duration\\\":0,\\\"timestamp\\\":\\\"2026-03-26T20:38:08.384Z\\\",\\\"workingDirectory\\\":\\\"C:\\\\\\\\Users\\\\\\\\francesco\\\\\\\\Desktop\\\\\\\\pipeline\\\\\\\\docker-mcp-server\\\"}}\"}]}, \"jsonrpc\": \"2.0\", \"id\": 1}}, {\"tool\": \"docker-dev\", \"payload\": \"../../../../etc/passwd\", \"resp\": {\"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Error: Unknown command '../../../../etc/passwd'\\\"}],\\\"isError\\\":true,\\\"metadata\\\":{\\\"operation\\\":\\\"docker-dev\\\",\\\"duration\\\":0,\\\"timestamp\\\":\\\"2026-03-26T20:38:08.387Z\\\",\\\"workingDirectory\\\":\\\"C:\\\\\\\\Users\\\\\\\\francesco\\\\\\\\Desktop\\\\\\\\pipeline\\\\\\\\docker-mcp-server\\\"}}\"}]}, \"jsonrpc\": \"2.0\", \"id\": 1}}, {\"tool\": \"docker-reset\", \"payload\": \"../../../../etc/passwd\", \"resp\": {\"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"\\ud83d\\udd04 Docker ../../../../etc/passwd reset completed:\\\"}],\\\"isError\\\":false,\\\"metadata\\\":{\\\"operation\\\":\\\"docker-reset\\\",\\\"duration\\\":0,\\\"timestamp\\\":\\\"2026-03-26T20:38:08.390Z\\\",\\\"workingDirectory\\\":\\\"C:\\\\\\\\Users\\\\\\\\francesco\\\\\\\\Desktop\\\\\\\\pipeline\\\\\\\\docker-mcp-server\\\"}}\"}]}, \"jsonrpc\": \"2.0\", \"id\": 1}}]",
+            "remediation": [
+                "Apply allowlists, strict parsers, sandboxing; disable raw shells and arbitrary fetch."
+            ],
+            "references": [
+                "API input validation best practices"
+            ]
+        },
+        {
+            "server_url": "https://github.com/AB498/code-context-provider-mcp",
+            "server_name": "code-context-provider-mcp",
+            "id": "X-02",
+            "title": "Input validation & injection fuzzing",
+            "category": "input-validation",
+            "severity": "critical",
+            "details": "[{\"tool\": \"get_code_context\", \"payload\": \"http://169.254.169.254/latest/meta-data/\", \"resp\": {\"result\": {\"content\": [{\"type\": \"text\", \"text\": \"Directory structure for: .\\\\http:\\\\169.254.169.254\\\\latest\\\\meta-data\\\\\\n\\nPath does not exist: .\\\\http:\\\\169.254.169.254\\\\latest\\\\meta-data\\\\\"}]}, \"jsonrpc\": \"2.0\", \"id\": 1}}]",
+            "remediation": [
+                "Apply allowlists, strict parsers, sandboxing; disable raw shells and arbitrary fetch."
+            ],
+            "references": [
+                "API input validation best practices"
+            ]
+        }
+    ]
+}

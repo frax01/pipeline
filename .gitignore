@@ -1,0 +1,7 @@
+node_modules/
+
+# Dati pesanti (risultati JSON dalle VM)
+pullFromVM/
+partial_results_*/
+backup_analysis/
+analysisAllData/

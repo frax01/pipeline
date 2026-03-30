@@ -1,0 +1,139 @@
+{
+    "category": "prompt-injection",
+    "severity": "high",
+    "total": 11,
+    "findings": [
+        {
+            "server_name": "docker-mcp-server",
+            "github_url": "https://github.com/0xshariq/docker-mcp-server",
+            "language": "nodejs",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "docs\\installation-guide.md",
+            "line": 469,
+            "evidence": "1. **Documentation**: [Command Reference](./commands.md)",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "docker-mcp-server",
+            "github_url": "https://github.com/0xshariq/docker-mcp-server",
+            "language": "nodejs",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "README.md",
+            "line": 206,
+            "evidence": "├── help/                  # Documentation for all commands",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "docker-mcp-server",
+            "github_url": "https://github.com/0xshariq/docker-mcp-server",
+            "language": "nodejs",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "README.md",
+            "line": 237,
+            "evidence": "**📖 See detailed documentation:** Use `dlist` command or check the README files linked above.",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "github-mcp-server",
+            "github_url": "https://github.com/0xshariq/github-mcp-server",
+            "language": "nodejs",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "bin\\basic\\README.md",
+            "line": 3,
+            "evidence": "This directory contains 15 essential Git operation aliases that provide simplified access to the most commonly used Git commands. Each alias is a standalone executable script with comprehensive help documentation, error handling, and real Git command execution.",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "github-mcp-server",
+            "github_url": "https://github.com/0xshariq/github-mcp-server",
+            "language": "nodejs",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "bin\\basic\\README.md",
+            "line": 28,
+            "evidence": "**🎯 All Options Are Real Git Options:** Every option documented is a genuine Git command option - no custom flags that don't exist in Git.",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "touchdesigner-mcp",
+            "github_url": "https://github.com/8beeeaaat/touchdesigner-mcp",
+            "language": "nodejs",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "CHANGELOG.md",
+            "line": 62,
+            "evidence": "- Added AGENTS.md file documenting repository guidelines and development commands for AI agents working with the codebase. ([#146](https://github.com/8beeeaaat/touchdesigner-mcp/pull/146))",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "touchdesigner-mcp",
+            "github_url": "https://github.com/8beeeaaat/touchdesigner-mcp",
+            "language": "nodejs",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "CHANGELOG.md",
+            "line": 316,
+            "evidence": "- **README Documentation**: Updated with detailed information about response formatting system",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "touchdesigner-mcp",
+            "github_url": "https://github.com/8beeeaaat/touchdesigner-mcp",
+            "language": "nodejs",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "CHANGELOG.md",
+            "line": 413,
+            "evidence": "- **Documentation**: Updated installation instructions to use latest stable version",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "touchdesigner-mcp",
+            "github_url": "https://github.com/8beeeaaat/touchdesigner-mcp",
+            "language": "nodejs",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "CHANGELOG.md",
+            "line": 720,
+            "evidence": "- Improved README documentation with Docker setup instructions",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "docs\\CLI.md",
+            "line": 3,
+            "evidence": "This document provides detailed information about all Pixelle MCP CLI commands and options.",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "tiktok-ads-mcp-server",
+            "github_url": "https://github.com/AdsMCP/tiktok-ads-mcp-server",
+            "language": "python",
+            "id": "RETRIEVAL_AGENT_DECEPTION",
+            "category": "prompt-injection",
+            "description": "RADE pattern detected - hidden commands in retrieval content",
+            "file": "CONTRIBUTING.md",
+            "line": 3,
+            "evidence": "Thank you for your interest in contributing to the TikTok Ads MCP Server! This document provides guidelines and instructions for contributing to the project.",
+            "source": "PromptHub research"
+        }
+    ]
+}

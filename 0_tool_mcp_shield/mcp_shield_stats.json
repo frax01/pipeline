@@ -1,0 +1,39 @@
+{
+    "last_index": 0,
+    "total": 0,
+    "range_start": 0,
+    "range_end": 5,
+    "remaining": 5,
+    "languages": {},
+    "mcp-shield": {
+        "total": 0,
+        "percentage": 0.0,
+        "languages": {},
+        "tools": {
+            "total": 0,
+            "safe": 0,
+            "vulnerable": {
+                "total": 0,
+                "average_vulnerable_per_server": 0.0,
+                "static-analysis": {
+                    "categories": {},
+                    "percentage_of_vulnerability": {},
+                    "counts": {},
+                    "percentage_of_severity": {},
+                    "descriptions": {}
+                },
+                "llm-description-analysis": {
+                    "LOW": 0,
+                    "MEDIUM": 0,
+                    "HIGH": 0,
+                    "UNKNOWN": 0
+                }
+            },
+            "average_per_server": 0.0,
+            "percentage_of_vulnerability": {
+                "safe": 0.0,
+                "vulnerable": 0.0
+            }
+        }
+    }
+}

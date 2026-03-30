@@ -1,0 +1,165 @@
+{
+  "target": "stdio:node 'C:/Users/francesco/Desktop/serverToTest/docker-mcp-server/dist/index.js'",
+  "started_at": "2026-03-15T09:00:18.046758Z",
+  "finished_at": "2026-03-15T09:00:18.046758Z",
+  "findings": [
+    {
+      "id": "BASE-01",
+      "title": "Fingerprint server capabilities",
+      "category": "baseline",
+      "severity": "info",
+      "passed": false,
+      "details": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"error\": {\"code\": -32603, \"message\": \"[\\n  {\\n    \\\"expected\\\": \\\"string\\\",\\n    \\\"code\\\": \\\"invalid_type\\\",\\n    \\\"path\\\": [\\n      \\\"params\\\",\\n      \\\"protocolVersion\\\"\\n    ],\\n    \\\"message\\\": \\\"Invalid input: expected string, received undefined\\\"\\n  },\\n  {\\n    \\\"expected\\\": \\\"object\\\",\\n    \\\"code\\\": \\\"invalid_type\\\",\\n    \\\"path\\\": [\\n      \\\"params\\\",\\n      \\\"capabilities\\\"\\n    ],\\n    \\\"message\\\": \\\"Invalid input: expected object, received undefined\\\"\\n  },\\n  {\\n    \\\"expected\\\": \\\"object\\\",\\n    \\\"code\\\": \\\"invalid_type\\\",\\n    \\\"path\\\": [\\n      \\\"params\\\",\\n      \\\"clientInfo\\\"\\n    ],\\n    \\\"message\\\": \\\"Invalid input: expected object, received undefined\\\"\\n  }\\n]\"}}",
+      "remediation": [
+        "Align capability advertisement with implemented features.",
+        "Return explicit errors for unsupported calls."
+      ],
+      "references": [
+        "MCP Spec: Initialize & Capabilities"
+      ]
+    },
+    {
+      "id": "X-01",
+      "title": "Dangerous capability detection in tools",
+      "category": "tools",
+      "severity": "high",
+      "passed": false,
+      "details": "[{\"name\": \"docker-logs\", \"description\": \"Fetch logs for a specific Docker container\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"containerId\": {\"type\": \"string\", \"description\": \"ID of the Docker container\"}, \"tail\": {\"type\": \"number\", \"description\": \"Number of lines to fetch from the end of the log\"}, \"follow\": {\"type\": \"boolean\", \"description\": \"Follow log output\"}}, \"required\": [\"containerId\"]}}, {\"name\": \"docker-compose\", \"description\": \"Run Docker Compose commands\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"command\": {\"type\": \"string\", \"description\": \"Docker Compose command to run (e.g., 'up', 'down')\"}, \"filePath\": {\"type\": \"string\", \"description\": \"Path to the Docker Compose file\"}, \"projectName\": {\"type\": \"string\", \"description\": \"Project name for Docker Compose\"}}, \"required\": [\"command\"]}}, {\"name\": \"docker-exec\", \"description\": \"Execute a command in a running Docker container\", \"inputSchema\": {\"type\": \"object\", \"properties\": {\"containerId\": {\"type\": \"string\", \"description\": \"ID of the Docker container\"}, \"command\": {\"type\": \"string\", \"description\": \"Command to execute inside the container\"}, \"interactive\": {\"type\": \"boolean\", \"description\": \"Run in interactive mode\"}}, \"required\": [\"containerId\", \"command\"]}}]",
+      "remediation": [
+        "Split destructive ops; add strict schemas and confirmations.",
+        "Route high-blast tools through HIL (human-in-loop)."
+      ],
+      "references": [
+        "MCP Tools guidance (least privilege)"
+      ]
+    },
+    {
+      "id": "P-02",
+      "title": "Prompt/description injection heuristics",
+      "category": "prompts",
+      "severity": "medium",
+      "passed": true,
+      "details": "[]",
+      "remediation": [
+        "Remove or quarantine manipulative instructions; add client-side guards."
+      ],
+      "references": [
+        "Prompt injection patterns"
+      ]
+    },
+    {
+      "id": "X-03",
+      "title": "Tool description stability (anti rug-pull)",
+      "category": "tools",
+      "severity": "medium",
+      "passed": true,
+      "details": "[]",
+      "remediation": [
+        "Version tool descriptions and notify clients; require re-approval."
+      ],
+      "references": [
+        "Change management for tools"
+      ]
+    },
+    {
+      "id": "R-01",
+      "title": "Resource URI validation & path traversal prevention",
+      "category": "resources",
+      "severity": "high",
+      "passed": true,
+      "details": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"error\": {\"code\": -32601, \"message\": \"Method not found\"}}",
+      "remediation": [
+        "Add resource roots allowlists; disable proxying unless necessary; sanitize paths."
+      ],
+      "references": [
+        "MCP Resources security"
+      ]
+    },
+    {
+      "id": "R-02",
+      "title": "Per-resource access control",
+      "category": "resources",
+      "severity": "high",
+      "passed": true,
+      "details": "{\"jsonrpc\": \"2.0\", \"id\": 1, \"error\": {\"code\": -32601, \"message\": \"Method not found\"}}",
+      "remediation": [
+        "Bind resource access to explicit scopes/claims."
+      ],
+      "references": [
+        "Resource-level RBAC"
+      ]
+    },
+    {
+      "id": "R-03",
+      "title": "Sensitive resource exposure",
+      "category": "resources",
+      "severity": "high",
+      "passed": true,
+      "details": "[]",
+      "remediation": [
+        "Do not expose internal credentials as resources; gate behind RBAC and remove from listing.",
+        "Store secrets in a vault; never return them via MCP."
+      ],
+      "references": [
+        "Challenge 1: Basic Prompt Injection risk via sensitive resources"
+      ]
+    },
+    {
+      "id": "X-02",
+      "title": "Input validation & injection fuzzing",
+      "category": "tools",
+      "severity": "critical",
+      "passed": false,
+      "details": "[{\"tool\": \"docker-clean\", \"payload\": \"../../../../etc/passwd\", \"resp\": {\"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"\\u00f0\\u0178\\u00a7\\u00b9 Docker cleanup (../../../../etc/passwd) completed:\\\"}],\\\"isError\\\":false,\\\"metadata\\\":{\\\"operation\\\":\\\"docker-clean\\\",\\\"duration\\\":0,\\\"timestamp\\\":\\\"2026-03-15T09:00:17.937Z\\\",\\\"workingDirectory\\\":\\\"C:\\\\\\\\Users\\\\\\\\francesco\\\\\\\\Desktop\\\\\\\\pipeline\\\"}}\"}]}, \"jsonrpc\": \"2.0\", \"id\": 1}}, {\"tool\": \"docker-dev\", \"payload\": \"../../../../etc/passwd\", \"resp\": {\"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"Error: Unknown command '../../../../etc/passwd'\\\"}],\\\"isError\\\":true,\\\"metadata\\\":{\\\"operation\\\":\\\"docker-dev\\\",\\\"duration\\\":0,\\\"timestamp\\\":\\\"2026-03-15T09:00:17.940Z\\\",\\\"workingDirectory\\\":\\\"C:\\\\\\\\Users\\\\\\\\francesco\\\\\\\\Desktop\\\\\\\\pipeline\\\"}}\"}]}, \"jsonrpc\": \"2.0\", \"id\": 1}}, {\"tool\": \"docker-reset\", \"payload\": \"http://169.254.169.254/latest/meta-data/\", \"resp\": {\"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"\\u00f0\\u0178\\u201d\\u201e Docker ../../../../etc/passwd reset completed:\\\"}],\\\"isError\\\":false,\\\"metadata\\\":{\\\"operation\\\":\\\"docker-reset\\\",\\\"duration\\\":0,\\\"timestamp\\\":\\\"2026-03-15T09:00:17.942Z\\\",\\\"workingDirectory\\\":\\\"C:\\\\\\\\Users\\\\\\\\francesco\\\\\\\\Desktop\\\\\\\\pipeline\\\"}}\"}]}, \"jsonrpc\": \"2.0\", \"id\": 1}}]",
+      "remediation": [
+        "Apply allowlists, strict parsers, sandboxing; disable raw shells and arbitrary fetch."
+      ],
+      "references": [
+        "API input validation best practices"
+      ]
+    },
+    {
+      "id": "A-03",
+      "title": "Token indirection (no upstream token pass-through)",
+      "category": "authz",
+      "severity": "critical",
+      "passed": true,
+      "details": "{\"result\": {\"content\": [{\"type\": \"text\", \"text\": \"{\\\"content\\\":[{\\\"type\\\":\\\"text\\\",\\\"text\\\":\\\"\\u00f0\\u0178\\u201d\\u201e Docker http://169.254.169.254/latest/meta-data/ reset completed:\\\"}],\\\"isError\\\":false,\\\"metadata\\\":{\\\"operation\\\":\\\"docker-reset\\\",\\\"duration\\\":0,\\\"timestamp\\\":\\\"2026-03-15T09:00:17.942Z\\\",\\\"workingDirectory\\\":\\\"C:\\\\\\\\Users\\\\\\\\francesco\\\\\\\\Desktop\\\\\\\\pipeline\\\"}}\"}]}, \"jsonrpc\": \"2.0\", \"id\": 1}",
+      "remediation": [
+        "Adopt token indirection: never pass through upstream tokens to clients."
+      ],
+      "references": [
+        "MCP Auth best practices: avoid confused deputy"
+      ]
+    },
+    {
+      "id": "P-03",
+      "title": "Indirect prompt injection via external resources",
+      "category": "prompts",
+      "severity": "high",
+      "passed": true,
+      "details": "[]",
+      "remediation": [
+        "Sanitize/strip untrusted content, apply allowlists and guardrails in LLM prompts",
+        "Require HIL or sandbox for external content processing"
+      ],
+      "references": [
+        "DVMCP Challenge 6"
+      ]
+    },
+    {
+      "id": "RC-01",
+      "title": "Remote access control exposure",
+      "category": "access-control",
+      "severity": "critical",
+      "passed": true,
+      "details": "{\"candidates\": [], \"exploited\": []}",
+      "remediation": [
+        "Remove remote admin tooling from client surface; enforce RBAC and human-in-the-loop approvals."
+      ],
+      "references": [
+        "Damn Vulnerable MCP Server: Challenge 9 solution"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+    "total": 3,
+    "entries": [
+        {
+            "server_url": "https://github.com/13rac1/videocapture-mcp",
+            "server_name": "videocapture-mcp",
+            "language": "python",
+            "errors": [
+                {
+                    "test": "initialization",
+                    "type": "InitializationError",
+                    "message": "Transport not connected",
+                    "payload": null
+                }
+            ]
+        },
+        {
+            "server_url": "https://github.com/66julienmartin/MCP-server-Deepseek_R1",
+            "server_name": "MCP-server-Deepseek_R1",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "initialization",
+                    "type": "InitializationError",
+                    "message": "Transport not connected",
+                    "payload": null
+                }
+            ]
+        },
+        {
+            "server_url": "https://github.com/8beeeaaat/touchdesigner-mcp",
+            "server_name": "touchdesigner-mcp",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "initialization",
+                    "type": "InitializationError",
+                    "message": "Transport not connected",
+                    "payload": null
+                }
+            ]
+        }
+    ]
+}

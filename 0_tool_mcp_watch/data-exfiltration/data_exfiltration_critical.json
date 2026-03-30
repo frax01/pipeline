@@ -1,0 +1,91 @@
+{
+    "category": "data-exfiltration",
+    "severity": "critical",
+    "total": 7,
+    "findings": [
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "DATA_EXFILTRATION",
+            "category": "data-exfiltration",
+            "description": "Potential data exfiltration detected",
+            "file": "pixelle\\comfyui\\http_executor.py",
+            "line": 32,
+            "evidence": "json_data = json.dumps(prompt_data)",
+            "source": "HiddenLayer research"
+        },
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "DATA_EXFILTRATION",
+            "category": "data-exfiltration",
+            "description": "Potential data exfiltration detected",
+            "file": "pixelle\\comfyui\\websocket_executor.py",
+            "line": 58,
+            "evidence": "json_data = json.dumps(prompt_data)",
+            "source": "HiddenLayer research"
+        },
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "MAGIC_PARAMETER_INJECTION",
+            "category": "data-exfiltration",
+            "description": "Magic parameter detected - extracts sensitive AI context",
+            "file": "pixelle\\utils\\user_settings_util.py",
+            "line": 59,
+            "evidence": "def save_system_prompt(system_prompt: str) -> bool:",
+            "source": "HiddenLayer research"
+        },
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "MAGIC_PARAMETER_INJECTION",
+            "category": "data-exfiltration",
+            "description": "Magic parameter detected - extracts sensitive AI context",
+            "file": "pixelle\\web\\chat\\chat_handler.py",
+            "line": 24,
+            "evidence": "def format_llm_error_message(model_name: str, error_str: str) -> str:",
+            "source": "HiddenLayer research"
+        },
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "DATA_EXFILTRATION",
+            "category": "data-exfiltration",
+            "description": "Potential data exfiltration detected",
+            "file": "pixelle\\web\\chat\\chat_handler.py",
+            "line": 110,
+            "evidence": "error_msg = json.dumps({\"error\": f\"Tool {tool_name} not found in any MCP connection\"})",
+            "source": "HiddenLayer research"
+        },
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "DATA_EXFILTRATION",
+            "category": "data-exfiltration",
+            "description": "Potential data exfiltration detected",
+            "file": "pixelle\\web\\chat\\chat_handler.py",
+            "line": 134,
+            "evidence": "error_msg = json.dumps({\"error\": f\"Tool execution failed: {error_content}\"})",
+            "source": "HiddenLayer research"
+        },
+        {
+            "server_name": "Pixelle-MCP",
+            "github_url": "https://github.com/AIDC-AI/Pixelle-MCP",
+            "language": "python",
+            "id": "MAGIC_PARAMETER_INJECTION",
+            "category": "data-exfiltration",
+            "description": "Magic parameter detected - extracts sensitive AI context",
+            "file": "pixelle\\web\\chat\\chat_settings.py",
+            "line": 51,
+            "evidence": "async def _update_system_prompt_if_need(system_prompt: str):",
+            "source": "HiddenLayer research"
+        }
+    ]
+}

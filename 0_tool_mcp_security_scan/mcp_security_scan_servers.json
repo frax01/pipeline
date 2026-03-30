@@ -1,0 +1,17 @@
+{
+    "https://github.com/0xshariq/docker-mcp-server": "nodejs completed",
+    "https://github.com/0xshariq/github-mcp-server": "unknown failed",
+    "https://github.com/13rac1/videocapture-mcp": "python failed",
+    "https://github.com/1Panel-dev/mcp-1panel": "go completed",
+    "https://github.com/21st-dev/magic-mcp": "nodejs completed",
+    "https://github.com/2slides/2slides-mcp": "nodejs failed",
+    "https://github.com/66julienmartin/MCP-server-Deepseek_R1": "nodejs failed",
+    "https://github.com/66julienmartin/MCP-server-Qwen_Max": "nodejs failed",
+    "https://github.com/8beeeaaat/touchdesigner-mcp": "nodejs failed",
+    "https://github.com/8enSmith/mcp-open-library": "nodejs failed",
+    "https://github.com/AB498/code-context-provider-mcp": "nodejs completed",
+    "https://github.com/AB498/computer-control-mcp": "python failed",
+    "https://github.com/AI-QL/chat-mcp": "nodejs failed",
+    "https://github.com/AI-QL/mcp-devcontainers": "nodejs completed",
+    "https://github.com/AIDC-AI/Pixelle-MCP": "python failed"
+}

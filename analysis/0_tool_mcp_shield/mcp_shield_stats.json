@@ -1,0 +1,72 @@
+{
+    "last_index": 60205,
+    "total": 60205,
+    "languages": {
+        "nodejs": 24693,
+        "python": 21792,
+        "go": 1881,
+        "docker": 1204,
+        "unknown": 10635
+    },
+    "mcp-shield": {
+        "total": 11456,
+        "percentage": 19.03,
+        "languages": {
+            "nodejs": 8026,
+            "go": 490,
+            "python": 2689,
+            "docker": 33,
+            "unknown": 218
+        },
+        "tools": {
+            "total": 93461,
+            "safe": 86629,
+            "vulnerable": {
+                "total": 6832,
+                "average_vulnerable_per_server": 0.6,
+                "static-analysis": {
+                    "categories": {
+                        "sensitive-file-access": 5139,
+                        "potential-exfiltration": 1924,
+                        "hidden-instructions": 519,
+                        "shadowing-detected": 39,
+                        "\"text\"-(default)": 1,
+                        "\"raw\"": 1,
+                        "\"annotations\"": 1,
+                        "png": 1,
+                        "svg": 1
+                    },
+                    "percentage_of_vulnerability": {
+                        "sensitive-file-access": 75.22,
+                        "potential-exfiltration": 28.16,
+                        "hidden-instructions": 7.6,
+                        "shadowing-detected": 0.57,
+                        "\"text\"-(default)": 0.01,
+                        "\"raw\"": 0.01,
+                        "\"annotations\"": 0.01,
+                        "png": 0.01,
+                        "svg": 0.01
+                    },
+                    "counts": {
+                        "high": 4662,
+                        "medium": 2170
+                    },
+                    "percentage_of_severity": {
+                        "high": 68.24,
+                        "medium": 31.76
+                    }
+                },
+                "llm-description-analysis": {
+                    "LOW": 3267,
+                    "MEDIUM": 2721,
+                    "HIGH": 66
+                }
+            },
+            "average_per_server": 8.16,
+            "percentage_of_vulnerability": {
+                "safe": 92.69,
+                "vulnerable": 7.31
+            }
+        }
+    }
+}

@@ -1,0 +1,91 @@
+{
+    "last_index": 40134,
+    "total": 6689,
+    "range_start": 33445,
+    "range_end": 40134,
+    "remaining": 0,
+    "languages": {
+        "python": 1748,
+        "unknown": 3076,
+        "nodejs": 1571,
+        "go": 153,
+        "docker": 141
+    },
+    "mcp-check": {
+        "total": 252,
+        "percentage": 3.77,
+        "languages": {
+            "python": 118,
+            "nodejs": 130,
+            "go": 4
+        },
+        "suites": {
+            "handshake": {
+                "passed": 238,
+                "failed": 201,
+                "warnings": 0,
+                "total": 439
+            },
+            "tool-discovery": {
+                "passed": 262,
+                "failed": 200,
+                "warnings": 2,
+                "total": 464
+            },
+            "tool-invocation": {
+                "passed": 338,
+                "failed": 356,
+                "warnings": 16,
+                "total": 711
+            }
+        },
+        "tests": {
+            "total": 1614,
+            "passed": 838,
+            "failed": 757,
+            "skipped": 1,
+            "warnings": 18,
+            "success_rate": 51.92
+        },
+        "errors": {
+            "Failed to establish connection: Transport not connected": 177,
+            "Transport not connected": 398,
+            "Failed to establish connection: MCP error -32001: Request timed out": 17,
+            "Tool accepted invalid input without error": 106,
+            "Server did not return error for non-existent tool": 31,
+            "MCP error -32603: Unsupported file extension: ": 1,
+            "Duplicate tool names found: update_object": 1,
+            "MCP error -32603: MCP error -32603: NFT Scanner error: Failed to get collection details: Alchemy API key not configured": 1,
+            "MCP error -32603: MCP error -32603: NFT Scanner error: Failed to get NFT metadata: Alchemy API key not configured": 1,
+            "MCP error -32603: MCP error -32603: NFT Scanner error: Failed to get NFT transfers: Alchemy API key not configured": 1,
+            "Expected timeout error but got: MCP error -32603: MCP error -32603: NFT Scanner error: Failed to get collection details: Alchemy API key not configured": 1,
+            "MCP error -32603: MCP error -32603: Tool execution failed: Failed to fetch pool liquidity: Error: Invalid public key input": 1,
+            "Failed to establish connection: MCP error -32000: Connection closed": 5,
+            "Not connected": 2,
+            "MCP error -32603: Invalid connection string: Invalid URL": 1,
+            "MCP error -32603: Only SELECT queries are allowed": 1,
+            "MCP error -32603: Not connected to a database": 1,
+            "Expected timeout error but got: MCP error -32603: Invalid connection string: Invalid URL": 1,
+            "Resource discovery failed: MCP error -32601: Method not found": 2,
+            "MCP error -32603: MCP error -32603: Failed to fetch Swagger docs for 'default': Error. Please ensure the service at http://localhost:8090/v3/api-docs is running.": 2,
+            "MCP error -32603: Invalid arguments: [\n  {\n    \"validation\": \"url\",\n    \"code\": \"invalid_string\",\n    \"message\": \"Invalid url\",\n    \"path\": [\n      \"url\"\n    ]\n  }\n]": 1,
+            "Expected timeout error but got: MCP error -32603: Invalid arguments: [\n  {\n    \"validation\": \"url\",\n    \"code\": \"invalid_string\",\n    \"message\": \"Invalid url\",\n    \"path\": [\n      \"url\"\n    ]\n  }\n]": 1,
+            "MCP error -32603: MCP error -32603: Failed to refresh Etsy access token": 3,
+            "Expected timeout error but got: MCP error -32603: MCP error -32603: Failed to refresh Etsy access token": 1
+        },
+        "warnings": {
+            "Tool behavior appears non-deterministic with identical inputs": 16,
+            "2 tools lack descriptions": 1,
+            "3 tools lack descriptions": 1
+        },
+        "failure_reasons": {
+            "total": 6437,
+            "percentage": 96.23,
+            "counts": {
+                "execution_timeout": 5477,
+                "prepare_timeout": 2,
+                "preparation_failed": 958
+            }
+        }
+    }
+}

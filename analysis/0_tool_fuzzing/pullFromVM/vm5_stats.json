@@ -1,0 +1,128 @@
+{
+    "last_index": 33445,
+    "total": 6688,
+    "range_start": 32557,
+    "range_end": 33445,
+    "remaining": 0,
+    "languages": {
+        "nodejs": 1711,
+        "python": 1655,
+        "unknown": 3219,
+        "go": 103
+    },
+    "fuzzing": {
+        "total_servers": 302,
+        "percentage": 4.52,
+        "languages": {
+            "nodejs": 285,
+            "go": 14,
+            "python": 3
+        },
+        "total_tools": 2289,
+        "total_fuzzing_runs": 45780,
+        "total_successful": 38242,
+        "total_exceptions": 7538,
+        "total_safety_blocked": 0,
+        "success_rate": 0.8353429445172564,
+        "exceptions_by_message": {
+            "No response received from stdio transport": 94,
+            "Failed to send message over stdio transport": 85,
+            "Server returned error": 7009,
+            "Failed to receive message from stdio transport": 350
+        },
+        "protocol_types": {
+            "total_types_tested": 5134,
+            "total_runs": 51581,
+            "total_successful": 324,
+            "total_errors": 51257,
+            "success_rate": 0.63,
+            "by_type": {
+                "InitializeRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "ProgressNotification": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "CancelNotification": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "ListResourcesRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "ReadResourceRequest": {
+                    "runs": 3171,
+                    "successful": 113,
+                    "errors": 3058
+                },
+                "SetLevelRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "GenericJSONRPCRequest": {
+                    "runs": 3020,
+                    "successful": 152,
+                    "errors": 2868
+                },
+                "CreateMessageRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "ListPromptsRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "GetPromptRequest": {
+                    "runs": 3110,
+                    "successful": 59,
+                    "errors": 3051
+                },
+                "ListRootsRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "SubscribeRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "UnsubscribeRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "CompleteRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "ListResourceTemplatesRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "ElicitRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                },
+                "PingRequest": {
+                    "runs": 3020,
+                    "successful": 0,
+                    "errors": 3020
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,129 @@
+{
+    "last_index": 40134,
+    "total": 6689,
+    "range_start": 33695,
+    "range_end": 40134,
+    "remaining": 0,
+    "languages": {
+        "unknown": 2772,
+        "python": 1597,
+        "nodejs": 2155,
+        "go": 165
+    },
+    "fuzzing": {
+        "total_servers": 501,
+        "percentage": 7.49,
+        "languages": {
+            "nodejs": 472,
+            "go": 27,
+            "python": 2
+        },
+        "total_tools": 4301,
+        "total_fuzzing_runs": 92000,
+        "total_successful": 76712,
+        "total_exceptions": 15288,
+        "total_safety_blocked": 0,
+        "success_rate": 0.8338260869565217,
+        "exceptions_by_message": {
+            "No response received from stdio transport": 655,
+            "Server returned error": 12918,
+            "Failed to receive message from stdio transport": 1151,
+            "Failed to send message over stdio transport": 563,
+            "Too many responses received without matching request ID": 1
+        },
+        "protocol_types": {
+            "total_types_tested": 8517,
+            "total_runs": 85766,
+            "total_successful": 695,
+            "total_errors": 85071,
+            "success_rate": 0.81,
+            "by_type": {
+                "InitializeRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "ProgressNotification": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "CancelNotification": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "ListResourcesRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "ReadResourceRequest": {
+                    "runs": 5469,
+                    "successful": 409,
+                    "errors": 5060
+                },
+                "SetLevelRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "GenericJSONRPCRequest": {
+                    "runs": 5010,
+                    "successful": 221,
+                    "errors": 4789
+                },
+                "CreateMessageRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "ListPromptsRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "GetPromptRequest": {
+                    "runs": 5147,
+                    "successful": 65,
+                    "errors": 5082
+                },
+                "ListRootsRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "SubscribeRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "UnsubscribeRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "CompleteRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "ListResourceTemplatesRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "ElicitRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                },
+                "PingRequest": {
+                    "runs": 5010,
+                    "successful": 0,
+                    "errors": 5010
+                }
+            }
+        }
+    }
+}

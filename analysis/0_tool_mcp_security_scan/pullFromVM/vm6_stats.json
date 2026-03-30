@@ -1,0 +1,95 @@
+{
+    "last_index": 40134,
+    "total": 6689,
+    "range_start": 33445,
+    "range_end": 40134,
+    "remaining": 0,
+    "languages": {
+        "python": 1731,
+        "unknown": 3111,
+        "nodejs": 1554,
+        "go": 156,
+        "docker": 137
+    },
+    "mcp-security-scan": {
+        "total": 5314,
+        "percentage": 79.44,
+        "languages": {
+            "python": 1686,
+            "unknown": 1944,
+            "nodejs": 1412,
+            "go": 135,
+            "docker": 137
+        },
+        "percentage_of_vulnerability": {
+            "initialization-error": 92.42,
+            "dangerous-capabilities": 3.89,
+            "input-validation": 3.4,
+            "rug-pull": 0.07,
+            "path-traversal": 0.05,
+            "sensitive-file-access": 0.05,
+            "data-leak": 0.04,
+            "sensitive-resource-exposure": 0.02,
+            "remote-access-control": 0.02,
+            "prompt-injection": 0.05
+        },
+        "categories": {
+            "initialization-error": 5281,
+            "dangerous-capabilities": 222,
+            "input-validation": 194,
+            "rug-pull": 4,
+            "path-traversal": 3,
+            "sensitive-file-access": 3,
+            "data-leak": 2,
+            "sensitive-resource-exposure": 1,
+            "remote-access-control": 1,
+            "prompt-injection": 3
+        },
+        "categories_passed": {
+            "prompt-injection": 477,
+            "rug-pull": 476,
+            "path-traversal": 474,
+            "sensitive-file-access": 474,
+            "sensitive-resource-exposure": 476,
+            "input-validation": 283,
+            "data-leak": 475,
+            "indirect-prompt-injection": 477,
+            "remote-access-control": 476,
+            "dangerous-capabilities": 258,
+            "initialization-error": 33
+        },
+        "vulnerabilities": {
+            "total": 5714,
+            "average_per_server": 0.854238,
+            "counts": {
+                "info": 5281,
+                "high": 229,
+                "critical": 197,
+                "medium": 7
+            },
+            "percentage_of_severity": {
+                "info": 0.924221,
+                "high": 0.040077,
+                "critical": 0.034477,
+                "medium": 0.001225
+            }
+        },
+        "findings": {
+            "total": 10093,
+            "passed": 4379,
+            "failed": 5714,
+            "percentage_passed": 43.39
+        },
+        "failure_reasons": {
+            "total": 1375,
+            "percentage": 20.56,
+            "counts": {
+                "execution_error": 215,
+                "execution_failed": 222,
+                "clone_failed": 913,
+                "config_build_failed": 22,
+                "config_json_corrupted": 3
+            }
+        }
+    }
+}

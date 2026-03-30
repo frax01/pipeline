@@ -1,0 +1,19 @@
+{
+    "category": "access-control",
+    "severity": "medium",
+    "total": 1,
+    "findings": [
+        {
+            "server_name": "github-mcp-server",
+            "github_url": "https://github.com/0xshariq/github-mcp-server",
+            "language": "nodejs",
+            "id": "CONSENT_FATIGUE_RISK",
+            "category": "access-control",
+            "description": "Repeated consent requests - fatigue attack risk",
+            "file": "tsconfig.json",
+            "line": 33,
+            "evidence": "// \"rootDirs\": [],                                   /* Allow multiple folders to be treated as one when resolving modules. */",
+            "source": "VulnerableMCP database"
+        }
+    ]
+}

@@ -1,0 +1,363 @@
+{
+    "https://github.com/0xshariq/docker-mcp-server": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W016": {
+                "category": "potential-untrusted-content",
+                "severity": "low",
+                "message": "Potential Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/0xshariq/github-mcp-server": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W015": {
+                "category": "untrusted-content",
+                "severity": "medium",
+                "message": "Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/2slides/2slides-mcp": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W016": {
+                "category": "potential-untrusted-content",
+                "severity": "low",
+                "message": "Potential Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/8enSmith/mcp-open-library": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W015": {
+                "category": "untrusted-content",
+                "severity": "medium",
+                "message": "Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/AI-QL/mcp-devcontainers": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W015": {
+                "category": "untrusted-content",
+                "severity": "medium",
+                "message": "Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/AgentOps-AI/agentops-mcp": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W015": {
+                "category": "untrusted-content",
+                "severity": "medium",
+                "message": "Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/AgentX-ai/youtube-dlp-server": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W015": {
+                "category": "untrusted-content",
+                "severity": "medium",
+                "message": "Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/AiondaDotCom/mcp-salesforce": {
+        "total-vulnerabilities": 3,
+        "tools": {
+            "salesforce_learn_context": {
+                "status": "vulnerable",
+                "category": {
+                    "E001": "prompt-injection",
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            }
+        },
+        "server_issues": {
+            "W015": {
+                "category": "untrusted-content",
+                "severity": "medium",
+                "message": "Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/AiondaDotCom/mcp-ssh": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W016": {
+                "category": "potential-untrusted-content",
+                "severity": "low",
+                "message": "Potential Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/AudienseCo/mcp-audiense-insights": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W016": {
+                "category": "potential-untrusted-content",
+                "severity": "low",
+                "message": "Potential Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/Boston343/starwind-ui-mcp": {
+        "total-vulnerabilities": 4,
+        "tools": {
+            "starwind_add": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "search_starwind_pro_blocks": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "starwind_init": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            }
+        },
+        "server_issues": {
+            "W016": {
+                "category": "potential-untrusted-content",
+                "severity": "low",
+                "message": "Potential Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/ChristophEnglisch/keycloak-model-context-protocol": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W015": {
+                "category": "untrusted-content",
+                "severity": "medium",
+                "message": "Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/CircleCI-Public/mcp-server-circleci": {
+        "total-vulnerabilities": 12,
+        "tools": {
+            "get_build_failure_logs": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "find_flaky_tests": {
+                "status": "vulnerable",
+                "category": {
+                    "E001": "prompt-injection",
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "get_job_test_results": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "run_pipeline": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "list_followed_projects": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "download_usage_api_data": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "find_underused_resource_classes": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "run_rollback_pipeline": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "list_component_versions": {
+                "status": "vulnerable",
+                "category": {
+                    "E001": "prompt-injection",
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            }
+        },
+        "server_issues": {
+            "W015": {
+                "category": "untrusted-content",
+                "severity": "medium",
+                "message": "Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    },
+    "https://github.com/CodeLogicIncEngineering/codelogic-mcp-server": {
+        "total-vulnerabilities": 2,
+        "tools": {
+            "codelogic-method-impact": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            },
+            "codelogic-database-impact": {
+                "status": "vulnerable",
+                "category": {
+                    "W001": "dangerous-words"
+                },
+                "labels": {
+                    "is_public_sink": 0,
+                    "destructive": 0,
+                    "untrusted_content": 0,
+                    "private_data": 0
+                }
+            }
+        },
+        "server_issues": {},
+        "toxic_flows": {}
+    },
+    "https://github.com/Coding-Solo/godot-mcp": {
+        "total-vulnerabilities": 1,
+        "tools": {},
+        "server_issues": {
+            "W016": {
+                "category": "potential-untrusted-content",
+                "severity": "low",
+                "message": "Potential Untrusted Content."
+            }
+        },
+        "toxic_flows": {}
+    }
+}

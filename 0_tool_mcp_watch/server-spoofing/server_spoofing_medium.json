@@ -1,0 +1,31 @@
+{
+    "category": "server-spoofing",
+    "severity": "medium",
+    "total": 2,
+    "findings": [
+        {
+            "server_name": "docker-mcp-server",
+            "github_url": "https://github.com/0xshariq/docker-mcp-server",
+            "language": "nodejs",
+            "id": "SUSPICIOUS_SERVER_NAME",
+            "category": "server-spoofing",
+            "description": "Server name mimics popular service - potential spoofing",
+            "file": "bin\\advanced\\dpublish.js",
+            "line": null,
+            "evidence": "Server name resembles trusted service",
+            "source": "PromptHub research"
+        },
+        {
+            "server_name": "touchdesigner-mcp",
+            "github_url": "https://github.com/8beeeaaat/touchdesigner-mcp",
+            "language": "nodejs",
+            "id": "SUSPICIOUS_SERVER_NAME",
+            "category": "server-spoofing",
+            "description": "Server name mimics popular service - potential spoofing",
+            "file": "tests\\integration\\touchDesignerClientAndWebServer.test.ts",
+            "line": null,
+            "evidence": "Server name resembles trusted service",
+            "source": "PromptHub research"
+        }
+    ]
+}

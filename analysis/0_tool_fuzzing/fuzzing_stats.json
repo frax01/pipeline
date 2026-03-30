@@ -1,0 +1,143 @@
+{
+    "last_index": 60205,
+    "total": 60200,
+    "languages": {
+        "nodejs": 24004,
+        "python": 14790,
+        "go": 1411,
+        "unknown": 19995
+    },
+    "fuzzing": {
+        "total_servers": 6035,
+        "percentage": 10.02,
+        "languages": {
+            "nodejs": 5686,
+            "go": 314,
+            "python": 35
+        },
+        "total_tools": 48093,
+        "total_fuzzing_runs": 972560,
+        "total_successful": 790815,
+        "total_exceptions": 181745,
+        "total_safety_blocked": 0,
+        "success_rate": 0.813127,
+        "exceptions_by_message": {
+            "Server returned error": 154639,
+            "No response received from stdio transport": 5626,
+            "Failed to send message over stdio transport": 4743,
+            "Failed to receive message from stdio transport": 16736,
+            "Too many responses received without matching request ID": 1
+        },
+        "protocol_types": {
+            "total_types_tested": 102595,
+            "total_runs": 1033067,
+            "total_successful": 8394,
+            "total_errors": 1024673,
+            "success_rate": 0.81,
+            "by_type": {
+                "InitializeRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "ProgressNotification": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "CancelNotification": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "ListResourcesRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "ReadResourceRequest": {
+                    "runs": 65495,
+                    "successful": 4359,
+                    "errors": 61136,
+                    "success_rate": 6.66
+                },
+                "SetLevelRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "GenericJSONRPCRequest": {
+                    "runs": 60350,
+                    "successful": 2772,
+                    "errors": 57578,
+                    "success_rate": 4.59
+                },
+                "CreateMessageRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "ListPromptsRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "GetPromptRequest": {
+                    "runs": 62322,
+                    "successful": 1263,
+                    "errors": 61059,
+                    "success_rate": 2.03
+                },
+                "ListRootsRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "SubscribeRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "UnsubscribeRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "CompleteRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "ListResourceTemplatesRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "ElicitRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                },
+                "PingRequest": {
+                    "runs": 60350,
+                    "successful": 0,
+                    "errors": 60350,
+                    "success_rate": 0.0
+                }
+            }
+        }
+    }
+}

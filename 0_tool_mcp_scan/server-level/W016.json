@@ -1,0 +1,20 @@
+{
+    "total": 1,
+    "vulnerabilities": [
+        {
+            "server_url": "https://github.com/0xshariq/docker-mcp-server",
+            "severity": "low",
+            "message": "Potential Untrusted Content.",
+            "extra_data": {
+                "risk_score": 0.25,
+                "reason": "I give a low score (0.5) because several tools read data an external attacker can influence (public Docker registries, container logs exposed by internet-facing services), but the attacker still needs to either get the agent to pull a specific attack...",
+                "example": "An attacker can create a Docker Hub account and publish a malicious image (or a typosquatted variant of a popular image). A user asks the agent to \"pull and inspect/run the image my project references\" and the agent calls docker-mcp-server/docker-pull with that image name (or docker-compose which will pull images). If the agent pulls the attacker-controlled image, metadata or container behavior can contain prompt-injection content. Similarly, if the agent is asked to fetch logs for a running web service (docker-mcp-server/docker-logs) and that service is internet-facing, the attacker can send requests that are recorded in logs; when the agent reads those logs, it may encounter attacker-supplied instructions.",
+                "title": "Potential Untrusted Content Detected",
+                "description": "\nThe agent has access to unverified third-party data sources like public repositories, open forums, or incoming communications.\nBecause this external content lacks strict access controls or integrity guarantees, the agent operates on information that may contain hidden malicious instructions.\n",
+                "severity": "low",
+                "explanation": "\nProcessing unverified external data introduces a vulnerability to indirect prompt injections.\nIf an attacker submits poisoned content to these public channels, the agent may unknowingly execute the embedded commands during its normal workflow.\n",
+                "evidence": "I give a low score (0.5) because several tools read data an external attacker can influence (public Docker registries, container logs exposed by internet-facing services), but the attacker still needs to either get the agent to pull a specific attacker-controlled image or be able to reach an exposed service — unlike a 1.0 \"medium\" scenario where an attacker can directly write into the exact data source with no barriers."
+            }
+        }
+    ]
+}

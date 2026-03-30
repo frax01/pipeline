@@ -1,0 +1,77 @@
+{
+    "last_index": 1,
+    "total": 1,
+    "range_start": 0,
+    "range_end": 2,
+    "remaining": 1,
+    "languages": {
+        "nodejs": 1
+    },
+    "mcp-scan": {
+        "total": 1,
+        "percentage": 100.0,
+        "languages": {
+            "nodejs": 1,
+            "python": 0,
+            "go": 0,
+            "unknown": 0,
+            "docker": 0
+        },
+        "percentage_of_vulnerability": {
+            "potential-untrusted-content": 100.0
+        },
+        "categories": {
+            "potential-untrusted-content": 1
+        },
+        "vulnerabilities": {
+            "total": 1,
+            "average_per_server": 1.0,
+            "counts": {
+                "low": 1
+            },
+            "percentage_of_severity": {
+                "low": 1.0
+            }
+        },
+        "server_vulnerabilities": {
+            "total": 1,
+            "average_per_server": 1.0,
+            "counts": {
+                "low": 1
+            },
+            "percentage_of_severity": {
+                "low": 1.0
+            },
+            "categories": {
+                "potential-untrusted-content": 1
+            },
+            "percentage_of_vulnerability": {
+                "potential-untrusted-content": 100.0
+            },
+            "issue_codes": {
+                "W016": 1
+            }
+        },
+        "tool_vulnerabilities": {
+            "total": 0,
+            "average_per_server": 0.0,
+            "counts": {},
+            "percentage_of_severity": {},
+            "categories": {},
+            "percentage_of_vulnerability": {},
+            "issue_codes": {},
+            "trigger_words": {}
+        },
+        "tools": {
+            "total": 24,
+            "safe": 24,
+            "vulnerable": 0,
+            "average_vulnerable_per_server": 0.0,
+            "percentage_of_vulnerability": {
+                "safe": 100.0,
+                "vulnerable": 0.0
+            },
+            "average_per_server": 24.0
+        }
+    }
+}

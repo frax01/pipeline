@@ -1,0 +1,21 @@
+{
+    "last_index": 0,
+    "total": 0,
+    "languages": {},
+    "mcp-validator": {
+        "total": 0,
+        "percentage": 0.0,
+        "languages": {},
+        "tests": {
+            "total": 0,
+            "passed": 0,
+            "failed": 0,
+            "success_rate": 0.0
+        },
+        "compliance": {
+            "compliant": 0,
+            "non_compliant": 0,
+            "percentage_compliant": 0.0
+        }
+    }
+}

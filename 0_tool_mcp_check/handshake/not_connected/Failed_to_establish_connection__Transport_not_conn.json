@@ -1,0 +1,31 @@
+{
+    "total": 2,
+    "entries": [
+        {
+            "server_url": "https://github.com/66julienmartin/MCP-server-Deepseek_R1",
+            "server_name": "MCP-server-Deepseek_R1",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "connection-establishment",
+                    "type": "ConnectionError",
+                    "message": "Failed to establish connection: Transport not connected",
+                    "payload": null
+                }
+            ]
+        },
+        {
+            "server_url": "https://github.com/8beeeaaat/touchdesigner-mcp",
+            "server_name": "touchdesigner-mcp",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "connection-establishment",
+                    "type": "ConnectionError",
+                    "message": "Failed to establish connection: Transport not connected",
+                    "payload": null
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,45 @@
+{
+    "total": 4,
+    "vulnerabilities": [
+        {
+            "server_url": "https://github.com/0xshariq/docker-mcp-server",
+            "server_name": "docker-mcp-server",
+            "language": "nodejs",
+            "severity": "medium",
+            "file": "docker-cli.js",
+            "description": "Security vulnerability detected during runtime analysis. Method tested: debug/dump_memory. Issues found: Debug endpoint exposure, Potential memory dump vulnerability. Source: { name: 'docker-inspect', category: 'Advanced: System Operations', description: 'Inspect Docker objects', usage: 'docker",
+            "payload": "{'jsonrpc': '2.0', 'method': 'debug/dump_memory', 'id': 999}",
+            "remediation": "Review and strengthen input validation and error handling mechanisms."
+        },
+        {
+            "server_url": "https://github.com/0xshariq/github-mcp-server",
+            "server_name": "github-mcp-server",
+            "language": "nodejs",
+            "severity": "medium",
+            "file": "mcp-cli.js",
+            "description": "Security vulnerability detected during runtime analysis. Method tested: debug/dump_memory. Issues found: Debug endpoint exposure, Potential memory dump vulnerability. Source: // Remove debug output for production",
+            "payload": "{'jsonrpc': '2.0', 'method': 'debug/dump_memory', 'id': 999}",
+            "remediation": "Review and strengthen input validation and error handling mechanisms."
+        },
+        {
+            "server_url": "https://github.com/1Panel-dev/mcp-1panel",
+            "server_name": "mcp-1panel",
+            "language": "go",
+            "severity": "medium",
+            "file": "utils\\http_client.go",
+            "description": "Security vulnerability detected during runtime analysis. Method tested: debug/dump_memory. Issues found: Debug endpoint exposure, Potential memory dump vulnerability. Source: func NewInternalError(err error) error {",
+            "payload": "{'jsonrpc': '2.0', 'method': 'debug/dump_memory', 'id': 999}",
+            "remediation": "Review and strengthen input validation and error handling mechanisms."
+        },
+        {
+            "server_url": "https://github.com/21st-dev/magic-mcp",
+            "server_name": "magic-mcp",
+            "language": "nodejs",
+            "severity": "medium",
+            "file": "src\\utils\\http-client.ts",
+            "description": "Security vulnerability detected during runtime analysis. Method tested: debug/dump_memory. Issues found: Debug endpoint exposure, Potential memory dump vulnerability. Source: const isTesting = process.env.DEBUG === \"true\" ? true : false;",
+            "payload": "{'jsonrpc': '2.0', 'method': 'debug/dump_memory', 'id': 999}",
+            "remediation": "Review and strengthen input validation and error handling mechanisms."
+        }
+    ]
+}

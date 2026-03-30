@@ -1,0 +1,97 @@
+{
+    "total": 3,
+    "entries": [
+        {
+            "server_url": "https://github.com/0xshariq/docker-mcp-server",
+            "server_name": "docker-mcp-server",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "tool-docker-images-input-validation",
+                    "type": "ValidationFailure",
+                    "message": "Tool accepted invalid input without error",
+                    "payload": {
+                        "filter": 12345
+                    }
+                },
+                {
+                    "test": "tool-docker-containers-input-validation",
+                    "type": "ValidationFailure",
+                    "message": "Tool accepted invalid input without error",
+                    "payload": {
+                        "filter": 12345,
+                        "all": "not_a_boolean"
+                    }
+                },
+                {
+                    "test": "tool-docker-logs-input-validation",
+                    "type": "ValidationFailure",
+                    "message": "Tool accepted invalid input without error",
+                    "payload": {
+                        "containerId": 12345,
+                        "tail": "not_a_number",
+                        "follow": "not_a_boolean"
+                    }
+                }
+            ]
+        },
+        {
+            "server_url": "https://github.com/0xshariq/github-mcp-server",
+            "server_name": "github-mcp-server",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "tool-git_add_all-input-validation",
+                    "type": "ValidationFailure",
+                    "message": "Tool accepted invalid input without error",
+                    "payload": {
+                        "directory": 12345
+                    }
+                },
+                {
+                    "test": "tool-git_add-input-validation",
+                    "type": "ValidationFailure",
+                    "message": "Tool accepted invalid input without error",
+                    "payload": {
+                        "files": "not_an_array",
+                        "directory": 12345
+                    }
+                },
+                {
+                    "test": "tool-git_remove-input-validation",
+                    "type": "ValidationFailure",
+                    "message": "Tool accepted invalid input without error",
+                    "payload": {
+                        "file": 12345,
+                        "directory": 12345
+                    }
+                }
+            ]
+        },
+        {
+            "server_url": "https://github.com/21st-dev/magic-mcp",
+            "server_name": "magic-mcp",
+            "language": "nodejs",
+            "errors": [
+                {
+                    "test": "tool-logo_search-input-validation",
+                    "type": "ValidationFailure",
+                    "message": "Tool accepted invalid input without error",
+                    "payload": {
+                        "queries": "not_an_array",
+                        "format": "INVALID_ENUM_VALUE_1774620527702"
+                    }
+                },
+                {
+                    "test": "tool-21st_magic_component_inspiration-input-validation",
+                    "type": "ValidationFailure",
+                    "message": "Tool accepted invalid input without error",
+                    "payload": {
+                        "message": 12345,
+                        "searchQuery": 12345
+                    }
+                }
+            ]
+        }
+    ]
+}

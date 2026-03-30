@@ -1,0 +1,68 @@
+{
+    "last_index": 15,
+    "total": 15,
+    "range_start": 0,
+    "range_end": 15,
+    "remaining": 0,
+    "languages": {
+        "nodejs": 10,
+        "unknown": 1,
+        "python": 3,
+        "go": 1
+    },
+    "mcp-security-scan": {
+        "total": 5,
+        "percentage": 33.33,
+        "languages": {
+            "nodejs": 4,
+            "go": 1
+        },
+        "percentage_of_vulnerability": {
+            "dangerous-capabilities": 37.5,
+            "input-validation": 25.0,
+            "initialization-error": 12.5,
+            "path-traversal": 12.5,
+            "sensitive-file-access": 12.5
+        },
+        "categories": {
+            "dangerous-capabilities": 3,
+            "input-validation": 2,
+            "initialization-error": 1,
+            "path-traversal": 1,
+            "sensitive-file-access": 1
+        },
+        "categories_passed": {
+            "initialization-error": 4,
+            "prompt-injection": 5,
+            "rug-pull": 5,
+            "path-traversal": 4,
+            "sensitive-file-access": 4,
+            "sensitive-resource-exposure": 5,
+            "data-leak": 5,
+            "indirect-prompt-injection": 5,
+            "remote-access-control": 5,
+            "input-validation": 3,
+            "dangerous-capabilities": 2
+        },
+        "vulnerabilities": {
+            "total": 8,
+            "average_per_server": 0.571429,
+            "counts": {
+                "high": 5,
+                "critical": 2,
+                "info": 1
+            },
+            "percentage_of_severity": {
+                "high": 0.625,
+                "critical": 0.25,
+                "info": 0.125
+            }
+        },
+        "findings": {
+            "total": 55,
+            "passed": 47,
+            "failed": 8,
+            "percentage_passed": 85.45
+        }
+    }
+}

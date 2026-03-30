@@ -1,0 +1,15 @@
+{
+    "total": 1,
+    "vulnerabilities": [
+        {
+            "server_url": "https://github.com/21st-dev/magic-mcp",
+            "server_name": "magic-mcp",
+            "language": "nodejs",
+            "severity": "medium",
+            "file": "dist/index.js",
+            "description": "Security vulnerability detected during runtime analysis. Method tested: resources/list. Issues found: Sensitive information disclosed: root",
+            "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'resources/list', 'params': {}}",
+            "remediation": "Review and strengthen input validation and error handling mechanisms."
+        }
+    ]
+}

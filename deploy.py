@@ -1189,25 +1189,24 @@ def deploy_security_scan_all(target_vms=None):
 
 
 def pull_security_scan_all():
-    pull_tool_all("tool_mcp_security_scan", "mcp_security_scan_stats.json", "mcp_security_scan_servers.json")
+    pull_tool_all_deep("tool_mcp_security_scan")
 
 
 def merge_security_scan():
     import sys
     module_dir = BASE_DIR / "0_tool_mcp_security_scan"
-    if module_dir.exists():
-        sys.path.insert(0, str(module_dir))
-        from merge_stats import merge_security_scan_stats
-        sys.path.pop(0)
-    else:
-        from tool_mcp_security_scan.merge_stats import merge_security_scan_stats
-    security_scan_dir = BASE_DIR / "tool_mcp_security_scan"
-    stats_files = [str(security_scan_dir / f"vm{i}_stats.json") for i in range(1, 10)]
-    existing = [f for f in stats_files if Path(f).exists()]
-    print(f"\nMerge security-scan stats: trovati {len(existing)}/9 file")
-    if existing:
-        merge_security_scan_stats(existing, str(security_scan_dir / "mcp_security_scan_stats.json"))
-    merge_tool_servers("tool_mcp_security_scan", "mcp_security_scan_servers.json")
+    sys.path.insert(0, str(module_dir))
+    from merge_stats import merge_security_scan_all
+    sys.path.pop(0)
+
+    base_pull_dir = BASE_DIR / "pullFromVM"
+    out_dir = BASE_DIR / "analysisAllData" / "0_tool_mcp_security_scan"
+
+    if not base_pull_dir.exists():
+        print(f"[ERRORE] Cartella non trovata: {base_pull_dir}. Esegui prima --pull-security-scan")
+        return
+
+    merge_security_scan_all(base_pull_dir, out_dir)
 
 
 def show_security_scan_status():
@@ -1343,22 +1342,24 @@ def deploy_check_all(target_vms=None):
 
 
 def pull_check_all():
-    pull_tool_all("tool_mcp_check", "mcp_check_stats.json", "mcp_check_servers.json")
+    pull_tool_all_deep("tool_mcp_check")
 
 
 def merge_check():
     import sys
     module_dir = BASE_DIR / "0_tool_mcp_check"
     sys.path.insert(0, str(module_dir))
-    from merge_stats import merge_check_stats
+    from merge_stats import merge_check_all
     sys.path.pop(0)
-    check_dir = BASE_DIR / "tool_mcp_check"
-    stats_files = [str(check_dir / f"vm{i}_stats.json") for i in range(1, 10)]
-    existing = [f for f in stats_files if Path(f).exists()]
-    print(f"\nMerge check stats: trovati {len(existing)}/9 file")
-    if existing:
-        merge_check_stats(existing, str(check_dir / "mcp_check_stats.json"))
-    merge_tool_servers("tool_mcp_check", "mcp_check_servers.json")
+
+    base_pull_dir = BASE_DIR / "pullFromVM"
+    out_dir = BASE_DIR / "analysisAllData" / "0_tool_mcp_check"
+
+    if not base_pull_dir.exists():
+        print(f"[ERRORE] Cartella non trovata: {base_pull_dir}. Esegui prima --pull-check")
+        return
+
+    merge_check_all(base_pull_dir, out_dir)
 
 
 def show_check_status():
@@ -1701,8 +1702,6 @@ Esempi:
     parser.add_argument("--deploy-scan-all", nargs="*", help="Copia file mcp-scan su tutte le 9 VM (o solo su alcune, es: --deploy-scan-all VM4 VM6)")
     parser.add_argument("--pull-scan", action="store_true", help="Scarica mcp-scan results da TUTTE le 9 VM")
     parser.add_argument("--merge-scan", action="store_true", help="Merge dei risultati mcp-scan scaricati dalle VM")
-    parser.add_argument("--pull-fuzzing", action="store_true", help="Scarica fuzzing results da TUTTE le 9 VM")
-    parser.add_argument("--merge-fuzzing", action="store_true", help="Merge dei risultati fuzzing scaricati dalle VM")
     parser.add_argument("--status-scan", action="store_true", help="Mostra stato mcp-scan su tutte le 9 VM")
     parser.add_argument("--tail-scan", action="store_true", help="Mostra ultime righe dei log mcp-scan da tutte le VM")
     parser.add_argument("--deploy-shield-all", nargs="*", help="Copia file mcp-shield su tutte le 9 VM (opzionale specificarle)")
@@ -1938,18 +1937,6 @@ Esempi:
     # --merge-guard
     if args.merge_guard:
         merge_guard()
-        if not args.pull_fuzzing and not args.merge_fuzzing:
-            return
-
-    # --pull-fuzzing
-    if args.pull_fuzzing:
-        pull_fuzzing_all()
-        if not args.merge_fuzzing:
-            return
-
-    # --merge-fuzzing
-    if args.merge_fuzzing:
-        merge_fuzzing()
         return
 
     # --clean-npx

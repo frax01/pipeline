@@ -5,3 +5,5 @@ pullFromVM/
 partial_results_*/
 backup_analysis/
 analysisAllData/
+new_mcp_watch/credential_leak_refiltered.json
+new_mcp_watch/credential_leak_refilter_stats.json

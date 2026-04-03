@@ -451,24 +451,24 @@ def merge_tool_servers(tool_dir, output_name):
 
 
 def pull_guard_all():
-    pull_tool_all("tool_mcp_guard", "mcp_guard_stats.json", "mcp_guard_servers.json")
+    pull_tool_all_deep("tool_mcp_guard")
 
 
 def merge_guard():
     import sys
-    module_dir = BASE_DIR / "analysis" / "0_tool_mcp_guard"
-    if not module_dir.exists():
-        module_dir = BASE_DIR / "0_tool_mcp_guard"
+    module_dir = BASE_DIR / "0_tool_mcp_guard"
     sys.path.insert(0, str(module_dir))
-    from merge_stats import merge_stats
+    from merge_stats import merge_guard_all
     sys.path.pop(0)
-    guard_dir = BASE_DIR / "tool_mcp_guard"
-    stats_files = [str(guard_dir / f"vm{i}_stats.json") for i in range(1, 10)]
-    existing = [f for f in stats_files if Path(f).exists()]
-    print(f"\nMerge guard stats: trovati {len(existing)}/9 file")
-    if existing:
-        merge_stats(existing, str(guard_dir / "mcp_guard_stats.json"))
-    merge_tool_servers("tool_mcp_guard", "mcp_guard_servers.json")
+
+    base_pull_dir = BASE_DIR / "pullFromVM"
+    out_dir = BASE_DIR / "analysisAllData" / "0_tool_mcp_guard"
+
+    if not base_pull_dir.exists():
+        print(f"[ERRORE] Cartella non trovata: {base_pull_dir}. Esegui prima --pull-guard")
+        return
+
+    merge_guard_all(base_pull_dir, out_dir)
 
 
 def pull_fuzzing_all():

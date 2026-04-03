@@ -187,7 +187,7 @@ def merge_guard_all(base_pull_dir, out_dir):
     # 1. Merge Stats
     stats_files = []
     for vm_d in vm_dirs:
-        sf = vm_d / "analysis" / "0_tool_mcp_guard" / "mcp_guard_stats.json"
+        sf = vm_d / "tool_mcp_guard" / "mcp_guard_stats.json"
         if sf.exists():
             stats_files.append(str(sf))
     if stats_files:
@@ -196,7 +196,7 @@ def merge_guard_all(base_pull_dir, out_dir):
     # 2. Merge Server Logs
     merged_servers = {}
     for vm_d in vm_dirs:
-        sf = vm_d / "analysis" / "0_tool_mcp_guard" / "mcp_guard_servers.json"
+        sf = vm_d / "tool_mcp_guard" / "mcp_guard_servers.json"
         if sf.exists():
             try:
                 with open(sf, "r", encoding="utf-8") as f:
@@ -216,7 +216,7 @@ def merge_guard_all(base_pull_dir, out_dir):
         # Collect all categories for this type across all VMs
         all_categories = set()
         for vm_d in vm_dirs:
-            atype_vm_dir = vm_d / "analysis" / "0_tool_mcp_guard" / atype
+            atype_vm_dir = vm_d / "tool_mcp_guard" / atype
             if atype_vm_dir.exists() and atype_vm_dir.is_dir():
                 for cat_dir in atype_vm_dir.iterdir():
                     if cat_dir.is_dir():
@@ -229,7 +229,7 @@ def merge_guard_all(base_pull_dir, out_dir):
             # Collect all JSON files for this category across all VMs
             all_json_names = set()
             for vm_d in vm_dirs:
-                cat_vm_dir = vm_d / "analysis" / "0_tool_mcp_guard" / atype / cat_name
+                cat_vm_dir = vm_d / "tool_mcp_guard" / atype / cat_name
                 if cat_vm_dir.exists() and cat_vm_dir.is_dir():
                     for jf in cat_vm_dir.glob("*.json"):
                         all_json_names.add(jf.name)
@@ -237,7 +237,7 @@ def merge_guard_all(base_pull_dir, out_dir):
             for json_name in all_json_names:
                 merged_vulns = []
                 for vm_d in vm_dirs:
-                    json_file = vm_d / "analysis" / "0_tool_mcp_guard" / atype / cat_name / json_name
+                    json_file = vm_d / "tool_mcp_guard" / atype / cat_name / json_name
                     if json_file.exists():
                         try:
                             with open(json_file, "r", encoding="utf-8") as f:

@@ -224,7 +224,7 @@ def run_process(
         cmd,
         cwd=cwd,
         stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE,
+        stderr=None,  # stream stderr live to parent terminal so we can see progress
         text=True,
         encoding="utf-8",
         errors="replace",

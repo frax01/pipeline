@@ -33,6 +33,7 @@ def parse_mcp_guard(json_data: dict) -> tuple[dict, str]:
             "file": v.get("file_path"),
             "description": v.get("description"),
             "payload": v.get("exploit_payload"),
+            "response": v.get("server_response"),
             "remediation": v.get("remediation"),
             "type": type_vuln,
         }

@@ -151,11 +151,13 @@ def _update_category_file(base_dir: Path, category: str, risk: str, item: dict):
         json.dump(data, f, indent=4, ensure_ascii=False)
     tmp_path.replace(file_path)
 
-def update_output_files(server_url: str, server_name: str, mcp_shield_data: dict, llm_tools: dict = None, llm_status: str = None, llm_error: str = None):
+def update_output_files(server_url: str, server_name: str, mcp_shield_data: dict, llm_tools: dict = None, llm_status: str = None, llm_error: str = None, tool_descriptions: dict = None):
     """Scrive le vulnerabilità classificate per categoria e score LLM + analisi LLM."""
     tools = mcp_shield_data.get("tools", {})
     if llm_tools is None:
         llm_tools = {}
+    if tool_descriptions is None:
+        tool_descriptions = {}
 
     for tool_name, tool_data in tools.items():
         if tool_data.get("status") != "vulnerable":
@@ -178,6 +180,7 @@ def update_output_files(server_url: str, server_name: str, mcp_shield_data: dict
                 "server_url": server_url,
                 "server_name": server_name,
                 "tool_name": tool_name,
+                "tool_description": tool_descriptions.get(tool_name, ""),
                 "category": category_name,
                 "risk": risk,
                 "descriptions": descriptions
@@ -442,7 +445,8 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
                 llm_tools = llm.get("tools", {}) if llm else None
                 _llm_status = llm.get("status") if llm else None
                 _llm_error = llm.get("error") if llm else None
-                update_output_files(server_url, server_data["server_name"], mcp_shield_data, llm_tools, _llm_status, _llm_error)
+                _tool_descriptions = llm.get("tool_descriptions", {}) if llm else {}
+                update_output_files(server_url, server_data["server_name"], mcp_shield_data, llm_tools, _llm_status, _llm_error, _tool_descriptions)
 
         # Update remaining counter
         processed = idx + 1 - start_idx

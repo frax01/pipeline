@@ -51,7 +51,7 @@ if not _uvx_path and platform.system() != "Windows":
 UVX = _uvx_path or str(Path.home() / "AppData/Local/Programs/Python/Python313/Scripts/uvx.exe")
 
 EXCEL_PATH = Path.home() / "Desktop" / "Pipeline" / "0.0. All servers without duplicates, .git, _, hash and ERRORE (60205).xlsx"
-TIMEOUT_SECONDS = 300
+TIMEOUT_SECONDS = 3600
 
 MCP_SECURITY_SCAN_CATEGORIES = {
     "BASE-01": "initialization-error",

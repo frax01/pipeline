@@ -84,10 +84,20 @@ def write_mcp_config(server_name: str, command: str, args: list[str], cwd: Path)
     config_mcp.write_text(json.dumps(config, indent=2))
 
 def detect_python_runner(repo_path: Path):
+    """
+    Returns (runner, name, script_name).
+    runner in {"uv", "python"} — "uvx" is NO LONGER returned, because
+    `uvx <name>@latest` pulls from PyPI and ignores the local cloned code
+    (see ANALYSIS_REPORT §5). We always prefer running the local repo.
+    script_name: first entry from [project.scripts] (used only as a last-
+    resort fallback via `uv run <script_name>` when no local entry point
+    file is found — `uv run` still runs the LOCAL project, not PyPI).
+    """
     pyproject = repo_path / "pyproject.toml"
     uv_lock = repo_path / "uv.lock"
 
     name = None
+    script_name = None
 
     if pyproject.exists():
         content = pyproject.read_text(encoding="utf-8", errors="ignore")
@@ -97,12 +107,24 @@ def detect_python_runner(repo_path: Path):
             name = match.group(1)
 
         if "[project.scripts]" in content:
-            return ("uvx", name)
+            scripts_block = re.search(
+                r'\[project\.scripts\](.*?)(?:\n\[|\Z)',
+                content,
+                re.DOTALL,
+            )
+            if scripts_block:
+                first_script = re.search(
+                    r'^\s*"?([a-zA-Z0-9_\-\.]+)"?\s*=',
+                    scripts_block.group(1),
+                    re.MULTILINE,
+                )
+                if first_script:
+                    script_name = first_script.group(1)
 
-        if "tool.uv" in content or uv_lock.exists():
-            return ("uv", name)
+        if "tool.uv" in content or uv_lock.exists() or "[project.scripts]" in content:
+            return ("uv", name, script_name)
 
-    return ("python", name)
+    return ("python", name, script_name)
 
 def prepare_go_repo(repo_path: Path) -> dict:
     result = {
@@ -319,35 +341,43 @@ def prepare_node_repo(repo_path: Path, language: str) -> dict:
         return result
     elif language.lower() == 'python':
 
-        runner, name = detect_python_runner(repo_path)
+        runner, name, script_name = detect_python_runner(repo_path)
 
-        if runner == "uvx":
-            result["command"] = "uvx"
-            result["main"] = [f"{name}@latest"]
+        # Always prefer running the LOCAL cloned code. Look for a known
+        # entry-point file first; only fall back to `uv run <script_name>`
+        # (which still executes the local project) if no file is found.
+        candidates = [
+            "server.py",
+            "main.py",
+            "app.py",
+            "__main__.py",
+            "src/server.py",
+            "src/main.py",
+            "src/app.py",
+            "app/main.py",
+            "server/main.py",
+        ]
+
+        for entry in candidates:
+            target = repo_path / entry
+            if target.exists():
+                if runner == "uv":
+                    result["command"] = "uv"
+                    result["main"] = ["run", "python", entry]
+                else:
+                    result["command"] = "python"
+                    result["main"] = [entry]
+                return result
+
+        # Last resort: package defines [project.scripts] but no obvious local
+        # entry-point file. Use `uv run <script_name>` which installs the
+        # project from the LOCAL pyproject.toml (NOT from PyPI) and runs the
+        # declared script. This avoids the uvx-pulls-from-PyPI bug while
+        # still giving coverage on packages that rely on entry points.
+        if runner == "uv" and script_name:
+            result["command"] = "uv"
+            result["main"] = ["run", script_name]
             return result
-        else:
-            candidates = [
-                ("python", ["server.py"]),
-                ("python", ["main.py"]),
-                ("python", ["app.py"]),
-                ("python", ["__main__.py"]),
-                ("python", ["src/server.py"]),
-                ("python", ["src/main.py"]),
-                ("python", ["src/app.py"]),
-                ("python", ["app/main.py"]),
-                ("python", ["server/main.py"]),
-            ]
-
-            for cmd, args in candidates:
-                target = repo_path / args[0]
-                if target.exists():
-                    if runner=="uv":
-                        result["command"] = "uv"
-                        result["main"] = ["run", args[0]]
-                    else:
-                        result["command"] = "python"
-                        result["main"] = args
-                    return result
 
     result["command"] = "go"
     result["main"] = ["not_runnable"]

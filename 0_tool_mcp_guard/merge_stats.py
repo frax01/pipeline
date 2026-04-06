@@ -17,13 +17,13 @@ def merge_stats(stats_files, output_file):
             "percentage_of_vulnerability": {},
             "categories_static": {},
             "categories_dynamic": {},
-            "categories_real_fuzzing": {},
-            "categories_robustness_fuzzing": {},
+            "categories_fuzzing": {},
+            "categories_protocol": {},
             "analysis_types": {
                 "static": {"total": 0, "percentage": 0.0},
-                "real_fuzzing": {"total": 0, "percentage": 0.0},
+                "fuzzing": {"total": 0, "percentage": 0.0},
                 "dynamic": {"total": 0, "percentage": 0.0},
-                "robustness_fuzzing": {"total": 0, "percentage": 0.0}
+                "protocol": {"total": 0, "percentage": 0.0}
             },
             "vulnerabilities": {
                 "total": 0,
@@ -79,13 +79,13 @@ def merge_stats(stats_files, output_file):
             merged_mg["languages"][lang] = merged_mg["languages"].get(lang, 0) + count
         
         # Merge categories
-        for cat_type in ["categories_static", "categories_dynamic", "categories_real_fuzzing", "categories_robustness_fuzzing"]:
+        for cat_type in ["categories_static", "categories_dynamic", "categories_fuzzing", "categories_protocol"]:
             for cat, count in mg.get(cat_type, {}).items():
                 merged_mg[cat_type][cat] = merged_mg[cat_type].get(cat, 0) + count
         
         # Merge analysis_types
         at = mg.get("analysis_types", {})
-        for atype in ("static", "real_fuzzing", "dynamic", "robustness_fuzzing"):
+        for atype in ("static", "fuzzing", "dynamic", "protocol"):
             at_data = at.get(atype, {})
             merged_mg["analysis_types"][atype]["total"] += at_data.get("total", 0)
 
@@ -126,7 +126,7 @@ def merge_stats(stats_files, output_file):
         
         # Calculate percentage_of_vulnerability (distribution: count / total_vulns)
         merged_categories = {}
-        for cat_type in ["categories_static", "categories_dynamic", "categories_real_fuzzing", "categories_robustness_fuzzing"]:
+        for cat_type in ["categories_static", "categories_dynamic", "categories_fuzzing", "categories_protocol"]:
             for cat, count in merged["mcp-guard"][cat_type].items():
                 merged_categories[cat] = merged_categories.get(cat, 0) + count
         
@@ -156,7 +156,7 @@ def merge_stats(stats_files, output_file):
             }
 
         # Calculate analysis_types percentages
-        for atype in ("static", "real_fuzzing", "dynamic", "robustness_fuzzing"):
+        for atype in ("static", "fuzzing", "dynamic", "protocol"):
             merged["mcp-guard"]["analysis_types"][atype]["percentage"] = round(
                 (merged["mcp-guard"]["analysis_types"][atype]["total"] / fw_total) * 100, 2
             )
@@ -208,8 +208,8 @@ def merge_guard_all(base_pull_dir, out_dir):
             json.dump(merged_servers, f, indent=4, ensure_ascii=False)
         print(f"Server logs merge completed! Total: {len(merged_servers)}")
 
-    # 3. Merge Folder Categories (static, dynamic, real_fuzzing, robustness_fuzzing)
-    analysis_types = ["static", "dynamic", "real_fuzzing", "robustness_fuzzing"]
+    # 3. Merge Folder Categories (static, dynamic, fuzzing, protocol)
+    analysis_types = ["static", "dynamic", "fuzzing", "protocol"]
     for atype in analysis_types:
         atype_out_dir = out_dir / atype
         

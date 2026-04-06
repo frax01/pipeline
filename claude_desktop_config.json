@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "magic-mcp": {
+    "docker-mcp-server": {
       "command": "node",
       "args": [
-        "C:\\Users\\francesco\\Desktop\\pipeline\\magic-mcp\\dist\\index.js"
+        "C:\\Users\\francesco\\Desktop\\pipeline\\docker-mcp-server\\dist\\index.js"
       ]
     }
   }

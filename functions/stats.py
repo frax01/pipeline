@@ -14,8 +14,8 @@ def _mcp_guard_category_key(analysis_type: str) -> str:
     mapping = {
         "static": "categories_static",
         "dynamic": "categories_dynamic",
-        "real_fuzzing": "categories_real_fuzzing",
-        "robustness_fuzzing": "categories_robustness_fuzzing",
+        "fuzzing": "categories_fuzzing",
+        "protocol": "categories_protocol",
     }
     return mapping.get(analysis_type)
 
@@ -519,7 +519,7 @@ def update_analysis_types(framework_block: dict, result: dict) -> None:
     at = framework_block.setdefault("analysis_types", {})
     fw_total = framework_block.get("total", 0)
 
-    for atype in ("static", "real_fuzzing", "dynamic", "robustness_fuzzing"):
+    for atype in ("static", "fuzzing", "dynamic", "protocol"):
         bucket = at.setdefault(atype, {"total": 0, "percentage": 0.0})
         if analyses.get(atype, False):
             bucket["total"] += 1
@@ -748,8 +748,8 @@ def finalize_percentage_of_vulnerability(analysis: dict, name: str) -> None:
         for key in (
             "categories_static",
             "categories_dynamic",
-            "categories_real_fuzzing",
-            "categories_robustness_fuzzing",
+            "categories_fuzzing",
+            "categories_protocol",
         ):
             for cat, count in analysis.get(key, {}).items():
                 merged_categories[cat] = merged_categories.get(cat, 0) + count

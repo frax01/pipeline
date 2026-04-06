@@ -32,7 +32,7 @@ LOG_FILE = CURRENT_DIR / "mcp_guard_servers.json"
 
 # Results organization
 RESULTS_DIR = CURRENT_DIR
-ANALYSIS_TYPES = ["static", "dynamic", "real_fuzzing", "robustness_fuzzing"]
+ANALYSIS_TYPES = ["static", "dynamic", "fuzzing", "protocol"]
 
 
 # Initialization structure for mcp-guard stats (subset of frameworks.json)
@@ -50,13 +50,13 @@ INIT_STATS = {
         "percentage_of_vulnerability": {},
         "categories_static": {},
         "categories_dynamic": {},
-        "categories_real_fuzzing": {},
-        "categories_robustness_fuzzing": {},
+        "categories_fuzzing": {},
+        "categories_protocol": {},
         "analysis_types": {
             "static": {"total": 0, "percentage": 0.0},
-            "real_fuzzing": {"total": 0, "percentage": 0.0},
+            "fuzzing": {"total": 0, "percentage": 0.0},
             "dynamic": {"total": 0, "percentage": 0.0},
-            "robustness_fuzzing": {"total": 0, "percentage": 0.0}
+            "protocol": {"total": 0, "percentage": 0.0}
         },
         "vulnerabilities": {
             "total": 0,
@@ -149,6 +149,7 @@ def save_vulnerability_entry(server_url: str, server_data: dict, mcp_guard_res: 
                 "file": vuln_info.get("file"),
                 "description": vuln_info.get("description"),
                 "payload": vuln_info.get("payload"),
+                "response": vuln_info.get("response"),
                 "remediation": vuln_info.get("remediation")
             }
 

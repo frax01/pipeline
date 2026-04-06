@@ -16,7 +16,8 @@ def _merge_dict_counts(all_stats: list[dict], *keys: str) -> dict:
             block = block.get(k, {})
         if isinstance(block, dict):
             for name, count in block.items():
-                merged[name] = merged.get(name, 0) + count
+                if isinstance(count, (int, float)):
+                    merged[name] = merged.get(name, 0) + count
     return merged
 
 def _merge_sum(all_stats: list[dict], *keys: str) -> int:

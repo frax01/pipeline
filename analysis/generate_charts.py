@@ -244,9 +244,9 @@ hbar_chart(labels_clean, list(top_cats.values()),
 # Analysis type breakdown
 at = g['analysis_types']
 fig, ax = plt.subplots(figsize=(8, 5))
-types = ['Static', 'Dynamic\n(simulated)', 'Real\nFuzzing', 'Robustness\nFuzzing']
-vals = [at['static']['total'], at['dynamic']['total'],
-        at['real_fuzzing']['total'], at['robustness_fuzzing']['total']]
+types = ['Static', 'Dynamic\n(simulated)', 'Fuzzing', 'Protocol']
+vals = [at.get('static', {}).get('total', 0), at.get('dynamic', {}).get('total', 0),
+        at.get('fuzzing', {}).get('total', 0), at.get('protocol', {}).get('total', 0)]
 bars = ax.bar(types, vals, color=[COLORS[0], COLORS[1], COLORS[2], COLORS[3]], edgecolor='white')
 ax.set_title('MCP Guard — Servers per Analysis Type')
 ax.set_ylabel('Servers')
@@ -255,12 +255,12 @@ for bar, v in zip(bars, vals):
             f'{v:,}', ha='center', fontsize=10, fontweight='bold')
 save(fig, out, '04_analysis_types')
 
-# Static vs Dynamic vs Real Fuzzing categories (top 8 each)
-cats_s = g['categories_static']
-cats_d = g['categories_dynamic']
-cats_rf = g['categories_real_fuzzing']
+# Static vs Dynamic vs Fuzzing categories (top 8 each)
+cats_s = g.get('categories_static', {})
+cats_d = g.get('categories_dynamic', {})
+cats_rf = g.get('categories_fuzzing', {})
 
-for label, cats, idx in [('Static', cats_s, 5), ('Dynamic (Simulated)', cats_d, 6), ('Real Fuzzing', cats_rf, 7)]:
+for label, cats, idx in [('Static', cats_s, 5), ('Dynamic (Simulated)', cats_d, 6), ('Fuzzing', cats_rf, 7)]:
     top = dict(sorted(cats.items(), key=lambda x: -x[1])[:10])
     clean = [k.replace('---', ' - ').replace('-', ' ').title()[:50] for k in top.keys()]
     hbar_chart(clean, list(top.values()),

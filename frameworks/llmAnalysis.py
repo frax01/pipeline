@@ -135,14 +135,21 @@ def run_llm_analysis(merged_llm: dict, repo_path: Path, command: str, args: list
         return {
             "status": "failed",
             "overallRisk": {},
-            "tools": {}
+            "tools": {},
+            "tool_descriptions": {}
         }
     else:
         tools = json.loads(result.stdout)
+        # Capture ALL tool descriptions (not only the LLM-analyzed ones) so
+        # that run_shield.py can save the full description that mcp-shield
+        # actually inspected — lets us audit false positives directly.
+        tool_descriptions = {
+            t.get("name", ""): t.get("description", "") for t in tools
+        }
         for tool in tools:
             if tool["name"] in merged_llm["tools"]:
                 tool_status = merged_llm["tools"][tool["name"]]["status"]
-                if tool_status == "vulnerable": 
+                if tool_status == "vulnerable":
                     ollama_description = analyze_with_ollama(tool["description"])
                     ollama_recap[tool["name"]] = ollama_description
 
@@ -153,5 +160,6 @@ def run_llm_analysis(merged_llm: dict, repo_path: Path, command: str, args: list
         return {
             "status": "completed",
             "overallRisk": overall_risk,
-            "tools": ollama_recap
+            "tools": ollama_recap,
+            "tool_descriptions": tool_descriptions
         }

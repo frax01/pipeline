@@ -889,7 +889,7 @@ def update_summary_llm_risk(summary: dict, llm_result: dict, type: str, total_se
         llm_counts = llm_result.get("overallRisk", {})
         target = summary["mcp-shield"]["tools"]["vulnerable"]["llm-description-analysis"]
 
-        for level in ("LOW", "MEDIUM", "HIGH"):
+        for level in ("LOW", "MEDIUM", "HIGH", "UNKNOWN"):
             target[level] += llm_counts.get(level, 0)
     else:
         proxy_data = llm_result.get("proxy", {})

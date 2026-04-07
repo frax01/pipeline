@@ -1,7 +1,72 @@
 from pathlib import Path
 from functions.config import MCP_GUARD_DIR, TIMEOUT_SECONDS, cmd_guard
 import json
+import os
+import subprocess
+import signal
 from functions.helper import run_process, reset_mcp_guard_outputs, failure
+
+
+def _kill_server_processes(server_command: str):
+    """Kill any lingering MCP server processes spawned by mcp-guard."""
+    if not server_command:
+        return
+
+    killed = 0
+
+    if os.name == "nt":
+        try:
+            term_normalized = server_command.replace("/", "\\")
+            result = subprocess.run(
+                ["wmic", "process", "where",
+                 f"CommandLine like '%{term_normalized}%'",
+                 "get", "ProcessId"],
+                capture_output=True, text=True, timeout=10
+            )
+            if result.returncode == 0:
+                for line in result.stdout.strip().split("\n"):
+                    line = line.strip()
+                    if line.isdigit():
+                        pid = int(line)
+                        try:
+                            subprocess.run(
+                                ["taskkill", "/F", "/T", "/PID", str(pid)],
+                                stdout=subprocess.DEVNULL,
+                                stderr=subprocess.DEVNULL,
+                                timeout=5
+                            )
+                            killed += 1
+                        except Exception:
+                            pass
+        except Exception:
+            pass
+    else:
+        try:
+            result = subprocess.run(
+                ["pgrep", "-f", server_command],
+                capture_output=True, text=True, timeout=5
+            )
+            if result.returncode == 0 and result.stdout.strip():
+                for pid_str in result.stdout.strip().split("\n"):
+                    try:
+                        pid = int(pid_str.strip())
+                        ps_result = subprocess.run(
+                            ["ps", "-p", str(pid), "-o", "args="],
+                            capture_output=True, text=True, timeout=5
+                        )
+                        cmdline = ps_result.stdout.strip()
+                        if any(s in cmdline for s in [
+                            "run_security_scan", "run_guard", "run_scan",
+                            "run_check", "run_shield", "run_watch",
+                            "run_fuzzing", "run_scanorama", "run_validator"
+                        ]):
+                            continue
+                        os.kill(pid, 9)
+                        killed += 1
+                    except (ValueError, ProcessLookupError, PermissionError):
+                        pass
+        except Exception:
+            pass
 
 def find_mcp_guard_json(mcp_guard_dir: Path) -> Path | None:
     for file in mcp_guard_dir.iterdir():
@@ -77,6 +142,7 @@ def parse_mcp_guard(json_data: dict) -> tuple[dict, str]:
 def execute_mcp_guard(server_url: str, repo_path: Path, command: str, elem: str | list):
     reset_mcp_guard_outputs()
     elem_str = " ".join(elem) if isinstance(elem, list) else str(elem)
+    server_command = f"{command} {elem_str}"
     cmd = cmd_guard + [server_url, str(repo_path), command, elem_str]
 
     try:
@@ -87,8 +153,11 @@ def execute_mcp_guard(server_url: str, repo_path: Path, command: str, elem: str 
             framework_name="MCP Guard"
         )
     except TimeoutError:
+        _kill_server_processes(server_command)
         result, _ = failure("mcp-guard")
         return result
+    finally:
+        _kill_server_processes(server_command)
 
     try:
         json_file = find_mcp_guard_json(MCP_GUARD_DIR)

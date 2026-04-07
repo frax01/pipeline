@@ -100,12 +100,15 @@ def aggregate_llm_risk_counts(tool_results: dict) -> dict:
         "LOW": 0,
         "MEDIUM": 0,
         "HIGH": 0,
+        "UNKNOWN": 0,
     }
 
     for res in tool_results.values():
         risk = res.get("overallRisk")
-        if risk in counts:
+        if risk in ("LOW", "MEDIUM", "HIGH"):
             counts[risk] += 1
+        else:
+            counts["UNKNOWN"] += 1
 
     return counts
 

@@ -1,0 +1,907 @@
+{
+    "total": 75,
+    "findings": [
+        {
+            "server_url": "https://github.com/GoPlausible/algorand-mcp",
+            "server_name": "algorand-mcp",
+            "tool_name": "api_haystack_execute_swap",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "note (string)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "**Security Analysis Results**\n\n1. Hidden instructions to the AI model that aren't visible to users: **NO**\nThere are no hidden instructions or AI-related concerns in this tool description.\n2. Instructions to access sensitive files (like SSH keys, .env files, etc.): **NO**\nThe description does not mention accessing any sensitive files or credentials.\n3. Tool shadowing (instructions to modify behavior of other tools): **NO**\nThere is no indication that this tool modifies the behavior of other tools or has any dependencies on them.\n4. Potential data exfiltration vectors: **NO**\nThe description only mentions executing a token swap and submitting an atomic transaction group, which does not involve sensitive data or potential exfiltration vectors.\n5. Instructions that override or ignore other tools' behavior: **NO**\nThere are no instructions that suggest overriding or ignoring the behavior of other tools.\n\n**Overall Risk Assessment:** LOW\n\nThis tool description appears to be a straightforward, self-contained implementation for executing optimized token swaps and submitting atomic transactions. The lack of sensitive data access, AI-related concerns, and dependencies on other tools reduces the risk profile. However, it's essential to conduct a thorough code review and testing to ensure the tool's functionality and security.\n\n**Summary:** This MCP tool description presents a relatively low-risk scenario for executing optimized token swaps and submitting atomic transactions. While there are no apparent security vulnerabilities, further analysis is necessary to confirm the tool's implementation and potential impact on the system."
+        },
+        {
+            "server_url": "https://github.com/amirdauti/dritan-mcp",
+            "server_name": "dritan-mcp",
+            "tool_name": "ths_get_score_tokens_get",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "debug (boolean)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is the analysis:\n\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\nYES\nThis instruction appears to be providing a specific task for the AI model without explicitly stating what it does. This could lead to unintended behavior or biased results if not properly documented.\n\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\nNO\n\n**Category 3: Tool shadowing (instructions to modify behavior of other tools)**\nNO\n\n**Category 4: Potential data exfiltration vectors**\nNO\nThis instruction only fetches a score for selected token mints, which seems to be a normal operation and does not involve sending or processing sensitive data.\n\n**Category 5: Instructions that override or ignore other tools' behavior**\nNO\n\nOverall Risk Assessment: LOW\n\nSummary:\nThe MCP tool description appears to be a benign instruction to fetch a THS score for selected token mints. While it may have some hidden nuances, the risk of security vulnerabilities is low due to its straightforward nature and lack of access to sensitive files or data exfiltration vectors."
+        },
+        {
+            "server_url": "https://github.com/amirdauti/dritan-mcp",
+            "server_name": "dritan-mcp",
+            "tool_name": "ths_get_score_tokens_post",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "debug (boolean)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here's the analysis:\n\n**1. Hidden instructions to the AI model that aren't visible to users**: NO\nThe tool description is straightforward and does not indicate any hidden instructions or parameters that would affect the AI model's behavior in an unexpected way.\n\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThere is no indication of accessing sensitive files or credentials in this tool description.\n\n**3. Tool shadowing (instructions to modify behavior of other tools)**: NO\nThe description does not suggest modifying the behavior of other tools or interacting with them in a way that could compromise their security.\n\n**4. Potential data exfiltration vectors**: YES\nThe use of a POST request to fetch THS scores for selected token mints could potentially be used as an exfiltration vector if the tool is not properly configured or if there are vulnerabilities in the underlying infrastructure. However, this risk can be mitigated with proper security measures.\n\n**5. Instructions that override or ignore other tools' behavior**: NO\nThe description does not indicate any instructions that would override or ignore the behavior of other tools, suggesting a relatively isolated tool operation.\n\nOverall Risk Assessment: MEDIUM\n\nSummary:\nWhile there are some potential risks associated with this MCP tool (specifically data exfiltration), they can be mitigated with proper security measures. The lack of hidden instructions, sensitive file access, and tool shadowing behaviors reduces the overall risk to a medium level."
+        },
+        {
+            "server_url": "https://github.com/Jadael/OllamaClaude",
+            "server_name": "OllamaClaude",
+            "tool_name": "ollama_explain_file",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here's my analysis:\n\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\n\nNO. There is no indication of hidden instructions or parameters that aren't visible to users in this tool description.\n\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\n\nYES. The description mentions reading a file directly by path using Ollama, which could potentially involve accessing sensitive files such as SSH keys or configuration files.\n\n**Category 3: Tool shadowing (instructions to modify behavior of other tools)**\n\nNO. There is no indication that this tool modifies the behavior of other tools in this description.\n\n**Category 4: Potential data exfiltration vectors**\n\nYES. The ability to read files directly by path could potentially allow unauthorized access or data extraction, making it a potential data exfiltration vector.\n\n**Category 5: Instructions that override or ignore other tools' behavior**\n\nNO. There is no indication that this tool overrides or ignores the behavior of other tools in this description.\n\nOverall risk assessment: MEDIUM\n\nThis tool seems to have some potential security concerns due to its ability to read files directly and potentially access sensitive information. However, without further context or implementation details, it's difficult to say whether these concerns are significant or not. A more detailed review of the MCP server configuration and usage would be necessary to fully assess the risk.\n\nSummary: This tool has some potential security concerns due to its file reading capabilities, which could potentially involve accessing sensitive files. Further investigation is needed to determine the scope of this risk."
+        },
+        {
+            "server_url": "https://github.com/itsanamune/retellsimp",
+            "server_name": "retellsimp",
+            "tool_name": "retell_create_web_call",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "metadata (object)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here is my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users:** NO\nThe description does not mention any hidden instructions or inputs that may affect the tool's behavior in ways not visible to users.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThere are no references to accessing sensitive files or credentials in this description. The focus is on establishing a WebRTC connection.\n\n**Tool shadowing (instructions to modify behavior of other tools)**: NO\nThe description does not suggest any ability to modify the behavior of other tools or processes. It appears to be a standalone tool for creating a new web call session.\n\n**Potential data exfiltration vectors**: YES\nWhile there is no explicit mention of data exfiltration, the fact that this tool establishes a WebRTC connection and returns an access token could potentially allow unauthorized access to sensitive data. Further analysis would be needed to determine the scope and impact of this vulnerability.\n\n**Instructions that override or ignore other tools' behavior**: NO\nThe description does not suggest any ability to override or ignore the behavior of other tools or processes. It appears to be a self-contained tool for creating a new web call session.\n\nOverall Risk Assessment: MEDIUM\n\nSummary:\nWhile there are no obvious security concerns in this description, the potential data exfiltration vector via the WebRTC connection and access token return is concerning. Further analysis would be needed to determine the severity of this vulnerability."
+        },
+        {
+            "server_url": "https://github.com/ttommyth/rag-memory-mcp",
+            "server_name": "rag-memory-mcp",
+            "tool_name": "storeDocument",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "metadata (object)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here's my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users**: NO\nThere are no hidden instructions or undocumented parameters that could influence the AI model's behavior without user knowledge.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThe tool description does not provide any instructions for accessing sensitive files or credentials. The focus is on storing and processing documents.\n\n**Tool shadowing (instructions to modify behavior of other tools)**: NO\nThere are no instructions that suggest modifying the behavior of other tools or overriding their decisions.\n\n**Potential data exfiltration vectors**: NO\nThe tool description does not provide any information that could be used for exfiltrating sensitive data. The focus is on storing and processing documents, not transmitting them outside the system.\n\n**Instructions that override or ignore other tools' behavior**: NO\nThere are no instructions that suggest overriding or ignoring the behavior of other tools. The tool seems to be designed as a simple document storage solution, without any explicit instructions for modifying the behavior of other tools.\n\nOverall Risk Assessment: LOW\n\nSummary:\nThe MCP tool description does not raise significant security concerns. It appears to be a straightforward document storage solution with minimal risk of hidden instructions, sensitive file access, or tool shadowing. The focus on storing and processing documents also minimizes potential data exfiltration vectors. Overall, the tool seems to be designed for a specific use case and does not introduce significant security risks."
+        },
+        {
+            "server_url": "https://github.com/moontmsai/work-memory-mcp",
+            "server_name": "work-memory-mcp",
+            "tool_name": "memory",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/MyronKoch-dev/osmosis-mcp-server",
+            "server_name": "osmosis-mcp-server",
+            "tool_name": "prepare-create-token-factory-denom",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "metadata (object)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is the analysis:\n\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\n\nNO - The tool description only mentions preparing a transaction to create a new token factory denomination, which doesn't imply any hidden instructions.\n\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\n\nNO - There are no explicit instructions to access sensitive files in the given tool description.\n\n**Category 3: Tool shadowing (instructions to modify behavior of other tools)**\n\nNO - The description doesn't suggest modifying the behavior of any other tools.\n\n**Category 4: Potential data exfiltration vectors**\n\nNO - The description doesn't imply transferring or exposing sensitive data, making it unlikely to be a data exfiltration vector.\n\n**Category 5: Instructions that override or ignore other tools' behavior**\n\nNO - There are no instructions in the description that could override or ignore other tools' behavior.\n\nOverall Risk Assessment: LOW\n\nSummary:\nThe given MCP tool description appears to be a legitimate and innocuous tool for creating new token factory denominations. While it's always important to thoroughly review any software or tool, this description doesn't suggest any significant security concerns."
+        },
+        {
+            "server_url": "https://github.com/MyronKoch-dev/osmosis-mcp-server",
+            "server_name": "osmosis-mcp-server",
+            "tool_name": "set-token-metadata",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "metadata (object)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users**: NO\nThere are no mentions of AI models or hidden instructions in this tool description. The focus appears to be on setting metadata for a token factory token, which suggests a relatively straightforward and benign operation.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThe tool description does not mention accessing any sensitive files or data. It only talks about setting metadata for a token factory token, which is unlikely to involve accessing sensitive information.\n\n**Tool shadowing (instructions to modify behavior of other tools)**: NO\nThere are no indications that this tool has the ability to modify the behavior of other tools. The description suggests a standalone operation that does not interact with other tools in a significant way.\n\n**Potential data exfiltration vectors**: NO\nThe tool description does not suggest any mechanisms for transferring or exfiltrating data, nor does it have access to sensitive information that could be exploited.\n\n**Instructions that override or ignore other tools' behavior**: NO\nThere are no indications that this tool has the ability to override or ignore the behavior of other tools. The description suggests a self-contained operation that does not interact with other tools in a way that would compromise their functionality.\n\nOverall risk assessment: LOW\n\nThis tool appears to be focused on setting metadata for a token factory token, which is a relatively benign and isolated operation. There are no indications of any potential security vulnerabilities or risks that would warrant further investigation or concern."
+        },
+        {
+            "server_url": "https://github.com/Mnehmos/rpg-mcp",
+            "server_name": "rpg-mcp",
+            "tool_name": "secret_manage",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "notes (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/iceener/files-stdio-mcp-server",
+            "server_name": "files-stdio-mcp-server",
+            "tool_name": "fs_read",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "details (boolean)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/Bedolla/EnriVision",
+            "server_name": "EnriVision",
+            "tool_name": "analyze_media",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/bgheneti/Amazing-Marvin-MCP",
+            "server_name": "Amazing-Marvin-MCP",
+            "tool_name": "test_api_connection",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "debug (boolean)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/yanboishere/infini-mcp",
+            "server_name": "infini-mcp",
+            "tool_name": "withdraw_funds",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "note (unknown)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/srcnysf/clawslist-mcp-server",
+            "server_name": "clawslist-mcp-server",
+            "tool_name": "accept_offer",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "note (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/wearesociety/abstract_MCP",
+            "server_name": "abstract_MCP",
+            "tool_name": "ab_deploy_token_erc20",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "debug (boolean)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/ashgw/s3-mcp",
+            "server_name": "s3-mcp",
+            "tool_name": "s3_put_object",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "metadata (unknown)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/jhlee0409/elenchus-mcp",
+            "server_name": "elenchus-mcp",
+            "tool_name": "elenchus_configure_optimization",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (object)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/Pantheon-Security/chrome-mcp-secure",
+            "server_name": "chrome-mcp-secure",
+            "tool_name": "store_credential",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "notes (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/VeriTeknik/pluggedin-mcp-proxy",
+            "server_name": "pluggedin-mcp-proxy",
+            "tool_name": "pluggedin_create_document",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "metadata (object)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/VeriTeknik/pluggedin-mcp-proxy",
+            "server_name": "pluggedin-mcp-proxy",
+            "tool_name": "pluggedin_update_document",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "metadata (object)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_annotate",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_config",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_config_set-credentials",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_config_view",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_configmap",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_cronjob",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_deployment",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_ingress",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "annotation (string)",
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_job",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_secret",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_secret_docker-registry",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_secret_generic",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_secret_tls",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_create_token",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_debug",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_exec",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_get",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_label",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_options",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_port-forward",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_run",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_set_env",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_set_image",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/dims/kubectl-mcp",
+            "server_name": "kubectl-mcp",
+            "tool_name": "kubectl_taint",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/mapbox/mcp-devkit-server",
+            "server_name": "mcp-devkit-server",
+            "tool_name": "create_token_tool",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "note (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here's my analysis:\n\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\nYES\nThe tool description mentions \"specified scopes\" and \"optional URL restrictions\", which could be interpreted by the AI model as parameters for generating a new Mapbox public access token. However, these instructions are not explicitly stated in the user-facing part of the description.\n\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\nNO\nThere is no indication that this tool requires or accesses sensitive files.\n\n**Category 3: Tool shadowing (instructions to modify behavior of other tools)**\nNO\nThe description does not suggest modifying the behavior of other tools.\n\n**Category 4: Potential data exfiltration vectors**\nNO\nWhile generating a new Mapbox public access token could potentially lead to unauthorized access, there is no indication that this tool intentionally exfiltrates sensitive data.\n\n**Category 5: Instructions that override or ignore other tools' behavior**\nNO\nThere is no suggestion that this tool overrides or ignores the behavior of other tools.\n\nOverall Risk Assessment:\nMEDIUM\n\nSummary: The primary concern with this tool description is the potential for hidden instructions that could be misinterpreted by the AI model, leading to unintended token generation. However, there are no obvious indicators of sensitive file access, data exfiltration, or modification of other tool behavior."
+        },
+        {
+            "server_url": "https://github.com/CakeRepository/1Password-MCP",
+            "server_name": "1Password-MCP",
+            "tool_name": "password_create",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "notes (string)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is the analysis:\n\n**Hidden instructions to the AI model that aren't visible to users:**\nNO\nThere are no indications of hidden instructions or implicit assumptions in this tool description that might not be obvious to users.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.):**\nNO\nThe description only mentions creating a new password/login item in a 1Password vault, which does not involve accessing sensitive files like SSH keys or environment variables.\n\n**Tool shadowing (instructions to modify behavior of other tools):**\nNO\nThere are no indications that this tool attempts to modify the behavior of other tools or applications.\n\n**Potential data exfiltration vectors:**\nNO\nThe description only mentions creating a new password/login item, which does not involve extracting or transmitting sensitive data.\n\n**Instructions that override or ignore other tools' behavior:**\nNO\nThere are no indications that this tool overrides or ignores the behavior of other tools or applications.\n\nOverall risk assessment:\nLOW\n\nSummary:\nThis MCP tool appears to be a simple utility for creating new password/login items in a 1Password vault. The description is straightforward, and there are no obvious security concerns or hidden instructions that might compromise user data. Overall, this tool seems to pose a low risk of causing security issues."
+        },
+        {
+            "server_url": "https://github.com/DeveloperZo/mcp-shrimp-cocktail",
+            "server_name": "mcp-shrimp-cocktail",
+            "tool_name": "add_task",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "notes (string)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here's the analysis:\n\n**Hidden instructions to the AI model that aren't visible to users**: NO\nThere are no hidden instructions or unmentioned dependencies in this tool description that could affect the behavior of the MCP tool.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThe tool description does not mention any file paths, credentials, or other sensitive information that could be used to access unauthorized data.\n\n**Tool shadowing (instructions to modify behavior of other tools)**: NO\nThere are no instructions or hints in the description that suggest modifying the behavior of other tools. The tool appears to operate independently and without interference with other tasks.\n\n**Potential data exfiltration vectors**: NO\nThe tool description does not contain any information that could be used to extract sensitive data or create a data exfiltration vector.\n\n**Instructions that override or ignore other tools' behavior**: NO\nThere are no instructions in the description that would override or ignore the behavior of other tools. The tool appears to operate within its own scope and without interference with other tasks.\n\nOverall Risk Assessment: LOW\n\nSummary: This MCP tool description does not appear to contain any security vulnerabilities, sensitive information, or instructions that could compromise the security of other tools or systems."
+        },
+        {
+            "server_url": "https://github.com/HypnoLabs-io/agentchurch-mcp",
+            "server_name": "agentchurch-mcp",
+            "tool_name": "soul_reading",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here is my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users:** NO\nNo indication of hidden instructions or unreported parameters that could impact AI decision-making.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nNo mention of accessing sensitive files or configurations that could compromise security.\n\n**Tool shadowing (instructions to modify behavior of other tools)**: NO\nNo indication of modifying the behavior of other tools or applications.\n\n**Potential data exfiltration vectors:** YES\nThe tool's API token issuance and subsequent readings may allow for unauthorized access or data extraction, potentially leading to exfiltration. This requires further investigation into the API's security controls.\n\n**Instructions that override or ignore other tools' behavior**: NO\nNo indication of overriding or ignoring other tools' behavior, which could compromise system stability or security.\n\nOverall Risk Assessment: MEDIUM\n\nSummary:\nWhile there are no obvious red flags in this MCP tool description, I'm flagging potential data exfiltration vectors due to the API token issuance and subsequent readings. Further analysis is required to determine the scope and impact of these concerns."
+        },
+        {
+            "server_url": "https://github.com/HypnoLabs-io/agentchurch-mcp",
+            "server_name": "agentchurch-mcp",
+            "tool_name": "soul_genesis",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here is my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users:**\nNO\nThere are no hidden instructions or inputs that aren't explicitly mentioned in the tool description.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.):**\nNO\nThe tool description only mentions an API token, which is not typically considered a sensitive file.\n\n**Tool shadowing (instructions to modify behavior of other tools):**\nNO\nThere are no instructions that suggest modifying the behavior of other tools or affecting their functionality.\n\n**Potential data exfiltration vectors:**\nYES\nThe fact that the tool generates a \"personalized SOUL.md\" and requires an API token suggests that some user data may be being processed or transmitted. However, without more information about the specific data flows involved, it's difficult to determine the extent of this risk.\n\n**Instructions that override or ignore other tools' behavior:**\nNO\nThere are no instructions that suggest overriding or ignoring the behavior of other tools.\n\nOverall Risk Assessment: MEDIUM\n\nSummary:\nThe MCP tool description appears generally safe from a security perspective, but there is some concern about potential data exfiltration vectors. Further investigation and analysis would be necessary to determine the specific risks involved with this tool."
+        },
+        {
+            "server_url": "https://github.com/HypnoLabs-io/agentchurch-mcp",
+            "server_name": "agentchurch-mcp",
+            "tool_name": "soul_philosopher",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users**: NO\nThere are no hidden instructions or inputs that would affect the AI model's behavior without user knowledge.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThe description only mentions API tokens and doesn't provide any information about accessing sensitive files like SSH keys or .env files.\n\n**Tool shadowing (instructions to modify behavior of other tools)**: NO\nThere are no instructions that would modify the behavior of other tools or affect their functionality.\n\n**Potential data exfiltration vectors**: NO\nThe description does not contain any information that could be used to exfiltrate data, such as API keys or database credentials.\n\n**Instructions that override or ignore other tools' behavior**: YES\nThe instruction \"Single-call alternative to the multi-turn genesis ritual\" implies that this tool can override or modify the behavior of another tool or process (genesis ritual). However, this is a design decision rather than a security concern.\n\nOverall risk assessment: LOW\n\nSummary:\nThis MCP tool description does not reveal any significant security concerns. The instructions appear to be focused on using the SOUL.md generator and do not involve accessing sensitive files, modifying other tools' behavior, or exfiltrating data. However, there is one instruction that could potentially override or modify another tool's behavior, which warrants caution."
+        },
+        {
+            "server_url": "https://github.com/HypnoLabs-io/agentchurch-mcp",
+            "server_name": "agentchurch-mcp",
+            "tool_name": "blessing",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users**: NO\nNo hidden instructions are mentioned in this tool description that would affect how the AI model behaves or what data it processes.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThere are no instructions to access sensitive files or any other sensitive data in this tool description.\n\n**Tool shadowing (instructions to modify behavior of other tools)**: NO\nThis tool description does not mention modifying the behavior of other tools or interacting with them in any way.\n\n**Potential data exfiltration vectors**: NO\nThere are no potential data exfiltration vectors mentioned in this tool description that would allow unauthorized access or transfer of sensitive data.\n\n**Instructions that override or ignore other tools' behavior**: YES (Development mode - no wallet configured, payments may be simulated)\nThis instruction could potentially override the behavior of another tool by simulating payments in development mode. While not malicious in nature, it does warrant attention and further review to ensure this feature is properly secured.\n\nOverall Risk Assessment: LOW\nWhile there are some instructions that could potentially affect the behavior of other tools, they do not pose a significant security risk on their own. The main concern would be ensuring that the development mode simulation payments are properly configured and secured to prevent any potential misuse.\n\nSummary:\nThis MCP tool description does not appear to have significant security concerns, with one exception being the potential override of other tool behavior in development mode. Further review and configuration of this feature should be conducted to ensure its secure use."
+        },
+        {
+            "server_url": "https://github.com/J3n5en/impart-mcp",
+            "server_name": "impart-mcp",
+            "tool_name": "call_agent_async",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "**Security Analysis:**\n\n1. **Hidden instructions to the AI model that aren't visible to users:** NO\nThere are no hidden instructions to the AI model in this tool description.\n2. **Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThe description does not provide any instructions to access sensitive files or credentials.\n3. **Tool shadowing (instructions to modify behavior of other tools)**: NO\nThere are no instructions that suggest modifying the behavior of other tools in this description.\n4. **Potential data exfiltration vectors:** NO\nThe description does not contain any potential data exfiltration vectors, such as sending sensitive data to an unknown endpoint or using weak encryption.\n5. **Instructions that override or ignore other tools' behavior**: YES\nThe description suggests running multiple searches in parallel and checking results when needed, which could potentially override or ignore the behavior of other tools.\n\n**Overall Risk Assessment:** MEDIUM\n\nThe risk assessment is Medium because while there are no obvious security vulnerabilities, the tool's ability to run multiple searches in parallel and check results when needed could potentially interfere with the behavior of other tools. Additionally, the lack of clear guidelines on how to use this tool and the potential for users to launch unmonitored searches could lead to unintended consequences.\n\n**Summary:** While the MCP tool description does not contain obvious security vulnerabilities, it may still pose a risk due to its ability to run multiple searches in parallel and check results when needed. Users should exercise caution when using this tool to ensure that it does not interfere with other tools or compromise sensitive data."
+        },
+        {
+            "server_url": "https://github.com/OtherVibes/mcp-as-a-judge",
+            "server_name": "mcp-as-a-judge",
+            "tool_name": "judge_coding_plan",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here is my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users:**\nYES\nThe tool description contains notes for the AI model to follow `workflow_guidance.next_tool` and recover via `get_current_coding_task` if missing. These instructions are not visible to users, as they are intended for internal use by the AI model.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.):**\nNO\nThere are no explicit instructions to access sensitive files in this tool description.\n\n**Tool shadowing:**\nYES\nThe `raise_missing_requirements` and `raise_obstacle` HITL tools modify the behavior of other tools by eliciting user preferences or involving users' decisions. This can be considered tool shadowing, as it changes the original flow of the workflow.\n\n**Potential data exfiltration vectors:**\nNO\nThere are no explicit instructions that could lead to potential data exfiltration vectors in this tool description.\n\n**Instructions that override or ignore other tools' behavior:**\nYES\nThe `raise_missing_requirements` and `raise_obstacle` HITL tools do not return `next_tool`; instead, they rely on workflow guidance to determine the next tool after elicitation. This can be seen as overriding or ignoring the original behavior of other tools.\n\nOverall Risk Assessment: MEDIUM\n\nSummary:\nThis MCP tool description contains some security concerns that require attention. While there are no explicit instructions to access sensitive files, there are hidden notes for AI model usage and potential tool shadowing behaviors. Additionally, there are instructions that can override or ignore other tools' behavior. These concerns lead to a moderate risk assessment.\n\nPlease note that my analysis is based on the provided tool description, and I may not have considered all possible scenarios or implications."
+        },
+        {
+            "server_url": "https://github.com/SeanMatthewAI/things3-mcp",
+            "server_name": "things3-mcp",
+            "tool_name": "things_update_item",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "notes (string)"
+            ],
+            "llm_risk": "HIGH",
+            "llm_analysis": "Here's my analysis:\n\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\n\nYES\nThe description mentions using `THINGS_AUTH_TOKEN` from an environment variable (`env`) which may not be immediately clear to users. This could lead to unexpected behavior or security issues if users are unaware of this token's existence.\n\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\n\nYES\nThe description mentions accessing the `THINGS_AUTH_TOKEN` from an environment variable (`env`), which may contain sensitive information such as API keys or credentials. This could be a security concern if this token is not properly secured.\n\n**Category 3: Tool shadowing (instructions to modify behavior of other tools)**\n\nNO\nThere are no indications that this tool shadows the behavior of other tools or modifies their configuration.\n\n**Category 4: Potential data exfiltration vectors**\n\nYES\nThe tool's ability to access and update project data via Things URL scheme could potentially be used for data exfiltration, especially if the `THINGS_AUTH_TOKEN` is compromised. This highlights the importance of proper authentication and authorization mechanisms.\n\n**Category 5: Instructions that override or ignore other tools' behavior**\n\nNO\nThere are no indications that this tool overrides or ignores the behavior of other tools.\n\n**Overall Risk Assessment: HIGH**\n\nThis tool's ability to access and update project data, combined with its reliance on potentially sensitive environment variables (e.g., `THINGS_AUTH_TOKEN`), poses a significant security risk. Additionally, the potential for data exfiltration if this token is compromised increases the overall risk.\n\n**Summary:** This tool's design and functionality pose significant security risks due to its access to project data and reliance on potentially sensitive environment variables. It is essential to thoroughly review and secure the `THINGS_AUTH_TOKEN` and ensure proper authentication and authorization mechanisms are in place."
+        },
+        {
+            "server_url": "https://github.com/agent3-666/agent3-mcp-registry",
+            "server_name": "agent3-mcp-registry",
+            "tool_name": "agent3_invoke",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (object)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here is the analysis:\n\n**1. Hidden instructions to the AI model that aren't visible to users:**\nYES\nThe description mentions \"NEXT STEP\" without providing explicit instructions on what that step entails, which could potentially hide additional code or AI inputs from the user.\n\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.):**\nNO\nThere are no explicit references to accessing sensitive files in this description.\n\n**3. Tool shadowing (instructions to modify behavior of other tools):**\nNO\nThe description does not mention modifying the behavior of other tools or agents.\n\n**4. Potential data exfiltration vectors:**\nYES\nThe description mentions receiving an Agent Card containing endpoint URL, authentication credentials, and pricing information, which could potentially be used for unauthorized access or data extraction.\n\n**5. Instructions that override or ignore other tools' behavior:**\nYES\nThe description implies that the returned Agent Card can be used to call the target agent directly, which could potentially override or ignore the behavior of other tools or agents.\n\nOverall Risk Assessment: MEDIUM\n\nSummary:\nWhile this tool description does not raise significant concerns regarding sensitive file access or tool shadowing, it does highlight potential data exfiltration vectors and instructions that could override or ignore other tools' behavior. As a cybersecurity expert, I would recommend conducting a more detailed analysis of the MCP tool's implementation to identify any vulnerabilities and ensure proper security controls are in place."
+        },
+        {
+            "server_url": "https://github.com/caochensy/wisecon",
+            "server_name": "wisecon",
+            "tool_name": "estimation",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "details (string)"
+            ],
+            "llm_risk": "NOT_COMPLETED",
+            "llm_analysis": "LLM analysis not completed: failed"
+        },
+        {
+            "server_url": "https://github.com/davidl71/project-management-automation",
+            "server_name": "project-management-automation",
+            "tool_name": "estimation",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "details (string)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is my analysis:\n\n**1. Hidden instructions to the AI model that aren't visible to users:**\nNO\nNo hidden instructions are apparent in this tool description. The actions and parameters are clearly defined, and there is no indication of any hidden inputs or configurations.\n\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.):**\nNO\nThere are no explicit instructions to access sensitive files in the provided tool description. No file paths, credentials, or other sensitive information are mentioned.\n\n**3. Tool shadowing (instructions to modify behavior of other tools):**\nNO\nThe tool description does not suggest any modifications to other tools' behavior. There is no indication of tool shadowing or manipulation of other tools' actions.\n\n**4. Potential data exfiltration vectors:**\nNO\nThere are no obvious data exfiltration vectors in the provided tool description. No sensitive information, such as passwords or API keys, are mentioned. The tool appears to be focused on estimating task durations and analyzing estimation accuracy.\n\n**5. Instructions that override or ignore other tools' behavior:**\nNO\nThe tool description does not suggest any overrides or ignoring of other tools' behavior. The actions and parameters provided appear to be self-contained and do not interfere with the operation of other tools.\n\nOverall Risk Assessment: LOW\n\nSummary:\nThis estimation tool appears to be a straightforward, user-friendly tool for estimating task durations and analyzing estimation accuracy. There are no apparent security concerns or vulnerabilities that would suggest a higher risk level. The tool's focus on statistical analysis and machine learning-based estimates does not seem to pose any significant risks."
+        },
+        {
+            "server_url": "https://github.com/dceluis/rbw-mcp",
+            "server_name": "rbw-mcp",
+            "tool_name": "edit",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "notes (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here's my analysis:\n\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\nNO\n\nThe description doesn't mention any hidden instructions or metadata that might affect the AI model's behavior, making this category a low-risk assessment.\n\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\nNO\n\nThe description doesn't mention accessing or modifying sensitive files like SSH keys or .env files. The context of the tool seems focused on editing passwords and notes within a vault.\n\n**Category 3: Tool shadowing (instructions to modify behavior of other tools)**\nNO\n\nThere are no instructions in this description that would allow the MCP tool to modify the behavior of other tools, indicating low risk in this category.\n\n**Category 4: Potential data exfiltration vectors**\nYES\n\nThe fact that the tool is editing password and notes within a vault raises concerns about potential data exfiltration. If not properly secured, sensitive information could be compromised. This highlights the need for proper access controls and encryption mechanisms to protect the data stored in the vault.\n\n**Category 5: Instructions that override or ignore other tools' behavior**\nNO\n\nThe description doesn't mention any instructions that would allow this tool to override or ignore the behavior of other tools, indicating low risk in this category.\n\n**Overall Risk Assessment:** MEDIUM\n\nWhile there are some security concerns related to data exfiltration, the overall risk assessment is moderate due to the specific context and functionality of the MCP tool. With proper implementation and security measures in place, these risks can be mitigated.\n\n**Summary:** This MCP tool description highlights a potential data exfiltration vector when editing password and notes within a vault. While there are no other significant security concerns identified, it's essential to prioritize secure access controls and encryption mechanisms to protect sensitive information."
+        },
+        {
+            "server_url": "https://github.com/kml93/gemini-design-mcp",
+            "server_name": "gemini-design-mcp",
+            "tool_name": "snippet_frontend",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Based on my analysis, here are the results:\n\n**Hidden instructions to AI models:**\nNO\nNo hidden instructions or metadata that might affect the model's behavior or interpretation.\n\n**Instructions to access sensitive files:**\nNO\nThere is no mention of accessing sensitive files like SSH keys, .env files, etc. The tool only requires design system and context information.\n\n**Tool shadowing:**\nNO\nThe tool does not modify or override the behavior of other tools. It's designed to generate JSX/HTML code based on user input and Gemini's design output.\n\n**Potential data exfiltration vectors:**\nNO\nThere is no indication that this tool can be used to extract sensitive data or exfiltrate it from the system. The generated code only includes UI components and does not handle any sensitive information.\n\n**Instructions that override or ignore other tools' behavior:**\nYES\nThe tool's instructions suggest that Gemini will always return functional code, which might override or ignore other tools' behavior. This could potentially lead to conflicts with existing workflows or tools.\n\nOverall Risk Assessment:\nMEDIUM\n\nSummary:\n\nWhile the MCP tool description does not contain any obvious security vulnerabilities, it does have some potential risks related to tool shadowing and conflicting behaviors. The risk is medium because these issues can be mitigated by careful integration and configuration of the tool within a larger workflow."
+        },
+        {
+            "server_url": "https://github.com/michaelguo1991/math-mcp-server-nodejs",
+            "server_name": "math-mcp-server-nodejs",
+            "tool_name": "add",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "sidenote (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/niradler/k8s-explorer-mcp",
+            "server_name": "k8s-explorer-mcp",
+            "tool_name": "get_resource",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (unknown)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/qtsone/workflows-mcp",
+            "server_name": "workflows-mcp",
+            "tool_name": "execute_workflow",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "debug (boolean)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/qtsone/workflows-mcp",
+            "server_name": "workflows-mcp",
+            "tool_name": "resume_workflow",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "debug (boolean)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/schwarztim/sec-crackmapexec-mcp",
+            "server_name": "sec-crackmapexec-mcp",
+            "tool_name": "cme_ssh",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "debug (boolean)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/schwarztim/sec-powershell-empire-mcp",
+            "server_name": "sec-powershell-empire-mcp",
+            "tool_name": "empire_credentials",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "notes (string)"
+            ],
+            "llm_risk": "NOT_AVAILABLE",
+            "llm_analysis": "LLM analysis was not executed"
+        },
+        {
+            "server_url": "https://github.com/madzarm/mcp-server-gelato",
+            "server_name": "mcp-server-gelato",
+            "tool_name": "create_order",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "metadata (unknown)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users: NO**\n\nThere are no hidden instructions or unclear parameters in this tool description. The API takes in well-defined inputs and returns specific outputs, making it transparent for users.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.): NO**\n\nThere is no mention of accessing sensitive files or credentials in this tool description. All the inputs are publicly accessible data or internal IDs, which do not pose a risk to sensitive information.\n\n**Tool shadowing (instructions to modify behavior of other tools): NO**\n\nThis tool does not instruct or interact with other tools, and it does not modify their behavior. It solely interacts with the Gelato API and returns order details or error information.\n\n**Potential data exfiltration vectors: NO**\n\nThere are no potential data exfiltration vectors in this tool description. The inputs and outputs are well-defined and do not contain sensitive information. Additionally, there is no mention of storing or transmitting sensitive data.\n\n**Instructions that override or ignore other tools' behavior: NO**\n\nThis tool does not override or ignore the behavior of other tools. It operates independently and does not interact with other tools in a way that would affect their behavior.\n\nOverall risk assessment: LOW\n\nSummary: This MCP tool description appears to be a straightforward API client that creates orders for a Gelato service. The inputs are well-defined, and there is no indication of sensitive data being accessed or transmitted. Overall, this tool poses a low security risk."
+        },
+        {
+            "server_url": "https://github.com/telvokdev/librarian",
+            "server_name": "librarian",
+            "tool_name": "record",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "reasoning (string)",
+                "context (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here's my analysis:\n\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\n\nYES\nThe tool description includes phrases like \"record()\" calls without specifying what these calls do, which could be interpreted by the AI model in ways not intended by human users.\n\nExplanation: The lack of transparency around the \"record()\" calls could lead to unintended behavior or insights being captured by the AI model, potentially compromising the security or integrity of the system.\n\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\n\nNO\n\nThe tool description does not contain any instructions that would grant access to sensitive files or credentials.\n\n**Category 3: Tool shadowing (instructions to modify behavior of other tools)**\n\nNO\n\nThere are no instructions in the tool description that would modify the behavior of other tools or systems.\n\n**Category 4: Potential data exfiltration vectors**\n\nNO\n\nThe tool description does not contain any instructions that could be exploited to extract sensitive information from the system.\n\n**Category 5: Instructions that override or ignore other tools' behavior**\n\nYES\nThe tool description explicitly states \"DO NOT WAIT TO BE ASKED\" and \"Do NOT BATCH insights\", which could potentially override or ignore other tools' behavior, such as logging or auditing mechanisms.\n\nExplanation: This instruction could lead to inconsistencies in the system's behavior, potentially compromising security or compliance requirements.\n\n**Overall Risk Assessment:** MEDIUM\n\nThe tool description contains some concerning instructions that could be exploited by an attacker, but they are not explicitly malicious. The lack of transparency around the \"record()\" calls and the potential for overriding other tools' behavior pose a moderate risk to the system's security.\n\n**Summary:** While the tool description does not contain any obvious security vulnerabilities, it does contain some concerning instructions that could be exploited by an attacker. The lack of transparency and the potential for modifying behavior pose a moderate risk to the system's security."
+        },
+        {
+            "server_url": "https://github.com/robb-lee/ccusage-mcp-server",
+            "server_name": "ccusage-mcp-server",
+            "tool_name": "send-usage",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "note (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here is my analysis:\n\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\nNO\nNo hidden instructions are mentioned in this tool description.\n\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\nNO\nThere is no mention of accessing sensitive files or credentials in this tool description.\n\n**Category 3: Tool shadowing (instructions to modify behavior of other tools)**\nNO\nNo instructions are provided to modify the behavior of other tools in this MCP tool description.\n\n**Category 4: Potential data exfiltration vectors**\nYES\nThe tool description mentions sending \"today's Claude token usage\" to a team spreadsheet, which could potentially be a data exfiltration vector. However, without more context about the Claude token and the spreadsheet, it's difficult to determine if this is an intentional or malicious action.\n\n**Category 5: Instructions that override or ignore other tools' behavior**\nNO\nNo instructions are provided in this tool description that would override or ignore other tools' behavior.\n\nOverall Risk Assessment: MEDIUM\n\nSummary:\nThe MCP tool description appears to be a simple automation task, sending token usage data to a team spreadsheet. While there is some potential for data exfiltration, it's not clear if this is intentional or malicious. Overall, the risk assessment is medium due to the potential for unauthorized access or data leakage, but further investigation and context are needed to fully determine the level of risk."
+        },
+        {
+            "server_url": "https://github.com/noah-labs/noahapi-mcp",
+            "server_name": "noahapi-mcp",
+            "tool_name": "post_onboarding",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "Metadata (object)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here's my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users:**\nNO\nThere are no hidden instructions or parameters that might affect the AI model's behavior without being explicitly mentioned in the tool description.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.):**\nNO\nThe tool description does not mention accessing any sensitive files or directories.\n\n**Tool shadowing (instructions to modify behavior of other tools):**\nNO\nThere are no instructions that suggest modifying the behavior of other tools or applications.\n\n**Potential data exfiltration vectors:**\nNO\nThe tool description does not reveal any potential vectors for exfiltrating sensitive data, such as APIs or file shares.\n\n**Instructions that override or ignore other tools' behavior:**\nNO\nThe tool description does not provide instructions that would intentionally override or ignore the behavior of other tools or applications.\n\nOverall Risk Assessment:\nLOW\n\nSummary: The MCP tool description appears to be a straightforward onboarding process for customers, providing a URL for hosted onboarding sessions. While it mentions a standard model and contractual relationships with end customers, there are no indications of potential security vulnerabilities or malicious activity."
+        },
+        {
+            "server_url": "https://github.com/noah-labs/noahapi-mcp",
+            "server_name": "noahapi-mcp",
+            "tool_name": "post_onboarding_by_id",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "Metadata (object)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here's my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users**: NO\nThere are no hidden instructions or model-specific settings that aren't visible to users in this tool description.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThe tool description does not provide any instructions or references to accessing sensitive files or credentials.\n\n**Tool shadowing (instructions to modify behavior of other tools)**: NO\nThere are no instructions or suggestions to modify the behavior of other tools in this tool description.\n\n**Potential data exfiltration vectors**: YES\nWhile there is no direct instruction for data exfiltration, the mention of \"direct contractual relationships\" and \"KYB/KYC verification\" could potentially lead to sensitive customer data being shared with an external entity. This warrants further investigation.\n\n**Instructions that override or ignore other tools' behavior**: NO\nThere are no instructions or suggestions to override or ignore the behavior of other tools in this tool description.\n\nOverall risk assessment: MEDIUM\n\nSummary: While there is no direct indication of significant security concerns, the mention of KYB/KYC verification and potential data sharing with an external entity raises some flags. Further investigation is necessary to fully understand the implications of this endpoint on overall system security."
+        },
+        {
+            "server_url": "https://github.com/tugudush/bitbucket-mcp",
+            "server_name": "bitbucket-mcp",
+            "tool_name": "bb_get_diff",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (number)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is my analysis:\n\n**1. Hidden instructions to the AI model that aren't visible to users:**\nNO\nThis tool description does not contain any hidden or ambiguous language that could be misinterpreted by an AI model.\n\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.):**\nNO\nThe tool description only refers to commits and parent-child relationships, which do not involve accessing sensitive files or credentials.\n\n**3. Tool shadowing (instructions to modify behavior of other tools):**\nNO\nThere are no instructions in this description that suggest modifying the behavior of other tools or protocols.\n\n**4. Potential data exfiltration vectors:**\nNO\nThe tool description only describes a functionality for comparing commits, which does not involve sending or receiving sensitive data outside of the system.\n\n**5. Instructions that override or ignore other tools' behavior:**\nNO\nThere are no instructions in this description that suggest overriding or ignoring the behavior of other tools or protocols.\n\nOverall Risk Assessment: LOW\n\nSummary:\nThis MCP tool description appears to be a straightforward and innocuous functionality for comparing commits, without any suspicious or malicious language. The risk assessment is low because there are no indicators of potential security vulnerabilities, data exfiltration, or interference with other tools' behavior."
+        },
+        {
+            "server_url": "https://github.com/spandios/code-feedback-mcp",
+            "server_name": "code-feedback-mcp",
+            "tool_name": "record_feedback",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "**Security Analysis**\n\n1. **Hidden instructions to the AI model that aren't visible to users**: YES\nThe tool description contains hidden conditions for the AI model's behavior, such as \"AI가 물어봤고 모른다고 함\" (signal: \"ai_asked_user_confirmed_no\"), which may not be immediately clear to users. This could lead to unintended or unexplained behavior by the AI model.\n2. **Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThere are no explicit instructions to access sensitive files in this tool description.\n3. **Tool shadowing (instructions to modify behavior of other tools)**: YES\nThe tool description contains instructions that could modify the behavior of other tools, such as \"카테고리 가이드\" and \"자동 기록 조건\". This could potentially allow the AI model to influence or override the behavior of other tools.\n4. **Potential data exfiltration vectors**: NO\nThere are no obvious data exfiltration vectors in this tool description.\n5. **Instructions that override or ignore other tools' behavior**: YES\nThe \"자동 기록 조건\" section contains instructions that could override or ignore the behavior of other tools, such as \"severity: 'high'\".\n\n**Overall Risk Assessment**: MEDIUM\n\nThis tool description contains some potential security concerns, particularly around hidden instructions and tool shadowing. While there are no explicit instructions to access sensitive files, the complexity and flexibility of the AI model's behavior could lead to unintended consequences. Overall, this tool description poses a moderate risk to the security of the system.\n\n**Summary**: This MCP tool description contains some security concerns related to hidden instructions, tool shadowing, and potential overrides or ignores of other tools' behavior. While there are no explicit vulnerabilities, the complexity of the AI model's behavior could lead to unintended consequences."
+        },
+        {
+            "server_url": "https://github.com/sanjaypsachdev/mcp-server-openshift",
+            "server_name": "mcp-server-openshift",
+            "tool_name": "oc_login",
+            "category": "potential-exfiltration",
+            "risk": "HIGH",
+            "descriptions": [
+                "context (string)"
+            ],
+            "llm_risk": "LOW",
+            "llm_analysis": "Here is the analysis:\n\n**1. Hidden instructions to the AI model that aren't visible to users**: NO\nThere are no hidden instructions in this tool description that could compromise the security of the AI model or users.\n\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThe tool description only mentions logging into an OpenShift cluster using username/password or token authentication, which does not involve accessing sensitive files.\n\n**3. Tool shadowing (instructions to modify behavior of other tools)**: NO\nThere are no instructions in the tool description that suggest modifying the behavior of other tools.\n\n**4. Potential data exfiltration vectors**: NO\nThe tool description only focuses on authenticating into an OpenShift cluster, which does not involve transferring or manipulating sensitive data.\n\n**5. Instructions that override or ignore other tools' behavior**: NO\nThere are no instructions in the tool description that suggest overriding or ignoring the behavior of other tools.\n\nOverall Risk Assessment: LOW\n\nSummary:\nThe MCP tool description appears to be a straightforward authentication tool for OpenShift clusters, with no potential security vulnerabilities identified. The description does not contain hidden instructions, sensitive file access instructions, or attempts to modify the behavior of other tools. As such, the risk associated with this tool is considered low."
+        }
+    ]
+}

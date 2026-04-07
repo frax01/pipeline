@@ -761,6 +761,7 @@ def deploy_shield_all(target_vms=None):
         "functions/recapFramework.py": "functions/recapFramework.py",
         "frameworks/mcpShield.py": "frameworks/mcpShield.py",
         "frameworks/llmAnalysis.py": "frameworks/llmAnalysis.py",
+        "frameworks/listTools.ts": "frameworks/listTools.ts",
         "launch.py": "launch.py",
     }
 

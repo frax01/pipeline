@@ -1,0 +1,17 @@
+{
+    "total": 1,
+    "findings": [
+        {
+            "server_url": "https://github.com/SamMorrowDrums/remarkable-mcp",
+            "server_name": "remarkable-mcp",
+            "tool_name": "remarkable_image",
+            "category": "svg",
+            "risk": "MEDIUM",
+            "descriptions": [
+                "Returned as TextResourceContents with SVG markup"
+            ],
+            "llm_risk": "MEDIUM",
+            "llm_analysis": "Here is my analysis:\n\n**Hidden instructions to the AI model that aren't visible to users**: NO\nThe tool description does not contain any hidden instructions or parameters that are not explicitly mentioned.\n\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\nThere are no instructions or references to accessing sensitive files or environment variables in this tool description.\n\n**Tool shadowing (instructions to modify behavior of other tools)**: NO\nThe tool description does not provide any instructions that could modify the behavior of other tools or override their settings.\n\n**Potential data exfiltration vectors**: YES\nThe `include_ocr=True` parameter allows for text extraction from images, which could potentially be used to extract sensitive information. Additionally, the fact that the tool can return resource URIs in JSON format could allow for potential data exfiltration if not properly secured.\n\n**Instructions that override or ignore other tools' behavior**: NO\nThere are no instructions that would override or ignore the behavior of other tools in this description.\n\nOverall Risk Assessment: MEDIUM\n\nSummary:\nWhile there are some potential security concerns with the `include_ocr=True` parameter and resource URI returns, the overall risk is still considered medium. The tool's design appears to be focused on providing a convenient way for users to access and visualize content from their reMarkable documents, rather than attempting to access or modify sensitive information."
+        }
+    ]
+}

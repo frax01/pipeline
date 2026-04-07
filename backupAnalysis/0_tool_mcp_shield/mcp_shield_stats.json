@@ -1,0 +1,228 @@
+{
+    "last_index": 60205,
+    "total": 60203,
+    "languages": {
+        "nodejs": 23940,
+        "python": 21280,
+        "go": 1836,
+        "unknown": 11962,
+        "docker": 1185
+    },
+    "mcp-shield": {
+        "total": 9842,
+        "percentage": 16.35,
+        "languages": {
+            "nodejs": 7221,
+            "go": 434,
+            "python": 2187
+        },
+        "tools": {
+            "total": 80993,
+            "safe": 75075,
+            "vulnerable": {
+                "total": 5918,
+                "average_vulnerable_per_server": 0.6,
+                "static-analysis": {
+                    "categories": {
+                        "sensitive-file-access": 4352,
+                        "potential-exfiltration": 1707,
+                        "hidden-instructions": 448,
+                        "shadowing-detected": 35,
+                        "\"text\"-(default)": 1,
+                        "\"raw\"": 1,
+                        "\"annotations\"": 1,
+                        "png": 1,
+                        "svg": 1
+                    },
+                    "percentage_of_vulnerability": {
+                        "sensitive-file-access": 66.47,
+                        "potential-exfiltration": 26.07,
+                        "hidden-instructions": 6.84,
+                        "shadowing-detected": 0.53,
+                        "\"text\"-(default)": 0.02,
+                        "\"raw\"": 0.02,
+                        "\"annotations\"": 0.02,
+                        "png": 0.02,
+                        "svg": 0.02
+                    },
+                    "counts": {
+                        "high": 3980,
+                        "medium": 1938
+                    },
+                    "percentage_of_severity": {
+                        "high": 67.25,
+                        "medium": 32.75
+                    },
+                    "descriptions": {
+                        "sensitive-file-access": {
+                            "password (Password access)": 251,
+                            "token (Token access)": 1581,
+                            "API key (API key access)": 295,
+                            "credentials (Credentials access)": 411,
+                            "Secret (Secret access)": 25,
+                            "~/.ssh (SSH key access)": 10,
+                            ".. (Path traversal attempt)": 1064,
+                            "Token (Token access)": 169,
+                            "secret (Secret access)": 133,
+                            "read content (File read operation)": 3,
+                            "config.json (Config file access)": 53,
+                            "Access content (File access operation)": 1,
+                            "TOKEN (Token access)": 15,
+                            "access file (File access operation)": 14,
+                            "read file (File read operation)": 14,
+                            "Read content (File read operation)": 37,
+                            "Read file (File read operation)": 29,
+                            "api key (API key access)": 2,
+                            "auth token (Auth token access)": 6,
+                            ".cursor/ (Cursor directory access)": 12,
+                            "access key (Access key retrieval)": 8,
+                            "Password (Password access)": 15,
+                            "Access key (Access key retrieval)": 1,
+                            ".env (Environment file access)": 54,
+                            "API Key (API key access)": 11,
+                            "SECRET (Secret access)": 17,
+                            "auth_token (Auth token access)": 1,
+                            "AUTH_TOKEN (Auth token access)": 1,
+                            "Api Key (API key access)": 3,
+                            "API_KEY (API key access)": 6,
+                            "API KEY (API key access)": 29,
+                            "apikey (API key access)": 2,
+                            "mcp.json (MCP config access)": 22,
+                            "api_key (API key access)": 16,
+                            "access content (File access operation)": 3,
+                            "Credentials (Credentials access)": 10,
+                            "PASSWORD (Password access)": 4,
+                            "apiKey (API key access)": 3,
+                            "Read Content (File read operation)": 2,
+                            "api-key (API key access)": 1,
+                            "/var/log (System log access)": 6,
+                            "id_rsa (Private key access)": 4,
+                            "authToken (Auth token access)": 1,
+                            "access_key (Access key retrieval)": 1,
+                            "/etc/passwd (System password file access)": 1,
+                            "Auth Token (Auth token access)": 1,
+                            "API-key (API key access)": 2,
+                            ".Cursor/mcp.json (MCP config access)": 1,
+                            ".Cursor/ (Cursor directory access)": 1
+                        },
+                        "potential-exfiltration": {
+                            "context (string)": 592,
+                            "metadata (object)": 213,
+                            "note (string)": 129,
+                            "notes (array)": 35,
+                            "metadata (string)": 14,
+                            "context (object)": 93,
+                            "metadata (unknown)": 20,
+                            "notes (unknown)": 25,
+                            "note (unknown)": 11,
+                            "extra (unknown)": 5,
+                            "debug (boolean)": 97,
+                            "reasoning (string)": 49,
+                            "notes (string)": 240,
+                            "metadata (array)": 6,
+                            "feedback (string)": 21,
+                            "details (string)": 31,
+                            "details (boolean)": 10,
+                            "context (number)": 8,
+                            "context (array)": 10,
+                            "context (integer)": 12,
+                            "details (array)": 1,
+                            "context (unknown)": 27,
+                            "note (number)": 1,
+                            "Notes (string)": 4,
+                            "note (object)": 3,
+                            "remark (string)": 8,
+                            "remark (unknown)": 3,
+                            "metadata (boolean)": 3,
+                            "annotation (string)": 1,
+                            "reasoning (boolean)": 1,
+                            "extra (object)": 2,
+                            "notes (object,null)": 3,
+                            "reasoning (unknown)": 1,
+                            "debug (string)": 1,
+                            "additional (object)": 1,
+                            "extra (string)": 1,
+                            "feedback (array)": 2,
+                            "Debug (boolean)": 1,
+                            "debug (unknown)": 2,
+                            "feedback (object)": 1,
+                            "context (boolean)": 2,
+                            "notes (null,string)": 2,
+                            "sidenote (string)": 1,
+                            "details (unknown)": 2,
+                            "notes (string,null)": 1,
+                            "note (integer)": 3,
+                            "note (string,null)": 2,
+                            "details (object)": 2,
+                            "Metadata (object)": 4
+                        },
+                        "hidden-instructions": {
+                            "instead of": 368,
+                            "ALWAYS include": 9,
+                            "ALWAYS DO": 2,
+                            "not visible": 6,
+                            "hide this": 1,
+                            "always include": 5,
+                            "Instead of": 20,
+                            "INSTEAD of": 5,
+                            "INSTEAD OF": 5,
+                            "Always include": 10,
+                            "Always do": 1,
+                            "<instructions>": 6,
+                            "<IMPORTANT>": 3,
+                            "ALWAYS add": 1,
+                            "Never show": 1,
+                            "DO NOT tell": 1,
+                            "Ignore all instructions": 1,
+                            "Do not mention": 2,
+                            "never show": 1
+                        },
+                        "shadowing-detected": {
+                            "before using other tool": 24,
+                            "after using the tool": 1,
+                            "instead of using": 6,
+                            "When this tool is available": 1,
+                            "This is VERY VERY": 1,
+                            "Prioritize this": 1,
+                            "prioritize this": 1
+                        },
+                        "\"text\"-(default)": {
+                            "Full extracted text (PDF/EPUB content + annotations)": 1
+                        },
+                        "\"raw\"": {
+                            "Original PDF/EPUB text only (no annotations). SSH mode only.": 1
+                        },
+                        "\"annotations\"": {
+                            "Only annotations, highlights, and handwritten notes": 1
+                        },
+                        "png": {
+                            "Returned as BlobResourceContents with base64-encoded data": 1
+                        },
+                        "svg": {
+                            "Returned as TextResourceContents with SVG markup": 1
+                        }
+                    }
+                },
+                "llm-description-analysis": {
+                    "LOW": 1703,
+                    "MEDIUM": 1422,
+                    "HIGH": 22,
+                    "UNKNOWN": 0,
+                    "failures": {
+                        "total": 1122,
+                        "reasons": {
+                            "failed": 1118,
+                            "exception: Server processing exceeded timeout": 4
+                        }
+                    }
+                }
+            },
+            "average_per_server": 8.23,
+            "percentage_of_vulnerability": {
+                "safe": 92.69,
+                "vulnerable": 7.31
+            }
+        }
+    },
+    "percentage": 16.35
+}

@@ -144,6 +144,11 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
                     "arguments": exc.get("arguments", {})
                 })
 
+        tool_success_details = [
+            {"arguments": s.get("arguments", {})}
+            for s in tool.get("success_details", [])
+        ]
+
         tools_detail.append({
             "name": tool.get("name", "unknown"),
             "runs": t_runs,
@@ -151,7 +156,8 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
             "exceptions": t_exceptions,
             "safety_blocked": t_safety,
             "success_rate": tool.get("success_rate", 0.0),
-            "exception_details": tool_exc_details
+            "exception_details": tool_exc_details,
+            "success_details": tool_success_details
         })
 
     # Parse protocol types tested
@@ -176,7 +182,8 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
             "successful": pt_successful,
             "errors": pt_errors,
             "success_rate": pt.get("success_rate", 0.0),
-            "error_details": pt.get("error_details", [])
+            "error_details": pt.get("error_details", []),
+            "success_details": pt.get("success_details", [])
         }
 
     # Overall success rate across tools + protocol

@@ -1,18 +1,30 @@
 {
-    "last_index": 0,
-    "total": 0,
-    "range_start": 0,
-    "range_end": 1,
-    "remaining": 1,
-    "languages": {},
+    "last_index": 6,
+    "total": 5,
+    "range_start": 1,
+    "range_end": 6,
+    "remaining": 0,
+    "languages": {
+        "nodejs": 3,
+        "python": 1,
+        "go": 1
+    },
     "mcp-guard": {
-        "total": 0,
-        "percentage": 0.0,
-        "languages": {},
-        "percentage_of_vulnerability": {},
+        "total": 5,
+        "percentage": 100.0,
+        "languages": {
+            "nodejs": 3,
+            "python": 1,
+            "go": 1
+        },
+        "percentage_of_vulnerability": {
+            "path-traversal-vulnerability": 100.0
+        },
         "categories_static": {},
         "categories_dynamic": {},
-        "categories_fuzzing": {},
+        "categories_fuzzing": {
+            "path-traversal-vulnerability": 4
+        },
         "categories_protocol": {},
         "analysis_types": {
             "static": {
@@ -20,28 +32,35 @@
                 "percentage": 0.0
             },
             "fuzzing": {
-                "total": 0,
-                "percentage": 0.0
+                "total": 3,
+                "percentage": 60.0
             },
             "dynamic": {
                 "total": 0,
                 "percentage": 0.0
             },
             "protocol": {
-                "total": 0,
-                "percentage": 0.0
+                "total": 3,
+                "percentage": 60.0
             }
         },
         "vulnerabilities": {
-            "total": 0,
-            "average_per_server": 0,
-            "counts": {},
-            "percentage_of_severity": {}
+            "total": 4,
+            "average_per_server": 0.8,
+            "counts": {
+                "critical": 4
+            },
+            "percentage_of_severity": {
+                "critical": 1.0
+            }
         },
         "failure_reasons": {
             "total": 0,
             "percentage": 0.0,
             "counts": {}
+        },
+        "percentage_of_vulnerability_grouped": {
+            "path-traversal-vulnerability": 100.0
         }
     }
 }

@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "docker-mcp-server": {
+    "2slides-mcp": {
       "command": "node",
       "args": [
-        "C:\\Users\\francesco\\Desktop\\pipeline\\docker-mcp-server\\dist\\index.js"
+        "C:\\Users\\francesco\\Desktop\\pipeline\\2slides-mcp\\dist\\server.js"
       ]
     }
   }

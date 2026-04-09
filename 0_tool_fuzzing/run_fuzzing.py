@@ -246,6 +246,12 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
                 "arguments": exc.get("arguments", {})
             })
 
+        # Raccogli gli input che hanno avuto successo
+        success_inputs = [
+            {"arguments": s.get("arguments", {})}
+            for s in tool.get("success_details", [])
+        ]
+
         for exc_msg, inputs in by_msg.items():
             item = {
                 "server_url": server_url,
@@ -254,7 +260,8 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
                 "runs": tool.get("runs", 0),
                 "exceptions": tool.get("exceptions", 0),
                 "success_rate": tool.get("success_rate", 0.0),
-                "inputs_causing_error": inputs
+                "inputs_causing_error": inputs,
+                "inputs_successful": success_inputs
             }
             _update_exception_file(CURRENT_DIR, exc_msg, item)
 
@@ -279,6 +286,16 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
             for ed in error_details
         ]
 
+        # Raccogli i successful details per il protocollo
+        success_details = [
+            {
+                "run": sd.get("run", 0),
+                "fuzz_payload": sd.get("fuzz_payload", {}),
+                "server_response": sd.get("server_response"),
+            }
+            for sd in proto_data.get("success_details", [])
+        ]
+
         item = {
             "server_url": server_url,
             "server_name": server_name,
@@ -286,7 +303,8 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
             "successful": proto_data.get("successful", 0),
             "errors": proto_data.get("errors", 0),
             "success_rate": proto_data.get("success_rate", 0.0),
-            "error_details": error_inputs
+            "error_details": error_inputs,
+            "success_details": success_details
         }
         _update_protocol_file(CURRENT_DIR, proto_type, item)
 

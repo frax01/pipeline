@@ -1,3 +1,5 @@
+Di tutti i tool di analisi nella cartella di mcp-watch quali sono le regole che, scritte in questo modo e senza modificarle, potrebbero essere utili per trovare delle vere vulnerabilità e quelle che invece trovano sicuramente solo falsi positivi? Ad esempio mi sembra che containsHardcodedCredentials possa trovare delle vulnerabilità reali, ce ne sono altre così? Perchè poi io ho tutto il mio file con le stats e gli scan e vorrei fare un codice con le regole più utili che mi possa filtrare tutti i dati che ho trovato che per la maggioranza sono falsi positivi, così almeno riesco ad avere qualcosa di utile, ma dimmi quali funzioni nello specifico potrei usare così come sono e quali invece generano solo falsi positivi. Il tool completo si trova in desktop/frameworks/mcp-watch
+
 # MCP Watch - How It Works
 
 Questo documento descrive il funzionamento degli scanner contenuti nel framework **mcp-watch** e la logica tecnica utilizzata per identificare potenziali vulnerabilità.

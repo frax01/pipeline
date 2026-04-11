@@ -108,11 +108,11 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
 
     data = report.get("data", {})
     tools = data.get("tools_tested", [])
-
-    # Skip if no tools were tested at all
-    if not tools:
-        return None
     protocol_types = data.get("protocol_types_tested", [])
+
+    # Skip only if there's absolutely no data
+    if not tools and not protocol_types:
+        return None
 
     total_tools = len(tools)
     total_runs = 0
@@ -192,7 +192,7 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
     overall_success_rate = round(combined_successful / combined_runs * 100, 2) if combined_runs > 0 else 0.0
 
     return {
-        "status": "completed",
+        "status": "completed" if tools else "no_tools",
         "total_tools": total_tools,
         "total_fuzzing_runs": total_runs,
         "total_successful": total_successful,

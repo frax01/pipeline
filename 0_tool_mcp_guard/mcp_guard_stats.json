@@ -1,69 +1,37 @@
 {
-    "last_index": 10,
-    "total": 9,
-    "range_start": 1,
-    "range_end": 10,
+    "last_index": 5,
+    "total": 5,
+    "range_start": 0,
+    "range_end": 5,
     "remaining": 0,
     "languages": {
-        "nodejs": 6,
+        "nodejs": 1,
+        "unknown": 2,
         "python": 1,
-        "go": 1,
-        "unknown": 1
+        "go": 1
     },
     "mcp-guard": {
-        "total": 8,
-        "percentage": 88.89,
+        "total": 5,
+        "servers_fuzzed": 2,
+        "percentage": 100.0,
         "languages": {
-            "nodejs": 6,
+            "nodejs": 1,
+            "unknown": 2,
             "python": 1,
             "go": 1
         },
-        "percentage_of_vulnerability": {
-            "path-traversal-vulnerability": 100.0
-        },
-        "categories_static": {},
-        "categories_dynamic": {},
-        "categories_fuzzing": {
-            "path-traversal-vulnerability": 4
-        },
-        "categories_protocol": {},
-        "analysis_types": {
-            "static": {
-                "total": 0,
-                "percentage": 0.0
-            },
-            "fuzzing": {
-                "total": 5,
-                "percentage": 62.5
-            },
-            "dynamic": {
-                "total": 0,
-                "percentage": 0.0
-            },
-            "protocol": {
-                "total": 5,
-                "percentage": 62.5
-            }
-        },
+        "categories": {},
+        "percentage_of_vulnerability": {},
         "vulnerabilities": {
-            "total": 4,
-            "average_per_server": 0.444444,
-            "counts": {
-                "critical": 4
-            },
-            "percentage_of_severity": {
-                "critical": 1.0
-            }
+            "total": 0,
+            "average_per_server": 0.0,
+            "counts": {},
+            "percentage_of_severity": {}
         },
         "failure_reasons": {
-            "total": 1,
-            "percentage": 11.11,
-            "counts": {
-                "config_build_failed": 1
-            }
-        },
-        "percentage_of_vulnerability_grouped": {
-            "path-traversal-vulnerability": 100.0
+            "total": 0,
+            "percentage": 0.0,
+            "counts": {}
         }
     }
 }

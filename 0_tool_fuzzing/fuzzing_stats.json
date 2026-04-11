@@ -1,0 +1,121 @@
+{
+    "last_index": 2,
+    "total": 2,
+    "range_start": 0,
+    "range_end": 5,
+    "remaining": 3,
+    "languages": {
+        "unknown": 1,
+        "nodejs": 1
+    },
+    "fuzzing": {
+        "total_servers": 1,
+        "percentage": 50.0,
+        "languages": {
+            "nodejs": 1
+        },
+        "total_tools": 33,
+        "total_fuzzing_runs": 660,
+        "total_successful": 659,
+        "total_exceptions": 1,
+        "total_safety_blocked": 0,
+        "success_rate": 0.9984848484848485,
+        "exceptions_by_message": {
+            "No response received from stdio transport": 1
+        },
+        "protocol_types": {
+            "total_types_tested": 17,
+            "total_runs": 170,
+            "total_successful": 0,
+            "total_errors": 170,
+            "success_rate": 0.0,
+            "by_type": {
+                "InitializeRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "ProgressNotification": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "CancelNotification": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "ListResourcesRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "ReadResourceRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "SetLevelRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "GenericJSONRPCRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "CreateMessageRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "ListPromptsRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "GetPromptRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "ListRootsRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "SubscribeRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "UnsubscribeRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "CompleteRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "ListResourceTemplatesRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "ElicitRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                },
+                "PingRequest": {
+                    "runs": 10,
+                    "successful": 0,
+                    "errors": 10
+                }
+            }
+        }
+    }
+}

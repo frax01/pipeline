@@ -1,0 +1,25 @@
+{
+    "exception_message": "No response received from stdio transport",
+    "total": 1,
+    "servers": [
+        {
+            "server_url": "https://github.com/0xshariq/github-mcp-server",
+            "server_name": "github-mcp-server",
+            "tool_name": "git_rebase",
+            "runs": 20,
+            "exceptions": 1,
+            "success_rate": 95.0,
+            "inputs_causing_error": [
+                {
+                    "type": "str",
+                    "arguments": {
+                        "directory": "",
+                        "target": "",
+                        "interactive": true
+                    }
+                }
+            ],
+            "inputs_successful": []
+        }
+    ]
+}

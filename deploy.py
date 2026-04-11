@@ -49,6 +49,9 @@ Uso:
     python deploy.py --status-check                # mostra stato mcp-check su tutte le VM
     python deploy.py --tail-check                  # mostra log mcp-check da tutte le VM
     python deploy.py --pull-check                  # scarica mcp-check results da TUTTE le 9 VM
+    python deploy.py --deploy-frameworks-all       # copia mcp-server-fuzzer + mcp-guard su TUTTE le VM via tar.gz
+    python deploy.py --deploy-frameworks-all VM1 VM3  # solo su VM specifiche
+    python deploy.py --deploy-frameworks-all --deploy-framework mcp-server-fuzzer  # solo un framework
 """
 import argparse
 import subprocess
@@ -167,6 +170,96 @@ def scp_download(server_addr, remote_path, local_path):
     except subprocess.TimeoutExpired:
         print(f"    [TIMEOUT] scp_download fallito dopo 300s")
         return False
+
+
+def deploy_frameworks_all(target_vms=None, frameworks=None):
+    """Copia le cartelle Frameworks sulle VM via tar.gz, escludendo .git, __pycache__, docs, tests."""
+    import tarfile
+    import tempfile
+    import os
+
+    all_vms = [cfg["addr"] for cfg in TOOLS.values()]
+    if target_vms:
+        # Filtra per nome VM (es. "VM1") o IP
+        addrs = []
+        for vm in target_vms:
+            for cfg in TOOLS.values():
+                if cfg["vm"] == vm or vm in cfg["addr"]:
+                    addrs.append(cfg["addr"])
+        addrs = list(dict.fromkeys(addrs))
+    else:
+        addrs = list(dict.fromkeys(all_vms))
+
+    local_frameworks = BASE_DIR.parent / "frameworks"
+    if not local_frameworks.exists():
+        print(f"Cartella Frameworks non trovata: {local_frameworks}")
+        return
+
+    # Quali framework copiare
+    fw_names = frameworks if frameworks else ["mcp-server-fuzzer", "mcp-guard"]
+    fw_paths = [(name, local_frameworks / name) for name in fw_names if (local_frameworks / name).exists()]
+
+    if not fw_paths:
+        print(f"Nessun framework trovato in {local_frameworks}")
+        return
+
+    EXCLUDE = {".git", "__pycache__", "docs", "tests", "node_modules", ".tox", "*.egg-info"}
+
+    def _exclude(tarinfo):
+        parts = Path(tarinfo.name).parts
+        for part in parts:
+            if part in EXCLUDE or part.endswith(".egg-info"):
+                return None
+        return tarinfo
+
+    for fw_name, fw_path in fw_paths:
+        print(f"\n=== Deploy {fw_name} su {len(addrs)} VM ===")
+
+        # Crea tar.gz in una temp dir
+        with tempfile.NamedTemporaryFile(suffix=".tar.gz", delete=False) as tmp:
+            tmp_path = tmp.name
+
+        try:
+            print(f"  Creando archivio {fw_name}.tar.gz...")
+            with tarfile.open(tmp_path, "w:gz") as tar:
+                tar.add(fw_path, arcname=fw_name, filter=_exclude)
+
+            size_mb = os.path.getsize(tmp_path) / (1024 * 1024)
+            print(f"  Archivio pronto: {size_mb:.1f} MB")
+
+            for addr in addrs:
+                ip = addr.split("@")[1]
+                print(f"  -> {ip} ...", end=" ", flush=True)
+                try:
+                    # Crea la directory remota
+                    subprocess.run(["ssh", addr, "mkdir -p ~/Desktop/Frameworks"], timeout=60)
+                    # Copia il tar.gz
+                    result = subprocess.run(
+                        ["scp", tmp_path, f"{addr}:~/Desktop/Frameworks/{fw_name}.tar.gz"],
+                        timeout=180, capture_output=True
+                    )
+                    if result.returncode != 0:
+                        print(f"ERRORE scp")
+                        continue
+                    # Estrai e rimuovi il tar.gz
+                    subprocess.run(
+                        ["ssh", addr, f"cd ~/Desktop/Frameworks && tar -xzf {fw_name}.tar.gz && rm {fw_name}.tar.gz"],
+                        timeout=60
+                    )
+                    # Reinstalla il pacchetto (usa path assoluto invece di source)
+                    subprocess.run(
+                        ["ssh", addr, f"~/pipeline-env/bin/pip install -e ~/Desktop/Frameworks/{fw_name} -q"],
+                        timeout=180
+                    )
+                    print("OK")
+                except subprocess.TimeoutExpired:
+                    print("TIMEOUT")
+                except Exception as e:
+                    print(f"ERRORE: {e}")
+        finally:
+            os.unlink(tmp_path)
+
+    print("\nDeploy Frameworks completato.")
 
 
 def ssh_cmd(server_addr, command, timeout=60, capture=False):
@@ -1742,8 +1835,17 @@ Esempi:
     parser.add_argument("--status-proxy", action="store_true", help="Mostra stato proxy su tutte le 9 VM")
     parser.add_argument("--tail-proxy", action="store_true", help="Mostra log proxy da tutte le VM")
     parser.add_argument("--clean-npx", nargs="*", help="Pulisci cache npx su tutte le VM (o solo su alcune)")
+    parser.add_argument("--deploy-frameworks-all", nargs="*", metavar="VM", help="Copia mcp-server-fuzzer e mcp-guard su tutte le VM via tar.gz (es: --deploy-frameworks-all VM1 VM3)")
+    parser.add_argument("--deploy-framework", nargs="*", metavar="NAME", help="Specifica quali framework copiare (es: --deploy-framework mcp-server-fuzzer)")
 
     args = parser.parse_args()
+
+    # --deploy-frameworks-all
+    if args.deploy_frameworks_all is not None:
+        target_vms = args.deploy_frameworks_all if args.deploy_frameworks_all else None
+        fw_names = args.deploy_framework if args.deploy_framework else None
+        deploy_frameworks_all(target_vms=target_vms, frameworks=fw_names)
+        return
 
     # --deploy-guard-all
     if args.deploy_guard_all is not None:

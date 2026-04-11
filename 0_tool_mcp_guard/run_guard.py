@@ -45,19 +45,12 @@ INIT_STATS = {
     "languages": {},
     "mcp-guard": {
         "total": 0,
+        "servers_fuzzed": 0,
+            "servers_scanned_static": 0,
         "percentage": 0.0,
         "languages": {},
+        "categories": {},
         "percentage_of_vulnerability": {},
-        "categories_static": {},
-        "categories_dynamic": {},
-        "categories_fuzzing": {},
-        "categories_protocol": {},
-        "analysis_types": {
-            "static": {"total": 0, "percentage": 0.0},
-            "fuzzing": {"total": 0, "percentage": 0.0},
-            "dynamic": {"total": 0, "percentage": 0.0},
-            "protocol": {"total": 0, "percentage": 0.0}
-        },
         "vulnerabilities": {
             "total": 0,
             "average_per_server": 0,

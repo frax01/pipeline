@@ -47,6 +47,8 @@ def update_framework_categories(existing_data: dict, result: dict, name: str) ->
         if not isinstance(cat_block, dict):
             return
 
+        categories = existing_data.setdefault("categories", {})
+
         for category_name, vulns in cat_block.items():
             if not isinstance(vulns, dict):
                 continue
@@ -54,18 +56,8 @@ def update_framework_categories(existing_data: dict, result: dict, name: str) ->
             normalized_cat = normalize_category(category_name)
 
             for vuln in vulns.values():
-                analysis_type = vuln.get("type")
                 severity = vuln.get("severity")
 
-                if not analysis_type:
-                    continue  # oppure raise, se vuoi essere strict
-
-                category_key = _mcp_guard_category_key(analysis_type)
-                if not category_key:
-                    continue  # type sconosciuto → ignora
-
-                # inizializza bucket
-                categories = existing_data.setdefault(category_key, {})
                 categories[normalized_cat] = categories.get(normalized_cat, 0) + 1
 
                 # total vulnerabilities
@@ -511,26 +503,16 @@ def extract_tool_count(fw_data: dict) -> tuple[int, int]:
     return safe, vulnerable
 
 def update_analysis_types(framework_block: dict, result: dict) -> None:
-    """Update analysis_types counters based on analyses_completed from mcp-guard scan."""
+    """Update servers_fuzzed and servers_scanned_static counters based on analyses_completed."""
     analyses = result.get("analyses_completed", {})
     if not analyses:
         return
 
-    at = framework_block.setdefault("analysis_types", {})
-    fw_total = framework_block.get("total", 0)
-
-    for atype in ("static", "fuzzing", "dynamic", "protocol"):
-        bucket = at.setdefault(atype, {"total": 0, "percentage": 0.0})
-        if analyses.get(atype, False):
-            bucket["total"] += 1
-        if fw_total > 0:
-            bucket["percentage"] = round(
-                (bucket["total"] / fw_total) * 100, 2
-            )
-
-    # Top-level counter: how many servers had fuzzing actually run
     if analyses.get("fuzzing", False):
         framework_block["servers_fuzzed"] = framework_block.get("servers_fuzzed", 0) + 1
+
+    if analyses.get("static", False):
+        framework_block["servers_scanned_static"] = framework_block.get("servers_scanned_static", 0) + 1
 
 def get_error_category(message: str) -> str:
     """Map error message to a logical category for folder organization."""
@@ -747,20 +729,10 @@ def finalize_percentage_of_vulnerability(analysis: dict, name: str) -> None:
         return
     
     if name == "mcp-guard":
-        merged_categories = {}
-
-        for key in (
-            "categories_static",
-            "categories_dynamic",
-            "categories_fuzzing",
-            "categories_protocol",
-        ):
-            for cat, count in analysis.get(key, {}).items():
-                merged_categories[cat] = merged_categories.get(cat, 0) + count
-
+        categories = analysis.get("categories", {})
         total_vulns = analysis.get("vulnerabilities", {}).get("total", 0)
 
-        if not merged_categories or total_vulns <= 0:
+        if not categories or total_vulns <= 0:
             analysis["percentage_of_vulnerability"] = {}
             analysis.pop("percentage_of_vulnerability_grouped", None)
             return
@@ -768,18 +740,17 @@ def finalize_percentage_of_vulnerability(analysis: dict, name: str) -> None:
         # Main percentages (4 decimals)
         analysis["percentage_of_vulnerability"] = {
             cat: round((count / total_vulns) * 100, 4)
-            for cat, count in merged_categories.items()
+            for cat, count in categories.items()
         }
-        
-        # Grouped percentages (aggregate sensitive info, 4 decimals)
+
+        # Grouped percentages (aggregate sensitive-information-disclosed variants)
         grouped = {}
-        for cat, count in merged_categories.items():
+        for cat, count in categories.items():
             if cat.startswith("sensitive-information-disclosed"):
                 grouped["sensitive-information-disclosed"] = grouped.get("sensitive-information-disclosed", 0) + count
             else:
                 grouped[cat] = grouped.get(cat, 0) + count
-                
-        # Remove and re-add to ensure it's at the end
+
         analysis.pop("percentage_of_vulnerability_grouped", None)
         analysis["percentage_of_vulnerability_grouped"] = {
             cat: round((count / total_vulns) * 100, 4)

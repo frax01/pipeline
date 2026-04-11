@@ -1,0 +1,19 @@
+{
+    "protocol_type": "GenericJSONRPCRequest",
+    "total_servers": 1,
+    "total_runs": 10,
+    "total_successful": 0,
+    "total_errors": 10,
+    "servers": [
+        {
+            "server_url": "https://github.com/0xshariq/github-mcp-server",
+            "server_name": "github-mcp-server",
+            "runs": 10,
+            "successful": 0,
+            "errors": 10,
+            "success_rate": 0.0,
+            "error_details": [],
+            "success_details": []
+        }
+    ]
+}

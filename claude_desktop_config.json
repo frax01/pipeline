@@ -1,9 +1,9 @@
 {
   "mcpServers": {
-    "github-mcp-server": {
+    "mcp-open-library": {
       "command": "node",
       "args": [
-        "C:\\Users\\francesco\\Desktop\\pipeline\\github-mcp-server\\dist\\index.js"
+        "C:\\Users\\francesco\\Desktop\\pipeline\\mcp-open-library\\build\\index.js"
       ]
     }
   }

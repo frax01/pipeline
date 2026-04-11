@@ -528,6 +528,10 @@ def update_analysis_types(framework_block: dict, result: dict) -> None:
                 (bucket["total"] / fw_total) * 100, 2
             )
 
+    # Top-level counter: how many servers had fuzzing actually run
+    if analyses.get("fuzzing", False):
+        framework_block["servers_fuzzed"] = framework_block.get("servers_fuzzed", 0) + 1
+
 def get_error_category(message: str) -> str:
     """Map error message to a logical category for folder organization."""
     if not isinstance(message, str): return "other_errors"

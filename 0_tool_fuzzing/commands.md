@@ -182,3 +182,5 @@ cat ~/Desktop/Pipeline/tool_fuzzing/protocol/<nome_file>.json | python3 -m json.
 echo "=== EXCEPTIONS ===" && ls ~/Desktop/Pipeline/tool_fuzzing/exceptions/*.json 2>/dev/null | wc -l
 echo "=== PROTOCOL ===" && ls ~/Desktop/Pipeline/tool_fuzzing/protocol/*.json 2>/dev/null | wc -l
 ```
+
+ps aux --sort=-%mem | head -20

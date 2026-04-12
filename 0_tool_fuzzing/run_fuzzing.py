@@ -278,23 +278,16 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
         error_inputs = [
             {
                 "run": ed.get("run", 0),
-                "fuzz_payload": ed.get("fuzz_payload", {}),
-                "error_message": ed.get("error_message", "Unknown"),
-                "server_response": ed.get("server_response"),
-                "invariant_violations": ed.get("invariant_violations", [])
+                "fuzz_data": ed.get("fuzz_data", {}),
+                "server_error": ed.get("server_error"),
+                "exception": ed.get("exception"),
+                "response_error": ed.get("response_error"),
             }
             for ed in error_details
         ]
 
-        # Raccogli i successful details per il protocollo
-        success_details = [
-            {
-                "run": sd.get("run", 0),
-                "fuzz_payload": sd.get("fuzz_payload", {}),
-                "server_response": sd.get("server_response"),
-            }
-            for sd in proto_data.get("success_details", [])
-        ]
+        # Raccogli i successful details per il protocollo (se presenti)
+        success_details = proto_data.get("success_details", [])
 
         item = {
             "server_url": server_url,

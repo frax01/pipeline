@@ -3,7 +3,7 @@ node_modules/
 # Dati pesanti (risultati JSON dalle VM)
 pullFromVM/
 partial_results_*/
-backup_analysis/
+backupAnalysis/
 analysisAllData/
 new_mcp_watch/credential_leak_refiltered.json
 new_mcp_watch/credential_leak_refilter_stats.json

@@ -49,8 +49,11 @@ INIT_STATS = {
             "servers_scanned_static": 0,
         "percentage": 0.0,
         "languages": {},
-        "categories": {},
-        "percentage_of_vulnerability": {},
+        "categories_static": {},
+            "categories_fuzzing": {},
+            "percentage_of_vulnerability": {},
+            "percentage_of_vulnerability_static": {},
+            "percentage_of_vulnerability_fuzzing": {},
         "vulnerabilities": {
             "total": 0,
             "average_per_server": 0,

@@ -47,7 +47,8 @@ def update_framework_categories(existing_data: dict, result: dict, name: str) ->
         if not isinstance(cat_block, dict):
             return
 
-        categories = existing_data.setdefault("categories", {})
+        cats_static = existing_data.setdefault("categories_static", {})
+        cats_fuzzing = existing_data.setdefault("categories_fuzzing", {})
 
         for category_name, vulns in cat_block.items():
             if not isinstance(vulns, dict):
@@ -57,8 +58,13 @@ def update_framework_categories(existing_data: dict, result: dict, name: str) ->
 
             for vuln in vulns.values():
                 severity = vuln.get("severity")
+                vuln_type = vuln.get("type", "fuzzing").lower()
 
-                categories[normalized_cat] = categories.get(normalized_cat, 0) + 1
+                # Route to the right bucket
+                if vuln_type == "static":
+                    cats_static[normalized_cat] = cats_static.get(normalized_cat, 0) + 1
+                else:
+                    cats_fuzzing[normalized_cat] = cats_fuzzing.get(normalized_cat, 0) + 1
 
                 # total vulnerabilities
                 existing_data["vulnerabilities"]["total"] += 1
@@ -729,23 +735,39 @@ def finalize_percentage_of_vulnerability(analysis: dict, name: str) -> None:
         return
     
     if name == "mcp-guard":
-        categories = analysis.get("categories", {})
+        cats_static = analysis.get("categories_static", {})
+        cats_fuzzing = analysis.get("categories_fuzzing", {})
         total_vulns = analysis.get("vulnerabilities", {}).get("total", 0)
 
-        if not categories or total_vulns <= 0:
-            analysis["percentage_of_vulnerability"] = {}
-            analysis.pop("percentage_of_vulnerability_grouped", None)
-            return
+        # Per-bucket percentages
+        total_static = sum(cats_static.values()) if cats_static else 0
+        total_fuzzing = sum(cats_fuzzing.values()) if cats_fuzzing else 0
 
-        # Main percentages (4 decimals)
+        analysis["percentage_of_vulnerability_static"] = {
+            cat: round((count / total_static) * 100, 4)
+            for cat, count in sorted(cats_static.items(), key=lambda x: x[1], reverse=True)
+        } if total_static > 0 else {}
+
+        analysis["percentage_of_vulnerability_fuzzing"] = {
+            cat: round((count / total_fuzzing) * 100, 4)
+            for cat, count in sorted(cats_fuzzing.items(), key=lambda x: x[1], reverse=True)
+        } if total_fuzzing > 0 else {}
+
+        # Combined percentages (all vulns together)
+        all_cats = {}
+        for cat, count in cats_static.items():
+            all_cats[cat] = all_cats.get(cat, 0) + count
+        for cat, count in cats_fuzzing.items():
+            all_cats[cat] = all_cats.get(cat, 0) + count
+
         analysis["percentage_of_vulnerability"] = {
             cat: round((count / total_vulns) * 100, 4)
-            for cat, count in categories.items()
-        }
+            for cat, count in sorted(all_cats.items(), key=lambda x: x[1], reverse=True)
+        } if total_vulns > 0 else {}
 
         # Grouped percentages (aggregate sensitive-information-disclosed variants)
         grouped = {}
-        for cat, count in categories.items():
+        for cat, count in all_cats.items():
             if cat.startswith("sensitive-information-disclosed"):
                 grouped["sensitive-information-disclosed"] = grouped.get("sensitive-information-disclosed", 0) + count
             else:
@@ -754,8 +776,8 @@ def finalize_percentage_of_vulnerability(analysis: dict, name: str) -> None:
         analysis.pop("percentage_of_vulnerability_grouped", None)
         analysis["percentage_of_vulnerability_grouped"] = {
             cat: round((count / total_vulns) * 100, 4)
-            for cat, count in grouped.items()
-        }
+            for cat, count in sorted(grouped.items(), key=lambda x: x[1], reverse=True)
+        } if total_vulns > 0 else {}
         return
 
 

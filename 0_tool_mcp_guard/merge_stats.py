@@ -16,8 +16,11 @@ def merge_stats(stats_files, output_file):
             "servers_scanned_static": 0,
             "percentage": 0.0,
             "languages": {},
-            "categories": {},
+            "categories_static": {},
+            "categories_fuzzing": {},
             "percentage_of_vulnerability": {},
+            "percentage_of_vulnerability_static": {},
+            "percentage_of_vulnerability_fuzzing": {},
             "vulnerabilities": {
                 "total": 0,
                 "average_per_server": 0,
@@ -73,14 +76,15 @@ def merge_stats(stats_files, output_file):
         for lang, count in mg.get("languages", {}).items():
             merged_mg["languages"][lang] = merged_mg["languages"].get(lang, 0) + count
 
-        # Merge categories (single flat dict)
-        for cat, count in mg.get("categories", {}).items():
-            merged_mg["categories"][cat] = merged_mg["categories"].get(cat, 0) + count
+        # Merge categories_static and categories_fuzzing
+        for cat, count in mg.get("categories_static", {}).items():
+            merged_mg["categories_static"][cat] = merged_mg["categories_static"].get(cat, 0) + count
+        for cat, count in mg.get("categories_fuzzing", {}).items():
+            merged_mg["categories_fuzzing"][cat] = merged_mg["categories_fuzzing"].get(cat, 0) + count
 
-        # Backward compat: also merge old categories_* fields if present
-        for cat_type in ["categories_static", "categories_dynamic", "categories_fuzzing", "categories_protocol"]:
-            for cat, count in mg.get(cat_type, {}).items():
-                merged_mg["categories"][cat] = merged_mg["categories"].get(cat, 0) + count
+        # Backward compat: old single "categories" dict → route to fuzzing
+        for cat, count in mg.get("categories", {}).items():
+            merged_mg["categories_fuzzing"][cat] = merged_mg["categories_fuzzing"].get(cat, 0) + count
 
         # Merge vulnerabilities
         vult = mg.get("vulnerabilities", {})
@@ -117,29 +121,46 @@ def merge_stats(stats_files, output_file):
             for sev, count in merged["mcp-guard"]["vulnerabilities"]["counts"].items():
                 merged["mcp-guard"]["vulnerabilities"]["percentage_of_severity"][sev] = round((count / total_v) * 100, 2)
 
-        # Calculate percentage_of_vulnerability
-        categories = merged["mcp-guard"]["categories"]
-        if total_v > 0 and categories:
-            sorted_cats = sorted(categories.items(), key=lambda x: x[1], reverse=True)
+        # Calculate per-bucket percentages
+        cats_static = merged["mcp-guard"]["categories_static"]
+        cats_fuzzing = merged["mcp-guard"]["categories_fuzzing"]
+        total_static = sum(cats_static.values()) if cats_static else 0
+        total_fuzzing = sum(cats_fuzzing.values()) if cats_fuzzing else 0
 
+        merged["mcp-guard"]["percentage_of_vulnerability_static"] = {
+            cat: round((count / total_static) * 100, 4)
+            for cat, count in sorted(cats_static.items(), key=lambda x: x[1], reverse=True)
+        } if total_static > 0 else {}
+
+        merged["mcp-guard"]["percentage_of_vulnerability_fuzzing"] = {
+            cat: round((count / total_fuzzing) * 100, 4)
+            for cat, count in sorted(cats_fuzzing.items(), key=lambda x: x[1], reverse=True)
+        } if total_fuzzing > 0 else {}
+
+        # Combined percentages (all vulns)
+        all_cats = {}
+        for cat, count in cats_static.items():
+            all_cats[cat] = all_cats.get(cat, 0) + count
+        for cat, count in cats_fuzzing.items():
+            all_cats[cat] = all_cats.get(cat, 0) + count
+
+        if total_v > 0 and all_cats:
             merged["mcp-guard"]["percentage_of_vulnerability"] = {
                 cat: round((count / total_v) * 100, 4)
-                for cat, count in sorted_cats
+                for cat, count in sorted(all_cats.items(), key=lambda x: x[1], reverse=True)
             }
 
             # Grouped percentages (aggregate sensitive-information-disclosed variants)
             grouped = {}
-            for cat, count in categories.items():
+            for cat, count in all_cats.items():
                 if cat.startswith("sensitive-information-disclosed"):
                     grouped["sensitive-information-disclosed"] = grouped.get("sensitive-information-disclosed", 0) + count
                 else:
                     grouped[cat] = grouped.get(cat, 0) + count
 
-            sorted_grouped = sorted(grouped.items(), key=lambda x: x[1], reverse=True)
-
             merged["mcp-guard"]["percentage_of_vulnerability_grouped"] = {
                 cat: round((count / total_v) * 100, 4)
-                for cat, count in sorted_grouped
+                for cat, count in sorted(grouped.items(), key=lambda x: x[1], reverse=True)
             }
 
     # Calculate failure_reasons percentage

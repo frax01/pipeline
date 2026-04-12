@@ -680,6 +680,74 @@ def deploy_guard_all(target_vms=None):
     print(f"  python deploy.py --tail-guard")
 
 
+def deploy_scanner_all():
+    """Copy ONLY mcp_scanner.py to all 9 VMs (fast, no tar.gz)."""
+    local_scanner = BASE_DIR.parent / "Frameworks" / "mcp-guard" / "mcp_scanner.py"
+    if not local_scanner.exists():
+        # Try Linux-style path for VMs
+        local_scanner = Path.home() / "Desktop" / "Frameworks" / "mcp-guard" / "mcp_scanner.py"
+    if not local_scanner.exists():
+        print(f"mcp_scanner.py not found at {local_scanner}")
+        return
+
+    remote_path = "~/Desktop/Frameworks/mcp-guard/mcp_scanner.py"
+    all_addrs = list(dict.fromkeys(cfg["addr"] for cfg in TOOLS.values()))
+
+    print(f"\n Deploying mcp_scanner.py to {len(all_addrs)} VMs...")
+    for addr in all_addrs:
+        ip = addr.split("@")[1]
+        ok = scp_file(local_scanner, addr, remote_path)
+        status = "OK" if ok else "FAILED"
+        print(f"  {ip}: {status}")
+
+    # Also clear __pycache__ on all VMs
+    print(f"\n Clearing __pycache__...")
+    for addr in all_addrs:
+        ssh_cmd(addr, "rm -rf ~/Desktop/Frameworks/mcp-guard/__pycache__", timeout=10)
+    print(" Done!")
+
+
+def launch_guard_all(reset=True):
+    """Kill and relaunch mcp-guard on all 9 VMs with correct ranges."""
+    chunk = TOTAL_SERVERS // 9
+    all_addrs = list(dict.fromkeys(cfg["addr"] for cfg in TOOLS.values()))
+
+    print(f"\n Launching mcp-guard on all {len(all_addrs)} VMs...")
+    reset_flag = "--reset" if reset else "--resume"
+
+    for i, addr in enumerate(all_addrs):
+        start = i * chunk
+        end = TOTAL_SERVERS if i == 8 else (i + 1) * chunk
+        ip = addr.split("@")[1]
+        vm = f"VM{i+1}"
+
+        print(f"\n  --- {vm} ({ip}) range [{start}-{end}) ---")
+
+        # Kill existing guard process
+        print(f"    Killing existing guard...")
+        ssh_cmd(addr, "pkill -9 -f 'python.*run_guard.py' 2>/dev/null; sleep 1", timeout=15)
+
+        # Launch new guard
+        launch_cmd = (
+            f"bash -c '"
+            f"cd ~/Desktop/Pipeline && "
+            f"(source ~/pipeline-env/bin/activate 2>/dev/null || true) && "
+            f"nohup python tool_mcp_guard/run_guard.py --start {start} --end {end} {reset_flag} "
+            f"> guard_output.log 2>&1 < /dev/null & disown"
+            f"'"
+        )
+        print(f"    Launching: --start {start} --end {end} {reset_flag}")
+        ok, _ = ssh_cmd(addr, launch_cmd, timeout=20)
+        if ok:
+            print(f"    Started!")
+        else:
+            print(f"    FAILED to launch!")
+
+    print(f"\n All VMs launched!")
+    print(f" Monitor: python deploy.py --status-guard")
+    print(f" Logs:    python deploy.py --tail-guard")
+
+
 def show_guard_status():
     """Show status of mcp-guard across all 9 VMs."""
     print(f"\n{'VM':<6} {'IP':<16} {'Index':<10} {'Total':<10} {'Remaining':<12} {'Running'}")
@@ -1837,6 +1905,9 @@ Esempi:
     parser.add_argument("--clean-npx", nargs="*", help="Pulisci cache npx su tutte le VM (o solo su alcune)")
     parser.add_argument("--deploy-frameworks-all", nargs="*", metavar="VM", help="Copia mcp-server-fuzzer e mcp-guard su tutte le VM via tar.gz (es: --deploy-frameworks-all VM1 VM3)")
     parser.add_argument("--deploy-framework", nargs="*", metavar="NAME", help="Specifica quali framework copiare (es: --deploy-framework mcp-server-fuzzer)")
+    parser.add_argument("--deploy-scanner", action="store_true", help="Copia solo mcp_scanner.py su tutte le 9 VM")
+    parser.add_argument("--launch-guard-all", action="store_true", help="Kill + reset + rilancia guard su tutte le 9 VM con range corretti")
+    parser.add_argument("--resume-guard-all", action="store_true", help="Kill + riprendi guard su tutte le 9 VM (senza reset)")
 
     args = parser.parse_args()
 
@@ -1845,6 +1916,17 @@ Esempi:
         target_vms = args.deploy_frameworks_all if args.deploy_frameworks_all else None
         fw_names = args.deploy_framework if args.deploy_framework else None
         deploy_frameworks_all(target_vms=target_vms, frameworks=fw_names)
+        return
+
+    # --deploy-scanner (solo mcp_scanner.py su tutte le VM)
+    if args.deploy_scanner:
+        deploy_scanner_all()
+        return
+
+    # --launch-guard-all / --resume-guard-all
+    if args.launch_guard_all or args.resume_guard_all:
+        reset = not args.resume_guard_all
+        launch_guard_all(reset=reset)
         return
 
     # --deploy-guard-all

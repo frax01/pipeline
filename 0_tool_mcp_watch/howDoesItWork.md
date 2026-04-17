@@ -1,5 +1,3 @@
-Di tutti i tool di analisi nella cartella di mcp-watch quali sono le regole che, scritte in questo modo e senza modificarle, potrebbero essere utili per trovare delle vere vulnerabilità e quelle che invece trovano sicuramente solo falsi positivi? Ad esempio mi sembra che containsHardcodedCredentials possa trovare delle vulnerabilità reali, ce ne sono altre così? Perchè poi io ho tutto il mio file con le stats e gli scan e vorrei fare un codice con le regole più utili che mi possa filtrare tutti i dati che ho trovato che per la maggioranza sono falsi positivi, così almeno riesco ad avere qualcosa di utile, ma dimmi quali funzioni nello specifico potrei usare così come sono e quali invece generano solo falsi positivi. Il tool completo si trova in desktop/frameworks/mcp-watch
-
 # MCP Watch - How It Works
 
 Questo documento descrive il funzionamento degli scanner contenuti nel framework **mcp-watch** e la logica tecnica utilizzata per identificare potenziali vulnerabilità.
@@ -11,7 +9,7 @@ Questo scanner si occupa di identificare vulnerabilità di attacco steganografic
 
 ### `containsAnsiEscapes`
 - **Severity**: Medium
-- **Descrizione**: Cerca l'uso di sequenze di escape ANSI utilizzate per iniettare e nascondere codice. (RIRUNNARLO)
+- **Descrizione**: Cerca l'uso di sequenze di escape ANSI utilizzate per iniettare e nascondere codice.
 - **Esempio**: Stringhe che contengono pattern regex come `\u001b[31m` o `\x1b[`.
 - **Dettaglio Tecnico**: Lo scanner utilizza un'espressione regolare per individuare varie forme di sequenze ANSI: `/\u001b\[[0-9;]*[a-zA-Z]/`, `/\\u001b\[[0-9;]*[a-zA-Z]/`, `/\\x1b\[[0-9;]*[a-zA-Z]/`, e `/\x1b\[[0-9;]*[a-zA-Z]/`.
 
@@ -56,7 +54,7 @@ Identifica perdite o gestioni insicure di credenziali, chiavi e token all'intern
 
 ### `containsHardcodedCredentials`
 - **Severity**: Critical
-- **Descrizione**: Identifica chiavi API, password e token scritti direttamente (hardcoded) nel codice sorgente. (RIRUNNARLO)
+- **Descrizione**: Identifica chiavi API, password e token scritti direttamente (hardcoded) nel codice sorgente.
 - **Esempio**: `const apiKey = "sk-abcdefghijklmnopqrstuvwxyz12345678"` oppure stringhe relative a token AWS o GitHub OAuth.
 - **Dettaglio Tecnico**: Il matching avviene tramite una batteria di regex mirate, come `/(?:api[_-]?key|secret|token|password)\s*[:=]\s*["'][a-zA-Z0-9]{15,}["']/i` per stringhe generiche, `/sk-[a-zA-Z0-9]{20,}/` per OpenAI, `/ghp_[a-zA-Z0-9]{36}/` per GitHub, e altre per Slack, AWS, Google, e JWT. Per evitare falsi positivi, la riga viene ignorata se passa la funzione `isExampleCredential()` (che filtra parole come "test", "demo", "placeholder").
 

@@ -74,63 +74,63 @@ Se lo script si interrompe o la VM si riavvia, usa `--start -1` per riprendere d
 
 ### VM1 (10.79.6.132)
 ```bash
-ssh tecnico@10.79.6.132
+pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 6689 > guard_output.log 2>&1 &
 ```
 
 ### VM2 (10.79.6.133)
 ```bash
-ssh tecnico@10.79.6.133
+pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 13378 > guard_output.log 2>&1 &
 ```
 
 ### VM3 (10.79.6.134)
 ```bash
-ssh tecnico@10.79.6.134
+pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 20067 > guard_output.log 2>&1 &
 ```
 
 ### VM4 (10.79.6.136)
 ```bash
-ssh tecnico@10.79.6.136
+pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 26756 > guard_output.log 2>&1 &
 ```
 
 ### VM5 (10.79.6.137)
 ```bash
-ssh tecnico@10.79.6.137
+pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 33445 > guard_output.log 2>&1 &
 ```
 
 ### VM6 (10.79.6.138)
 ```bash
-ssh tecnico@10.79.6.138
+pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 40134 > guard_output.log 2>&1 &
 ```
 
 ### VM7 (10.79.6.139)
 ```bash
-ssh tecnico@10.79.6.139
+pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 46823 > guard_output.log 2>&1 &
 ```
 
 ### VM8 (10.79.6.141)
 ```bash
-ssh tecnico@10.79.6.141
+pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 53512 > guard_output.log 2>&1 &
 ```
 
 ### VM9 (10.79.6.142)
 ```bash
-ssh tecnico@10.79.6.142
+pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 60205 > guard_output.log 2>&1 &
 ```

@@ -26,7 +26,7 @@ python deploy.py --deploy-guard-all
 # 1 - VM1 (10.79.6.132)
 pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
-nohup python tool_mcp_guard/run_guard.py --start 0 --end 6689 --reset > guard_output.log 2>&1 &
+nohup python 0_tool_mcp_guard/run_guard.py --start 0 --end 6689 --reset > guard_output.log 2>&1 &
 
 # 2 - VM2 (10.79.6.133)
 pkill -f 'python.*run_guard.py'; sleep 1
@@ -168,6 +168,7 @@ cat ~/Desktop/Pipeline/tool_mcp_guard/mcp_guard_stats.json | python3 -m json.too
 
 # Monitoraggio continuo delle statistiche (aggiorna ogni 5s)
 watch -n 5 'cat ~/Desktop/Pipeline/tool_mcp_guard/mcp_guard_stats.json | python3 -m json.tool'
+watch -n 5 'cat ~/Desktop/Pipeline/0_tool_mcp_guard/mcp_guard_stats.json | python3 -m json.tool'
 
 ps aux | grep run_guard.py | grep -v grep
 

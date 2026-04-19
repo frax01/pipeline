@@ -1171,3 +1171,237 @@ FP (21 esempi rappresentativi):
 - **Honeypot/intentionally vulnerable server** (IMCP, bishnubista/vulnerable-notes-mcp, ecc.) → sempre FP in tutte le categorie
 - **Encoding Windows**: usare sempre `python -X utf8` su Windows cp1252
 - **Stage 1 già applicato**: i file `*_filtered.json` in `<cat>/filtered/` sono l'input del post-processing — non ri-eseguire `filter_security_scan.py` sui finding già filtrati
+
+---
+
+## Post-processing mcp-check: Analisi conformance MCP
+
+### Contesto
+
+mcp-check è un **test harness di conformance** per il protocollo MCP (NON uno scanner di sicurezza). Testa i server MCP attraverso 3 fasi: **Handshake**, **Tool Discovery**, **Tool Invocation**. I finding rappresentano violazioni della specifica MCP.
+
+Dopo il filtro iniziale di `filter_mcp_check.py` (che scarta noise infrastrutturale: `not_connected` ~73k, `timeout` ~4k, ecc.), restano **11.101 finding** in 16 categorie su 3 fasi.
+
+VP = vero problema di conformance/robustezza; FP = errore ambientale (auth mancante, valore di test non valido, comportamento per design).
+
+```
+Stage 1  (filter_mcp_check.py): filtro noise infrastrutturale → <fase>/<cat>/filtered/<cat>_filtered.json
+Stage 2A (HC rules):            regole dominio automatiche    → hc_vp.json / hc_fp.json / uncertain.json
+Stage 2B (cache in-chat):       classificazione manuale       → vp.json / fp.json / audit.json
+```
+
+**Due categorie senza HC** (`handshake/invalid_arguments`, `tool_invocation/panic_or_crash`) — classificate direttamente via `_llm_api_cache.json`.
+
+### Script principale
+
+```
+analysisAllData/0_tool_mcp_check/pipeline_mcp_check.py
+```
+
+### Directory di lavoro
+
+```
+analysisAllData/0_tool_mcp_check/
+├── pipeline_mcp_check.py              ← script principale
+├── filter_mcp_check.py                ← Stage 1 (già eseguito)
+├── filter_analysis_report.md          ← report del filtro Stage 1
+├── handshake/
+│   ├── schema_violation/filtered/llm_analysis/  (vp.json, fp.json, audit.json)
+│   ├── other_errors/filtered/llm_analysis/
+│   ├── method_not_found/filtered/llm_analysis/
+│   ├── invalid_arguments/filtered/llm_analysis/ (_llm_api_cache.json)
+│   └── unauthorized_or_auth_missing/filtered/llm_analysis/
+├── tool_discovery/
+│   ├── schema_violation/filtered/llm_analysis/
+│   ├── other_errors/filtered/llm_analysis/
+│   ├── method_not_found/filtered/llm_analysis/
+│   └── warnings/filtered/llm_analysis/
+└── tool_invocation/
+    ├── schema_violation/filtered/llm_analysis/
+    ├── other_errors/filtered/llm_analysis/
+    ├── panic_or_crash/filtered/llm_analysis/    (_llm_api_cache.json)
+    ├── invalid_arguments/filtered/llm_analysis/
+    ├── method_not_found/filtered/llm_analysis/
+    ├── warnings/filtered/llm_analysis/
+    └── unauthorized_or_auth_missing/filtered/llm_analysis/
+```
+
+### Risultati per categoria
+
+| Categoria | Totale | VP | FP | VP% |
+|-----------|--------|----|----|-----|
+| `handshake/schema_violation` | 49 | **49** | 0 | 100% |
+| `handshake/other_errors` | 117 | **110** | 7 | 94% |
+| `handshake/method_not_found` | 289 | **289** | 0 | 100% |
+| `handshake/invalid_arguments` | 7 | **2** | 5 | 29% |
+| `handshake/unauthorized_or_auth_missing` | 5 | 0 | **5** | 0% |
+| `tool_discovery/schema_violation` | 229 | **229** | 0 | 100% |
+| `tool_discovery/other_errors` | 29 | **26** | 3 | 90% |
+| `tool_discovery/method_not_found` | 42 | **42** | 0 | 100% |
+| `tool_discovery/warnings` | 357 | **357** | 0 | 100% |
+| `tool_invocation/schema_violation` | 4.860 | **4.860** | 0 | 100% |
+| `tool_invocation/other_errors` | 3.817 | **3.361** | 456 | 88% |
+| `tool_invocation/panic_or_crash` | 4 | **4** | 0 | 100% |
+| `tool_invocation/invalid_arguments` | 253 | **74** | 179 | 29% |
+| `tool_invocation/method_not_found` | 50 | **50** | 0 | 100% |
+| `tool_invocation/warnings` | 878 | 0 | **878** | 0% |
+| `tool_invocation/unauthorized_or_auth_missing` | 115 | 0 | **115** | 0% |
+| **TOTALE** | **11.101** | **9.453** | **1.648** | **85.2%** |
+
+### Comandi principali
+
+```bash
+# Stage 2A: HC rules per tutte le categorie
+py -X utf8 pipeline_mcp_check.py --category all --hc-only
+
+# Stage 2A + merge (produce vp.json/fp.json/audit.json):
+py -X utf8 pipeline_mcp_check.py --category all --cache-only
+
+# Singola categoria:
+py -X utf8 pipeline_mcp_check.py --category tool_invocation/other_errors --hc-only
+py -X utf8 pipeline_mcp_check.py --category tool_invocation/panic_or_crash --cache-only
+
+# Opzioni:
+#   --no-cache    riclassifica ignorando la cache
+#   --dry-run     mostra prompt senza chiamare Ollama
+```
+
+### Struttura del finding mcp-check
+
+Diversa da mcp-watch/mcp-shield: usa `entries` (non `findings`), ogni entry ha `errors[]` o `warnings[]`:
+
+```json
+{
+  "server_url": "https://github.com/autore/repo",
+  "server_name": "nome-server",
+  "language": "nodejs",
+  "errors": [
+    {
+      "test": "tool-echo-basic-invocation",
+      "type": "ErrorHandlingFailure",
+      "message": "Server did not return error for non-existent tool",
+      "payload": null
+    }
+  ]
+}
+```
+
+Campi chiave:
+- `errors[].type`: tipo di errore mcp-check (`ErrorHandlingFailure`, `ValidationFailure`, `DuplicateToolNames`, `InvalidToolSchemas`, `InvocationError`, `InitializationError`, `PingError`, `ResourceDiscoveryError`, `ToolListError`)
+- `errors[].message`: messaggio di errore (include JSON Zod se TypeScript)
+- `warnings[].type`: tipo di warning (`NonDeterministicOutput`, ecc.)
+
+### Cache key format
+
+```python
+def _cache_key(f: dict, cat_key: str) -> str:
+    s = (f.get("server_url","")).replace("https://github.com/","")
+    return f"{s}|{cat_key}"
+```
+
+Formato: `autore/repo|phase/category` — es. `"sukeesh/mcp-iot-go|tool_invocation/panic_or_crash"`
+
+### Principali VP per categoria
+
+**panic_or_crash (4 VP — critici):**
+- `mcp-iot-go`: panic Go nil interface in `buzzer_control`
+- `opgen-mcp-server`: panic Go nil interface nei tool password generator
+- `talos-mcp`: panic Go nil pointer in `list_cpu/disks/memory`
+- `sonar-mcp-server`: panic Go nil interface in `sonar_duplications/hotspots/issues`
+
+**tool_invocation/other_errors (3.361 VP):**
+- **3.294** `ErrorHandlingFailure`: server non ritorna errore per tool inesistente → potenziale tool name injection
+- **44** errori JS runtime (`is not a function`, `Cannot read properties`, TypeError)
+- **9** errori -32603 usato per unknown tool / arg validation / tipo errato (wrong error code)
+- **7** `Tool use ID not provided by Claude Code` → tool richiede client specifico
+- **3** SQL logic error con "test" nel SQL → possibile SQL injection
+- **1** `SQLITE_ERROR: no such column` → DB schema mismatch
+- **1** `Date cannot be represented in JSON Schema` → bug serializzazione
+
+**tool_invocation/schema_violation (4.860 VP):**
+- Tutti: ValidationFailure Zod sul campo `tools` nella risposta `tools/list` → server non conforme
+
+**tool_discovery/schema_violation (229 VP):**
+- Tutti: `InvalidToolSchemas` — `inputSchema` del tool non è un JSON Schema valido → tool non invocabile da client conformi
+
+**tool_invocation/invalid_arguments (74 VP):**
+- 52 `parameter_parsing_not_implemented`: bug server, implementazione incompleta
+- 7 `invalid_tools_call_result_format`: risposta formato sbagliato
+- 6 `output_schema_mismatch`: tool dichiara outputSchema ma non lo rispetta
+- 6 `wrong_error_code_for_validation`: usa -32603 invece di -32602
+- 3 `invalid_structured_content`: contenuto strutturato non valido
+
+**handshake/method_not_found (289 VP):**
+- Tutti: metodi MCP non implementati (ping, resources/list, prompts/list)
+
+**tool_discovery/warnings (357 VP):**
+- Tutti: tool senza description → LLM non sa cosa fa il tool
+
+### Regole HC principali
+
+**tool_invocation/other_errors HC-VP:**
+- `ErrorHandlingFailure` → `tool_name_injection_no_error_returned` (3.294)
+- `_JS_RUNTIME_VP` pattern (TypeError, ReferenceError, ecc.) → `js_runtime_error`
+- `_UNMARSHAL_VP` (Go unmarshal/JSON parse) → `unmarshal_parse_error`
+- `Tool use ID not provided by Claude Code` → `tool_requires_claude_code_client`
+- `SQLITE_ERROR: no such column` → `db_schema_mismatch`
+- `Date cannot be represented in JSON Schema` → `date_not_json_schema_serializable`
+- `MCP error -32603:.*Unknown tool` → `wrong_error_code_unknown_tool`
+- `MCP error -32000:.*SQL logic error` → `sql_injection_test_in_query`
+
+**tool_invocation/other_errors HC-FP:**
+- `_AUTH_FP`, `_URL_FP`, `_TEST_ID_FP`, `_ENV_MISSING_FP`, `_CLI_MISSING_FP`, `_EXTERNAL_DEPENDENCY_FP`
+- EISDIR (test è una directory nel test env)
+- Messaggi localizzati JP/CN/KR/VN
+- Tool non installati (yt-dlp, tsserver, z3, ImageMagick, Firefox, ecc.)
+- API esterne non disponibili (SearXNG, Manifold, OSV, rezdy)
+- Errori generici/noise (EOF, "An error occurred", exit status 1, empty)
+
+**tool_invocation/invalid_arguments HC-VP:**
+- `parameter_parsing_not_implemented` → implementazione incompleta
+- `output_schema_mismatch` (Structured content mismatch)
+- `invalid_tools_call_result_format` (invalid_union)
+- `wrong_error_code_for_validation` (-32603 per arg validation)
+- `invalid_structured_content`
+
+**tool_invocation/invalid_arguments HC-FP:**
+- `_URL_FP`, `_AUTH_FP`, `invalid_auth` Slack
+- `Invalid arguments for (tool )?[\w.-]+[\w-]*:` (Zod validation corretta)
+- `Tool 'X' parameter validation failed:` (DeFi/blockchain)
+- Ethereum address / timezone / SQL type / path validation
+- Missing required args (Zod Required, too_small, too_big)
+- Messaggi JP/CN/KR per validazione
+- Generic "Invalid params" / "Invalid arguments" senza dettaglio
+
+**tool_invocation/schema_violation HC-VP:**
+- Zod `invalid_value|invalid_type|"path".*tools` nella risposta tools/list → tutti VP
+- InitializationError con questo pattern → VP (non FP)
+
+**tool_discovery/other_errors HC-VP:**
+- `DuplicateToolNames` → 11 server con tool names duplicati
+- JS/Python runtime errors in ToolListError → 15 server
+- `_UNMARSHAL_VP` → Go parse error
+
+**tool_discovery/warnings HC-VP:**
+- Tutti: tool senza description (quality issue, non security)
+
+**tool_invocation/warnings HC-FP:**
+- Tutti: non-determinismo atteso (timestamp, UUID, weather, random, search, ecc.)
+
+### Come riprendere l'analisi
+
+1. Leggere CLAUDE.md
+2. `py -X utf8 pipeline_mcp_check.py --category all --hc-only` per rieseguire Stage 2A
+3. Per categorie senza HC, popolare `_llm_api_cache.json` manualmente
+4. `py -X utf8 pipeline_mcp_check.py --category all --cache-only` per produrre output finali
+
+### Note tecniche
+
+- **Struttura entries**: usa `entries` (non `findings`) nel JSON — `load_findings()` gestisce la differenza
+- **Cache key con cat_key**: include la fase/categoria per evitare collisioni tra categorie diverse
+- **Zod errors multi-line**: i JSON Zod sono pretty-printed, usare `re.I | re.S` (DOTALL) nei pattern multi-riga
+- **"test" nel test env è una directory**: il path `/home/tecnico/Desktop/Frameworks/mcp-check/test` è una directory — molti server falliscono con EISDIR quando mcp-check passa "test" come file path
+- **tool_invocation/schema_violation**: tutti 4.860 VP — sono InitializationError con Zod validation del campo `tools` nella risposta `tools/list` — il server non è conforme alla specifica MCP
+- **tool_invocation/warnings**: tutti 878 FP — non-determinismo è atteso e corretto per tool con side effects (DB, API, timestamp, UUID)
+- **Encoding Windows**: usare sempre `py -X utf8`
+- **Stage 1 già applicato**: non ri-eseguire `filter_mcp_check.py` — i file `*_filtered.json` sono già l'input

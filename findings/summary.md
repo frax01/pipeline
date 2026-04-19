@@ -195,6 +195,74 @@ I 5 server: `worksona/-worksona-mcp-server`, `nhatvu148/video-transcriber-mcp`, 
 
 ---
 
+## mcp-check
+
+Test harness di conformance del protocollo MCP (non scanner di sicurezza). Stage 1 `filter_mcp_check.py` scarta noise infrastrutturale (not_connected ~73k, timeout ~4k, ecc.) e tiene 11.101 finding in 16 categorie su 3 fasi. Stage 2A (regole HC) applicato a 14 categorie; 2 categorie (`handshake/invalid_arguments`, `tool_invocation/panic_or_crash`) classificate direttamente via cache in-chat. Non si usa Ollama: tutte le categorie arrivano a UNCERTAIN=0 tramite regole HC deterministiche + cache in-chat.
+
+| Fase / Categoria | Originali | Dopo filtro | VP finali | FP finali |
+|---|---:|---:|---:|---:|
+| handshake / schema_violation | — | 49 | 49 | 0 |
+| handshake / other_errors | — | 117 | 110 | 7 |
+| handshake / method_not_found | — | 289 | 289 | 0 |
+| handshake / invalid_arguments | — | 7 | 2 | 5 |
+| handshake / unauthorized_or_auth_missing | — | 5 | 0 | 5 |
+| tool_discovery / schema_violation | — | 229 | 229 | 0 |
+| tool_discovery / other_errors | — | 29 | 26 | 3 |
+| tool_discovery / method_not_found | — | 42 | 42 | 0 |
+| tool_discovery / warnings | — | 357 | 357 | 0 |
+| tool_invocation / schema_violation | — | 4.860 | 4.860 | 0 |
+| tool_invocation / other_errors | — | 3.817 | 3.361 | 456 |
+| tool_invocation / panic_or_crash | — | 4 | 4 | 0 |
+| tool_invocation / invalid_arguments | — | 253 | 74 | 179 |
+| tool_invocation / method_not_found | — | 50 | 50 | 0 |
+| tool_invocation / warnings | — | 878 | 0 | 878 |
+| tool_invocation / unauthorized_or_auth_missing | — | 115 | 0 | 115 |
+| **Totale** | **—** | **11.101** | **9.453** | **1.648** |
+
+Nota: la colonna "Originali" e' vuota perche' mcp-check non ha un conteggio pre-filtro paragonabile agli scanner statici — ogni server produce 0..N entry per fase/categoria e gli errori infrastrutturali (`not_connected`, `timeout`, `initialization-error`) sono scartati dal Stage 1 prima della categorizzazione.
+
+### Dettaglio buckets pipeline mcp-check (HC -> cache in-chat)
+
+| Categoria | Filtrati | HC-VP / HC-FP | UNCERTAIN dopo HC | VP cache in-chat | FP cache in-chat |
+|---|---:|---|---:|---:|---:|
+| handshake/schema_violation | 49 | 49 / 0 | 0 | — | — |
+| handshake/other_errors | 117 | 110 / 7 | 0 | — | — |
+| handshake/method_not_found | 289 | 289 / 0 | 0 | — | — |
+| handshake/invalid_arguments | 7 | no HC | 7 | 2 | 5 |
+| handshake/unauthorized | 5 | 0 / 5 | 0 | — | — |
+| tool_discovery/schema_violation | 229 | 229 / 0 | 0 | — | — |
+| tool_discovery/other_errors | 29 | 26 / 3 | 0 | — | — |
+| tool_discovery/method_not_found | 42 | 42 / 0 | 0 | — | — |
+| tool_discovery/warnings | 357 | 357 / 0 | 0 | — | — |
+| tool_invocation/schema_violation | 4.860 | 4.860 / 0 | 0 | — | — |
+| tool_invocation/other_errors | 3.817 | 3.361 / 456 | 0 | — | — |
+| tool_invocation/panic_or_crash | 4 | no HC | 4 | 4 | 0 |
+| tool_invocation/invalid_arguments | 253 | ~70 / ~170 | residuo | ~4 | ~9 |
+| tool_invocation/method_not_found | 50 | 50 / 0 | 0 | — | — |
+| tool_invocation/warnings | 878 | 0 / 878 | 0 | — | — |
+| tool_invocation/unauthorized | 115 | 0 / 115 | 0 | — | — |
+
+### VP mcp-check per tipologia (tra i 9.453 VP)
+
+| Pattern | VP |
+|---|---:|
+| `tool_invocation/schema_violation` (output schema / tools/list response invalido) | 4.860 |
+| `tool_invocation/other_errors` — `ErrorHandlingFailure` (tool name injection) | ~3.294 |
+| `tool_invocation/warnings` (tool senza description quality) | —  |
+| `tool_discovery/warnings` (tool senza description) | 357 |
+| `handshake/method_not_found` (initialize non implementato) | 289 |
+| `tool_discovery/schema_violation` (InvalidToolSchemas) | 229 |
+| `handshake/other_errors` (unmarshal, runtime JS/Py, discovery crash) | 110 |
+| `tool_invocation/invalid_arguments` (bug parametri server) | 74 |
+| `tool_invocation/method_not_found` (tool dichiarato non implementato) | 50 |
+| `handshake/schema_violation` (initialize Zod failure) | 49 |
+| `tool_discovery/method_not_found` (tools/list non implementato) | 42 |
+| `tool_discovery/other_errors` (DuplicateToolNames + runtime crash) | 26 |
+| `tool_invocation/panic_or_crash` (Go nil pointer / interface panic) | 4 |
+| `handshake/invalid_arguments` | 2 |
+
+---
+
 ## Totale generale
 
 | Framework | Originali | Dopo filtro | VP finali | FP finali |
@@ -203,4 +271,5 @@ I 5 server: `worksona/-worksona-mcp-server`, `nhatvu148/video-transcriber-mcp`, 
 | mcp-scan | 679 | 679 | ~608 | ~71 |
 | mcp-shield | 5.047 | 5.047 | 16 | 5.031 |
 | mcp-security-scan | 9.404 | 1.395 | 1.094 | 301 |
-| **Totale** | **1.848.376** | **11.503** | **~2.546** | **~8.957** |
+| mcp-check | — | 11.101 | 9.453 | 1.648 |
+| **Totale** | **1.848.376** | **22.604** | **~11.999** | **~10.605** |

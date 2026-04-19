@@ -127,5 +127,28 @@ def filter_steganographic_finding(finding: dict) -> tuple[bool, str]:
 
     return False, "unknown_id"
 
-**Esempi:**
-Verificare se sono effettivamente veri positivi o se sono tutti falsi positivi, in particolare controllare se c'è qualche VP tra le ANSI_ESCAPE_INJECTION
+**Veri positivi confermati dopo analisi LLM**: 3
+
+Ripartizione VP per tipo:
+| WHITESPACE_INJECTION | 3 |
+| ANSI_ESCAPE_INJECTION | 0 |
+
+Ripartizione finale: 3 VP + 357 FP = 360 (311 HC-FP + 3 HC-VP + 46 UNCERTAIN, tutti i 46 UNCERTAIN classificati FP dall'LLM).
+
+I 3 VP sono tutti whitespace estremo (>1.000 caratteri) nello stesso server, pattern tipico di padding per nascondere contenuto.
+
+**Esempi di VP confermati:**
+
+{"server_name": "exa-mcp-server", "file": "src/tools/companyResearch.ts",
+ "id": "WHITESPACE_INJECTION",
+ "evidence": "Line contains 1152 whitespace characters: \"}\""}
+
+{"server_name": "exa-mcp-server", "file": "src/tools/crawling.ts",
+ "id": "WHITESPACE_INJECTION",
+ "evidence": "Line contains 2304 whitespace characters: \"}\""}
+
+{"server_name": "exa-mcp-server", "file": "src/tools/webSearch.ts",
+ "id": "WHITESPACE_INJECTION",
+ "evidence": "Line contains 86016 whitespace characters: \"}\""}
+
+**Nota sulle ANSI_ESCAPE_INJECTION**: tutti i 143 finding sono risultati FP. Gli escape ANSI rilevati sono solo codici standard di colorazione terminale (`\x1b[0m`, `\x1b[31m`, ecc.), usati in logger/CLI utilities. Nessun codice ANSI "pericoloso" (clear screen, cursor hiding, hidden text mode) e' stato trovato in contesti di tool description.

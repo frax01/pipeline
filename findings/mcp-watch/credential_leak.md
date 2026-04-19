@@ -334,7 +334,14 @@ def filter_credential_finding(finding: dict) -> tuple[bool, str]:
 
     return False, "unknown_id"
 
-**Veri positivi confermati dopo analisi LLM**: 516
+**Veri positivi confermati dopo analisi LLM**: 619
+
+Ripartizione VP per tipo:
+| PLAINTEXT_STORAGE | 351 |
+| HARDCODED_CREDENTIALS | 268 |
+| INSECURE_CREDENTIAL_PERMISSIONS | 0 |
+
+Ripartizione finale: 619 VP + 165 FP = 784 (459 HC-VP + 145 HC-FP + 180 UNCERTAIN classificati dall'LLM: 160 VP + 20 FP).
 
 {"server_name": "graphitiMCP", "file": "mcp_server/.env",
  "evidence": "OPENAI_API_KEY=sk-dZcsMXB34134r2YM759SWuTrfm1gHvHHWIgFBILK5OcGtiKJ"}
@@ -344,18 +351,3 @@ def filter_credential_finding(finding: dict) -> tuple[bool, str]:
 
 {"server_name": "mcp-github-agent", "file": ".env",
  "evidence": "GITHUB_TOKEN=ghp_[REDACTED]"}
-
-**Possibili falsi positivi da verificare:**
-{
-    "server_name": "docs-mcp",
-    "github_url": "https://github.com/penysho/docs-mcp",
-    "language": "nodejs",
-    "id": "INSECURE_CREDENTIAL_PERMISSIONS",
-    "category": "credential-leak",
-    "description": "Credentials with world-readable permissions",
-    "file": "package.json",
-    "line": 9,
-    "evidence": "\"build\": \"tsc && chmod 755 dist/index.js && cp credentials.json dist/ && cp token.json dist/\",",
-    "source": "Trail of Bits research",
-    "filter_confidence": "insecure_perms_confirmed"
-},

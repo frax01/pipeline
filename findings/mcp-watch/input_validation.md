@@ -213,15 +213,56 @@ def filter_input_validation_finding(finding: dict) -> tuple[bool, str]:
 
     return False, "unknown_id"
 
-**Veri positivi stimati**: ~40-50%
+**Veri positivi confermati dopo analisi LLM**: 125
 
-Il pattern piu' affidabile: `fetch(params.url)`, `axios.get(params.url)`, `fetch(input.url)`.
+Ripartizione VP per tipo:
+| SSRF_VULNERABILITY | 94 |
+| COMMAND_INJECTION_RISK | 29 |
+| PATH_TRAVERSAL | 2 |
 
-{"server_name": "milvus-mcp-server", "file": "milvus_mcp_attempts/mcp-server/fastmcp/src/FastMCP.ts",
- "evidence": "const response = await fetch(input.url);"}
+Ripartizione finale: 125 VP + 100 FP = 225 (di cui 214 classificati da regole HC deterministiche e 11 UNCERTAIN classificati in-chat con Sonnet: 2 VP + 9 FP).
 
-{"server_name": "notioc-canvas-mcp-server", "file": "tools/url-processor.ts",
- "evidence": "const response = await fetch(params.url, {"})}
+Il pattern piu' affidabile e' la chiamata HTTP globale con URL controllato dall'utente:
+`fetch(params.url)`, `axios.get(params.url)`, `fetch(input.url)`.
+
+**Esempi di VP confermati:**
+
+{"server_name": "Telegram-AI-MCP-Assistant-Bot", "file": "mcp_server_1.py",
+ "id": "COMMAND_INJECTION_RISK",
+ "evidence": "exec(input.code, allowed_globals, local_vars)"}
+
+{"server_name": "doclea-mcp", "file": "scripts/lib/llm-cli-runner.ts",
+ "id": "COMMAND_INJECTION_RISK",
+ "evidence": "const child = spawn(input.command, {"}
+
+{"server_name": "XcodeBuildMCP", "file": "src/tools/bundleId.ts",
+ "id": "COMMAND_INJECTION_RISK",
+ "evidence": "bundleId = execSync(`defaults read \"${params.appPath}/Contents/Info\" CFBundleIdentifier`)"}
+
+{"server_name": "lspace-server", "file": "src/orchestrator/orchestratorService.ts",
+ "id": "SSRF_VULNERABILITY",
+ "evidence": "const response = await axios.get(input.url, { timeout: 10000 });"}
+
+{"server_name": "mcp-web-tools", "file": "src/server.js",
+ "id": "SSRF_VULNERABILITY",
+ "evidence": "const res = await fetch(input.url, {"}
 
 {"server_name": "fetch-browser", "file": "src/url-fetcher.ts",
- "evidence": "const response = await fetch(params.url.toString(), {"})}
+ "id": "SSRF_VULNERABILITY",
+ "evidence": "const response = await fetch(params.url.toString(), {"}
+
+{"server_name": "PromptX", "file": "packages/resource/resources/tool/pdf-reader/pdf-reader.tool.js",
+ "id": "PATH_TRAVERSAL",
+ "evidence": "return path.join(...args.parts);"}
+
+**Possibili falsi positivi da verificare** (classificati FP in-chat):
+
+{"server_name": "daytona", "file": "libs/sdk-python/src/daytona/_async/process.py",
+ "id": "COMMAND_INJECTION_RISK",
+ "evidence": "return await self.exec(command, env=params.env if params else None, timeout=timeout)",
+ "note": "self.exec e' un metodo SDK Daytona che esegue il comando dentro sandbox isolato; feature intenzionale, non injection."}
+
+{"server_name": "Agent4Molecule", "file": "mcp_agent/enzygen_server.py",
+ "id": "COMMAND_INJECTION_RISK",
+ "evidence": "os.system(f\"rm -f {ENZYGEN_PATH}/data/input.json\")",
+ "note": "ENZYGEN_PATH e' costante interna, 'input.json' e' literal file name, nessun input utente."}

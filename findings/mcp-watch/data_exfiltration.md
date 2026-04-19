@@ -161,6 +161,11 @@ private containsConversationTriggers(line: string): boolean {
 
 **Finding dopo filtro**: 86
 
+| DATA_EXFILTRATION | 57 |
+| UNUSED_SENSITIVE_PARAMETER | 13 |
+| MAGIC_PARAMETER_INJECTION | 12 |
+| CONVERSATION_EXFILTRATION_TRIGGER | 4 |
+
 # ═══════════════════════════════════════════════════════════════════════════
 #  CATEGORY 3: DATA-EXFILTRATION
 # ═══════════════════════════════════════════════════════════════════════════
@@ -391,9 +396,13 @@ def filter_data_exfiltration_finding(finding: dict) -> tuple[bool, str]:
     return False, "unknown_id"
 
 
-**Veri positivi confermati dopo analisi LLM**: 2-3
+**Veri positivi confermati dopo analisi LLM**: 2
 
-Su 86 finding tenuti dal filtro, l'analisi manuale di tutti e 86 ha identificato **2 veri positivi certi** e **3 borderline**. I restanti ~81 sono falsi positivi. Il problema fondamentale e' che il pattern `requests.post(url, json={"prompt": text})` e' identico sia per una chiamata LLM legittima che per una esfiltrzione, e regex non puo' distinguerli.
+Ripartizione VP per tipo:
+| DATA_EXFILTRATION | 1 |
+| CONVERSATION_EXFILTRATION_TRIGGER | 1 |
+
+Ripartizione finale: 2 VP + 84 FP = 86 (2 HC-VP + 79 HC-FP + 5 UNCERTAIN tutti classificati FP dall'LLM, di cui 3 borderline su line-desktop-mcp). Il problema fondamentale e' che il pattern `requests.post(url, json={"prompt": text})` e' identico sia per una chiamata LLM legittima che per una esfiltrzione, e regex non puo' distinguerli.
 
 ### VP 1: promtHire-mcp (exfiltration_in_description)
 

@@ -138,7 +138,7 @@ nohup python tool_mcp_guard/run_guard.py --start -1 --end 60205 > guard_output.l
 ## 📥 Raccolta Risultati e Analisi
 ```bash
 # 1. Scarica i risultati (incluse le cartelle delle categorie) da tutte le VM
-python deploy.py --pull-guard
+python deploy.py --pull-guard (prima cambiare sulla vm1 il nome della cartella da 0_tool_mcp_guard a tool_mcp_guard)
 
 # 2. Aggrega tutto in analysisAllData/0_tool_mcp_guard/
 python deploy.py --merge-guard

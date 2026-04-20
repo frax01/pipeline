@@ -9,7 +9,11 @@
 | input-validation | 764.234 | 225 | 125 | 100 |
 | protocol-violation | 381.429 | 2.927 | 79 | 2.848 |
 | steganographic-attack | 16.570 | 360 | 3 | 357 |
-| **Totale** | **1.833.246** | **4.382** | **828** | **3.554** |
+| tool-poisoning | 136 | 7 | 0 | 7 |
+| prompt-injection | 302 | 8 | 0 | 8 |
+| tool-mutation | 18.856 | 2.577 | 0 | 2.577 |
+| access-control | 428.443 | 17 | 7 | 10 |
+| **Totale** | **2.281.983** | **6.991** | **835** | **6.156** |
 
 ### Dettaglio mcp-watch per ID
 
@@ -47,6 +51,34 @@
 | WHITESPACE_INJECTION | 217 | 3 |
 | ANSI_ESCAPE_INJECTION | 143 | 0 |
 
+**tool-poisoning** (7 dopo filtro → 0 VP)
+| ID | Kept | VP |
+|---|---:|---:|
+| HIDDEN_TOOL_INSTRUCTIONS | 7 | 0 |
+
+**prompt-injection** (8 dopo filtro → 0 VP)
+| ID | Kept | VP |
+|---|---:|---:|
+| TOOL_DESCRIPTION_INJECTION | 8 | 0 |
+
+> `RETRIEVAL_AGENT_DECEPTION` escluso dall'analisi (55.480 finding di rumore
+> puro: pattern `<!-- system:` in documentazione auto-generata).
+
+**tool-mutation** (2.577 dopo filtro → 0 VP)
+| ID | Kept | VP |
+|---|---:|---:|
+| DYNAMIC_TOOL_MUTATION | 2.577 | 0 |
+
+> `TOOL_NAME_COLLISION` escluso dall'analisi.
+
+**access-control** (17 dopo filtro → 7 VP)
+| ID | Kept | VP |
+|---|---:|---:|
+| EXCESSIVE_PERMISSIONS | 17 | 7 |
+
+> `CONSENT_FATIGUE_RISK` escluso dall'analisi.
+> Filtro Stage 1 con whitelist aggressiva: 428.443 → 17 (riduzione 100.0%).
+
 ### Dettaglio buckets pipeline (HC → LLM)
 
 | Categoria | HC-VP | HC-FP | UNCERTAIN | VP in-chat/LLM | FP in-chat/LLM |
@@ -56,6 +88,10 @@
 | input-validation | 123 | 91 | 11 | 2 | 9 |
 | protocol-violation | 79 | 2.848 | 0 | 0 | 0 |
 | steganographic-attack | 3 | 311 | 46 | 0 | 46 |
+| tool-poisoning | 0 | 7 | 0 | 0 | 0 |
+| prompt-injection | 0 | 8 | 0 | 0 | 0 |
+| tool-mutation | 0 | 2.577 | 0 | 0 | 0 |
+| access-control | 7 | 10 | 0 | 0 | 0 |
 
 ---
 
@@ -267,9 +303,9 @@ Nota: la colonna "Originali" e' vuota perche' mcp-check non ha un conteggio pre-
 
 | Framework | Originali | Dopo filtro | VP finali | FP finali |
 |---|---:|---:|---:|---:|
-| mcp-watch | 1.833.246 | 4.382 | 828 | 3.554 |
+| mcp-watch | 2.281.983 | 6.991 | 835 | 6.156 |
 | mcp-scan | 679 | 679 | ~608 | ~71 |
 | mcp-shield | 5.047 | 5.047 | 16 | 5.031 |
 | mcp-security-scan | 9.404 | 1.395 | 1.094 | 301 |
 | mcp-check | — | 11.101 | 9.453 | 1.648 |
-| **Totale** | **1.848.376** | **22.604** | **~11.999** | **~10.605** |
+| **Totale** | **2.297.113** | **25.213** | **~12.006** | **~13.207** |

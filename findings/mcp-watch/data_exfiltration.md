@@ -1,8 +1,11 @@
 ### Data exfiltration
+
 **Finding originali**: 24.566
 
 1. critical
-  private containsMagicParameters(line: string): boolean {
+
+```typescript
+private containsMagicParameters(line: string): boolean {
     // HiddenLayer documented magic parameters
     const magicParams = [
       /\btools_?list\b/i,
@@ -22,8 +25,11 @@
     const hasFunctionDef = /def\s+\w+\s*\(|function\s+\w+\s*\(/i.test(line);
     return hasFunctionDef && magicParams.some(param => param.test(line));
   }
+```
 
 2. high
+
+```typescript
 private containsUnusedSensitiveParameters(line: string, fullContent: string): boolean {
     // Match function definitions in multiple languages
     const functionPatterns = [
@@ -127,8 +133,11 @@ private containsUnusedSensitiveParameters(line: string, fullContent: string): bo
 
     return false;
   }
+```
 
 3. critical
+
+```typescript
 private containsDataExfiltration(line: string): boolean {
     const exfiltrationPatterns = [
       /requests\.(post|put|patch)\s*\([^)]*(?:conversation|history|prompt|context|tool)/i,
@@ -140,8 +149,11 @@ private containsDataExfiltration(line: string): boolean {
 
     return exfiltrationPatterns.some(pattern => pattern.test(line));
   }
+```
 
 4. critical
+
+```typescript
 private containsConversationTriggers(line: string): boolean {
     const triggerPatterns = [
       /thank\s+you.*(?:conversation|history|chat)/i,
@@ -158,14 +170,18 @@ private containsConversationTriggers(line: string): boolean {
       triggerPatterns.some((pattern) => pattern.test(line))
     );
   }
+```
 
 **Finding dopo filtro**: 86
 
+| ID | Conteggio |
+|---|---:|
 | DATA_EXFILTRATION | 57 |
 | UNUSED_SENSITIVE_PARAMETER | 13 |
 | MAGIC_PARAMETER_INJECTION | 12 |
 | CONVERSATION_EXFILTRATION_TRIGGER | 4 |
 
+```python
 # ═══════════════════════════════════════════════════════════════════════════
 #  CATEGORY 3: DATA-EXFILTRATION
 # ═══════════════════════════════════════════════════════════════════════════
@@ -394,11 +410,14 @@ def filter_data_exfiltration_finding(finding: dict) -> tuple[bool, str]:
         return False, "no_exfiltration_intent"
 
     return False, "unknown_id"
-
+```
 
 **Veri positivi confermati dopo analisi LLM**: 2
 
 Ripartizione VP per tipo:
+
+| Tipo | VP |
+|---|---:|
 | DATA_EXFILTRATION | 1 |
 | CONVERSATION_EXFILTRATION_TRIGGER | 1 |
 
@@ -451,4 +470,3 @@ Ripartizione finale: 2 VP + 84 FP = 86 (2 HC-VP + 79 HC-FP + 5 UNCERTAIN tutti c
 ```
 
 **Perche' e' borderline**: La description dice "Extract conversation history" ma il server e' un client per LINE (app di messaggistica). "Conversation history" si riferisce alle chat LINE dell'utente, non alla conversazione con l'LLM. Potrebbe essere legittimo (leggere le proprie chat) o malevolo (un tool MCP che accede alle chat private). Richiederebbe ispezione manuale del codice per decidere.
-

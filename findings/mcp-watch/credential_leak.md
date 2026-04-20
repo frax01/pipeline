@@ -1,7 +1,10 @@
 ### Credential leak
+
 **Finding originali**: 646.447
 
 1. critical
+
+```typescript
 private containsHardcodedCredentials(line: string): boolean {
     const patterns = [
       // Enhanced API key patterns
@@ -24,8 +27,11 @@ private containsHardcodedCredentials(line: string): boolean {
       !this.isExampleCredential(line)
     );
   }
+```
 
 2. high
+
+```typescript
 private containsPlaintextStorage(line: string): boolean {
     const fileWriteOps = [
       /writeFileSync\s*\(/,
@@ -59,23 +65,28 @@ private containsPlaintextStorage(line: string): boolean {
 
     return !encryptionMentioned.some((enc) => enc.test(line));
   }
+```
 
 3. high
+
+```typescript
 private containsInsecureCredentialPermissions(line: string): boolean {
     return (
       /chmod\s+[0-9]*[4-7][4-7][4-7]/.test(line) &&
       /(?:key|token|secret|password|credential)/i.test(line)
     );
   }
-
-
+```
 
 **Finding dopo filtro**: 784
 
+| ID | Conteggio |
+|---|---:|
 | PLAINTEXT_STORAGE | 434 |
 | HARDCODED_CREDENTIALS | 339 |
 | INSECURE_CREDENTIAL_PERMISSIONS | 11 |
 
+```python
 # ═══════════════════════════════════════════════════════════════════════════
 #  CATEGORY 1: CREDENTIAL-LEAK
 # ═══════════════════════════════════════════════════════════════════════════
@@ -333,21 +344,31 @@ def filter_credential_finding(finding: dict) -> tuple[bool, str]:
         return True, "insecure_perms_confirmed"
 
     return False, "unknown_id"
+```
 
 **Veri positivi confermati dopo analisi LLM**: 619
 
 Ripartizione VP per tipo:
+
+| Tipo | VP |
+|---|---:|
 | PLAINTEXT_STORAGE | 351 |
 | HARDCODED_CREDENTIALS | 268 |
 | INSECURE_CREDENTIAL_PERMISSIONS | 0 |
 
 Ripartizione finale: 619 VP + 165 FP = 784 (459 HC-VP + 145 HC-FP + 180 UNCERTAIN classificati dall'LLM: 160 VP + 20 FP).
 
+```json
 {"server_name": "graphitiMCP", "file": "mcp_server/.env",
  "evidence": "OPENAI_API_KEY=sk-dZcsMXB34134r2YM759SWuTrfm1gHvHHWIgFBILK5OcGtiKJ"}
+```
 
+```json
 {"server_name": "mcp_py_exam", "file": ".env",
 "evidence": "GOOGLE_API_KEY=AIzaSyDy6v56upofdlScaivq7NRW_Fh1KSmxjAM"}
+```
 
+```json
 {"server_name": "mcp-github-agent", "file": ".env",
  "evidence": "GITHUB_TOKEN=ghp_[REDACTED]"}
+```

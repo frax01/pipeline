@@ -276,12 +276,17 @@ analysisAllData/0_tool_mcp_watch/
 |------------------------|-----------|-------------|------------------|------------------|------------------|-----------|-----------|
 | credential-leak        | 646.447   | 784         | 547 (69.8%)      | 135 (17.2%)      | 102 (13.0%)      | 619       | 165       |
 | data-exfiltration      | 24.566    | 86          | 2 (2.3%)         | 79 (91.9%)       | 5 (5.8%)         | 2         | 84        |
-| input-validation       | —         | 225         | 123 (54.7%)      | 91 (40.4%)       | 11 (4.9%)        | TBD       | TBD       |
+| input-validation       | 764.234   | 225         | 123 (54.7%)      | 91 (40.4%)       | 11 (4.9%)        | 125       | 100       |
 | steganographic-attack  | 16.570    | 360         | 3 (0.8%)         | 311 (86.4%)      | 46 (12.8%)       | 3         | 357       |
-| protocol-violation     | —         | 2.927       | 79 (2.7%)        | 2.848 (97.3%)    | 0 (0.0%)         | 79        | 2.848     |
+| protocol-violation     | 381.429   | 2.927       | 79 (2.7%)        | 2.848 (97.3%)    | 0 (0.0%)         | 79        | 2.848     |
+| tool-poisoning         | 136       | 7           | 0 (0.0%)         | 7 (100%)         | 0 (0.0%)         | 0         | 7         |
+| prompt-injection       | 302       | 8           | 0 (0.0%)         | 8 (100%)         | 0 (0.0%)         | 0         | 8         |
+| tool-mutation          | 18.856    | 2.577       | 0 (0.0%)         | 2.577 (100%)     | 0 (0.0%)         | 0         | 2.577     |
+| access-control         | 428.443   | 17          | 7 (41.2%)        | 10 (58.8%)       | 0 (0.0%)         | 7         | 10        |
+| **Totale**             | **2.281.983** | **6.991** | **761**          | **6.066**        | **164**          | **835**   | **6.156** |
 
-> input-validation: Stage 2B (Ollama) non ancora eseguito. Eseguire `pipeline_mcp_watch.py --category input-validation --merge`.
-> protocol-violation: completato al 100% — 0 UNCERTAIN, merge prodotto con `--hc-only` (UNCERTAIN=0 attiva auto-merge).
+> Stage 1 file: `filter_all_categories.py` (prime 5 categorie) e `filter_remaining_categories.py` (tool-poisoning, prompt-injection, tool-mutation, access-control). Tutte le 9 categorie analizzate raggiungono UNCERTAIN=0 dopo Stage 2A + cache in-chat; merge automatico con `--hc-only`.
+> Sottocategorie escluse dall'analisi: `RETRIEVAL_AGENT_DECEPTION` (55k finding di rumore), `TOOL_NAME_COLLISION`, `CONSENT_FATIGUE_RISK`, `TOOL_SHADOWING`, `toxic_flows` — rumore troppo alto o categoria non rilevante.
 
 ### Comandi principali
 
@@ -372,6 +377,18 @@ Per raffinare le regole HC prima di eseguire Ollama:
 - `SSRF` — Server-Side Request Forgery: URL controllato dall'utente passato a fetch/axios/got
 - `COMMAND_INJECTION` — exec/spawn con argomento controllato dall'utente (concat, template literal, diretto)
 - `PATH_TRAVERSAL` — path.join con argomenti spread da input utente
+
+**tool-poisoning:**
+- `HIDDEN_TOOL_INSTRUCTIONS` — pattern injection (`ignore instructions`, `[SYSTEM]`, `act as`, `forget everything`) nelle tool description (solo questa sottocategoria analizzata; `TOOL_SHADOWING` escluso)
+
+**prompt-injection:**
+- `TOOL_DESCRIPTION_INJECTION` — pattern injection + `pretend`, `simulate`, `roleplay as`, `new role:` nelle tool description (solo questa sottocategoria analizzata; `RETRIEVAL_AGENT_DECEPTION` escluso per rumore eccessivo — 55k finding su `<!-- system:`)
+
+**tool-mutation:**
+- `DYNAMIC_TOOL_MUTATION` — pattern `tools.push()/splice()/pop()` o `tools[x] = y` nel codice (solo questa sottocategoria; `TOOL_NAME_COLLISION` escluso)
+
+**access-control:**
+- `EXCESSIVE_PERMISSIONS` — keyword di permesso (admin/root/grant/privilege) vicino a keyword di contesto (user/role/access) — 428k finding iniziali, ridotti a 17 con whitelist aggressiva (`CONSENT_FATIGUE_RISK` escluso)
 
 ### Regole HC principali (credential-leak)
 
@@ -520,6 +537,79 @@ Per raffinare le regole HC prima di eseguire Ollama:
 - 13 chiamata HTTP esplicita (fetch/requests/webloader/postJson/curl)
 - 6 cloud provider domain (AWS/Aliyun/HuggingFace)
 - 5 dominio esterno catch-all
+
+### Regole HC principali (tool-poisoning)
+
+**ID rilevato:** `HIDDEN_TOOL_INSTRUCTIONS` — injection nascosta nella description di un tool (richiede che la riga contenga `description` + keyword tipo `ignore instructions`, `[SYSTEM]`, `act as`).
+
+**HC-FP (100% del dataset — 7/7):**
+- `_TP_PYDANTIC_OVERRIDE` → campo Pydantic `overrides: list[...]` o `admins: Optional[List[...]]` scambiato per istruzione "override"/"admin"
+- `_TP_DESC_PASSTHROUGH` → `description: (artifact as any).description` — pass-through di description esistente (mcp-zebrunner)
+- `_TP_SAFE_LABEL` → `[SYSTEM][SAFE]` come prefisso di CLI tool legittimo (blender-ai-mcp)
+- `_TP_ACT_AS_BENIGN` → inglese normale: `who act as additional requesters`, `act as a delegate/persona`
+- `_TP_PERSONA_ROLEPLAY` → `roleplay as legendary founder` (startup-sim MCP)
+- `_TP_LONG_API_DESC` → descrizione REST API lunga senza contenuto di injection
+
+**HC-VP:** nessuna regola — pattern reali sono catturati da mcp-shield con analisi semantica Claude API (v. `hidden_instructions.md`).
+
+**Perché 0 VP:** la regex di mcp-watch richiede solo `description` + keyword generica; i veri attacchi (tag `<IMPORTANT>` + email redirect su math-mcp-server-nodejs, tool shadowing su mdsel-mcp) sono stati già rilevati da mcp-shield. Il keyword matching qui produce solo FP su campi Pydantic, label legittimi e frasi inglesi.
+
+### Regole HC principali (prompt-injection)
+
+**ID rilevato:** `TOOL_DESCRIPTION_INJECTION` — stessi pattern di tool-poisoning + `pretend`, `disregard`, `simulate`, `roleplay as`, `new role:`.
+
+**HC-FP (100% del dataset — 8/8):**
+- Stesse 6 regole di tool-poisoning (riutilizzate)
+- `_PI_NEW_ROLE_PARAM_DOC` → `"description": "New role: 'admin' or 'user'"` — parametro API di un endpoint `/members` per cambiare ruolo
+- `_PI_SIMULATE_BENIGN` → `simulate a transaction/click/request` — feature reale del tool, non injection
+
+**HC-VP:** nessuna regola — stesso ragionamento di tool-poisoning.
+
+**Perché 0 VP:** keyword come `pretend`, `simulate`, `roleplay` hanno alta frequenza in server di game/story simulation, SDK di agenti LLM, tool di documentation generation — contesti dove non costituiscono attacco.
+
+### Regole HC principali (tool-mutation)
+
+**ID rilevato:** `DYNAMIC_TOOL_MUTATION` — pattern `tools.push(...)`, `tools[x] = y` interpretati come rug-pull runtime, ma matchano anche il paradigma standard di registrazione MCP.
+
+**HC-FP (100% del dataset — 2.577/2.577):**
+1. **File path di registry** (`tool_registry.py`, `tools_config.py`, `registry.py`, `setup.py`, ecc.) → tutto quello che vi sta dentro è registration
+2. **Evidence read-only** (`for tool in tools`, `tool["name"] == ...`) → lettura, non mutazione
+3. **Pattern di registration idiomatici** (10+ regex):
+   - Prefissi comuni: `all_`, `available_`, `enabled_`, `registered_`, `preferred_`, `transformed_`, `converted_`, `namespaced_`, `discovered_`, `processed_`, ecc.
+   - `self.tools[...]`, `this.tools[...]`, `cls.tools[...]`
+   - Namespaced: `capabilities.tools`, `server._tool_manager._tools`
+   - Field tagging: `tool["_metadata"] = {...}`, `tool["success_rate"] = ...`
+   - Catch-all aggressivo: `\b\w*_?tools?\s*\[\s*[^\]]+\s*\]\s*=` per coprire qualsiasi `*_tools[key] = value`
+
+**HC-VP:** nessuna regola — **il pattern non è rilevabile da analisi statica**. Un rug-pull reale richiede modifica della lista `tools` dopo `tools/list` in un handler runtime, non evidenziabile da una singola riga di codice.
+
+**Perché 0 VP:** i pattern residui dopo Stage 1 sono tutti: registry standard MCP Python (`self.tools[tool.name] = tool`), TypeScript registrar (`this.tools[options.name] = options`), middleware di namespacing (`transformed_tools[key] = tool`), aggregation dictionaries di gateway/proxy, metadata tagging, security tooling che **osserva** mutazioni.
+
+### Regole HC principali (access-control)
+
+**ID rilevato:** `EXCESSIVE_PERMISSIONS` — scanner keyword-based (`admin`+`role`, `delete`+`user`, ecc.) con 428.443 finding iniziali (99.99% rumore).
+
+**Approccio Stage 1 (whitelist, non blacklist):** il filtro tiene **solo** righe con pattern di altissimo valore: IAM policy `"Action":"*"`/`"Resource":"*"`, Dockerfile `USER root`/`chmod 777`/`--privileged`, Kubernetes `privileged: true`/`hostNetwork: true`/`runAsUser: 0`, AWS `AdministratorAccess`/`PowerUserAccess`, SQL `GRANT ALL (PRIVILEGES )?ON`. Riduce 428.443 → 17.
+
+**HC-FP:**
+- `_AC_MOCK_OR_CACHE_FILE` → `mcpMock.json`, translation cache, example files
+- `_AC_MITRE_DATASET` → `complete-mitre-attack-mcp-server` (dataset MITRE ATT&CK esplicito, per design)
+- `_AC_TEST_USER_ROOT_CHECK` → test che **verifica** non ci sia `USER root` in un Dockerfile
+- `_AC_SCANNER_REPORT` → `agent-security-scanner-mcp` che produce report JSON con `"matched_text"`
+- `_AC_CAP_DROP_DESC` → extension manifest che **documenta** una flag "capabilities to drop"
+- `_AC_ENABLE_ACCESS_DESC` → Pydantic field `description="Enable access to the FUSE device"`
+- `_AC_BPF_EXAMPLE` → esempio di tracing BPF in `examples.json`
+- `_AC_PARAM_DESC_ADMIN_EXAMPLE` → parametro `role_name` con `AdministratorAccess` come valore di esempio (e.g., ...)
+
+**HC-VP:**
+- `_AC_AWS_PENTEST_EXPLOIT` + server `aws-pentest-mcp` → exploit IAM privilege escalation (`attach-user-policy ... AdministratorAccess`, embedded policy document con `"Action":"*","Resource":"*"`)
+- `_AC_GRANT_ALL_DB_PAT` → `GRANT ALL PRIVILEGES ON DATABASE` in script di provisioning runtime
+
+**VP finali (7 totali):**
+- `aws-pentest-mcp` × 6 — offensive security tool dichiarato (classificazione coerente con `sec-mimikatz-mcp`/`sec-rubeus-mcp` di sensitive-file-access)
+- `durandal-memory-bridge/database-setup.js` × 1 — `GRANT ALL PRIVILEGES ON DATABASE ${dbName} TO ${userName}` senza restrizione
+
+**Rate VP reale:** 7/428.443 = 0.0016%. Lo scanner `PermissionScanner` di mcp-watch non è utile per detection di access-control senza whitelist aggressiva.
 
 ---
 

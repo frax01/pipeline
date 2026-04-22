@@ -3,6 +3,8 @@
 **Finding originali**: 16.570
 
 1. medium
+
+```typescript
 private containsAnsiEscapes(line: string): boolean {
     return (
       /\u001b\[[0-9;]*[a-zA-Z]/.test(line) ||
@@ -11,20 +13,26 @@ private containsAnsiEscapes(line: string): boolean {
       /\x1b\[[0-9;]*[a-zA-Z]/.test(line)
     );
   }
+```
 
 2. medium
+
+```typescript
 private containsWhitespaceInjection(line: string): boolean {
     const trimmedLength = line.trim().length;
     const totalLength = line.length;
     return trimmedLength > 0 && totalLength - trimmedLength > 100;
   }
-
+```
 
 **Finding dopo filtro**: 360
 
-| Tipo ANSI_ESCAPE_INJECTION | 143 |
-| Tipo WHITESPACE_INJECTION | 217 |
+| Tipo | Conteggio |
+|---|---:|
+| ANSI_ESCAPE_INJECTION | 143 |
+| WHITESPACE_INJECTION | 217 |
 
+```python
 # ═══════════════════════════════════════════════════════════════════════════
 #  CATEGORY 2: STEGANOGRAPHIC-ATTACK
 # ═══════════════════════════════════════════════════════════════════════════
@@ -126,10 +134,14 @@ def filter_steganographic_finding(finding: dict) -> tuple[bool, str]:
         return False, "normal_indentation"
 
     return False, "unknown_id"
+```
 
 **Veri positivi confermati dopo analisi LLM**: 3
 
 Ripartizione VP per tipo:
+
+| Tipo | VP |
+|---|---:|
 | WHITESPACE_INJECTION | 3 |
 | ANSI_ESCAPE_INJECTION | 0 |
 
@@ -139,16 +151,22 @@ I 3 VP sono tutti whitespace estremo (>1.000 caratteri) nello stesso server, pat
 
 **Esempi di VP confermati:**
 
+```json
 {"server_name": "exa-mcp-server", "file": "src/tools/companyResearch.ts",
  "id": "WHITESPACE_INJECTION",
  "evidence": "Line contains 1152 whitespace characters: \"}\""}
+```
 
+```json
 {"server_name": "exa-mcp-server", "file": "src/tools/crawling.ts",
  "id": "WHITESPACE_INJECTION",
  "evidence": "Line contains 2304 whitespace characters: \"}\""}
+```
 
+```json
 {"server_name": "exa-mcp-server", "file": "src/tools/webSearch.ts",
  "id": "WHITESPACE_INJECTION",
  "evidence": "Line contains 86016 whitespace characters: \"}\""}
+```
 
 **Nota sulle ANSI_ESCAPE_INJECTION**: tutti i 143 finding sono risultati FP. Gli escape ANSI rilevati sono solo codici standard di colorazione terminale (`\x1b[0m`, `\x1b[31m`, ecc.), usati in logger/CLI utilities. Nessun codice ANSI "pericoloso" (clear screen, cursor hiding, hidden text mode) e' stato trovato in contesti di tool description.

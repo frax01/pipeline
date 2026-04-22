@@ -1,8 +1,10 @@
-### INUT-VALIDATION
+### INPUT-VALIDATION
 
 **Finding originali**: 764.234
 
 1. critical
+
+```typescript
 private containsCommandInjection(line: string): boolean {
     const dangerousPatterns = [
       /execSync?\s*\(/, /spawn\s*\(/, /exec\s*\(/,
@@ -16,8 +18,11 @@ private containsCommandInjection(line: string): boolean {
        line.includes("argv"))
     );
   }
+```
 
 2. high
+
+```typescript
 private containsSSRF(line: string): boolean {
     const ssrfPatterns = [
       /fetch\s*\(\s*(?:req\.|params\.|query\.|input\.)/,
@@ -29,8 +34,11 @@ private containsSSRF(line: string): boolean {
 
     return ssrfPatterns.some(pattern => pattern.test(line));
   }
+```
 
 3. high
+
+```typescript
 private containsPathTraversal(line: string): boolean {
     const pathTraversalPatterns = [
       /readFile\s*\([^)]*\.\./,
@@ -43,14 +51,17 @@ private containsPathTraversal(line: string): boolean {
 
     return pathTraversalPatterns.some(pattern => pattern.test(line));
   }
-
+```
 
 **Finding dopo filtro**: 225
 
+| ID | Conteggio |
+|---|---:|
 | SSRF_VULNERABILITY | 142 |
 | COMMAND_INJECTION_RISK | 73 |
 | PATH_TRAVERSAL | 10 |
 
+```python
 # ═══════════════════════════════════════════════════════════════════════════
 #  CATEGORY 5: INPUT-VALIDATION
 # ═══════════════════════════════════════════════════════════════════════════
@@ -212,10 +223,14 @@ def filter_input_validation_finding(finding: dict) -> tuple[bool, str]:
         return False, "static_relative_path"
 
     return False, "unknown_id"
+```
 
 **Veri positivi confermati dopo analisi LLM**: 125
 
 Ripartizione VP per tipo:
+
+| Tipo | VP |
+|---|---:|
 | SSRF_VULNERABILITY | 94 |
 | COMMAND_INJECTION_RISK | 29 |
 | PATH_TRAVERSAL | 2 |
@@ -227,42 +242,60 @@ Il pattern piu' affidabile e' la chiamata HTTP globale con URL controllato dall'
 
 **Esempi di VP confermati:**
 
+```json
 {"server_name": "Telegram-AI-MCP-Assistant-Bot", "file": "mcp_server_1.py",
  "id": "COMMAND_INJECTION_RISK",
  "evidence": "exec(input.code, allowed_globals, local_vars)"}
+```
 
+```json
 {"server_name": "doclea-mcp", "file": "scripts/lib/llm-cli-runner.ts",
  "id": "COMMAND_INJECTION_RISK",
  "evidence": "const child = spawn(input.command, {"}
+```
 
+```json
 {"server_name": "XcodeBuildMCP", "file": "src/tools/bundleId.ts",
  "id": "COMMAND_INJECTION_RISK",
  "evidence": "bundleId = execSync(`defaults read \"${params.appPath}/Contents/Info\" CFBundleIdentifier`)"}
+```
 
+```json
 {"server_name": "lspace-server", "file": "src/orchestrator/orchestratorService.ts",
  "id": "SSRF_VULNERABILITY",
  "evidence": "const response = await axios.get(input.url, { timeout: 10000 });"}
+```
 
+```json
 {"server_name": "mcp-web-tools", "file": "src/server.js",
  "id": "SSRF_VULNERABILITY",
  "evidence": "const res = await fetch(input.url, {"}
+```
 
+```json
 {"server_name": "fetch-browser", "file": "src/url-fetcher.ts",
  "id": "SSRF_VULNERABILITY",
  "evidence": "const response = await fetch(params.url.toString(), {"}
+```
 
+```json
 {"server_name": "PromptX", "file": "packages/resource/resources/tool/pdf-reader/pdf-reader.tool.js",
  "id": "PATH_TRAVERSAL",
  "evidence": "return path.join(...args.parts);"}
+```
 
 **Possibili falsi positivi da verificare** (classificati FP in-chat):
 
+```json
 {"server_name": "daytona", "file": "libs/sdk-python/src/daytona/_async/process.py",
  "id": "COMMAND_INJECTION_RISK",
  "evidence": "return await self.exec(command, env=params.env if params else None, timeout=timeout)",
  "note": "self.exec e' un metodo SDK Daytona che esegue il comando dentro sandbox isolato; feature intenzionale, non injection."}
+```
 
+```json
 {"server_name": "Agent4Molecule", "file": "mcp_agent/enzygen_server.py",
  "id": "COMMAND_INJECTION_RISK",
  "evidence": "os.system(f\"rm -f {ENZYGEN_PATH}/data/input.json\")",
  "note": "ENZYGEN_PATH e' costante interna, 'input.json' e' literal file name, nessun input utente."}
+```

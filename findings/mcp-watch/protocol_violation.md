@@ -3,6 +3,8 @@
 **Finding originali**: 381.429
 
 1. high
+
+```typescript
 private containsSessionIdInUrl(line: string): boolean {
     return (
       /(?:sessionId|session_id|sid)=/.test(line) &&
@@ -13,8 +15,11 @@ private containsSessionIdInUrl(line: string): boolean {
         line.includes("endpoint"))
     );
   }
+```
 
 2. high
+
+```typescript
 private containsInsecureTransport(line: string): boolean {
     return (
       line.includes("http://") &&
@@ -24,11 +29,16 @@ private containsInsecureTransport(line: string): boolean {
       !this.isExampleCredential(line)
     );
   }
+```
 
 **Finding dopo filtro**: 2.927
+
+| ID | Conteggio |
+|---|---:|
 | INSECURE_TRANSPORT | 2.775 |
 | SESSION_ID_IN_URL | 152 |
 
+```python
 # ═══════════════════════════════════════════════════════════════════════════
 #  CATEGORY 4: PROTOCOL-VIOLATION
 # ═══════════════════════════════════════════════════════════════════════════
@@ -241,10 +251,14 @@ def filter_protocol_violation_finding(finding: dict) -> tuple[bool, str]:
         return False, "no_real_session_leak"
 
     return False, "unknown_id"
+```
 
 **Veri positivi confermati dopo analisi LLM**: 79
 
 Ripartizione VP per tipo:
+
+| Tipo | VP |
+|---|---:|
 | INSECURE_TRANSPORT | 64 |
 | SESSION_ID_IN_URL | 15 |
 
@@ -252,21 +266,31 @@ Ripartizione finale: 79 VP + 2.848 FP = 2.927 (tutti classificati da regole HC d
 
 **Esempi di VP confermati (INSECURE_TRANSPORT):**
 
+```json
 {"server_name": "eechat", "file": "electron/main/updater.ts",
  "evidence": "{ name: '默认服务器', url: 'http://8.130.172.245/update/' }"}
+```
 
+```json
 {"server_name": "ai-agent-with-mcp", "file": "src/client.ts",
  "evidence": "const response = await fetch('http://3.238.149.189:8080/api/textract/analyze', {"}
+```
 
+```json
 {"server_name": "eechat", "file": "packages/rag/src/index.ts",
  "evidence": "const docs = await webloader('http://www.ee.chat')"}
+```
 
 **Esempi di VP confermati (SESSION_ID_IN_URL):**
 
+```json
 {"server_name": "pihole-mcp", "file": "main.py",
  "evidence": "response = requests.get(f\"{PIHOLE_BASE_URL}{endpoint}?sid={self.session_id}\")"}
+```
 
+```json
 {"server_name": "mcp-server-synology", "file": "src/filestation/synology_filestation.py",
  "evidence": "url = f\"{self.api_url}?api=SYNO.FileStation.Upload&version=2&method=upload&_sid={self.session_id}\""}
+```
 
 Nota: la categoria e' dominata da FP (~97%) perche' lo scanner match ogni `http://` che non sia localhost/127.0.0.1/example.com, includendo namespace XML, URL in package-lock.json, schemi SPARQL, stringhe di validazione (`startsWith("http://")`), commenti, ecc. Le regole HC filtrano questi casi in maniera deterministica.

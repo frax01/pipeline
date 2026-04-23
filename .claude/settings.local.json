@@ -58,7 +58,8 @@
       "WebFetch(domain:composio.dev)",
       "WebFetch(domain:snyk.io)",
       "WebFetch(domain:acuvity.ai)",
-      "WebFetch(domain:socket.dev)"
+      "WebFetch(domain:socket.dev)",
+      "Bash(claude plugin *)"
     ]
   }
 }

@@ -1,5 +1,12 @@
 # Pipeline - Security Analysis di MCP Servers
 
+## Context Navigation
+When you need to understand the codebase, docs, or any files in this project:
+1. ALWAYS query the knowledge graph first: `/graphify query "your question"`
+2. Only read raw files if I explicitly say "read the file" or "look at the raw file"
+3. Usa `/graphify-out/wiki/index.md` as your navigation entrypoint for browsing struc
+4. Read the below description to understand the project
+
 ## Cosa fa questo progetto
 
 Pipeline distribuita che analizza la sicurezza di **60.205 MCP server** (Model Context Protocol) raccolti da GitHub. L'analisi viene eseguita in parallelo su **9 VM remote** con **7 tool di analisi**. Ogni tool gira su tutte le 9 VM, ognuna processa il suo chunk di server.
@@ -10,20 +17,64 @@ Pipeline distribuita che analizza la sicurezza di **60.205 MCP server** (Model C
 - File Excel: `0.0. All servers without duplicates, .git, _, hash and ERRORE (60205).xlsx`
 - Contiene 60.205 URL di repository GitHub con implementazioni di MCP server
 
-### I 9 Tool di Analisi
+### I 7 Tool di Analisi
 
-| Tool | VM | IP | Directory | Script | Cosa analizza |
-|------|-----|------|-----------|--------|---------------|
-| **mcp-guard** | VM1 | 10.79.6.132 | `0_tool_mcp_guard/` | `run_guard.py` | Path traversal, command injection, fuzzing dinamico |
-| **mcp-watch** | VM2 | 10.79.6.133 | `0_tool_mcp_watch/` | `run_watch.py` | Credenziali hardcoded, ANSI injection, data exfiltration |
-| **fuzzing** | VM3 | 10.79.6.134 | `analysis/0_tool_fuzzing/` | `run_fuzzing.py` | Input malformati, crash, eccezioni runtime |
-| **mcp-scan** | VM4 | 10.79.6.136 | `0_tool_mcp_scan/` | `run_scan.py` | Prompt injection, tool shadowing, toxic flows (Snyk) |
-| **mcp-shield** | VM5 | 10.79.6.137 | `0_tool_mcp_shield/` | `run_shield.py` | Hidden instructions nelle tool description (analisi semantica con Claude API) |
-| **mcp-security-scan** | VM6 | 10.79.6.138 | `0_tool_mcp_security_scan/` | `run_security_scan.py` | Dangerous capabilities, rug pull, path traversal, remote access |
-| **mcp-check** | VM7 | 10.79.6.139 | `0_tool_mcp_check/` | `run_check.py` | Validazione compliance configurazione MCP |
+**Ogni tool gira su TUTTE le 9 VM.** Ogni VM processa un range diverso del file Excel (sharding per indice).
 
-### Sharding
-I 60.205 server sono divisi in chunk da ~6.689 ciascuno (CHUNK = 60205 // 9). Ogni VM processa il suo range.
+| Tool | Directory | Script | Cosa analizza |
+|------|-----------|--------|---------------|
+| **mcp-guard** | `0_tool_mcp_guard/` | `run_guard.py` | Path traversal, command injection, fuzzing dinamico |
+| **mcp-watch** | `0_tool_mcp_watch/` | `run_watch.py` | Credenziali hardcoded, ANSI injection, data exfiltration |
+| **fuzzing** | `tool_fuzzing/` | `run_fuzzing.py` | Input malformati, crash, eccezioni runtime |
+| **mcp-scan** | `0_tool_mcp_scan/` | `run_scan.py` | Prompt injection, tool shadowing, toxic flows (Snyk) |
+| **mcp-shield** | `0_tool_mcp_shield/` | `run_shield.py` | Hidden instructions nelle tool description (analisi semantica con Claude API) |
+| **mcp-security-scan** | `0_tool_mcp_security_scan/` | `run_security_scan.py` | Dangerous capabilities, rug pull, path traversal, remote access |
+| **mcp-check** | `0_tool_mcp_check/` | `run_check.py` | Validazione compliance configurazione MCP |
+
+### Sharding per VM
+
+CHUNK = 60205 // 9 = 6689. Ogni VM processa il suo range:
+
+| VM | IP | Range start | Range end | `--start` (prima run) | `--start` (resume) |
+|----|-----|-------------|-----------|----------------------|--------------------|
+| VM1 | 10.79.6.132 | 0 | 6689 | `--start 0` | `--start -1` |
+| VM2 | 10.79.6.133 | 6689 | 13378 | `--start 6689` | `--start -1` |
+| VM3 | 10.79.6.134 | 13378 | 20067 | `--start 13378` | `--start -1` |
+| VM4 | 10.79.6.136 | 20067 | 26756 | `--start 20067` | `--start -1` |
+| VM5 | 10.79.6.137 | 26756 | 33445 | `--start 26756` | `--start -1` |
+| VM6 | 10.79.6.138 | 33445 | 40134 | `--start 33445` | `--start -1` |
+| VM7 | 10.79.6.139 | 40134 | 46823 | `--start 40134` | `--start -1` |
+| VM8 | 10.79.6.141 | 46823 | 53512 | `--start 46823` | `--start -1` |
+| VM9 | 10.79.6.142 | 53512 | 60205 | `--start 53512` | `--start -1` |
+
+### Comandi lancio per tool (pattern per ogni VM)
+
+Sostituire `<RANGE_START>` e `<RANGE_END>` con i valori della tabella sopra.
+
+```bash
+# mcp-guard
+nohup python 0_tool_mcp_guard/run_guard.py --start <RANGE_START> --end <RANGE_END> > guard_output.log 2>&1 &
+
+# fuzzing
+nohup python tool_fuzzing/run_fuzzing.py --start <RANGE_START> --end <RANGE_END> > fuzzing_output.log 2>&1 &
+
+# mcp-watch
+nohup python 0_tool_mcp_watch/run_watch.py --start <RANGE_START> --end <RANGE_END> > watch_output.log 2>&1 &
+
+# mcp-scan
+nohup python 0_tool_mcp_scan/run_scan.py --start <RANGE_START> --end <RANGE_END> > scan_output.log 2>&1 &
+
+# mcp-shield
+nohup python 0_tool_mcp_shield/run_shield.py --start <RANGE_START> --end <RANGE_END> > shield_output.log 2>&1 &
+
+# mcp-security-scan
+nohup python 0_tool_mcp_security_scan/run_security_scan.py --start <RANGE_START> --end <RANGE_END> > security_scan_output.log 2>&1 &
+
+# mcp-check
+nohup python 0_tool_mcp_check/run_check.py --start <RANGE_START> --end <RANGE_END> > check_output.log 2>&1 &
+```
+
+Tutte le run richiedono `export PYTHONPATH=/home/tecnico/Desktop/Pipeline` e `source ~/pipeline-env/bin/activate`.
 
 ### VM Remote
 - User: `tecnico`
@@ -153,6 +204,9 @@ ssh tecnico@10.79.6.132 "ps aux --sort=-%mem | head -15"
 
 # Vedere RAM + processi di analisi attivi
 ssh tecnico@10.79.6.132 "free -h && echo '---' && ps aux | grep 'run_\|python\|node\|npx' | grep -v grep"
+
+# Per la memoria fisica
+sudo du -h --max-depth=2 /home/tecnico 2>/dev/null | sort -rh | head -20
 ```
 
 ### Liberare RAM senza killare i processi di analisi

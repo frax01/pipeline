@@ -73,6 +73,270 @@ Output della Stage 2A (tre file nella cartella `<categoria>/filtered/llm_analysi
 - `hc_fp.json` — finding con verdetto HC-FP
 - `uncertain.json` — finding che richiedono Stage 2B
 
+#### Stage 1 regex vs HC — cosa cambia
+
+Entrambi usano regex Python, ma scopi, forma e tolleranza all'errore sono diversi:
+
+| Aspetto | Stage 1 (filtro) | Stage 2A (HC) |
+|---------|------------------|---------------|
+| Scopo | tagliare rumore in massa | verdetto finale sui sopravvissuti |
+| Volume target | milioni → centinaia (99%+ taglio) | centinaia → VP/FP/UNCERTAIN |
+| Verdetto | binario (keep / discard) | ternario (HC-VP / HC-FP / UNCERTAIN) |
+| Errore tollerato | sì (può scartare qualche VP se il segnale/rumore migliora) | no, quasi zero — 1 errore → regola declassata |
+| Pattern | ampi, grossolani | stretti, dominio-specifici |
+| Segnali usati | 1-2 (es. evidence + file path) | triangolazione 3-4 (evidence + language + llm_risk + server) |
+| Fonte della regola | standard pubblici (API key format, honeypot list, file path convention) | **ispezione empirica** dei finding residui |
+| Google aiuta? | sì (pattern standard noti) | quasi mai — pattern emergono dai dati |
+
+#### Come nascono le regole HC
+
+**Non esistono a priori**. Emergono da un ciclo di lettura dei dati → clustering → codifica → verifica. Tre fonti possibili:
+
+1. **Standard documentato** (raro ma solido):
+   - Formato chiavi provider (OpenAI `sk-[A-Za-z0-9]{48,}`, AWS `AKIA[A-Z0-9]{16}`)
+   - Claim JWT noti (Supabase `role: "anon"` pubblico, `role: "service_role"` segreto)
+   - Regole derivate da spec pubbliche che non richiedono ispezione
+
+2. **Pattern empirico** (caso principale — ~80% delle regole):
+   - Nasce leggendo `uncertain.json` e raggruppando finding simili
+   - Es. `_TP_PYDANTIC_OVERRIDE`: ispezionando 7 UNCERTAIN di tool-poisoning si scopre che 6 sono campi Pydantic `overrides: List[...]` — non istruzioni di override ma dichiarazioni di schema. Si scrive regex che cattura quel contesto sintattico.
+
+3. **Triangolazione di segnali**:
+   - Combina campi del finding (evidence + llm_risk + path + server)
+   - Es. `llm_risk=HIGH` + trigger `<IMPORTANT>` + assenza di `<usecase>` → HC-VP; `llm_risk=HIGH` da solo produce FP
+
+#### Workflow operativo (step-by-step)
+
+Questo è il loop concreto per generare le regole HC. Ogni iterazione riduce UNCERTAIN e/o corregge errori.
+
+##### Step 0 — prerequisito: Stage 1 finito
+
+File `<cat>/filtered/<cat>_filtered.json` con N finding residui (es. credential-leak: 784).
+
+```json
+{
+  "category": "credential-leak",
+  "original_total": 646447,
+  "kept_total": 784,
+  "findings": [
+    {"server_name": "...", "evidence": "...", "file": "...", "id": "...", ...}
+  ]
+}
+```
+
+##### Step 1 — prima esecuzione con 0 regole HC
+
+Funzione `hc_rules_<cat>` iniziale:
+```python
+def hc_rules_credential_leak(f):
+    return "UNCERTAIN", "no_rule_matched"  # placeholder
+```
+
+Esegui:
+```bash
+py -X utf8 pipeline_mcp_watch.py --category credential-leak --hc-only
+```
+
+Output:
+- `hc_vp.json` → 0
+- `hc_fp.json` → 0
+- `uncertain.json` → **784 finding**
+
+##### Step 2 — campionamento di `uncertain.json`
+
+Non leggi tutti 784. Campione rappresentativo (30-50).
+
+```bash
+# Primi N
+jq '.findings[0:50]' uncertain.json > sample.json
+
+# Random sampling (meglio — evita bias di ordine)
+jq '.findings' uncertain.json | jq 'to_entries | map(.value) | .[0:50]'
+```
+
+Oppure in chat: *"Leggi `uncertain.json`, campiona 50 finding rappresentativi, elencali."*
+
+##### Step 3 — lettura 1-per-1 + tagging
+
+Per ogni finding del sample:
+1. Leggi `evidence`
+2. Guardi `file`, `server_name`, `id`, `language`
+3. Assegni verdetto mentale: VP / FP / DUBBIO
+4. Scrivi motivo breve
+
+Esempio concreto:
+```
+Finding 1:
+  evidence: "const API_KEY = 'sk-proj-abc123...48chars'"
+  file: src/client.js
+  → VP: OpenAI project key reale
+
+Finding 2:
+  evidence: "// const SECRET = 'hunter2'"
+  file: examples/old_client.js
+  → FP: commento
+
+Finding 3:
+  evidence: "SUPABASE_KEY = 'eyJhbG...role:anon...'"
+  → FP: anon key Supabase (pubblica by design)
+
+Finding 4:
+  evidence: "SUPABASE_KEY = 'eyJhbG...role:service_role...'"
+  file: .env
+  → VP: service_role key (segreta)
+
+Finding 5:
+  evidence: "const API_KEY = process.env.OPENAI_KEY"
+  → FP: lettura da env var (non hardcoded)
+```
+
+##### Step 4 — clustering per pattern
+
+Leggi i 50 tag e raggruppi in **pattern catturabili da regex o logica**. Produci una tabella:
+
+| Gruppo | Verdetto | Pattern sintattico |
+|--------|----------|-------------------|
+| JWT role=anon | FP | JWT decode + `payload.role == "anon"` |
+| JWT role=service_role | VP | JWT decode + `payload.role == "service_role"` |
+| Commento | FP | `evidence.lstrip().startswith(("//","#","*"))` |
+| Env var read | FP | `evidence.match(r"process\.env\.\w+")` |
+| Provider key OpenAI | VP | `evidence.match(r"sk-[A-Za-z0-9]{48,}")` |
+| Provider key AWS | VP | `evidence.match(r"AKIA[A-Z0-9]{16}")` |
+| File `.env` non sample | VP | `file.endswith(".env") and "sample" not in file` |
+| Honeypot server | FP | `server_name in _HONEYPOT_SET` |
+
+Alcuni gruppi sono **generalizzazioni** (1 finding → regola per 50 simili). Altri sono **uno-a-uno** (es. honeypot specifici).
+
+Questo step è il **design**.
+
+##### Step 5 — codifica delle regole HC
+
+Traduci la tabella di Step 4 in codice Python. Questo step è l'**implementazione** — mappatura 1:1 con la tabella.
+
+Ordine dei branch: più specifici prima (evita che una regola generica mangi casi che dovevano essere catturati da una regola più stretta).
+
+```python
+import re, json, base64
+
+# Pattern compilati una volta (compile-once, match-many)
+_COMMENT = re.compile(r'^\s*(#|//|\*|>>>|\.\.)\s')
+_OPENAI = re.compile(r'sk-[A-Za-z0-9]{48,}')
+_AWS_KEY = re.compile(r'AKIA[A-Z0-9]{16}')
+_ENV_READ = re.compile(r'process\.env\.\w+|os\.environ\[')
+
+_HONEYPOT = {"malicious_mcp", "vulnerable-notes-mcp", "IMCP"}
+
+def _decode_jwt_role(ev: str) -> str | None:
+    try:
+        m = re.search(r'eyJ[A-Za-z0-9_-]+\.([A-Za-z0-9_-]+)\.', ev)
+        if not m: return None
+        payload = m.group(1)
+        decoded = base64.urlsafe_b64decode(payload + "=" * (-len(payload) % 4))
+        return json.loads(decoded).get("role")
+    except Exception:
+        return None
+
+def hc_rules_credential_leak(f: dict) -> tuple[str, str]:
+    ev = f.get("evidence", "") or ""
+    file = f.get("file", "") or ""
+    server = f.get("server_name", "") or ""
+
+    # Check più specifici prima
+    if server in _HONEYPOT:
+        return "HC-FP", "honeypot_server"
+
+    if _COMMENT.match(ev):
+        return "HC-FP", "commented_code"
+
+    if _ENV_READ.search(ev):
+        return "HC-FP", "env_var_read_not_hardcoded"
+
+    role = _decode_jwt_role(ev)
+    if role == "anon":
+        return "HC-FP", "supabase_anon_public_key"
+    if role == "service_role":
+        return "HC-VP", "supabase_service_role_secret"
+
+    if _OPENAI.search(ev):
+        return "HC-VP", "openai_provider_key"
+    if _AWS_KEY.search(ev):
+        return "HC-VP", "aws_access_key"
+
+    if file.endswith(".env") and "sample" not in file and "example" not in file:
+        return "HC-VP", "real_env_file"
+
+    return "UNCERTAIN", "no_rule_matched"
+```
+
+##### Step 6 — ri-esecuzione e misura
+
+```bash
+py -X utf8 pipeline_mcp_watch.py --category credential-leak --hc-only
+```
+
+Conta risultati:
+```
+hc_vp.json:     547 (69.8%)
+hc_fp.json:     135 (17.2%)
+uncertain.json: 102 (13.0%)
+```
+
+UNCERTAIN sceso da 784 → 102.
+
+**Check di correttezza**: campiona 10-20 record da `hc_vp.json` e `hc_fp.json`. Se trovi anche **1 errore** (HC-VP che è in realtà FP, o viceversa), la regola è sbagliata. Due opzioni:
+
+1. **Raffinare** la regex per escludere il caso errato:
+   ```python
+   # sk- matcha anche "sk-XXXXX" placeholder di documentazione
+   _OPENAI_REAL = re.compile(r'sk-[A-Za-z0-9]{48,}')
+   _OPENAI_PLACEHOLDER = re.compile(r'sk-(XXX+|YOUR|AAAA+|test|demo|example)', re.I)
+
+   if _OPENAI_REAL.search(ev) and not _OPENAI_PLACEHOLDER.search(ev):
+       return "HC-VP", "openai_provider_key"
+   ```
+
+2. **Declassare** a UNCERTAIN (se la regola non è salvabile) — meglio un UNCERTAIN che un verdetto sbagliato.
+
+##### Step 7 — itera sui residui UNCERTAIN
+
+Prendi i 102 rimasti, ripeti Step 2-6:
+1. Leggili (più piccoli → spesso leggibili tutti)
+2. Raggruppa i pattern sfuggiti alla prima passata
+3. Aggiungi regole HC nuove
+4. Ri-esegui
+
+Iterazioni tipiche:
+- Iter 1: 784 → 102
+- Iter 2: 102 → 28
+- Iter 3: 28 → 5
+- Iter 4: 5 → 0 (o residuo irriducibile)
+
+##### Step 8 — stop criterion
+
+Fermi quando:
+1. **UNCERTAIN = 0** — regole coprono tutto il dataset
+2. **UNCERTAIN < 5% del totale** — residuo accettabile, passa a Stage 2B (Ollama o in-chat) per i pochi rimasti
+3. **Pattern irriducibile a regex** — finding che richiedono giudizio semantico (es. "questa tool description è injection?"), non più regex → Stage 2B
+
+##### Step 9 — validazione finale
+
+Prima di chiudere la categoria:
+1. Apri `hc_vp.json` → spot check 20 random → tutti davvero VP?
+2. Apri `hc_fp.json` → spot check 20 random → tutti davvero FP?
+3. Se errore: torna a Step 5, raffina.
+
+##### Strumenti pratici in chat
+
+Prompt tipici che accelerano il workflow con Sonnet:
+- *"Apri `uncertain.json`, campiona 30, elencali con file/evidence/id"*
+- *"Raggruppa per pattern ricorrente, proponi 5 regole HC candidate con stima di copertura"*
+- *"Per ogni regola dimmi quanti finding cattura e se c'è rischio di FP incrociato"*
+- *"Scrivi la funzione Python con regex compilate, ordine specifico-prima-generico"*
+- *"Ri-esegui --hc-only e riporta conteggi hc_vp / hc_fp / uncertain"*
+- *"Campiona 20 HC-VP per validazione, elenca finding con evidence"*
+
+Il loop è: **dati → lettura → ipotesi → codifica → verifica → raffino**.
+
 ### Stage 2B — Classificazione LLM
 
 **Questo è il punto più importante da capire.**

@@ -1,0 +1,5 @@
+Prima di continuare l'analisi rispndi a queste domande:
+
+1. ma hai fatto anche lo stage 1 con le regex prima del 2a e 2b?
+2. Inoltre mi hai creato dentro C:\Users\francesco\Desktop\pipeline\analysisAllData\0_tool_mcp_guard tantissime cartelle per tutte le vulnerabilità, ma non riesco a capire ora ciascuna di loro a quale categoria appartiene (static, fuzzing o protocol), come le distinguo? C'è un modo?
+3. Quanto manca più o meno per finire questa analisi?

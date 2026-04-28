@@ -1548,4 +1548,312 @@ Formato: `autore/repo|phase/category` — es. `"sukeesh/mcp-iot-go|tool_invocati
 - **tool_invocation/schema_violation**: tutti 4.860 VP — sono InitializationError con Zod validation del campo `tools` nella risposta `tools/list` — il server non è conforme alla specifica MCP
 - **tool_invocation/warnings**: tutti 878 FP — non-determinismo è atteso e corretto per tool con side effects (DB, API, timestamp, UUID)
 - **Encoding Windows**: usare sempre `py -X utf8`
+
+---
+
+## Post-processing mcp-guard: Stage 1 + Stage 2A/2B
+
+### Contesto
+
+mcp-guard analizza i server MCP con scanner **statici** (regex su codice), **fuzzing** (probe attivi con payload + analisi response) e **protocol** (violazioni protocollo MCP).
+
+Il workflow ha 3 stage uguali agli altri framework:
+
+```
+Stage 1  (filter_mcp_guard.py): regex/whitelist riduzione iniziale  → <cat>/filtered/<cat>_filtered.json
+Stage 2A (pipeline --hc-only):  HC rules dominio                    → hc_vp.json / hc_fp.json / uncertain.json
+Stage 2B (pipeline --merge):    Ollama o classificazione in-chat    → vp.json / fp.json / audit.json
+```
+
+**STATO ATTUALE (work in progress)**: Stage 1 originale era debole (solo SSRF aggressivo, resto pass-through). In corso refactor completo per:
+- **19 categorie totali** (split protocol da 1 → 4)
+- **Suffisso esplicito** `-static`/`-fuzzing`/`-protocol` su tutte le cartelle
+- **Filtro Stage 1 aggressivo** per categoria
+- Ordine refactor: dal più piccolo al più grande
+
+### Le 19 categorie mcp-guard (post-refactor)
+
+**STATIC (9):**
+| # | Categoria | Raw | File sorgente in `static/other/` |
+|---|-----------|-----|----------------------------------|
+| 1 | command-injection-static | 107 | `command-injection-—-string-concatenation-in-exec.command.json` + `command-injection-—-unsanitised-input-in-child_process.exec.json` |
+| 2 | code-injection-static | 318 | `code-injection-—-eval-with-dynamic-input.json` |
+| 3 | insecure-deserialization-static | 814 | `insecure-deserialization-—-pickle-usage.json` |
+| 4 | prompt-injection-static | 2.016 | `prompt-injection-—-suspicious-instructions-in-tool-description.json` |
+| 5 | dangerous-tool-handler-static | 3.991 | `dangerous-tool-handler-—-system-command-execution-without-visible-input-validation.json` |
+| 6 | path-traversal-static | 4.740 | `path-traversal-—-unsanitised-input-in-filepath.join.json` + `path-traversal-—-unsanitised-input-in-path-construction.json` |
+| 7 | sql-injection-static | 4.886 | `sql-injection-—-dynamic-query-construction.json` |
+| 8 | hardcoded-credential-static | 18.438 | `hardcoded-credential-—-secret-value-in-source-code.json` |
+| 9 | ssrf-static | 44.063 | `server-side-request-forgery-(ssrf)-—-user-input-in-http-request-url.json` |
+
+**FUZZING (6):**
+| # | Categoria | Raw | File sorgente |
+|---|-----------|-----|---------------|
+| 10 | code-injection-fuzzing | 538 | `fuzzing/other/code-injection-payload-was-executed-by-server.json` |
+| 11 | information-disclosure-fuzzing | 1.360 | `fuzzing/other/information-disclosure.json` |
+| 12 | command-injection-fuzzing | 1.743 | `fuzzing/other/command-injection-vulnerability.json` |
+| 13 | path-traversal-fuzzing | 2.183 | `fuzzing/other/path-traversal-vulnerability.json` |
+| 14 | command-execution-fuzzing | 2.375 | `fuzzing/other/command-execution-attempt-detected.json` |
+| 15 | sensitive-info-disclosed-fuzzing | 5.626 | `fuzzing/sensitive-information-disclosed/*.json` (13 file: api_key, passwd, password, private_key) |
+
+**PROTOCOL (4) — split da 1 categoria originale:**
+| # | Categoria | Raw | File sorgente in `protocol/other/` |
+|---|-----------|-----|------------------------------------|
+| 16 | protocol-information-disclosure | 13 | `information-disclosure.json` |
+| 17 | protocol-path-traversal | 14 | `path-traversal-vulnerability.json` |
+| 18 | protocol-missing-id | 79 | `server-accepts-requests-without-required-id-field.json` |
+| 19 | protocol-invalid-jsonrpc-version | 509 | `server-accepts-invalid-json-rpc-protocol-version.json` |
+
+**TOTALE RAW: 96.500+ findings**
+
+### Script principali
+
+```
+analysisAllData/0_tool_mcp_guard/
+├── filter_mcp_guard.py       ← Stage 1: filtraggio aggressivo per categoria
+├── pipeline_mcp_guard.py     ← Stage 2A (HC rules) + Stage 2B (Ollama/cache)
+└── <categoria-suffix>/
+    └── filtered/
+        ├── <categoria>_filtered.json   (output Stage 1)
+        └── llm_analysis/
+            ├── hc_vp.json / hc_fp.json / uncertain.json  (Stage 2A)
+            ├── _llm_api_cache.json                        (cache verdetti in-chat)
+            └── vp.json / fp.json / audit.json             (Stage 2B + merge)
+```
+
+### Comandi principali
+
+```bash
+# Stage 1: rigenera tutti i filtered.json (usa nuovi nomi cartella con suffisso)
+py -X utf8 filter_mcp_guard.py
+
+# Stage 2A only:
+py -X utf8 pipeline_mcp_guard.py --category <nome-suffix> --hc-only
+py -X utf8 pipeline_mcp_guard.py --category all --hc-only
+
+# Stage 2A + 2B + merge:
+py -X utf8 pipeline_mcp_guard.py --category <nome-suffix> --merge
+py -X utf8 pipeline_mcp_guard.py --category all --merge
+```
+
+### Strategia filtro Stage 1 per categoria
+
+#### Filtro globali (usati in più categorie)
+
+- **`is_honeypot(f)`**: scarta server noti come honeypot/security tool intenzionalmente vulnerabili (`malicious_mcp`, `vulnerable-notes-mcp`, `IMCP`, `vulnicheck`, `mcp-scanner`, `agent-security-scanner-mcp`, `bishnubista/vulnerable-notes-mcp`, `nav33n25/IMCP`, `AlchemicalChef/MCPServer`)
+- **`_TEST_FILE` regex robusta**: `(?:test[/\\]|spec[/\\]|\.test\.|\.spec\.|__tests__|fixture[/\\]|mock[/\\]|_test\.\w+$|_spec\.\w+$|\.test\.[jt]sx?$|\.spec\.[jt]sx?$)`. **IMPORTANTE**: la versione precedente NON catturava `_test.go`/`_test.py`/`_spec.rb` — ora corretta.
+- **Codice commentato**: scartare se snippet inizia con `#`, `//`, `*`, `>>>`, `--` (SQL comment).
+- **File minified/vendor**: `.min.js`, `vendor/`, `dist/`, `build/`, `node_modules/`.
+- **File esempio**: `.example.\w+`, `.sample.\w+`, `examples/`, `_example`, `_sample`.
+
+#### Per categoria (riassunto piani filtro Stage 1)
+
+**ssrf-static (44k → ~500)** — già OK, whitelist su user-input direct (`params.X`, `args.X`, `req.body.X`, `input.X`):
+- TENERE solo: `fetch(params.url)`, `axios.get(args.url)`, template literal `\${params.url}` come URL completo
+- SCARTARE: dominio hardcoded + path da utente (`fetch(\`https://api.X.com/\${args.id}\`)` su API SaaS noto), URL hardcoded, internal SDK methods
+- Migliorabile: estendere lista API SaaS hardcoded (firefly.ai, sketchfab.com, ecc.) per scartare di più
+
+**hardcoded-credential-static (18k → target ~3000)** — filtro DEBOLE corrente:
+- FIX `_HC_TEST` per matchare `_test.go`/`_test.py` (suffisso, non solo prefisso)
+- Aggiungere: linea commentata (`//`, `#`, `*` all'inizio dello snippet, anche con prefisso indent), `_example.go`, `_sample.py`, file `e2e/`/`tests_e2e/`, file `migration/`/`fixture/`/`seed/`, default dev secret (`DEFAULT_DEV_*`, `dev_*`, `local_*`)
+- VP prioritario: provider keys (sk-, ghp_, AKIA, AIza, xoxb-, mongodb URI, postgres URI con creds, BEGIN PRIVATE KEY)
+
+**sql-injection-static (4886 → target ~1000)**:
+- Triple-quote SENZA `{` (hardcoded SQL multi-line) → FP
+- `safe_*`, `validated_*`, `escaped_*`, `quoted_*` prefix → FP
+- Query con tuple/list args (`execute(sql, (params,))`, `execute(sql, [args])`) → FP
+- ORM `session.exec(select(...))`, `clickhouse.exec({...})` → FP
+- `cursor.execute(...)` con regex `/regex/.exec(str)` JS (false match) → FP
+- VP: `f"... {var}"` con var non prefissata `safe_`, concat `+`, `%` formatting con utente
+
+**dangerous-tool-handler-static (3991 → target ~1500)** — solo function signatures:
+- Scartare se nome funzione contiene `_demo`, `demo_`, `_test`, `lambda_handler`, `health_check`, `_safe_`
+- Scartare se `def execute_safe_*`, `_safe_command`
+- Scartare async LLM exec (`run_inference`, `eval_model`)
+- Scartare se file in `examples/`, `demo/`
+- VP: `def execute_curl`, `_run_command`, `execute_remote`, `kubectl_command`, `ssh_exec`
+
+**path-traversal-static (4740 → target ~1500)**:
+- `path.join(__dirname, ...)`, `path.join(process.cwd(), ...)` con path hardcoded → FP
+- `filepath.Join(rootDir, "config")` hardcoded → FP
+- `os.path.join(BASE_DIR, ...)` con costanti → FP
+- VP: `path.join(req.body.path, ...)`, `os.path.join(args.path, file)`, spread `path.join(...args.paths)`
+
+**prompt-injection-static (2016 → target ~1500)** — overlap con mcp-shield:
+- Pattern già coperti da mcp-shield → marcare ma non scartare (HC decide)
+- Filtrare se file `README.md`, `CHANGELOG.md`, `docs/`
+- Scartare description con solo struttura (`<usecase>...</usecase>`)
+- Mantenere `<IMPORTANT>`, `<system>`, `<instructions>` no usecase
+
+**insecure-deserialization-static (814 → target ~400)**:
+- `pickle.load(open(file, 'rb'))` con `file` hardcoded → FP
+- `pickle.load(io.BytesIO(...))` su buffer interno → FP (se input non da utente)
+- `pickle.loads(args.data)` / `params.payload` → VP
+- `joblib.load("model.pkl")` con path hardcoded → FP
+- File commentato → FP
+
+**code-injection-static (318 → target ~150)**:
+- `eval('static_string')` → FP
+- `eval(JSON.stringify(...))` → FP (è solo serializzazione)
+- `eval` in `.min.js`/vendor → FP
+- `eval(`...${var}`)` con var non self → VP
+- Engine eval troncato (`engine.eval(`) → FP no arg
+
+**command-injection-static (107 → target ~80)** — già piccolo, solo honeypot
+
+**Fuzzing categories** — NESSUN filtro Stage 1 finora (response-based, va in HC):
+- Migliorabili: scartare risposta vuota, errore "Invalid argument" generico, errore protocol-level (no payload echo)
+
+**sensitive-info-disclosed-fuzzing (5626 → target ~800)**:
+- Estendere `_SID_DOC_RESPONSE` con: `requires.*API key`, `please configure`, `not configured`, `Failed to load`, `# Markdown title`, `> blockquote`, `Error: ENOENT`, `Error: spawn.*ENOENT`
+- VP: response contiene `BEGIN.*PRIVATE KEY`, `sk-[A-Za-z0-9]{20,}`, `AKIA[A-Z0-9]{16}`, `mongodb://user:pwd@`, `postgres://user:pwd@`
+- Se response è JSON con campo `error` + `not set/required/missing` → FP
+
+**Protocol categories**:
+- protocol-invalid-jsonrpc-version (509 → ~509): tutti VP atteso (server non valida `jsonrpc: "2.0"`)
+- protocol-missing-id (79 → ~79): tutti VP atteso (server accetta richiesta senza `id`)
+- protocol-information-disclosure (13 → ~13): casi specifici, manuali
+- protocol-path-traversal (14 → ~14): casi specifici, manuali
+
+### Stato finale Stage 1 + 2A POST-REFACTOR (2026-04-28)
+
+**Stage 1 (filter_mcp_guard.py): 96.500 → 28.535 (-70.4%)**
+
+| Categoria | Raw | Filt | Riduzione |
+|-----------|-----|------|-----------|
+| ssrf-static | 44.063 | 832 | -98.1% |
+| hardcoded-credential-static | 18.438 | 5.277 | -71.4% |
+| sensitive-info-disclosed-fuzzing | 5.626 | 3.120 | -44.5% |
+| sql-injection-static | 4.886 | 2.706 | -44.6% |
+| path-traversal-static | 4.740 | 3.704 | -21.9% |
+| dangerous-tool-handler-static | 3.991 | 2.968 | -25.6% |
+| command-execution-fuzzing | 2.375 | 2.375 | 0% (HC-driven) |
+| path-traversal-fuzzing | 2.183 | 2.182 | 0% (HC-driven) |
+| prompt-injection-static | 2.016 | 436 | **-78.4%** |
+| command-injection-fuzzing | 1.743 | 1.743 | 0% (HC-driven) |
+| information-disclosure-fuzzing | 1.360 | 1.360 | 0% (HC-driven) |
+| insecure-deserialization-static | 814 | 591 | -27.4% |
+| code-injection-fuzzing | 538 | 538 | 0% (HC-driven) |
+| protocol-invalid-jsonrpc-version | 509 | 509 | 0% |
+| code-injection-static | 318 | 241 | -24.2% |
+| command-injection-static | 107 | 58 | -45.8% |
+| protocol-missing-id | 79 | 79 | 0% |
+| protocol-path-traversal | 14 | 1 | **-92.9%** |
+| protocol-information-disclosure | 13 | 13 | 0% |
+| **TOTALE** | **96.500** | **28.535** | **-70.4%** |
+
+**Stage 2A (HC rules su input filtrato) — DOPO REFINEMENT (2026-04-28):**
+
+| Categoria | Filt | HC-VP | HC-FP | UNCERTAIN | UNC% |
+|-----------|------|-------|-------|-----------|------|
+| ssrf-static | 832 | 717 | 61 | 54 | 6.5% |
+| hardcoded-credential-static | 5.277 | 778 | 3.536 | **963** | 18.2% |
+| sql-injection-static | 2.706 | 2.381 | 113 | 212 | 7.8% |
+| dangerous-tool-handler-static | 2.968 | 986 | 1.409 | **573** | 19.3% |
+| path-traversal-static | 3.704 | 59 | 2.922 | **723** | 19.5% |
+| prompt-injection-static | 436 | 114 | 247 | 75 | 17.2% |
+| insecure-deserialization-static | 591 | 31 | 391 | 169 | 28.6% |
+| code-injection-static | 241 | 184 | 34 | 23 | 9.5% |
+| command-injection-static | 58 | 40 | 1 | 17 | 29.3% |
+| command-injection-fuzzing | 1.743 | 431 | 1.312 | 0 | 0% ✓ |
+| path-traversal-fuzzing | 2.182 | 1.218 | 702 | 262 | 12.0% |
+| command-execution-fuzzing | 2.375 | 623 | 1.713 | 39 | 1.6% |
+| code-injection-fuzzing | 538 | 202 | 286 | 50 | 9.3% |
+| information-disclosure-fuzzing | 1.360 | 792 | 446 | 122 | 9.0% |
+| sensitive-info-disclosed-fuzzing | 3.120 | 277 | 1.949 | **894** | 28.7% |
+| protocol-information-disclosure | 13 | 4 | 9 | 0 | 0% ✓ |
+| protocol-path-traversal | 1 | 1 | 0 | 0 | 0% ✓ |
+| protocol-missing-id | 79 | 0 | 72 | 7 | 8.9% |
+| protocol-invalid-jsonrpc-version | 509 | 3 | 446 | 60 | 11.8% |
+| **TOTALE** | **28.535** | **8.841** | **15.649** | **4.243** | **14.9%** |
+
+**Riduzione UNC da round refinement: 8.853 → 4.243 (-52%)**
+
+**HC rules aggiunte in pipeline_mcp_guard.py:**
+- `hardcoded-credential-static`: i18n locale, curly placeholder, env prefix, ellipsis, debug log, string compare, replace comment, varname-as-value loose, no-auth literal, title case placeholder, URL value, file path, type description, UI prompt, function call, str concat var, provider placeholder, dict pwd, function default test, env var error msg, route path, Pydantic example, string parse, example var, imperative placeholder. VP markers: hex hash, prefixed random, long mixed-case, Gmail app pwd, Google OAuth, real password.
+- `sensitive-info-disclosed-fuzzing`: API rejection, markdown doc, i18n error, payload-as-label, shell ENOENT, system instruction text. VP: key material leak.
+- `path-traversal-static`: f-string with suffix, f-string prefix, random/uuid filename, safe_/sanitized prefix, parsed var, glob ext, timestamp broader, config var, dict id, internal loop var.
+- `dangerous-tool-handler-static`: offensive file context (kali/nmap/metasploit), cmd param signature, ssh hostname+command. FP: MCP dispatcher, hook result.
+- `path-traversal-fuzzing`: payload echo broader (Portainer, plantuml, currentProject, search, EEXIST), LLM explain, search results, non-traversal error.
+- `insecure-deserialization-static`: internal var (cache/index/embeddings), cache file path, OAuth token, scanner own. VP: subprocess output.
+
+**Categorie con UNCERTAIN alto (priorità raffinamento HC):**
+1. hardcoded-credential-static: 3.852 UNC — HC rules deboli, serve estendere whitelist FP
+2. sensitive-info-disclosed-fuzzing: 1.280 UNC — pattern documentation/error mancanti
+3. path-traversal-static: 1.178 UNC — HC distinguibile VP/FP da user input keyword
+4. dangerous-tool-handler-static: 721 UNC — function signature reading needed
+5. path-traversal-fuzzing: 532 UNC — response patterns "echo only" da espandere
+6. insecure-deserialization-static: 531 UNC — pickle.loads patterns da raffinare
+
+### Cartelle finali (rinominate con suffisso)
+
+Dopo `python -X utf8 filter_mcp_guard.py` esistono queste 19 cartelle:
+```
+ssrf-static/             hardcoded-credential-static/   sql-injection-static/
+dangerous-tool-handler-static/  path-traversal-static/  prompt-injection-static/
+insecure-deserialization-static/  code-injection-static/  command-injection-static/
+command-injection-fuzzing/  path-traversal-fuzzing/  command-execution-fuzzing/
+code-injection-fuzzing/  information-disclosure-fuzzing/  sensitive-info-disclosed-fuzzing/
+protocol-information-disclosure/  protocol-path-traversal/
+protocol-missing-id/  protocol-invalid-jsonrpc-version/
+```
+
+Ogni cartella contiene:
+- `filtered/<safe>_filtered.json` — output Stage 1
+- `filtered/llm_analysis/` — output Stage 2A:
+  - `hc_vp.json`, `hc_fp.json`, `uncertain.json` — bucket Stage 2A
+  - `_llm_api_cache.json` — cache verdetti in-chat
+  - `vp.json`, `fp.json`, `audit.json` — DA generare con `--merge` (Stage 2B)
+
+### TODO RIMANENTI (ordine priorità)
+
+1. **Raffinare HC rules su 6 categorie con UNCERTAIN alto** in `pipeline_mcp_guard.py`:
+   - hardcoded-credential-static (3852 UNC) — top priority
+   - sensitive-info-disclosed-fuzzing (1280 UNC)
+   - path-traversal-static (1178 UNC)
+   - dangerous-tool-handler-static (721 UNC)
+   - path-traversal-fuzzing (532 UNC)
+   - insecure-deserialization-static (531 UNC)
+
+2. **Stage 2B Ollama o classificazione in-chat** sui residui UNCERTAIN
+
+3. **Merge finale** `--merge` per generare `vp.json`/`fp.json`/`audit.json` per tutte 19 categorie
+
+4. **Aggiornare questa sezione CLAUDE.md** con statistiche finali VP/FP per categoria post-merge
+
+### Nomenclatura cartelle (post-refactor)
+
+Tutte le 19 cartelle hanno suffisso esplicito:
+- `code-injection-static/`, `command-injection-static/`, `dangerous-tool-handler-static/`, ...
+- `code-injection-fuzzing/`, `command-injection-fuzzing/`, `path-traversal-fuzzing/`, ...
+- `protocol-information-disclosure/`, `protocol-invalid-jsonrpc-version/`, ...
+
+### Come riprendere l'analisi (account separato)
+
+1. Leggere questa sezione di CLAUDE.md per il contesto completo
+2. Verificare quali categorie sono state già refactorizzate guardando le cartelle con suffisso `-static`/`-fuzzing`/`-protocol` (le vecchie senza suffisso devono essere rimosse)
+3. Eseguire `py -X utf8 filter_mcp_guard.py` per rigenerare tutti i filtered.json
+4. Per ogni categoria non ancora classificata:
+   ```bash
+   py -X utf8 pipeline_mcp_guard.py --category <cat-suffix> --hc-only
+   ```
+5. Esaminare `<cat>/filtered/llm_analysis/uncertain.json` e raffinare le HC rules in `pipeline_mcp_guard.py` (funzione `hc_rules_<cat>`)
+6. Quando UNCERTAIN è basso (<5%), eseguire `--merge` per produrre vp/fp/audit
+
+### Note tecniche mcp-guard
+
+- **Static finding schema**: `file`, `description` con prefisso `"Code: <snippet>"`, `server_url`, `server_name`
+- **Fuzzing finding schema**: `payload` (JSON-RPC request), `response` (server response come `str(dict)`)
+- **Protocol finding schema**: simile a fuzzing, con check su risposta JSON-RPC
+- **Response encoding bug**: `response` è `str(dict)` quindi `\n` diventa `\\n` (due chars) — i pattern regex devono usare `\\n` esplicito o evitare ancore newline
+- **F-string triple quote**: `f"""..."""` — pattern `f[\"']` matcha solo prima `"` — usare `f[\"']{1,3}` per supportare triple
+- **Honeypot**: lista globale `_HONEYPOT` in `filter_mcp_guard.py` e `pipeline_mcp_guard.py` — sempre FP
+- **Encoding Windows**: usare sempre `py -X utf8`
+- **Cache HC**: ogni categoria ha la sua `_llm_api_cache.json` in `filtered/llm_analysis/` — riutilizzata da Stage 2B per evitare richiamare Ollama
+- **Suffisso cartella**: post-refactor, tutte le cartelle DEVONO avere `-static`/`-fuzzing`/`-protocol` per chiarezza tipologia
+- **CATEGORIES list nel pipeline**: in `pipeline_mcp_guard.py` la lista `CATEGORIES` deve usare i nuovi nomi con suffisso (es. `ssrf-static`, non `ssrf`); `HC_RULES` dict mappa nome→funzione `hc_rules_*` (le funzioni interne mantengono nomi vecchi senza suffisso, es. `hc_rules_ssrf`)
+- **Stage 1 filter pattern globali**: `_TEST_FILE` (catturare anche `_test.go`/`_test.py`/`_spec.rb`), `_VENDOR_FILE` (`.min.js`, `node_modules/`, `vendor/`, `dist/`, `build/`, `site-packages/`), `_SCANNER_OWN` (file di scanner/SAST propri), `_COMMENTED` (linea che inizia con `#`/`//`/`*`/`--`)
+- **HC fuzzing pattern**: i fuzzing finding hanno `payload` (richiesta JSON-RPC) e `response` (risposta server). Il `response` è `str(dict)` quindi `\n` letterale è `\\n` (due chars). Pattern regex devono usare `\\n` esplicito
+- **F-string triple quote**: `f"""..."""` → pattern `f[\"']` matcha SOLO `f"` (primo char). Per supportare triple-quote: `f[\"']{1,3}`
+- **Bare call truncated**: snippet che termina con `(execute|run|query|exec)\s*\(\s*$` = arg non visibile, lascia HC decidere o filtra come FP debole
 - **Stage 1 già applicato**: non ri-eseguire `filter_mcp_check.py` — i file `*_filtered.json` sono già l'input

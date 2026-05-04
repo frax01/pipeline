@@ -2045,13 +2045,15 @@ tool_fuzzing fa **runtime fuzzing** dei server MCP (non SAST come mcp-guard/mcp-
 
 | # | Categoria | Source files | Filt entries | VP | FP |
 |---|-----------|--------------|-------------:|---:|---:|
-| 1 | server-error-fuzzing | exceptions/Server_returned_error.json | 10.944 | 302 | 10.642 |
-| 2 | transport-failure-fuzzing | 3 file Failed_*/No_response (merged) | 3.385 | 303 | 3.082 |
+| 1 | server-error-fuzzing | exceptions/Server_returned_error.json | 10.944 | 0 | 10.944 |
+| 2 | transport-failure-fuzzing | 3 file Failed_*/No_response (merged) | 3.385 | 0 | 3.385 |
 | 3 | server-crash-fuzzing | 'int'_object_has_no_attribute | 1 | 1 | 0 |
 | 4 | protocol-fuzzing | 17 file protocol/* (merged) | 3.511 | 1.562 | 1.949 |
-| **TOTALE** | | | **17.841** | **2.168** | **15.673** |
+| **TOTALE** | | | **17.841** | **1.563** | **16.278** |
 
-**Pipeline**: 118.756 raw → 17.841 filtered → 2.168 VP / 15.673 FP / 0 UNC.
+**Pipeline**: 118.756 raw → 17.841 filtered → 1.563 VP / 16.278 FP / 0 UNC.
+
+**Spot-check ha rivelato bug HC critici** (server-error e transport): regole rimosse perché confondevano "fuzz random rejection" con "DoS". **Stima VP reali: ~530-730** (signal weak per protocol-fuzzing, success_details vuoto).
 
 ### Comandi
 
@@ -2104,7 +2106,51 @@ Vedere `analysisAllData/0_tool_fuzzing/ANALYSIS_GUIDE.md` per dettagli completi.
 | mcp-shield | 16 | ~5.031 | |
 | mcp-security-scan | 1.094 | ~301 | |
 | mcp-check | 9.453 | ~1.648 | |
-| **tool_fuzzing** | **2.168** | **15.673** | |
-| **TOTALE** | **23.153** | | |
+| **tool_fuzzing** | **1.563** | **16.278** | ~530-730 reali (post fix HC) |
+| **TOTALE** | **22.548** | | |
 
 Tutti 7 tool finiti. Pronto per cross-framework consensus analysis.
+
+---
+
+## Cross-framework consensus COMPLETATO ✅
+
+**Data: 2026-04-29**
+
+Aggregazione VP da 7 framework su 64 vp.json files = **22.548 VP / 9.108 server unici**.
+
+### Tier distribution
+
+| Tier | # Server | Criterio | Confidenza |
+|------|---------:|----------|------------|
+| **Tier 1** | **29** | 4+ framework concordano | super-alta (FP ~0%) |
+| Tier 2 | 2.052 | 2-3 framework | alta |
+| Tier 3 | 7.027 | 1 solo framework | da verificare |
+
+### Top 5 Tier 1 servers
+
+1. **coladapo/purmemo-mcp** — 5 framework, 8 VPs (unico con 5!)
+2. **Shreesha4994/sap-btp-cf-mcp-server** — 4 framework, 34 VPs (top per VP count)
+3. **nickgnd/tmux-mcp** — 4 framework, 23 VPs
+4. **SandraK82/wisdom-mcp** — 4 framework, 22 VPs
+5. **Anansitrading/sprite-mcp-server** — 4 framework, 18 VPs
+
+### Output
+
+- `analysisAllData/cross_framework_consensus_vp.json` — 9.108 server con tier + framework breakdown
+- `analysisAllData/top_50_vulnerable_servers.json` — top 50 ranking
+- `analysisAllData/cross_framework_stats.json` — stats aggregate
+- `analysisAllData/cross_framework_consensus.py` — script aggregator
+- `analysisAllData/CROSS_FRAMEWORK_REPORT.md` — report completo
+
+### Comandi
+
+```bash
+cd /c/Users/francesco/Desktop/pipeline/analysisAllData/
+python -X utf8 cross_framework_consensus.py
+```
+
+### Schema diversi handled
+
+- `findings` (most) e `entries` (mcp-check) supportati
+- `server_url` (most) e `github_url` (mcp-watch) supportati

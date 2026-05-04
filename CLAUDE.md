@@ -2030,3 +2030,81 @@ Compensa limite SAST regex-only di mcp-guard (FP rate ~25% sui statici).
 ### File di handoff per nuovo account
 
 Vedere `analysisAllData/HANDOFF_FUZZING.md` per template completo di passaggio sessione.
+
+---
+
+## Post-processing tool_fuzzing: Stage 1 + Stage 2A/2B (settimo tool)
+
+### Contesto
+
+tool_fuzzing fa **runtime fuzzing** dei server MCP (non SAST come mcp-guard/mcp-watch). Invia input fuzzati ai tool MCP e probe del protocol JSON-RPC, raccoglie statistiche di failure.
+
+**Schema finding diverso**: NO response body, solo input + counters di success/failure.
+
+### 4 categorie output
+
+| # | Categoria | Source files | Filt entries | VP | FP |
+|---|-----------|--------------|-------------:|---:|---:|
+| 1 | server-error-fuzzing | exceptions/Server_returned_error.json | 10.944 | 302 | 10.642 |
+| 2 | transport-failure-fuzzing | 3 file Failed_*/No_response (merged) | 3.385 | 303 | 3.082 |
+| 3 | server-crash-fuzzing | 'int'_object_has_no_attribute | 1 | 1 | 0 |
+| 4 | protocol-fuzzing | 17 file protocol/* (merged) | 3.511 | 1.562 | 1.949 |
+| **TOTALE** | | | **17.841** | **2.168** | **15.673** |
+
+**Pipeline**: 118.756 raw → 17.841 filtered → 2.168 VP / 15.673 FP / 0 UNC.
+
+### Comandi
+
+```bash
+cd /c/Users/francesco/Desktop/pipeline/analysisAllData/0_tool_fuzzing/
+python -X utf8 filter_fuzzing.py
+python -X utf8 pipeline_fuzzing.py --category all --hc-only
+python -X utf8 _classify_protocol.py
+python -X utf8 pipeline_fuzzing.py --category all --cache-only
+```
+
+### HC rules security-first
+
+**server-error-fuzzing**: VP solo se input malicious accettato come `inputs_successful` o dangerous tool con 100% failure (DoS). Default FP (resilience issue ≠ security).
+
+**transport-failure-fuzzing**: VP solo se "Failed to send" + 100% failure (server crash). Default FP (transport noise).
+
+**server-crash-fuzzing**: 1 VP fissa (Python AttributeError = bug runtime).
+
+**protocol-fuzzing**: VP se protocol security-relevant (`GenericJSONRPCRequest`, `InitializeRequest`, `ReadResourceRequest`, `CreateMessageRequest`) + server processa request malformata. FP per notification + informational protocol.
+
+### Limiti tool_fuzzing
+
+Schema povero per security: NO response body. Detection limitata a:
+- DoS (tool/server crashed)
+- Protocol violation (server accept malformed)
+- Python crash (rare)
+
+NON utile per: SAST findings, hidden instructions, hardcoded creds, injection vulns.
+
+### Bug noto fix applicato
+
+Regex `_SE_EXTERNAL_SERVER` matchava `github` in URL `https://github.com/...` → tutti i server flag esterni. Fix: applicare a `server_name`, NON `server_url`.
+
+### Documentazione
+
+Vedere `analysisAllData/0_tool_fuzzing/ANALYSIS_GUIDE.md` per dettagli completi.
+
+---
+
+## STATO FINALE 7 TOOL — Pipeline completata ✅
+
+**Data: 2026-04-29**
+
+| Tool | VP raw | FP | Note |
+|------|-------:|---:|------|
+| mcp-guard | 8.952 | 19.781 | ~7.440 reali post FP correction |
+| mcp-watch | 835 | ~6.156 | |
+| mcp-scan | 635 | ~44 | |
+| mcp-shield | 16 | ~5.031 | |
+| mcp-security-scan | 1.094 | ~301 | |
+| mcp-check | 9.453 | ~1.648 | |
+| **tool_fuzzing** | **2.168** | **15.673** | |
+| **TOTALE** | **23.153** | | |
+
+Tutti 7 tool finiti. Pronto per cross-framework consensus analysis.

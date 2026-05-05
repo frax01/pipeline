@@ -1,3 +1,3 @@
-1. chiedere a claude di fare analisi mcp-guard (prima cambiare nome cartella su vm1, fare pull e merge)
-2. far partire mcp-fuzzing
-3. chiedere a claude di wrappare tutti i vp nel finding per creare un md di recap per il prof
+1. Ricontrollare tutti i finding per vedere vp e fp, siamo sicuri che siano tutti vp quelli che ho trovato? Non c'è un modo per ricontrollare ulteriormente ed essere molto stringenti nell'analisi? Mi sembra che ci siano forse troppi vp o che alcune volte questi vp siano un pò lasciati al caso
+2. La spiegazione per ogni framework per come trova la vulnerabilità deve venire proprio dal codice sorgente del framework e poi voglio che ci sia scritto anche come poi io ho filtrato e modificato quelle regole con i vari file di pipeline.py e filter.py. Fammi questo step in modo che sia molto chiaro, preciso e ordinato
+3. Bisogna semplificare un pò quello che c'è scritto, perchè alcune cose non si capiscono bene o sono troppo dettagliate, cerca di essere più ordinato e in un italiano scritto meglio

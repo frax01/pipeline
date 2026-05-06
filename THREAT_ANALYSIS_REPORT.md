@@ -109,6 +109,84 @@ def hc_rules_sql_injection(f):
 - **mcp-scan (Snyk)**: i finding sono già pre-ragionati da LLM interno (campi `risk_score`, `evidence`, `reason`). Niente Stage 1 né Stage 2A → si va direttamente a Stage 2B (cache in-chat).
 - **mcp-guard / probe attivi protocol**: i probe producono dataset già pulito (502 finding). Stage 1 fa solo il filtro honeypot.
 
+### Come vengono generate le regole
+
+Le regole **non esistono a priori**. Emergono da un loop iterativo di lettura → clustering → codifica → verifica. Stage 1 e Stage 2A hanno processi diversi.
+
+#### Generazione regole Stage 1 (filter_*.py)
+
+Le regole Stage 1 nascono da **fonti pubbliche e convenzioni standard** + ispezione di un sample del dataset raw.
+
+**Fonti tipiche delle regole Stage 1**:
+1. **Standard pubblici di formato**: liste di provider key documentati pubblicamente (OpenAI `sk-[A-Za-z0-9]{20,}`, GitHub `ghp_[A-Za-z0-9]{36}`, AWS `AKIA[A-Z0-9]{16}`). Si copiano dalle docs del provider.
+2. **Convenzioni di file system**: directory di test (`test/`, `__tests__`, `_test.go`), bundle minificati (`*.min.js`, `node_modules`), file di documentazione (`README.md`, `docs/`). Convenzioni di linguaggio note.
+3. **Honeypot list condivisa**: server intenzionalmente vulnerabili noti (`malicious_mcp`, `vulnerable-notes-mcp`, `vulnicheck`, ecc.) — lista costruita iterativamente accumulando server che producono pattern troppo ovvi.
+4. **Sample manuale del raw output**: si aprono 50-100 finding raw del framework, si raggruppano per pattern visivamente, si codifica un keep/discard set.
+
+**Workflow operativo**:
+```
+1. Leggere ~50 finding raw casuali del framework
+2. Identificare pattern di rumore ovvi (test files, comments, placeholder)
+3. Scrivere regex `_TEST_FILE`, `_VENDOR_FILE`, `_COMMENTED`, `_PLACEHOLDER` ecc.
+4. Eseguire keep_<categoria>() su tutto il raw
+5. Verificare: residuo < ~5% del raw? Se no, aggiungere altre regex di scarto
+6. Commit
+```
+
+**Esempio reale** (SSRF mcp-guard): raw 44.063 finding. Visione del sample: 90% sono `fetch("https://api.openai.com/...")` con path da utente — non SSRF reale (URL hardcoded). Aggiunta regola `_SSRF_KNOWN_API` con lista SaaS noti (api.*.com/io/net, googleapis.com, openai.com, anthropic.com). Riduzione 44k → 832.
+
+#### Generazione regole Stage 2A (pipeline_*.py)
+
+Le regole Stage 2A nascono da **ispezione empirica dei finding residui dopo Stage 1**. Non c'è uno standard pubblico — emergono leggendo i dati.
+
+**Fonti delle regole Stage 2A**:
+1. **Pattern empirico** (~80% delle regole): si legge `<categoria>_filtered.json`, si raggruppano i finding simili, si codifica una regex che catturi quel cluster.
+2. **Triangolazione di segnali**: combinare campi del finding (evidence + file path + language + `llm_risk` + nome server) per distinguere casi che il singolo segnale non separa.
+3. **Standard di linguaggio**: distinzione `self.x` (stato istanza, FP) vs `x` generico (potenzialmente user-controlled, VP) — convenzione Python/JS nota.
+
+**Workflow operativo**:
+```
+1. Eseguire pipeline_*.py --hc-only (genera hc_vp.json, hc_fp.json, uncertain.json)
+2. Aprire uncertain.json, leggere 30-50 finding
+3. Clustering: raggruppare per pattern (es. "tutti hanno `pickle.loads(self.cache)`")
+4. Codificare regola HC che catturi il cluster (HC-FP o HC-VP)
+5. Ri-eseguire --hc-only, controllare:
+   - UNCERTAIN diminuito?
+   - HC-VP/HC-FP coerenti col cluster atteso?
+   - Spot-check 5 nuovi HC-VP + 5 nuovi HC-FP — sono corretti?
+6. Se 1 errore su 10 spot-check: regola troppo ampia, restringere
+7. Iterare finché UNCERTAIN < ~10% del filtered
+```
+
+**Esempio reale** (tool-poisoning mcp-watch): 7 finding UNCERTAIN. Lettura: 6 sono campi Pydantic `overrides: List[...]` o `admins: Optional[List[...]]` — non istruzioni di override ma dichiarazioni di schema. Codifica regola:
+```python
+_TP_PYDANTIC_OVERRIDE = re.compile(r'^\s*(overrides|admins)\s*:\s*(Optional\[)?List\[')
+
+def hc_rules_tool_poisoning(f):
+    if _TP_PYDANTIC_OVERRIDE.search(f["evidence"]):
+        return "HC-FP", "pydantic_field_overrides_or_admins"
+    ...
+```
+Risultato: 6/7 UNCERTAIN risolti come HC-FP. Spot-check conferma → regola accettata.
+
+**Esempio di triangolazione** (hidden-instructions mcp-shield):
+- Tag `<IMPORTANT>` da solo: ambiguo (potrebbe essere AWS SDK doc legittima)
+- `<IMPORTANT>` UPPERCASE + nessun `<usecase>` accoppiato + `llm_risk=HIGH` da shield: VP forte (caso math-mcp-server)
+- `<important>` lowercase + `<p>` HTML adiacente: FP (AWS SDK doc)
+
+La triangolazione di 3 segnali (case sensitivity + struttura tag accoppiati + verdict LLM esterno) trasforma una regola ambigua in regola affidabile.
+
+#### Differenza chiave nella genesi
+
+| Aspetto | Stage 1 | Stage 2A |
+|---------|---------|----------|
+| **Punto di partenza** | sample raw + standard pubblici | `uncertain.json` post Stage 1 |
+| **Iterazione** | poche iterazioni (1-3) | molte iterazioni (5-20+) per categoria |
+| **Validazione** | residuo Stage 1 < soglia | spot-check 5+5 su nuovi VP/FP |
+| **Errori tipici** | regole troppo strette → rumore residuo alto | regole troppo larghe → falsi VP/FP |
+| **Tempo per regola** | minuti (riconoscimento pattern ovvio) | ore-giorni (lettura empirica + verifica) |
+| **Riusabilità tra categorie** | alta (pattern globali condivisi) | bassa (regole specifiche per categoria) |
+
 ---
 
 ## 3. Mapping Framework → Categorie di Minaccia

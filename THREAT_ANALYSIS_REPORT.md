@@ -246,9 +246,17 @@ def is_honeypot(f: dict) -> bool:
     return name in _HONEYPOT or any(h in url for h in _HONEYPOT)
 ```
 
-#### Pattern globali Stage 1 (mcp-guard)
+#### Pattern globali Stage 1 (file/path/comment exclusion)
+
+I pattern seguenti rappresentano la **classe di esclusioni file-level** condivisa concettualmente da tutti i framework (test, vendor, scanner-own, comment line). Definizione esemplificativa da `analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py`. Ogni framework ha la propria implementazione (con minime varianti) nei rispettivi `filter_*.py`:
+
+- `mcp-guard` → `filter_mcp_guard.py` (versione completa mostrata sotto)
+- `mcp-watch` → `filter_all_categories.py` + `filter_remaining_categories.py` (regex inline per categoria)
+- `tool_fuzzing` → `filter_fuzzing.py` (pattern adattati a finding fuzzing senza `file`)
+- `mcp-scan`, `mcp-shield`, `mcp-security-scan`, `mcp-check` → filtraggio embedded nel framework stesso o nel filter dedicato per categoria
 
 ```python
+# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:60
 _TEST_FILE = re.compile(
     r"(?:test[/\\]|spec[/\\]|\.test\.|\.spec\.|__tests__|fixture[/\\]|fixtures[/\\]|"
     r"mock[/\\]|mocks[/\\]|_test\.\w+$|_spec\.\w+$|_tests\.\w+$|"

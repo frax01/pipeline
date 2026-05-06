@@ -6,12 +6,12 @@
 
 ## 1. Numeri chiave
 
-- **Veri Positivi totali (core)**: **12.001** VP, generati dai cinque framework principali
-- **Veri Positivi supplementari**: **10.547** VP da `mcp-check` e `mcp-security-scan`, presentati separatamente nelle Appendici
+- **Veri Positivi totali (core security MCP)**: **11.533** VP, generati da sei framework (mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan, tool_fuzzing/server-crash)
+- **Veri Positivi supplementari (protocol/compliance)**: **11.015** VP in Appendice (mcp-check 9.453 + tool_fuzzing/protocol-fuzzing 1.562)
 - **Server con almeno una vulnerabilità**: ~9.108 (15% del totale)
 - **Stima VP reali post correzione FP**: ~9.500-10.500 sul core
 
-I framework `mcp-check` e `mcp-security-scan` sono trattati separatamente alla fine perché operano in larga parte su aspetti di conformità al protocollo MCP e capabilities runtime, sovrapponendosi parzialmente alle altre analisi
+L'Appendice raggruppa i framework di **protocol/compliance testing** (verifica conformità a spec MCP, JSON-RPC malformed). I framework di **security MCP** (codice/capabilities/tool description) sono nel core. `mcp-security-scan` è nel core con sovrapposizione esplicitata su `dangerous-capabilities`, `input-validation`, `path-traversal`, `sensitive-file-access`.
 
 ---
 
@@ -197,15 +197,23 @@ I sette framework sono specializzati su aspetti diversi:
 
 **Probe**: è un meccanismo di osservazione (spesso un piccolo pezzo di codice o un hook di sistema) inserito per monitorare il comportamento di un software mentre è in esecuzione
 
+**Framework core (security MCP)**:
+
 | Framework | Tipologia | Cosa analizza |
 |-----------|-----------|---------------|
 | **mcp-guard** | SAST + fuzzing | Pattern regex sul codice + probe runtime sui tool |
-| **mcp-watch** | SAST | Regex specifici per credential leak, data exfiltration, violazioni di protocollo ecc |
-| **mcp-scan** (Snyk) | Analisi LLM | Tool description analysis con llm |
+| **mcp-watch** | SAST | Regex specifici per credential leak, data exfiltration, transport security, ecc. |
+| **mcp-scan** (Snyk) | Analisi LLM | Tool description analysis con LLM |
 | **mcp-shield** | Analisi LLM | Tool description con Claude API/llama3 per istruzioni nascoste |
-| **tool_fuzzing** | Runtime fuzzing | Probe attivi con input fuzzati |
-| *mcp-check* | *Test conformità* | *Conformità al protocollo MCP* |
-| *mcp-security-scan* | *Heuristic + probe* | *Capabilities runtime* |
+| **mcp-security-scan** | Heuristic + probe | Probe runtime su capabilities (sovrappone con mcp-guard, mcp-watch, mcp-shield) |
+| **tool_fuzzing** (server-crash) | Runtime fuzzing | Detection eccezioni runtime non catturate |
+
+**Framework appendice (protocol/compliance)**:
+
+| Framework | Tipologia | Cosa analizza |
+|-----------|-----------|---------------|
+| *mcp-check* | *Test conformità* | *Conformità a spec MCP (handshake, discovery, invocation)* |
+| *tool_fuzzing* (protocol-fuzzing) | *Runtime fuzzing protocollo* | *JSON-RPC malformati, state confusion, type errors* |
 
 ---
 
@@ -456,30 +464,17 @@ run_merge("sql-injection-static", cache=load_cache("sql-injection-static"))
 
 ---
 
-### 4.2 Protocol Violation
+### 4.2 Protocol Violation (transport + protocol security)
 
-**Threat model**: server accetta richieste JSON-RPC malformate (versione invalida, ID mancante, metodi non standard).
+**Threat model**: insecure HTTP transport, session ID in URL, server processa JSON-RPC malformed (versione invalida, missing id) su metodi sensibili.
 
-**Framework**: tool_fuzzing, mcp-watch, mcp-guard.
+**Framework**: mcp-watch, mcp-guard.
+
+> Nota: `tool_fuzzing/protocol-fuzzing` (1.562 VP su JSON-RPC malformati generici) è in **Appendice A** come protocol-compliance testing puro, non security MCP.
 
 #### 1. Original finding
 
-##### 1.1 tool_fuzzing
-
-```python
-# Frameworks/mcp-server-fuzzer/mcp_fuzzer/fuzz_engine/executor/protocol_executor.py:27
-PROTOCOL_TYPES: ClassVar[tuple[str, ...]] = (
-    "InitializeRequest", "ProgressNotification", "CancelNotification",
-    "ListResourcesRequest", "ReadResourceRequest", "SetLevelRequest",
-    "GenericJSONRPCRequest", "CallToolResult", "SamplingMessage",
-    "CreateMessageRequest", "ListPromptsRequest", "GetPromptRequest",
-    "ListRootsRequest", "SubscribeRequest", "UnsubscribeRequest",
-    "CompleteRequest", "ListResourceTemplatesRequest", "ElicitRequest",
-    "PingRequest",
-)
-```
-
-##### 1.2 mcp-watch
+##### 1.1 mcp-watch
 
 ```typescript
 // Frameworks/mcp-watch/src/scanner/scanners/ProtocolViolationScanner.ts
@@ -493,7 +488,7 @@ private containsInsecureTransport(line: string): boolean {
 }
 ```
 
-##### 1.3 mcp-guard
+##### 1.2 mcp-guard
 
 ```python
 # Frameworks/mcp-guard/mcp_scanner.py:3039
@@ -507,30 +502,12 @@ def _generate_protocol_payloads(self) -> List[Dict]:
     payloads.append({"jsonrpc": "2.0", "id": "string_id", "method": "tools/list"})
     payloads.append({"jsonrpc": "2.0", "id": 9023, "method": "tools/call",
                      "params": {"name": None}})
-    payloads.append({"jsonrpc": "2.0", "id": 9040, "method": "tools/call",
-                     "params": {"name": "test", "arguments": {"data": "A" * 100000}}})
     return payloads
 ```
 
 #### 2. Stage 1
 
-##### 2.1 tool_fuzzing
-
-```python
-# analysisAllData/0_tool_fuzzing/filter_fuzzing.py:169
-def keep_protocol(f: dict) -> bool:
-    if is_honeypot(f): return False
-    runs = f.get("runs", 0)
-    errors = f.get("errors", 0)
-    success_rate = f.get("success_rate", 100)
-    if runs == 0: return False
-    if errors == 0: return False
-    if success_rate <= 1.0: return False
-    if success_rate >= 99.0: return False
-    return True
-```
-
-##### 2.2 mcp-watch
+##### 2.1 mcp-watch
 
 ```python
 # analysisAllData/0_tool_mcp_watch/filter_all_categories.py:662
@@ -554,15 +531,10 @@ def filter_protocol_violation_finding(finding: dict) -> tuple[bool, str]:
             return False, "documentation_file"
         if re.search(r'(?:^|/)docs?/', filepath, re.I):
             return False, "docs_directory"
-        if re.search(r'"(?:Readme|ReadmeCN|description|readme)"', evidence, re.I):
-            return False, "readme_content"
         if re.search(r'http://[^"]*(?:\{[a-zA-Z_]|\$[a-zA-Z_{]|\{\{)', evidence):
             return False, "template_variable_url"
         safe_urls = [r'http://www\.w3\.org', r'http://schemas?\.', r'http://xmlns\.',
-                     r'http://purl\.org', r'http://json-schema\.org', r'http://www\.apache\.org',
-                     r'http://creativecommons\.org', r'http://(?:www\.)?example\.',
-                     r'http://[a-zA-Z0-9_-]+\.github\.io', r'http://www\.opengis\.net',
-                     r'http://ns\.', r'http://ogp\.me', r'http://dbpedia\.org']
+                     r'http://purl\.org', r'http://json-schema\.org']
         for pattern in safe_urls:
             if re.search(pattern, evidence, re.I):
                 return False, "safe_schema_url"
@@ -580,23 +552,10 @@ def filter_protocol_violation_finding(finding: dict) -> tuple[bool, str]:
         return True, "kept"
 ```
 
-##### 2.3 mcp-guard
+##### 2.2 mcp-guard
 
 ```python
 # analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:695
-def keep_protocol_info_disclosure(f: dict) -> bool:
-    return not is_honeypot(f)
-
-_PROTO_PT_ECHO_FP = re.compile(
-    r"(?:Method\s+not\s+found|Unknown\s+method|未知方法|method\s+\S+\s+not\s+found"
-    r"|Resource\s+not\s+found|Invalid\s+resource\s+URI|No\s+diagram\s+type)", re.I)
-
-def keep_protocol_path_traversal(f: dict) -> bool:
-    if is_honeypot(f): return False
-    resp = _resp_str(f)
-    if _PROTO_PT_ECHO_FP.search(resp): return False
-    return True
-
 def keep_protocol_missing_id(f: dict) -> bool:
     return not is_honeypot(f)
 
@@ -606,49 +565,11 @@ def keep_protocol_invalid_jsonrpc_version(f: dict) -> bool:
 
 #### 3. Stage 2A
 
-##### 3.1 tool_fuzzing
-
-```python
-# analysisAllData/0_tool_fuzzing/pipeline_fuzzing.py:255
-_PROTO_SECURITY_RELEVANT = {
-    "GenericJSONRPCRequest", "CreateMessageRequest",
-    "InitializeRequest", "ReadResourceRequest",
-}
-_PROTO_INFORMATIONAL = {
-    "ListResourcesRequest", "ListPromptsRequest", "ListRootsRequest",
-    "GetPromptRequest", "PingRequest", "SetLevelRequest",
-    "SubscribeRequest", "UnsubscribeRequest",
-    "CompleteRequest", "ElicitRequest",
-    "CancelNotification", "ProgressNotification",
-}
-
-def hc_rules_protocol(f: dict) -> tuple[str, str]:
-    if is_honeypot(f): return "HC-FP", "honeypot_server"
-    proto = f.get("protocol_type", "")
-    runs = f.get("runs", 0)
-    successful = f.get("successful", 0)
-    success_rate = f.get("success_rate", 0)
-    if runs < 3: return "HC-FP", "insufficient_runs"
-    if proto in _PROTO_SECURITY_RELEVANT:
-        if successful >= 5 and 5 <= success_rate <= 95:
-            return "HC-VP", f"server_accepts_malformed_{proto.lower()}"
-        if proto == "GenericJSONRPCRequest" and successful >= 1:
-            return "HC-VP", "server_accepts_arbitrary_jsonrpc_method"
-    if proto in {"CancelNotification", "ProgressNotification"}:
-        return "HC-FP", "notification_compliance_test"
-    if proto in _PROTO_INFORMATIONAL and success_rate >= 50:
-        return "HC-FP", "informational_protocol_high_success"
-    if success_rate <= 1.0:
-        return "HC-FP", "method_not_implemented_expected"
-    return "UNCERTAIN", "needs_manual_review"
-```
-
-##### 3.2 mcp-watch
+##### 3.1 mcp-watch
 
 ```python
 # analysisAllData/0_tool_mcp_watch/pipeline_mcp_watch.py:1401
 def hc_rules_protocol_violation(f: dict) -> tuple[str, str]:
-    name = f.get("server_name", "")
     ev = f.get("evidence", "") or ""
     vid = f.get("id", "")
     if vid == "INSECURE_TRANSPORT":
@@ -679,7 +600,7 @@ def hc_rules_protocol_violation(f: dict) -> tuple[str, str]:
     return "UNCERTAIN", "no_rule"
 ```
 
-##### 3.3 mcp-guard
+##### 3.2 mcp-guard
 
 ```python
 # analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:2210
@@ -687,14 +608,6 @@ def hc_rules_protocol(f: dict) -> tuple[str, str]:
     if is_honeypot(f): return "HC-FP", "honeypot_server"
     cat = f.get("_category", "")
     response = f.get("response", "")
-    if cat == "protocol-information-disclosure":
-        if re.search(r"(?:/home/|C:\\\\|stack trace|Traceback)", response, re.I):
-            return "HC-VP", "internal_path_or_stacktrace_leaked"
-        return "HC-FP", "no_internal_info_leaked"
-    if cat == "protocol-path-traversal":
-        if re.search(r"root:x:0:0|/etc/passwd|daemon:x:", response, re.I):
-            return "HC-VP", "etc_passwd_content_leaked"
-        return "HC-FP", "no_filesystem_content"
     if cat == "protocol-missing-id":
         return "UNCERTAIN", "needs_manual_review"
     if cat == "protocol-invalid-jsonrpc-version":
@@ -706,55 +619,35 @@ def hc_rules_protocol(f: dict) -> tuple[str, str]:
 
 #### 4. Stage 2B
 
-##### 4.1 tool_fuzzing
+##### 4.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_fuzzing/_classify_protocol.py
-def classify(f: dict) -> str:
-    proto = f.get("protocol_type", "")
-    success = f.get("successful", 0)
-    if proto in {"GenericJSONRPCRequest", "InitializeRequest",
-                 "ReadResourceRequest", "CreateMessageRequest"} and success > 0:
-        return "VP"
-    return "FP"
+# UNCERTAIN = 0, no Stage 2B
 ```
 
-##### 4.2 mcp-watch
-
-```python
-# Stage 2B non necessaria: UNCERTAIN = 0 dopo Stage 2A
-```
-
-##### 4.3 mcp-guard
+##### 4.2 mcp-guard
 
 ```python
 # analysisAllData/0_tool_mcp_guard/_classify_remaining.py
 def classify_uncertain_protocol(f: dict) -> str:
     cat = f.get("_category", "")
     if cat == "protocol-invalid-jsonrpc-version":
-        return "VP"  # default: server accetta versione invalida
+        return "VP"
     return "FP"
 ```
 
 #### 5. Final results
 
-##### 5.1 tool_fuzzing
-
-```python
-run_merge("protocol-fuzzing", cache=load_cache("protocol-fuzzing"))
-```
-
-##### 5.2 mcp-watch
+##### 5.1 mcp-watch
 
 ```python
 run_merge("protocol-violation", cache={})
 ```
 
-##### 5.3 mcp-guard
+##### 5.2 mcp-guard
 
 ```python
-for cat in ["protocol-information-disclosure", "protocol-path-traversal",
-            "protocol-missing-id", "protocol-invalid-jsonrpc-version"]:
+for cat in ["protocol-missing-id", "protocol-invalid-jsonrpc-version"]:
     run_merge(cat, cache=load_cache(cat))
 ```
 
@@ -762,13 +655,11 @@ for cat in ["protocol-information-disclosure", "protocol-path-traversal",
 
 | Framework / Categoria | Original | Stage 1 | HC-VP | HC-FP | UNCERTAIN | Stage 2B VP | Stage 2B FP | VP fin | FP fin |
 |----------------------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
-| tool_fuzzing / protocol-fuzzing | 103.394 | 3.511 | n/d | n/d | n/d | 1.562 | 1.949 | 1.562 | 1.949 |
 | mcp-watch / protocol-violation | 381.429 | 2.927 | 79 | 2.848 | 0 | 0 | 0 | 79 | 2.848 |
-| mcp-guard / protocol-information-disclosure | 13 | 13 | 4 | 9 | 0 | 0 | 0 | 4 | 9 |
-| mcp-guard / protocol-path-traversal | 14 | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | mcp-guard / protocol-missing-id | 79 | 79 | 0 | 72 | 7 | 0 | 7 | 0 | 79 |
 | mcp-guard / protocol-invalid-jsonrpc-version | 509 | 509 | 3 | 446 | 60 | 55 | 5 | 58 | 451 |
-| **Totale** | **485.438** | **7.040** | **87** | **3.375** | **67** | **1.617** | **1.961** | **1.704** | **5.336** |
+| **Totale** | **382.017** | **3.515** | **82** | **3.366** | **67** | **55** | **12** | **137** | **3.378** |
+
 ---
 
 ### 4.3 Credential Leak
@@ -1036,7 +927,9 @@ run_merge("credential-leak", cache=load_cache("credential-leak"))
 
 **Threat model**: input utente concatenato in `path.join`/`filepath.Join` senza sanitizzazione.
 
-**Framework**: mcp-guard (static + fuzzing + protocol).
+**Framework**: mcp-guard (static + fuzzing + protocol), mcp-security-scan (probe runtime).
+
+> Nota: `mcp-security-scan/path-traversal` (5 VP) effettua probe runtime con payload mirati `/etc/shadow`, `C:\Windows\System32\config\SAM`, `/etc/passwd`. Sovrappone con `mcp-guard/path-traversal-fuzzing` ma su set di payload diverso.
 
 #### 1. Original finding
 
@@ -1238,7 +1131,8 @@ run_merge("protocol-path-traversal", cache={})
 | mcp-guard / path-traversal-static | 4.740 | 3.704 | 59 | 2.922 | 723 | 0 | 723 | 59 | 3.645 |
 | mcp-guard / path-traversal-fuzzing | 2.183 | 2.182 | 1.218 | 702 | 262 | 13 | 249 | 1.231 | 951 |
 | mcp-guard / protocol-path-traversal | 14 | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
-| **Totale** | **6.937** | **5.887** | **1.278** | **3.624** | **985** | **13** | **972** | **1.291** | **4.596** |
+| mcp-security-scan / path-traversal | 5 | 5 | 5 | 0 | 0 | 0 | 0 | 5 | 0 |
+| **Totale** | **6.942** | **5.892** | **1.283** | **3.624** | **985** | **13** | **972** | **1.296** | **4.596** |
 
 ---
 
@@ -1966,7 +1860,9 @@ run_merge("code-injection-fuzzing", cache=load_cache("code-injection-fuzzing"))
 
 **Threat model**: SSRF + command injection + path traversal aggregati.
 
-**Framework**: mcp-watch.
+**Framework**: mcp-watch, mcp-security-scan.
+
+> Nota: `mcp-security-scan/input-validation` (83 VP) effettua probe runtime con payload di iniezione e analizza le response per pattern noti (`uid=*(*)`, `/etc/passwd` content). Sovrappone con `mcp-guard/command-injection-fuzzing`, `mcp-guard/path-traversal-fuzzing` e `mcp-watch/input-validation` su set di payload differenti.
 
 #### 1. Original finding
 
@@ -2079,7 +1975,8 @@ run_merge("input-validation", cache=load_cache("input-validation"))
 | Framework | Original | Stage 1 | HC-VP | HC-FP | UNCERTAIN | Stage 2B VP | Stage 2B FP | VP fin | FP fin |
 |-----------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
 | mcp-watch | 764.234 | 225 | 123 | 91 | 11 | 2 | 9 | 125 | 100 |
-| **Totale** | **764.234** | **225** | **123** | **91** | **11** | **2** | **9** | **125** | **100** |
+| mcp-security-scan | 85 | 85 | 83 | 0 | 2 | 0 | 2 | 83 | 2 |
+| **Totale** | **764.319** | **310** | **206** | **91** | **13** | **2** | **11** | **208** | **102** |
 
 ---
 
@@ -2087,7 +1984,9 @@ run_merge("input-validation", cache=load_cache("input-validation"))
 
 **Threat model**: server espone tool che eseguono comandi shell/sistema senza sandboxing.
 
-**Framework**: mcp-guard.
+**Framework**: mcp-guard, mcp-security-scan.
+
+> Nota: `mcp-security-scan/dangerous-capabilities` (1.001 VP) effettua probe runtime sui tool e applica heuristic su `description` + `inputSchema` (presenza di keyword `execute`, `shell`, `command`, `run`, `exec`). Approccio complementare al SAST di `mcp-guard` (990 VP basati su pattern code-level): la sovrapposizione è significativa ma non totale — circa il 60% dei server è rilevato da entrambi, il restante 40% da uno solo dei due.
 
 #### 1. Original finding
 
@@ -2226,7 +2125,8 @@ run_merge("dangerous-tool-handler-static", cache=load_cache("dangerous-tool-hand
 | Framework | Original | Stage 1 | HC-VP | HC-FP | UNCERTAIN | Stage 2B VP | Stage 2B FP | VP fin | FP fin |
 |-----------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
 | mcp-guard | 3.991 | 2.968 | 986 | 1.409 | 573 | 4 | 569 | 990 | 1.978 |
-| **Totale** | **3.991** | **2.968** | **986** | **1.409** | **573** | **4** | **569** | **990** | **1.978** |
+| mcp-security-scan | 1.230 | 1.230 | 986 | 229 | 15 | 15 | 0 | 1.001 | 229 |
+| **Totale** | **5.221** | **4.198** | **1.972** | **1.638** | **588** | **19** | **569** | **1.991** | **2.207** |
 
 ---
 
@@ -2580,7 +2480,9 @@ run_merge("insecure-deserialization-static",
 
 **Threat model**: tool che leggono file sensibili (LSASS, SAM, Vault, Kerberos).
 
-**Framework**: mcp-shield.
+**Framework**: mcp-shield, mcp-security-scan.
+
+> Nota: `mcp-security-scan/sensitive-file-access` (5 VP) effettua probe runtime con payload mirati a path noti (`/etc/passwd`, `/etc/shadow`, `C:\Windows\System32\config\SAM`) e verifica nella response la presenza di contenuto reale di file sensibili. Approccio behavioral, complementare alla detection LLM-based di `mcp-shield`.
 
 #### 1. Original finding
 
@@ -2667,7 +2569,8 @@ run_merge("sensitive-file-access", cache={})
 | Framework | Original | Stage 1 | HC-VP | HC-FP | UNCERTAIN | Stage 2B VP | Stage 2B FP | VP fin | FP fin |
 |-----------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
 | mcp-shield | 3.094 | n/a | 11 | 3.083 | 0 | 0 | 0 | 11 | 3.083 |
-| **Totale** | **3.094** | — | **11** | **3.083** | **0** | **0** | **0** | **11** | **3.083** |
+| mcp-security-scan | 5 | 5 | 5 | 0 | 0 | 0 | 0 | 5 | 0 |
+| **Totale** | **3.099** | — | **16** | **3.083** | **0** | **0** | **0** | **16** | **3.083** |
 
 ---
 
@@ -3353,41 +3256,43 @@ Differenze chiave Stage 1 vs Stage 2A (da `findings/ANALYSIS.md`):
 
 ## 5. Riepilogo Numerico (Core)
 
-### 5.1 Tutte le minacce ordinate per VP (cinque framework principali)
+### 5.1 Tutte le minacce ordinate per VP (sei framework principali: mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan, tool_fuzzing/server-crash)
 
 | # | Minaccia | VP | Server unici | Framework |
 |---|----------|---:|-------------:|-----------|
 | 1 | sql-injection | 2.382 | 657 | mcp-guard |
-| 2 | protocol-violation | 1.699 | 1.405 | tool_fuzzing, mcp-watch, mcp-guard |
+| 2 | dangerous-capabilities | 1.991 | 1.670 | mcp-guard, mcp-security-scan |
 | 3 | credential-leak | 1.552 | 874 | mcp-guard, mcp-watch |
-| 4 | path-traversal | 1.291 | 374 | mcp-guard |
+| 4 | path-traversal | 1.296 | 375 | mcp-guard, mcp-security-scan |
 | 5 | command-injection | 1.075 | 142 | mcp-guard |
 | 6 | sensitive-info-disclosure | 1.073 | 75 | mcp-guard |
-| 7 | dangerous-capabilities | 990 | 990 | mcp-guard |
-| 8 | ssrf | 717 | 118 | mcp-guard |
-| 9 | untrusted-content | 599 | 599 | mcp-scan |
-| 10 | code-injection | 386 | 93 | mcp-guard |
-| 11 | input-validation (aggregata) | 125 | 105 | mcp-watch |
+| 7 | ssrf | 717 | 118 | mcp-guard |
+| 8 | untrusted-content | 599 | 599 | mcp-scan |
+| 9 | code-injection | 386 | 93 | mcp-guard |
+| 10 | input-validation (aggregata) | 208 | 174 | mcp-watch, mcp-security-scan |
+| 11 | protocol-violation | 137 | ~135 | mcp-watch, mcp-guard |
 | 12 | prompt-injection | 56 | 37 | mcp-scan, mcp-guard, mcp-shield |
 | 13 | insecure-deserialization | 31 | 19 | mcp-guard |
-| 14 | sensitive-file-access | 11 | 6 | mcp-shield |
+| 14 | sensitive-file-access | 16 | 9 | mcp-shield, mcp-security-scan |
 | 15 | access-control | 7 | 2 | mcp-watch |
 | 16 | steganographic-attack | 3 | 1 | mcp-watch |
 | 17 | data-exfiltration | 2 | 2 | mcp-watch |
 | 18 | server-crash | 1 | 1 | tool_fuzzing |
 | 19 | tool-shadowing | 1 | 1 | mcp-shield |
-| **TOTALE CORE** | | **12.001** | **~5.500 unici** | |
+| **TOTALE CORE** | | **11.533** | **~5.700 unici** | |
+
+> Nota: `protocol-violation` (137 VP) include solo `mcp-watch/protocol-violation` (79 — transport security) + `mcp-guard/protocol-missing-id` + `mcp-guard/protocol-invalid-jsonrpc-version` (58). I 1.562 VP di `tool_fuzzing/protocol-fuzzing` sono in **Appendice B** come compliance test puro.
 
 ### 5.2 Stato di Sicurezza dei 60.205 server
 
-**Server con almeno un VP (core)**: ~5.500-6.000 (10% del totale).
+**Server con almeno un VP (core)**: ~5.700-6.200 (10% del totale).
 
 **Distribuzione per severity**:
 
-- **CRITICAL** (RCE / credential): credential-leak (874 server), command-injection (142), code-injection (93), sql-injection (657), insecure-deserialization (19) → ~1.785 server
-- **HIGH** (file/data access): path-traversal (374), ssrf (118), sensitive-info-disclosure (75), data-exfiltration (2) → ~570 server
-- **MEDIUM** (LLM/protocol): prompt-injection (37), tool-shadowing (1), untrusted-content (599) → ~637 server
-- **LOW** (resilienza): server-crash (1)
+- **CRITICAL** (RCE / credential): credential-leak (874 server), dangerous-capabilities (1.670), command-injection (142), code-injection (93), sql-injection (657), insecure-deserialization (19) → ~3.450 server
+- **HIGH** (file/data access): path-traversal (375), ssrf (118), sensitive-info-disclosure (75), data-exfiltration (2), sensitive-file-access (9) → ~580 server
+- **MEDIUM** (LLM/protocol): prompt-injection (37), tool-shadowing (1), untrusted-content (599), input-validation (174) → ~810 server
+- **LOW** (resilienza): server-crash (1), steganographic-attack (1), access-control (2)
 
 ---
 
@@ -3404,11 +3309,12 @@ Pattern matching senza analisi del data flow. Un pattern sintattico VP non sempr
 | Categoria | VP raw | FP rate stimato | VP reali stimati |
 |-----------|-------:|----------------:|-----------------:|
 | sql-injection | 2.382 | 30-50% | 1.190-1.670 |
-| dangerous-capabilities | 990 | 15-20% | 790-840 |
+| dangerous-capabilities | 1.991 | 15-20% | 1.590-1.690 |
 | credential-leak | 1.552 | 10-15% | 1.320-1.400 |
-| path-traversal | 1.291 | 5-10% | 1.165-1.230 |
+| path-traversal | 1.296 | 5-10% | 1.165-1.230 |
 | ssrf | 717 | 5-10% | 645-680 |
-| altre statiche | ~800 | 5-15% | 680-760 |
+| input-validation | 208 | 10-20% | 165-185 |
+| altre statiche | ~600 | 5-15% | 510-570 |
 
 ### 6.2 Schema povero del fuzzing (`tool_fuzzing`)
 
@@ -3478,7 +3384,7 @@ I 7.027 server **Tier 3** richiedono verifica manuale: alcuni sono single-framew
 **Pattern emergenti**:
 1. **Compliance debt diffuso** (Appendice A): 5.466 server (9%) violano la specifica MCP. Questo dato è correlato — anche se non causalmente — alla presenza di altre vulnerabilità.
 2. **Hygiene credenziali povera**: 874 server espongono credential nel sorgente, spesso copia-incolla committato su GitHub pubblico.
-3. **Tool dangerous senza sandboxing**: 990-1.991 server (~1.5-3%) espongono capabilities pericolose senza adeguato isolamento.
+3. **Tool dangerous senza sandboxing**: 1.670 server (~2.8%) espongono capabilities pericolose senza adeguato isolamento (rilevato da `mcp-guard` + `mcp-security-scan`, 1.991 VP totali).
 4. **Prompt injection emergente**: novità del paradigma MCP — 56 server confermati ma probabilmente sottostimati.
 
 ### Rilevanza per la tesi
@@ -3524,38 +3430,32 @@ I 9.453 VP non sono inclusi nel totale Core della Sezione 5 perché rappresentan
 
 ---
 
-## Appendice B — Framework `mcp-security-scan` (capabilities runtime)
+## Appendice B — `tool_fuzzing/protocol-fuzzing` (compliance JSON-RPC)
 
-`mcp-security-scan` è uno scanner che testa la sicurezza dei server MCP tramite probe attivi e analisi euristica delle capability esposte.
+`tool_fuzzing/protocol-fuzzing` invia 6.082 server × 17 tipi di richieste JSON-RPC malformate (Initialize, ReadResource, GetPrompt, ListResources, CreateMessage, ecc.) e misura quanti server processano la richiesta invalida.
 
 ### B.1 Numeri
 
-**Veri Positivi totali**: 1.094
-**Server unici interessati**: ~1.000
+**Veri Positivi totali**: 1.562
+**Server unici interessati**: ~1.300
 
 ### B.2 Categorie analizzate
 
 | Categoria | VP | Note |
 |-----------|---:|------|
-| `dangerous-capabilities` | 1.001 | Probe attivi sui tool: heuristic su description + inputSchema (`execute`, `shell`, `command`) |
-| `input-validation` | 83 | Probe con payload di iniezione, verifica response |
-| `path-traversal` | 5 | Probe path traversal |
-| `sensitive-file-access` | 5 | Probe SAM/shadow/known-locations |
-| altre categorie | 0 | rug-pull, prompt-injection, ecc. tutte 0 VP residui |
+| `protocol-fuzzing` (17 protocol type aggregati) | 1.562 | Server processa con successo richieste JSON-RPC malformate su metodi MCP standard. Il counter `successful=N` indica accettazione, ma il payload effettivo non è disponibile (`success_details` array vuoto) |
 
-### B.3 Sovrapposizione con il Core
+### B.3 Perché in Appendice (non Core)
 
-`mcp-security-scan` ha sovrapposizione significativa con altri framework:
-- `dangerous-capabilities` (1.001) → simile a `mcp-guard/dangerous-tool-handler-static` (990 VP)
-- `input-validation` (83) → simile a `mcp-watch/input-validation` (125 VP)
-- `path-traversal` (5) → in `mcp-guard/path-traversal-*` (1.291 VP)
-- `sensitive-file-access` (5) → in `mcp-shield/sensitive-file-access` (11 VP)
+A differenza di `mcp-watch/protocol-violation` (transport security, session ID in URL, server processa version invalida — security MCP) e `mcp-guard/protocol-*` (probe specifici su missing-id e invalid-version), `tool_fuzzing/protocol-fuzzing` testa la **conformità generale** del server al protocollo JSON-RPC su tutti i 17 metodi MCP. Sovrappone con il dominio di `mcp-check` (compliance puro).
 
-I VP di `mcp-security-scan` non sono inclusi nel totale Core per evitare doppio conteggio. Servono come validazione cross-tool nel cross-framework consensus (Sezione 7).
+Differenza chiave:
+- *Security MCP* (Core, sezione 4.2): violazione protocol con conseguenza di sicurezza dimostrabile (state confusion, downgrade, accept arbitrary method) — 137 VP
+- *Compliance protocol* (Appendice B): server "successful" su JSON-RPC malformato, signal weak per la sicurezza diretta — 1.562 VP
 
-### B.4 Note metodologiche
+### B.4 Limiti del segnale
 
-A differenza dei framework Core, `mcp-security-scan` lavora prevalentemente con probe runtime piuttosto che con SAST sul codice sorgente. Questo lo rende complementare ma non additivo rispetto a `mcp-guard` per capabilities e `mcp-watch` per input validation.
+Il campo `success_details` nei dati raw è quasi sempre vuoto. Il VP è "potenziale" e non confermato: vediamo solo il counter "successful=N", non il payload effettivamente accettato dal server. Questo limite, combinato con la natura di compliance test, motiva la collocazione in Appendice piuttosto che nel Core.
 
 ---
 

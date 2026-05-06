@@ -1,45 +1,119 @@
-1. Ricontrollare tutti i finding per vedere vp e fp, siamo sicuri che siano tutti vp quelli che ho trovato? Non c'è un modo per ricontrollare ulteriormente ed essere molto stringenti nell'analisi? Mi sembra che ci siano forse troppi vp o che alcune volte questi vp siano un pò lasciati al caso
-2. La spiegazione per ogni framework per come trova la vulnerabilità deve venire proprio dal codice sorgente del framework, quindi voglio che si vada nei file principali nelle varie cartelle (che si trovano in C:\Users\francesco\Desktop\Frameworks) e si veda come vengano trovate le varie vulnerabilità. Poi voglio che ci sia scritto anche come poi io ho filtrato e modificato quelle regole con i vari file di pipeline.py e filter.py (con gli stage 1 e 2), spiegandomi bene che regole abbiamo messo, mettendomi proprio i codici. Fammi questo step in modo che sia molto chiaro, preciso e ordinato **(fatto)**
-3. Bisogna semplificare un pò quello che c'è scritto, perchè alcune cose non si capiscono bene o sono troppo dettagliate, cerca di essere più ordinato e in un italiano scritto meglio 
-4. Come vedi nella cartella C:\Users\francesco\Desktop\pipeline\findings mancano le cartelle per mcp-guard e mcp-fuzzing, le puoi fare? Sai come farle? Forse puoi prendere spunto dalle cartelle degli altri framework
-5. Perchè nel credential leak non c'è lo stage1 e 2 ? Rispondi e poi continua
-6. In 4.21 nei recap filtraggi per framework mi aggiungi una colonna alla fine di ogni tabella in cui per ogni riga mi scrivi quella categoria come viene chiamata nel recap finale delle tabelle (quindi ad esempio come nella sezione 5), così che posso incrociare tutti i dati. Inoltre in 4.21 mi aggiungi anche le tabelle per mcp-check e mcp-security-scanner
-7. Nel capitolo 4 e quindi in ogni sotto capitolo non riesco a capire per ogni categoria quanti framework hanno trovato quel tipo di categoria e non riesco neanche a capire quando inizia la spiegazione delle diverse fasi, infatti vorrei dei paragrafi (uguali per ogni categoria) del tipo
-  1. Original finding
-    1.1. watch
-    1.2. guard
-    ecc (in base a i framework che ci sono)
+1. Ricontrollare tutti i finding per vedere vp e fp, siamo sicuri che siano tutti vp quelli che ho trovato? Non c'è un modo per ricontrollare ulteriormente ed essere molto stringenti nell'analisi? Mi sembra che ci siano forse troppi vp o che alcune volte questi vp siano un pò lasciati al caso. Forse può essere utile campionare un pò i dati
+2. Come vedi nella cartella C:\Users\francesco\Desktop\pipeline\findings mancano le cartelle per mcp-guard e mcp-fuzzing, le puoi fare? Sai come farle? Forse puoi prendere spunto dalle cartelle degli altri framework
+3. Ho risolto con questa parte. Ora invece per ogni categoria di vulnerabilità della sezione 4 mi metti alla fine anche un esempio di un vp con una breve spiegazione della vulnerabilità del caso che hai preso? **1**
+4. Mi riguardi tutte le sezioni del file e vedi se tornano tutti i numeri e tutte le cose che ho scritto?
+5. Sapresti darmi le fonti di tutte le regole che hai creato? Devo documentarci la mia tesi e soprattutto devo presentarle al prof
+6. | **Validazione** | residuo Stage 1 < soglia | spot-check 5+5 su nuovi VP/FP | Cosa vuol dire nella differenza tra stage 1 e 2A?
+7. I pattern seguenti rappresentano la **classe di esclusioni file-level** (test, vendor, scanner-own, comment line) condivisa da tutti i framework, anche se ogni framework ha la propria implementazione (con minime varianti) nei rispettivi `filter_*.py`:
 
-    e sotto ognuno di questi mi metti il codice sorgente, non mettermi nient'altro, nessuna spiegazione e nessun numero
-  2. Stage 1 
-    2.1. watch
-    2.2. guard
-    ecc (in base a i framework che ci sono)
+- `mcp-guard` → `filter_mcp_guard.py` (versione completa mostrata sotto)
+- `mcp-watch` → `filter_all_categories.py` + `filter_remaining_categories.py` (regex inline per categoria)
+- `tool_fuzzing` → `filter_fuzzing.py` (pattern adattati a finding fuzzing senza `file`)
+- `mcp-scan`, `mcp-shield`, `mcp-security-scan`, `mcp-check` → filtraggio embedded nel framework stesso o nel filter dedicato per categoria
 
-    e sotto ognuno di questi mi metti il codice sorgente, non mettermi nient'altro, nessuna spiegazione e nessun numerogazione e i risultati numerici
-  3. Stage 2A
-    3.1. watch
-    3.2. guard
-    ecc (in base a i framework che ci sono)
+Mi spieghi meglio questa parte? In particolare, non ho capito qual è la differenza tra i vari filtri 1 dei vari framework, nel senso che da quello che si vede la base è uguale ma nelle parentesi accanto ai framework non si capisce bene qual è la differenza, magari mi puoi scrivere questa descrizione nelle parentesi un pò meglio, un pò più lunga e un pò più completa?
+8. Mi spieghi meglio tutta la parte del protocol fuzzing?
+Sia questa parte:
 
-    e sotto ognuno di questi mi metti il codice sorgente, non mettermi nient'altro, nessuna spiegazione e nessun numero
-  4. Stage 2B
-    4.1. watch
-    4.2. guard
-    ecc (in base a i framework che ci sono)
+#### Appendice B: tool_fuzzing/protocol-fuzzing (1 categoria su 17 sub-protocol)
 
-    e sotto ognuno di questi mi metti il codice sorgente, non mettermi nient'altro, nessuna spiegazione e nessun numero
-  5. Final results
-    5.1. watch
-    5.2. guard
-    ecc (in base a i framework che ci sono)
+Pipeline: 103.394 raw (6.082 server × 17 protocol type) → Stage 1 (filter intermedio per success_rate 5-95%) → 3.511 filtrati → Stage 2A → Stage 2B → **1.562 VP / 1.949 FP**.
 
-    e sotto ognuno di questi mi metti il codice sorgente, non mettermi nient'altro, nessuna spiegazione e nessun numero
+Probe runtime: invia richieste JSON-RPC malformate per ogni protocol type MCP.
 
-Alla fine di ogni categoria di vulnerabilità mettimi una tabella di recap con tutti i numeri di questi passaggi (dall'original al final results) in cui le righe rappresentano i framework che impattano quella categoria (ad esempio per credential leak ci sono guard e watch), mentre le colonne sono i vari stage con i risultati numerici, mentre l'ultima riga ci sono i dati dei numeri totali di quella tabella
+| Sub-protocol type | Note |
+|-------------------|------|
+| InitializeRequest | server processa init malformato (security relevant) |
+| ReadResourceRequest | server accetta resource read malformato |
+| GenericJSONRPCRequest | server processa metodo arbitrario |
+| CreateMessageRequest | server processa LLM call malformato |
+| altri 13 protocol type | informational (ListPrompts, Ping, ecc.) |
 
-Fai questo per ogni categoria di vulnerabilità nella sezione 4
+| Filtered | VP | FP |
+|---------:|---:|---:|
+| 3.511 | 1.562 | 1.949 |
 
-Mettimi la lista honey pot all'inizio e non la ripetere più
+che questa parte:
 
-Mi raccomando elimina tutto quello che non è necessario e i commenti intermedi, non mi servono, ho bisogno di codici, numeri e una presentazione schematica **(fatto)**
+### 6.2 Schema povero del fuzzing (`tool_fuzzing`)
+
+Il campo `success_details` nei dati raw è quasi sempre vuoto. Vediamo solo il counter "successful=N" senza il payload effettivamente accettato. Il segnale per protocol-fuzzing è quindi debole: i VP sono "potenziali" e non confermati.
+
+## Appendice B — `tool_fuzzing/protocol-fuzzing` (compliance JSON-RPC)
+
+`tool_fuzzing/protocol-fuzzing` invia 6.082 server × 17 tipi di richieste JSON-RPC malformate (Initialize, ReadResource, GetPrompt, ListResources, CreateMessage, ecc.) e misura quanti server processano la richiesta invalida.
+
+### B.1 Numeri
+
+**Veri Positivi totali**: 1.562
+**Server unici interessati**: ~1.300
+
+### B.2 Categorie analizzate
+
+| Categoria | VP | Note |
+|-----------|---:|------|
+| `protocol-fuzzing` (17 protocol type aggregati) | 1.562 | Server processa con successo richieste JSON-RPC malformate su metodi MCP standard. Il counter `successful=N` indica accettazione, ma il payload effettivo non è disponibile (`success_details` array vuoto) |
+
+### B.3 Perché in Appendice (non Core)
+
+A differenza di `mcp-watch/protocol-violation` (transport security, session ID in URL, server processa version invalida — security MCP) e `mcp-guard/protocol-*` (probe specifici su missing-id e invalid-version), `tool_fuzzing/protocol-fuzzing` testa la **conformità generale** del server al protocollo JSON-RPC su tutti i 17 metodi MCP
+
+### B.4 Limiti del segnale
+
+Il campo `success_details` nei dati raw è quasi sempre vuoto. Il VP è "potenziale" e non confermato: vediamo solo il counter "successful=N", non il payload effettivamente accettato dal server. Questo limite, combinato con la natura di compliance test, motiva la collocazione in Appendice piuttosto che nel Core.
+
+Anche qui non sto capendo bene cosa dice e soprattutto la parte del success_details=N
+
+9. è possibile in qualche modo come viene detto in questa sezione
+
+## 6. Limiti dell'Analisi
+
+### 6.1 SAST regex-only (`mcp-guard`, `mcp-watch`)
+
+Pattern matching senza analisi del data flow. Un pattern sintattico VP non sempre corrisponde a una vulnerabilità reale.
+
+**Esempio**: `cursor.execute(f"... {t}")` viene marcato come VP, ma se la variabile `t` proviene da una query precedente su `sqlite_master` (sorgente fidata), si tratta di un Falso Positivo nascosto. Distinguere questi casi richiederebbe AST parsing e data-flow tracking.
+
+**Stima dei FP residui sui VP statici**:
+
+| Categoria | VP raw | FP rate stimato | VP reali stimati |
+|-----------|-------:|----------------:|-----------------:|
+| sql-injection | 2.382 | 30-50% | 1.190-1.670 |
+| dangerous-capabilities | 1.991 | 15-20% | 1.590-1.690 |
+| credential-leak | 1.552 | 10-15% | 1.320-1.400 |
+| path-traversal | 1.296 | 5-10% | 1.165-1.230 |
+| ssrf | 717 | 5-10% | 645-680 |
+| input-validation | 208 | 10-20% | 165-185 |
+| altre statiche | ~600 | 5-15% | 510-570 |
+
+Arrivare ad avere un numero preciso di vp e fp e non solo una stima?
+10. Ma perchè nella parte core del fuzzing viene messo solo il server crash (che poi è solo 1) e nient'altro? Sono tutti fp gli altri? Infatti perchè nel fuzzing queste 4 categorie sono praticamente tutti fp? Mi rifai un recap fatto bene (qui in chat) di come funziona il fuzzing e di come lo abbiamo suddiviso in tutte queste analisi? **0**
+
+## 4. Categorie output (4)
+
+Mapping 22 file raw → 4 categorie:
+
+| # | Categoria | Source files | Filt entries |
+|---|-----------|--------------|-------------:|
+| 1 | `server-error-fuzzing` | exceptions/Server_returned_error.json | 10.944 |
+| 2 | `transport-failure-fuzzing` | 3 file exceptions: Failed_to_send + Failed_to_receive + No_response | 3.385 |
+| 3 | `server-crash-fuzzing` | exceptions/'int'_object_has_no_attribute_'get'.json | 1 |
+| 4 | `protocol-fuzzing` | 17 file protocol/* (merged) | 3.511 |
+
+**Riduzione Stage 1**: 118.756 → 17.841 (-85%)
+
+---
+
+## 5. Risultati finali (post spot-check fix)
+
+**Pipeline: 118.756 raw → 17.841 filtered → 1.563 VP / 16.278 FP / 0 UNC**
+
+| Categoria | Filt | VP | FP | VP% |
+|-----------|-----:|---:|---:|----:|
+| server-error-fuzzing | 10.944 | 0 | 10.944 | 0% |
+| transport-failure-fuzzing | 3.385 | 0 | 3.385 | 0% |
+| server-crash-fuzzing | 1 | 1 | 0 | 100% |
+| protocol-fuzzing | 3.511 | 1.562 | 1.949 | 44.5% |
+| **TOTALE** | **17.841** | **1.563** | **16.278** | **8.8%** |
+
+Il file lo trovi in C:\Users\francesco\Desktop\pipeline\analysisAllData\0_tool_fuzzing\ANALYSIS_GUIDE.md

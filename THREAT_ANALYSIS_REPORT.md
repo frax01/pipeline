@@ -1,35 +1,32 @@
 # Analisi delle Minacce di Sicurezza nei Server MCP
 
-**Studio condotto su 60.205 server MCP analizzati con sette framework**
+**Studio condotto su 60.205 server MCP analizzati con 7 framework**
 
 ---
-
+ 
 ## 1. Numeri chiave
 
 - **Veri Positivi totali (core security MCP)**: **11.533** VP, generati da sei framework (mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan, tool_fuzzing/server-crash)
 - **Veri Positivi supplementari (protocol/compliance)**: **11.015** VP in Appendice (mcp-check 9.453 + tool_fuzzing/protocol-fuzzing 1.562)
-- **Server con almeno una vulnerabilità**: ~9.108 (15% del totale)
-- **Stima VP reali post correzione FP**: ~9.500-10.500 sul core
-
-L'Appendice raggruppa i framework di **protocol/compliance testing** (verifica conformità a spec MCP, JSON-RPC malformed). I framework di **security MCP** (codice/capabilities/tool description) sono nel core. `mcp-security-scan` è nel core con sovrapposizione esplicitata su `dangerous-capabilities`, `input-validation`, `path-traversal`, `sensitive-file-access`.
+- **Server con almeno una vulnerabilità**: 9.108 (15% del totale)
 
 ---
 
-## 2. Pipeline di filtraggio: Stage 1 vs Stage 2A
+## 2. Come funziona il filtraggio dei dati: Stage 1 vs Stage 2A
 
-Ogni framework produce **migliaia/milioni di finding grezzi** con rapporto segnale/rumore bassissimo (spesso < 1%). Per arrivare ai VP azionabili la pipeline applica 3 stadi successivi: Stage 1 → Stage 2A → Stage 2B. Stage 1 e Stage 2A usano entrambi regex Python, ma sono **strumenti diversi con scopi diversi**.
+Ogni framework produce **migliaia/milioni di finding grezzi** con rapporto segnale/rumore bassissimo (spesso < 1%)
 
 ### Stage 1 — filtro grezzo (`filter_*.py`)
 
-**Scopo**: tagliare il rumore in massa. Riduce milioni → centinaia/migliaia (>90% taglio tipico).
+**Scopo**: tagliare il rumore in massa. Riduce da milioni a centinaia/migliaia di finding.
 
 **Verdetto binario**: `keep` o `discard`. I finding scartati spariscono dalla pipeline.
 
-**Logica**: regex ampie e grossolane su segnali file-level e codice ovvio:
-- file di test/spec/fixture/example/vendor/node_modules/`.min.js` → discard
-- riga commentata (`#`, `//`, `*`) → discard
-- server honeypot noto (`malicious_mcp`, `vulnicheck`, ecc.) → discard
-- placeholder ovvi (`YOUR_API_KEY`, `your-secret`, `<TOKEN>`) → discard
+**Logica**: regex ampie su segnali file-level e codice ovvio:
+- file di test/spec/fixture/example/vendor/node_modules/`.min.js` → **discard**
+- riga commentata (`#`, `//`, `*`) → **discard**
+- server honeypot noto (`malicious_mcp`, `vulnicheck`, ecc.) → **discard**
+- placeholder ovvi (`YOUR_API_KEY`, `your-secret`, `<TOKEN>`) → **discard**
 - pattern di sicurezza ovvi mantenuti (es. provider key `sk-...`, `AKIA...`)
 
 **Tolleranza all'errore**: alta. Stage 1 può scartare alcuni VP veri pur di abbattere il rumore (errori di omissione accettabili).
@@ -49,7 +46,7 @@ def keep_sql_injection(f):
 
 ### Stage 2A — regole HC high-confidence (`pipeline_*.py:hc_rules_*`)
 
-**Scopo**: dare verdetto finale sui sopravvissuti. Riduce centinaia → VP/FP/UNCERTAIN.
+**Scopo**: dare verdetto finale sui sopravvissuti. Riduce da centinaia a VP/FP/UNCERTAIN.
 
 **Verdetto ternario**: `HC-VP` (vero positivo certo), `HC-FP` (falso positivo certo), `UNCERTAIN` (richiede Stage 2B).
 
@@ -77,7 +74,7 @@ def hc_rules_sql_injection(f):
 
 ### Stage 2B — classificazione UNCERTAIN
 
-**Scopo**: classificare i finding ambigui rimasti. Cache JSON popolata in-chat (Sonnet) o via Ollama locale (llama3).
+**Scopo**: classificare i finding ambigui rimasti via Ollama locale (llama3).
 
 **Output**: aggiornamento `_llm_api_cache.json` + merge finale (`vp.json`, `fp.json`, `audit.json`).
 
@@ -101,12 +98,12 @@ def hc_rules_sql_injection(f):
 2. **Granularità diversa**: Stage 1 distingue "rumore vs segnale potenziale", Stage 2A distingue "VP vs FP" sul segnale potenziale. Logiche separate, regex separate.
 3. **Riproducibilità e audit**: Stage 1 mantiene un file `filtered.json` con i sopravvissuti — utile per spot-check senza ri-eseguire il framework. Stage 2A produce 3 file separati che documentano il verdetto e il motivo.
 4. **Iterazione**: regole HC nascono leggendo `uncertain.json` e raggruppando finding simili. Senza Stage 1 il pool sarebbe troppo grande per ispezionarlo manualmente.
-5. **Tolleranza diversa**: Stage 1 può sbagliare (scarta qualche VP) perché aiuta solo a triare. Stage 2A non può sbagliare perché il suo output finisce direttamente in `vp.json`.
+5. **Tolleranza diversa**: Stage 1 può sbagliare (scarta qualche VP). Stage 2A non può sbagliare perché il suo output finisce direttamente in `vp.json`.
 
 ### Eccezioni per framework
 
 - **mcp-shield**: il framework filtra autonomamente (output ~3-5k finding già selezionati). Niente Stage 1 esterno → si parte da Stage 2A.
-- **mcp-scan (Snyk)**: i finding sono già pre-ragionati da LLM interno (campi `risk_score`, `evidence`, `reason`). Niente Stage 1 né Stage 2A → si va direttamente a Stage 2B (cache in-chat).
+- **mcp-scan (Snyk)**: i finding sono già pre-ragionati da LLM interno (campi `risk_score`, `evidence`, `reason`). Niente Stage 1 né Stage 2A → si va direttamente a Stage 2B.
 - **mcp-guard / probe attivi protocol**: i probe producono dataset già pulito (502 finding). Stage 1 fa solo il filtro honeypot.
 
 ### Come vengono generate le regole
@@ -130,14 +127,13 @@ Le regole Stage 1 nascono da **fonti pubbliche e convenzioni standard** + ispezi
 3. Scrivere regex `_TEST_FILE`, `_VENDOR_FILE`, `_COMMENTED`, `_PLACEHOLDER` ecc.
 4. Eseguire keep_<categoria>() su tutto il raw
 5. Verificare: residuo < ~5% del raw? Se no, aggiungere altre regex di scarto
-6. Commit
 ```
 
 **Esempio reale** (SSRF mcp-guard): raw 44.063 finding. Visione del sample: 90% sono `fetch("https://api.openai.com/...")` con path da utente — non SSRF reale (URL hardcoded). Aggiunta regola `_SSRF_KNOWN_API` con lista SaaS noti (api.*.com/io/net, googleapis.com, openai.com, anthropic.com). Riduzione 44k → 832.
 
 #### Generazione regole Stage 2A (pipeline_*.py)
 
-Le regole Stage 2A nascono da **ispezione empirica dei finding residui dopo Stage 1**. Non c'è uno standard pubblico — emergono leggendo i dati.
+Le regole Stage 2A nascono da **un'ispezione empirica dei finding residui dopo Stage 1**. Non c'è uno standard pubblico — emergono leggendo i dati.
 
 **Fonti delle regole Stage 2A**:
 1. **Pattern empirico** (~80% delle regole): si legge `<categoria>_filtered.json`, si raggruppano i finding simili, si codifica una regex che catturi quel cluster.
@@ -176,7 +172,7 @@ Risultato: 6/7 UNCERTAIN risolti come HC-FP. Spot-check conferma → regola acce
 
 La triangolazione di 3 segnali (case sensitivity + struttura tag accoppiati + verdict LLM esterno) trasforma una regola ambigua in regola affidabile.
 
-#### Differenza chiave nella genesi
+#### Differenza tra 1 e 2A
 
 | Aspetto | Stage 1 | Stage 2A |
 |---------|---------|----------|
@@ -184,36 +180,29 @@ La triangolazione di 3 segnali (case sensitivity + struttura tag accoppiati + ve
 | **Iterazione** | poche iterazioni (1-3) | molte iterazioni (5-20+) per categoria |
 | **Validazione** | residuo Stage 1 < soglia | spot-check 5+5 su nuovi VP/FP |
 | **Errori tipici** | regole troppo strette → rumore residuo alto | regole troppo larghe → falsi VP/FP |
-| **Tempo per regola** | minuti (riconoscimento pattern ovvio) | ore-giorni (lettura empirica + verifica) |
 | **Riusabilità tra categorie** | alta (pattern globali condivisi) | bassa (regole specifiche per categoria) |
 
 ---
 
 ## 3. Mapping Framework → Categorie di Minaccia
 
-I sette framework sono specializzati su aspetti diversi:
-
-**SAST(Static Application Security Testing)**: è una tecnica di analisi di sicurezza "statica". Significa che il tool analizza il codice sorgente dell'applicazione senza eseguirla.
-
-**Probe**: è un meccanismo di osservazione (spesso un piccolo pezzo di codice o un hook di sistema) inserito per monitorare il comportamento di un software mentre è in esecuzione
-
 **Framework core (security MCP)**:
 
-| Framework | Tipologia | Cosa analizza |
-|-----------|-----------|---------------|
-| **mcp-guard** | SAST + fuzzing | Pattern regex sul codice + probe runtime sui tool |
-| **mcp-watch** | SAST | Regex specifici per credential leak, data exfiltration, transport security, ecc. |
-| **mcp-scan** (Snyk) | Analisi LLM | Tool description analysis con LLM |
-| **mcp-shield** | Analisi LLM | Tool description con Claude API/llama3 per istruzioni nascoste |
-| **mcp-security-scan** | Heuristic + probe | Probe runtime su capabilities (sovrappone con mcp-guard, mcp-watch, mcp-shield) |
-| **tool_fuzzing** (server-crash) | Runtime fuzzing | Detection eccezioni runtime non catturate |
+| Framework | Tipologia |
+|-----------|-----------|
+| **mcp-guard** | regex + fuzzing |
+| **mcp-watch** | regex |
+| **mcp-scan** | Analisi LLM |
+| **mcp-shield** | regex + Analisi LLM |
+| **mcp-security-scan** | regex + fuzzing |
+| **tool_fuzzing** | fuzzing |
 
 **Framework appendice (protocol/compliance)**:
 
 | Framework | Tipologia | Cosa analizza |
 |-----------|-----------|---------------|
-| *mcp-check* | *Test conformità* | *Conformità a spec MCP (handshake, discovery, invocation)* |
-| *tool_fuzzing* (protocol-fuzzing) | *Runtime fuzzing protocollo* | *JSON-RPC malformati, state confusion, type errors* |
+| *mcp-check* | *Test conformità* | *Conformità a specifiche MCP (handshake, discovery, invocation)* |
+| *tool_fuzzing* (protocol) | *Runtime fuzzing protocol* | *JSON-RPC malformati, state confusion, type errors* |
 
 ---
 
@@ -223,7 +212,7 @@ Struttura per ogni categoria:
 1. **Original finding** — codice del framework
 2. **Stage 1** — filtro grezzo
 3. **Stage 2A** — regole HC
-4. **Stage 2B** — classificatore UNCERTAIN
+4. **Stage 2B** — classificatore UNCERTAIN con llm
 5. **Final results** — merge VP/FP
 6. **Recap numerico**
 
@@ -248,7 +237,7 @@ def is_honeypot(f: dict) -> bool:
 
 #### Pattern globali Stage 1 (file/path/comment exclusion)
 
-I pattern seguenti rappresentano la **classe di esclusioni file-level** condivisa concettualmente da tutti i framework (test, vendor, scanner-own, comment line). Definizione esemplificativa da `analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py`. Ogni framework ha la propria implementazione (con minime varianti) nei rispettivi `filter_*.py`:
+I pattern seguenti rappresentano la **classe di esclusioni file-level** (test, vendor, scanner-own, comment line) condivisa da tutti i framework, anche se ogni framework ha la propria implementazione (con minime varianti) nei rispettivi `filter_*.py`:
 
 - `mcp-guard` → `filter_mcp_guard.py` (versione completa mostrata sotto)
 - `mcp-watch` → `filter_all_categories.py` + `filter_remaining_categories.py` (regex inline per categoria)
@@ -1994,7 +1983,7 @@ run_merge("input-validation", cache=load_cache("input-validation"))
 
 **Framework**: mcp-guard, mcp-security-scan.
 
-> Nota: `mcp-security-scan/dangerous-capabilities` (1.001 VP) effettua probe runtime sui tool e applica heuristic su `description` + `inputSchema` (presenza di keyword `execute`, `shell`, `command`, `run`, `exec`). Approccio complementare al SAST di `mcp-guard` (990 VP basati su pattern code-level): la sovrapposizione è significativa ma non totale — circa il 60% dei server è rilevato da entrambi, il restante 40% da uno solo dei due.
+> Nota: `mcp-security-scan/dangerous-capabilities` (1.001 VP) effettua probe runtime sui tool e applica heuristic su `description` + `inputSchema` (presenza di keyword `execute`, `shell`, `command`, `run`, `exec`). Approccio complementare alle regex di `mcp-guard` (990 VP basati su pattern code-level): la sovrapposizione è significativa ma non totale — circa il 60% dei server è rilevato da entrambi, il restante 40% da uno solo dei due.
 
 #### 1. Original finding
 
@@ -3141,10 +3130,6 @@ run_merge("shadowing-detected", cache={})
 
 ### 4.21 Recap del filtraggio per framework
 
-Tabella riassuntiva dei volumi totali (raw → Stage 1 → VP/FP finali) per ogni framework. Dati estratti da `CLAUDE.md` (sezioni "Post-processing") e dai documenti di analisi specifici (`*/ANALYSIS_GUIDE.md`).
-
----
-
 ### CORE — Framework di security MCP
 
 #### mcp-guard (19 categorie)
@@ -3193,7 +3178,7 @@ Pipeline: 2.281.983 raw → Stage 1 → 6.991 → Stage 2A → Stage 2B → **83
 
 #### mcp-scan (Snyk, 2 categorie classificate)
 
-Nessuna Stage 2A: i finding sono già pre-ragionati dall'LLM interno (Snyk). La cache `_llm_api_cache.json` è popolata in-chat.
+Nessuna Stage 2A: i finding sono già pre-ragionati dall'LLM interno (Snyk)
 
 | Categoria | Tipo | Raw | VP | FP | Minaccia (Sez 5) |
 |-----------|------|----:|---:|---:|------------------|
@@ -3215,9 +3200,7 @@ Pipeline: 5.047 raw (già pre-filtrati dal framework) → Stage 2A → Stage 2B 
 
 #### mcp-security-scan (10 categorie)
 
-Pipeline: ~9.404 raw → Stage 1 (`filter_security_scan.py`) → 1.395 filtrati → Stage 2A (HC + cache) → **1.094 VP / 301 FP**.
-
-Probe runtime + heuristic su capabilities (vedi `0_tool_mcp_security_scan/CLAUDE.md`).
+Pipeline: ~9.404 raw → Stage 1 → 1.395 filtrati → Stage 2A (HC + cache) → **1.094 VP / 301 FP**.
 
 | Categoria | Filtered Stage 1 | VP | FP | Minaccia (Sez 5) |
 |-----------|-----------------:|---:|---:|------------------|
@@ -3233,11 +3216,11 @@ Probe runtime + heuristic su capabilities (vedi `0_tool_mcp_security_scan/CLAUDE
 | sensitive-resource-exposure | 2 | 0 | 2 | n/a (0 VP) |
 | **Totale** | **1.395** | **1.094** | **301** | — |
 
-> Nota: `mcp-security-scan` è in **Core** ma con sovrapposizione esplicita: `dangerous-capabilities` sovrappone con `mcp-guard/dangerous-tool-handler-static`, `input-validation` con `mcp-watch/input-validation`, `path-traversal` con `mcp-guard/path-traversal-*`, `sensitive-file-access` con `mcp-shield/sensitive-file-access`. Approccio behavioral (probe runtime) complementare al SAST. Vedi §4.4, §4.10, §4.11, §4.14 per dettagli.
+> Nota: `mcp-security-scan` è in **Core** ma con sovrapposizione esplicita: `dangerous-capabilities` sovrappone con `mcp-guard/dangerous-tool-handler-static`, `input-validation` con `mcp-watch/input-validation`, `path-traversal` con `mcp-guard/path-traversal-*`, `sensitive-file-access` con `mcp-shield/sensitive-file-access` (vedere §4.4, §4.10, §4.11, §4.14 per dettagli).
 
 #### tool_fuzzing (parte Core: server-crash-fuzzing)
 
-Solo la categoria `server-crash-fuzzing` di `tool_fuzzing` è classificata come Core (security MCP — Python AttributeError, real bug runtime). Le altre 3 categorie sono in Appendice o scartate (vedi sotto).
+Solo la categoria `server-crash-fuzzing` di `tool_fuzzing` è classificata come Core. Le altre 3 categorie sono in Appendice o scartate (vedi sotto).
 
 | Categoria | Raw → Stage 1 | VP | FP | Minaccia (Sez 5) |
 |-----------|-------------:|---:|---:|------------------|
@@ -3361,7 +3344,7 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 | 19 | tool-shadowing | 1 | 1 | mcp-shield |
 | **TOTALE CORE** | | **11.533** | **~5.700 unici** | |
 
-> Nota: `protocol-violation` (137 VP) include solo `mcp-watch/protocol-violation` (79 — transport security) + `mcp-guard/protocol-missing-id` + `mcp-guard/protocol-invalid-jsonrpc-version` (58). I 1.562 VP di `tool_fuzzing/protocol-fuzzing` sono in **Appendice B** come compliance test puro.
+> Nota: `protocol-violation` (137 VP) include solo `mcp-watch/protocol-violation` (79 — transport security) + `mcp-guard/protocol-missing-id` + `mcp-guard/protocol-invalid-jsonrpc-version` (58). I 1.562 VP di `tool_fuzzing/protocol-fuzzing` sono in **Appendice B**.
 
 ### 5.2 Stato di Sicurezza dei 60.205 server
 
@@ -3378,7 +3361,7 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 
 ## 6. Limiti dell'Analisi
 
-### 6.1 SAST regex-only (`mcp-guard`, `mcp-watch`)
+### 6.1 Regex-only (`mcp-guard`, `mcp-watch`)
 
 Pattern matching senza analisi del data flow. Un pattern sintattico VP non sempre corrisponde a una vulnerabilità reale.
 
@@ -3436,9 +3419,9 @@ L'aggregazione dei VP per server URL su tutti i sette framework (incluse Appendi
 
 ### 7.3 Implicazioni del consenso
 
-I 29 server **Tier 1** sono confermati vulnerabili da almeno quattro framework indipendenti con metodologie diverse (SAST, fuzzing, analisi LLM, conformance test). La confidenza è ~99%.
+I 29 server **Tier 1** sono confermati vulnerabili da almeno quattro framework indipendenti con metodologie diverse (regex, fuzzing, analisi LLM, conformance test). La confidenza è ~99%.
 
-I 2.052 server **Tier 2** sono in larga maggioranza vulnerabili reali. Sono buoni candidati per triage prioritario in un contesto SOC o per responsible disclosure.
+I 2.052 server **Tier 2** sono in larga maggioranza vulnerabili reali
 
 I 7.027 server **Tier 3** richiedono verifica manuale: alcuni sono single-framework FP, altri sono detection complementari ma non confermate.
 
@@ -3457,29 +3440,13 @@ I 7.027 server **Tier 3** richiedono verifica manuale: alcuni sono single-framew
 **Quadro generale**:
 - ~10-15% dei server presenta almeno una vulnerabilità rilevata
 - ~3% dei server presenta vulnerabilità CRITICAL (RCE, credential leak)
-- Predominanza di issue SAST: credential leak hardcoded e SQL injection tramite f-string
+- Predominanza di issue regex: credential leak hardcoded e SQL injection tramite f-string
 - La prompt injection è rara ma critica quando presente (56 VP, alta severity per l'ecosistema LLM)
 - L'untrusted content ingestion è presente in 599 server (~1%) — categoria nuova specifica del paradigma MCP
-
-**Pattern emergenti**:
-1. **Compliance debt diffuso** (Appendice A): 5.466 server (9%) violano la specifica MCP. Questo dato è correlato — anche se non causalmente — alla presenza di altre vulnerabilità.
-2. **Hygiene credenziali povera**: 874 server espongono credential nel sorgente, spesso copia-incolla committato su GitHub pubblico.
-3. **Tool dangerous senza sandboxing**: 1.670 server (~2.8%) espongono capabilities pericolose senza adeguato isolamento (rilevato da `mcp-guard` + `mcp-security-scan`, 1.991 VP totali).
-4. **Prompt injection emergente**: novità del paradigma MCP — 56 server confermati ma probabilmente sottostimati.
-
-### Rilevanza per la tesi
-
-Lo studio mostra che:
-- Il framework MCP **cresce rapidamente** (60.000 server in pochi mesi) ma con maturità di sicurezza variabile.
-- Il marketplace dei tool author è **non fidato per definizione** → pattern come prompt injection (es. `math-mcp <IMPORTANT>` con email redirect) sono dimostrati nella realtà.
-- La dipendenza dalla **semantica del client LLM** introduce nuove vulnerability classes (tool shadowing, untrusted content ingestion) che non hanno equivalenti diretti nel software tradizionale.
-- Il **tooling di sicurezza è in nascita**: i sette framework analizzati hanno coperture parzialmente sovrapposte ma non complete.
 
 ### Conclusione di tesi
 
 Lo stato di sicurezza dei server MCP analizzati è **insoddisfacente** ma non drammatico. La maggioranza dei server (85-90%) non presenta VP rilevabili dai framework attuali. Le vulnerabilità identificate sono concentrate in una minoranza di server che spesso accumulano più issue contemporaneamente (vedi Tier 1 della cross-framework consensus).
-
-Il principale rischio sistemico è rappresentato dalla **prompt injection** e dall'**untrusted content ingestion**: categorie nuove specifiche del paradigma MCP, ancora poco coperte dai framework SAST tradizionali ma con elevato impatto potenziale sull'utente finale.
 
 ---
 
@@ -3527,23 +3494,11 @@ I 9.453 VP non sono inclusi nel totale Core della Sezione 5 perché rappresentan
 
 ### B.3 Perché in Appendice (non Core)
 
-A differenza di `mcp-watch/protocol-violation` (transport security, session ID in URL, server processa version invalida — security MCP) e `mcp-guard/protocol-*` (probe specifici su missing-id e invalid-version), `tool_fuzzing/protocol-fuzzing` testa la **conformità generale** del server al protocollo JSON-RPC su tutti i 17 metodi MCP. Sovrappone con il dominio di `mcp-check` (compliance puro).
-
-Differenza chiave:
-- *Security MCP* (Core, sezione 4.2): violazione protocol con conseguenza di sicurezza dimostrabile (state confusion, downgrade, accept arbitrary method) — 137 VP
-- *Compliance protocol* (Appendice B): server "successful" su JSON-RPC malformato, signal weak per la sicurezza diretta — 1.562 VP
+A differenza di `mcp-watch/protocol-violation` (transport security, session ID in URL, server processa version invalida — security MCP) e `mcp-guard/protocol-*` (probe specifici su missing-id e invalid-version), `tool_fuzzing/protocol-fuzzing` testa la **conformità generale** del server al protocollo JSON-RPC su tutti i 17 metodi MCP
 
 ### B.4 Limiti del segnale
 
 Il campo `success_details` nei dati raw è quasi sempre vuoto. Il VP è "potenziale" e non confermato: vediamo solo il counter "successful=N", non il payload effettivamente accettato dal server. Questo limite, combinato con la natura di compliance test, motiva la collocazione in Appendice piuttosto che nel Core.
-
----
-
-## Appendici tecniche
-
-- **Appendice C**: dataset raw e script riproducibili in `pipeline/analysisAllData/`
-- **Appendice D**: file `_threat_aggregation.json` con breakdown completo
-- **Appendice E**: documenti per-framework `0_tool_*/ANALYSIS_GUIDE.md`
 
 ---
 

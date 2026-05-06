@@ -15,6 +15,102 @@ I framework `mcp-check` e `mcp-security-scan` sono trattati separatamente alla f
 
 ---
 
+## 2. Pipeline di filtraggio: Stage 1 vs Stage 2A
+
+Ogni framework produce **migliaia/milioni di finding grezzi** con rapporto segnale/rumore bassissimo (spesso < 1%). Per arrivare ai VP azionabili la pipeline applica 3 stadi successivi: Stage 1 → Stage 2A → Stage 2B. Stage 1 e Stage 2A usano entrambi regex Python, ma sono **strumenti diversi con scopi diversi**.
+
+### Stage 1 — filtro grezzo (`filter_*.py`)
+
+**Scopo**: tagliare il rumore in massa. Riduce milioni → centinaia/migliaia (>90% taglio tipico).
+
+**Verdetto binario**: `keep` o `discard`. I finding scartati spariscono dalla pipeline.
+
+**Logica**: regex ampie e grossolane su segnali file-level e codice ovvio:
+- file di test/spec/fixture/example/vendor/node_modules/`.min.js` → discard
+- riga commentata (`#`, `//`, `*`) → discard
+- server honeypot noto (`malicious_mcp`, `vulnicheck`, ecc.) → discard
+- placeholder ovvi (`YOUR_API_KEY`, `your-secret`, `<TOKEN>`) → discard
+- pattern di sicurezza ovvi mantenuti (es. provider key `sk-...`, `AKIA...`)
+
+**Tolleranza all'errore**: alta. Stage 1 può scartare alcuni VP veri pur di abbattere il rumore (errori di omissione accettabili).
+
+**Esempio** (SQL injection):
+```python
+def keep_sql_injection(f):
+    if is_honeypot(f): return False                  # scarta server malevolo intenzionale
+    if _TEST_FILE.search(f["file"]): return False    # scarta file di test
+    if _COMMENTED.match(code): return False          # scarta riga commentata
+    if _SQL_BARE_CALL.search(code): return False     # scarta snippet troncato
+    if _SQL_ORM_SAFE.search(code): return False      # scarta ORM session.exec(select(...))
+    return True                                      # tutto resto: passa a Stage 2A
+```
+
+**Output**: file `<categoria>/filtered/<categoria>_filtered.json` con i finding sopravvissuti.
+
+### Stage 2A — regole HC high-confidence (`pipeline_*.py:hc_rules_*`)
+
+**Scopo**: dare verdetto finale sui sopravvissuti. Riduce centinaia → VP/FP/UNCERTAIN.
+
+**Verdetto ternario**: `HC-VP` (vero positivo certo), `HC-FP` (falso positivo certo), `UNCERTAIN` (richiede Stage 2B).
+
+**Logica**: regex strette dominio-specifiche, costruite per **triangolazione** di più segnali:
+- evidence + file path + language + (opzionale) `llm_risk` di un altro framework
+- distinzione fine VP vs FP (es. `f"...{table}"` con var generica = VP; `f"...{self.table}"` con attributo istanza = FP)
+- pattern emersi da ispezione empirica dei finding (non da standard pubblici)
+
+**Tolleranza all'errore**: quasi zero. Una regola HC che produce anche solo 1-2 errori viene declassata o eliminata. Spot-check sistematico per verificare.
+
+**Esempio** (SQL injection):
+```python
+def hc_rules_sql_injection(f):
+    code = extract_code(f["description"])
+    if _SQL_SELF_ONLY.search(code) and not _SQL_NON_SELF_VAR.search(code):
+        return "HC-FP", "fstring_with_instance_attribute_only"  # solo {self.X}
+    if _SQL_FSTR_TRIPLE.search(code):
+        return "HC-VP", "fstring_triple_quote_dynamic_sql"      # execute(text(f"""...{var}..."""))
+    if _SQL_USER_VAR.search(code):
+        return "HC-VP", "fstring_user_controlled_var"           # f"...{table}/{db}/{schema}..."
+    return "UNCERTAIN", "needs_manual_review"                   # passa a Stage 2B
+```
+
+**Output**: 3 file in `<categoria>/filtered/llm_analysis/`: `hc_vp.json`, `hc_fp.json`, `uncertain.json`.
+
+### Stage 2B — classificazione UNCERTAIN
+
+**Scopo**: classificare i finding ambigui rimasti. Cache JSON popolata in-chat (Sonnet) o via Ollama locale (llama3).
+
+**Output**: aggiornamento `_llm_api_cache.json` + merge finale (`vp.json`, `fp.json`, `audit.json`).
+
+### Tabella riepilogativa
+
+| Aspetto | Stage 1 (filter) | Stage 2A (HC) | Stage 2B |
+|---------|------------------|---------------|----------|
+| **Scopo** | tagliare rumore in massa | verdetto finale ternario | classificare UNCERTAIN |
+| **Volume target** | milioni → centinaia (90%+ taglio) | centinaia → VP/FP/UNCERT | UNCERT → VP/FP |
+| **Verdetto** | binario (keep/discard) | ternario (HC-VP/HC-FP/UNCERT) | binario (VP/FP) |
+| **Tolleranza errori** | alta (può scartare qualche VP) | quasi zero | medio-alta |
+| **Pattern** | ampi, grossolani | stretti, dominio-specifici | LLM o cache manuale |
+| **Segnali** | 1-2 (path + evidence) | 3-4 triangolati | semantica completa |
+| **Fonte regola** | standard pubblici (formato API key, honeypot list, file convention) | ispezione empirica dei finding residui | LLM judgment |
+| **Codice** | `filter_*.py:keep_*()` | `pipeline_*.py:hc_rules_*()` | `_classify_*.py` + cache |
+| **Output** | `<cat>_filtered.json` | `hc_vp.json`/`hc_fp.json`/`uncertain.json` | `vp.json`/`fp.json`/`audit.json` |
+
+### Perché due stadi separati invece di uno
+
+1. **Costo computazionale**: Stage 2A applica regex più costose e triangolazione multi-segnale. Eseguirle su milioni di finding è inefficiente. Stage 1 prefiltra a basso costo.
+2. **Granularità diversa**: Stage 1 distingue "rumore vs segnale potenziale", Stage 2A distingue "VP vs FP" sul segnale potenziale. Logiche separate, regex separate.
+3. **Riproducibilità e audit**: Stage 1 mantiene un file `filtered.json` con i sopravvissuti — utile per spot-check senza ri-eseguire il framework. Stage 2A produce 3 file separati che documentano il verdetto e il motivo.
+4. **Iterazione**: regole HC nascono leggendo `uncertain.json` e raggruppando finding simili. Senza Stage 1 il pool sarebbe troppo grande per ispezionarlo manualmente.
+5. **Tolleranza diversa**: Stage 1 può sbagliare (scarta qualche VP) perché aiuta solo a triare. Stage 2A non può sbagliare perché il suo output finisce direttamente in `vp.json`.
+
+### Eccezioni per framework
+
+- **mcp-shield**: il framework filtra autonomamente (output ~3-5k finding già selezionati). Niente Stage 1 esterno → si parte da Stage 2A.
+- **mcp-scan (Snyk)**: i finding sono già pre-ragionati da LLM interno (campi `risk_score`, `evidence`, `reason`). Niente Stage 1 né Stage 2A → si va direttamente a Stage 2B (cache in-chat).
+- **mcp-guard / probe attivi protocol**: i probe producono dataset già pulito (502 finding). Stage 1 fa solo il filtro honeypot.
+
+---
+
 ## 3. Mapping Framework → Categorie di Minaccia
 
 I sette framework sono specializzati su aspetti diversi:

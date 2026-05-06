@@ -1,9 +1,8 @@
 1. Ricontrollare tutti i finding per vedere vp e fp, siamo sicuri che siano tutti vp quelli che ho trovato? Non c'è un modo per ricontrollare ulteriormente ed essere molto stringenti nell'analisi? Mi sembra che ci siano forse troppi vp o che alcune volte questi vp siano un pò lasciati al caso. Forse può essere utile campionare un pò i dati
 2. Come vedi nella cartella C:\Users\francesco\Desktop\pipeline\findings mancano le cartelle per mcp-guard e mcp-fuzzing, le puoi fare? Sai come farle? Forse puoi prendere spunto dalle cartelle degli altri framework
-3. Ho risolto con questa parte. Ora invece per ogni categoria di vulnerabilità della sezione 4 mi metti alla fine anche un esempio di un vp con una breve spiegazione della vulnerabilità del caso che hai preso? **1**
 4. Mi riguardi tutte le sezioni del file e vedi se tornano tutti i numeri e tutte le cose che ho scritto?
 5. Sapresti darmi le fonti di tutte le regole che hai creato? Devo documentarci la mia tesi e soprattutto devo presentarle al prof
-6. | **Validazione** | residuo Stage 1 < soglia | spot-check 5+5 su nuovi VP/FP | Cosa vuol dire nella differenza tra stage 1 e 2A?
+6. | **Validazione** | residuo Stage 1 < soglia | spot-check 5+5 su nuovi VP/FP | Cosa vuol dire? Vorrei sapere la differenza tra stage 1 e 2A? Sta nel file C:\Users\francesco\Desktop\pipeline\THREAT_ANALYSIS_REPORT.md a riga 181
 7. I pattern seguenti rappresentano la **classe di esclusioni file-level** (test, vendor, scanner-own, comment line) condivisa da tutti i framework, anche se ogni framework ha la propria implementazione (con minime varianti) nei rispettivi `filter_*.py`:
 
 - `mcp-guard` → `filter_mcp_guard.py` (versione completa mostrata sotto)
@@ -87,7 +86,7 @@ Pattern matching senza analisi del data flow. Un pattern sintattico VP non sempr
 | altre statiche | ~600 | 5-15% | 510-570 |
 
 Arrivare ad avere un numero preciso di vp e fp e non solo una stima?
-10. Ma perchè nella parte core del fuzzing viene messo solo il server crash (che poi è solo 1) e nient'altro? Sono tutti fp gli altri? Infatti perchè nel fuzzing queste 4 categorie sono praticamente tutti fp? Mi rifai un recap fatto bene (qui in chat) di come funziona il fuzzing e di come lo abbiamo suddiviso in tutte queste analisi? **0**
+10. Ma perchè nella parte core del fuzzing in C:\Users\francesco\Desktop\pipeline\THREAT_ANALYSIS_REPORT.md viene messo solo il server crash (che poi è solo 1) e nient'altro? Sono tutti fp gli altri? Infatti perchè nel fuzzing queste 4 categorie sono praticamente tutti fp? Mi rifai un recap fatto bene (qui in chat) di come funziona il fuzzing e di come lo abbiamo suddiviso in tutte queste analisi? **0**
 
 ## 4. Categorie output (4)
 
@@ -117,3 +116,4 @@ Mapping 22 file raw → 4 categorie:
 | **TOTALE** | **17.841** | **1.563** | **16.278** | **8.8%** |
 
 Il file lo trovi in C:\Users\francesco\Desktop\pipeline\analysisAllData\0_tool_fuzzing\ANALYSIS_GUIDE.md
+12. Mi fai una tabella di copertura dei vari framework sulla lista di tutti i server che sto analizzando?

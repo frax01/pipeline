@@ -36,11 +36,10 @@
 
     e sotto ognuno di questi mi metti il codice sorgente, non mettermi nient'altro, nessuna spiegazione e nessun numero
 
-Alla fine di ogni categoria di vulnerabilità mettimi una tabella di recap con tutti i numeri di questi passaggi (dall'original al final results) in cui le righe rappresentano i framework che impattano quella categoria (ad esempio per credential leak ci sono guard e watch), mentre le colonne sono i vari stage con i risultati numerii, mentre l'ultima riga ci sono i dati dei numeri totali di quella tabella
+Alla fine di ogni categoria di vulnerabilità mettimi una tabella di recap con tutti i numeri di questi passaggi (dall'original al final results) in cui le righe rappresentano i framework che impattano quella categoria (ad esempio per credential leak ci sono guard e watch), mentre le colonne sono i vari stage con i risultati numerici, mentre l'ultima riga ci sono i dati dei numeri totali di quella tabella
 
 Fai questo per ogni categoria di vulnerabilità nella sezione 4
 
 Mettimi la lista honey pot all'inizio e non la ripetere più
 
-Mi raccomando elimina tutto quello che non è necessario e i commenti intermedi, non mi servono, ho bisogno di codici, numeri e una presentazione schematica **(da finire)**
-8. Mi scrivi bene i numeri delle sezioni dei vari capitoli del documento? Ora sono tutti sfasati
+Mi raccomando elimina tutto quello che non è necessario e i commenti intermedi, non mi servono, ho bisogno di codici, numeri e una presentazione schematica **(fatto)**

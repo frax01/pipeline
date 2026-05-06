@@ -3236,79 +3236,79 @@ Tabella riassuntiva dei volumi totali (raw → Stage 1 → VP/FP finali) per ogn
 
 Pipeline: 96.500 raw → Stage 1 → 28.535 (-70.4%) → Stage 2A (HC) → Stage 2B → 8.952 VP / 19.781 FP / 0 UNCERTAIN.
 
-| Categoria | Raw | Filtered Stage 1 | VP fin | FP fin |
-|-----------|----:|-----------------:|-------:|-------:|
-| ssrf-static | 44.063 | 832 | 717 | 115 |
-| hardcoded-credential-static | 18.438 | 5.277 | 933 | 4.344 |
-| sql-injection-static | 4.886 | 2.706 | 2.382 | 324 |
-| dangerous-tool-handler-static | 3.991 | 2.968 | 990 | 1.978 |
-| path-traversal-static | 4.740 | 3.704 | 59 | 3.645 |
-| prompt-injection-static | 2.016 | 436 | 16 | 420 |
-| insecure-deserialization-static | 814 | 591 | 31 | 560 |
-| code-injection-static | 318 | 241 | 184 | 57 |
-| command-injection-static | 107 | 58 | 21 | 37 |
-| command-injection-fuzzing | 1.743 | 1.743 | 431 | 1.312 |
-| path-traversal-fuzzing | 2.183 | 2.182 | 1.231 | 951 |
-| command-execution-fuzzing | 2.375 | 2.375 | 623 | 1.752 |
-| code-injection-fuzzing | 538 | 538 | 202 | 336 |
-| information-disclosure-fuzzing | 1.360 | 1.360 | 792 | 568 |
-| sensitive-info-disclosed-fuzzing | 5.626 | 3.120 | 277 | 2.843 |
-| protocol-information-disclosure | 13 | 13 | 4 | 9 |
-| protocol-path-traversal | 14 | 1 | 1 | 0 |
-| protocol-missing-id | 79 | 79 | 0 | 79 |
-| protocol-invalid-jsonrpc-version | 509 | 509 | 58 | 451 |
-| **Totale** | **96.500** | **28.535** | **8.952** | **19.781** |
+| Categoria | Raw | Filtered Stage 1 | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|-------:|-------:|------------------|
+| ssrf-static | 44.063 | 832 | 717 | 115 | ssrf (#8) |
+| hardcoded-credential-static | 18.438 | 5.277 | 933 | 4.344 | credential-leak (#3) |
+| sql-injection-static | 4.886 | 2.706 | 2.382 | 324 | sql-injection (#1) |
+| dangerous-tool-handler-static | 3.991 | 2.968 | 990 | 1.978 | dangerous-capabilities (#7) |
+| path-traversal-static | 4.740 | 3.704 | 59 | 3.645 | path-traversal (#4) |
+| prompt-injection-static | 2.016 | 436 | 16 | 420 | prompt-injection (#12) |
+| insecure-deserialization-static | 814 | 591 | 31 | 560 | insecure-deserialization (#13) |
+| code-injection-static | 318 | 241 | 184 | 57 | code-injection (#10) |
+| command-injection-static | 107 | 58 | 21 | 37 | command-injection (#5) |
+| command-injection-fuzzing | 1.743 | 1.743 | 431 | 1.312 | command-injection (#5) |
+| path-traversal-fuzzing | 2.183 | 2.182 | 1.231 | 951 | path-traversal (#4) |
+| command-execution-fuzzing | 2.375 | 2.375 | 623 | 1.752 | command-injection (#5) |
+| code-injection-fuzzing | 538 | 538 | 202 | 336 | code-injection (#10) |
+| information-disclosure-fuzzing | 1.360 | 1.360 | 792 | 568 | sensitive-info-disclosure (#6) |
+| sensitive-info-disclosed-fuzzing | 5.626 | 3.120 | 277 | 2.843 | sensitive-info-disclosure (#6) |
+| protocol-information-disclosure | 13 | 13 | 4 | 9 | sensitive-info-disclosure (#6) |
+| protocol-path-traversal | 14 | 1 | 1 | 0 | path-traversal (#4) |
+| protocol-missing-id | 79 | 79 | 0 | 79 | protocol-violation (#2) |
+| protocol-invalid-jsonrpc-version | 509 | 509 | 58 | 451 | protocol-violation (#2) |
+| **Totale** | **96.500** | **28.535** | **8.952** | **19.781** | — |
 
 #### mcp-watch (9 categorie)
 
 Pipeline: 2.281.983 raw → Stage 1 → 6.991 → Stage 2A → Stage 2B → 835 VP / 6.156 FP.
 
-| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin |
-|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|
-| credential-leak | 646.447 | 784 | 547 | 135 | 102 | 619 | 165 |
-| data-exfiltration | 24.566 | 86 | 2 | 79 | 5 | 2 | 84 |
-| input-validation | 764.234 | 225 | 123 | 91 | 11 | 125 | 100 |
-| steganographic-attack | 16.570 | 360 | 3 | 311 | 46 | 3 | 357 |
-| protocol-violation | 381.429 | 2.927 | 79 | 2.848 | 0 | 79 | 2.848 |
-| tool-poisoning | 136 | 7 | 0 | 7 | 0 | 0 | 7 |
-| prompt-injection | 302 | 8 | 0 | 8 | 0 | 0 | 8 |
-| tool-mutation | 18.856 | 2.577 | 0 | 2.577 | 0 | 0 | 2.577 |
-| access-control | 428.443 | 17 | 7 | 10 | 0 | 7 | 10 |
-| **Totale** | **2.281.983** | **6.991** | **761** | **6.066** | **164** | **835** | **6.156** |
+| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
+| credential-leak | 646.447 | 784 | 547 | 135 | 102 | 619 | 165 | credential-leak (#3) |
+| data-exfiltration | 24.566 | 86 | 2 | 79 | 5 | 2 | 84 | data-exfiltration (#17) |
+| input-validation | 764.234 | 225 | 123 | 91 | 11 | 125 | 100 | input-validation aggregata (#11) |
+| steganographic-attack | 16.570 | 360 | 3 | 311 | 46 | 3 | 357 | steganographic-attack (#16) |
+| protocol-violation | 381.429 | 2.927 | 79 | 2.848 | 0 | 79 | 2.848 | protocol-violation (#2) |
+| tool-poisoning | 136 | 7 | 0 | 7 | 0 | 0 | 7 | prompt-injection (#12) |
+| prompt-injection | 302 | 8 | 0 | 8 | 0 | 0 | 8 | prompt-injection (#12) |
+| tool-mutation | 18.856 | 2.577 | 0 | 2.577 | 0 | 0 | 2.577 | n/a (0 VP, non in Sez 5) |
+| access-control | 428.443 | 17 | 7 | 10 | 0 | 7 | 10 | access-control (#15) |
+| **Totale** | **2.281.983** | **6.991** | **761** | **6.066** | **164** | **835** | **6.156** | — |
 
 #### mcp-shield (4 categorie)
 
 Pipeline: 5.047 raw (già pre-filtrati dal framework) → Stage 2A → Stage 2B → 16 VP / 5.031 FP.
 
-| Categoria | Raw | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin |
-|-----------|----:|------:|------:|----------:|-------:|-------:|
-| hidden-instructions | 310 | 4 | 231 | 75 | 4 | 306 |
-| shadowing-detected | 22 | 1 | 21 | 0 | 1 | 21 |
-| potential-exfiltration | 1.621 | 0 | 1.621 | 0 | 0 | 1.621 |
-| sensitive-file-access | 3.094 | 11 | 3.083 | 0 | 11 | 3.083 |
-| **Totale** | **5.047** | **16** | **4.956** | **75** | **16** | **5.031** |
+| Categoria | Raw | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|------:|------:|----------:|-------:|-------:|------------------|
+| hidden-instructions | 310 | 4 | 231 | 75 | 4 | 306 | prompt-injection (#12) |
+| shadowing-detected | 22 | 1 | 21 | 0 | 1 | 21 | tool-shadowing (#19) |
+| potential-exfiltration | 1.621 | 0 | 1.621 | 0 | 0 | 1.621 | n/a (0 VP, non in Sez 5) |
+| sensitive-file-access | 3.094 | 11 | 3.083 | 0 | 11 | 3.083 | sensitive-file-access (#14) |
+| **Totale** | **5.047** | **16** | **4.956** | **75** | **16** | **5.031** | — |
 
 #### mcp-scan (Snyk, 2 categorie classificate)
 
 Nessuna Stage 2A: i finding sono già pre-ragionati dall'LLM interno (Snyk). La cache `_llm_api_cache.json` è popolata in-chat con Sonnet.
 
-| Categoria | Tipo | Raw | VP | FP |
-|-----------|------|----:|---:|---:|
-| E001 (Prompt Injection) | tool-level | 80 | 36 | 44 |
-| W015 (Untrusted Content) | server-level | 599 | 599 | 0 |
-| **Totale** | | **679** | **635** | **44** |
+| Categoria | Tipo | Raw | VP | FP | Minaccia (Sez 5) |
+|-----------|------|----:|---:|---:|------------------|
+| E001 (Prompt Injection) | tool-level | 80 | 36 | 44 | prompt-injection (#12) |
+| W015 (Untrusted Content) | server-level | 599 | 599 | 0 | untrusted-content (#9) |
+| **Totale** | | **679** | **635** | **44** | — |
 
 #### tool_fuzzing (4 categorie)
 
 Pipeline: 118.756 raw → Stage 1 → 17.841 → Stage 2A → Stage 2B → 1.563 VP / 16.278 FP.
 
-| Categoria | Raw → Stage 1 | VP | FP |
-|-----------|-------------:|---:|---:|
-| server-error-fuzzing | 10.944 | 0 | 10.944 |
-| transport-failure-fuzzing | 3.385 | 0 | 3.385 |
-| server-crash-fuzzing | 1 | 1 | 0 |
-| protocol-fuzzing | 3.511 | 1.562 | 1.949 |
-| **Totale** | **17.841** | **1.563** | **16.278** |
+| Categoria | Raw → Stage 1 | VP | FP | Minaccia (Sez 5) |
+|-----------|-------------:|---:|---:|------------------|
+| server-error-fuzzing | 10.944 | 0 | 10.944 | n/a (0 VP, non in Sez 5) |
+| transport-failure-fuzzing | 3.385 | 0 | 3.385 | n/a (0 VP, non in Sez 5) |
+| server-crash-fuzzing | 1 | 1 | 0 | server-crash (#18) |
+| protocol-fuzzing | 3.511 | 1.562 | 1.949 | protocol-violation (#2) |
+| **Totale** | **17.841** | **1.563** | **16.278** | — |
 
 #### Totali aggregati (5 framework core)
 

@@ -3562,7 +3562,7 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 | 17 | server-crash | **1** | 1 | tool_fuzzing |
 | 18 | tool-shadowing | **1** | 1 | mcp-shield |
 | 19 | steganographic-attack | **0** | 0 | (post round HC: pattern troppo loose) |
-| **TOTALE CORE** | | **8.352** | **~4.800 unici** | post round 4 fix 2026-05-07 |
+| **TOTALE CORE** | | **8.352** | **4.800 unici** | post round 4 fix 2026-05-07 |
 
 > Nota: `protocol-violation` (137 VP) include solo `mcp-watch/protocol-violation` (79 — transport security) + `mcp-guard/protocol-missing-id` + `mcp-guard/protocol-invalid-jsonrpc-version` (58). I 775 VP di `tool_fuzzing/protocol-fuzzing` sono in **Appendice B**.
 

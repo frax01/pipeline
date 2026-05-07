@@ -6,9 +6,10 @@
  
 ## 1. Numeri chiave
 
-- **Veri Positivi totali (core security MCP)**: **8.355** VP, generati da sei framework (mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan, tool_fuzzing/server-crash) — post round 4 fix 2026-05-07
+- **Veri Positivi totali (core security MCP)**: **8.352** VP, generati da sei framework (mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan, tool_fuzzing/server-crash) — post round 4 fix 2026-05-07
 - **Veri Positivi supplementari (protocol/compliance)**: **10.228** VP in Appendice (mcp-check 9.453 + tool_fuzzing/protocol-fuzzing 775)
-- **Server con almeno una vulnerabilità**: 9.108 (15% del totale)
+- **TOTALE pipeline**: **18.580** VP — FP rate medio 4.4% (blind n=50/cat), VP reali stim ~17.819
+- **Server con almeno una vulnerabilità**: 8.745 (14.5% del totale 60.205)
 
 ---
 
@@ -456,8 +457,8 @@ run_merge("sql-injection-static", cache=load_cache("sql-injection-static"))
 
 | Framework | Original | Stage 1 | HC-VP | HC-FP | UNCERTAIN | Stage 2B VP | Stage 2B FP | VP fin | FP fin |
 |-----------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
-| mcp-guard | 4.886 | 2.706 | 2.381 | 113 | 212 | 1 | 211 | 2.382 | 324 |
-| **Totale** | **4.886** | **2.706** | **2.381** | **113** | **212** | **1** | **211** | **2.382** | **324** |
+| mcp-guard | 4.886 | 2.689 | 2.374 | 108 | 207 | 1 | 206 | **2.375** | 314 |
+| **Totale** | **4.886** | **2.689** | **2.374** | **108** | **207** | **1** | **206** | **2.375** | **314** |
 
 #### Esempio VP
 
@@ -937,7 +938,7 @@ run_merge("credential-leak", cache=load_cache("credential-leak"))
 |-----------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
 | mcp-guard / hardcoded-credential-static | 18.438 | 4.701 | 540 | 3.383 | 778 | 110 | 668 | **650** | 4.051 |
 | mcp-watch / credential-leak | 646.447 | 784 | 547 | 135 | 102 | 72 | 30 | 619 | 165 |
-| **Totale** | **664.885** | **6.061** | **1.325** | **3.671** | **1.065** | **227** | **838** | **1.552** | **4.509** |
+| **Totale** | **664.885** | **5.485** | **1.087** | **3.518** | **880** | **182** | **698** | **1.269** | **4.216** |
 #### Esempio VP
 
 - **Server**: [`GLips/Figma-Context-MCP`](https://github.com/GLips/Figma-Context-MCP)
@@ -1155,11 +1156,11 @@ run_merge("protocol-path-traversal", cache={})
 
 | Framework / Categoria | Original | Stage 1 | HC-VP | HC-FP | UNCERTAIN | Stage 2B VP | Stage 2B FP | VP fin | FP fin |
 |----------------------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
-| mcp-guard / path-traversal-static | 4.740 | 3.704 | 59 | 2.922 | 723 | 0 | 723 | 59 | 3.645 |
+| mcp-guard / path-traversal-static | 4.740 | 3.697 | 23 | 2.976 | 698 | 0 | 698 | **23** | 3.674 |
 | mcp-guard / path-traversal-fuzzing | 2.183 | 2.182 | 428 | 1.297 | 457 | 13 | 244 | **441** | 1.741 |
 | mcp-guard / protocol-path-traversal | 14 | 1 | 1 | 0 | 0 | 0 | 0 | 1 | 0 |
 | mcp-security-scan / path-traversal | 5 | 5 | 5 | 0 | 0 | 0 | 0 | 5 | 0 |
-| **Totale** | **6.942** | **5.892** | **1.283** | **3.624** | **985** | **13** | **972** | **1.296** | **4.596** |
+| **Totale** | **6.942** | **5.885** | **457** | **4.273** | **1.155** | **13** | **942** | **470** | **5.415** |
 
 #### Esempio VP
 
@@ -1345,7 +1346,7 @@ run_merge("command-execution-fuzzing", cache=load_cache("command-execution-fuzzi
 | mcp-guard / command-injection-static | 107 | 58 | 40 | 1 | 17 | 0 | 17 | 21 | 37 |
 | mcp-guard / command-injection-fuzzing | 1.743 | 1.743 | 221 | 1.522 | 0 | 0 | 0 | **221** | 1.522 |
 | mcp-guard / command-execution-fuzzing | 2.375 | 2.375 | 2 | 2.311 | 62 | 0 | 39 | **2** | 2.350 |
-| **Totale** | **4.225** | **4.176** | **1.094** | **3.026** | **56** | **0** | **56** | **1.075** | **3.101** |
+| **Totale** | **4.225** | **4.176** | **263** | **3.834** | **79** | **0** | **56** | **244** | **3.909** |
 
 #### Esempio VP
 
@@ -1529,10 +1530,10 @@ run_merge("protocol-information-disclosure", cache={})
 
 | Framework / Categoria | Original | Stage 1 | HC-VP | HC-FP | UNCERTAIN | Stage 2B VP | Stage 2B FP | VP fin | FP fin |
 |----------------------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
-| mcp-guard / information-disclosure-fuzzing | 1.360 | 1.360 | 792 | 446 | 122 | 0 | 122 | 792 | 568 |
+| mcp-guard / information-disclosure-fuzzing | 1.360 | 1.360 | 4 | 1.212 | 144 | 0 | 122 | **4** | 1.334 |
 | mcp-guard / sensitive-info-disclosed-fuzzing | 5.626 | 3.120 | 1 | 2.179 | 940 | 0 | 856 | **1** | 3.119 |
 | mcp-guard / protocol-information-disclosure | 13 | 13 | 4 | 9 | 0 | 0 | 0 | 4 | 9 |
-| **Totale** | **6.999** | **4.493** | **1.073** | **2.404** | **1.016** | **0** | **1.016** | **1.073** | **3.420** |
+| **Totale** | **6.999** | **4.493** | **9** | **3.400** | **1.084** | **0** | **978** | **9** | **4.462** |
 
 #### Esempio VP
 
@@ -1929,8 +1930,8 @@ run_merge("code-injection-fuzzing", cache=load_cache("code-injection-fuzzing"))
 | Framework / Categoria | Original | Stage 1 | HC-VP | HC-FP | UNCERTAIN | Stage 2B VP | Stage 2B FP | VP fin | FP fin |
 |----------------------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
 | mcp-guard / code-injection-static | 318 | 241 | 184 | 34 | 23 | 0 | 23 | 184 | 57 |
-| mcp-guard / code-injection-fuzzing | 538 | 538 | 202 | 286 | 50 | 0 | 50 | 202 | 336 |
-| **Totale** | **856** | **779** | **386** | **320** | **73** | **0** | **73** | **386** | **393** |
+| mcp-guard / code-injection-fuzzing | 538 | 538 | 36 | 438 | 64 | 0 | 50 | **36** | 488 |
+| **Totale** | **856** | **779** | **220** | **472** | **87** | **0** | **73** | **220** | **545** |
 
 #### Esempio VP
 
@@ -2084,7 +2085,7 @@ run_merge("input-validation", cache=load_cache("input-validation"))
 
 **Framework**: mcp-guard, mcp-security-scan.
 
-> Nota: `mcp-security-scan/dangerous-capabilities` (1.001 VP) effettua probe runtime sui tool e applica heuristic su `description` + `inputSchema` (presenza di keyword `execute`, `shell`, `command`, `run`, `exec`). Approccio complementare alle regex di `mcp-guard` (990 VP basati su pattern code-level): la sovrapposizione è significativa ma non totale — circa il 60% dei server è rilevato da entrambi, il restante 40% da uno solo dei due.
+> Nota: `mcp-security-scan/dangerous-capabilities` (1.001 VP) effettua probe runtime sui tool e applica heuristic su `description` + `inputSchema` (presenza di keyword `execute`, `shell`, `command`, `run`, `exec`). Approccio complementare alle regex di `mcp-guard` (989 VP basati su pattern code-level): la sovrapposizione è significativa ma non totale — circa il 60% dei server è rilevato da entrambi, il restante 40% da uno solo dei due.
 
 #### 1. Original finding
 
@@ -2222,9 +2223,9 @@ run_merge("dangerous-tool-handler-static", cache=load_cache("dangerous-tool-hand
 
 | Framework | Original | Stage 1 | HC-VP | HC-FP | UNCERTAIN | Stage 2B VP | Stage 2B FP | VP fin | FP fin |
 |-----------|---------:|--------:|------:|------:|----------:|------------:|------------:|-------:|-------:|
-| mcp-guard | 3.991 | 2.968 | 986 | 1.409 | 573 | 4 | 569 | 990 | 1.978 |
+| mcp-guard | 3.991 | 2.961 | 985 | 1.403 | 573 | 4 | 569 | **989** | 1.972 |
 | mcp-security-scan | 1.230 | 1.230 | 986 | 229 | 15 | 15 | 0 | 1.001 | 229 |
-| **Totale** | **5.221** | **4.198** | **1.972** | **1.638** | **588** | **19** | **569** | **1.991** | **2.207** |
+| **Totale** | **5.221** | **4.191** | **1.971** | **1.632** | **588** | **19** | **569** | **1.990** | **2.201** |
 
 #### Esempio VP
 
@@ -3542,39 +3543,40 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 
 | # | Minaccia | VP | Server unici | Framework |
 |---|----------|---:|-------------:|-----------|
-| 1 | sql-injection | 2.382 | 657 | mcp-guard |
-| 2 | dangerous-capabilities | 1.991 | 1.670 | mcp-guard, mcp-security-scan |
-| 3 | credential-leak | 1.552 | 874 | mcp-guard, mcp-watch |
-| 4 | path-traversal | 1.296 | 375 | mcp-guard, mcp-security-scan |
-| 5 | command-injection | 1.075 | 142 | mcp-guard |
-| 6 | sensitive-info-disclosure | 1.073 | 75 | mcp-guard |
-| 7 | ssrf | 717 | 118 | mcp-guard |
-| 8 | untrusted-content | 599 | 599 | mcp-scan |
-| 9 | code-injection | 386 | 93 | mcp-guard |
-| 10 | input-validation (aggregata) | 208 | 174 | mcp-watch, mcp-security-scan |
-| 11 | protocol-violation | 137 | ~135 | mcp-watch, mcp-guard |
-| 12 | prompt-injection | 56 | 37 | mcp-scan, mcp-guard, mcp-shield |
-| 13 | insecure-deserialization | 31 | 19 | mcp-guard |
-| 14 | sensitive-file-access | 16 | 9 | mcp-shield, mcp-security-scan |
-| 15 | access-control | 7 | 2 | mcp-watch |
-| 16 | steganographic-attack | 3 | 1 | mcp-watch |
-| 17 | data-exfiltration | 2 | 2 | mcp-watch |
-| 18 | server-crash | 1 | 1 | tool_fuzzing |
-| 19 | tool-shadowing | 1 | 1 | mcp-shield |
-| **TOTALE CORE** | | **9.323** | **~5.200 unici** | post round 2 fix 2026-05-06 |
+| 1 | sql-injection | **2.375** | ~655 | mcp-guard |
+| 2 | dangerous-capabilities | **1.990** | ~1.670 | mcp-guard, mcp-security-scan |
+| 3 | credential-leak | **1.269** | ~720 | mcp-guard, mcp-watch |
+| 4 | ssrf | **717** | 118 | mcp-guard |
+| 5 | untrusted-content | **599** | 599 | mcp-scan |
+| 6 | path-traversal | **470** | ~225 | mcp-guard, mcp-security-scan |
+| 7 | command-injection | **244** | ~85 | mcp-guard |
+| 8 | code-injection | **220** | ~70 | mcp-guard |
+| 9 | input-validation (aggregata) | **208** | 174 | mcp-watch, mcp-security-scan |
+| 10 | protocol-violation | **137** | ~135 | mcp-watch, mcp-guard |
+| 11 | prompt-injection | **56** | 37 | mcp-scan, mcp-guard, mcp-shield |
+| 12 | insecure-deserialization | **31** | 19 | mcp-guard |
+| 13 | sensitive-file-access | **16** | 9 | mcp-shield, mcp-security-scan |
+| 14 | sensitive-info-disclosure | **9** | ~7 | mcp-guard |
+| 15 | access-control | **7** | 2 | mcp-watch |
+| 16 | data-exfiltration | **2** | 2 | mcp-watch |
+| 17 | server-crash | **1** | 1 | tool_fuzzing |
+| 18 | tool-shadowing | **1** | 1 | mcp-shield |
+| 19 | steganographic-attack | **0** | 0 | (post round HC: pattern troppo loose) |
+| **TOTALE CORE** | | **8.352** | **~4.800 unici** | post round 4 fix 2026-05-07 |
 
 > Nota: `protocol-violation` (137 VP) include solo `mcp-watch/protocol-violation` (79 — transport security) + `mcp-guard/protocol-missing-id` + `mcp-guard/protocol-invalid-jsonrpc-version` (58). I 775 VP di `tool_fuzzing/protocol-fuzzing` sono in **Appendice B**.
 
 ### 5.2 Stato di Sicurezza dei 60.205 server
 
-**Server con almeno un VP (core)**: ~5.700-6.200 (10% del totale).
+**Server con almeno un VP (core)**: ~4.800 (8% del totale, post round 4 fix).
+**Server con almeno un VP (incluso mcp-check + tool_fuzzing/protocol)**: 8.745 (14.5%) — vedi §11.4.
 
 **Distribuzione per severity**:
 
-- **CRITICAL** (RCE / credential): credential-leak (874 server), dangerous-capabilities (1.670), command-injection (142), code-injection (93), sql-injection (657), insecure-deserialization (19) → ~3.450 server
-- **HIGH** (file/data access): path-traversal (375), ssrf (118), sensitive-info-disclosure (75), data-exfiltration (2), sensitive-file-access (9) → ~580 server
+- **CRITICAL** (RCE / credential): credential-leak (~720 server), dangerous-capabilities (~1.670), command-injection (~85), code-injection (~70), sql-injection (~655), insecure-deserialization (19) → ~3.220 server
+- **HIGH** (file/data access): path-traversal (~225), ssrf (118), sensitive-info-disclosure (~7), data-exfiltration (2), sensitive-file-access (9) → ~360 server
 - **MEDIUM** (LLM/protocol): prompt-injection (37), tool-shadowing (1), untrusted-content (599), input-validation (174) → ~810 server
-- **LOW** (resilienza): server-crash (1), steganographic-attack (1), access-control (2)
+- **LOW** (resilienza): server-crash (1), access-control (2)
 
 ---
 
@@ -3618,37 +3620,37 @@ L'aggregazione dei VP per server URL su tutti i sette framework (incluse Appendi
 
 | Tier | Criterio | Numero server | Confidenza |
 |------|----------|--------------:|------------|
-| **Tier 1** | 4+ framework concordano | **29** | super-alta (FP ~0%) |
-| **Tier 2** | 2-3 framework | **2.052** | alta |
-| **Tier 3** | 1 solo framework | **7.027** | da verificare manualmente |
-| **TOTALE** | | **9.108 server unici con VP** | |
+| **Tier 1** | 4+ framework concordano | **16** | super-alta (FP combinato ~0.0005%) |
+| **Tier 2** | 2-3 framework | **1.568** | alta |
+| **Tier 3** | 1 solo framework | **7.161** | da verificare manualmente |
+| **TOTALE** | | **8.745 server unici con VP** | post round 4 fix 2026-05-07 |
 
 ### 7.2 Top 10 dei server più vulnerabili (Tier 1)
 
 | Rank | Server | # Framework | Total VP | Framework |
 |-----:|--------|------------:|---------:|-----------|
-| 1 | `coladapo/purmemo-mcp` | **5** | 8 | mcp-check, mcp-scan, mcp-security-scan, mcp-watch, tool_fuzzing |
+| 1 | `coladapo/purmemo-mcp` | **5** | 7 | mcp-check, mcp-scan, mcp-security-scan, mcp-watch, tool_fuzzing |
 | 2 | `Shreesha4994/sap-btp-cf-mcp-server` | 4 | **34** | mcp-check, mcp-guard, mcp-scan, mcp-security-scan |
-| 3 | `nickgnd/tmux-mcp` | 4 | 23 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
-| 4 | `SandraK82/wisdom-mcp` | 4 | 22 | mcp-check, mcp-guard, mcp-scan, tool_fuzzing |
-| 5 | `Anansitrading/sprite-mcp-server` | 4 | 18 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
-| 6 | `manalejandro/mcp-proc` | 4 | 15 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
-| 7 | `nguyenvanduocit/script-mcp` | 4 | 10 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
-| 8 | `stefanoamorelli/ember-cli-mcp` | 4 | 10 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
-| 9 | `iptton-ai/wxcloud-mcp` | 4 | 10 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
-| 10 | `Garblesnarff/gemini-mcp-server` | 4 | 10 | mcp-check, mcp-guard, mcp-security-scan, mcp-watch |
+| 3 | `nickgnd/tmux-mcp` | 4 | 22 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
+| 4 | `manalejandro/mcp-proc` | 4 | 10 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
+| 5 | `wonderwhy-er/DesktopCommanderMCP` | 4 | 9 | mcp-check, mcp-guard, mcp-security-scan, mcp-watch |
+| 6 | `0xshariq/github-mcp-server` | 4 | 7 | mcp-check, mcp-guard, mcp-scan, mcp-security-scan |
+| 7 | `eddie-rembrandt/MCP-CodeV` | 4 | 6 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
+| 8 | `nguyenvanduocit/script-mcp` | 4 | 6 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
+| 9 | `DocNR/repo-analyzer-mcp` | 4 | 5 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
+| 10 | `1999AZZAR/filesystem-mcp-server` | 4 | 5 | mcp-check, mcp-guard, mcp-security-scan, tool_fuzzing |
 
 ### 7.3 Implicazioni del consenso
 
-I 29 server **Tier 1** sono confermati vulnerabili da almeno quattro framework indipendenti con metodologie diverse (regex, fuzzing, analisi LLM, conformance test). La confidenza è ~99%.
+I 16 server **Tier 1** (post round 4) sono confermati vulnerabili da almeno quattro framework indipendenti con metodologie diverse (regex, fuzzing, analisi LLM, conformance test). La confidenza è ~99.9995% (FP combinato ~0.0005% con FP rate medio per framework 4.4%).
 
-I 2.052 server **Tier 2** sono in larga maggioranza vulnerabili reali
+I 1.568 server **Tier 2** sono in larga maggioranza vulnerabili reali (FP combinato 2-3 framework: ~0.05-0.5%).
 
-I 7.027 server **Tier 3** richiedono verifica manuale: alcuni sono single-framework FP, altri sono detection complementari ma non confermate.
+I 7.161 server **Tier 3** richiedono verifica manuale: alcuni sono single-framework FP residui, altri sono detection complementari ma non confermate da altri framework.
 
 ### 7.4 File di output
 
-- `cross_framework_consensus_vp.json` — breakdown completo dei 9.108 server
+- `cross_framework_consensus_vp.json` — breakdown completo degli 8.745 server unici con VP
 - `top_50_vulnerable_servers.json` — ranking dei top 50
 - `cross_framework_stats.json` — statistiche aggregate
 
@@ -3658,16 +3660,17 @@ I 7.027 server **Tier 3** richiedono verifica manuale: alcuni sono single-framew
 
 ### Stato di sicurezza dei 60.205 server MCP analizzati
 
-**Quadro generale**:
-- ~10-15% dei server presenta almeno una vulnerabilità rilevata
-- ~3% dei server presenta vulnerabilità CRITICAL (RCE, credential leak)
-- Predominanza di issue regex: credential leak hardcoded e SQL injection tramite f-string
+**Quadro generale (post round 4 fix 2026-05-07)**:
+- **14.5% dei server** (8.745 / 60.205) presenta almeno una vulnerabilità rilevata
+- **~5% dei server** (~3.220) presenta vulnerabilità CRITICAL (RCE, credential leak, SQL injection, dangerous-capabilities)
+- Predominanza di issue regex: SQL injection tramite f-string (2.375 VP), dangerous-capabilities (1.990), credential-leak (1.269)
 - La prompt injection è rara ma critica quando presente (56 VP, alta severity per l'ecosistema LLM)
 - L'untrusted content ingestion è presente in 599 server (~1%) — categoria nuova specifica del paradigma MCP
+- FP rate medio post round 4: **4.4%** — precision aggregato **~95.6%**
 
 ### Conclusione di tesi
 
-Lo stato di sicurezza dei server MCP analizzati è **insoddisfacente** ma non drammatico. La maggioranza dei server (85-90%) non presenta VP rilevabili dai framework attuali. Le vulnerabilità identificate sono concentrate in una minoranza di server che spesso accumulano più issue contemporaneamente (vedi Tier 1 della cross-framework consensus).
+Lo stato di sicurezza dei server MCP analizzati è **insoddisfacente** ma non drammatico. La maggioranza dei server (85.5%) non presenta VP rilevabili dai framework attuali. Le vulnerabilità identificate sono concentrate in una minoranza di server che spesso accumulano più issue contemporaneamente (vedi Tier 1 della cross-framework consensus, §7). I 16 server Tier 1 (4+ framework concordano) costituiscono casi di altissima confidenza con FP combinato ~0%.
 
 ---
 

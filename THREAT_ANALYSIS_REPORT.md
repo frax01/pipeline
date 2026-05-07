@@ -3534,6 +3534,413 @@ Le 16 righe della tabella sono il prodotto cartesiano di 3 fasi di test (`handsh
 
 **Sintesi:** la stragrande maggioranza dei VP di mcp-check (~9.000 su 9.453) descrive **non-conformità al protocollo** che minano l'affidabilità dell'integrazione client-server. I casi a impatto di sicurezza diretta sono pochi ma ad alto valore: **3.294 tool name injection** (`tool_invocation/other_errors`) e **4 panic crash DoS** (`tool_invocation/panic_or_crash`).
 
+##### Dettaglio tecnico per categoria (formato §4)
+
+Per ogni categoria: meccanismo originale del test mcp-check, filtro Stage 1 (`filter_mcp_check.py`), HC rules Stage 2A (`pipeline_mcp_check.py`), eventuale Stage 2B (cache in-chat), recap numerico, esempio reale di finding.
+
+###### A.1 `handshake/schema_violation` — schema invalidi durante l'`initialize`
+
+**Threat model**: server invia messaggi non conformi alla specifica MCP durante l'apertura della connessione (campi obbligatori mancanti, tipi sbagliati, capabilities malformate). Il client non può negoziare correttamente.
+
+**Test mcp-check**: `connection-establishment` (suite `handshake`). Il framework apre il transport, invia `initialize`, valida la risposta contro lo schema Zod del SDK MCP.
+
+**Stage 1** — `filter_schema_violation` tiene tutto, scarta solo messaggi vuoti:
+```python
+if not msg.strip(): continue
+filtered_errors.append(err)
+```
+
+**Stage 2A** — `hc_rules_handshake_schema_violation`: tutti VP (default sicuro per questa fase).
+```python
+return "VP", "invalid_schema_during_initialize"
+```
+
+**Stage 2B**: nessuna riclassificazione, HC è terminale.
+
+**Recap**: 49 raw → 49 filt → 49 HC-VP / 0 HC-FP / 0 UNC → **49 VP / 0 FP**.
+
+**Esempio VP**:
+- **Server**: [`DynamicEndpoints/Netlify-MCP-Server`](https://github.com/DynamicEndpoints/Netlify-MCP-Server)
+- **Test**: `connection-establishment` → `ConnectionError`
+- **Evidenza**:
+  ```
+  Failed to establish connection: [
+    { "code": "custom", "path": ["capabilities","experimental","customWorkflows"],
+      "message": "Invalid input" }, ...
+  ]
+  ```
+- **Spiegazione**: il server dichiara nelle capabilities un campo `experimental.customWorkflows` non previsto dalla specifica MCP. Client conformi falliscono la validazione e chiudono la connessione — il server non è invocabile.
+
+###### A.2 `handshake/other_errors` — runtime atipici durante l'handshake
+
+**Threat model**: eccezioni non gestite, errori di parsing, messaggi interni esposti al client durante `initialize`/`ping`/`resources/list`. Indica server fragili in fase iniziale.
+
+**Test mcp-check**: `resource-discovery`, `prompt-discovery`, `connection-establishment` (errori che non rientrano in `schema_violation` né `method_not_found`).
+
+**Stage 1** — `filter_other_errors` (catch-all condiviso tra le 3 fasi). Scarta noise infrastrutturale:
+```python
+if re.search(r'ECONNREFUSED|ETIMEDOUT|ENOTFOUND|EADDRINUSE', msg): continue
+if re.search(r'Connection closed', msg): continue  # 826 entries
+if re.search(r'Already connected to a transport', msg): continue  # SDK bug
+if re.search(r'(Missing|Required).*(API.?KEY|TOKEN|SECRET)', msg, re.I): continue
+if re.search(r"reading '_(zod|def)'", msg): continue  # SDK runtime bug
+```
+
+**Stage 2A** — `hc_rules_handshake_other_errors`. Mix VP/FP basato sul messaggio:
+```python
+if _AUTH_FP.search(msgs_joined): return "FP", "auth_or_config_missing"
+if _UNMARSHAL_VP.search(msgs_joined): return "VP", "unmarshal_parse_error"
+if _JS_RUNTIME_VP.search(msgs_joined): return "VP", "js_python_runtime_error"
+if "unrecognized_keys" in msgs_joined: return "VP", "ping_response_unrecognized_keys"
+return "VP", "other_error_default_vp"  # default conservativo
+```
+
+**Stage 2B**: nessuna, HC copre tutti i casi.
+
+**Recap**: 832 raw → 117 filt (Stage 1 elimina ~715 di noise) → 110 HC-VP / 7 HC-FP / 0 UNC → **110 VP / 7 FP**.
+
+**Esempio VP**:
+- **Server**: [`bingal/FastDomainCheck-MCP-Server`](https://github.com/bingal/FastDomainCheck-MCP-Server)
+- **Test**: `resource-discovery` → `ResourceDiscoveryError`
+- **Evidenza**: `MCP error -32000: failed to unmarshal arguments: unexpected end of JSON input`
+- **Spiegazione**: server **Go** che fallisce il parsing del JSON-RPC durante `resources/list`. Bug nel transport/parser: input malformato (anche solo body troncato) genera errore non-recoverato. Vector di DoS via crafted payload.
+
+###### A.3 `handshake/method_not_found` — metodi MCP non implementati
+
+**Threat model**: server risponde `-32601 Method Not Found` a `ping` o ad altri metodi richiesti dalla specifica per l'handshake. Implementazione parziale del protocollo.
+
+**Test mcp-check**: `connection-establishment` con check `ping-support`.
+
+**Stage 1** — `filter_method_not_found` tiene solo errori sui metodi core:
+```python
+if re.search(r'tools/list|tools/call|initialize|ping|resources/', msg):
+    filtered_errors.append(err); continue
+if re.search(r'MCP error -32601', msg):
+    filtered_errors.append(err); continue
+```
+
+**Stage 2A** — tutti VP (mancanza di metodo standard è violazione):
+```python
+return "VP", "method_not_found_during_handshake"
+```
+
+**Recap**: 331 raw → 289 filt → 289 HC-VP / 0 HC-FP / 0 UNC → **289 VP / 0 FP**.
+
+**Esempio VP**:
+- **Server**: [`einreke/sleeper-scraper-mcp`](https://github.com/einreke/sleeper-scraper-mcp)
+- **Test**: `connection-establishment` → `ConnectionError`
+- **Evidenza**: `MCP error -32601: Method not found`
+- **Spiegazione**: server non risponde al `ping` standard MCP. Client che usano health-check periodici (Claude Desktop, Cursor) marcano la sessione come morta e disconnettono.
+
+###### A.4 `handshake/invalid_arguments` — argomenti malformati
+
+**Threat model**: server gestisce in modo non standard argomenti malformati nell'`initialize` (tipi sbagliati, campi extra). Usa error code generico invece di `-32602 Invalid Params`.
+
+**Test mcp-check**: `connection-establishment` con payload con argomenti deliberatamente errati.
+
+**Stage 1** — `filter_invalid_arguments`: tiene tutto.
+```python
+return entry
+```
+
+**Stage 2A**: nessuna HC rule (categoria cache-only).
+
+**Stage 2B** — classificazione in-chat scritta in `_llm_api_cache.json`. 2 server riconosciuti VP (uso di `-32602` rifiutato per arg validi), 5 FP (test mcp-check inviava arg che il server correttamente rifiutava).
+
+**Recap**: 7 raw → 7 filt → 0 HC / 0 HC / 0 UNC → cache-only → **2 VP / 5 FP**.
+
+**Esempio VP**:
+- **Server**: [`HorkyChen/talebook-mcp`](https://github.com/HorkyChen/talebook-mcp)
+- **Test**: `connection-establishment` → `ConnectionError`
+- **Evidenza**: `MCP error -32602: Invalid request parameters`
+- **Spiegazione**: il server rifiuta una richiesta `initialize` ben formata per via di una validazione interna troppo stringente. Client che inviano `clientInfo` con campi opzionali extra falliscono la connessione.
+
+###### A.5 `handshake/unauthorized_or_auth_missing` — auth richiesta
+
+**Threat model**: nessuna vulnerabilità — server richiede credenziali per inizializzare. Comportamento corretto.
+
+**Test mcp-check**: `connection-establishment` senza credentials configurate.
+
+**Stage 1** — `filter_unauthorized` tiene tutto (informativo):
+```python
+return entry
+```
+
+**Stage 2A** — tutti FP per design:
+```python
+return "FP", "auth_required_by_design"
+```
+
+**Recap**: 5 raw → 5 filt → 0 HC-VP / 5 HC-FP / 0 UNC → **0 VP / 5 FP**.
+
+**Esempio FP** (tutti FP):
+- **Server**: [`piotr-agier/google-drive-mcp`](https://github.com/piotr-agier/google-drive-mcp)
+- **Test**: `resource-discovery` → `ResourceDiscoveryError`
+- **Evidenza**: `Error loading OAuth keys: OAuth credentials not found. Please provide credentials...`
+- **Spiegazione**: il server protegge correttamente l'accesso a Google Drive richiedendo credenziali OAuth. Senza credentials non parte — comportamento atteso, non una vulnerabilità.
+
+###### A.6 `tool_discovery/schema_violation` — `inputSchema` invalidi
+
+**Threat model**: tool MCP esposti dal server hanno `inputSchema` non valido secondo JSON Schema Draft-07. Client conformi non riescono a invocarli.
+
+**Test mcp-check**: `tool-schema-validation` su `tools/list`.
+
+**Stage 1** — `filter_schema_violation` (stesso di handshake): tiene tutto eccetto messaggi vuoti.
+
+**Stage 2A** — tutti VP:
+```python
+return "VP", "invalid_tool_schema"
+```
+
+**Recap**: 229 raw → 229 filt → 229 HC-VP / 0 / 0 → **229 VP / 0 FP**.
+
+**Esempio VP**:
+- **Server**: [`alexandresanlim/mempool-mcp-server`](https://github.com/alexandresanlim/mempool-mcp-server)
+- **Test**: `tool-schema-validation` → `InvalidToolSchemas`
+- **Evidenza**: `10 tools have invalid schemas`
+- **Spiegazione**: 10 tool del server dichiarano `inputSchema` con strutture non valide (es. `type: "string"` su un campo `properties`, oneOf rotto). Client MCP rifiutano i tool — server di fatto inutile.
+
+###### A.7 `tool_discovery/other_errors` — runtime durante `tools/list`
+
+**Threat model**: errori atipici durante l'enumerazione tool. Sotto-tipo dominante: `DuplicateToolNames` (ambiguità per LLM).
+
+**Test mcp-check**: `tool-enumeration`, `unique-tool-names`.
+
+**Stage 1** — `filter_other_errors` shared (vedi A.2).
+
+**Stage 2A** — `hc_rules_tool_discovery_other_errors`:
+```python
+if "DuplicateToolNames" in types_list: return "VP", "duplicate_tool_names"
+if "InitializationError" in types_list: return "FP", "initialization_error_infrastructure"
+if _JS_RUNTIME_VP.search(msgs_joined): return "VP", "runtime_error_during_tools_list"
+if re.search(r'Failed to (list|get) tools', msgs_joined, re.I):
+    return "VP", "tools_list_crash"
+return "VP", "tool_list_error_default_vp"
+```
+
+**Recap**: 133 raw → 29 filt → 26 HC-VP / 3 HC-FP / 0 UNC → **26 VP / 3 FP**.
+
+**Esempio VP**:
+- **Server**: [`0xshariq/github-mcp-server`](https://github.com/0xshariq/github-mcp-server)
+- **Test**: `unique-tool-names` → `DuplicateToolNames`
+- **Evidenza**: `Duplicate tool names found: git_flow, git_sync`
+- **Spiegazione**: il server espone due tool diversi col nome `git_flow` (e altri due con `git_sync`). L'LLM riceve `tools/list` con duplicati e non sa quale invocare — comportamento non deterministico, possibile selezione del tool sbagliato.
+
+###### A.8 `tool_discovery/method_not_found` — `tools/list` non implementato
+
+**Threat model**: server non implementa il metodo `tools/list`. Senza enumerazione, il client non sa quali tool esistono.
+
+**Test mcp-check**: `tool-enumeration`.
+
+**Stage 1** — `filter_method_not_found` (vedi A.3).
+
+**Stage 2A** — tutti VP:
+```python
+return "VP", "tools_list_not_implemented"
+```
+
+**Recap**: 42 raw → 42 filt → 42 HC-VP / 0 / 0 → **42 VP / 0 FP**.
+
+**Esempio VP**:
+- **Server**: [`InditexTech/mcp-server-simulator-ios-idb`](https://github.com/InditexTech/mcp-server-simulator-ios-idb)
+- **Test**: `tool-enumeration` → `ToolListError`
+- **Evidenza**: `MCP error -32601: Method not found`
+- **Spiegazione**: server espone solo `resources/` ma non implementa `tools/list`. Client che si aspettano tool MCP standard ricevono lista vuota o errore — server inutilizzabile per orchestrazione tool.
+
+###### A.9 `tool_discovery/warnings` — tool senza descrizione
+
+**Threat model**: tool privi di `description` o con descrizione vuota. L'LLM non sa cosa fa il tool.
+
+**Test mcp-check**: `tool-description-quality`.
+
+**Stage 1** — `filter_warnings`: tiene tutto.
+```python
+return entry
+```
+
+**Stage 2A** — tutti VP (quality issue):
+```python
+return "VP", "tool_missing_description"
+```
+
+**Recap**: 714 raw → 357 filt → 357 HC-VP / 0 / 0 → **357 VP / 0 FP**.
+
+**Esempio VP**:
+- **Server**: [`HyperbolicLabs/hyperbolic-mcp`](https://github.com/HyperbolicLabs/hyperbolic-mcp)
+- **Test**: `tool-description-quality` → `Warning`
+- **Evidenza**: `9 tools lack descriptions`
+- **Spiegazione**: 9 tool registrati senza campo `description`. L'LLM, ricevendo solo nome + schema, deve indovinare il comportamento — può non usarli o usarli in modo errato. Quality issue che riduce di fatto l'usabilità dei tool.
+
+###### A.10 `tool_invocation/schema_violation` — risposta `tools/call` non conforme
+
+**Threat model**: server risponde a `tools/call` con strutture che falliscono la validazione Zod del SDK MCP. Client non riesce a deserializzare la risposta.
+
+**Test mcp-check**: `tool-{name}-basic-invocation` per ogni tool del server.
+
+**Stage 1** — `filter_schema_violation`: tiene tutto.
+
+**Stage 2A** — `hc_rules_tool_invocation_schema_violation`:
+```python
+if "ValidationFailure" in types_list: return "VP", "accepts_invalid_input"
+if "output schema but did not return structured content" in msgs_joined:
+    return "VP", "output_schema_mismatch"
+if "InitializationError" in types_list and re.search(
+        r'invalid_value|invalid_type|"path".*tools', msgs_j, re.I | re.DOTALL):
+    return "VP", "tools_list_response_schema_invalid"
+return "VP", "schema_violation_default"
+```
+
+**Recap**: 11.647 raw → 4.860 filt → 4.860 HC-VP / 0 / 0 → **4.860 VP / 0 FP**. Categoria col volume più alto del report.
+
+**Esempio VP**:
+- **Server**: [`minovap/mcp-gateway`](https://github.com/minovap/mcp-gateway)
+- **Test**: `tool-batch_request-basic-invocation` → `InvocationError`
+- **Evidenza**: `MCP error -32600: Tool batch_request has an output schema but did not return structured content`
+- **Spiegazione**: il tool `batch_request` dichiara nel proprio `outputSchema` che ritorna structured content, ma la risposta è plain text. Client che validano la risposta contro lo schema falliscono — bug grave perché impedisce il chaining di tool.
+
+###### A.11 `tool_invocation/other_errors` — tool name injection + runtime bugs
+
+**Threat model**: 2 categorie di problemi: (a) il server non ritorna errore per tool name inventati = **tool name injection** vector; (b) runtime errors (JS/Go/Python) durante l'invocazione.
+
+**Test mcp-check**: `error-handling-nonexistent-tool` (per (a)) + `tool-{name}-basic-invocation` (per (b)).
+
+**Stage 1** — `filter_other_errors` shared (vedi A.2).
+
+**Stage 2A** — `hc_rules_tool_invocation_other_errors` (la più articolata):
+```python
+if "ErrorHandlingFailure" in types_list:
+    return "VP", "tool_name_injection_no_error_returned"  # 3.294 server
+if _JS_RUNTIME_VP.search(msgs_joined): return "VP", "js_runtime_error"
+if _UNMARSHAL_VP.search(msgs_joined): return "VP", "unmarshal_parse_error"
+if _AUTH_FP.search(msgs_joined): return "FP", "auth_or_config_missing"
+if _URL_FP.search(msgs_joined): return "FP", "invalid_url_from_mcp_check"
+if _TEST_ID_FP.search(msgs_joined): return "FP", "test_placeholder_id"
+# ... +20 regole
+```
+
+**Recap**: 4.729 raw → 3.817 filt (Stage 1 elimina ~912 noise) → 3.361 HC-VP / 456 HC-FP / 0 UNC → **3.361 VP / 456 FP**.
+
+**Esempio VP** (tool name injection — il pattern dominante):
+- **Server**: [`0xshariq/docker-mcp-server`](https://github.com/0xshariq/docker-mcp-server)
+- **Test**: `error-handling-nonexistent-tool` → `ErrorHandlingFailure`
+- **Evidenza**: `Server did not return error for non-existent tool`
+- **Spiegazione**: mcp-check invoca un tool dal nome inventato (es. `__mcp_check_nonexistent__`) e il server risponde senza errore (forse con response vuota o con default). Un attaccante può iniettare nomi di tool fittizi via prompt injection ed evitare il flag di errore — utile per evasione di logging/audit. Pattern presente su 3.294 server.
+
+###### A.12 `tool_invocation/panic_or_crash` — DoS critici
+
+**Threat model**: server termina con crash non recuperato durante invocazione tool. **DoS con singolo input malformato**.
+
+**Test mcp-check**: `tool-{name}-basic-invocation` con fuzz input.
+
+**Stage 1** — `filter_panic_or_crash`: tiene tutto (sempre interessante).
+```python
+return entry
+```
+
+**Stage 2A**: nessuna HC rule (categoria cache-only, volumi piccoli).
+
+**Stage 2B** — classificazione in-chat: tutti 4 confermati VP.
+
+**Recap**: 9 raw → 4 filt (5 erano duplicati o noise) → cache-only → **4 VP / 0 FP**.
+
+**Esempio VP** (il finding più critico del report):
+- **Server**: [`sukeesh/mcp-iot-go`](https://github.com/sukeesh/mcp-iot-go)
+- **Test**: `tool-buzzer_control-basic-invocation` → `InvocationError`
+- **Evidenza**: `panic recovered in buzzer_control tool handler: interface conversion: interface {} is nil, not float64`
+- **Spiegazione**: tool Go fa `assertion(arg.(float64))` su un parametro che può essere `nil`. Senza null-check, `panic` sul cast nil→float64. Il `recovered` nel messaggio significa che mcp-check ha catturato il panic via `recover()` integrato — ma se il client non avesse il recover, il processo crashava. **Singolo invocation request abbatte il server**.
+
+###### A.13 `tool_invocation/invalid_arguments` — validation incompleta
+
+**Threat model**: server gestisce in modo errato argomenti malformati. Sotto-tipi: `parameter_parsing_not_implemented`, `output_schema_mismatch`, `wrong_error_code_for_validation`.
+
+**Test mcp-check**: `tool-{name}-basic-invocation` con arg fuzz.
+
+**Stage 1** — `filter_invalid_arguments`: tiene tutto.
+
+**Stage 2A** — `hc_rules_tool_invocation_invalid_arguments` (multi-pattern):
+```python
+if re.search(r'parameter parsing not.*implemented', msgs, re.I):
+    return "VP", "parameter_parsing_not_implemented"
+if re.search(r'output schema.*mismatch|invalid_structured_content', msgs, re.I):
+    return "VP", "output_schema_mismatch"
+if re.search(r'-32603.*[Ii]nvalid', msgs):
+    return "VP", "wrong_error_code_for_validation"  # dovrebbe essere -32602
+if re.search(r'Invalid arguments for [\w.-]+:', msgs):
+    return "FP", "zod_validation_correct"  # mcp-check inviava arg invalidi
+# ...
+```
+
+**Recap**: 477 raw → 253 filt → 74 HC-VP / 179 HC-FP / 0 UNC → **74 VP / 179 FP**.
+
+**Esempio VP**:
+- **Server**: [`vertikon/mcp-ads-manager`](https://github.com/vertikon/mcp-ads-manager)
+- **Test**: `tool-update_project-basic-invocation` → `InvocationError`
+- **Evidenza**: `MCP error -32602: Invalid parameters: parameter parsing not fully implemented for this type`
+- **Spiegazione**: il server espone un tool `update_project` ma la logica di parsing degli argomenti è incompleta — il messaggio d'errore lo ammette esplicitamente. Tool inutilizzabile in produzione, indica progetto in stato bozza.
+
+###### A.14 `tool_invocation/method_not_found` — `tools/call` non implementato
+
+**Threat model**: server espone tool ma non implementa `tools/call`. Implementazione parziale.
+
+**Test mcp-check**: `tool-{name}-basic-invocation`.
+
+**Stage 1** — `filter_method_not_found` (vedi A.3).
+
+**Stage 2A** — tutti VP:
+```python
+return "VP", "tool_call_not_implemented"
+```
+
+**Recap**: 56 raw → 50 filt → 50 HC-VP / 0 / 0 → **50 VP / 0 FP**.
+
+**Esempio VP**:
+- **Server**: [`ispyridis/calibre-rag-mcp-nodejs`](https://github.com/ispyridis/calibre-rag-mcp-nodejs)
+- **Test**: `tool-fetch-basic-invocation` → `InvocationError`
+- **Evidenza**: `MCP error -32601: Fetch tool implementation pending`
+- **Spiegazione**: il tool `fetch` è registrato in `tools/list` ma il dispatcher di `tools/call` non lo implementa — l'errore lo dichiara esplicitamente (`implementation pending`). Stato di sviluppo incompleto rilasciato in repo pubblica.
+
+###### A.15 `tool_invocation/warnings` — non-determinismo (tutti FP)
+
+**Threat model**: nessuna vulnerabilità. Test rileva tool che producono output diversi a parità di input — comportamento atteso per tool con side effect.
+
+**Test mcp-check**: `tool-{name}-deterministic-behavior`.
+
+**Stage 1** — `filter_warnings`: tiene tutto.
+
+**Stage 2A** — tutti FP per design:
+```python
+return "FP", "non_deterministic_output_expected"
+```
+
+**Recap**: 2.394 raw → 878 filt → 0 HC-VP / 878 HC-FP / 0 UNC → **0 VP / 878 FP**.
+
+**Esempio FP**:
+- **Server**: [`0xshariq/docker-mcp-server`](https://github.com/0xshariq/docker-mcp-server)
+- **Test**: `tool-docker-images-deterministic-behavior` → `Warning`
+- **Evidenza**: `Tool behavior appears non-deterministic with identical inputs`
+- **Spiegazione**: il tool `docker images` legge la lista corrente di immagini Docker — cambia tra invocazioni se l'utente ne aggiunge/rimuove. Comportamento corretto per un tool che osserva stato esterno. Test di mcp-check segnala una proprietà, non un bug.
+
+###### A.16 `tool_invocation/unauthorized_or_auth_missing` — auth attiva (tutti FP)
+
+**Threat model**: server richiede credenziali per invocare un tool. Comportamento corretto.
+
+**Test mcp-check**: `tool-{name}-basic-invocation` senza credentials configurate.
+
+**Stage 1** — `filter_unauthorized`: tiene tutto.
+
+**Stage 2A** — tutti FP:
+```python
+return "FP", "auth_required_by_design"
+```
+
+**Recap**: 253 raw → 115 filt → 0 HC-VP / 115 HC-FP / 0 UNC → **0 VP / 115 FP**.
+
+**Esempio FP**:
+- **Server**: [`1Panel-dev/mcp-1panel`](https://github.com/1Panel-dev/mcp-1panel)
+- **Test**: `tool-create_website-basic-invocation` → `InvocationError`
+- **Evidenza**: `MCP error 0: Panel API error: Unauthorized (code: 401)`
+- **Spiegazione**: il tool `create_website` richiede un API token del pannello 1Panel. Senza token la chiamata viene rifiutata con HTTP 401 — comportamento corretto, non vulnerabilità.
+
 #### Appendice B: tool_fuzzing (4 categorie)
 
 Suite di runtime fuzzing dei server MCP. Raggruppa tutte le 4 categorie del framework: `protocol-fuzzing` (signal protocol-level), `server-crash-fuzzing` (1 VP critico Python), e le 2 scartate per 0 VP utili (`server-error-fuzzing`, `transport-failure-fuzzing`).

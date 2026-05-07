@@ -3337,91 +3337,93 @@ run_merge("shadowing-detected", cache={})
 
 ### 4.21 Recap del filtraggio per framework
 
+> Schema unificato per tutte le tabelle: `Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5)`. Trattino (`-`) = il framework non produce quel dato (es. mcp-scan non fa Stage 2A; mcp-shield arriva già pre-filtrato; mcp-security-scan/mcp-check non hanno Raw esposto per categoria). Numeri HC e VP/FP letti direttamente dai file `hc_vp.json` / `hc_fp.json` / `uncertain.json` / `vp.json` / `fp.json` di ogni categoria; Filtered Stage 1 = somma HC-VP+HC-FP+UNCERTAIN.
+
 ### CORE — Framework di security MCP
 
 #### mcp-guard (19 categorie)
 
-Pipeline: 96.500 raw → Stage 1 → 28.125 (-70.9%) → Stage 2A (HC) → Stage 2B → **5.774 VP / 22.959 FP** (post blind-review round 4 2026-05-07).
-
-| Categoria | Raw | Filtered Stage 1 | VP fin | FP fin | Minaccia (Sez 5) |
-|-----------|----:|-----------------:|-------:|-------:|------------------|
-| ssrf-static | 44.063 | 832 | 717 | 115 | ssrf (#7) |
-| hardcoded-credential-static | 18.438 | 4.701 | 650 | 4.051 | credential-leak (#3) |
-| sql-injection-static | 4.886 | 2.689 | 2.375 | 314 | sql-injection (#1) |
-| dangerous-tool-handler-static | 3.991 | 2.961 | 989 | 1.972 | dangerous-capabilities (#2) |
-| path-traversal-static | 4.740 | 3.697 | **23** | 3.674 | path-traversal (#4) |
-| prompt-injection-static | 2.016 | 435 | 16 | 420 | prompt-injection (#12) |
-| insecure-deserialization-static | 814 | 591 | 31 | 560 | insecure-deserialization (#13) |
-| code-injection-static | 318 | 241 | 184 | 57 | code-injection (#9) |
-| command-injection-static | 107 | 58 | 21 | 37 | command-injection (#5) |
-| command-injection-fuzzing | 1.743 | 1.743 | 221 | 1.522 | command-injection (#5) |
-| path-traversal-fuzzing | 2.183 | 2.182 | 441 | 1.741 | path-traversal (#4) |
-| command-execution-fuzzing | 2.375 | 2.375 | 2 | 2.350 | command-injection (#5) |
-| code-injection-fuzzing | 538 | 538 | 36 | 488 | code-injection (#9) |
-| information-disclosure-fuzzing | 1.360 | 1.360 | **4** | 1.334 | sensitive-info-disclosure (#6) |
-| sensitive-info-disclosed-fuzzing | 5.626 | 3.120 | 1 | 3.119 | sensitive-info-disclosure (#6) |
-| protocol-information-disclosure | 13 | 13 | 4 | 9 | sensitive-info-disclosure (#6) |
-| protocol-path-traversal | 14 | 1 | 1 | 0 | path-traversal (#4) |
-| protocol-missing-id | 79 | 79 | 0 | 79 | protocol-violation (#11) |
-| protocol-invalid-jsonrpc-version | 509 | 509 | 58 | 451 | protocol-violation (#11) |
-| **Totale** | **96.500** | **28.125** | **5.774** | **22.959** | — |
-
-#### mcp-watch (9 categorie)
-
-Pipeline: 2.281.983 raw → Stage 1 → 6.991 → Stage 2A → Stage 2B → **835 VP / 6.156 FP**.
+Pipeline: 96.500 raw → Stage 1 → 28.126 (-70.9%) → Stage 2A (HC) → Stage 2B → **5.774 VP / 22.003 FP** (post blind-review round 4 2026-05-07).
 
 | Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
 |-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
-| credential-leak | 646.447 | 784 | 547 | 135 | 102 | 619 | 165 | credential-leak (#3) |
+| ssrf-static | 44.063 | 832 | 717 | 61 | 54 | 717 | 115 | ssrf (#7) |
+| hardcoded-credential-static | 18.438 | 4.701 | 540 | 3.383 | 778 | 650 | 4.051 | credential-leak (#3) |
+| sql-injection-static | 4.886 | 2.689 | 2.374 | 108 | 207 | 2.375 | 314 | sql-injection (#1) |
+| dangerous-tool-handler-static | 3.991 | 2.961 | 985 | 1.403 | 573 | 989 | 1.972 | dangerous-capabilities (#2) |
+| path-traversal-static | 4.740 | 3.697 | 23 | 2.976 | 698 | **23** | 3.674 | path-traversal (#4) |
+| prompt-injection-static | 2.016 | 436 | 16 | 345 | 75 | 16 | 420 | prompt-injection (#12) |
+| insecure-deserialization-static | 814 | 591 | 31 | 391 | 169 | 31 | 560 | insecure-deserialization (#13) |
+| code-injection-static | 318 | 241 | 184 | 34 | 23 | 184 | 57 | code-injection (#9) |
+| command-injection-static | 107 | 58 | 19 | 31 | 8 | 21 | 37 | command-injection (#5) |
+| command-injection-fuzzing | 1.743 | 1.743 | 221 | 1.522 | 0 | 221 | 1.522 | command-injection (#5) |
+| path-traversal-fuzzing | 2.183 | 2.182 | 428 | 1.297 | 457 | 441 | 1.535 | path-traversal (#4) |
+| command-execution-fuzzing | 2.375 | 2.375 | 2 | 2.311 | 62 | 2 | 2.350 | command-injection (#5) |
+| code-injection-fuzzing | 538 | 538 | 36 | 438 | 64 | 36 | 488 | code-injection (#9) |
+| information-disclosure-fuzzing | 1.360 | 1.360 | 4 | 1.212 | 144 | **4** | 1.334 | sensitive-info-disclosure (#6) |
+| sensitive-info-disclosed-fuzzing | 5.626 | 3.120 | 1 | 2.179 | 940 | 1 | 3.035 | sensitive-info-disclosure (#6) |
+| protocol-information-disclosure | 13 | 13 | 4 | 9 | 0 | 4 | 9 | sensitive-info-disclosure (#6) |
+| protocol-path-traversal | 14 | 1 | 1 | 0 | 0 | 1 | 0 | path-traversal (#4) |
+| protocol-missing-id | 79 | 79 | 0 | 72 | 7 | 0 | 79 | protocol-violation (#11) |
+| protocol-invalid-jsonrpc-version | 509 | 509 | 3 | 446 | 60 | 58 | 451 | protocol-violation (#11) |
+| **Totale** | **96.500** | **28.126** | **5.589** | **18.215** | **4.319** | **5.774** | **22.003** | — |
+
+#### mcp-watch (9 categorie)
+
+Pipeline: 2.281.983 raw → Stage 1 → 6.988 → Stage 2A → Stage 2B → **832 VP / 6.159 FP**.
+
+| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
+| credential-leak | 646.447 | 784 | 459 | 145 | 180 | 619 | 165 | credential-leak (#3) |
 | data-exfiltration | 24.566 | 86 | 2 | 79 | 5 | 2 | 84 | data-exfiltration (#17) |
 | input-validation | 764.234 | 225 | 123 | 91 | 11 | 125 | 100 | input-validation (#10) |
-| steganographic-attack | 16.570 | 360 | 3 | 311 | 46 | 3 | 357 | steganographic-attack (#16) |
+| steganographic-attack | 16.570 | 357 | 0 | 311 | 46 | 0 | 360 | steganographic-attack (#16) |
 | protocol-violation | 381.429 | 2.927 | 79 | 2.848 | 0 | 79 | 2.848 | protocol-violation (#11) |
 | tool-poisoning | 136 | 7 | 0 | 7 | 0 | 0 | 7 | prompt-injection (#12) |
 | prompt-injection | 302 | 8 | 0 | 8 | 0 | 0 | 8 | prompt-injection (#12) |
 | tool-mutation | 18.856 | 2.577 | 0 | 2.577 | 0 | 0 | 2.577 | n/a (0 VP) |
 | access-control | 428.443 | 17 | 7 | 10 | 0 | 7 | 10 | access-control (#15) |
-| **Totale** | **2.281.983** | **6.991** | **761** | **6.066** | **164** | **835** | **6.156** | — |
+| **Totale** | **2.281.983** | **6.988** | **670** | **6.076** | **242** | **832** | **6.159** | — |
 
 #### mcp-scan (Snyk, 2 categorie classificate)
 
-Nessuna Stage 2A: i finding sono già pre-ragionati dall'LLM interno (Snyk)
+Nessuna Stage 2A: i finding sono già pre-ragionati dall'LLM interno (Snyk). Tipo (tool-level / server-level) indicato come suffisso del nome categoria.
 
-| Categoria | Tipo | Raw | VP | FP | Minaccia (Sez 5) |
-|-----------|------|----:|---:|---:|------------------|
-| E001 (Prompt Injection) | tool-level | 80 | 36 | 44 | prompt-injection (#12) |
-| W015 (Untrusted Content) | server-level | 599 | 599 | 0 | untrusted-content (#8) |
-| **Totale** | | **679** | **635** | **44** | — |
+| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
+| E001 - Prompt Injection (tool-level) | 80 | - | - | - | - | 36 | 44 | prompt-injection (#12) |
+| W015 - Untrusted Content (server-level) | 599 | - | - | - | - | 599 | 0 | untrusted-content (#8) |
+| **Totale** | **679** | **-** | **-** | **-** | **-** | **635** | **44** | — |
 
 #### mcp-shield (4 categorie)
 
-Pipeline: 5.047 raw (già pre-filtrati dal framework) → Stage 2A → Stage 2B → **16 VP / 5.031 FP**.
+Pipeline: 5.047 raw (già pre-filtrati dal framework, quindi Filtered Stage 1 = `-` perché coincide con Raw) → Stage 2A → Stage 2B → **16 VP / 5.031 FP**.
 
-| Categoria | Raw | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
-|-----------|----:|------:|------:|----------:|-------:|-------:|------------------|
-| hidden-instructions | 310 | 4 | 231 | 75 | 4 | 306 | prompt-injection (#12) |
-| shadowing-detected | 22 | 1 | 21 | 0 | 1 | 21 | tool-shadowing (#19) |
-| potential-exfiltration | 1.621 | 0 | 1.621 | 0 | 0 | 1.621 | n/a (0 VP) |
-| sensitive-file-access | 3.094 | 11 | 3.083 | 0 | 11 | 3.083 | sensitive-file-access (#14) |
-| **Totale** | **5.047** | **16** | **4.956** | **75** | **16** | **5.031** | — |
+| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
+| hidden-instructions | 310 | - | 4 | 231 | 75 | 4 | 306 | prompt-injection (#12) |
+| shadowing-detected | 22 | - | 1 | 21 | 0 | 1 | 21 | tool-shadowing (#19) |
+| potential-exfiltration | 1.621 | - | 0 | 1.621 | 0 | 0 | 1.621 | n/a (0 VP) |
+| sensitive-file-access | 3.094 | - | 11 | 3.083 | 0 | 11 | 3.083 | sensitive-file-access (#14) |
+| **Totale** | **5.047** | **-** | **16** | **4.956** | **75** | **16** | **5.031** | — |
 
 #### mcp-security-scan (10 categorie)
 
-Pipeline: ~9.404 raw → Stage 1 → 1.395 filtrati → Stage 2A (HC + cache) → **1.094 VP / 301 FP**.
+Pipeline: ~9.404 raw → Stage 1 → 1.395 filtrati → Stage 2A (HC + cache) → **1.094 VP / 301 FP**. Raw per-categoria non esposto dal framework (`-`). HC-VP/HC-FP/UNCERTAIN solo per `dangerous-capabilities` e `rug-pull` (le altre 8 categorie sono cache-only, no Stage 2A).
 
-| Categoria | Filtered Stage 1 | VP | FP | Minaccia (Sez 5) |
-|-----------|-----------------:|---:|---:|------------------|
-| dangerous-capabilities | 1.230 | 1.001 | 229 | dangerous-capabilities (#2) |
-| input-validation | 85 | 83 | 2 | input-validation (#10) |
-| rug-pull | 59 | 0 | 59 | n/a (0 VP) |
-| prompt-injection | 3 | 0 | 3 | prompt-injection (#12) |
-| path-traversal | 5 | 5 | 0 | path-traversal (#4) |
-| sensitive-file-access | 5 | 5 | 0 | sensitive-file-access (#14) |
-| data-leak | 2 | 0 | 2 | n/a (0 VP) |
-| remote-access-control | 1 | 0 | 1 | access-control (#15) |
-| indirect-prompt-injection | 3 | 0 | 3 | n/a (0 VP) |
-| sensitive-resource-exposure | 2 | 0 | 2 | n/a (0 VP) |
-| **Totale** | **1.395** | **1.094** | **301** | — |
+| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
+| dangerous-capabilities | - | 1.230 | 961 | 208 | 61 | 1.001 | 229 | dangerous-capabilities (#2) |
+| input-validation | - | 85 | - | - | - | 83 | 2 | input-validation (#10) |
+| rug-pull | - | 59 | 0 | 59 | 0 | 0 | 59 | n/a (0 VP) |
+| prompt-injection | - | 3 | - | - | - | 0 | 3 | prompt-injection (#12) |
+| path-traversal | - | 5 | - | - | - | 5 | 0 | path-traversal (#4) |
+| sensitive-file-access | - | 5 | - | - | - | 5 | 0 | sensitive-file-access (#14) |
+| data-leak | - | 2 | - | - | - | 0 | 2 | n/a (0 VP) |
+| remote-access-control | - | 1 | - | - | - | 0 | 1 | access-control (#15) |
+| indirect-prompt-injection | - | 3 | - | - | - | 0 | 3 | n/a (0 VP) |
+| sensitive-resource-exposure | - | 2 | - | - | - | 0 | 2 | n/a (0 VP) |
+| **Totale** | **-** | **1.395** | **961** | **267** | **61** | **1.094** | **301** | — |
 
 > Nota: `mcp-security-scan` è in **Core** ma con sovrapposizione esplicita: `dangerous-capabilities` sovrappone con `mcp-guard/dangerous-tool-handler-static`, `input-validation` con `mcp-watch/input-validation`, `path-traversal` con `mcp-guard/path-traversal-*`, `sensitive-file-access` con `mcp-shield/sensitive-file-access` (vedere §4.4, §4.10, §4.11, §4.14 per dettagli).
 
@@ -3429,30 +3431,30 @@ Pipeline: ~9.404 raw → Stage 1 → 1.395 filtrati → Stage 2A (HC + cache) �
 
 Solo la categoria `server-crash-fuzzing` di `tool_fuzzing` è classificata come Core. Le altre 3 categorie sono in Appendice o scartate (vedi sotto).
 
-| Categoria | Raw → Stage 1 | VP | FP | Minaccia (Sez 5) |
-|-----------|-------------:|---:|---:|------------------|
-| server-crash-fuzzing | 1 | 1 | 0 | server-crash (#18) |
-| **Totale Core** | **1** | **1** | **0** | — |
+| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
+| server-crash-fuzzing | 1 | 1 | 1 | 0 | 0 | 1 | 0 | server-crash (#18) |
+| **Totale Core** | **1** | **1** | **1** | **0** | **0** | **1** | **0** | — |
 
 #### Totali aggregati Core (6 framework)
 
-| Framework | VP | FP |
-|-----------|---:|---:|
-| mcp-guard | **5.774** | 22.959 |
-| mcp-watch | 835 | 6.156 |
-| mcp-scan | 635 | 44 |
-| mcp-shield | 16 | 5.031 |
-| mcp-security-scan | 1.094 | 301 |
-| tool_fuzzing (server-crash) | 1 | 0 |
-| **Totale Core** | **8.355** | **34.491** |
+| Framework | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|
+| mcp-guard | 96.500 | 28.126 | 5.589 | 18.215 | 4.319 | **5.774** | 22.003 |
+| mcp-watch | 2.281.983 | 6.988 | 670 | 6.076 | 242 | 832 | 6.159 |
+| mcp-scan | 679 | - | - | - | - | 635 | 44 |
+| mcp-shield | 5.047 | - | 16 | 4.956 | 75 | 16 | 5.031 |
+| mcp-security-scan | - | 1.395 | 961 | 267 | 61 | 1.094 | 301 |
+| tool_fuzzing (server-crash) | 1 | 1 | 1 | 0 | 0 | 1 | 0 |
+| **Totale Core** | **2.384.210** | **36.510** | **7.237** | **29.514** | **4.697** | **8.352** | **33.538** |
 
-> Aggiornato 2026-05-07 round 4: -3.178 VP mcp-guard cumulativo (-35.5% vs originale 8.952). Round 4 fix:
-> - information-disclosure-fuzzing -92% (50 → 4): HC-FP per `python3 -c "<payload>" SyntaxError` (è command-injection, non info-disc) + AppleScript `do JavaScript`
-> - path-traversal-static -61% (59 → 23): HC-FP per `args.output_dir` (CLI output intended writable), `self._temp_dir` (server-managed), `session_id`/`uuid` filename (server-generated)
+> Numeri letti da JSON file 2026-05-07. Round 4 fix mcp-guard: -3.178 VP cumulativo (-35.5% vs originale 8.952). Round 4:
+> - information-disclosure-fuzzing -92% (50 → 4): HC-FP per `python3 -c "<payload>" SyntaxError` + AppleScript `do JavaScript`
+> - path-traversal-static -61% (59 → 23): HC-FP per `args.output_dir`, `self._temp_dir`, `session_id`/`uuid` filename
 >
 > Round 3 fix:
-> - information-disclosure-fuzzing -94% (770 → 50): nuovo `_INFO_DISC_SELF_PATH_ONLY` esclude server install path leak
-> - code-injection-fuzzing -82% (202 → 36): rimosso loose regex `eval.*result|exec.*output`, aggiunto FP per TypeScript scaffold + Node.js docs HTML
+> - information-disclosure-fuzzing -94% (770 → 50): nuovo `_INFO_DISC_SELF_PATH_ONLY`
+> - code-injection-fuzzing -82% (202 → 36)
 >
 > Dettagli: `analysisAllData/UPDATED_NUMBERS_2026-05-06.md`.
 
@@ -3462,37 +3464,44 @@ Solo la categoria `server-crash-fuzzing` di `tool_fuzzing` è classificata come 
 
 #### Appendice A: mcp-check (16 categorie)
 
-Pipeline: ~85.000 raw → Stage 1 (`filter_mcp_check.py`) → 11.101 filtrati → Stage 2A (HC) → Stage 2B (cache in-chat) → **9.453 VP / 1.648 FP**.
+Pipeline: ~85.000 raw → Stage 1 (`filter_mcp_check.py`) → 11.101 filtrati → Stage 2A (HC) → Stage 2B (cache in-chat) → **9.453 VP / 1.648 FP**. Raw per-categoria non esposto dal framework (`-`). 2 categorie cache-only (no Stage 2A): `handshake/invalid_arguments` e `tool_invocation/panic_or_crash`.
 
 Test di conformità protocollo MCP (handshake, tool discovery, tool invocation).
 
-| Categoria | Filtered | VP | FP | VP% |
-|-----------|---------:|---:|---:|----:|
-| handshake/schema_violation | 49 | 49 | 0 | 100% |
-| handshake/other_errors | 117 | 110 | 7 | 94% |
-| handshake/method_not_found | 289 | 289 | 0 | 100% |
-| handshake/invalid_arguments | 7 | 2 | 5 | 29% |
-| handshake/unauthorized_or_auth_missing | 5 | 0 | 5 | 0% |
-| tool_discovery/schema_violation | 229 | 229 | 0 | 100% |
-| tool_discovery/other_errors | 29 | 26 | 3 | 90% |
-| tool_discovery/method_not_found | 42 | 42 | 0 | 100% |
-| tool_discovery/warnings | 357 | 357 | 0 | 100% |
-| tool_invocation/schema_violation | 4.860 | 4.860 | 0 | 100% |
-| tool_invocation/other_errors | 3.817 | 3.361 | 456 | 88% |
-| tool_invocation/panic_or_crash | 4 | 4 | 0 | 100% |
-| tool_invocation/invalid_arguments | 253 | 74 | 179 | 29% |
-| tool_invocation/method_not_found | 50 | 50 | 0 | 100% |
-| tool_invocation/warnings | 878 | 0 | 878 | 0% |
-| tool_invocation/unauthorized_or_auth_missing | 115 | 0 | 115 | 0% |
-| **Totale** | **11.101** | **9.453** | **1.648** | **85.2%** |
+| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
+| handshake/schema_violation | - | 49 | 49 | 0 | 0 | 49 | 0 | protocol-violation (#11) |
+| handshake/other_errors | - | 117 | 110 | 7 | 0 | 110 | 7 | protocol-violation (#11) |
+| handshake/method_not_found | - | 289 | 289 | 0 | 0 | 289 | 0 | protocol-violation (#11) |
+| handshake/invalid_arguments | - | 7 | - | - | - | 2 | 5 | input-validation (#10) |
+| handshake/unauthorized_or_auth_missing | - | 5 | 0 | 5 | 0 | 0 | 5 | n/a (0 VP) |
+| tool_discovery/schema_violation | - | 229 | 229 | 0 | 0 | 229 | 0 | protocol-violation (#11) |
+| tool_discovery/other_errors | - | 29 | 26 | 3 | 0 | 26 | 3 | protocol-violation (#11) |
+| tool_discovery/method_not_found | - | 42 | 42 | 0 | 0 | 42 | 0 | protocol-violation (#11) |
+| tool_discovery/warnings | - | 357 | 357 | 0 | 0 | 357 | 0 | protocol-violation (#11) |
+| tool_invocation/schema_violation | - | 4.860 | 4.860 | 0 | 0 | 4.860 | 0 | protocol-violation (#11) |
+| tool_invocation/other_errors | - | 3.817 | 3.361 | 456 | 0 | 3.361 | 456 | protocol-violation (#11) |
+| tool_invocation/panic_or_crash | - | 4 | - | - | - | 4 | 0 | server-crash (#18) |
+| tool_invocation/invalid_arguments | - | 253 | 74 | 179 | 0 | 74 | 179 | input-validation (#10) |
+| tool_invocation/method_not_found | - | 50 | 50 | 0 | 0 | 50 | 0 | protocol-violation (#11) |
+| tool_invocation/warnings | - | 878 | 0 | 878 | 0 | 0 | 878 | n/a (0 VP) |
+| tool_invocation/unauthorized_or_auth_missing | - | 115 | 0 | 115 | 0 | 0 | 115 | n/a (0 VP) |
+| **Totale** | **-** | **11.101** | **9.447** | **1.643** | **0** | **9.453** | **1.648** | — |
 
 #### Appendice B: tool_fuzzing/protocol-fuzzing (1 categoria su 17 sub-protocol)
 
-Pipeline (post round 2 fix 2026-05-06): 103.394 raw (6.082 server × 17 protocol type) → Stage 1 (filter intermedio per success_rate 5-95%) → 3.511 filtrati → Stage 2A → Stage 2B → **775 VP / 2.736 FP**.
+Pipeline: 103.394 raw (6.082 server × 17 protocol type) → Stage 1 (filter intermedio per success_rate 5-95%) → 3.511 filtrati → Stage 2A → Stage 2B → **775 VP / 2.459 FP**.
 
 Probe runtime: invia richieste JSON-RPC malformate per ogni protocol type MCP.
 
 Round 2 fix HC: `InitializeRequest` con success rate ≥80% = metodo MCP valido (NON malformed → declassato a HC-FP). `ReadResourceRequest` con URI standard `file:///tmp/test.txt`/`resource://server/data`/`https://example.com/resource` = compliance test puro, NO security signal → HC-FP.
+
+| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
+| protocol-fuzzing (17 sub-protocol aggregati) | 103.394 | 3.511 | 775 | 2.032 | 704 | 775 | 2.459 | protocol-violation (#11) |
+| **Totale** | **103.394** | **3.511** | **775** | **2.032** | **704** | **775** | **2.459** | — |
+
+Sub-protocol type signal:
 
 | Sub-protocol type | Note |
 |-------------------|------|
@@ -3502,26 +3511,23 @@ Round 2 fix HC: `InitializeRequest` con success rate ≥80% = metodo MCP valido 
 | InitializeRequest | rate ≥80% = comportamento corretto (FP) |
 | altri 13 protocol type | informational (ListPrompts, Ping, ecc.) |
 
-| Filtered | VP (post fix) | FP |
-|---------:|--------------:|---:|
-| 3.511 | **775** | 2.736 |
-
 #### Categorie tool_fuzzing scartate (0 VP)
 
 Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice perché 0 VP utili (resilience issue, non security):
 
-| Categoria | Raw → Stage 1 | VP | FP | Note |
-|-----------|-------------:|---:|---:|------|
-| server-error-fuzzing | 10.944 | 0 | 10.944 | tool fragile = resilience, non security signal |
-| transport-failure-fuzzing | 3.385 | 0 | 3.385 | server non si inizializza senza infrastructure dedicata |
+| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
+| server-error-fuzzing | 10.944 | 10.944 | 0 | 10.944 | 0 | 0 | 10.944 | n/a (resilience, non security) |
+| transport-failure-fuzzing | 3.385 | 3.385 | 0 | 3.385 | 0 | 0 | 3.385 | n/a (server non si inizializza) |
+| **Totale scartate** | **14.329** | **14.329** | **0** | **14.329** | **0** | **0** | **14.329** | — |
 
 #### Totali aggregati Appendici
 
-| Framework | VP | FP |
-|-----------|---:|---:|
-| mcp-check | 9.453 | 1.648 |
-| tool_fuzzing/protocol-fuzzing | 775 | 2.736 |
-| **Totale Appendici** | **10.228** | **4.384** |
+| Framework | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin |
+|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|
+| mcp-check | - | 11.101 | 9.447 | 1.643 | 0 | 9.453 | 1.648 |
+| tool_fuzzing/protocol-fuzzing | 103.394 | 3.511 | 775 | 2.032 | 704 | 775 | 2.459 |
+| **Totale Appendici** | **103.394** | **14.612** | **10.222** | **3.675** | **704** | **10.228** | **4.107** |
 
 ---
 
@@ -3529,10 +3535,10 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 
 | Categoria | VP | FP | Note |
 |-----------|---:|---:|------|
-| **CORE security MCP (6 framework)** | **8.355** | **34.491** | minacce 1-19 in §5 (post fix round 4 2026-05-07) |
-| **APPENDICI protocol/compliance (2 contributi)** | **10.228** | **4.108** | mcp-check (9.453) + tool_fuzzing/protocol (775) |
+| **CORE security MCP (6 framework)** | **8.352** | **33.538** | minacce 1-19 in §5 (post fix round 4 2026-05-07) |
+| **APPENDICI protocol/compliance (2 contributi)** | **10.228** | **4.107** | mcp-check (9.453) + tool_fuzzing/protocol (775) |
 | Categorie scartate (0 VP) | — | 14.329 | tool_fuzzing/server-error + transport-failure |
-| **TOTALE PIPELINE** | **18.583** | **52.928** | grand total VP=18.583 (post round 4) |
+| **TOTALE PIPELINE** | **18.580** | **51.974** | grand total VP=18.580 (post round 4) |
 | Stim VP reali blind | **~17.819** | — | FP rate medio **4.4%** su sample n=50/cat |
 
 ---

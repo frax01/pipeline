@@ -3541,22 +3541,22 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 
 ### 5.1 Tutte le minacce ordinate per VP (sei framework principali: mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan, tool_fuzzing/server-crash)
 
-| # | Minaccia | VP | Server unici | Framework |
+| # | Minaccia | VP | Server | Framework |
 |---|----------|---:|-------------:|-----------|
-| 1 | sql-injection | **2.375** | ~655 | mcp-guard |
-| 2 | dangerous-capabilities | **1.990** | ~1.670 | mcp-guard, mcp-security-scan |
-| 3 | credential-leak | **1.269** | ~720 | mcp-guard, mcp-watch |
+| 1 | sql-injection | **2.375** | 655 | mcp-guard |
+| 2 | dangerous-capabilities | **1.990** | 1.670 | mcp-guard, mcp-security-scan |
+| 3 | credential-leak | **1.269** | 720 | mcp-guard, mcp-watch |
 | 4 | ssrf | **717** | 118 | mcp-guard |
 | 5 | untrusted-content | **599** | 599 | mcp-scan |
-| 6 | path-traversal | **470** | ~225 | mcp-guard, mcp-security-scan |
-| 7 | command-injection | **244** | ~85 | mcp-guard |
-| 8 | code-injection | **220** | ~70 | mcp-guard |
+| 6 | path-traversal | **470** | 225 | mcp-guard, mcp-security-scan |
+| 7 | command-injection | **244** | 85 | mcp-guard |
+| 8 | code-injection | **220** | 70 | mcp-guard |
 | 9 | input-validation (aggregata) | **208** | 174 | mcp-watch, mcp-security-scan |
-| 10 | protocol-violation | **137** | ~135 | mcp-watch, mcp-guard |
+| 10 | protocol-violation | **137** | 135 | mcp-watch, mcp-guard |
 | 11 | prompt-injection | **56** | 37 | mcp-scan, mcp-guard, mcp-shield |
 | 12 | insecure-deserialization | **31** | 19 | mcp-guard |
 | 13 | sensitive-file-access | **16** | 9 | mcp-shield, mcp-security-scan |
-| 14 | sensitive-info-disclosure | **9** | ~7 | mcp-guard |
+| 14 | sensitive-info-disclosure | **9** | 7 | mcp-guard |
 | 15 | access-control | **7** | 2 | mcp-watch |
 | 16 | data-exfiltration | **2** | 2 | mcp-watch |
 | 17 | server-crash | **1** | 1 | tool_fuzzing |

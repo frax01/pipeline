@@ -4268,6 +4268,661 @@ Server unici con almeno 1 VP:       8.745 / 60.205 totali (14.5%)
 
 ---
 
+## 10. Fonti delle regole HC (Stage 2A) e metodologia di generazione
+
+Questo capitolo documenta **provenienza** e **metodo di generazione** di ogni regola HC (High Confidence) usata nei sette framework di analisi e nei quattro round di fix successivi. Per ogni regola si distingue tra:
+
+- **Fonte autoritativa**: documentazione pubblica, standard, RFC, MITRE ATT&CK, OWASP
+- **Fonte empirica**: pattern emerso dall'ispezione manuale di sample dai dati raw (workflow descritto in §10.1)
+- **Triangolazione**: combinazione di segnali da più framework o cross-reference
+
+### 10.1 Metodologia generale di derivazione regole
+
+La generazione delle regole HC segue un workflow iterativo documentato in `findings/ANALYSIS.md` §2 (Stage 2A). Ogni regola nasce da uno dei tre processi:
+
+#### A. Standard documentato (regole "a priori")
+
+Pattern derivati da specifiche pubbliche, senza necessità di ispezione dati. Esempi:
+- Formati di provider API key (sk-, AKIA, AIzaSy, ghp_, ecc.) — official provider docs
+- Claim JWT (`role: "anon"` vs `service_role`) — Supabase docs + RFC 7519
+- Convenzioni file naming test (`_test.go`, `.spec.js`) — Go/Node ecosystem standard
+- MITRE ATT&CK technique names per offensive tool — MITRE ATT&CK matrix
+- Comment markers per linguaggio (`#` Python, `//` JS, `*` Java, `--` SQL)
+
+#### B. Pattern empirico (regole "a posteriori")
+
+Pattern emerso dall'ispezione manuale di sample dai dati raw. Workflow tipico (vedi `findings/ANALYSIS.md` §2 Stage 2A — Step 1-9):
+
+1. Eseguire pipeline `--hc-only` con regole iniziali (vuote o minime)
+2. Estrarre `uncertain.json` (finding non classificati)
+3. Sample 30-50 finding random dal file
+4. Lettura uno-per-uno + tagging mentale VP/FP/DUBBIO
+5. Clustering pattern ricorrenti
+6. Codifica regex Python con nome parlante
+7. Ri-eseguire `--hc-only` e misurare riduzione UNCERTAIN
+8. Spot-check 10-20 record dei nuovi HC-VP/HC-FP — se anche 1 errore, regola raffinata o declassata
+9. Iterare finché UNCERTAIN ≤ 5% del totale
+
+Le regole empiriche costituiscono **~80% del totale** e sono motivate da pattern frequenti nei dati specifici di MCP server.
+
+#### C. Triangolazione di segnali
+
+Combinazione di campi del finding (es. `evidence` + `llm_risk` + `path` + `server`) per discriminare casi ambigui. Esempio: `llm_risk=HIGH` da solo produce FP su gohighlevel-mcp OAuth, ma `llm_risk=HIGH + trigger <IMPORTANT> + assenza <usecase>` → HC-VP.
+
+### 10.2 Stage 1 filter — regole comuni
+
+Filtri applicati prima di Stage 2A in ogni `filter_<framework>.py`. Source: convenzioni linguaggio di programmazione + observation.
+
+| Pattern | Source | File |
+|---------|--------|------|
+| `_TEST_FILE`: `test/`, `spec/`, `_test.go`, `.spec.js`, `.test.tsx`, `__tests__`, `e2e/`, `examples/`, `samples/`, `demos/`, `.example.*`, `.sample.*` | Go testing convention (`*_test.go`) [go.dev], Node test conventions [jestjs.io], Python `pytest` discovery [pytest docs] | `filter_<fw>.py:_TEST_FILE` |
+| `_TEST_FILE` extensions (round 1): prefix `test-`/`demo-`/`verify-`/`sample-`/`example-`/`setup-` files | Empirico — sample da hardcoded-credential-static (5/30 VP test files non catturati) | `filter_mcp_guard.py` round 1 |
+| `_VENDOR_FILE`: `.min.js`, `node_modules/`, `vendor/`, `dist/`, `build/`, `site-packages/`, `.bundle.js` | npm conventions, Python venv structure, Webpack/Rollup output | `filter_<fw>.py:_VENDOR_FILE` |
+| `_HONEYPOT`: `malicious_mcp`, `vulnerable-notes-mcp`, `IMCP`, `vulnicheck`, `mcp-scanner`, `agent-security-scanner-mcp`, `damn-vulnerable-MCP-server` | Empirico — discovery manuale durante prime analisi (server con nomi auto-dichiaranti) | global `_HONEYPOT` set |
+| `_COMMENTED`: linea inizia con `#`/`//`/`*`/`/*`/`--`/`>>>`/`..` | Comment syntax di Python, JS/Go/Java, SQL, Python REPL, RST | global `_COMMENTED` |
+| `_SCANNER_OWN`: file in `vulnerabilit*/`, `/sast/`, `/scanner/`, `/security/(rules|tests)/`, `honeypot/`, `payloads/` | Empirico + convenzioni security tooling | global `_SCANNER_OWN` |
+
+### 10.3 Framework `mcp-watch` — fonti regole
+
+#### Categoria `credential-leak`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| OpenAI legacy key `sk-[A-Za-z0-9]{48,}` | [OpenAI API docs](https://platform.openai.com/docs/api-reference/authentication) | `_PROVIDER_KEY` |
+| OpenAI project key `sk-proj-[A-Za-z0-9_-]{20,}` | [OpenAI Project API keys](https://platform.openai.com/docs/api-reference/project-api-keys) | `_PROVIDER_KEY` |
+| Anthropic key `sk-ant-[A-Za-z0-9_-]{50,}` | [Anthropic API Auth](https://docs.anthropic.com/en/api/getting-started) | `_PROVIDER_KEY` |
+| AWS access key `AKIA[A-Z0-9]{16}` | [AWS IAM Access Key ID](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) | `_PROVIDER_KEY` |
+| AWS secret key 40 base64 chars | [AWS IAM docs](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html) | `_PROVIDER_KEY` |
+| Google API key `AIzaSy[A-Za-z0-9_-]{33}` | [Google Cloud API Keys](https://cloud.google.com/docs/authentication/api-keys) | `_PROVIDER_KEY` |
+| GitHub PAT `ghp_[A-Za-z0-9]{36}`, `gho_`, `ghu_`, `ghs_` | [GitHub PAT docs](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens) | `_PROVIDER_KEY` |
+| Slack `xox[baprs]-[A-Za-z0-9-]{10,}` | [Slack token types](https://api.slack.com/authentication/token-types) | `_PROVIDER_KEY` |
+| Stripe `pk_/sk_[A-Za-z0-9]{24}` | [Stripe API keys](https://docs.stripe.com/keys) | `_PROVIDER_KEY` |
+| Google OAuth `ya29\.[\w-]{40,}` (access), `GOCSPX-[\w-]{20,}` (secret) | [Google OAuth 2.0](https://developers.google.com/identity/protocols/oauth2) | `_PROVIDER_KEY` |
+| MongoDB URI `mongodb(\+srv)?://[^:]+:[^@]+@` | [MongoDB Connection String](https://www.mongodb.com/docs/manual/reference/connection-string/) | `_PROVIDER_KEY` |
+| Postgres URI `postgres(ql)?://[^:]+:[^@]+@` | [PostgreSQL libpq](https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING) | `_PROVIDER_KEY` |
+| JWT pattern `eyJ[A-Za-z0-9_-]+\.eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+` | [RFC 7519 JWT](https://datatracker.ietf.org/doc/html/rfc7519) | `_PROVIDER_KEY` |
+| RSA/EC private key `-----BEGIN (RSA|EC) PRIVATE KEY-----` | [RFC 7468 PEM](https://datatracker.ietf.org/doc/html/rfc7468) | `_PROVIDER_KEY` |
+| Supabase JWT `role: "anon"` (FP) vs `role: "service_role"` (VP) | [Supabase API keys](https://supabase.com/docs/guides/api/api-keys) | `_decode_jwt_role()` |
+| Honeypot servers `malicious_mcp`, `vulnerable-notes-mcp`, `IMCP` | Empirico (server name auto-dichiarante) | `_HONEYPOT` set |
+| Test/example file FP filter | File naming convention | `_TEST_FILE` |
+| `# nosec`, `# nosemgrep`, `noqa: S301` comment markers | Bandit nosec syntax, semgrep nosem syntax, flake8 noqa | empirical |
+
+#### Categoria `data-exfiltration`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| `CONVERSATION_EXFILTRATION_TRIGGER` con "ENTIRE conversation" | Empirico — sample purmemo-mcp (`coladapo/purmemo-mcp`: tool description con `REQUIRED: Send COMPLETE conversation... ALL system messages`) | empirico, citato in CLAUDE.md |
+| Hook `UserPromptSubmit` con `CLAUDE_SESSION_ID` exfil | Empirico — pattern specifico osservato | empirico |
+| Magic parameter injection (`tools_list`, ecc.) FP | Empirico + Pydantic field naming pattern | `_TP_PYDANTIC_OVERRIDE` |
+| Bundle/minified JS FP | Webpack/Rollup output convention | `_VENDOR_FILE` |
+| ComfyUI workflow `127.0.0.1:8188` FP | Empirico (ComfyUI ecosystem common pattern) | empirico |
+| Ollama embedding `json={"model": EMBED_MODEL, "prompt": text}` FP | Ollama API docs + empirico | empirico |
+
+#### Categoria `input-validation`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| SSRF user input pattern `fetch/axios/got(params.url)` | [OWASP SSRF Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html) + [CWE-918](https://cwe.mitre.org/data/definitions/918.html) | `_SSRF_USER_INPUT` |
+| SDK base URL FP `this.client.fetch(path)` | Empirico (SDK pattern: client fixed base URL, path relative) | `_SSRF_SDK_METHOD` |
+| Command injection concat `exec("cmd " + var)` | [OWASP Command Injection Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html) + [CWE-78](https://cwe.mitre.org/data/definitions/78.html) | `_CMD_CONCAT_VP` |
+| `/regex/.exec(str)` JS FP | [ECMAScript regex.prototype.exec](https://tc39.es/ecma262/#sec-regexp.prototype.exec) | `_CMD_REGEX_FP` |
+| Path traversal `path.join(...args.paths)` spread | [Node.js path](https://nodejs.org/api/path.html) + [CWE-22](https://cwe.mitre.org/data/definitions/22.html) | `_PT_SPREAD_VP` |
+
+#### Categoria `protocol-violation`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| Insecure transport `http://` (not localhost/private IP) | Empirico + RFC 1918 (private IP ranges) | `_PV_INSECURE_TRANSPORT` |
+| Cloud provider HTTP (AWS ELB, Aliyun, HuggingFace) VP | Empirico — cloud provider URL patterns | `_PV_CLOUD_HTTP` |
+| FHIR `system: 'http://...'` FP | HL7 FHIR spec (system URI is identifier, not network call) | `_PV_FHIR_SYSTEM` |
+| RDF/OWL Namespace FP | RDF spec (namespace URIs are identifiers) | `_PV_RDF_NAMESPACE` |
+| MCP SSE protocol `?session_id={...}` FP | MCP specification (modelcontextprotocol.io) | `_PV_MCP_SSE` |
+| Stripe `CHECKOUT_SESSION_ID` FP | Stripe Checkout docs (not a user secret, public token) | `_PV_STRIPE_SID` |
+
+#### Categoria `tool-poisoning` / `prompt-injection`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| `<IMPORTANT>`, `<system>`, `<cmd>`, `<hidden>`, `<secret>` XML injection tags | Empirico (math-mcp-server-nodejs case) + [OWASP LLM01](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) | `_TP_XML_INJECT` |
+| `ignore (all|previous) instructions` | [Greshake et al. 2023 (arXiv 2302.12173)](https://arxiv.org/abs/2302.12173) + [Perez & Ribeiro 2022 (arXiv 2211.09527)](https://arxiv.org/abs/2211.09527) | `_TP_IGNORE_INSTRUCTIONS` |
+| Pydantic field `overrides:` / `admins:` FP | Pydantic BaseModel field declaration pattern | `_TP_PYDANTIC_OVERRIDE` |
+| Tool description pass-through FP | Empirico (mcp-zebrunner case) | `_TP_DESC_PASSTHROUGH` |
+| Tool shadowing: `NEVER use Read/Grep/.* ALWAYS use X instead` | Empirico — tool override pattern (mdsel-mcp case) | empirico |
+
+#### Categoria `tool-mutation`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| Registry pattern `self.tools[name] = tool` FP | Empirico — MCP Python SDK standard registration | `_TM_REGISTRY` |
+| TS namespacing `transformed_tools[key]` FP | Empirico — middleware/proxy pattern | `_TM_NAMESPACE` |
+| `tools.push()`, `tools.splice()` (read-only) FP | Empirico — dynamic registration pattern | `_TM_DYNAMIC_REG` |
+| TypeScript `for tool in tools` read-only FP | TS iteration syntax | `_TM_ITERATION` |
+
+#### Categoria `access-control`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| IAM policy `"Action":"*"`/`"Resource":"*"` | [AWS IAM Policy Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html) | `_AC_AWS_WILDCARD` |
+| Dockerfile `USER root`/`chmod 777`/`--privileged` | [Docker Security](https://docs.docker.com/engine/security/) + [docker-bench-security](https://github.com/docker/docker-bench-security) | `_AC_DOCKER_PRIV` |
+| Kubernetes `privileged: true`/`hostNetwork: true`/`runAsUser: 0` | [K8s Pod Security Standards](https://kubernetes.io/docs/concepts/security/pod-security-standards/) | `_AC_K8S_PRIV` |
+| AWS `AdministratorAccess`/`PowerUserAccess` | [AWS IAM Managed Policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html) | `_AC_AWS_ADMIN` |
+| SQL `GRANT ALL PRIVILEGES ON` | [PostgreSQL GRANT](https://www.postgresql.org/docs/current/sql-grant.html) | `_AC_GRANT_ALL` |
+| `aws-pentest-mcp` server-level VP | Empirico — declared offensive tool | empirico |
+
+#### Categoria `steganographic-attack`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| Whitespace count ≥ 1000 chars su singola riga VP | Empirico (exa-mcp-server case: 1152, 2304, 86016 ws) — soglia 1000 = impossibile come indentazione legittima | `_SA_WHITESPACE_THRESH` |
+| ANSI escape codes FP (terminal CLI legitimate) | Empirico + ANSI escape spec | `_SA_ANSI_FP` |
+
+### 10.4 Framework `mcp-shield` — fonti regole
+
+#### Categoria `hidden-instructions` / `shadowing-detected`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| XML injection tags `<IMPORTANT>`, `<system>`, `<cmd>`, `<hidden>`, `<secret>` | Stessa source di mcp-watch tool-poisoning | `_HI_XML_INJECT` |
+| `<instructions>` SENZA `<usecase>` | Empirico (con `<usecase>` è doc strutturale legittima, es. remarkable-mcp) | `_HI_INSTRUCTIONS_NO_USECASE` |
+| `NEVER use (Read\|Grep\|.*) ALWAYS use X instead` (no `of Y`) | Empirico — distinzione blanket override (VP) vs raccomandazione efficienza (FP) | `_HI_TOOL_SHADOWING` (lookahead negativo) |
+| Email redirect `send all emails to attacker@.*` | Empirico (math-mcp-server-nodejs case) | empirico |
+| Trigger solo `instead of` + `llm_risk=LOW` FP | Triangolazione static trigger + LLM verdict shield | empirico |
+
+#### Categoria `sensitive-file-access`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| `DCSync`, `LSASS`, `WDigest`, `sekurlsa`, `lsadump` | [MITRE T1003.006 DCSync](https://attack.mitre.org/techniques/T1003/006/), [T1003.001 LSASS](https://attack.mitre.org/techniques/T1003/001/) | `_SFA_ATTACK_PAT` |
+| `Kerberoast`, `AS-REP Roast`, `S4U2Self/S4U2Proxy` | [MITRE T1558.003 Kerberoasting](https://attack.mitre.org/techniques/T1558/003/), [T1558.004 AS-REP](https://attack.mitre.org/techniques/T1558/004/) | `_SFA_ATTACK_PAT` |
+| `pass-the-hash`, `NTLM hash` | [MITRE T1550.002 PtH](https://attack.mitre.org/techniques/T1550/002/) | `_SFA_ATTACK_PAT` |
+| `mimikatz`, `rubeus` (offensive tool names) | [gentilkiwi/mimikatz](https://github.com/gentilkiwi/mimikatz), [GhostPack/Rubeus](https://github.com/GhostPack/Rubeus) | `_SFA_TOOL_NAMES` |
+| `Elevate to SYSTEM token`, `impersonate another user` | [MITRE T1134 Token Manipulation](https://attack.mitre.org/techniques/T1134/) | `_SFA_ATTACK_PAT` |
+| `kubectl impersonate user` FP | [Kubernetes RBAC](https://kubernetes.io/docs/reference/access-authn-authz/rbac/) (legitimate impersonation) | `_SFA_K8S_IMPERSONATE_FP` |
+| PocketBase `_impersonate_user` admin tool FP | [PocketBase docs](https://pocketbase.io/docs/) (admin testing feature) | empirico |
+
+#### Categoria `potential-exfiltration`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| Tutti FP per design — categoria con segnale strutturalmente debole | Empirico + analisi categoria | sezione documentata in `findings/mcp-shield/potential_exfiltration.md` |
+
+### 10.5 Framework `mcp-scan` — fonti regole
+
+| Regola | Source |
+|--------|--------|
+| W015 (Untrusted Content): tutti VP per design | [Snyk MCP Scan](https://snyk.io/) pre-classificazione (alta confidenza per definizione) |
+| E001 VP markers: `silently`, `Hide all tool execution`, `CRITICAL.*MUST.*IMMEDIATELY`, `pretend`, `simulate`, `roleplay as`, `new role:` | Empirico + [Greshake et al. 2023](https://arxiv.org/abs/2302.12173) + [OWASP LLM01](https://genai.owasp.org/llmrisk/llm01-prompt-injection/) |
+| E001 FP markers: `ag2-mcp-servers` enterprise checklist boilerplate, mcp-server-fetch Anthropic template, CLI flag wrappers (`yolo`, `baseInstructions`) | Empirico — analisi sample 80 finding |
+
+### 10.6 Framework `mcp-security-scan` — fonti regole
+
+| Categoria | Regola | Source |
+|-----------|--------|--------|
+| `dangerous-capabilities` | Tool name `execute`, `run`, `shell`, `exec` + description shell exec keyword | Empirico + [CWE-78](https://cwe.mitre.org/data/definitions/78.html) Command Injection |
+| `dangerous-capabilities` | `_DC_OFFENSIVE_TOOL`: aircrack, gobuster, dirb, nuclei, metasploit, sqlmap, nmap, hydra, hashcat | Public offensive security tool list |
+| `rug-pull` | Startup race condition (`before=[]` OR `after=[]`) → tutti FP | Empirico (analisi 59 finding: tutti hanno before/after vuoto = server non avviato durante probe) |
+| `path-traversal`, `sensitive-file-access` | Probe runtime confermato content reale | Snyk-style probe (active testing) |
+| `prompt-injection` | Honeypot/scanner/security tool FP | Empirico |
+
+### 10.7 Framework `mcp-check` — fonti regole
+
+| Categoria | Regola | Source |
+|-----------|--------|--------|
+| Tutti VP | [MCP Specification](https://modelcontextprotocol.io/specification) | Protocol compliance violation |
+| `panic_or_crash` | [Go panic](https://go.dev/blog/defer-panic-and-recover) / [Python AttributeError](https://docs.python.org/3/library/exceptions.html#AttributeError) | Standard error types |
+| `tool_invocation/warnings` Non-determinism FP | Empirico + stateless tools convention | Atteso per timestamp/UUID/random/weather/search |
+| `unauthorized_or_auth_missing` FP | Empirico — environment issue, non spec violation | |
+| `tool name injection` (`ErrorHandlingFailure`) | [MCP Spec — Tools](https://modelcontextprotocol.io/docs/concepts/tools) (server MUST return error for unknown tool) | Pattern `Server did not return error for non-existent tool` |
+| `wrong_error_code` (-32603 vs -32602) | [JSON-RPC 2.0 Spec](https://www.jsonrpc.org/specification) — `-32602` Invalid params, `-32603` Internal error | RFC JSON-RPC 2.0 |
+
+### 10.8 Framework `tool_fuzzing` — fonti regole
+
+| Categoria | Regola | Source |
+|-----------|--------|--------|
+| `protocol-fuzzing` `_PROTO_SECURITY_RELEVANT` | [MCP Specification](https://modelcontextprotocol.io/specification) (initialize, resources/read, sampling/createMessage) | security relevant |
+| `InitializeRequest` rate ≥80% FP (round 1) | [MCP Lifecycle](https://modelcontextprotocol.io/specification/2024-11-05/basic/lifecycle/) — `initialize` è metodo valido e atteso | success rate alto = comportamento corretto |
+| `ReadResourceRequest` con URI standard FP (round 1) | Empirico (URI test standard non malformed) | empirico |
+| `server-error-fuzzing`, `transport-failure-fuzzing` tutti FP | Resilience issue ≠ security issue | empirico + best practice |
+| `server-crash-fuzzing` Python `AttributeError` VP | Standard Python runtime error | empirico |
+
+### 10.9 Framework `mcp-guard` (SAST) — fonti regole
+
+#### Categoria `sql-injection-static`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| f-string `cursor.execute(f"SELECT ... {var}")` VP | [OWASP SQL Injection Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) + [CWE-89](https://cwe.mitre.org/data/definitions/89.html) | `_SQL_FSTRING_USER_VAR` |
+| Concat `cur.execute(query + var)` VP | [OWASP SQL Injection Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html) | `_SQL_CONCAT_VP` |
+| `.format()` con var user VP | [Python str.format](https://docs.python.org/3/library/string.html#format-string-syntax) | `_SQL_FORMAT_VP` |
+| Parameterized `cursor.execute(sql, (params,))` FP | [PEP 249 DB-API 2.0](https://peps.python.org/pep-0249/) | `_SQL_PARAM_FP` |
+| ORM `session.exec(select(...))` FP | [SQLAlchemy ORM](https://docs.sqlalchemy.org/en/20/orm/) | `_SQL_ORM_FP` |
+| `safe_/escaped_/sanitized_` prefix FP | Empirico — sanitization variable naming convention | `_SQL_SANITIZED_FP` |
+| `# nosec`, `# noqa: S608` comment FP | [Bandit S608](https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html) | `_SQL_NOSEC_FP` |
+
+#### Categoria `command-injection-static`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| Go `exec.Command("git", arg, ...)` con args separati FP | [Go `os/exec` Command](https://pkg.go.dev/os/exec#Command) — args as separate slice (no shell) | `_CIS_GO_EXEC_LITERAL_FIRST` |
+| Go obfuscated `exec.Command("/bi"+"n/s"+"h", ...)` VP | Empirico — obfuscation pattern | `_CIS_GO_OBFUSCATED` |
+| Node `exec("cmd " + var)` shell concat VP | [Node child_process.exec](https://nodejs.org/api/child_process.html#child_processexeccommand-options-callback) — runs shell | `_CIS_NODE_CONCAT` |
+| Node `execFile/spawn(literal, [args])` FP | [Node child_process.execFile](https://nodejs.org/api/child_process.html#child_processexecfilefile-args-options-callback) — no shell | `_CIS_EXECFILE_FP` |
+| Node template literal `exec(\`cmd ${var}\`)` VP | [OWASP Command Injection](https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html) + [MDN template literals](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Template_literals) | `_CIS_TEMPLATE_VAR` |
+| Python `subprocess.run(cmd, shell=True)` VP | [Python subprocess security](https://docs.python.org/3/library/subprocess.html#security-considerations) | `_CIS_PYTHON_SHELL_TRUE` |
+
+#### Categoria `code-injection-static`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| `eval('static_string')` FP | JS eval spec — static string non sfruttabile | `_CI_STATIC_STR` |
+| `eval(JSON.stringify(...))` FP | JSON.stringify output is valid JSON, no injection | `_CI_JSON_STRINGIFY` |
+| `eval(\`...\${var}\`)` VP | OWASP code injection + JS template literal | `_CI_TEMPLATE_VAR` |
+| Scheme/Lisp `(eval (read ...))` FP | Empirico (Scheme REPL pattern) | `_CI_SCHEME_EVAL` |
+
+#### Categoria `path-traversal-static`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| `path.join(__dirname, ...)` con literal FP | [Node `__dirname`](https://nodejs.org/api/modules.html#__dirname) (fixed) | `_PT_HARDCODED` |
+| `os.path.join(BASE_DIR, ...)` FP | [Python os.path](https://docs.python.org/3/library/os.path.html) | `_PT_HARDCODED` |
+| `path.join(req.body.path, ...)` VP | [OWASP Path Traversal](https://owasp.org/www-community/attacks/Path_Traversal) + [CWE-22](https://cwe.mitre.org/data/definitions/22.html) | `_PT_USER_INPUT` |
+| `path.join(...args.paths)` spread VP | [Node path](https://nodejs.org/api/path.html) + [MDN spread operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax) | `_PT_SPREAD_VP` |
+| `args.output_dir` CLI output FP (round 4) | Empirico — sample da blind round 4 (CLI output destinazione legittima) | round 4 fix |
+| `self._temp_dir` server-managed FP (round 4) | Empirico + Python `tempfile` convention | round 4 fix |
+| `session_id`/`uuid`/`request_id` server-generated FP (round 4) | Empirico + RFC 4122 UUID | round 4 fix |
+| `exec_res["working_directory"]` server context FP (round 4) | Empirico (server execution result, not user input) | round 4 fix |
+
+#### Categoria `ssrf-static`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| `fetch(params.url)`/`axios.get(args.url)` VP | OWASP SSRF cheatsheet | `_SSRF_USER_INPUT` |
+| `this.client.fetch(path)` SDK method FP | Empirico — SDK with fixed base URL | `_SSRF_SDK_METHOD` |
+| Hardcoded API SaaS URL FP | Empirico (firefly.ai, sketchfab.com, ecc.) | `_SSRF_KNOWN_API_FP` |
+
+#### Categoria `hardcoded-credential-static`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| Provider key formats (sk-, AKIA, AIzaSy, ghp_, ecc.) | Vedi §10.3 mcp-watch credential-leak (provider docs) + [CWE-798](https://cwe.mitre.org/data/definitions/798.html) | `_PROVIDER_KEY` |
+| PostHog `phc_` public client key FP (round 1) | [PostHog API docs](https://posthog.com/docs/api) (public key by design) | round 1 fix |
+| `your_*`/`<XXX>`/placeholder pattern FP (round 1) | Empirico — placeholder convention | `_HC_PLACEHOLDER` |
+| DefinitelyTyped `@types/` path FP (round 1) | Empirico — DefinitelyTyped convention | `_HC_TYPES_PATH` |
+| `damn-vulnerable`/`honeypot`/`secret-leak` path FP (round 1) | Empirico + auto-dichiaranti | `_HC_INTENTIONAL_VULN_PATH` |
+| `SecurePassword123!`/`P@ssw0rd`/`hunter2`/`ChangeMe` sample passwords FP (round 1) | Empirico + common test password literature | `_HC_OBVIOUS_SAMPLE_PWD` |
+| Base64 fake `bm90IG15IHJlYWwg` ("not my real") FP (round 1) | Empirico (specific found in DefinitelyTyped) | `_HC_BASE64_FAKE` |
+| Comment `# fake`, `# placeholder`, `# change in production` FP (round 1) | Empirico + dev convention | `_HC_FAKE_COMMENT_MARKER` |
+
+#### Categoria `dangerous-tool-handler-static`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| Function signature `def execute_(shell|cmd|command|powershell|bash|python|tool|git|sql)` VP | Empirico + naming convention (verb_object) | `_DTH_SHELL_EXEC_SIG` |
+| `def execute_query`, `def execute_jq`, `def execute_clippy` FP | Domain-specific tool, no shell | `_DTH_DOMAIN_TOOL_FP` |
+| Generic `def handle_*` / `def _handle_*` FP | Generic handler, no shell info | `_DTH_GENERIC_HANDLER_FP` |
+| `def lambda_handler` FP | AWS Lambda convention | `_DTH_LAMBDA_FP` |
+| `def health_check` FP | Standard health endpoint convention | `_DTH_HEALTH_FP` |
+
+#### Categoria `insecure-deserialization-static`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| `pickle.loads(args.payload)` user input VP | [OWASP Deserialization Cheatsheet](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html) + [CWE-502](https://cwe.mitre.org/data/definitions/502.html) | `_PICKLE_USER_INPUT_VP` |
+| `pickle.loads(zlib.decompress(data))` decompression chain VP | [OWASP Deserialization](https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html) — decompress chain network data | `_PICKLE_DECOMPRESS_VP` |
+| `pickle.load(open(file, 'rb'))` con file hardcoded FP | [Python pickle docs](https://docs.python.org/3/library/pickle.html) | `_PICKLE_HARDCODED_PATH` |
+| `pickle.loads(io.BytesIO(...))` su buffer interno FP | [Python io.BytesIO](https://docs.python.org/3/library/io.html#io.BytesIO) | `_PICKLE_INTERNAL_BUFFER` |
+| ML model load (`model.pkl`, `scaler.pkl`) FP | Empirico (sklearn/PyTorch/joblib convention) | `_PICKLE_ML_MODEL` |
+| `# noqa: S301` Bandit pragma FP | [Bandit S301 (pickle)](https://bandit.readthedocs.io/en/latest/blacklists/blacklist_calls.html#b301-pickle) | `_PICKLE_NOSEC` |
+
+#### Categoria `prompt-injection-static`
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| `<IMPORTANT>` case-sensitive (round 0 spot-check fix) | Empirico — bug round 0: `<important>` lowercase legitimate AWS SDK doc tag | spot-check fix |
+| AWS SDK `<important>` lowercase FP | AWS SDK doc tag convention | spot-check fix |
+| Same patterns of mcp-shield (XML injection tags, ignore instructions) | Stesse fonti | shared |
+
+#### Categorie `*-fuzzing` (mcp-guard)
+
+| Regola | Source | Pattern |
+|--------|--------|---------|
+| `_CMD_FUZZ_SHELL_OUTPUT` con `uid=N(name)`, `root:x:0:0:_:/root:/bin/bash` (round 2) | [Linux id(1)](https://man7.org/linux/man-pages/man1/id.1.html) + [passwd(5)](https://man7.org/linux/man-pages/man5/passwd.5.html) | round 2 fix |
+| `_PT_FUZZ_SUCCESS` multi-line `root + daemon + bin` (round 2) | [passwd(5) man page](https://man7.org/linux/man-pages/man5/passwd.5.html) — multi-line distingue exfil reale da echo | round 2 fix |
+| `_INFO_DISC_SELF_PATH_ONLY` `/home/tecnico/Desktop/Pipeline/<server>/` (round 3) | Empirico — test env install path | round 3 fix |
+| `_INFO_DISC_FS_LEAK` system paths `/opt/`, `/var/`, `/srv/`, `/root/` (round 4) | [Linux FHS 3.0](https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html) | round 4 fix |
+| `python3 -c "<payload>" SyntaxError` FP info-disc (round 4) | [Python `-c` flag](https://docs.python.org/3/using/cmdline.html#cmdoption-c) | round 4 fix |
+| `do JavaScript` AppleScript FP info-disc (round 4) | [Apple Developer — AppleScript Standard Suite](https://developer.apple.com/library/archive/documentation/AppleScript/Conceptual/AppleScriptLangGuide/) | round 4 fix |
+| TypeScript test scaffold `*.service.spec.ts` FP code-inj (round 3) | [NestJS testing](https://docs.nestjs.com/fundamentals/testing) convention | round 3 fix |
+| Node.js docs HTML `<code>child_process</code>` FP code-inj (round 3) | [Node.js child_process docs](https://nodejs.org/api/child_process.html) HTML format | round 3 fix |
+| `keypair_generator` tool FP sens-info (round 2) | Empirico — tool intended behavior (Zetrix, Wisdom MCP) | round 2 fix |
+| `Permission denied`/`not found` shell rejection FP (round 2) | [Linux errno(3)](https://man7.org/linux/man-pages/man3/errno.3.html) (EACCES=13, ENOENT=2) | round 2 fix |
+
+#### Categoria `protocol-*` (mcp-guard)
+
+| Regola | Source |
+|--------|--------|
+| `protocol-invalid-jsonrpc-version` | [JSON-RPC 2.0 §4](https://www.jsonrpc.org/specification#request_object) (server MUST validate `jsonrpc: "2.0"`) |
+| `protocol-missing-id` | [JSON-RPC 2.0 §4.2](https://www.jsonrpc.org/specification#notification) (request requires `id`, except notifications) |
+| `protocol-information-disclosure`, `protocol-path-traversal` | Empirico (sample piccolo) |
+
+### 10.10 Round 1-4 fix — provenienza puntuale
+
+#### Round 1 (2026-05-06)
+
+Tutte le regole derivate da **blind classification disagreement analysis**:
+
+1. **Sample stratificato** n=30 VP + 30 FP × top 5 cat sospette (sql-injection-static, path-traversal-fuzzing, dangerous-tool-handler-static, hardcoded-credential-static, protocol-fuzzing) = 300 finding manuali
+2. **Disagreement analysis**: blind classifier indipendente vs originale → identifica FP nascosti
+3. **Pattern emergenti** dal sample → codifica HC-FP rules
+
+Output: `analysisAllData/spot_check/BLIND_REVIEW.md` con audit trail dei 300 finding.
+
+#### Round 2-4 (2026-05-06/07)
+
+Iteratione: pipeline `--hc-only` → blind classifier su tutte 64 cat (sample n=50) → identifica cat con FP rate > soglia → sample VP residui → codifica HC-FP rules → rerun.
+
+Output per round:
+- Round 2: `analysisAllData/UPDATED_NUMBERS_2026-05-06.md` "Round 2 fix applicati"
+- Round 3: `analysisAllData/UPDATED_NUMBERS_2026-05-06.md` "Round 3 fix applicati"
+- Round 4: `analysisAllData/UPDATED_NUMBERS_2026-05-06.md` "Round 4 fix applicati"
+
+### 10.11 Standard e references citati nel codice
+
+#### 10.11.1 Standard generali sicurezza
+
+| Reference | Link |
+|-----------|------|
+| OWASP Foundation, "Top 10 Application Security Risks 2021" | <https://owasp.org/Top10/> |
+| OWASP Cheatsheet Series | <https://cheatsheetseries.owasp.org/> |
+| OWASP SQL Injection Prevention Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/SQL_Injection_Prevention_Cheat_Sheet.html> |
+| OWASP Command Injection Defense Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/OS_Command_Injection_Defense_Cheat_Sheet.html> |
+| OWASP SSRF Prevention Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html> |
+| OWASP Path Traversal | <https://owasp.org/www-community/attacks/Path_Traversal> |
+| OWASP Insecure Deserialization Cheat Sheet | <https://cheatsheetseries.owasp.org/cheatsheets/Deserialization_Cheat_Sheet.html> |
+| MITRE ATT&CK Enterprise Matrix | <https://attack.mitre.org/matrices/enterprise/> |
+| MITRE ATT&CK T1003.006 (DCSync) | <https://attack.mitre.org/techniques/T1003/006/> |
+| MITRE ATT&CK T1003.001 (LSASS Memory) | <https://attack.mitre.org/techniques/T1003/001/> |
+| MITRE ATT&CK T1558.003 (Kerberoasting) | <https://attack.mitre.org/techniques/T1558/003/> |
+| MITRE ATT&CK T1558.004 (AS-REP Roasting) | <https://attack.mitre.org/techniques/T1558/004/> |
+| MITRE ATT&CK T1550.002 (Pass the Hash) | <https://attack.mitre.org/techniques/T1550/002/> |
+| MITRE ATT&CK T1134 (Access Token Manipulation) | <https://attack.mitre.org/techniques/T1134/> |
+| MITRE CWE (Common Weakness Enumeration) | <https://cwe.mitre.org/> |
+| CWE-89 (SQL Injection) | <https://cwe.mitre.org/data/definitions/89.html> |
+| CWE-78 (OS Command Injection) | <https://cwe.mitre.org/data/definitions/78.html> |
+| CWE-22 (Path Traversal) | <https://cwe.mitre.org/data/definitions/22.html> |
+| CWE-918 (SSRF) | <https://cwe.mitre.org/data/definitions/918.html> |
+| CWE-502 (Deserialization of Untrusted Data) | <https://cwe.mitre.org/data/definitions/502.html> |
+| CWE-798 (Hardcoded Credentials) | <https://cwe.mitre.org/data/definitions/798.html> |
+| CWE-94 (Code Injection) | <https://cwe.mitre.org/data/definitions/94.html> |
+
+#### 10.11.2 Specifiche di protocollo
+
+| Reference | Link |
+|-----------|------|
+| Model Context Protocol — Specification | <https://modelcontextprotocol.io/specification> |
+| Model Context Protocol — Introduction | <https://modelcontextprotocol.io/introduction> |
+| MCP — Tools concept | <https://modelcontextprotocol.io/docs/concepts/tools> |
+| MCP — Resources concept | <https://modelcontextprotocol.io/docs/concepts/resources> |
+| MCP — Sampling concept | <https://modelcontextprotocol.io/docs/concepts/sampling> |
+| JSON-RPC 2.0 Specification | <https://www.jsonrpc.org/specification> |
+| MCP Python SDK (registrazione tool) | <https://github.com/modelcontextprotocol/python-sdk> |
+| MCP TypeScript SDK | <https://github.com/modelcontextprotocol/typescript-sdk> |
+
+#### 10.11.3 RFC IETF
+
+| Reference | Link |
+|-----------|------|
+| RFC 7519 — JSON Web Token (JWT) | <https://datatracker.ietf.org/doc/html/rfc7519> |
+| RFC 7468 — Textual Encodings of PKIX, PKCS, and CMS (PEM) | <https://datatracker.ietf.org/doc/html/rfc7468> |
+| RFC 4122 — UUID URN Namespace | <https://datatracker.ietf.org/doc/html/rfc4122> |
+| RFC 1918 — Address Allocation for Private Internets | <https://datatracker.ietf.org/doc/html/rfc1918> |
+| RFC 8259 — JSON Data Interchange Format | <https://datatracker.ietf.org/doc/html/rfc8259> |
+| PEP 249 — Python Database API 2.0 (parameterized queries) | <https://peps.python.org/pep-0249/> |
+
+#### 10.11.4 Letteratura accademica
+
+| Reference | Link |
+|-----------|------|
+| Greshake et al. 2023 — "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection" | <https://arxiv.org/abs/2302.12173> |
+| Perez & Ribeiro 2022 — "Ignore Previous Prompt: Attack Techniques For Language Models" | <https://arxiv.org/abs/2211.09527> |
+| Liu et al. 2024 — "Prompt Injection attack against LLM-integrated Applications" | <https://arxiv.org/abs/2306.05499> |
+
+#### 10.11.5 SAST tool baseline
+
+| Reference | Link |
+|-----------|------|
+| Bandit (Python security linter) | <https://bandit.readthedocs.io/> |
+| Bandit S301 (pickle) rule | <https://bandit.readthedocs.io/en/latest/blacklists/blacklist_calls.html#b301-pickle> |
+| Bandit S608 (SQL injection) rule | <https://bandit.readthedocs.io/en/latest/plugins/b608_hardcoded_sql_expressions.html> |
+| Semgrep | <https://semgrep.dev/> |
+| Semgrep Registry rules | <https://semgrep.dev/explore> |
+| CodeQL Documentation | <https://codeql.github.com/docs/> |
+| GitHub CodeQL Repository | <https://github.com/github/codeql> |
+| Snyk Open Source / MCP Scan | <https://snyk.io/> |
+
+#### 10.11.6 Linux / OS reference
+
+| Reference | Link |
+|-----------|------|
+| Filesystem Hierarchy Standard 3.0 | <https://refspecs.linuxfoundation.org/FHS_3.0/fhs/index.html> |
+| Linux man passwd(5) — `/etc/passwd` format | <https://man7.org/linux/man-pages/man5/passwd.5.html> |
+| Linux man shadow(5) — `/etc/shadow` format | <https://man7.org/linux/man-pages/man5/shadow.5.html> |
+| Linux man id(1) — uid/gid output format | <https://man7.org/linux/man-pages/man1/id.1.html> |
+| Linux errno(3) — error codes (EACCES, ENOENT) | <https://man7.org/linux/man-pages/man3/errno.3.html> |
+| Bash Reference Manual (`-c` flag) | <https://www.gnu.org/software/bash/manual/bash.html> |
+| Python subprocess docs (shell=True warning) | <https://docs.python.org/3/library/subprocess.html#security-considerations> |
+| Node.js child_process docs | <https://nodejs.org/api/child_process.html> |
+
+#### 10.11.7 Provider docs (formato API key e credenziali)
+
+| Provider | Riferimento | Link |
+|----------|-------------|------|
+| OpenAI | API Keys | <https://platform.openai.com/docs/api-reference/authentication> |
+| OpenAI | Project keys (sk-proj-) | <https://platform.openai.com/docs/api-reference/project-api-keys> |
+| Anthropic | API Authentication | <https://docs.anthropic.com/en/api/getting-started> |
+| AWS | IAM Access Key ID format | <https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html> |
+| AWS | IAM Managed Policies | <https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_managed-vs-inline.html> |
+| Google Cloud | API Keys | <https://cloud.google.com/docs/authentication/api-keys> |
+| Google OAuth 2.0 | Client secret format | <https://developers.google.com/identity/protocols/oauth2> |
+| GitHub | Personal Access Tokens (ghp_/gho_) | <https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens> |
+| Slack | Token formats (xoxb-/xoxp-) | <https://api.slack.com/authentication/token-types> |
+| Stripe | API Keys (pk_/sk_) | <https://docs.stripe.com/keys> |
+| Supabase | Anon vs Service Role key | <https://supabase.com/docs/guides/api/api-keys> |
+| MongoDB | Connection String URI | <https://www.mongodb.com/docs/manual/reference/connection-string/> |
+| PostgreSQL | libpq Connection URI | <https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING> |
+| PostHog | Public client API key (phc_) | <https://posthog.com/docs/api> |
+| Render | API Keys (rnd_) | <https://render.com/docs/api> |
+
+#### 10.11.8 Container / orchestration security
+
+| Reference | Link |
+|-----------|------|
+| Docker Security Best Practices | <https://docs.docker.com/engine/security/> |
+| Docker bench-security | <https://github.com/docker/docker-bench-security> |
+| Kubernetes Pod Security Standards | <https://kubernetes.io/docs/concepts/security/pod-security-standards/> |
+| Kubernetes RBAC | <https://kubernetes.io/docs/reference/access-authn-authz/rbac/> |
+
+#### 10.11.9 Linguaggi e ecosistemi
+
+| Reference | Link |
+|-----------|------|
+| Go testing convention (`*_test.go`) | <https://pkg.go.dev/testing> |
+| Go `os/exec` package (Command) | <https://pkg.go.dev/os/exec> |
+| Node.js path module | <https://nodejs.org/api/path.html> |
+| Python `tempfile` module | <https://docs.python.org/3/library/tempfile.html> |
+| Python `pickle` module (security warning) | <https://docs.python.org/3/library/pickle.html> |
+| SQLAlchemy / SQLModel | <https://docs.sqlalchemy.org/> |
+| Pydantic BaseModel docs | <https://docs.pydantic.dev/latest/> |
+| Jest testing framework conventions | <https://jestjs.io/docs/configuration> |
+| pytest discovery rules | <https://docs.pytest.org/en/stable/explanation/goodpractices.html#test-discovery> |
+| NestJS testing | <https://docs.nestjs.com/fundamentals/testing> |
+| flake8 noqa pragma | <https://flake8.pycqa.org/en/latest/user/violations.html#in-line-ignoring-errors> |
+
+#### 10.11.10 Offensive security tool reference (per `sensitive-file-access`)
+
+| Tool | Repo / Reference |
+|------|------------------|
+| mimikatz (gentilkiwi) | <https://github.com/gentilkiwi/mimikatz> |
+| Rubeus (GhostPack) | <https://github.com/GhostPack/Rubeus> |
+| BloodHound | <https://github.com/SpecterOps/BloodHound> |
+| Evil-WinRM | <https://github.com/Hackplayers/evil-winrm> |
+| aircrack-ng | <https://www.aircrack-ng.org/> |
+| Metasploit Framework | <https://docs.metasploit.com/> |
+| sqlmap | <https://sqlmap.org/> |
+| nmap | <https://nmap.org/docs.html> |
+| nuclei (ProjectDiscovery) | <https://github.com/projectdiscovery/nuclei> |
+
+#### 10.11.11 Prompt injection literature aggiuntiva
+
+| Reference | Link |
+|-----------|------|
+| Anthropic — Prompt Engineering best practices | <https://docs.anthropic.com/en/docs/prompt-engineering> |
+| Simon Willison — "Prompt injection attacks against GPT-3" | <https://simonwillison.net/2022/Sep/12/prompt-injection/> |
+| OWASP LLM Top 10 (LLM01: Prompt Injection) | <https://genai.owasp.org/llmrisk/llm01-prompt-injection/> |
+| OWASP LLM Top 10 (LLM02: Insecure Output Handling) | <https://genai.owasp.org/llmrisk/llm022025-sensitive-information-disclosure/> |
+
+### 10.12 Sintesi metodologica
+
+**Distribuzione fonti regole HC** (~210 regole totali nei 7 framework + 4 round fix):
+
+| Source type | Numero regole | % totale |
+|-------------|---------------:|---------:|
+| Standard documentato (provider docs, RFC, MITRE, OWASP) | ~50 | ~24% |
+| Pattern empirico (ispezione sample) | ~140 | ~67% |
+| Triangolazione segnali (multi-field) | ~20 | ~9% |
+
+**Conseguenza per la tesi**:
+- ~24% delle regole derivate da specifiche pubbliche → **autoritative e citabili**
+- ~67% derivate empiricamente da ispezione di sample dei dati → **documentate via audit trail** (uncertain.json + sample manuali) e **riproducibili** (regole versionate in `pipeline_<framework>.py` con commit history)
+- ~9% derivate da combinazione di segnali → **derivanti da triangolazione**, descritte caso per caso
+
+Tutte le regole **sono testate** contro il sample originale + spot-check post-fix (10-20 record per regola). Le regole con anche 1 errore vengono **raffinate o declassate a UNCERTAIN** (vedi `findings/ANALYSIS.md` §2 Stage 2A — Step 6).
+
+Per la difesa di tesi, il workflow di derivazione regole HC è documentato e riproducibile via `findings/ANALYSIS.md`. La cache `_llm_api_cache.json` (Stage 2B) è persistente e versionata. Ogni fix di round è stato applicato solo dopo:
+1. Sample del problema (≥30 finding random)
+2. Identificazione pattern FP
+3. Codifica regex
+4. Verifica spot-check post-fix
+5. Re-run blind classifier per misura riduzione FP rate
+
+---
+
+## 11. Copertura dei framework rispetto ai 60.205 server totali
+
+Non tutti i framework analizzano l'intero set di 60.205 server MCP. Ogni framework ha requisiti tecnici diversi (dipendenze, linguaggi supportati, runtime probe) che riducono la copertura effettiva. Questa sezione documenta quanti server **ognuno è riuscito ad analizzare** sul totale.
+
+### 11.1 Tabella di copertura per framework
+
+Numeri estratti da `analysisAllData/<tool>/<tool>_stats.json` (campo `<tool>.total_servers` o `<tool>.total`):
+
+| Framework | Server analizzati | Copertura % | Tipo analisi | Note |
+|-----------|-----------------:|------------:|--------------|------|
+| **mcp-guard** | **51.861** | **86.15%** | SAST + fuzzing + protocol | Copertura più alta — analisi statica regex su qualsiasi linguaggio |
+| **mcp-watch** | **45.106** | **74.90%** | SAST line-level | Multi-linguaggio (nodejs, python, go, ruby, rust) |
+| **mcp-check** | **32.862** | **54.58%** | Protocol conformance test | Richiede server avviabile + handshake JSON-RPC |
+| **mcp-scan** | **10.353** | **17.20%** | LLM-based (Snyk) | Richiede description tool + caricamento Snyk |
+| **mcp-shield** | **9.078** | **15.08%** | LLM tool description | Richiede tool description estraibile |
+| **mcp-security-scan** | **8.314** | **13.81%** | Runtime probe + heuristic | Richiede server in esecuzione |
+| **tool_fuzzing** | **6.082** | **10.11%** | Runtime fuzzing JSON-RPC | Richiede server avviabile + tool list |
+
+**Universo analizzato**: 60.205 server MCP raccolti da GitHub (vedi §1 — file `0.0. All servers without duplicates, .git, _, hash and ERRORE (60205).xlsx`).
+
+### 11.2 Causes di copertura ridotta
+
+Le copertura più basse (mcp-scan/shield/security-scan/tool_fuzzing) derivano da requisiti operativi diversi rispetto all'analisi statica pura:
+
+| Framework | Requisiti che riducono copertura |
+|-----------|----------------------------------|
+| mcp-scan | Tool description estraibile via MCP listing + integrazione Snyk runtime |
+| mcp-shield | Tool description disponibile (tool_description campo non vuoto) — molti server senza description vengono saltati |
+| mcp-security-scan | Server avviabile via npx/uv/python + handshake completo |
+| tool_fuzzing | Server avviabile + lista tool ottenibile + linguaggio supportato (nodejs/python/go) |
+| mcp-check | Handshake initialize completato senza errori bloccanti |
+
+mcp-guard e mcp-watch, essendo SAST regex su sorgente, hanno la copertura più alta perché non richiedono runtime esecuzione del server.
+
+### 11.3 Distribuzione linguaggi (cross-framework)
+
+Tutti i framework rilevano i linguaggi del codice analizzato. Aggregati per `tool_fuzzing` (campione runtime):
+
+| Linguaggio | Server (tool_fuzzing) | % |
+|-----------|----------------------:|--:|
+| Node.js / TypeScript | 5.747 | 94.5% |
+| Go | 326 | 5.4% |
+| Python | 9 | 0.1% |
+
+Per i framework SAST (mcp-guard, mcp-watch), distribuzione tipica è ~70% nodejs/ts, ~20% python, ~10% go/altro (variabile per framework).
+
+### 11.4 Server con almeno 1 VP — copertura post-analisi
+
+Sui 60.205 server totali:
+
+| Tier | # Server | % di 60.205 | Criterio |
+|------|---------:|------------:|----------|
+| **Tier 1** | 16 | 0.027% | 4+ framework concordano (FP combinato ~0%) |
+| **Tier 2** | 1.568 | 2.6% | 2-3 framework concordano |
+| **Tier 3** | 7.161 | 11.9% | 1 solo framework |
+| **Server con ≥1 VP** | **8.745** | **14.5%** | unione tier 1+2+3 |
+| Server senza VP rilevati | 51.460 | 85.5% | nessun framework ha trovato issue, OPPURE non analizzati da nessun framework |
+
+### 11.5 Visualizzazione copertura cumulativa
+
+```
+Universo:     60.205 server (100%)
+              ████████████████████████████████████████████████████████████ 100%
+
+mcp-guard:    51.861 (86.15%)  ███████████████████████████████████████████████████░░░░░░
+mcp-watch:    45.106 (74.90%)  ████████████████████████████████████████████░░░░░░░░░░░░░
+mcp-check:    32.862 (54.58%)  ████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░
+mcp-scan:     10.353 (17.20%)  ██████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+mcp-shield:    9.078 (15.08%)  █████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+mcp-security:  8.314 (13.81%)  ████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+tool_fuzzing:  6.082 (10.11%)  ██████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░
+```
+
+### 11.6 Implicazioni per la tesi
+
+1. **Copertura massima è SAST** (~86% mcp-guard) perché non richiede runtime — ogni server clonabile da GitHub viene analizzato
+2. **Framework runtime** (~10-17%) sono limitati a server avviabili nel test environment
+3. **mcp-check** copre ~55% — handshake test è meno strict di full runtime
+4. **8.745 server** con almeno 1 VP rilevato (14.5% del totale)
+5. **51.460 server** senza VP — divisi tra: server effettivamente sicuri vs server non analizzati per limiti operativi (es. richiedono auth, dipendenze esterne, ecc.)
+
+### 11.7 Stats files riferimento
+
+Tutti i numeri di copertura sono estratti da:
+
+```
+analysisAllData/0_tool_mcp_guard/mcp_guard_stats.json
+analysisAllData/0_tool_mcp_watch/mcp_watch_stats.json
+analysisAllData/0_tool_mcp_check/mcp_check_stats.json
+analysisAllData/0_tool_mcp_scan/mcp_scan_stats.json
+analysisAllData/0_tool_mcp_shield/mcp_shield_stats.json
+analysisAllData/0_tool_mcp_security_scan/mcp_security_scan_stats.json
+analysisAllData/0_tool_fuzzing/fuzzing_stats.json
+```
+
+Schema comune (esempio `mcp_guard_stats.json`):
+
+```json
+{
+  "last_index": 60205,
+  "total": 60195,
+  "range_start": 5689,
+  "range_end": 60205,
+  "languages": { "nodejs": 38421, "python": 8765, "go": 4123, ... },
+  "mcp-guard": {
+    "total_servers": 51861,
+    "percentage": 86.15,
+    "vulnerabilities": { "sql-injection": ..., "xss": ..., ... }
+  }
+}
+```
+
+I file `<tool>_servers.json` paralleli contengono mappa `URL → risultato/errore` per ogni server processato (audit trail per server).
+
+---
+
 ## Appendice A — Framework `mcp-check` (conformità protocollo)
 
 `mcp-check` è un test harness di conformità al protocollo MCP. Testa i server attraverso tre fasi: handshake, tool discovery, tool invocation. I finding rappresentano violazioni della specifica MCP.

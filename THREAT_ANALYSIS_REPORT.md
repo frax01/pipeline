@@ -3464,29 +3464,29 @@ Solo la categoria `server-crash-fuzzing` di `tool_fuzzing` è classificata come 
 
 #### Appendice A: mcp-check (16 categorie)
 
-Pipeline: ~85.000 raw → Stage 1 (`filter_mcp_check.py`) → 11.101 filtrati → Stage 2A (HC) → Stage 2B (cache in-chat) → **9.453 VP / 1.648 FP**. Raw per-categoria non esposto dal framework (`-`). 2 categorie cache-only (no Stage 2A): `handshake/invalid_arguments` e `tool_invocation/panic_or_crash`.
+Pipeline: 21.907 raw (categorie interessanti, da `mcp_check_stats.json:errors_reorganized` + `suites.warnings`) → Stage 1 (`filter_mcp_check.py`) → 11.101 filtrati → Stage 2A (HC) → Stage 2B (cache in-chat) → **9.453 VP / 1.648 FP**. 2 categorie cache-only (no Stage 2A): `handshake/invalid_arguments` e `tool_invocation/panic_or_crash`.
 
 Test di conformità protocollo MCP (handshake, tool discovery, tool invocation).
 
 | Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
 |-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
-| handshake/schema_violation | - | 49 | 49 | 0 | 0 | 49 | 0 | protocol-violation (#11) |
-| handshake/other_errors | - | 117 | 110 | 7 | 0 | 110 | 7 | protocol-violation (#11) |
-| handshake/method_not_found | - | 289 | 289 | 0 | 0 | 289 | 0 | protocol-violation (#11) |
-| handshake/invalid_arguments | - | 7 | - | - | - | 2 | 5 | input-validation (#10) |
-| handshake/unauthorized_or_auth_missing | - | 5 | 0 | 5 | 0 | 0 | 5 | n/a (0 VP) |
-| tool_discovery/schema_violation | - | 229 | 229 | 0 | 0 | 229 | 0 | protocol-violation (#11) |
-| tool_discovery/other_errors | - | 29 | 26 | 3 | 0 | 26 | 3 | protocol-violation (#11) |
-| tool_discovery/method_not_found | - | 42 | 42 | 0 | 0 | 42 | 0 | protocol-violation (#11) |
-| tool_discovery/warnings | - | 357 | 357 | 0 | 0 | 357 | 0 | protocol-violation (#11) |
-| tool_invocation/schema_violation | - | 4.860 | 4.860 | 0 | 0 | 4.860 | 0 | protocol-violation (#11) |
-| tool_invocation/other_errors | - | 3.817 | 3.361 | 456 | 0 | 3.361 | 456 | protocol-violation (#11) |
-| tool_invocation/panic_or_crash | - | 4 | - | - | - | 4 | 0 | server-crash (#18) |
-| tool_invocation/invalid_arguments | - | 253 | 74 | 179 | 0 | 74 | 179 | input-validation (#10) |
-| tool_invocation/method_not_found | - | 50 | 50 | 0 | 0 | 50 | 0 | protocol-violation (#11) |
-| tool_invocation/warnings | - | 878 | 0 | 878 | 0 | 0 | 878 | n/a (0 VP) |
-| tool_invocation/unauthorized_or_auth_missing | - | 115 | 0 | 115 | 0 | 0 | 115 | n/a (0 VP) |
-| **Totale** | **-** | **11.101** | **9.447** | **1.643** | **0** | **9.453** | **1.648** | — |
+| handshake/schema_violation | 49 | 49 | 49 | 0 | 0 | 49 | 0 | protocol-violation (#11) |
+| handshake/other_errors | 832 | 117 | 110 | 7 | 0 | 110 | 7 | protocol-violation (#11) |
+| handshake/method_not_found | 331 | 289 | 289 | 0 | 0 | 289 | 0 | protocol-violation (#11) |
+| handshake/invalid_arguments | 7 | 7 | - | - | - | 2 | 5 | input-validation (#10) |
+| handshake/unauthorized_or_auth_missing | 5 | 5 | 0 | 5 | 0 | 0 | 5 | n/a (0 VP) |
+| tool_discovery/schema_violation | 229 | 229 | 229 | 0 | 0 | 229 | 0 | protocol-violation (#11) |
+| tool_discovery/other_errors | 133 | 29 | 26 | 3 | 0 | 26 | 3 | protocol-violation (#11) |
+| tool_discovery/method_not_found | 42 | 42 | 42 | 0 | 0 | 42 | 0 | protocol-violation (#11) |
+| tool_discovery/warnings | 714 | 357 | 357 | 0 | 0 | 357 | 0 | protocol-violation (#11) |
+| tool_invocation/schema_violation | 11.647 | 4.860 | 4.860 | 0 | 0 | 4.860 | 0 | protocol-violation (#11) |
+| tool_invocation/other_errors | 4.729 | 3.817 | 3.361 | 456 | 0 | 3.361 | 456 | protocol-violation (#11) |
+| tool_invocation/panic_or_crash | 9 | 4 | - | - | - | 4 | 0 | server-crash (#18) |
+| tool_invocation/invalid_arguments | 477 | 253 | 74 | 179 | 0 | 74 | 179 | input-validation (#10) |
+| tool_invocation/method_not_found | 56 | 50 | 50 | 0 | 0 | 50 | 0 | protocol-violation (#11) |
+| tool_invocation/warnings | 2.394 | 878 | 0 | 878 | 0 | 0 | 878 | n/a (0 VP) |
+| tool_invocation/unauthorized_or_auth_missing | 253 | 115 | 0 | 115 | 0 | 0 | 115 | n/a (0 VP) |
+| **Totale** | **21.907** | **11.101** | **9.447** | **1.643** | **0** | **9.453** | **1.648** | — |
 
 #### Appendice B: tool_fuzzing/protocol-fuzzing (1 categoria su 17 sub-protocol)
 
@@ -3525,9 +3525,9 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 
 | Framework | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin |
 |-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|
-| mcp-check | - | 11.101 | 9.447 | 1.643 | 0 | 9.453 | 1.648 |
+| mcp-check | 21.907 | 11.101 | 9.447 | 1.643 | 0 | 9.453 | 1.648 |
 | tool_fuzzing/protocol-fuzzing | 103.394 | 3.511 | 775 | 2.032 | 704 | 775 | 2.459 |
-| **Totale Appendici** | **103.394** | **14.612** | **10.222** | **3.675** | **704** | **10.228** | **4.107** |
+| **Totale Appendici** | **125.301** | **14.612** | **10.222** | **3.675** | **704** | **10.228** | **4.107** |
 
 ---
 

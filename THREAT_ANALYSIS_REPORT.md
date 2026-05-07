@@ -3490,25 +3490,49 @@ mcp-check sottopone ciascun server a tre fasi sequenziali, ognuna delle quali pu
 
 - **`tool_invocation`** — esecuzione effettiva dei tool con `tools/call` usando input validi e invalidi. mcp-check invia argomenti corretti, argomenti mancanti, argomenti del tipo sbagliato e nomi di tool inventati per osservare il comportamento di error handling, la conformità dell'`outputSchema` dichiarato e l'eventuale crash del processo. È la fase più ricca di finding (volume e severity).
 
-##### Spiegazione delle categorie
+##### Spiegazione delle 16 categorie
 
-Le 16 righe della tabella sono il prodotto cartesiano di 3 fasi di test (`handshake`, `tool_discovery`, `tool_invocation`) per 7 tipologie di violazione. Di seguito il significato di ciascuna tipologia, con sintesi di cosa è stato trovato in pratica.
+Le 16 righe della tabella sono il prodotto cartesiano di 3 fasi di test (`handshake`, `tool_discovery`, `tool_invocation`) per 7 tipologie di violazione. Di seguito il significato di ciascuna riga, con sintesi di cosa è stato trovato.
 
-- **`schema_violation` (5.138 VP totali)** — il server invia messaggi che non rispettano lo schema JSON Schema Draft-07 della specifica MCP, oppure dichiara un `inputSchema`/`outputSchema` non valido. Conseguenze: client conformi non riescono a invocare i tool, l'LLM riceve dati strutturati in modo inatteso. Ha il volume più alto: 4.860 server con violazioni durante `tools/call` e 229 con tool che dichiarano schemi non parsabili.
+**Fase `handshake` (5 categorie):**
 
-- **`other_errors` (3.497 VP totali)** — categoria catch-all per errori runtime non mappati nelle altre. Dopo filtro, il finding dominante è **«Server did not return error for non-existent tool»** (3.294 server): il server accetta in silenzio qualunque nome di tool inventato, esponendo un vettore di **tool name injection**. Include anche 26 server di tool discovery con tool dai nomi duplicati (causano ambiguità nell'LLM) e 110 errori atipici durante l'handshake.
+- **`handshake/schema_violation` (49 VP)** — durante l'apertura della connessione il server invia messaggi `initialize` o `initialized` che non rispettano lo schema MCP (JSON Schema Draft-07): campi obbligatori mancanti, tipi sbagliati, capabilities malformate. 49 server flaggati: 3 hanno l'handshake completamente rotto, gli altri restituiscono strutture parzialmente conformi che possono confondere client diversi.
 
-- **`method_not_found` (381 VP totali)** — il server non implementa metodi richiesti dalla specifica MCP (`tools/list`, `ping`, `resources/list`, `prompts/list`) e risponde con error code `-32601`. Indica implementazioni parziali o non conformi del protocollo. 289 casi all'handshake (server che non supportano `ping`), 50 a invocation, 42 a discovery.
+- **`handshake/other_errors` (110 VP)** — errori runtime atipici durante l'handshake che non rientrano nelle altre tipologie: eccezioni non gestite, errori di parsing JSON-RPC, messaggi di errore interni esposti. Indica server che non gestiscono correttamente l'inizializzazione e possono leakare informazioni di stack/path nel messaggio d'errore.
 
-- **`invalid_arguments` (76 VP totali)** — il server gestisce in modo errato argomenti mancanti o malformati: usa l'error code sbagliato (es. `-32603 Internal Error` invece di `-32602 Invalid Params`), produce structured content che non rispetta l'`outputSchema` dichiarato, o fallisce silenziosamente. 74 finding sono violazioni di validazione e formato risposta in fase di invocation.
+- **`handshake/method_not_found` (289 VP)** — il server risponde con error code `-32601` (Method Not Found) a metodi richiesti dalla specifica MCP per la negoziazione iniziale, principalmente `ping`. Implementazione parziale: il server tecnicamente avvia, ma non supporta operazioni di health-check standard.
 
-- **`unauthorized_or_auth_missing` (0 VP)** — il server richiede autenticazione e risponde con errore quando le credenziali non sono fornite. **Non è una vulnerabilità** ma anzi un comportamento corretto; tutti 120 finding sono FP. Categoria informativa per identificare quali server proteggono le proprie API.
+- **`handshake/invalid_arguments` (2 VP)** — il server gestisce in modo errato argomenti malformati nel messaggio `initialize` (es. `protocolVersion` con tipo sbagliato): risponde con error code generico invece di `-32602 Invalid Params`. Numero piccolo perché in handshake gli argomenti sono pochi e standard.
 
-- **`warnings` (357 VP totali)** — issue di qualità rilevate dal test `tool-description-quality`. Tipicamente **tool senza descrizione** in `tool_discovery` (357 server): senza descrizione l'LLM non sa cosa fa il tool e può usarlo in modo errato. I 878 warning di `tool_invocation` sono `NonDeterministicOutput` (timestamp, UUID, weather) — comportamento atteso, tutti FP.
+- **`handshake/unauthorized_or_auth_missing` (0 VP)** — il server richiede credenziali per l'inizializzazione e fallisce senza autenticazione. **Tutti 5 finding sono FP**: comportamento corretto, anzi positivo (l'auth protegge l'API). Categoria informativa, nessuna vulnerabilità.
 
-- **`panic_or_crash` (4 VP)** — i finding più critici della suite: il processo del server termina con un crash non recuperato durante l'invocazione di un tool. Tutti e 4 i casi sono server **Go** con `nil interface conversion` o `nil pointer dereference` (`mcp-iot-go`, `opgen-mcp-server`, `talos-mcp`, `sonar-mcp-server`). Implicazione: **DoS con un singolo input malformato** — un client può abbattere il processo MCP da remoto.
+**Fase `tool_discovery` (4 categorie):**
 
-In sintesi: la stragrande maggioranza dei VP di mcp-check (~9.000 su 9.453) descrive **non-conformità al protocollo** che minano l'affidabilità dell'integrazione client-server, mentre i casi a impatto di sicurezza diretta sono pochi ma di alto valore (3.294 tool name injection in `other_errors` e 4 panic crash).
+- **`tool_discovery/schema_violation` (229 VP)** — il server espone tool con `inputSchema` non valido secondo JSON Schema Draft-07 (`InvalidToolSchemas`): tipi non supportati, riferimenti `$ref` rotti, oneOf/anyOf malformati. **Conseguenza diretta**: client MCP conformi (Claude Desktop, Cursor) non riescono a invocare il tool, di fatto inutilizzabile.
+
+- **`tool_discovery/other_errors` (26 VP)** — errori atipici durante `tools/list`. Il sotto-tipo dominante è `DuplicateToolNames` (11 server con due o più tool dallo stesso nome — es. `git_flow`, `get_repository_by_id`): l'LLM non sa quale invocare, ambiguità che porta a comportamenti errati. Altri 15 sono runtime error JS/Python in `ToolListError`.
+
+- **`tool_discovery/method_not_found` (42 VP)** — il server non implementa `tools/list`. Senza enumerazione, il client non può sapere quali tool esistono — server di fatto inutile per il caso d'uso MCP. Tipicamente implementazioni minime che espongono solo `resources/`.
+
+- **`tool_discovery/warnings` (357 VP)** — issue di qualità rilevate dal test `tool-description-quality`. Tutti 357 finding sono **tool senza `description`** o con descrizione vuota. Senza descrizione l'LLM non sa cosa fa il tool — può non usarlo, oppure usarlo in modo errato basandosi solo sul nome. Quality issue, non sicurezza diretta.
+
+**Fase `tool_invocation` (7 categorie):**
+
+- **`tool_invocation/schema_violation` (4.860 VP)** — la categoria col volume più alto di tutta l'analisi. Il server, in risposta a `tools/call`, restituisce messaggi che falliscono la validazione Zod del campo `tools` o del `result`. Il client non riesce a deserializzare la risposta — il tool è di fatto non invocabile in modo affidabile. Primo VP per volume in tutto il report.
+
+- **`tool_invocation/other_errors` (3.361 VP)** — categoria misto contenuto. Il finding dominante è **«Server did not return error for non-existent tool»** (3.294 server, ~98% della categoria): se chiedi al server di eseguire un tool dal nome inventato, non restituisce errore. Vettore concreto di **tool name injection**: un attaccante può iniettare nomi di tool fittizi e il server li accetta. Gli altri 67 sono runtime error JS/Python (`is not a function`, `TypeError`), SQL injection test (3 server con SQL logic error su input "test"), e bug serializzazione.
+
+- **`tool_invocation/panic_or_crash` (4 VP)** — i finding più critici della suite. Il processo del server termina con un crash non recuperato durante l'esecuzione di un tool fuzzato. Tutti e 4 sono server **Go**: `mcp-iot-go` (nil interface conversion in `buzzer_control`), `opgen-mcp-server` (nil interface in `generate_password_*`), `talos-mcp` (nil pointer dereference in `list_cpu/disks/memory`), `sonar-mcp-server` (nil interface in `sonar_duplications/hotspots/issues`). **DoS con un singolo input malformato** — un client può abbattere il processo MCP da remoto.
+
+- **`tool_invocation/invalid_arguments` (74 VP)** — gestione errata di argomenti malformati durante `tools/call`. Sotto-tipi: `parameter_parsing_not_implemented` (52 server con implementazione incompleta), `output_schema_mismatch` (6 server che dichiarano `outputSchema` ma non lo rispettano), `wrong_error_code_for_validation` (6 server che usano `-32603` invece di `-32602`), `invalid_tools_call_result_format` (7), `invalid_structured_content` (3). Indica mancanza di validazione, potenziale vettore per input injection.
+
+- **`tool_invocation/method_not_found` (50 VP)** — il server non implementa `tools/call`. Senza invocazione, il server espone tool ma non può eseguirli — implementazione parziale (probabilmente in fase di sviluppo).
+
+- **`tool_invocation/warnings` (0 VP)** — tutti 878 warning sono `NonDeterministicOutput`: lo stesso tool con lo stesso input produce output diversi (timestamp, UUID, weather, random, search). **Comportamento atteso e corretto** per tool con side effect — tutti FP. Il test segnala una proprietà, non un bug.
+
+- **`tool_invocation/unauthorized_or_auth_missing` (0 VP)** — il server richiede credenziali per invocare un tool. **Tutti 115 finding sono FP**: anzi è positivo che l'auth protegga l'API. Categoria informativa per capire quali server gating le proprie tool.
+
+**Sintesi:** la stragrande maggioranza dei VP di mcp-check (~9.000 su 9.453) descrive **non-conformità al protocollo** che minano l'affidabilità dell'integrazione client-server. I casi a impatto di sicurezza diretta sono pochi ma ad alto valore: **3.294 tool name injection** (`tool_invocation/other_errors`) e **4 panic crash DoS** (`tool_invocation/panic_or_crash`).
 
 #### Appendice B: tool_fuzzing (4 categorie)
 

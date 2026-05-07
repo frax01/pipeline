@@ -1820,30 +1820,41 @@ Stage 2B classifica gli UNCERTAIN residui usando classificatori Python con regol
 
 ### Risultati finali completi (post spot-check fix)
 
-**Pipeline: 93.813 raw → 28.733 filtered → 8.952 VP / 19.781 FP / 0 UNC**
+**Pipeline: 96.500 raw → 28.125 filtered → 5.774 VP / 22.959 FP / 0 UNC** (post round 4 fix 2026-05-07)
 
 | Categoria | Filt | VP | FP | VP% |
 |-----------|-----:|---:|---:|----:|
 | ssrf-static | 832 | 717 | 115 | 86.2% |
-| hardcoded-credential-static | 5.277 | 933 | 4.344 | 17.7% |
-| sql-injection-static | 2.706 | 2.382 | 324 | 88.0% |
-| dangerous-tool-handler-static | 2.968 | 990 | 1.978 | 33.4% |
-| path-traversal-static | 3.704 | 59 | 3.645 | 1.6% |
-| prompt-injection-static | 436 | 16 | 420 | 3.7% |
+| hardcoded-credential-static | 4.701 | **650** | 4.051 | 13.8% |
+| sql-injection-static | 2.689 | 2.375 | 314 | 88.3% |
+| dangerous-tool-handler-static | 2.961 | 989 | 1.972 | 33.4% |
+| path-traversal-static | 3.697 | **23** | 3.674 | 0.6% |
+| prompt-injection-static | 435 | 16 | 420 | 3.7% |
 | insecure-deserialization-static | 591 | 31 | 560 | 5.2% |
 | code-injection-static | 241 | 184 | 57 | 76.3% |
 | command-injection-static | 58 | 21 | 37 | 36.2% |
-| command-injection-fuzzing | 1.743 | 431 | 1.312 | 24.7% |
-| path-traversal-fuzzing | 2.182 | 1.231 | 951 | 56.4% |
-| command-execution-fuzzing | 2.375 | 623 | 1.752 | 26.2% |
-| code-injection-fuzzing | 538 | 202 | 336 | 37.5% |
-| information-disclosure-fuzzing | 1.360 | 792 | 568 | 58.2% |
-| sensitive-info-disclosed-fuzzing | 3.120 | 277 | 2.843 | 8.9% |
+| command-injection-fuzzing | 1.743 | **221** | 1.522 | 12.7% |
+| path-traversal-fuzzing | 2.182 | **441** | 1.741 | 20.2% |
+| command-execution-fuzzing | 2.375 | **2** | 2.350 | 0.1% |
+| code-injection-fuzzing | 538 | 36 | 488 | 6.7% |
+| information-disclosure-fuzzing | 1.360 | **4** | 1.334 | 0.3% |
+| sensitive-info-disclosed-fuzzing | 3.120 | 1 | 3.119 | 0.0% |
 | protocol-information-disclosure | 13 | 4 | 9 | 30.8% |
 | protocol-path-traversal | 1 | 1 | 0 | 100% |
 | protocol-missing-id | 79 | 0 | 79 | 0% |
 | protocol-invalid-jsonrpc-version | 509 | 58 | 451 | 11.4% |
-| **TOTALE** | **28.733** | **8.952** | **19.781** | **31.2%** |
+| **TOTALE** | **28.733** | **5.774** | **22.959** | **20.1%** |
+
+**Aggiornato 2026-05-07 round 3**: VP totali ridotti da 8.952 a 5.856 (-35% cumulativo). Round 3 fix:
+- information-disclosure-fuzzing -94% (770 → 50: server install path leak filtered)
+- code-injection-fuzzing -82% (202 → 36: TypeScript scaffold + Node docs + Python path arg)
+
+Round 2 fix (2026-05-06):
+- command-execution-fuzzing -99% (623 → 2)
+- sensitive-info-disclosed-fuzzing -99% (277 → 1: keypair tools + shell rejects payload)
+- path-traversal-fuzzing -64% (1.231 → 441: multi-line content required)
+- command-injection-fuzzing -49% (431 → 221)
+- hardcoded-credential-static -30% (933 → 650)
 
 ### Spot-check qualità (2026-04-29)
 
@@ -1859,37 +1870,45 @@ Sample 5 VP + 5 FP per categoria (190 finding totali). Errori sistematici corret
 
 Classificatore basato su regex senza data-flow analysis. Pattern syntactic VP non sempre = vulnerability reale.
 
-**FP rate stimato VP per categoria** (spot-check con context):
+**FP rate misurato post blind-review round 3 (n=50/cat, 2026-05-07)**:
 
-| Categoria | VP raw | FP rate stim. | VP reali stim. |
-|-----------|-------:|--------------:|---------------:|
-| sql-injection-static | 2.382 | 30-50% | 1.190-1.670 |
-| dangerous-tool-handler-static | 990 | 15-20% | 790-840 |
-| hardcoded-credential-static | 933 | 10-15% | 790-840 |
-| ssrf-static | 717 | 5-10% | 645-680 |
-| altre static | 311 | 5-15% | 280-295 |
-| Fuzzing/protocol | 3.619 | <5% | ~3.440 |
-| **TOTALE** | **8.952** | **~16%** | **~7.440** |
+| Categoria | VP raw | FP rate% misurato | VP reali stim |
+|-----------|-------:|------------------:|---------------|
+| sql-injection-static | 2.375 | 6.9% | 2.211 |
+| dangerous-tool-handler-static | 989 | 4.3% | 946 |
+| ssrf-static | 717 | 0.0% | 717 |
+| hardcoded-credential-static | 650 | 2.8% | 632 |
+| path-traversal-fuzzing | 441 | ~10% | ~400 |
+| command-injection-fuzzing | 221 | 10.3% | 198 |
+| code-injection-fuzzing | **36** (post round 3) | ~5% | ~34 |
+| information-disclosure-fuzzing | **50** (post round 3) | ~5% | ~48 |
+| sensitive-info-disclosed-fuzzing | 1 | 0% | 1 |
+| command-execution-fuzzing | 2 | 0% | 2 |
+| altre static | 359 | <10% | ~340 |
+| protocol | 217 | 0% | 217 |
+| **TOTALE** | **5.856** | **~5%** | **~5.540** |
 
 **Esempio FP nascosto**: `cursor.execute(f"SELECT COUNT(*) FROM [{t}]")` flag VP, ma `t` viene da `sqlite_master` query precedente → trusted, FP reale. Impossibile distinguere senza AST/data-flow.
 
 **Implicazione uso**:
-- VP raw 8.952 utile per triaging (pattern signal)
-- VP stimati reali ~7.440 (±10%) post manual review
+- VP raw 6.742 utile per triaging (pattern signal, post round 2 fix)
+- VP stimati reali ~5.992 (±10%) post blind classification
 - Cross-framework consensus (multiple framework concordano) = high confidence VP
 
 Vedere `analysisAllData/0_tool_mcp_guard/ANALYSIS_GUIDE.md` sezione "Limitazioni note" per dettagli completi.
 
-### Top categorie per VP assoluti
+### Top categorie per VP assoluti (post round 3)
 
-1. **sql-injection-static**: 2.382 VP (più grande pool VP, 88% precision)
-2. **path-traversal-fuzzing**: 1.231 VP
-3. **dangerous-tool-handler-static**: 990 VP
-4. **hardcoded-credential-static**: 933 VP
-5. **information-disclosure-fuzzing**: 792 VP
-6. **ssrf-static**: 717 VP
-7. **command-execution-fuzzing**: 623 VP
-8. **command-injection-fuzzing**: 431 VP
+1. **sql-injection-static**: 2.375 VP (più grande pool VP, 88% precision)
+2. **dangerous-tool-handler-static**: 989 VP
+3. **ssrf-static**: 717 VP
+4. **hardcoded-credential-static**: 650 VP
+5. **path-traversal-fuzzing**: 441 VP (post round 2 tightening)
+6. **command-injection-fuzzing**: 221 VP
+7. **code-injection-static**: 184 VP
+8. **path-traversal-static**: 59 VP
+9. **information-disclosure-fuzzing**: 50 VP (post round 3)
+10. **code-injection-fuzzing**: 36 VP (post round 3)
 
 ### File output per ogni 19 cat
 
@@ -2048,10 +2067,12 @@ tool_fuzzing fa **runtime fuzzing** dei server MCP (non SAST come mcp-guard/mcp-
 | 1 | server-error-fuzzing | exceptions/Server_returned_error.json | 10.944 | 0 | 10.944 |
 | 2 | transport-failure-fuzzing | 3 file Failed_*/No_response (merged) | 3.385 | 0 | 3.385 |
 | 3 | server-crash-fuzzing | 'int'_object_has_no_attribute | 1 | 1 | 0 |
-| 4 | protocol-fuzzing | 17 file protocol/* (merged) | 3.511 | 1.562 | 1.949 |
-| **TOTALE** | | | **17.841** | **1.563** | **16.278** |
+| 4 | protocol-fuzzing | 17 file protocol/* (merged) | 3.511 | **775** | 2.736 |
+| **TOTALE** | | | **17.841** | **776** | **17.065** |
 
-**Pipeline**: 118.756 raw → 17.841 filtered → 1.563 VP / 16.278 FP / 0 UNC.
+**Pipeline (post fix 2026-05-06)**: 117.724 raw → 17.841 filtered → **776 VP / 17.065 FP** / 0 UNC.
+
+Cambio: protocol-fuzzing 1.562 → 775 VP (-787, fix `InitializeRequest` rate ≥80% = metodo valido + `ReadResourceRequest` con URI standard = compliance test, NO security signal).
 
 **Spot-check ha rivelato bug HC critici** (server-error e transport): regole rimosse perché confondevano "fuzz random rejection" con "DoS". **Stima VP reali: ~530-730** (signal weak per protocol-fuzzing, success_details vuoto).
 
@@ -2096,20 +2117,61 @@ Vedere `analysisAllData/0_tool_fuzzing/ANALYSIS_GUIDE.md` per dettagli completi.
 
 ## STATO FINALE 7 TOOL — Pipeline completata ✅
 
-**Data: 2026-04-29**
+**Data: 2026-04-29 (numeri aggiornati 2026-05-07 post blind-review round 4)**
 
-| Tool | VP raw | FP | Note |
-|------|-------:|---:|------|
-| mcp-guard | 8.952 | 19.781 | ~7.440 reali post FP correction |
-| mcp-watch | 835 | ~6.156 | |
-| mcp-scan | 635 | ~44 | |
-| mcp-shield | 16 | ~5.031 | |
-| mcp-security-scan | 1.094 | ~301 | |
-| mcp-check | 9.453 | ~1.648 | |
-| **tool_fuzzing** | **1.563** | **16.278** | ~530-730 reali (post fix HC) |
-| **TOTALE** | **22.548** | | |
+| Tool | VP raw | VP reali stim (blind) | Note |
+|------|-------:|----------------------:|------|
+| mcp-guard | **5.774** | ~5.505 | Round 4: -3.178 vs originale |
+| mcp-watch | 832 | ~753 | |
+| mcp-scan | 635 | ~599 | |
+| mcp-shield | 16 | ~12 | |
+| mcp-security-scan | 1.094 | ~1.094 | |
+| mcp-check | 9.453 | ~9.096 | |
+| **tool_fuzzing** | **776** | **~760** | -787 vs originale |
+| **TOTALE** | **18.580** | **~17.819** | FP rate medio **4.4%** (blind n=50/cat) |
 
-Tutti 7 tool finiti. Pronto per cross-framework consensus analysis.
+### Round 4 fix (2026-05-07)
+
+- **information-disclosure-fuzzing**: 50 → **4** (-92%) — HC-FP per `python3 -c "<payload>" SyntaxError` (è command-injection, non info-disc) + AppleScript `do JavaScript` con payload (è code exec)
+- **path-traversal-static**: 59 → **23** (-61%) — HC-FP per `args.output_dir`/`args.out_dir` (CLI output path intended writable), `self._temp_dir` (server-managed), `session_id`/`uuid` in filename (server-generated), `exec_res["working_directory"]` (server context)
+- **insecure-deserialization-static**: 31 → 31 (no change, marginal sample)
+
+### Round 3 fix (2026-05-07)
+
+- **information-disclosure-fuzzing**: 770 → 50 (-94%) — `_INFO_DISC_SELF_PATH_ONLY` cattura server install path leak (atteso in test env, no real disclosure). VP solo se /etc/, /opt/, /var/, /root/ paths
+- **code-injection-fuzzing**: 202 → 36 (-82%) — rimosso loose regex `eval.*result|exec.*output`; HC-FP per TypeScript test scaffold + Node.js docs HTML + Python script invocato con path arg
+
+### Round 2 fix (2026-05-06)
+
+- **sensitive-info-disclosed-fuzzing**: 277 → **1** (-99%) — keypair generator tool intended behavior, shell rejects payload (Permission denied)
+- **path-traversal-fuzzing**: 1.231 → **441** (-64%) — `_PT_FUZZ_SUCCESS` tightened: richiede multi-line content o full shell path
+
+### Blind classification estesa (2026-05-06)
+Sample n=50/bucket × 64 cat = 3.489 finding classificati blind con classifier indipendente.
+Output: `analysisAllData/spot_check_all/_disagreement_report.md` + `UPDATED_NUMBERS_2026-05-06.md`.
+
+### Fix HC applicati post blind-review
+
+**filter_mcp_guard.py**: `_TEST_FILE` regex estesa con `test-`/`demo-`/`verify-`/`sample-` prefix.
+
+**pipeline_mcp_guard.py**:
+- `hc_rules_hardcoded_credential`: HC-FP per PostHog `phc_`, paths intentionally vulnerable, base64 fake, sample passwords (`SecurePassword123!`, `P@ssw0rd`), DefinitelyTyped types/, fake markers
+- `_CMD_FUZZ_SHELL_OUTPUT` / `_PT_FUZZ_SUCCESS`: stretti — solo content reali (`uid=N(name)`, `root:x:0:0:_:/`), no path string echo
+- `_CMD_EXEC_PAYLOAD_IN_CMD`: stretto — richiede output `uid=` reale
+- `_INFO_DISC_FS_LEAK`: rimosso `/etc/passwd`/`/etc/shadow` literal, solo POSIX file context + traceback paths
+- `_SID_PLACEHOLDER_VALUE` + `_SID_README_DOCS`: nuovi pattern FP per `your_*`, `<XXX>`, README docs
+
+**pipeline_fuzzing.py**: `hc_rules_protocol` HC-FP per `InitializeRequest` rate ≥80% (metodo valido), `ReadResourceRequest` con URI standard.
+
+### Categorie ancora con FP rate alto (>30%, da considerare)
+
+| Categoria | VP | FP rate% | Nota |
+|-----------|---:|---------:|------|
+| sensitive-info-disclosed-fuzzing | 241 | 75% | Signal weak |
+| information-disclosure-fuzzing | 770 | 62% | Stack trace ambigui |
+| path-traversal-fuzzing | 1.106 | 33% | Echo vs exploit reale |
+
+Considerare spostamento da Core a Appendice nel report tesi.
 
 ---
 
@@ -2117,23 +2179,23 @@ Tutti 7 tool finiti. Pronto per cross-framework consensus analysis.
 
 **Data: 2026-04-29**
 
-Aggregazione VP da 7 framework su 64 vp.json files = **22.548 VP / 9.108 server unici**.
+Aggregazione VP da 7 framework su 64 vp.json files = **18.662 VP / 8.751 server unici** (post fix round 3 2026-05-07).
 
-### Tier distribution
+### Tier distribution (aggiornato 2026-05-07 round 3)
 
 | Tier | # Server | Criterio | Confidenza |
 |------|---------:|----------|------------|
-| **Tier 1** | **29** | 4+ framework concordano | super-alta (FP ~0%) |
-| Tier 2 | 2.052 | 2-3 framework | alta |
-| Tier 3 | 7.027 | 1 solo framework | da verificare |
+| **Tier 1** | **16** | 4+ framework concordano | super-alta (FP ~0%) |
+| Tier 2 | 1.570 | 2-3 framework | alta |
+| Tier 3 | 7.165 | 1 solo framework | da verificare |
 
 ### Top 5 Tier 1 servers
 
-1. **coladapo/purmemo-mcp** — 5 framework, 8 VPs (unico con 5!)
+1. **coladapo/purmemo-mcp** — 5 framework, 7 VPs
 2. **Shreesha4994/sap-btp-cf-mcp-server** — 4 framework, 34 VPs (top per VP count)
-3. **nickgnd/tmux-mcp** — 4 framework, 23 VPs
-4. **SandraK82/wisdom-mcp** — 4 framework, 22 VPs
-5. **Anansitrading/sprite-mcp-server** — 4 framework, 18 VPs
+3. **nickgnd/tmux-mcp** — 4 framework, 22 VPs
+4. **manalejandro/mcp-proc** — 4 framework, 14 VPs
+5. **nguyenvanduocit/script-mcp** — 4 framework, 9 VPs
 
 ### Output
 

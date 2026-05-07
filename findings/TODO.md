@@ -2,15 +2,6 @@
 2. Come vedi nella cartella C:\Users\francesco\Desktop\pipeline\findings mancano le cartelle per mcp-guard e mcp-fuzzing, le puoi fare? Sai come farle? Forse puoi prendere spunto dalle cartelle degli altri framework
 4. Mi riguardi tutte le sezioni del file e vedi se tornano tutti i numeri e tutte le cose che ho scritto?
 5. Sapresti darmi le fonti di tutte le regole che hai creato? Devo documentarci la mia tesi e soprattutto devo presentarle al prof
-6. | **Validazione** | residuo Stage 1 < soglia | spot-check 5+5 su nuovi VP/FP | Cosa vuol dire? Vorrei sapere la differenza tra stage 1 e 2A? Sta nel file C:\Users\francesco\Desktop\pipeline\THREAT_ANALYSIS_REPORT.md a riga 181
-7. I pattern seguenti rappresentano la **classe di esclusioni file-level** (test, vendor, scanner-own, comment line) condivisa da tutti i framework, anche se ogni framework ha la propria implementazione (con minime varianti) nei rispettivi `filter_*.py`:
-
-- `mcp-guard` → `filter_mcp_guard.py` (versione completa mostrata sotto)
-- `mcp-watch` → `filter_all_categories.py` + `filter_remaining_categories.py` (regex inline per categoria)
-- `tool_fuzzing` → `filter_fuzzing.py` (pattern adattati a finding fuzzing senza `file`)
-- `mcp-scan`, `mcp-shield`, `mcp-security-scan`, `mcp-check` → filtraggio embedded nel framework stesso o nel filter dedicato per categoria
-
-Mi spieghi meglio questa parte? In particolare, non ho capito qual è la differenza tra i vari filtri 1 dei vari framework, nel senso che da quello che si vede la base è uguale ma nelle parentesi accanto ai framework non si capisce bene qual è la differenza, magari mi puoi scrivere questa descrizione nelle parentesi un pò meglio, un pò più lunga e un pò più completa?
 8. Mi spieghi meglio tutta la parte del protocol fuzzing?
 Sia questa parte:
 
@@ -86,11 +77,11 @@ Pattern matching senza analisi del data flow. Un pattern sintattico VP non sempr
 | altre statiche | ~600 | 5-15% | 510-570 |
 
 Arrivare ad avere un numero preciso di vp e fp e non solo una stima?
-10. Ma perchè nella parte core del fuzzing in C:\Users\francesco\Desktop\pipeline\THREAT_ANALYSIS_REPORT.md viene messo solo il server crash (che poi è solo 1) e nient'altro? Sono tutti fp gli altri? Infatti perchè nel fuzzing queste 4 categorie sono praticamente tutti fp? Mi rifai un recap fatto bene (qui in chat) di come funziona il fuzzing e di come lo abbiamo suddiviso in tutte queste analisi? **0**
+10. Ma perchè nella parte core del fuzzing in C:\Users\francesco\Desktop\pipeline\THREAT_ANALYSIS_REPORT.md viene messo solo il server crash (che poi è solo 1) e nient'altro? Sono tutti fp gli altri? Infatti perchè nel fuzzing queste 4 categorie sono praticamente tutti fp? Mi rifai un recap fatto bene (qui in chat) di come funziona il fuzzing e di come lo abbiamo suddiviso in tutte queste analisi?
 
 ## 4. Categorie output (4)
 
-Mapping 22 file raw → 4 categorie:
+Mapping 22 file raw → 4 categorie: 
 
 | # | Categoria | Source files | Filt entries |
 |---|-----------|--------------|-------------:|
@@ -116,4 +107,9 @@ Mapping 22 file raw → 4 categorie:
 | **TOTALE** | **17.841** | **1.563** | **16.278** | **8.8%** |
 
 Il file lo trovi in C:\Users\francesco\Desktop\pipeline\analysisAllData\0_tool_fuzzing\ANALYSIS_GUIDE.md
-12. Mi fai una tabella di copertura dei vari framework sulla lista di tutti i server che sto analizzando?
+11. Mi fai una tabella di copertura dei vari framework sulla lista di tutti i server che sto analizzando?
+
+
+###
+
+Conitnuare il filtro e salvare tutti i dati, in particolare salvare anche le varie regole dei vari stage che avrà generato in più nelle analisis che ha fatto

@@ -299,7 +299,7 @@ Nota: la colonna "Originali" e' vuota perche' mcp-check non ha un conteggio pre-
 
 ---
 
-## Totale generale
+## Totale generale (aggiornato 2026-05-07 round 4 post blind-review)
 
 | Framework | Originali | Dopo filtro | VP finali | FP finali |
 |---|---:|---:|---:|---:|
@@ -308,4 +308,44 @@ Nota: la colonna "Originali" e' vuota perche' mcp-check non ha un conteggio pre-
 | mcp-shield | 5.047 | 5.047 | 16 | 5.031 |
 | mcp-security-scan | 9.404 | 1.395 | 1.094 | 301 |
 | mcp-check | — | 11.101 | 9.453 | 1.648 |
-| **Totale** | **2.297.113** | **25.213** | **~12.006** | **~13.207** |
+| **mcp-guard** | **96.500** | **28.125** | **5.774** | **22.959** |
+| **tool_fuzzing** | **118.756** | **17.841** | **776** | **17.065** |
+| **Totale 7 tool** | **2.512.369** | **71.179** | **~18.580** | **~53.231** |
+
+> Stim VP reali post blind-review round 4: **~17.819** (FP rate medio **4.4%** su sample n=50/cat).
+> Dettagli: `analysisAllData/UPDATED_NUMBERS_2026-05-06.md` e `analysisAllData/spot_check_all/_disagreement_report.md`.
+
+### mcp-guard (19 categorie) — aggiunto 2026-05-06
+
+| Categoria | Originali | Dopo filtro | VP finali | FP finali |
+|---|---:|---:|---:|---:|
+| ssrf-static | 44.063 | 832 | 717 | 115 |
+| hardcoded-credential-static | 18.438 | 4.701 | 650 | 4.051 |
+| sql-injection-static | 4.886 | 2.689 | 2.375 | 314 |
+| dangerous-tool-handler-static | 3.991 | 2.961 | 989 | 1.972 |
+| path-traversal-static | 4.740 | 3.697 | 23 | 3.674 |
+| prompt-injection-static | 2.016 | 435 | 16 | 420 |
+| insecure-deserialization-static | 814 | 591 | 31 | 560 |
+| code-injection-static | 318 | 241 | 184 | 57 |
+| command-injection-static | 107 | 58 | 21 | 37 |
+| command-injection-fuzzing | 1.743 | 1.743 | 221 | 1.522 |
+| path-traversal-fuzzing | 2.183 | 2.182 | 441 | 1.741 |
+| command-execution-fuzzing | 2.375 | 2.375 | 2 | 2.350 |
+| code-injection-fuzzing | 538 | 538 | 36 | 488 |
+| information-disclosure-fuzzing | 1.360 | 1.360 | 4 | 1.334 |
+| sensitive-info-disclosed-fuzzing | 5.626 | 3.120 | 1 | 3.119 |
+| protocol-information-disclosure | 13 | 13 | 4 | 9 |
+| protocol-path-traversal | 14 | 1 | 1 | 0 |
+| protocol-missing-id | 79 | 79 | 0 | 79 |
+| protocol-invalid-jsonrpc-version | 509 | 509 | 58 | 451 |
+| **Totale mcp-guard** | **96.500** | **28.125** | **5.774** | **22.959** |
+
+### tool_fuzzing (4 categorie) — aggiunto 2026-05-06
+
+| Categoria | Originali | Dopo filtro | VP finali | FP finali |
+|---|---:|---:|---:|---:|
+| protocol-fuzzing | 103.394 | 3.511 | 775 | 2.736 |
+| server-error-fuzzing | 10.944 | 10.944 | 0 | 10.944 |
+| transport-failure-fuzzing | 3.385 | 3.385 | 0 | 3.385 |
+| server-crash-fuzzing | 1 | 1 | 1 | 0 |
+| **Totale tool_fuzzing** | **117.724** | **17.841** | **776** | **17.065** |

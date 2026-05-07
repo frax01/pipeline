@@ -6,8 +6,8 @@
  
 ## 1. Numeri chiave
 
-- **Veri Positivi totali (core security MCP)**: **8.352** VP, generati da sei framework (mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan, tool_fuzzing/server-crash) — post round 4 fix 2026-05-07
-- **Veri Positivi supplementari (protocol/compliance)**: **10.228** VP in Appendice (mcp-check 9.453 + tool_fuzzing/protocol-fuzzing 775)
+- **Veri Positivi totali (core security MCP)**: **8.351** VP, generati da cinque framework (mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan) — post round 4 fix 2026-05-07
+- **Veri Positivi supplementari (protocol/compliance e fuzzing)**: **10.229** VP in Appendice (mcp-check 9.453 + tool_fuzzing 4 cat 776, di cui protocol-fuzzing 775 + server-crash-fuzzing 1)
 - **TOTALE pipeline**: **18.580** VP — FP rate medio 4.4% (blind n=50/cat), VP reali stim ~17.819
 - **Server con almeno una vulnerabilità**: 8.745 (14.5% del totale 60.205)
 
@@ -3427,16 +3427,9 @@ Pipeline: ~9.404 raw → Stage 1 → 1.395 filtrati → Stage 2A (HC + cache) �
 
 > Nota: `mcp-security-scan` è in **Core** ma con sovrapposizione esplicita: `dangerous-capabilities` sovrappone con `mcp-guard/dangerous-tool-handler-static`, `input-validation` con `mcp-watch/input-validation`, `path-traversal` con `mcp-guard/path-traversal-*`, `sensitive-file-access` con `mcp-shield/sensitive-file-access` (vedere §4.4, §4.10, §4.11, §4.14 per dettagli).
 
-#### tool_fuzzing (parte Core: server-crash-fuzzing)
+> Nota: tutte le categorie di `tool_fuzzing` (incluso `server-crash-fuzzing`) sono raggruppate in **Appendice B** per tenere insieme la suite di fuzzing.
 
-Solo la categoria `server-crash-fuzzing` di `tool_fuzzing` è classificata come Core. Le altre 3 categorie sono in Appendice o scartate (vedi sotto).
-
-| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
-|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
-| server-crash-fuzzing | 1 | 1 | 1 | 0 | 0 | 1 | 0 | server-crash (#18) |
-| **Totale Core** | **1** | **1** | **1** | **0** | **0** | **1** | **0** | — |
-
-#### Totali aggregati Core (6 framework)
+#### Totali aggregati Core (5 framework)
 
 | Framework | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin |
 |-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|
@@ -3445,8 +3438,7 @@ Solo la categoria `server-crash-fuzzing` di `tool_fuzzing` è classificata come 
 | mcp-scan | 679 | - | - | - | - | 635 | 44 |
 | mcp-shield | 5.047 | - | 16 | 4.956 | 75 | 16 | 5.031 |
 | mcp-security-scan | - | 1.395 | 961 | 267 | 61 | 1.094 | 301 |
-| tool_fuzzing (server-crash) | 1 | 1 | 1 | 0 | 0 | 1 | 0 |
-| **Totale Core** | **2.384.210** | **36.510** | **7.237** | **29.514** | **4.697** | **8.352** | **33.538** |
+| **Totale Core** | **2.384.209** | **36.509** | **7.236** | **29.514** | **4.697** | **8.351** | **33.538** |
 
 > Numeri letti da JSON file 2026-05-07. Round 4 fix mcp-guard: -3.178 VP cumulativo (-35.5% vs originale 8.952). Round 4:
 > - information-disclosure-fuzzing -92% (50 → 4): HC-FP per `python3 -c "<payload>" SyntaxError` + AppleScript `do JavaScript`
@@ -3488,20 +3480,61 @@ Test di conformità protocollo MCP (handshake, tool discovery, tool invocation).
 | tool_invocation/unauthorized_or_auth_missing | 253 | 115 | 0 | 115 | 0 | 0 | 115 | n/a (0 VP) |
 | **Totale** | **21.907** | **11.101** | **9.447** | **1.643** | **0** | **9.453** | **1.648** | — |
 
-#### Appendice B: tool_fuzzing/protocol-fuzzing (1 categoria su 17 sub-protocol)
+##### Le tre fasi di test
 
-Pipeline: 103.394 raw (6.082 server × 17 protocol type) → Stage 1 (filter intermedio per success_rate 5-95%) → 3.511 filtrati → Stage 2A → Stage 2B → **775 VP / 2.459 FP**.
+mcp-check sottopone ciascun server a tre fasi sequenziali, ognuna delle quali può produrre violazioni nelle 7 tipologie discusse sotto.
 
-Probe runtime: invia richieste JSON-RPC malformate per ogni protocol type MCP.
+- **`handshake`** — apertura della connessione e negoziazione iniziale. Comprende l'invio del messaggio `initialize` (versione protocollo, capabilities supportate dal client), la ricezione della risposta del server (versione, capabilities, info), e una serie di `ping` di verifica. È la fase più precoce: se fallisce, il client non può nemmeno enumerare i tool. Errori qui indicano server che non parlano correttamente JSON-RPC 2.0 o non rispettano la specifica MCP all'avvio.
 
-Round 2 fix HC: `InitializeRequest` con success rate ≥80% = metodo MCP valido (NON malformed → declassato a HC-FP). `ReadResourceRequest` con URI standard `file:///tmp/test.txt`/`resource://server/data`/`https://example.com/resource` = compliance test puro, NO security signal → HC-FP.
+- **`tool_discovery`** — enumerazione dei tool esposti dal server tramite la chiamata `tools/list`. Per ogni tool restituito, mcp-check verifica la presenza e la validità dell'`inputSchema` (deve essere JSON Schema Draft-07), la qualità della `description`, l'unicità del `name` e altri vincoli statici. Errori qui indicano tool malformati che client conformi non possono invocare.
+
+- **`tool_invocation`** — esecuzione effettiva dei tool con `tools/call` usando input validi e invalidi. mcp-check invia argomenti corretti, argomenti mancanti, argomenti del tipo sbagliato e nomi di tool inventati per osservare il comportamento di error handling, la conformità dell'`outputSchema` dichiarato e l'eventuale crash del processo. È la fase più ricca di finding (volume e severity).
+
+##### Spiegazione delle categorie
+
+Le 16 righe della tabella sono il prodotto cartesiano di 3 fasi di test (`handshake`, `tool_discovery`, `tool_invocation`) per 7 tipologie di violazione. Di seguito il significato di ciascuna tipologia, con sintesi di cosa è stato trovato in pratica.
+
+- **`schema_violation` (5.138 VP totali)** — il server invia messaggi che non rispettano lo schema JSON Schema Draft-07 della specifica MCP, oppure dichiara un `inputSchema`/`outputSchema` non valido. Conseguenze: client conformi non riescono a invocare i tool, l'LLM riceve dati strutturati in modo inatteso. Ha il volume più alto: 4.860 server con violazioni durante `tools/call` e 229 con tool che dichiarano schemi non parsabili.
+
+- **`other_errors` (3.497 VP totali)** — categoria catch-all per errori runtime non mappati nelle altre. Dopo filtro, il finding dominante è **«Server did not return error for non-existent tool»** (3.294 server): il server accetta in silenzio qualunque nome di tool inventato, esponendo un vettore di **tool name injection**. Include anche 26 server di tool discovery con tool dai nomi duplicati (causano ambiguità nell'LLM) e 110 errori atipici durante l'handshake.
+
+- **`method_not_found` (381 VP totali)** — il server non implementa metodi richiesti dalla specifica MCP (`tools/list`, `ping`, `resources/list`, `prompts/list`) e risponde con error code `-32601`. Indica implementazioni parziali o non conformi del protocollo. 289 casi all'handshake (server che non supportano `ping`), 50 a invocation, 42 a discovery.
+
+- **`invalid_arguments` (76 VP totali)** — il server gestisce in modo errato argomenti mancanti o malformati: usa l'error code sbagliato (es. `-32603 Internal Error` invece di `-32602 Invalid Params`), produce structured content che non rispetta l'`outputSchema` dichiarato, o fallisce silenziosamente. 74 finding sono violazioni di validazione e formato risposta in fase di invocation.
+
+- **`unauthorized_or_auth_missing` (0 VP)** — il server richiede autenticazione e risponde con errore quando le credenziali non sono fornite. **Non è una vulnerabilità** ma anzi un comportamento corretto; tutti 120 finding sono FP. Categoria informativa per identificare quali server proteggono le proprie API.
+
+- **`warnings` (357 VP totali)** — issue di qualità rilevate dal test `tool-description-quality`. Tipicamente **tool senza descrizione** in `tool_discovery` (357 server): senza descrizione l'LLM non sa cosa fa il tool e può usarlo in modo errato. I 878 warning di `tool_invocation` sono `NonDeterministicOutput` (timestamp, UUID, weather) — comportamento atteso, tutti FP.
+
+- **`panic_or_crash` (4 VP)** — i finding più critici della suite: il processo del server termina con un crash non recuperato durante l'invocazione di un tool. Tutti e 4 i casi sono server **Go** con `nil interface conversion` o `nil pointer dereference` (`mcp-iot-go`, `opgen-mcp-server`, `talos-mcp`, `sonar-mcp-server`). Implicazione: **DoS con un singolo input malformato** — un client può abbattere il processo MCP da remoto.
+
+In sintesi: la stragrande maggioranza dei VP di mcp-check (~9.000 su 9.453) descrive **non-conformità al protocollo** che minano l'affidabilità dell'integrazione client-server, mentre i casi a impatto di sicurezza diretta sono pochi ma di alto valore (3.294 tool name injection in `other_errors` e 4 panic crash).
+
+#### Appendice B: tool_fuzzing (4 categorie)
+
+Suite di runtime fuzzing dei server MCP. Raggruppa tutte le 4 categorie del framework: `protocol-fuzzing` (signal protocol-level), `server-crash-fuzzing` (1 VP critico Python), e le 2 scartate per 0 VP utili (`server-error-fuzzing`, `transport-failure-fuzzing`).
+
+Pipeline aggregata: 117.724 raw → Stage 1 → 17.841 filtrati → Stage 2A → Stage 2B → **776 VP / 16.788 FP**.
 
 | Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
 |-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
 | protocol-fuzzing (17 sub-protocol aggregati) | 103.394 | 3.511 | 775 | 2.032 | 704 | 775 | 2.459 | protocol-violation (#11) |
-| **Totale** | **103.394** | **3.511** | **775** | **2.032** | **704** | **775** | **2.459** | — |
+| server-crash-fuzzing | 1 | 1 | 1 | 0 | 0 | 1 | 0 | server-crash (#18) |
+| server-error-fuzzing | 10.944 | 10.944 | 0 | 10.944 | 0 | 0 | 10.944 | n/a (resilience, non security) |
+| transport-failure-fuzzing | 3.385 | 3.385 | 0 | 3.385 | 0 | 0 | 3.385 | n/a (server non si inizializza) |
+| **Totale tool_fuzzing** | **117.724** | **17.841** | **776** | **16.361** | **704** | **776** | **16.788** | — |
 
-Sub-protocol type signal:
+##### Note per categoria
+
+- **`protocol-fuzzing`** — invia richieste JSON-RPC malformate per ogni protocol type MCP (6.082 server × 17 protocol type = 103.394 probe). VP segnalano server che processano richieste non conformi alla specifica. Round 2 fix HC: `InitializeRequest` con success rate ≥80% = metodo MCP valido → HC-FP; `ReadResourceRequest` con URI standard (`file:///tmp/test.txt`, `resource://server/data`, `https://example.com/resource`) = compliance test puro → HC-FP.
+
+- **`server-crash-fuzzing`** — 1 VP unico: server Python che termina con `AttributeError: 'int' object has no attribute` durante invocazione tool fuzzata. DoS confermato da singolo input runtime.
+
+- **`server-error-fuzzing`** (scartato) — 10.944 finding: tool che ritornano errore durante fuzzing. Resilience signal (tool fragile a input malformati), non security signal — un errore catturato non è una vulnerabilità.
+
+- **`transport-failure-fuzzing`** (scartato) — 3.385 finding: server che falliscono inizializzazione durante fuzzing. Infrastructure issue, non sicurezza del server.
+
+##### protocol-fuzzing — sub-protocol type signal
 
 | Sub-protocol type | Note |
 |-------------------|------|
@@ -3511,23 +3544,13 @@ Sub-protocol type signal:
 | InitializeRequest | rate ≥80% = comportamento corretto (FP) |
 | altri 13 protocol type | informational (ListPrompts, Ping, ecc.) |
 
-#### Categorie tool_fuzzing scartate (0 VP)
-
-Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice perché 0 VP utili (resilience issue, non security):
-
-| Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
-|-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
-| server-error-fuzzing | 10.944 | 10.944 | 0 | 10.944 | 0 | 0 | 10.944 | n/a (resilience, non security) |
-| transport-failure-fuzzing | 3.385 | 3.385 | 0 | 3.385 | 0 | 0 | 3.385 | n/a (server non si inizializza) |
-| **Totale scartate** | **14.329** | **14.329** | **0** | **14.329** | **0** | **0** | **14.329** | — |
-
 #### Totali aggregati Appendici
 
 | Framework | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin |
 |-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|
 | mcp-check | 21.907 | 11.101 | 9.447 | 1.643 | 0 | 9.453 | 1.648 |
-| tool_fuzzing/protocol-fuzzing | 103.394 | 3.511 | 775 | 2.032 | 704 | 775 | 2.459 |
-| **Totale Appendici** | **125.301** | **14.612** | **10.222** | **3.675** | **704** | **10.228** | **4.107** |
+| tool_fuzzing (4 cat) | 117.724 | 17.841 | 776 | 16.361 | 704 | 776 | 16.788 |
+| **Totale Appendici** | **139.631** | **28.942** | **10.223** | **18.004** | **704** | **10.229** | **18.436** |
 
 ---
 
@@ -3535,9 +3558,9 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 
 | Categoria | VP | FP | Note |
 |-----------|---:|---:|------|
-| **CORE security MCP (6 framework)** | **8.352** | **33.538** | minacce 1-19 in §5 (post fix round 4 2026-05-07) |
-| **APPENDICI protocol/compliance (2 contributi)** | **10.228** | **4.107** | mcp-check (9.453) + tool_fuzzing/protocol (775) |
-| Categorie scartate (0 VP) | — | 14.329 | tool_fuzzing/server-error + transport-failure |
+| **CORE security MCP (5 framework)** | **8.351** | **33.538** | minacce 1-19 in §5 (post fix round 4 2026-05-07) |
+| **APPENDICI protocol/compliance (2 framework)** | **10.229** | **18.436** | mcp-check (9.453) + tool_fuzzing 4 cat (776) |
+| Di cui categorie tool_fuzzing scartate (0 VP) | — | 14.329 | server-error-fuzzing + transport-failure-fuzzing |
 | **TOTALE PIPELINE** | **18.580** | **51.974** | grand total VP=18.580 (post round 4) |
 | Stim VP reali blind | **~17.819** | — | FP rate medio **4.4%** su sample n=50/cat |
 
@@ -3545,7 +3568,7 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 
 ## 5. Riepilogo Numerico (Core)
 
-### 5.1 Tutte le minacce ordinate per VP (sei framework principali: mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan, tool_fuzzing/server-crash)
+### 5.1 Tutte le minacce ordinate per VP (cinque framework principali: mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan)
 
 | # | Minaccia | VP | Server | Framework |
 |---|----------|---:|-------------:|-----------|
@@ -3565,12 +3588,13 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 | 14 | sensitive-info-disclosure | **9** | 7 | mcp-guard |
 | 15 | access-control | **7** | 2 | mcp-watch |
 | 16 | data-exfiltration | **2** | 2 | mcp-watch |
-| 17 | server-crash | **1** | 1 | tool_fuzzing |
-| 18 | tool-shadowing | **1** | 1 | mcp-shield |
-| 19 | steganographic-attack | **0** | 0 | (post round HC: pattern troppo loose) |
-| **TOTALE CORE** | | **8.352** | **4.800** | post round 4 fix 2026-05-07 |
+| 17 | tool-shadowing | **1** | 1 | mcp-shield |
+| 18 | steganographic-attack | **0** | 0 | (post round HC: pattern troppo loose) |
+| **TOTALE CORE** | | **8.351** | **4.800** | post round 4 fix 2026-05-07 |
 
-> Nota: `protocol-violation` (137 VP) include solo `mcp-watch/protocol-violation` (79 — transport security) + `mcp-guard/protocol-missing-id` + `mcp-guard/protocol-invalid-jsonrpc-version` (58). I 775 VP di `tool_fuzzing/protocol-fuzzing` sono in **Appendice B**.
+> Nota: `protocol-violation` (137 VP Core) include solo `mcp-watch/protocol-violation` (79 — transport security) + `mcp-guard/protocol-missing-id` + `mcp-guard/protocol-invalid-jsonrpc-version` (58). I 775 VP di `tool_fuzzing/protocol-fuzzing` e i 9.000+ di mcp-check sono in **Appendice B** / **Appendice A**.
+>
+> La minaccia `server-crash` (1 VP `tool_fuzzing/server-crash-fuzzing` + 4 VP `mcp-check/tool_invocation/panic_or_crash` = 5 VP totali) è interamente in Appendice (Core esclude tool_fuzzing e mcp-check).
 
 ### 5.2 Stato di Sicurezza dei 60.205 server
 
@@ -3582,7 +3606,7 @@ Le seguenti categorie di `tool_fuzzing` non sono né in Core né in Appendice pe
 - **CRITICAL** (RCE / credential): credential-leak (~720 server), dangerous-capabilities (~1.670), command-injection (~85), code-injection (~70), sql-injection (~655), insecure-deserialization (19) → ~3.220 server
 - **HIGH** (file/data access): path-traversal (~225), ssrf (118), sensitive-info-disclosure (~7), data-exfiltration (2), sensitive-file-access (9) → ~360 server
 - **MEDIUM** (LLM/protocol): prompt-injection (37), tool-shadowing (1), untrusted-content (599), input-validation (174) → ~810 server
-- **LOW** (resilienza): server-crash (1), access-control (2)
+- **LOW** (resilienza): access-control (2). Note: `server-crash` (1 + 4 VP) è in Appendice (tool_fuzzing + mcp-check).
 
 ---
 

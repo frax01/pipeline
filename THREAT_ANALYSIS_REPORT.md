@@ -3961,9 +3961,9 @@ Pipeline aggregata: 117.724 raw → Stage 1 → 17.841 filtrati → Stage 2A →
 
 - **`server-crash-fuzzing`** — 1 VP unico: server Python che termina con `AttributeError: 'int' object has no attribute` durante invocazione tool fuzzata. DoS confermato da singolo input runtime.
 
-- **`server-error-fuzzing`** (scartato) — 10.944 finding: tool che ritornano errore durante fuzzing. Resilience signal (tool fragile a input malformati), non security signal — un errore catturato non è una vulnerabilità.
+- **`server-error-fuzzing`** (scartato) — 10.944 finding etichettati `exception_message: "Server returned error"`. Tutti FP per design del framework: `mcp-server-fuzzer` registra come "exception" qualunque risposta JSON-RPC di errore strutturato (es. `-32602 Invalid params`, missing required argument, parametri sconosciuti). Esempio reale dal dataset: `mcp-open-library/get_book_by_title` riceve gli input `{"title": ""}`, `{"title": "", "fuzz_us": "fuzz"}`, `{}` e li respinge tutti con error response — è esattamente il comportamento corretto di un server MCP che valida i propri input. Il counter `exceptions=3 / runs=20` non identifica una vulnerabilità: misura la robustezza della validazione lato server, non un signal di sicurezza. Per distinguere un errore JSON-RPC pulito (FP) da una vera eccezione Python (VP) servirebbe un `exception_message` con stack trace specifico — pattern catturato invece da `server-crash-fuzzing` quando presente.
 
-- **`transport-failure-fuzzing`** (scartato) — 3.385 finding: server che falliscono inizializzazione durante fuzzing. Infrastructure issue, non sicurezza del server.
+- **`transport-failure-fuzzing`** (scartato) — 3.385 finding raggruppati da `Failed to send`, `Failed to receive`, `No response`. Tutti FP: indicano problemi di trasporto (server non avviato, processo morto, timeout di connessione, stdio chiuso) e non comportamento del server sotto fuzzing. Costituiscono rumore infrastrutturale dell'ambiente di test, non vulnerabilità.
 
 ##### protocol-fuzzing — sub-protocol type signal
 
@@ -4065,7 +4065,20 @@ Pattern matching senza analisi del data flow. Un pattern sintattico VP non sempr
 
 ### 6.2 Schema povero del fuzzing (`tool_fuzzing`)
 
-Il campo `success_details` nei dati raw è quasi sempre vuoto. Vediamo solo il counter "successful=N" senza il payload effettivamente accettato. Il segnale per protocol-fuzzing è quindi debole: i VP sono "potenziali" e non confermati.
+Il framework `mcp-server-fuzzer` (Agent-Hellboy/mcp-server-fuzzer) presenta tre limiti strutturali nello schema dei dati raw che condizionano l'interpretazione dei VP del fuzzing.
+
+**Limite 1 — `success_details` vuoto.** Per ogni server testato, il framework salva i dettagli (payload inviato + risposta ricevuta) solo per i tentativi che falliscono (`error_details`), lasciando `success_details: []` per i tentativi che riescono. Sappiamo solo che il counter `successful=N` indica accettazione, ma né quale payload sia stato accettato né quale risposta abbia restituito il server. Il segnale dei 775 VP di `protocol-fuzzing` è quindi indiretto: il VP è "potenziale", non confermato dall'evidenza diretta del payload accettato.
+
+**Limite 2 — `exception_message` ambiguo.** Il framework etichetta come "Server returned error" sia (a) le risposte JSON-RPC di errore strutturato del server (`-32602 Invalid params`, ecc.), sia (b) le vere eccezioni Python lato server (`AttributeError`, `KeyError`). Le due cose sono indistinguibili nei dati raw aggregati: nel primo caso il server sta facendo correttamente la sua validazione (FP), nel secondo c'è un bug runtime non catturato (VP). Solo quando l'eccezione Python ha un messaggio specifico (es. `'int' object has no attribute 'get'`) il framework conserva un `exception_message` distinto, ed è per questo motivo che `server-crash-fuzzing` ha esattamente 1 VP isolato.
+
+**Limite 3 — semantica invertita rispetto alla security.** Il framework adotta un'ottica di robustness testing: per lui `exception` significa "qualcosa è andato storto" e `success` significa "tutto è andato bene". Per la security le label si invertono: un server che riceve input malformato e ritorna un errore JSON-RPC pulito è un server che si difende correttamente (FP), mentre un server che accetta input malformato senza errore è potenzialmente vulnerabile (VP). Il counter `exceptions=N` del framework non coincide con "vulnerabilità=N", ed è il motivo per cui le 10.944 entry di `server-error-fuzzing` sono tutte FP nonostante intuitivamente "errore" suoni interessante.
+
+**Implicazioni operative.** I VP del fuzzing sono usabili a tre livelli di confidenza:
+- `server-crash-fuzzing` (1 VP): confidenza alta, eccezione Python concreta documentata.
+- `protocol-fuzzing` (775 VP): confidenza media, segnale indiretto sul counter `successful=N`.
+- `server-error-fuzzing` + `transport-failure-fuzzing` (0 VP): nessuna informazione di sicurezza, framework ha registrato comportamento corretto del server o rumore di trasporto.
+
+Per questo motivo l'intero output di `tool_fuzzing` è collocato in Appendice B e non nel Core: i numeri sono difendibili, ma richiedono la chiave interpretativa qui descritta per non essere fraintesi.
 
 ### 6.3 Tool Mutation / Rug Pull non rilevabile
 
@@ -5414,28 +5427,80 @@ I 9.453 VP non sono inclusi nel totale Core della Sezione 5 perché rappresentan
 
 ---
 
-## Appendice B — `tool_fuzzing/protocol-fuzzing` (compliance JSON-RPC)
+## Appendice B — `tool_fuzzing` (4 categorie, 776 VP)
 
-`tool_fuzzing/protocol-fuzzing` invia 6.082 server × 17 tipi di richieste JSON-RPC malformate (Initialize, ReadResource, GetPrompt, ListResources, CreateMessage, ecc.) e misura quanti server processano la richiesta invalida.
+L'intera suite del framework `mcp-server-fuzzer` (Agent-Hellboy/mcp-server-fuzzer) è collocata in Appendice. Il framework esegue runtime fuzzing dei server MCP avviandoli e mandando input fuzzati ai tool e probe JSON-RPC malformati ai 17 protocol type della specifica. Le quattro categorie di output (`protocol-fuzzing`, `server-crash-fuzzing`, `server-error-fuzzing`, `transport-failure-fuzzing`) hanno utilità diverse per la security analysis, e l'interpretazione corretta richiede di tenere conto di alcune scelte di design del framework che sono illustrate nelle sezioni B.4 e B.5.
 
-### B.1 Numeri
+### B.1 Numeri complessivi
 
-**Veri Positivi totali**: 775 (post round 2 fix 2026-05-06)
-**Server unici interessati**: ~1.300
+| Categoria | Raw | Filtered | VP | FP |
+|-----------|----:|---------:|---:|---:|
+| `protocol-fuzzing` (17 sub-protocol aggregati) | 103.394 | 3.511 | 775 | 2.736 |
+| `server-crash-fuzzing` | 1 | 1 | 1 | 0 |
+| `server-error-fuzzing` (scartata) | 10.944 | 10.944 | 0 | 10.944 |
+| `transport-failure-fuzzing` (scartata) | 3.385 | 3.385 | 0 | 3.385 |
+| **Totale** | **117.724** | **17.841** | **776** | **17.065** |
 
-### B.2 Categorie analizzate
+**Server unici con almeno un VP**: ~1.300 (concentrati su `protocol-fuzzing`).
 
-| Categoria | VP | Note |
-|-----------|---:|------|
-| `protocol-fuzzing` (17 protocol type aggregati) | 775 (post round 2) | Server processa con successo richieste JSON-RPC malformate su metodi MCP standard. Round 2 fix: `InitializeRequest` con success ≥80% = metodo valido (FP), `ReadResourceRequest` con URI standard = compliance test (FP). Il counter `successful=N` indica accettazione, payload effettivo non disponibile (`success_details` array vuoto) |
+### B.2 Cosa fa il framework
 
-### B.3 Perché in Appendice (non Core)
+`mcp-server-fuzzer` opera in due modalità complementari:
 
-A differenza di `mcp-watch/protocol-violation` (transport security, session ID in URL, server processa version invalida — security MCP) e `mcp-guard/protocol-*` (probe specifici su missing-id e invalid-version), `tool_fuzzing/protocol-fuzzing` testa la **conformità generale** del server al protocollo JSON-RPC su tutti i 17 metodi MCP
+- **Tool fuzzing**: per ogni tool dichiarato dal server, genera input randomizzati e li passa al tool. Misura quanti producono risposta normale (`successful`) e quanti producono eccezione (`exceptions`). Output finiscono in `server-error-fuzzing` (eccezione) e `server-crash-fuzzing` (Python crash).
+- **Protocol fuzzing**: per ogni dei 17 metodi MCP standard (`InitializeRequest`, `ReadResourceRequest`, `GenericJSONRPCRequest`, `CreateMessageRequest`, ecc.), genera richieste JSON-RPC malformate e le invia al server. Output finisce in `protocol-fuzzing`.
 
-### B.4 Limiti del segnale
+Le `transport-failure-fuzzing` raggruppano i casi in cui il server non risponde affatto (process crash, stdio chiuso, timeout di connessione).
 
-Il campo `success_details` nei dati raw è quasi sempre vuoto. Il VP è "potenziale" e non confermato: vediamo solo il counter "successful=N", non il payload effettivamente accettato dal server. Questo limite, combinato con la natura di compliance test, motiva la collocazione in Appendice piuttosto che nel Core.
+### B.3 Categorie e signal di sicurezza
+
+| Categoria | VP | Tipo signal |
+|-----------|---:|-------------|
+| `protocol-fuzzing` | 775 | Indiretto: server accetta richieste JSON-RPC malformate sui metodi MCP. Compliance test puro, non security in senso stretto. |
+| `server-crash-fuzzing` | 1 | Diretto: server Python termina con `AttributeError: 'int' object has no attribute` su input fuzzato. DoS confermato. |
+| `server-error-fuzzing` | 0 | Nessuno: per il framework "Server returned error" coincide con error response JSON-RPC, che è il comportamento corretto del server. Vedi B.4. |
+| `transport-failure-fuzzing` | 0 | Nessuno: rumore infrastrutturale (timeout, stdio chiuso). |
+
+### B.4 Limite 1 — `exception_message` ambiguo
+
+Il framework etichetta come `exception_message: "Server returned error"` due situazioni che hanno significato opposto dal punto di vista security:
+
+1. **Server ha risposto con error response JSON-RPC strutturato** (es. `-32602 Invalid params`). L'MCP client SDK trasforma le error response in eccezioni Python lato client, e il framework registra il caso come "exception". Significa però che il server ha **validato correttamente** l'input fuzzato — comportamento desiderato, FP.
+2. **Server ha sollevato eccezione Python non catturata** (es. `AttributeError`, `KeyError`, `TypeError`). Il server ha un bug runtime — VP reale.
+
+Solo nel secondo caso il framework conserva un messaggio specifico nel campo `exception_message`; nel primo caso usa la stringa generica "Server returned error". Per questo motivo le 10.944 entry di `server-error-fuzzing` sono tutte FP (caso 1) mentre `server-crash-fuzzing` ha 1 VP isolato (caso 2). L'esempio reale dal dataset, `mcp-open-library/get_book_by_title`, mostra come tutti gli input rifiutati (`{"title": ""}`, `{"title": "", "fuzz_us": "fuzz"}`, `{}`) corrispondano a comportamento corretto della validazione lato server, non a vulnerabilità.
+
+### B.5 Limite 2 — `success_details` vuoto
+
+Per i tentativi che il framework conta come `successful=N`, non vengono salvati né il payload inviato né la risposta del server: il campo `success_details` è un array vuoto. I 775 VP di `protocol-fuzzing` derivano dal counter `successful=N` su 10 run, che indica accettazione di richieste su metodi MCP, ma non permette di vedere quale richiesta sia stata accettata né con quale risposta.
+
+Conseguenza pratica: i VP di `protocol-fuzzing` sono "potenziali" e non confermati. Il filtering HC compensa parzialmente escludendo i casi più chiari di FP (es. `InitializeRequest` con success rate ≥80% = metodo valido per definizione, `ReadResourceRequest` con URI standard tipo `file:///tmp/test.txt` o `resource://server/data` = compliance test puro), ma il signal residuo resta indiretto.
+
+### B.6 Limite 3 — semantica invertita rispetto alla security
+
+Il framework adotta un'ottica di robustness testing, non di security analysis. Le sue label si invertono rispetto al significato di sicurezza:
+
+| Label framework | Significato letterale | Interpretazione security |
+|-----------------|----------------------|-------------------------|
+| `successful=N` | Server accetta input e risponde | Se input era malformato → potenziale VP (server non valida) |
+| `exceptions=N` con "Server returned error" | Server rifiuta con error JSON-RPC | Validazione corretta → FP |
+| `exceptions=N` con stack trace Python | Server crasha con eccezione runtime | Bug runtime → VP reale |
+
+Questo spiega perché l'intuizione "gli errori sono i casi interessanti" (vera per il fuzzing classico in cui errore = bug) qui si rovescia: nel framework MCP gli errori JSON-RPC strutturati sono comportamento corretto, e i casi interessanti sono o (a) le richieste malformate accettate senza errore (`protocol-fuzzing`) o (b) le eccezioni Python non catturate (`server-crash-fuzzing`).
+
+### B.7 Perché in Appendice e non in Core
+
+Tre motivi convergenti:
+
+- **`protocol-fuzzing`** testa la conformità generale del server al protocollo JSON-RPC su tutti i 17 metodi MCP. È un compliance test, non una vulnerabilità diretta. La sua natura corrisponde al perimetro di `mcp-check` (anch'esso in Appendice A) più che alle minacce security tradizionali (path traversal, command injection, credential leak) che costituiscono il Core.
+- **`server-crash-fuzzing`** rileva DoS via crash runtime ed è genuinamente security, ma con N=1 la categoria non ha massa critica per il Core. Il caso è invece preservato come Minaccia #18 (`server-crash`) tramite cross-framework consensus con `mcp-check/tool_invocation/panic_or_crash` (4 VP), dove i due signal si rinforzano (1 + 4 = 5 VP totali).
+- **`server-error-fuzzing` + `transport-failure-fuzzing`** non producono signal security utile per i motivi descritti in B.4. Sono incluse nei totali per completezza metodologica (mostrare che 14.329 finding sono stati esaminati e correttamente scartati) e per documentare i limiti del framework.
+
+### B.8 Recommendation per uso futuro
+
+I 775 VP di `protocol-fuzzing` sono usabili come signal di triaging cross-framework: server che compaiono in `protocol-fuzzing` insieme a finding di altri framework (es. `mcp-watch/protocol-violation` o `mcp-guard/protocol-invalid-jsonrpc-version`) hanno alta probabilità di essere effettivamente non-conformi alla specifica MCP. Il VP isolato (server presente solo in `protocol-fuzzing`) ha invece confidenza bassa per via dei tre limiti descritti.
+
+Per ottenere VP confermati al posto di potenziali bisognerebbe (a) patchare il framework per popolare `success_details` con payload e response, e (b) distinguere nei dati raw fra error response JSON-RPC ed eccezione Python tramite un campo `exception_type`. Senza queste modifiche, la natura del segnale resta quella documentata qui.
 
 ---
 

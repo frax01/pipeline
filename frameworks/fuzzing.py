@@ -140,12 +140,19 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
                 exceptions_by_message[msg] += 1
                 tool_exc_details.append({
                     "type": exc.get("type", "unknown"),
+                    "exception_type": exc.get("exception_type"),
+                    "exception_class": exc.get("exception_class"),
+                    "exception_code": exc.get("exception_code"),
                     "message": msg,
-                    "arguments": exc.get("arguments", {})
+                    "arguments": exc.get("arguments", {}),
+                    "server_error_response": exc.get("server_error_response"),
                 })
 
         tool_success_details = [
-            {"arguments": s.get("arguments", {})}
+            {
+                "arguments": s.get("arguments", {}),
+                "result": s.get("result"),
+            }
             for s in tool.get("success_details", [])
         ]
 
@@ -177,13 +184,16 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
         protocol_successful += pt_successful
         protocol_errors += pt_errors
 
+        # Preserve the full per-run error/success structure (now includes
+        # exception_type, exception_class, server_response, server_error_response,
+        # invariant_violations).
         protocol_by_type[pt_type] = {
             "runs": pt_runs,
             "successful": pt_successful,
             "errors": pt_errors,
             "success_rate": pt.get("success_rate", 0.0),
             "error_details": pt.get("error_details", []),
-            "success_details": pt.get("success_details", [])
+            "success_details": pt.get("success_details", []),
         }
 
     # Overall success rate across tools + protocol
@@ -263,7 +273,7 @@ def update_fuzzing_summary(summary: dict, result: dict, server_language: str) ->
             pt_summary["by_type"][pt_type]["successful"] += pt_data.get("successful", 0)
             pt_summary["by_type"][pt_type]["errors"] += pt_data.get("errors", 0)
 
-def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = "all") -> dict:
+def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = "both") -> dict:
 
     result = {
         "mcp-fuzzing": {
@@ -329,8 +339,8 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
         env = os.environ.copy()
         env['PYTHONIOENCODING'] = 'utf-8'
 
-        # More time for mode=all (tools + protocol)
-        process_timeout = 300 if mode == "all" else 180
+        # More time when running both tool + protocol fuzzing in the same pass
+        process_timeout = 300 if mode in ("all", "both") else 180
 
         output = subprocess.run(
             cmd,

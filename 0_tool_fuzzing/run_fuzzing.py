@@ -243,12 +243,19 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
                 by_msg[msg] = []
             by_msg[msg].append({
                 "type": exc.get("type", "unknown"),
-                "arguments": exc.get("arguments", {})
+                "exception_type": exc.get("exception_type"),
+                "exception_class": exc.get("exception_class"),
+                "exception_code": exc.get("exception_code"),
+                "arguments": exc.get("arguments", {}),
+                "server_error_response": exc.get("server_error_response"),
             })
 
-        # Raccogli gli input che hanno avuto successo
+        # Raccogli gli input che hanno avuto successo (con il result del server)
         success_inputs = [
-            {"arguments": s.get("arguments", {})}
+            {
+                "arguments": s.get("arguments", {}),
+                "result": s.get("result"),
+            }
             for s in tool.get("success_details", [])
         ]
 
@@ -273,21 +280,39 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
         if runs == 0:
             continue
 
-        # Estrai error_details per questo server (payload, errore, response)
+        # Estrai error_details per questo server (payload, errore, response,
+        # exception_type/class/code, server_error_response, invariant_violations)
         error_details = proto_data.get("error_details", [])
         error_inputs = [
             {
                 "run": ed.get("run", 0),
-                "fuzz_data": ed.get("fuzz_data", {}),
-                "server_error": ed.get("server_error"),
+                "fuzz_data": ed.get("fuzz_data") or ed.get("fuzz_payload", {}),
+                "server_error": ed.get("server_error") or ed.get("error_message"),
                 "exception": ed.get("exception"),
+                "exception_type": ed.get("exception_type"),
+                "exception_class": ed.get("exception_class"),
+                "exception_code": ed.get("exception_code"),
                 "response_error": ed.get("response_error"),
+                "server_response": ed.get("server_response"),
+                "server_error_response": ed.get("server_error_response"),
+                "invariant_violations": ed.get("invariant_violations", []),
             }
             for ed in error_details
         ]
 
-        # Raccogli i successful details per il protocollo (se presenti)
-        success_details = proto_data.get("success_details", [])
+        # Raccogli i successful details per il protocollo: ogni run con
+        # fuzz_payload + server_response (per consentire l'analisi del payload
+        # malformato accettato dal server e della risposta restituita)
+        success_details_raw = proto_data.get("success_details", [])
+        success_details = [
+            {
+                "run": s.get("run", 0),
+                "fuzz_payload": s.get("fuzz_payload") or s.get("fuzz_data", {}),
+                "server_response": s.get("server_response"),
+                "invariant_violations": s.get("invariant_violations", []),
+            }
+            for s in success_details_raw
+        ]
 
         item = {
             "server_url": server_url,
@@ -508,7 +533,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
                             server_data["repo_path"],
                             server_data["command"],
                             server_data["elem"][0],
-                            mode="all"
+                            mode="both"
                         )
                         _status = framework_result.get("mcp-fuzzing", {}).get("status", "failed")
 

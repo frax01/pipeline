@@ -3847,6 +3847,140 @@ return "VP", "invalid_tool_schema"
 - **Evidenza**: `10 tools have invalid schemas`
 - **Spiegazione**: 10 tool del server dichiarano `inputSchema` con strutture non valide (es. `type: "string"` su un campo `properties`, oneOf rotto). Client MCP rifiutano i tool — server di fatto inutile.
 
+**Come viene generato il finding (codice sorgente `mcp-check`)**
+
+Il framework agisce da client MCP conforme. La suite `tool-discovery` (file `src/suites/tool-discovery.ts`) esegue tre step:
+
+1. **Recupero della lista tool** via JSON-RPC `tools/list`:
+   ```typescript
+   // src/suites/tool-discovery.ts:191-192
+   const toolsStart = Date.now();
+   const tools = await client.listTools();
+   ```
+   Equivale alla richiesta inviata al server:
+   ```json
+   { "jsonrpc": "2.0", "id": 1, "method": "tools/list", "params": {} }
+   ```
+   Il server risponde con `result.tools: [{ name, description, inputSchema }, ...]`.
+
+2. **Validazione di ogni `inputSchema` contro la meta-schema Draft-07** tramite AJV. Il validator è istanziato nel costruttore della suite:
+   ```typescript
+   // src/suites/tool-discovery.ts:140-146
+   this.ajv = new Ajv({ allErrors: true, strict: false, validateFormats: false });
+   this.schemaValidator = this.ajv.compile(JSON_SCHEMA_META);
+   ```
+   dove `JSON_SCHEMA_META` (righe 17-90) è la meta-schema ufficiale JSON Schema Draft-07 (definisce cos'è un JSON Schema valido: `properties`, `type`, `items`, `oneOf`, `anyOf`, `allOf`, ecc.).
+
+3. **Loop di validazione e generazione del finding**:
+   ```typescript
+   // src/suites/tool-discovery.ts:237-268
+   let schemaErrors = 0;
+   const schemaDetails = { validSchemas: [], invalidSchemas: [] };
+
+   for (const tool of tools) {
+     const validation = this.validateToolSchema(tool);
+     if (validation.valid) {
+       schemaDetails.validSchemas.push(tool.name);
+     } else {
+       schemaErrors++;
+       schemaDetails.invalidSchemas.push({ name: tool.name, errors: validation.errors });
+     }
+   }
+
+   cases.push({
+     name: 'tool-schema-validation',
+     status: schemaErrors === 0 ? 'passed' : 'failed',
+     ...(schemaErrors > 0
+       ? { error: { type: 'InvalidToolSchemas',
+                    message: `${schemaErrors} tools have invalid schemas`,
+                    details: schemaDetails } }
+       : {}),
+   });
+   ```
+
+La funzione `validateToolSchema()` (righe 351-403) applica **tre check** per ogni tool:
+
+```typescript
+// src/suites/tool-discovery.ts:351-403
+private validateToolSchema(tool: MCPTool): { valid: boolean; errors: string[] } {
+  const errors: string[] = [];
+
+  // 1. struttura base
+  if (!tool.name || typeof tool.name !== 'string') {
+    errors.push('Tool name is required and must be a string');
+  }
+  if (!tool.inputSchema) {
+    errors.push('Tool inputSchema is required');
+    return { valid: false, errors };
+  }
+  if (typeof tool.inputSchema !== 'object') {
+    errors.push('Tool inputSchema must be an object');
+    return { valid: false, errors };
+  }
+
+  // 2. validazione AJV contro Draft-07 meta-schema
+  const isValidSchema = this.schemaValidator(tool.inputSchema);
+  if (!isValidSchema && this.schemaValidator.errors) {
+    for (const error of this.schemaValidator.errors) {
+      const path = error.instancePath || 'root';
+      errors.push(`Schema validation error at ${path}: ${error.message}`);
+    }
+  }
+
+  // 3. semantic checks aggiuntivi MCP-specific
+  const schema = tool.inputSchema as JSONSchemaProperty;
+  if (!schema.type && !schema.properties && !schema.$ref
+      && !schema.oneOf && !schema.anyOf && !schema.allOf) {
+    errors.push('Tool inputSchema should have type, properties, $ref, or composition keywords');
+  }
+  if (schema.type && typeof schema.type === 'string'
+      && !['object','array','string','number','integer','boolean'].includes(schema.type)) {
+    errors.push(`Invalid schema type: ${schema.type}`);
+  }
+  if (schema.type === 'object' && !schema.properties
+      && !schema.additionalProperties && !schema.$ref) {
+    errors.push('Object type schemas should define properties or additionalProperties');
+  }
+  ...
+}
+```
+
+**Output JSON finale** scritto da mcp-check per `mempool-mcp-server`:
+
+```json
+{
+  "errors": [{
+    "test": "tool-schema-validation",
+    "type": "InvalidToolSchemas",
+    "message": "10 tools have invalid schemas"
+  }]
+}
+```
+
+I dettagli granulari (quale tool fallisce e con quale messaggio AJV) sono in `error.details.invalidSchemas`, ma il filter del post-processing tiene solo `errors[].message` aggregato — da cui il messaggio sintetico `"10 tools have invalid schemas"`.
+
+**Data flow riassuntivo**:
+
+```
+mcp-check               MCP SDK             Server (mempool-mcp-server)
+   │                       │                       │
+   │   listTools()         │                       │
+   ├──────────────────────▶│   tools/list          │
+   │                       ├──────────────────────▶│
+   │                       │   result: {tools:[10]}│
+   │                       │◀──────────────────────┤
+   │      tools[]          │                       │
+   │◀──────────────────────┤                       │
+   │
+   │  for each tool: ajv.validate(t.inputSchema, JSON_SCHEMA_META)
+   │  → 10/10 falliscono (semantic check + AJV)
+   ▼
+JSON output: {test:'tool-schema-validation', type:'InvalidToolSchemas',
+              message:'10 tools have invalid schemas'}
+```
+
+**Perché tutti VP**: il check è puramente meccanico (AJV + Draft-07 + 3 semantic check MCP-specific) — niente euristica. Un `inputSchema` che non passa la meta-schema **non è invocabile** da nessun client MCP conforme: il client che valida prima di chiamare `tools/call` rifiuterà il tool. Quindi è un bug oggettivo del server e la regola Stage 2A `return "VP", "invalid_tool_schema"` non produce mai FP (cache-only, 229/229 VP).
+
 ###### A.7 `tool_discovery/other_errors` — runtime durante `tools/list`
 
 **Threat model**: errori atipici durante l'enumerazione tool. Sotto-tipo dominante: `DuplicateToolNames` (ambiguità per LLM).

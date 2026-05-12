@@ -155,6 +155,70 @@ Le regole Stage 2A nascono da **un'ispezione empirica dei finding residui dopo S
 7. Iterare finché UNCERTAIN < ~10% del filtered (<10% perchè così per lo stage 2B non ci sono troppi dati da analizzare, lo 0% sarebbe impossibile, mentre >10% ci sarebbero troppi dati)
 ```
 
+**Soglia di accettazione dello spot-check**
+
+Con n=10 finding la percentuale ha solo 11 valori possibili (0/10, 1/10, ..., 10/10), quindi "< 10%" non è misurabile direttamente. La soglia operativa è in due step:
+
+```
+Spot-check n=10 sui nuovi HC-VP / HC-FP della regola:
+  0/10 errori  → accetta la regola
+  1/10 errore  → zona grigia: estendi a n=30
+                   ├─ ≤ 2/30  → accetta (era un outlier)
+                   └─ ≥ 3/30  → declassa i finding a UNCERTAIN (vanno in Stage 2B)
+  ≥ 2/10 errori → rifiuta: regola troppo ampia, restringi
+                   (lookahead negativi, whitelist FP noti, co-occorrenza di più segnali)
+```
+
+n=10 funziona da filtro veloce (~5-10 min) per scartare le regole palesemente sbagliate; n=30 è il livello di approfondimento solo per i casi dubbi (riduce l'intervallo di confidenza al 90% da `[2%, 51%]` a circa `[1,5%, 20%]`).
+
+**Esempio iterativo concreto** (`insecure-deserialization-static`, mcp-guard):
+
+Stato iniziale dopo `pipeline_mcp_guard.py --category insecure-deserialization-static --hc-only`:
+
+```
+Filtered: 591 — HC-VP: 31 — HC-FP: 391 — UNCERTAIN: 169 (28%, troppo alto)
+```
+
+*Iterazione 1 — clustering.* Leggendo 40 finding da `uncertain.json` emerge che ~25 hanno la forma `pickle.loads(self.cache_file.read())` o `pickle.loads(open(CACHE_PATH, "rb").read())`. Cluster: deserializzazione di **cache interne del server**, non input utente → candidato HC-FP.
+
+*Iterazione 2 — prima versione della regola:*
+```python
+_INSEC_DESER_INTERNAL_CACHE = re.compile(r"pickle\.loads\([^)]*(self\.|CACHE_)")
+# verdict: HC-FP, reason="internal cache path"
+```
+Ri-esegui `--hc-only`: `UNCERTAIN: 169 → 138 (−31)`, `HC-FP: 391 → 422`.
+
+*Iterazione 3 — spot-check n=10 sui nuovi HC-FP.* Su 10 finding letti a mano:
+
+| # | Evidence | Verdetto manuale | Regola | OK? |
+|---|----------|------------------|--------|-----|
+| 1 | `pickle.loads(self.cache_data)` | FP | FP | ✓ |
+| 2 | `pickle.loads(self.user_input)` | **VP** | FP | ✗ |
+| 3 | `pickle.loads(CACHE_PATH.read_bytes())` | FP | FP | ✓ |
+| 4 | `pickle.loads(self.payload)` | **VP** | FP | ✗ |
+| 5-10 | cache interne | FP | FP | ✓ |
+
+**2 errori / 10** → regola **rifiutata**: il prefisso `self.` da solo cattura anche `self.user_input` e `self.payload` (parametri ricevuti via API).
+
+*Iterazione 4 — restringere con whitelist di nomi attributo "interni":*
+```python
+_INSEC_DESER_INTERNAL_CACHE = re.compile(
+    r"pickle\.loads\([^)]*("
+    r"self\.(cache|embeddings|index|state|model|checkpoint)_?\w*"
+    r"|CACHE_\w+|MODEL_\w+"
+    r")"
+)
+```
+Ri-esegui: `UNCERTAIN: 169 → 145 (−24, meno ma più sicuro)`.
+
+*Iterazione 5 — secondo spot-check n=10.* 1 errore su 10: `pickle.loads(self.model_state)` dove `model_state` proviene da `request.body`. **Zona grigia**: estendi a n=30.
+
+*Iterazione 6 — conferma n=30.* Classifichi altri 20 finding: totale **2/30 = 6,7%**, dentro soglia → regola **accettata**. Il caso #10 era un edge case raro, non un difetto strutturale.
+
+Stato finale dopo questa regola: `UNCERTAIN: 145 (24%)` — ancora alto, si torna al punto 2 (apri `uncertain.json`, identifichi il prossimo cluster, es. `joblib.load("model.pkl")` con path hardcoded) e si itera. Per portare una categoria da 28% a <10% di UNCERTAIN servono tipicamente 3-6 cicli di questo tipo.
+
+---
+
 **Esempio reale** (tool-poisoning mcp-watch): 7 finding UNCERTAIN. Lettura: 6 sono campi Pydantic `overrides: List[...]` o `admins: Optional[List[...]]` — non istruzioni di override ma dichiarazioni di schema. Codifica regola:
 ```python
 _TP_PYDANTIC_OVERRIDE = re.compile(r'^\s*(overrides|admins)\s*:\s*(Optional\[)?List\[')

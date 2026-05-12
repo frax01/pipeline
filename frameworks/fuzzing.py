@@ -3,6 +3,7 @@ import json
 from pathlib import Path
 import subprocess
 import os
+import time
 
 
 def _kill_server_processes(server_command: str):
@@ -152,6 +153,7 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
             {
                 "arguments": s.get("arguments", {}),
                 "result": s.get("result"),
+                "vuln_findings": s.get("vuln_findings", []),
             }
             for s in tool.get("success_details", [])
         ]
@@ -202,7 +204,11 @@ def parse_fuzzing_report_json(report_path: Path) -> dict:
     overall_success_rate = round(combined_successful / combined_runs * 100, 2) if combined_runs > 0 else 0.0
 
     return {
-        "status": "completed" if tools else "no_tools",
+        # status="completed" if EITHER tool fuzzing OR protocol fuzzing
+        # produced data. Some servers expose 0 tools (or fail tools/list)
+        # but still produce useful protocol_types_tested entries — those
+        # must count as completed so total_servers is updated.
+        "status": "completed" if (tools or protocol_types) else "no_tools",
         "total_tools": total_tools,
         "total_fuzzing_runs": total_runs,
         "total_successful": total_successful,
@@ -310,21 +316,37 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
             "--phase", "both",
             "--protocol", "stdio",
             "--endpoint", endpoint,
-            # Fuzzing intensity
+            # Fuzzing intensity — back to original 10/10. The reduced 5/5
+            # setting combined with --no-network removal blew up the per-tool
+            # time (each network-dependent tool waited 60s per request
+            # instead of failing fast), causing SERVER_TIMEOUT to kill every
+            # run before the report was generated (0% fuzzed rate).
             "--runs", "10",
             "--runs-per-type", "10",
             # Timeouts
             "--timeout", "60",
             # Concurrency
             "--process-max-concurrency", "2",
-            # Safety system
+            # Safety system — keep both fs sandbox AND no-network. Removing
+            # --no-network seemed useful for capturing real responses from
+            # network-dependent tools, but in practice it just made every
+            # such request hang for the full 60s --timeout, blowing up the
+            # per-server runtime far beyond SERVER_TIMEOUT (1100s). Better
+            # to fail fast on network attempts and accept that those tools
+            # produce TransportFailure exceptions (clearly tagged via
+            # Patch 2 exception_type) rather than zero fuzzed servers.
             "--enable-safety-system",
             "--fs-root", "/tmp/safe",
             "--no-network",
             "--safety-report",
             # Output
             "--output-format", "json",
-            # Watchdog (kill hung processes)
+            # Watchdog (kill hung processes) — kept at the original 45/10/90s
+            # values used in the first rerun (12.5% fuzzed rate). The tighter
+            # 15/5/30s settings caused servers with heavy startup (npm
+            # postinstall, lazy SDK loading, DB init, MCP SDK warmup) to be
+            # killed before they could answer the first request, dropping
+            # the fuzzed rate to 5%.
             "--watchdog-check-interval", "1.0",
             "--watchdog-process-timeout", "45",
             "--watchdog-extra-buffer", "10",
@@ -332,33 +354,77 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
             # Retry on transient failures
             "--process-retry-count", "3",
             "--process-retry-delay", "2.0",
-            # Logging
+            # Logging — verbose + DEBUG level for full visibility
             "--verbose",
+            "--log-level", "DEBUG",
         ]
 
         env = os.environ.copy()
         env['PYTHONIOENCODING'] = 'utf-8'
+        # Force unbuffered output from the fuzzer subprocess so we can
+        # tail every log line in real time.
+        env['PYTHONUNBUFFERED'] = '1'
 
-        # More time when running both tool + protocol fuzzing in the same pass
+        # Hard cap on the whole mcp-fuzzer invocation. Back to the original
+        # 300s value used in the first rerun (12.5% fuzzed rate). The 1000s
+        # bump only matters when --no-network is removed, but with
+        # --no-network restored the per-server time stays well under 300s.
         process_timeout = 300 if mode in ("all", "both") else 180
 
-        output = subprocess.run(
+        # Run mcp-fuzzer via Popen and stream stdout/stderr to our own
+        # stdout line-by-line. This is the only way to see watchdog /
+        # tool_client / tool_fuzzer DEBUG traces in real time — the old
+        # subprocess.run(capture_output=True) blocked until exit.
+        accumulated_stdout: list[str] = []
+        proc = subprocess.Popen(
             cmd,
             cwd=str(path),
-            capture_output=True,
+            stdout=subprocess.PIPE,
+            stderr=subprocess.STDOUT,  # merge stderr into stdout
             text=True,
-            timeout=process_timeout,
             encoding="utf-8",
             errors="replace",
-            env=env
+            env=env,
+            bufsize=1,                # line-buffered
         )
 
-        # Always print stdout/stderr for visibility
-        if output.stdout:
-            print(f"STDOUT:\n{output.stdout[-3000:]}")
-        if output.stderr:
-            print(f"STDERR:\n{output.stderr[-2000:]}")
-        print(f"Return code: {output.returncode}")
+        deadline = time.time() + process_timeout
+        timed_out = False
+        try:
+            assert proc.stdout is not None
+            while True:
+                if time.time() > deadline:
+                    timed_out = True
+                    proc.kill()
+                    break
+                line = proc.stdout.readline()
+                if not line:
+                    # EOF — process has exited
+                    if proc.poll() is not None:
+                        break
+                    continue
+                # Live echo to our stdout
+                print(f"[fuzzer] {line.rstrip()}", flush=True)
+                accumulated_stdout.append(line)
+            return_code = proc.wait(timeout=10)
+        except Exception as stream_exc:
+            print(f"Streaming error: {stream_exc}", flush=True)
+            try:
+                proc.kill()
+                proc.wait(timeout=5)
+            except Exception:
+                pass
+            return_code = -1
+
+        if timed_out:
+            # Re-raise as TimeoutExpired so the outer except block handles
+            # cleanup the same way the previous code did.
+            full_out = "".join(accumulated_stdout)
+            raise subprocess.TimeoutExpired(
+                cmd, process_timeout, output=full_out
+            )
+
+        print(f"Return code: {return_code}", flush=True)
 
         report_path = find_latest_fuzzing_report(path)
         if report_path is None:
@@ -387,9 +453,12 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
         else:
             print(f"WARNING: parse_fuzzing_report_json returned None for {report_path}")
 
-    except subprocess.TimeoutExpired:
+    except subprocess.TimeoutExpired as e_timeout:
         result["mcp-fuzzing"]["status"] = "timeout"
-        print(f"Fuzzing TIMEOUT ({process_timeout}s) for {endpoint}")
+        print(f"Fuzzing TIMEOUT ({process_timeout}s) for {endpoint}", flush=True)
+        # The Popen streaming loop already echoed every line of stdout
+        # in real time, so there is no extra dump to do here. The
+        # accumulated buffer is preserved in e_timeout.output if needed.
         _kill_server_processes(server_command)
     except Exception as e:
         print(f"Error executing MCP fuzzing: {e}")

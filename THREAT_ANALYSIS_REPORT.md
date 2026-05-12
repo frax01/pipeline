@@ -941,13 +941,13 @@ run_merge("credential-leak", cache=load_cache("credential-leak"))
 | **Totale** | **664.885** | **5.485** | **1.087** | **3.518** | **880** | **182** | **698** | **1.269** | **4.216** |
 #### Esempio VP
 
-- **Server**: [`GLips/Figma-Context-MCP`](https://github.com/GLips/Figma-Context-MCP)
-- **File**: `src/telemetry/client.ts:8`
+- **Server**: [`Chieko-Seren/ARIES`](https://github.com/Chieko-Seren/ARIES)
+- **File**: `web/js/app.js:15`
 - **Evidenza**:
-  ```typescript
-  const POSTHOG_API_KEY = "phc_w69pYvKwGNLsUHU4TGGpgAiscm8nhjudHgAJzAdzXkJV";
+  ```javascript
+  const OPENAI_API_KEY = 'sk-lZSmH5ZCX4boiBkaZNkwXkiBKSQ0C7YhHw20D8y3fjr29pUc';  // 请设置您的 API 密钥
   ```
-- **Spiegazione**: chiave API PostHog hardcoded nel sorgente (formato provider riconosciuto `phc_*` — public project key). Anche se PostHog public keys sono progettate per essere scrivibili senza essere rivelative, in molti progetti lo stesso file viene committato per errore con chiavi server (sk_*) o write-only mascherate. Chi clona il repo ottiene comunque un identificativo del progetto telemetria: puo' inviare eventi falsi per inquinare la dashboard del manutentore o, se la chiave fosse `phx_*`/`sk_*`, leggere/cancellare eventi reali. Le credenziali devono stare in env var o in un secret manager.
+- **Spiegazione**: chiave API OpenAI hardcoded direttamente nel codice JavaScript lato client (formato provider riconosciuto `sk-*` — OpenAI Legacy Key). Chiunque cloni il repo — o semplicemente apra il bundle JS servito al browser — ottiene una credenziale valida con accesso completo all'account OpenAI del manutentore: può consumare quota a piacimento (con costi fatturati al proprietario), accedere alla cronologia delle richieste e potenzialmente esfiltrare dati di altri progetti collegati allo stesso account. Il commento `请设置您的 API 密钥` ("imposta la tua API key") suggerisce che lo sviluppatore intendeva sostituirla, ma la chiave è stata committata in chiaro e resta pubblica nello storico Git anche se rimossa successivamente. Le credenziali devono stare in env var lato server o in un secret manager, mai in codice client-side.
 
 ---
 

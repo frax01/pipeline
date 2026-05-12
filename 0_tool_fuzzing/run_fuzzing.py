@@ -12,7 +12,10 @@ import re
 import pandas as pd
 from pathlib import Path
 
-# Global per-server timeout (seconds) - kills the entire server if exceeded
+# Global per-server timeout (seconds) - kills the entire server if exceeded.
+# Back to the original 300s value used in the first rerun (12.5% fuzzed
+# rate). The 1100s bump only mattered when --no-network was removed; with
+# --no-network restored the per-server time stays well under 300s.
 SERVER_TIMEOUT = 300  # 5 minutes max per server
 
 # Minimum free memory (MB) required to start fuzzing a new server
@@ -250,11 +253,13 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
                 "server_error_response": exc.get("server_error_response"),
             })
 
-        # Raccogli gli input che hanno avuto successo (con il result del server)
+        # Raccogli gli input che hanno avuto successo (con il result del server
+        # e gli eventuali finding del vulnerability detector)
         success_inputs = [
             {
                 "arguments": s.get("arguments", {}),
                 "result": s.get("result"),
+                "vuln_findings": s.get("vuln_findings", []),
             }
             for s in tool.get("success_details", [])
         ]
@@ -302,7 +307,8 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
 
         # Raccogli i successful details per il protocollo: ogni run con
         # fuzz_payload + server_response (per consentire l'analisi del payload
-        # malformato accettato dal server e della risposta restituita)
+        # malformato accettato dal server e della risposta restituita) +
+        # eventuali finding del vulnerability detector
         success_details_raw = proto_data.get("success_details", [])
         success_details = [
             {
@@ -310,6 +316,7 @@ def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
                 "fuzz_payload": s.get("fuzz_payload") or s.get("fuzz_data", {}),
                 "server_response": s.get("server_response"),
                 "invariant_violations": s.get("invariant_violations", []),
+                "vuln_findings": s.get("vuln_findings", []),
             }
             for s in success_details_raw
         ]

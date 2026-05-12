@@ -130,7 +130,90 @@ Le regole Stage 1 nascono da **fonti pubbliche e convenzioni standard** + ispezi
 5. Verificare: residuo < ~5% del raw? Se no, aggiungere altre regex di scarto
 ```
 
-**Esempio reale** (SSRF mcp-guard): raw 44.063 finding. Visione del sample: 90% sono `fetch("https://api.openai.com/...")` con path da utente — non SSRF reale (URL hardcoded). Aggiunta regola `_SSRF_KNOWN_API` con lista SaaS noti (api.*.com/io/net, googleapis.com, openai.com, anthropic.com). Riduzione 44k → 832.
+**Soglia di accettazione dello spot-check (Stage 1)**
+
+In Stage 1 il rischio principale è essere **troppo aggressivi**: ogni VP scartato qui è perso per sempre (Stage 2A/2B non lo vedranno mai). Per questo lo spot-check è **asimmetrico**:
+
+```
+Spot-check n=20 sui finding SCARTATI dalla regola:
+  0/20 VP persi  → accetta la regola
+  1/20 VP perso  → zona grigia: estendi a n=50
+                     ├─ ≤ 1/50  → accetta (era un outlier)
+                     └─ ≥ 2/50  → restringi (la regola perde signal reale)
+  ≥ 2/20 VP persi → rifiuta subito: regola troppo aggressiva
+
+Spot-check n=20 sui finding TENUTI (kept):
+  signal rate ≥ 30% → ok, procedi al prossimo cluster di noise
+  signal rate < 30% → aggiungi altre regole di scarto
+```
+
+Lo spot-check sui kept misura il signal/noise del residuo (per capire quando smettere di filtrare); lo spot-check sugli scartati misura il rischio di aver perso VP reali.
+
+**Esempio iterativo concreto** (`ssrf-static`, mcp-guard):
+
+Stato iniziale: **44.063 finding raw** prodotti dal regex SAST di mcp-guard su pattern `fetch(...)` / `axios.X(...)` / `requests.X(...)`.
+
+*Iterazione 1 — lettura sample.* Leggi 50 finding random. Clusterizzazione visiva:
+
+| Cluster | % sample | Esempio |
+|---------|---------:|---------|
+| URL hardcoded SaaS | 35/50 (70%) | `fetch("https://api.openai.com/v1/...")` |
+| SDK interni con baseURL preconfigurato | 8/50 (16%) | `this.client.fetch("/repos/${id}")` |
+| User input diretto in URL | 5/50 (10%) | `fetch(params.url)` ← **signal** |
+| Test/vendor | 2/50 (4%) | `fetch("http://test.local")` in `_test.go` |
+
+*Iterazione 2 — prima regola (scarta SaaS hardcoded):*
+```python
+_SSRF_KNOWN_API = re.compile(r"https?://(api|www)\.[a-z-]+\.(com|io|net|ai|dev)/")
+def keep_ssrf(f):
+    return not _SSRF_KNOWN_API.search(f["evidence"])
+```
+Risultato: `44.063 → 8.500` (−81%).
+
+*Iterazione 3 — spot-check n=20 sugli scartati.* Verifichi che nessun VP sia stato perso:
+- 18/20 sono URL hardcoded puri (no input utente) → scarto corretto ✓
+- 2/20 hanno dominio hardcoded + path da utente (`fetch(\`https://api.example.com/${args.path}\`)`) — non è SSRF (l'host è fisso), è path traversal della path della URL → scarto corretto per la categoria SSRF ✓
+
+**0/20 VP persi → regola accettata.**
+
+*Iterazione 4 — spot-check n=20 sui tenuti.* Misuri il signal rate:
+- 6/20 con `fetch(params.url)` o `axios.get(args.endpoint)` → signal
+- 14/20 ancora rumore (SDK interni `this.session.fetch`, config-based `fetch(config.baseUrl)`, ecc.)
+
+Signal rate **6/20 = 30%**: sufficiente ma migliorabile. Identifichi il cluster successivo: SDK interni.
+
+*Iterazione 5 — seconda regola (scarta SDK interni):*
+```python
+_SSRF_INTERNAL_SDK = re.compile(
+    r"(this|self)\.(client|session|api|http)[._]\w+\.(fetch|get|post|request)"
+)
+```
+Risultato: `8.500 → 2.100`.
+
+*Iterazione 6 — spot-check n=20 sugli scartati.*
+- 19/20 sono SDK calls legittimi (baseURL preconfigurato) ✓
+- **1/20 è `this.fetch(req.body.url)`**: `this.fetch` è un wrapper della fetch globale e `req.body.url` è controllato dall'attaccante → **VP perso!**
+
+**1/20 → zona grigia, estendi a n=50.** Altri 30 finding scartati: 2 sono casi simili (`this.fetch` non-SDK). Totale **3/50 = 6%** → la regola perde signal reale, va **ristretta**.
+
+*Iterazione 7 — restringere con whitelist di SDK noti:*
+```python
+# Solo SDK con baseURL noto e configurato, non this.fetch generico
+_SSRF_INTERNAL_SDK = re.compile(
+    r"this\.(client|sdk|api|stripe|github|notion|slack|openai|anthropic)\."
+)
+```
+Risultato: `8.500 → 3.000`.
+
+*Iterazione 8 — spot-check n=20 sugli scartati.* 20/20 SDK con baseURL preconfigurato → ✓. **Regola accettata.**
+
+*Iterazioni 9-11.* Si ripete il ciclo per altri cluster di noise: URL da `process.env.*`, baseURL da config object, webhook URL ricevuti da provider trusted (Stripe, GitHub). Ogni round taglia altri 500-1000 finding.
+
+Stato finale dopo 4 cluster di regole: `44.063 → 832` (−98,1%), signal rate sui kept ~85%.
+
+---
+
+**Esempio reale sintetico** (SSRF mcp-guard): raw 44.063 finding → Stage 1 → 832 finding. Regole principali: `_SSRF_KNOWN_API` (SaaS hardcoded), `_SSRF_INTERNAL_SDK` (whitelist SDK noti), `_SSRF_CONFIG_URL` (URL da config object), `_TEST_FILE` (test/vendor). Riduzione cumulativa −98,1%.
 
 #### Generazione regole Stage 2A (pipeline_*.py)
 

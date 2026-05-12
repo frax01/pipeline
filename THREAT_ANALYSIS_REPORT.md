@@ -5304,6 +5304,44 @@ Numeri estratti da `analysisAllData/<tool>/<tool>_stats.json` (campo `<tool>.tot
 
 **Universo analizzato**: 60.205 server MCP raccolti da GitHub (vedi §1 — file `0.0. All servers without duplicates, .git, _, hash and ERRORE (60205).xlsx`).
 
+#### 11.1.1 Finding totali (originali) per framework
+
+Numero di finding **grezzi** prodotti da ciascun framework prima di qualsiasi filtraggio (Stage 1 / 2A / 2B). Misura il volume di output da triagiare e il rapporto segnale/rumore di partenza.
+
+| Framework | Finding originali | Tipo finding | Note |
+|-----------|------------------:|--------------|------|
+| **mcp-watch** | **2.281.983** | line-level (regex su sorgente) | Volume massimo — 9 categorie, dominato da `credential-leak` (646k), `access-control` (428k), `protocol-violation` (381k), `input-validation` (764k) |
+| **tool_fuzzing** | **117.724** | runtime probe (4 categorie) | Server-error (10.9k), transport-failure (3.4k), protocol-fuzzing (3.5k), server-crash (1), + categorie scartate |
+| **mcp-guard** | **96.500** | mixed (static + fuzzing + protocol) | 19 categorie post-refactor (9 static, 6 fuzzing, 4 protocol). Dominato da `ssrf-static` (44k), `hardcoded-credential-static` (18k) |
+| **mcp-check** | **21.907** | conformance test | Categorie security-relevant (dopo aver scartato `not_connected` ~73k e `timeout` ~4k che sono noise infrastrutturale) |
+| **mcp-security-scan** | **~9.404** | runtime probe + heuristic | 10 categorie, raw per-categoria non esposto dal framework |
+| **mcp-shield** | **5.047** | LLM tool description | Pre-filtrato dal framework (output ~3-5k già selezionati). 4 categorie: hidden-instructions (310), shadowing-detected (22), potential-exfiltration (1.621), sensitive-file-access (3.094) |
+| **mcp-scan** | **679** | LLM-based (Snyk) | 2 categorie classificate: E001 Prompt Injection (80), W015 Untrusted Content (599) |
+| **Totale** | **~2.533.244** | — | Numero dominato da mcp-watch (90%) |
+
+> mcp-watch genera ~2,28 milioni di finding ma con altissimo rumore: dopo Stage 1 + 2A + 2B restano solo 832 VP (0,036% del raw). mcp-scan invece produce 679 finding già pre-ragionati dall'LLM interno con tasso VP ~94%.
+
+#### 11.1.2 Vulnerabilità vere (VP) finali per framework
+
+Numero di **VP confermati** dopo l'intera pipeline (Stage 1 → Stage 2A HC → Stage 2B classificatori → spot-check round 1-4). Misura il signal effettivo per framework.
+
+| Framework | VP finali | % del totale VP | Densità VP (VP / raw) | Note |
+|-----------|----------:|----------------:|----------------------:|------|
+| **mcp-check** | **9.453** | **50,9%** | 43,15% | Conformance test — la maggior parte sono `tool_invocation/schema_violation` (4.860) e `tool_invocation/other_errors` (3.361) |
+| **mcp-guard** | **5.774** | **31,1%** | 5,98% | SAST regex — top categorie: `sql-injection-static` (2.375), `dangerous-tool-handler-static` (989), `ssrf-static` (717), `hardcoded-credential-static` (650) |
+| **mcp-security-scan** | **1.094** | **5,9%** | 11,63% | Dominato da `dangerous-capabilities` (1.001) |
+| **mcp-watch** | **832** | **4,5%** | 0,036% | Volume raw enorme ma signal basso — top: `credential-leak` (619), `protocol-violation` (79), `input-validation` (125) |
+| **tool_fuzzing** | **776** | **4,2%** | 0,66% | Quasi tutti `protocol-fuzzing` (775) + 1 `server-crash-fuzzing` (Python AttributeError) |
+| **mcp-scan** | **635** | **3,4%** | 93,52% | Densità VP massima — finding pre-ragionati da LLM Snyk |
+| **mcp-shield** | **16** | **0,09%** | 0,32% | Pochi VP ma alta confidenza semantica — top: `sensitive-file-access` (11) |
+| **Totale** | **18.580** | **100%** | 0,73% | FP rate medio stimato 4,4% (blind n=50/cat) → ~17.819 VP "reali" |
+
+> **Letture chiave**:
+> - **mcp-check** domina i conteggi (51% dei VP) ma è in Appendice perché misura conformance protocollo, non security in senso stretto.
+> - **mcp-scan** ha la densità VP più alta (93%) grazie al pre-ragionamento LLM interno — è il framework più "preciso" ma con copertura ridotta (17%).
+> - **mcp-watch** ha la densità VP più bassa (0,036%): produce 2,28M finding per estrarne solo 832 → motiva l'investimento in pipeline Stage 1 + 2A aggressiva.
+> - **mcp-shield** ha pochi VP assoluti (16) ma ognuno è semanticamente forte (hidden instructions `<IMPORTANT>`, tool shadowing) — qualità > quantità.
+
 ### 11.2 Causes di copertura ridotta
 
 Le copertura più basse (mcp-scan/shield/security-scan/tool_fuzzing) derivano da requisiti operativi diversi rispetto all'analisi statica pura:

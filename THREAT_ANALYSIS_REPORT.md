@@ -5342,6 +5342,67 @@ Numero di **VP confermati** dopo l'intera pipeline (Stage 1 → Stage 2A HC → 
 > - **mcp-watch** ha la densità VP più bassa (0,036%): produce 2,28M finding per estrarne solo 832 → motiva l'investimento in pipeline Stage 1 + 2A aggressiva.
 > - **mcp-shield** ha pochi VP assoluti (16) ma ognuno è semanticamente forte (hidden instructions `<IMPORTANT>`, tool shadowing) — qualità > quantità.
 
+#### 11.1.3 Visualizzazione finding totali per framework
+
+Scala lineare su **2.533.244** finding originali totali (60 caratteri = 100%):
+
+```
+Totale:           2.533.244 finding (100%)
+                  ████████████████████████████████████████████████████████████ 100%
+
+mcp-watch:        2.281.983 (90.08%)  ██████████████████████████████████████████████████████░░░░░░ 90.08%
+tool_fuzzing:       117.724 ( 4.65%)  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  4.65%
+mcp-guard:           96.500 ( 3.81%)  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  3.81%
+mcp-check:           21.907 ( 0.86%)  █░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0.86%
+mcp-security-scan:    9.404 ( 0.37%)  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0.37%
+mcp-shield:           5.047 ( 0.20%)  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0.20%
+mcp-scan:               679 ( 0.03%)  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0.03%
+```
+
+La scala lineare è dominata da mcp-watch (90%). Per apprezzare le altre proporzioni, scala **logaritmica** (log₁₀ dei finding originali, normalizzata a 60 caratteri):
+
+```
+mcp-watch:        2.281.983  ████████████████████████████████████████████████████████████ 10^6.36
+tool_fuzzing:       117.724  ███████████████████████████████████████████████░░░░░░░░░░░░░ 10^5.07
+mcp-guard:           96.500  ███████████████████████████████████████████████░░░░░░░░░░░░░ 10^4.98
+mcp-check:           21.907  █████████████████████████████████████████░░░░░░░░░░░░░░░░░░░ 10^4.34
+mcp-security-scan:    9.404  █████████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░ 10^3.97
+mcp-shield:           5.047  ███████████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░ 10^3.70
+mcp-scan:               679  ██████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 10^2.83
+```
+
+Tutti i framework lavorano su volumi tra ~10² e ~10⁶ finding — 4 ordini di grandezza di differenza.
+
+#### 11.1.4 Visualizzazione VP finali per framework
+
+Scala lineare su **18.580** VP totali (60 caratteri = 100%):
+
+```
+Totale:           18.580 VP (100%)
+                  ████████████████████████████████████████████████████████████ 100%
+
+mcp-check:         9.453 (50.88%)  ██████████████████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 50.88%
+mcp-guard:         5.774 (31.08%)  ███████████████████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 31.08%
+mcp-security-scan: 1.094 ( 5.89%)  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  5.89%
+mcp-watch:           832 ( 4.48%)  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  4.48%
+tool_fuzzing:        776 ( 4.18%)  ███░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  4.18%
+mcp-scan:            635 ( 3.42%)  ██░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  3.42%
+mcp-shield:           16 ( 0.09%)  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  0.09%
+```
+
+**Densità VP** (VP finali / finding originali, in basis points = 1/10000 — più alto = pipeline più precisa):
+
+```
+mcp-scan:          93,52%  ████████████████████████████████████████████████████████████ 9352 bps
+mcp-security-scan: 11,63%  ███████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ 1163 bps
+mcp-guard:          5,98%  ████░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  598 bps
+tool_fuzzing:       0,66%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   66 bps
+mcp-shield:         0,32%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░   32 bps
+mcp-watch:          0,04%  ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░    4 bps
+```
+
+> Inversione tra volume e precisione: **mcp-watch** produce il 90% dei finding ma solo il 4,5% dei VP (densità 0,04% — la più bassa). **mcp-scan** produce solo lo 0,03% dei finding ma con il 93% di precisione (densità massima). **mcp-check** è il leader assoluto per VP (51% del totale) grazie alla copertura su 32k+ server con conformance test.
+
 ### 11.2 Causes di copertura ridotta
 
 Le copertura più basse (mcp-scan/shield/security-scan/tool_fuzzing) derivano da requisiti operativi diversi rispetto all'analisi statica pura:

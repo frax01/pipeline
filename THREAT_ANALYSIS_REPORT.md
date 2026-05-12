@@ -617,6 +617,196 @@ run_merge("sql-injection-static", cache=load_cache("sql-injection-static"))
   ```
 - **Spiegazione**: `table_name` viene interpolato direttamente nella query tramite f-string. Se proviene da input MCP non validato, un attaccante puo' fornire un nome di tabella con clausole SQL aggiuntive (es. `users; DROP TABLE products;--`) per eseguire SQL arbitrario. Identificatori di tabella non sono parametrizzabili con `?`/`$1`: serve whitelist esplicita sui nomi consentiti.
 
+#### Verifica manuale dei candidati VP (data-flow analysis)
+
+L'alert dello SAST e' una condizione necessaria ma non sufficiente per dichiarare una vulnerabilita' sfruttabile. La classificazione finale richiede un'analisi del flusso di dati (Data Flow Analysis) sul codice sorgente reale del server, per stabilire se l'identificatore interpolato sia effettivamente *tainted* e se la routine di validazione a monte sia robusta. Di seguito tre casi rappresentativi: due Falsi Positivi e un Vero Positivo confermato.
+
+##### Caso 1 — Falso Positivo: vulnerabilita' latente (`context-portal`)
+
+- **Server**: [`GreatScottyMac/context-portal`](https://github.com/GreatScottyMac/context-portal)
+- **File**: `src/context_portal_mcp/db/database.py:535`
+- **Evidenza**:
+  ```python
+  def _get_latest_context_version(cursor: sqlite3.Cursor, table_name: str) -> int:
+      """Retrieves the latest version number from a history table."""
+      try:
+          cursor.execute(f"SELECT MAX(version) FROM {table_name}")
+  ```
+
+L'identificatore `table_name` viene direttamente interpolato all'interno della direttiva `SELECT`. Il pattern viola le best practice di sicurezza, poiche' espone teoricamente il sistema ad attacchi SQLi. L'impiego di placeholder (`?`, `$1`) non e' applicabile agli identificatori strutturali (nomi di tabelle/colonne), costringendo lo sviluppatore all'uso di stringhe dinamiche.
+
+Tuttavia, un'analisi del flusso di controllo rivela che `table_name` non e' attualmente controllabile da input esterno. Le uniche chiamate avvengono con parametri *hardcoded*:
+
+```python
+# In update_product_context:
+latest_version = _get_latest_context_version(cursor, "product_context_history")
+
+# In update_active_context:
+latest_version = _get_latest_context_version(cursor, "active_context_history")
+```
+
+**Valutazione**: non si tratta di una vulnerabilita' attivamente sfruttabile, ma di un **difetto di progettazione latente** (*latent vulnerability* / *code smell*). Introduce debito tecnico significativo: qualora in refactoring futuri l'input divenisse dinamico e non adeguatamente sanitizzato, la latenza si trasformerebbe immediatamente in una vulnerabilita' critica.
+
+**Mitigazione raccomandata** (*Defense in Depth*): vincolare i valori accettabili per `table_name` tramite una whitelist definita internamente alla funzione, gestendo le violazioni con `ValueError`, oppure sostituire l'interpolazione dinamica con una logica condizionale (if/else) sui nomi noti.
+
+##### Caso 2 — Falso Positivo: superficie d'attacco mitigata da validazione (`greptimedb-mcp-server`)
+
+- **Server**: [`GreptimeTeam/greptimedb-mcp-server`](https://github.com/GreptimeTeam/greptimedb-mcp-server)
+- **File**: `src/greptimedb_mcp_server/server.py:305`
+- **Evidenza**:
+  ```python
+  @mcp.tool()
+  async def describe_table(
+      table: Annotated[str, "Table name to describe (supports schema.table format)"],
+  ) -> str:
+      ...
+      table = validate_table_name(table)
+      ...
+      cursor.execute(f"DESCRIBE {table}")
+  ```
+
+Qui la variabile `table` proviene direttamente dall'input dell'utente, costituendo un vettore d'attacco esplicito (*tainted input*). L'interpolazione `f"DESCRIBE {table}"` crea una superficie esposta alla manipolazione (es. payload: `table_name; DROP TABLE sensitive_data;--`). La classificazione VP/FP e' interamente subordinata alla routine di sanitizzazione `validate_table_name`.
+
+Esaminando l'implementazione in `utils.py:76`, la difesa risiede in una *Strict Allowlist* basata su regex precompilata:
+
+```python
+TABLE_NAME_PATTERN = re.compile(r"^[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)?$")
+```
+
+L'espressione regolare neutralizza l'attacco SQLi:
+
+- **Ancoraggio assoluto** (`^...$`): l'intera stringa deve combaciare con il pattern. Rende impossibile l'accodamento di payload (es. `valid_table; DROP TABLE users;`).
+- **Vincolo iniziale** (`[a-zA-Z_]`): l'identificatore deve iniziare con lettera o underscore, rispettando le specifiche standard SQL.
+- **Restrizione alfanumerica** (`[a-zA-Z0-9_]*`): vieta spazi bianchi (no `SELECT`/`DROP`), apici (`'`, `"`), terminatori (`;`), commenti SQL (`--`, `/* */`).
+- **Namespace controllato** (`(\.[a-zA-Z_]...)?`): consente la sintassi `schema.tabella` applicando ricorsivamente le stesse regole.
+
+**Valutazione**: qualsiasi tentativo di iniezione genera un fallimento nel `.match(table)`, innescando un `ValueError` che interrompe l'esecuzione prima che la variabile raggiunga la f-string. Il caso e' un **Falso Positivo**, efficacemente mitigato.
+
+##### Caso 3 — Vero Positivo confermato: assenza di sanitizzazione (`mssql_mcp_server`)
+
+- **Server**: [`JexinSam/mssql_mcp_server`](https://github.com/JexinSam/mssql_mcp_server)
+- **File**: `src/mssql_mcp_server/server.py:82`
+- **Evidenza**:
+  ```python
+  @app.read_resource()
+  async def read_resource(uri: AnyUrl) -> str:
+      uri_str = str(uri)
+      if not uri_str.startswith("mssql://"):
+          raise ValueError(f"Invalid URI scheme: {uri_str}")
+      parts = uri_str[8:].split('/')
+      table = parts[0]                                    # ← input attaccante
+      ...
+      cursor.execute(f"SELECT TOP 100 * FROM {table}")    # ← sink
+  ```
+
+**Data flow completo** (intra-procedurale, nessuna ipotesi):
+
+1. **Tainted source attivo**: `table` e' il primo segmento del URI passato dal client MCP. Nessuna f-string hardcoded, nessun chiamante interno con literal — e' solo `parts[0]`.
+2. **Zero sanitization**: l'unica validazione e' il check `startswith("mssql://")` sullo *scheme*. Nessuna regex, nessuna whitelist, nessun escape. A differenza di `greptimedb-mcp-server` (Caso 2), qui **non esiste alcuna funzione `validate_table_name`** importata o definita nel modulo.
+3. **Sink esposto a stacked queries**: `pyodbc` su MSSQL supporta multi-statement execution di default. Un payload come `mssql://users; DROP TABLE Customers--/data` produce `table = "users; DROP TABLE Customers--"`, e la query eseguita diventa:
+   ```sql
+   SELECT TOP 100 * FROM users; DROP TABLE Customers--
+   ```
+   Lo split `uri_str[8:].split('/')` non rimuove `;`, spazi, commenti SQL (`--`, `/* */`), ne' caratteri di quoting.
+4. **Funzione esposta come MCP resource handler** (`@app.read_resource()`): e' raggiungibile dal client MCP senza autenticazione aggiuntiva — chiunque controlli il prompt LLM o l'URI puo' triggerarla.
+
+**Exploit PoC**: il client MCP chiama `read_resource("mssql://x; EXEC xp_cmdshell 'whoami'--/data")`. Il server esegue `SELECT TOP 100 * FROM x; EXEC xp_cmdshell 'whoami'--` con i privilegi dell'utente DB configurato in `MSSQL_USER`. Se l'utente ha permessi (caso comune in setup di sviluppo/POC, come questo MCP), si ottiene **RCE sul DB host**.
+
+**Verdetto**: True Positive confermato. Esfiltrazione/distruzione dati e potenziale RCE via `xp_cmdshell`. La tabella seguente sintetizza la differenza con i due FP precedenti:
+
+| Aspetto | Caso 1 — context-portal | Caso 2 — greptimedb | **Caso 3 — mssql_mcp_server** |
+|---|---|---|---|
+| Input dinamico | No (hardcoded) | Si' | **Si'** |
+| Validazione | N/A | Regex strict allowlist | **Nessuna** |
+| Sfruttabile oggi | No (latente) | No (mitigato) | **Si'** |
+| Classificazione finale | FP (debito tecnico) | FP (mitigato) | **VP** |
+
+##### Caso 4 — Vero Positivo confermato: validation bypass su path secondario (`KonaAI-SSMS-MCP`)
+
+- **Server**: [`UdayChaitanyaG/KonaAI-SSMS-MCP`](https://github.com/UdayChaitanyaG/KonaAI-SSMS-MCP)
+- **File**: `mcp-server/src/server/database/base.py:295` (sink) + `mcp-server/src/server/tools/sp_tool.py:43` (entry point)
+- **Evidenza** (sink):
+  ```python
+  # base.py — chiamata in DatabaseBase.execute_procedure(...)
+  if output_parameters:
+      for param_name in output_parameters:
+          output_cursor = connection.cursor()
+          output_cursor.execute(f"SELECT @{param_name}")
+  ```
+- **Evidenza** (entry point MCP tool):
+  ```python
+  # sp_tool.py — Tool schema esposto al client MCP
+  Tool(
+      name="execute_procedure",
+      inputSchema={
+          "type": "object",
+          "properties": {
+              "procedure_name": {...},
+              "schema":         {...},
+              "output_parameters": {
+                  "type": "array",
+                  "items": {"type": "string"},
+                  "description": "List of output parameter names to retrieve"
+              },
+              ...
+          },
+          "required": ["database", "procedure_name"]
+      }
+  )
+  ```
+
+**Data flow completo**:
+
+1. Il client MCP invoca il tool `execute_procedure` con `output_parameters = ["<payload>"]`.
+2. In `SPTool.execute_procedure(args)`: `output_parameters = args.get('output_parameters', [])` — il valore arriva al server senza alcuna validazione (nessuna regex, nessuna lunghezza massima, nessuna allowlist).
+3. Il flusso chiama `db.execute_procedure(full_procedure_name, parameters, output_parameters)`.
+4. In `DatabaseBase.execute_procedure`, ogni elemento di `output_parameters` viene iterato e interpolato direttamente nel sink `f"SELECT @{param_name}"`.
+5. `pyodbc` su MSSQL supporta stacked queries di default → il payload separato da `;` viene eseguito come statement aggiuntivo.
+
+**Perche' costituisce un *validation bypass*, non un semplice missing-check**
+
+Il server adotta una *defense-in-depth* sostanziale ma incompleta:
+
+- **Path validato 1**: il tool `execute_query` impone in `_validate_query()` (linee 90–135 di `query_tool.py`) sia una *allowlist* del primo keyword (`SELECT`, `EXEC`, ...) sia una *blacklist* di pattern dangerous (`--`, `/*...*/`, `union.*select`, `exec\s*\(`, `sp_executesql`, `xp_cmdshell`, `openrowset`, ...). Eventuali payload di SQLi tradizionali sono bloccati.
+- **Path validato 2**: il tool `execute_procedure` chiama `_validate_procedure_name(procedure_name)` (linee 119–148 di `sp_tool.py`): blacklist di 23 keyword + regex *strict allowlist* `^[a-zA-Z_][a-zA-Z0-9_]*$`. Per `procedure_name`, la difesa e' equivalente a quella di `greptimedb-mcp-server` (Caso 2).
+- **Path NON validato**: lo stesso `execute_procedure` accetta altri due input — `schema` e `output_parameters` — che **non passano per alcuna funzione di validazione**. `schema` viene solo `.strip()` per whitespace; `output_parameters` viene iterato così come ricevuto.
+
+L'autore ha quindi protetto i path che riteneva critici, ma ha lasciato due ingressi alternativi (`schema` e `output_parameters`) sullo stesso tool che convergono nello stesso sink runtime. Una *partial validation* su un solo argomento equivale, in presenza di multipli parametri stringa, ad assenza di validazione.
+
+**Exploit PoC**
+
+```json
+// Chiamata del client MCP
+{
+  "tool": "execute_procedure",
+  "arguments": {
+    "database": "master",
+    "procedure_name": "sp_help",
+    "output_parameters": ["x; EXEC xp_cmdshell 'whoami' --"]
+  }
+}
+```
+
+Il server costruisce il sink:
+
+```sql
+SELECT @x; EXEC xp_cmdshell 'whoami' --
+```
+
+- Il blacklist di `_validate_query()` (che blocca `xp_cmdshell` e `--`) **non viene applicato** a questo path.
+- pyodbc inoltra entrambi gli statement al motore MSSQL.
+- Se l'account DB ha `xp_cmdshell` abilitato (default in molte installazioni di sviluppo) → **RCE sul DB host** con i privilegi del service account SQL Server.
+
+**Verdetto**: True Positive confermato. La distinzione rispetto al Caso 3 e' qualitativa: qui il server **aveva** implementato controlli di sicurezza, ma la copertura era incompleta. Si tratta del pattern noto *validation gap* / *parser confusion*, in cui un controllo che appare robusto (regex strict allowlist + blacklist keywords) viene aggirato sfruttando un input adiacente che il developer non ha incluso nel perimetro validato.
+
+| Aspetto | Caso 3 — mssql_mcp_server | **Caso 4 — KonaAI-SSMS-MCP** |
+|---|---|---|
+| Sink | `f"SELECT TOP 100 * FROM {table}"` | `f"SELECT @{param_name}"` |
+| Sorgente attaccante | URI di `read_resource` | Argomento `output_parameters` di tool MCP |
+| Defense-in-depth presente | Nessuna | Si' (su `procedure_name` e `execute_query`) |
+| Motivo del fallimento | Assenza totale di validazione | **Validazione parziale**: input adiacente non validato |
+| Classificazione | VP (missing check) | **VP (validation bypass)** |
+
 ---
 
 ### 4.2 Protocol Violation (transport + protocol security)

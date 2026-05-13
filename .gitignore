@@ -7,3 +7,9 @@ backupAnalysis/
 analysisAllData/
 new_mcp_watch/credential_leak_refiltered.json
 new_mcp_watch/credential_leak_refilter_stats.json
+
+top10_cache/
+stage2c_cache/
+stage2c_output/
+audit_context.json
+__pycache__/

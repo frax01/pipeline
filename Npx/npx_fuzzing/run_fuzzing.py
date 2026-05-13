@@ -6,6 +6,8 @@ import time
 import signal
 import argparse
 import gc
+import re
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -158,6 +160,154 @@ def save_local_log(data):
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
+def _sanitize_filename(name: str) -> str:
+    name = (name or "").strip()
+    name = re.sub(r'[<>:"/\\|?*]', '_', name)
+    name = re.sub(r'\s+', '_', name)
+    return name[:120]
+
+def _update_exception_file(base_dir: Path, exception_msg: str, item: dict):
+    exc_dir = base_dir / "exceptions"
+    exc_dir.mkdir(parents=True, exist_ok=True)
+    file_name = _sanitize_filename(exception_msg) + ".json"
+    file_path = exc_dir / file_name
+    data = {"exception_message": exception_msg, "total": 0, "servers": []}
+    if file_path.exists():
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            pass
+    data["servers"].append(item)
+    data["total"] = len(data["servers"])
+    tmp_path = file_path.with_suffix(".tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+    tmp_path.replace(file_path)
+
+def _update_protocol_file(base_dir: Path, protocol_type: str, item: dict):
+    proto_dir = base_dir / "protocol"
+    proto_dir.mkdir(parents=True, exist_ok=True)
+    file_name = _sanitize_filename(protocol_type) + ".json"
+    file_path = proto_dir / file_name
+    data = {"protocol_type": protocol_type, "total_servers": 0, "total_runs": 0,
+            "total_successful": 0, "total_errors": 0, "servers": []}
+    if file_path.exists():
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            pass
+    data["servers"].append(item)
+    data["total_servers"] = len(data["servers"])
+    data["total_runs"] += item.get("runs", 0)
+    data["total_successful"] += item.get("successful", 0)
+    data["total_errors"] += item.get("errors", 0)
+    tmp_path = file_path.with_suffix(".tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+    tmp_path.replace(file_path)
+
+def update_output_files(server_url: str, server_name: str, fuzzing_data: dict):
+    """Save results into exceptions/ and protocol/ subfolders."""
+    if not isinstance(fuzzing_data, dict):
+        return
+    # 1) EXCEPTIONS per tool
+    for tool in (fuzzing_data.get("tools_detail") or []):
+        if not isinstance(tool, dict):
+            continue
+        tool_name = tool.get("name", "unknown")
+        exc_details = tool.get("exception_details") or []
+        if not exc_details:
+            continue
+        by_msg = {}
+        for exc in exc_details:
+            msg = exc.get("message", "unknown")
+            by_msg.setdefault(msg, []).append({
+                "type": exc.get("type", "unknown"),
+                "exception_type":  exc.get("exception_type"),
+                "exception_class": exc.get("exception_class"),
+                "exception_code":  exc.get("exception_code"),
+                "arguments": exc.get("arguments", {}),
+                "server_error_response": exc.get("server_error_response"),
+            })
+        success_inputs = [
+            {
+                "arguments":     s.get("arguments", {}),
+                "result":        s.get("result"),
+                "vuln_findings": s.get("vuln_findings", []),
+            }
+            for s in (tool.get("success_details") or [])
+        ]
+        for exc_msg, inputs in by_msg.items():
+            item = {
+                "server_url":           server_url,
+                "server_name":          server_name,
+                "tool_name":            tool_name,
+                "runs":                 tool.get("runs", 0),
+                "exceptions":           tool.get("exceptions", 0),
+                "success_rate":         tool.get("success_rate", 0.0),
+                "inputs_causing_error": inputs,
+                "inputs_successful":    success_inputs,
+            }
+            _update_exception_file(CURRENT_DIR, exc_msg, item)
+
+    # 2) PROTOCOL per type
+    by_type = (fuzzing_data.get("protocol_types") or {}).get("by_type") or {}
+    for proto_type, proto_data in by_type.items():
+        if not isinstance(proto_data, dict):
+            continue
+        runs = proto_data.get("runs", 0)
+        if runs == 0:
+            continue
+        error_inputs = [
+            {
+                "run":               ed.get("run", 0),
+                "fuzz_data":         ed.get("fuzz_data") or ed.get("fuzz_payload", {}),
+                "server_error":      ed.get("server_error") or ed.get("error_message"),
+                "exception":         ed.get("exception"),
+                "exception_type":    ed.get("exception_type"),
+                "exception_class":   ed.get("exception_class"),
+                "exception_code":    ed.get("exception_code"),
+                "response_error":    ed.get("response_error"),
+                "server_response":   ed.get("server_response"),
+                "server_error_response": ed.get("server_error_response"),
+                "invariant_violations":  ed.get("invariant_violations", []),
+            }
+            for ed in (proto_data.get("error_details") or [])
+        ]
+        success_details = [
+            {
+                "run":                  s.get("run", 0),
+                "fuzz_payload":         s.get("fuzz_payload") or s.get("fuzz_data", {}),
+                "server_response":      s.get("server_response"),
+                "invariant_violations": s.get("invariant_violations", []),
+                "vuln_findings":        s.get("vuln_findings", []),
+            }
+            for s in (proto_data.get("success_details") or [])
+        ]
+        item = {
+            "server_url":      server_url,
+            "server_name":     server_name,
+            "runs":            runs,
+            "successful":      proto_data.get("successful", 0),
+            "errors":          proto_data.get("errors", 0),
+            "success_rate":    proto_data.get("success_rate", 0.0),
+            "error_details":   error_inputs,
+            "success_details": success_details,
+        }
+        _update_protocol_file(CURRENT_DIR, proto_type, item)
+
+def reset_all_output_files():
+    """Remove exceptions/ and protocol/ subfolders."""
+    for folder_name in ("exceptions", "protocol"):
+        folder = CURRENT_DIR / folder_name
+        if folder.exists() and folder.is_dir():
+            try:
+                shutil.rmtree(folder)
+            except Exception:
+                pass
+
 def read_npx_servers(excel_path: str):
     import pandas as pd
     df = pd.read_excel(excel_path)
@@ -192,6 +342,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
         stats = copy.deepcopy(INIT_STATS)
         save_local_stats(stats)
         save_local_log({})
+        reset_all_output_files()
     else:
         print(f"Starting from index {start_idx} (keeping existing data)")
 
@@ -234,6 +385,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
 
         _status = "failed"
         failure_reason = ""
+        framework_result = None
 
         if use_alarm:
             signal.alarm(SERVER_TIMEOUT)
@@ -246,12 +398,18 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
                 Path.cwd(),
                 server_data["command"],
                 server_data["elem"],
-                mode="all"
+                mode="both"
             )
             _status = framework_result.get("mcp-fuzzing", {}).get("status", "failed")
 
             if _status == "completed":
                 update_fuzzing_summary(stats, framework_result, language)
+                # Per-exception / protocol output files
+                try:
+                    fuzzing_data = framework_result.get("mcp-fuzzing", {})
+                    update_output_files(package_name, package_name, fuzzing_data)
+                except Exception as e:
+                    print(f"Error updating output files: {e}")
             elif _status == "failed":
                 failure_reason = "execution_failed"
             else:

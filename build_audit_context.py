@@ -35,7 +35,7 @@ def get_context(owner, repo, path, line, ctx=7):
     hi = min(len(lines), line + ctx)
     return lines[lo-1:hi], lo, len(lines)
 
-src = json.load(open(ROOT / "top10_to_verify.json", encoding="utf-8"))
+src = json.load(open(ROOT / "top20_to_verify.json", encoding="utf-8"))
 
 out = {"categories": []}
 for cat in src["categories"]:

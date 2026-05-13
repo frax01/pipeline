@@ -60,7 +60,7 @@ def fetch_raw(owner, repo, path):
     return None
 
 def main():
-    src = json.load(open(ROOT / "top10_to_verify.json", encoding="utf-8"))
+    src = json.load(open(ROOT / "top20_to_verify.json", encoding="utf-8"))
     fetched, missing = 0, 0
     for cat in src["categories"]:
         cat_id = cat["id"]

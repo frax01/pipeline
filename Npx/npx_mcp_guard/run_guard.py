@@ -6,8 +6,11 @@ import time
 import signal
 import argparse
 import gc
+import shutil
 import subprocess
 from pathlib import Path
+
+ANALYSIS_TYPES = ("static", "dynamic", "fuzzing", "protocol")
 
 SERVER_TIMEOUT = 600
 MIN_FREE_MEMORY_MB = 200
@@ -161,6 +164,63 @@ def save_local_log(data):
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
+def save_vulnerability_entry(server_url: str, server_name: str, language: str, mcp_guard_res: dict):
+    """Save vulnerability detail to <analysis_type>/<category>/<vuln_title>.json."""
+    categories_block = mcp_guard_res.get("category", {})
+    if not categories_block:
+        return
+
+    for full_title, instances in categories_block.items():
+        for _idx, vuln_info in instances.items():
+            analysis_type = vuln_info.get("type", "unknown")
+            if ":-" in full_title:
+                category, specific_title = full_title.split(":-", 1)
+            else:
+                category = "other"
+                specific_title = full_title
+            category = category.strip().lower().replace(" ", "-")
+            specific_title = specific_title.strip().lower().replace(" ", "-")
+
+            target_dir = CURRENT_DIR / analysis_type / category
+            target_dir.mkdir(parents=True, exist_ok=True)
+            target_file = target_dir / f"{specific_title}.json"
+
+            entry = {
+                "server_url":  server_url,
+                "server_name": server_name,
+                "language":    language,
+                "severity":    vuln_info.get("severity"),
+                "file":        vuln_info.get("file"),
+                "description": vuln_info.get("description"),
+                "payload":     vuln_info.get("payload"),
+                "response":    vuln_info.get("response"),
+                "remediation": vuln_info.get("remediation"),
+            }
+
+            data = {"total": 0, "vulnerabilities": []}
+            if target_file.exists():
+                try:
+                    with open(target_file, "r", encoding="utf-8") as f:
+                        data = json.load(f)
+                except Exception:
+                    pass
+            data["vulnerabilities"].append(entry)
+            data["total"] = len(data["vulnerabilities"])
+            tmp = target_file.with_suffix(".tmp")
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=4, ensure_ascii=False)
+            tmp.replace(target_file)
+
+def reset_all_output_files():
+    """Remove all analysis_type folders (static/, dynamic/, fuzzing/, protocol/)."""
+    for atype in ANALYSIS_TYPES:
+        folder = CURRENT_DIR / atype
+        if folder.exists() and folder.is_dir():
+            try:
+                shutil.rmtree(folder)
+            except Exception:
+                pass
+
 def read_npx_servers(excel_path: str):
     import pandas as pd
     df = pd.read_excel(excel_path)
@@ -192,6 +252,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
         stats = copy.deepcopy(INIT_STATS)
         save_local_stats(stats)
         save_local_log({})
+        reset_all_output_files()
     elif start_idx == -1:
         start_idx = last_index
         print(f"Resuming from index: {start_idx}")
@@ -282,6 +343,12 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
                 update_framework(stats, framework_result["mcp-guard"], "mcp-guard", language)
             except Exception as e:
                 print(f"Error updating framework stats: {e}")
+
+            # Per-analysis-type/category output files
+            try:
+                save_vulnerability_entry(package_name, package_name, language, framework_result["mcp-guard"])
+            except Exception as e:
+                print(f"Error updating output files: {e}")
 
         # Track failure
         if failure_reason:

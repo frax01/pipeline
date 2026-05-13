@@ -210,6 +210,75 @@ def save_vulns(data):
         json.dump(data, f, indent=4, ensure_ascii=False)
     tmp_file.replace(VULNS_FILE)
 
+def _update_category_file(base_dir: Path, code: str, item: dict):
+    """Append a vulnerability entry to <base_dir>/<code>.json."""
+    base_dir.mkdir(parents=True, exist_ok=True)
+    file_path = base_dir / f"{code}.json"
+    data = {"total": 0, "vulnerabilities": []}
+    if file_path.exists():
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            pass
+    data["vulnerabilities"].append(item)
+    data["total"] = len(data["vulnerabilities"])
+    tmp_path = file_path.with_suffix(".tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+    tmp_path.replace(file_path)
+
+def update_output_files(server_url: str, mcp_scan_data: dict):
+    """Write per-issue-code files under tool-level/ and server-level/."""
+    # Server-level issues
+    for code, info in mcp_scan_data.get("server_issues", {}).items():
+        item = {
+            "server_url": server_url,
+            "severity":   info.get("severity", "unknown"),
+            "message":    info.get("message", ""),
+            "extra_data": info.get("extra_data", {}),
+        }
+        _update_category_file(CURRENT_DIR / "server-level", code, item)
+
+    # Server-level toxic flows
+    for code, tf_name in mcp_scan_data.get("toxic_flows", {}).items():
+        item = {
+            "server_url": server_url,
+            "severity":   "critical",
+            "message":    f"Toxic Flow: {tf_name}",
+            "extra_data": {},
+        }
+        _update_category_file(CURRENT_DIR / "server-level", code, item)
+
+    # Tool-level issues
+    for tool_name, tool_data in mcp_scan_data.get("tools", {}).items():
+        if tool_data.get("status") != "vulnerable":
+            continue
+        cats = tool_data.get("category", {})
+        extras = tool_data.get("extra_data", {})
+        labels = tool_data.get("labels", {})
+        for code, category_name in cats.items():
+            item = {
+                "server_url": server_url,
+                "tool_name":  tool_name,
+                "category":   category_name,
+                "labels":     labels,
+                "extra_data": extras.get(code, {}),
+            }
+            _update_category_file(CURRENT_DIR / "tool-level", code, item)
+
+def reset_all_output_files():
+    """Remove all per-code JSON files under server-level/ and tool-level/."""
+    for folder in ("server-level", "tool-level"):
+        d = CURRENT_DIR / folder
+        if d.exists() and d.is_dir():
+            for f in d.iterdir():
+                if f.is_file() and f.suffix == ".json":
+                    try:
+                        f.unlink()
+                    except Exception:
+                        pass
+
 def read_npx_servers(excel_path: str):
     """Read NPX server list from Excel. Returns list of package names."""
     import pandas as pd
@@ -247,6 +316,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
         save_local_stats(stats)
         save_local_log({})
         save_vulns({})
+        reset_all_output_files()
     else:
         print(f"Starting from index {start_idx} (keeping existing data)")
 
@@ -344,6 +414,12 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
                     "toxic_flows": mcp_scan_data.get("toxic_flows", {})
                 }
                 save_vulns(vulns_data)
+
+                # Per-code output files (tool-level/ and server-level/)
+                try:
+                    update_output_files(package_name, mcp_scan_data)
+                except Exception as e:
+                    print(f"Error updating output files: {e}")
 
         # Track failure
         if failure_reason:

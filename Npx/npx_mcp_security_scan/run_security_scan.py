@@ -6,6 +6,7 @@ import time
 import signal
 import argparse
 import gc
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -159,6 +160,54 @@ def save_local_log(data):
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
+def _update_category_file(base_dir: Path, category: str, severity: str, item: dict):
+    """Append a finding to <base_dir>/<category>/<category>_<severity>.json."""
+    base_dir.mkdir(parents=True, exist_ok=True)
+    cat_dir = base_dir / category
+    cat_dir.mkdir(parents=True, exist_ok=True)
+    file_name = f"{category.replace('-', '_')}_{severity.lower()}.json"
+    file_path = cat_dir / file_name
+    data = {"total": 0, "findings": []}
+    if file_path.exists():
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            pass
+    data["findings"].append(item)
+    data["total"] = len(data["findings"])
+    tmp_path = file_path.with_suffix(".tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+    tmp_path.replace(file_path)
+
+def update_output_files(server_url: str, server_name: str, mcp_security_data: dict):
+    """Write failed_findings into <CURRENT_DIR>/<category>/<category>_<severity>.json."""
+    for finding in mcp_security_data.get("failed_findings", []):
+        category_name = finding.get("category", "unknown")
+        severity = finding.get("severity", "info")
+        item = {
+            "server_url":  server_url,
+            "server_name": server_name,
+            "id":          finding.get("id"),
+            "title":       finding.get("title"),
+            "category":    category_name,
+            "severity":    severity,
+            "details":     finding.get("details"),
+            "remediation": finding.get("remediation", []),
+            "references":  finding.get("references", []),
+        }
+        _update_category_file(CURRENT_DIR, category_name, severity, item)
+
+def reset_all_output_files():
+    """Remove all category subfolders under CURRENT_DIR."""
+    for folder in CURRENT_DIR.iterdir():
+        if folder.is_dir() and not folder.name.startswith(".") and not folder.name.startswith("_"):
+            try:
+                shutil.rmtree(folder)
+            except Exception:
+                pass
+
 def read_npx_servers(excel_path: str):
     import pandas as pd
     df = pd.read_excel(excel_path)
@@ -190,6 +239,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
         stats = copy.deepcopy(INIT_STATS)
         save_local_stats(stats)
         save_local_log({})
+        reset_all_output_files()
     elif start_idx == -1:
         start_idx = last_index
         print(f"Resuming from index: {start_idx}")
@@ -275,6 +325,15 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
                 update_framework(stats, framework_result["mcp-security-scan"], "mcp-security-scan", language)
             except Exception as e:
                 print(f"Error updating framework stats: {e}")
+
+            # Per-category/severity output files
+            try:
+                mcp_security_data = framework_result.get("mcp-security-scan", {})
+                total_vulns = mcp_security_data.get("total-vulnerabilities", 0)
+                if total_vulns > 0:
+                    update_output_files(package_name, package_name, mcp_security_data)
+            except Exception as e:
+                print(f"Error updating output files: {e}")
 
         # Track failure
         if failure_reason:

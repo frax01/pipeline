@@ -23,7 +23,7 @@ def cache_key(owner, repo, path):
     safe = path.replace("/", "__").replace("\\", "__")
     return CACHE / f"{owner}__{repo}__{safe}"
 
-src = json.load(open(r"C:/Users/francesco/Desktop/pipeline/top10_to_verify.json", encoding="utf-8"))
+src = json.load(open(r"C:/Users/francesco/Desktop/pipeline/top20_to_verify.json", encoding="utf-8"))
 
 recovered = 0
 for cat in src["categories"]:

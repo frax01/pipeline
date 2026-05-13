@@ -10,18 +10,18 @@ BASE = Path(r"C:/Users/francesco/Desktop/pipeline/analysisAllData")
 
 # (cat_id, cat_name, vp_json_path, schema_type, max_n)
 CATEGORIES = [
-    (1,  "sql-injection",            BASE / "0_tool_mcp_guard/sql-injection-static/filtered/llm_analysis/vp.json",            "guard_static", 10),
-    (2,  "dangerous-capabilities",   BASE / "0_tool_mcp_security_scan/dangerous-capabilities/filtered/llm_analysis/vp.json",   "secscan_tool", 10),
-    (3,  "credential-leak",          BASE / "0_tool_mcp_watch/credential-leak/filtered/llm_analysis/vp.json",                  "watch",        10),
-    (4,  "ssrf",                     BASE / "0_tool_mcp_guard/ssrf-static/filtered/llm_analysis/vp.json",                      "guard_static", 10),
-    (5,  "untrusted-content",        BASE / "0_tool_mcp_scan/server-level/filtered/llm_analysis/vp.json",                      "scan_server",  10),
-    (6,  "path-traversal-static",    BASE / "0_tool_mcp_guard/path-traversal-static/filtered/llm_analysis/vp.json",            "guard_static", 10),
-    (7,  "command-injection-static", BASE / "0_tool_mcp_guard/command-injection-static/filtered/llm_analysis/vp.json",         "guard_static", 10),
-    (8,  "code-injection-static",    BASE / "0_tool_mcp_guard/code-injection-static/filtered/llm_analysis/vp.json",            "guard_static", 10),
-    (9,  "input-validation",         BASE / "0_tool_mcp_watch/input-validation/filtered/llm_analysis/vp.json",                 "watch",        10),
-    (10, "protocol-violation",       BASE / "0_tool_mcp_watch/protocol-violation/filtered/llm_analysis/vp.json",               "watch",        10),
-    (11, "prompt-injection-E001",    BASE / "0_tool_mcp_scan/tool-level/filtered/llm_analysis/vp.json",                        "scan_tool",    10),
-    (12, "insecure-deserialization", BASE / "0_tool_mcp_guard/insecure-deserialization-static/filtered/llm_analysis/vp.json",  "guard_static", 10),
+    (1,  "sql-injection",            BASE / "0_tool_mcp_guard/sql-injection-static/filtered/llm_analysis/vp.json",            "guard_static", 20),
+    (2,  "dangerous-capabilities",   BASE / "0_tool_mcp_security_scan/dangerous-capabilities/filtered/llm_analysis/vp.json",   "secscan_tool", 20),
+    (3,  "credential-leak",          BASE / "0_tool_mcp_watch/credential-leak/filtered/llm_analysis/vp.json",                  "watch",        20),
+    (4,  "ssrf",                     BASE / "0_tool_mcp_guard/ssrf-static/filtered/llm_analysis/vp.json",                      "guard_static", 20),
+    (5,  "untrusted-content",        BASE / "0_tool_mcp_scan/server-level/filtered/llm_analysis/vp.json",                      "scan_server",  20),
+    (6,  "path-traversal-static",    BASE / "0_tool_mcp_guard/path-traversal-static/filtered/llm_analysis/vp.json",            "guard_static", 20),
+    (7,  "command-injection-static", BASE / "0_tool_mcp_guard/command-injection-static/filtered/llm_analysis/vp.json",         "guard_static", 20),
+    (8,  "code-injection-static",    BASE / "0_tool_mcp_guard/code-injection-static/filtered/llm_analysis/vp.json",            "guard_static", 20),
+    (9,  "input-validation",         BASE / "0_tool_mcp_watch/input-validation/filtered/llm_analysis/vp.json",                 "watch",        20),
+    (10, "protocol-violation",       BASE / "0_tool_mcp_watch/protocol-violation/filtered/llm_analysis/vp.json",               "watch",        20),
+    (11, "prompt-injection-E001",    BASE / "0_tool_mcp_scan/tool-level/filtered/llm_analysis/vp.json",                        "scan_tool",    20),
+    (12, "insecure-deserialization", BASE / "0_tool_mcp_guard/insecure-deserialization-static/filtered/llm_analysis/vp.json",  "guard_static", 20),
     (13, "sensitive-file-access",    BASE / "0_tool_mcp_shield/sensitive-file-access/llm_analysis/vp.json",                    "shield",       11),  # all 11
     (14, "sensitive-info-disclosure",None,                                                                                      "multi_info",    9),
     (15, "access-control",           BASE / "0_tool_mcp_watch/access-control/filtered/llm_analysis/vp.json",                   "watch",         7),
@@ -166,7 +166,7 @@ def main():
         })
         print(f"[{cat_id:2d}] {name:30s} -> {len(findings)} findings")
 
-    out_path = Path(r"C:/Users/francesco/Desktop/pipeline/top10_to_verify.json")
+    out_path = Path(r"C:/Users/francesco/Desktop/pipeline/top20_to_verify.json")
     out_path.write_text(json.dumps(out, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"\nWritten: {out_path}")
     print(f"Total findings to verify: {sum(c['count'] for c in out['categories'])}")

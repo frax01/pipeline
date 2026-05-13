@@ -6,6 +6,7 @@ import time
 import signal
 import argparse
 import gc
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -155,6 +156,122 @@ def save_local_log(data):
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
+CHECK_SUITES = ("handshake", "tool_discovery", "tool_invocation")
+
+def get_error_category(message: str) -> str:
+    msg = (message or "").lower()
+    if "connection refused" in msg or "econnrefused" in msg: return "connection_refused"
+    if "timeout" in msg or "timed out" in msg: return "timeout"
+    if "method not found" in msg or "32601" in msg: return "method_not_found"
+    if "invalid arguments" in msg or "32602" in msg: return "invalid_arguments"
+    if "unauthorized" in msg or "authentication failed" in msg or "api key" in msg or "token" in msg: return "unauthorized_or_auth_missing"
+    if "not connected" in msg or "transport not connected" in msg: return "not_connected"
+    if "invalid schemas" in msg or "invalid input" in msg or "output schema" in msg: return "schema_violation"
+    if "panic recovered" in msg or "runtime error" in msg: return "panic_or_crash"
+    if "enoent" in msg or "no such file" in msg: return "file_not_found"
+    if "osascript" in msg or "applescript" in msg: return "macos_specific_failed"
+    if "docker" in msg: return "docker_missing"
+    return "other_errors"
+
+def save_check_entry(server_url: str, server_name: str, language: str, framework_result: dict):
+    """Save granular check results to hierarchical folders <suite>/<category>/<slug>.json."""
+    out_dir = CURRENT_DIR
+    suites = framework_result.get("suites") or {}
+    if not isinstance(suites, dict):
+        return
+    for suite_name, suite_data in suites.items():
+        if not isinstance(suite_data, dict):
+            continue
+        suite_folder = suite_name.lower().replace("-", "_")
+        suite_path = out_dir / suite_folder
+        suite_path.mkdir(parents=True, exist_ok=True)
+
+        # Group errors by category for THIS server
+        errors = suite_data.get("errors") or []
+        cat_errors = {}
+        for err in errors:
+            msg = err.get("message", "Unknown error")
+            category = get_error_category(msg)
+            cat_errors.setdefault(category, []).append({
+                "test":    err.get("test"),
+                "type":    err.get("type"),
+                "message": msg,
+                "payload": err.get("payload"),
+            })
+
+        for category, err_list in cat_errors.items():
+            cat_path = suite_path / category
+            cat_path.mkdir(parents=True, exist_ok=True)
+            if category != "other_errors":
+                first_msg = err_list[0]["message"]
+                msg_slug = "".join(c if c.isalnum() else "_" for c in first_msg[:50]).strip("_")
+                target_file = cat_path / f"{msg_slug}.json"
+            else:
+                target_file = cat_path / "details.json"
+
+            current_data = {"total": 0, "entries": []}
+            if target_file.exists():
+                try:
+                    with open(target_file, "r", encoding="utf-8") as f:
+                        current_data = json.load(f)
+                except Exception:
+                    pass
+
+            server_entry = next((e for e in current_data["entries"] if e["server_url"] == server_url), None)
+            if server_entry:
+                server_entry.setdefault("errors", []).extend(err_list)
+            else:
+                current_data["entries"].append({
+                    "server_url":  server_url,
+                    "server_name": server_name,
+                    "language":    language,
+                    "errors":      err_list,
+                })
+            current_data["total"] = len(current_data["entries"])
+            tmp = target_file.with_suffix(".tmp")
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(current_data, f, indent=4, ensure_ascii=False)
+            tmp.replace(target_file)
+
+        # Warnings
+        warning_list = suite_data.get("warning_list") or []
+        if warning_list:
+            warn_path = suite_path / "warnings"
+            warn_path.mkdir(parents=True, exist_ok=True)
+            target_file = warn_path / "details.json"
+            current_data = {"total": 0, "entries": []}
+            if target_file.exists():
+                try:
+                    with open(target_file, "r", encoding="utf-8") as f:
+                        current_data = json.load(f)
+                except Exception:
+                    pass
+            server_entry = next((e for e in current_data["entries"] if e["server_url"] == server_url), None)
+            if server_entry:
+                server_entry.setdefault("warnings", []).extend(warning_list)
+            else:
+                current_data["entries"].append({
+                    "server_url":  server_url,
+                    "server_name": server_name,
+                    "language":    language,
+                    "warnings":    warning_list,
+                })
+            current_data["total"] = len(current_data["entries"])
+            tmp = target_file.with_suffix(".tmp")
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(current_data, f, indent=4, ensure_ascii=False)
+            tmp.replace(target_file)
+
+def reset_all_output_files():
+    """Remove all suite subfolders (handshake/, tool_discovery/, tool_invocation/)."""
+    for folder in CHECK_SUITES:
+        path = CURRENT_DIR / folder
+        if path.exists() and path.is_dir():
+            try:
+                shutil.rmtree(path)
+            except Exception:
+                pass
+
 def read_npx_servers(excel_path: str):
     import pandas as pd
     df = pd.read_excel(excel_path)
@@ -186,6 +303,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
         stats = copy.deepcopy(INIT_STATS)
         save_local_stats(stats)
         save_local_log({})
+        reset_all_output_files()
     elif start_idx == -1:
         start_idx = last_index
         print(f"Resuming from index: {start_idx}")
@@ -274,6 +392,12 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
                 update_framework(stats, framework_result["mcp-check"], "mcp-check", language)
             except Exception as e:
                 print(f"Error updating framework stats: {e}")
+
+            # Per-suite/category granular output files
+            try:
+                save_check_entry(package_name, package_name, language, framework_result["mcp-check"])
+            except Exception as e:
+                print(f"Error updating output files: {e}")
 
         # Track failure
         if failure_reason:

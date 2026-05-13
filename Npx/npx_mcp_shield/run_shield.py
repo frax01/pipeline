@@ -6,6 +6,7 @@ import time
 import signal
 import argparse
 import gc
+import shutil
 import subprocess
 from pathlib import Path
 
@@ -169,6 +170,82 @@ def save_local_log(data):
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
+def _update_category_file(base_dir: Path, category: str, risk: str, item: dict):
+    """Append a finding to <base_dir>/<category>/<category>_<RISK>.json."""
+    base_dir.mkdir(parents=True, exist_ok=True)
+    cat_dir = base_dir / category
+    cat_dir.mkdir(parents=True, exist_ok=True)
+    file_name = f"{category.replace('-', '_')}_{risk.upper()}.json"
+    file_path = cat_dir / file_name
+    data = {"total": 0, "findings": []}
+    if file_path.exists():
+        try:
+            with open(file_path, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            pass
+    data["findings"].append(item)
+    data["total"] = len(data["findings"])
+    tmp_path = file_path.with_suffix(".tmp")
+    with open(tmp_path, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+    tmp_path.replace(file_path)
+
+def update_output_files(server_url: str, server_name: str, mcp_shield_data: dict,
+                        llm_tools: dict = None, llm_status: str = None,
+                        llm_error: str = None, tool_descriptions: dict = None):
+    """Write per-category/risk findings under <CURRENT_DIR>/<category>/."""
+    tools = mcp_shield_data.get("tools", {})
+    if llm_tools is None:
+        llm_tools = {}
+    if tool_descriptions is None:
+        tool_descriptions = {}
+
+    for tool_name, tool_data in tools.items():
+        if tool_data.get("status") != "vulnerable":
+            continue
+        risk = (tool_data.get("risk") or "UNKNOWN").upper()
+        llm_tool_data = llm_tools.get(tool_name, {})
+        llm_risk = llm_tool_data.get("overallRisk", None)
+        llm_analysis = llm_tool_data.get("analysis", None)
+
+        cats = tool_data.get("category", {})
+        for category_name, instances in cats.items():
+            descriptions = [
+                inst.get("description", "")
+                for inst in instances.values()
+                if inst.get("description")
+            ]
+            item = {
+                "server_url":       server_url,
+                "server_name":      server_name,
+                "tool_name":        tool_name,
+                "tool_description": tool_descriptions.get(tool_name, ""),
+                "category":         category_name,
+                "risk":             risk,
+                "descriptions":     descriptions,
+            }
+            if llm_risk:
+                item["llm_risk"] = llm_risk
+                item["llm_analysis"] = llm_analysis
+            elif llm_status and llm_status != "completed":
+                item["llm_risk"] = "NOT_COMPLETED"
+                item["llm_analysis"] = f"LLM analysis not completed: {llm_error or llm_status}"
+            else:
+                item["llm_risk"] = "NOT_AVAILABLE"
+                item["llm_analysis"] = "LLM analysis was not executed"
+
+            _update_category_file(CURRENT_DIR, category_name, risk, item)
+
+def reset_all_output_files():
+    """Remove all category subfolders under CURRENT_DIR (preserving python files / hidden)."""
+    for folder in CURRENT_DIR.iterdir():
+        if folder.is_dir() and not folder.name.startswith(".") and not folder.name.startswith("_"):
+            try:
+                shutil.rmtree(folder)
+            except Exception:
+                pass
+
 def read_npx_servers(excel_path: str):
     import pandas as pd
     df = pd.read_excel(excel_path)
@@ -203,6 +280,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
         stats = copy.deepcopy(INIT_STATS)
         save_local_stats(stats)
         save_local_log({})
+        reset_all_output_files()
     else:
         print(f"Starting from index {start_idx} (keeping existing data)")
 
@@ -245,6 +323,8 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
 
         _status = "failed"
         failure_reason = ""
+        framework_result = None
+        llm = None
 
         if use_alarm:
             signal.alarm(SERVER_TIMEOUT)
@@ -276,6 +356,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
                     print(f"LLM Analysis status: {llm_status}")
                 except Exception as e:
                     print(f"LLM Analysis error: {e}")
+                    llm = {"status": "error", "error": str(e), "tools": {}}
 
         except ServerTimeoutError:
             print(f"SERVER TIMEOUT ({SERVER_TIMEOUT}s) - skipping {package_name}")
@@ -301,12 +382,24 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
 
             # Update LLM risk if available
             try:
-                if 'llm' in dir() or 'llm' in locals():
-                    llm_local = locals().get('llm')
-                    if llm_local and llm_local.get("status") == "completed":
-                        update_summary_llm_risk(stats, llm_local, "static", 0, "", 0)
+                if llm and llm.get("status") == "completed":
+                    update_summary_llm_risk(stats, llm, "static", 0, "", 0)
             except Exception:
                 pass
+
+            # Per-category/risk output files
+            try:
+                mcp_shield_data = framework_result.get("mcp-shield", {})
+                total_vulns = mcp_shield_data.get("total-vulnerabilities", 0)
+                if total_vulns > 0:
+                    llm_tools = llm.get("tools", {}) if llm else None
+                    _llm_status = llm.get("status") if llm else None
+                    _llm_error = llm.get("error") if llm else None
+                    _tool_descriptions = llm.get("tool_descriptions", {}) if llm else {}
+                    update_output_files(package_name, package_name, mcp_shield_data,
+                                        llm_tools, _llm_status, _llm_error, _tool_descriptions)
+            except Exception as e:
+                print(f"Error updating output files: {e}")
 
         # Track failure
         if failure_reason:

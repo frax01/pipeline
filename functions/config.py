@@ -51,6 +51,7 @@ if not _uvx_path and platform.system() != "Windows":
 UVX = _uvx_path or str(Path.home() / "AppData/Local/Programs/Python/Python313/Scripts/uvx.exe")
 
 EXCEL_PATH = Path.home() / "Desktop" / "Pipeline" / "0.0. All servers without duplicates, .git, _, hash and ERRORE (60205).xlsx"
+EXCEL_PATH_NPX = Path.home() / "Desktop" / "Pipeline" / "0.0. All servers npx  (8899).xlsx"
 TIMEOUT_SECONDS = 3600
 
 MCP_SECURITY_SCAN_CATEGORIES = {
@@ -85,3 +86,14 @@ ISSUE_CODE_MAP = {
     "E001": "prompt-injection",
     # ... (altri codici)
 }
+
+# Mappa codici TFxxx (toxic flow) -> nome categoria. Fallback "unknown-toxic-flow"
+# se il codice non e' in mappa. Vuoto = tutti i TF saranno "unknown-toxic-flow".
+TOXIC_FLOW_MAP = {
+    "TF001": "exfiltrate-conversation",
+    "TF002": "external-input-privileged-write",
+}
+
+# Codici issue da ignorare (es. info/internal noise dello scanner).
+# Vuoto = nessun codice viene saltato.
+SKIP_ISSUE_CODES = set()

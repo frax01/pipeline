@@ -203,11 +203,16 @@ def execute_mcp_scan(repo_path: Path):
 
     try:
         # Build command: snyk-agent-scan with --json
+        # --dangerously-run-mcp-servers: skip interactive [y/N] consent prompt
+        # (necessario quando si gira in nohup senza TTY)
+        # --server-timeout 60: i pacchetti NPX richiedono >10s per scaricare+installare+bootare
         if uvx_command.endswith("uv") or uvx_command.endswith("uv.exe"):
             cmd_scan = [
                 uvx_command, "tool", "run", "snyk-agent-scan@latest",
                 "--json",
                 "--storage-file", storage_file,
+                "--dangerously-run-mcp-servers",
+                "--server-timeout", "60",
                 str(CONFIG),
             ]
         else:
@@ -215,6 +220,8 @@ def execute_mcp_scan(repo_path: Path):
                 uvx_command, "snyk-agent-scan@latest",
                 "--json",
                 "--storage-file", storage_file,
+                "--dangerously-run-mcp-servers",
+                "--server-timeout", "60",
                 str(CONFIG),
             ]
 

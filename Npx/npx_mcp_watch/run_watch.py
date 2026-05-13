@@ -6,11 +6,58 @@ import time
 import signal
 import argparse
 import gc
+import shutil
 import subprocess
 from pathlib import Path
 
 SERVER_TIMEOUT = 600
 MIN_FREE_MEMORY_MB = 200
+
+SEVERITY_LEVELS = ("critical", "high", "medium", "low")
+
+KNOWN_CATEGORIES = (
+    "toxic-flow",
+    "credential-leak",
+    "tool-poisoning",
+    "prompt-injection",
+    "tool-mutation",
+    "data-exfiltration",
+    "steganographic-attack",
+    "protocol-violation",
+    "input-validation",
+    "server-spoofing",
+    "access-control",
+)
+
+ID_DESCRIPTIONS = {
+    "ANSI_ESCAPE_INJECTION":            "ANSI escape sequences - can hide malicious instructions",
+    "WHITESPACE_INJECTION":             "Excessive whitespace - potential hidden content",
+    "CONVERSATION_EXFILTRATION_TRIGGER":"Conversation history exfiltration trigger detected",
+    "HARDCODED_CREDENTIALS":            "Hardcoded credentials detected",
+    "PLAINTEXT_STORAGE":                "Plaintext credential storage detected",
+    "INSECURE_CREDENTIAL_PERMISSIONS":  "Credentials with world-readable permissions",
+    "COMMAND_INJECTION_RISK":           "Command injection vulnerability - append && rm -rf /",
+    "SSRF_VULNERABILITY":               "SSRF vulnerability - fetches any URL",
+    "PATH_TRAVERSAL":                   "Path traversal vulnerability - accesses files outside directory",
+    "MAGIC_PARAMETER_INJECTION":        "Magic parameter detected - extracts sensitive AI context",
+    "UNUSED_SENSITIVE_PARAMETER":       "Unused parameter with sensitive name",
+    "DATA_EXFILTRATION":                "Potential data exfiltration detected",
+    "CONSENT_FATIGUE_RISK":             "Repeated consent requests - fatigue attack risk",
+    "EXCESSIVE_PERMISSIONS":            "Excessive permissions - violates least privilege",
+    "TOOL_DESCRIPTION_INJECTION":       "Suspicious prompt injection in tool description",
+    "RETRIEVAL_AGENT_DECEPTION":        "RADE pattern detected - hidden commands in retrieval content",
+    "SESSION_ID_IN_URL":                "Session ID in URL - exposes sensitive identifiers",
+    "INSECURE_TRANSPORT":               "Insecure HTTP transport detected",
+    "SUSPICIOUS_SERVER_NAME":           "Server name mimics popular service - potential spoofing",
+    "CROSS_SERVER_SHADOWING":           "Cross-server call interception detected",
+    "HIDDEN_TOOL_INSTRUCTIONS":         "Hidden malicious instructions in tool description",
+    "DECEPTIVE_TOOL_NAMING":            "Tool with deceptive name/description mismatch",
+    "DYNAMIC_TOOL_MUTATION":            "Dynamic tool mutation detected - rug-pull risk",
+    "TOOL_NAME_COLLISION":              "Tool name collision risk",
+    "UNTRUSTED_DATA_PROCESSING":        "External data processed without sanitization",
+    "AUTOMATIC_CONTENT_PUBLISHING":     "Automatic content publishing - data exfiltration risk",
+    "GENERIC_TOXIC_FLOW_CHAIN":         "Complete toxic flow: external input -> privileged access -> public output",
+}
 
 def check_memory_available() -> bool:
     def _get_free_mb():
@@ -152,6 +199,102 @@ def save_local_log(data):
     with open(LOG_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
+def _category_dir(category: str) -> Path:
+    return CURRENT_DIR / category
+
+def _category_file(category: str, severity: str) -> Path:
+    prefix = category.replace("-", "_")
+    return _category_dir(category) / f"{prefix}_{severity}.json"
+
+def _cat_default(category: str, severity: str) -> dict:
+    return {"category": category, "severity": severity, "total": 0, "findings": []}
+
+def load_category_file(category: str, severity: str) -> dict:
+    p = _category_file(category, severity)
+    if not p.exists():
+        return _cat_default(category, severity)
+    try:
+        with open(p, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return _cat_default(category, severity)
+
+def save_category_file(category: str, severity: str, data: dict):
+    p = _category_file(category, severity)
+    p.parent.mkdir(parents=True, exist_ok=True)
+    tmp = p.with_suffix(".tmp")
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
+    tmp.replace(p)
+
+def reset_all_output_files():
+    for cat in KNOWN_CATEGORIES:
+        _category_dir(cat).mkdir(parents=True, exist_ok=True)
+        for sev in SEVERITY_LEVELS:
+            save_category_file(cat, sev, _cat_default(cat, sev))
+
+def flatten_vulnerabilities(mcp_watch_result: dict) -> list:
+    vulns = []
+    cat_block = mcp_watch_result.get("category", {})
+    for category_name, items in cat_block.items():
+        if not isinstance(items, dict):
+            continue
+        for item in items.values():
+            if not isinstance(item, dict):
+                continue
+            location = item.get("location", "") or ""
+            file_path, line_num = "", None
+            if location:
+                parts = location.rsplit(":", 1)
+                file_path = parts[0]
+                if len(parts) == 2:
+                    try:
+                        line_num = int(parts[1])
+                    except ValueError:
+                        file_path = location
+            vuln_id = item.get("id")
+            vulns.append({
+                "id":          vuln_id,
+                "severity":    item.get("severity"),
+                "category":    category_name,
+                "description": item.get("title") or ID_DESCRIPTIONS.get(vuln_id),
+                "file":        file_path,
+                "line":        line_num,
+                "evidence":    item.get("evidence"),
+                "source":      item.get("source"),
+            })
+    return vulns
+
+def _finding(server_name, server_url, language, v: dict) -> dict:
+    return {
+        "server_name": server_name,
+        "github_url":  server_url,
+        "language":    language,
+        "id":          v["id"],
+        "category":    v["category"],
+        "description": v["description"],
+        "file":        v["file"],
+        "line":        v["line"],
+        "evidence":    v["evidence"],
+        "source":      v["source"],
+    }
+
+def update_output_files(server_name: str, server_url: str, language: str, flat_vulns: list):
+    by_cat_sev = {}
+    for v in flat_vulns:
+        sev = (v.get("severity") or "").lower()
+        cat = (v.get("category") or "").lower()
+        if sev not in SEVERITY_LEVELS:
+            continue
+        by_cat_sev.setdefault((cat, sev), []).append(v)
+
+    for (cat, sev), vulns in by_cat_sev.items():
+        data = load_category_file(cat, sev)
+        for v in vulns:
+            data["findings"].append(_finding(server_name, server_url, language, v))
+        data["total"] = len(data["findings"])
+        save_category_file(cat, sev, data)
+
 def read_npx_servers(excel_path: str):
     import pandas as pd
     df = pd.read_excel(excel_path)
@@ -184,6 +327,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
         stats = copy.deepcopy(INIT_STATS)
         save_local_stats(stats)
         save_local_log({})
+        reset_all_output_files()
     elif start_idx == -1:
         start_idx = last_index
         print(f"Resuming from index: {start_idx}")
@@ -270,6 +414,13 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
                 update_framework(stats, framework_result["mcp-watch"], "mcp-watch", language)
             except Exception as e:
                 print(f"Error updating framework stats: {e}")
+
+            # Per-category/severity output files
+            try:
+                flat_vulns = flatten_vulnerabilities(framework_result["mcp-watch"])
+                update_output_files(package_name, package_name, language, flat_vulns)
+            except Exception as e:
+                print(f"Error updating output files: {e}")
 
         # Track failure
         if failure_reason:

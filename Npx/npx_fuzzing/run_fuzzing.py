@@ -11,7 +11,9 @@ import shutil
 import subprocess
 from pathlib import Path
 
-SERVER_TIMEOUT = 300  # 5 minutes for fuzzing
+SERVER_TIMEOUT = 180  # FAST profile: 3 minutes hard cap per server
+                       # (mcp-fuzzer internal cap is 150s, this is the
+                       # outer SIGALRM safety net)
 MIN_FREE_MEMORY_MB = 200
 
 def check_memory_available() -> bool:

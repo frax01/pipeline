@@ -97,19 +97,15 @@ INIT_STATS = {
     "languages": {},
     "mcp-guard": {
         "total": 0,
+        "servers_fuzzed": 0,
+        "servers_scanned_static": 0,
         "percentage": 0.0,
         "languages": {},
-        "percentage_of_vulnerability": {},
         "categories_static": {},
-        "categories_dynamic": {},
-        "categories_real_fuzzing": {},
-        "categories_robustness_fuzzing": {},
-        "analysis_types": {
-            "static": {"total": 0, "percentage": 0.0},
-            "real_fuzzing": {"total": 0, "percentage": 0.0},
-            "dynamic": {"total": 0, "percentage": 0.0},
-            "robustness_fuzzing": {"total": 0, "percentage": 0.0}
-        },
+        "categories_fuzzing": {},
+        "percentage_of_vulnerability": {},
+        "percentage_of_vulnerability_static": {},
+        "percentage_of_vulnerability_fuzzing": {},
         "vulnerabilities": {
             "total": 0,
             "average_per_server": 0,
@@ -123,6 +119,14 @@ INIT_STATS = {
         }
     }
 }
+
+# Chiavi obsolete (dalla prima versione) che vanno rimosse dal JSON caricato
+_OBSOLETE_GUARD_KEYS = (
+    "categories_dynamic",
+    "categories_real_fuzzing",
+    "categories_robustness_fuzzing",
+    "analysis_types",
+)
 
 def _deep_merge(base: dict, override: dict) -> dict:
     result = copy.deepcopy(base)
@@ -141,7 +145,13 @@ def load_local_stats():
             data = json.load(f)
         if not isinstance(data, dict) or not data:
             return copy.deepcopy(INIT_STATS)
-        return _deep_merge(INIT_STATS, data)
+        merged = _deep_merge(INIT_STATS, data)
+        # Rimuovi chiavi obsolete dal blocco mcp-guard
+        guard_block = merged.get("mcp-guard")
+        if isinstance(guard_block, dict):
+            for k in _OBSOLETE_GUARD_KEYS:
+                guard_block.pop(k, None)
+        return merged
     except Exception:
         return copy.deepcopy(INIT_STATS)
 

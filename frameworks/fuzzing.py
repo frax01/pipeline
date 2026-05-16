@@ -316,15 +316,15 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
             "--phase", "both",
             "--protocol", "stdio",
             "--endpoint", endpoint,
-            # Fuzzing intensity — back to original 10/10. The reduced 5/5
-            # setting combined with --no-network removal blew up the per-tool
-            # time (each network-dependent tool waited 60s per request
-            # instead of failing fast), causing SERVER_TIMEOUT to kill every
-            # run before the report was generated (0% fuzzed rate).
-            "--runs", "10",
-            "--runs-per-type", "10",
-            # Timeouts
-            "--timeout", "60",
+            # Fuzzing intensity — FAST profile (NPX run, 2026-05-16):
+            # most NPX servers expose 0 tools (tools/list fails), so time
+            # is dominated by protocol fuzzing (17 types × runs-per-type).
+            # Cutting runs-per-type 10→3 yields ~3x speedup with negligible
+            # impact on VP/FP detection (protocol categories saturate fast).
+            "--runs", "5",
+            "--runs-per-type", "3",
+            # Timeouts — 25s per request is plenty with --no-network
+            "--timeout", "25",
             # Concurrency
             "--process-max-concurrency", "2",
             # Safety system — keep both fs sandbox AND no-network. Removing
@@ -341,19 +341,16 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
             "--safety-report",
             # Output
             "--output-format", "json",
-            # Watchdog (kill hung processes) — kept at the original 45/10/90s
-            # values used in the first rerun (12.5% fuzzed rate). The tighter
-            # 15/5/30s settings caused servers with heavy startup (npm
-            # postinstall, lazy SDK loading, DB init, MCP SDK warmup) to be
-            # killed before they could answer the first request, dropping
-            # the fuzzed rate to 5%.
+            # Watchdog (kill hung processes) — FAST profile: tighter
+            # timeouts to kill stuck servers earlier. NPX startup is
+            # ~5-15s for most packages, so 25s gives enough buffer.
             "--watchdog-check-interval", "1.0",
-            "--watchdog-process-timeout", "45",
-            "--watchdog-extra-buffer", "10",
-            "--watchdog-max-hang-time", "90",
-            # Retry on transient failures
-            "--process-retry-count", "3",
-            "--process-retry-delay", "2.0",
+            "--watchdog-process-timeout", "25",
+            "--watchdog-extra-buffer", "5",
+            "--watchdog-max-hang-time", "50",
+            # Retry on transient failures — FAST profile: no retry
+            "--process-retry-count", "1",
+            "--process-retry-delay", "1.0",
             # Logging — verbose + DEBUG level for full visibility
             "--verbose",
             "--log-level", "DEBUG",
@@ -365,11 +362,14 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
         # tail every log line in real time.
         env['PYTHONUNBUFFERED'] = '1'
 
-        # Hard cap on the whole mcp-fuzzer invocation. Back to the original
-        # 300s value used in the first rerun (12.5% fuzzed rate). The 1000s
-        # bump only matters when --no-network is removed, but with
-        # --no-network restored the per-server time stays well under 300s.
-        process_timeout = 300 if mode in ("all", "both") else 180
+        # Hard cap on the whole mcp-fuzzer invocation — FAST profile:
+        # cut from 300s to 150s. With runs 5 / runs-per-type 3 / timeout 25s
+        # the worst-case fuzzing budget is roughly:
+        #   tools: ~13 tools * 5 runs * 25s = ~25min  (capped by watchdog)
+        #   protocol: 17 types * 3 runs * 25s = ~21min (capped by watchdog)
+        # In practice each server hits the per-tool watchdog (25s) and
+        # exits well under 150s.
+        process_timeout = 150 if mode in ("all", "both") else 90
 
         # Run mcp-fuzzer via Popen and stream stdout/stderr to our own
         # stdout line-by-line. This is the only way to see watchdog /

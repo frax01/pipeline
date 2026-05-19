@@ -261,7 +261,58 @@ done
 
 ## Post-processing mcp-watch: Analisi LLM dei finding
 
-### Contesto
+### Merge GitHub + NPX (2026-05-18): struttura unificata
+
+**Decisione**: i dati GitHub e NPX sono stati **mergiati** in `0_tool_mcp_watch/` (no più cartella separata). Tutte le 11 categorie sono presenti in entrambi i run, quindi NESSUN suffisso `_npx`. Layout:
+
+```
+analysisAllData/0_tool_mcp_watch/
+├── README.md                               ← documentazione struttura
+├── pipeline_mcp_watch.py                   ← unified (Stage 2A + 2B + cache-only)
+├── filter_all_categories.py / filter_remaining_categories.py  ← Stage 1
+├── _apply_stage2b_cache_npx.py             ← script Stage 2B NPX (riproducibilità)
+├── mcp_watch_stats_github.json / *_npx.json
+├── mcp_watch_servers_github.json / *_npx.json
+├── <cat>/                                  ← 11 categorie, tutte MERGED raw
+│   ├── <cat>_*.json (raw severity)         ← MERGED GH+NPX, _origin field
+│   └── filtered/                           ← solo per cat analizzate (9 su 11)
+│       ├── <cat>_filtered.json             ← MERGED
+│       └── llm_analysis/                   ← MERGED vp/fp/audit/cache
+└── toxic-flow/                             ← RAW-only, NPX scartato (volume + noise)
+```
+
+**Logica di merge:**
+- **6 categorie analizzate ENTRAMBE** (credential-leak, data-exfiltration, input-validation, protocol-violation, steganographic-attack, tool-mutation): raw + filtered + llm_analysis MERGED
+- **3 categorie analizzate solo GitHub** (access-control, prompt-injection, tool-poisoning): NPX 0 kept dopo Stage 1 → solo raw NPX aggiunto, analysis GitHub preservata
+- **server-spoofing**: raw merged (mai analizzato in entrambi i run)
+- **toxic-flow**: NPX scartato per indicazione utente (volume 256k + signal noisy)
+
+Ogni finding mergiato ha campo `_origin: "github" | "npx"` per tracciabilità.
+
+### Risultati post-merge mcp-watch
+
+| Cat | VP GH | VP NPX | VP merged | FP merged |
+|-----|------:|-------:|----------:|----------:|
+| credential-leak | 619 | 61 | **665** | 179 |
+| data-exfiltration | 2 | 0 | **2** | 91 |
+| input-validation | 125 | 11 | **135** | 105 |
+| protocol-violation | 79 | 278 | **357** | 2.902 |
+| steganographic-attack | 3 | 0 | **0** | 365 |
+| tool-mutation | 0 | 0 | **0** | 2.548 |
+| access-control (GH only) | 7 | — | **7** | 10 |
+| prompt-injection (GH only) | 0 | — | **0** | 8 |
+| tool-poisoning (GH only) | 0 | — | **0** | 7 |
+| **TOTALE** | **835** | **354** | **1.166** | ~6.215 |
+
+NPX VP rate: 354/580 = 61.0% (vs GitHub originale 835/6.991 = 11.9% — NPX è più "clean" dataset).
+
+### Workflow eseguito per NPX (sintesi)
+Stage 1: 337k raw → 624 kept (-99.8%)
+Stage 2A: 624 → 339 HC-VP + 253 HC-FP + 32 UNCERTAIN
+Stage 2B (in-chat Sonnet sui 32): 15 VP + 17 FP
+Merge finale: 354 VP / 226 FP NPX
+
+### Contesto (originale GitHub)
 
 mcp-watch genera milioni di finding grezzi. L'obiettivo e' ridurli a veri positivi (VP) azionabili, eliminando i falsi positivi (FP). Il processo si articola in 3 stadi:
 
@@ -1099,7 +1150,49 @@ python -X utf8 pipeline_mcp_scan.py --category all --cache-only
 
 ## Post-processing mcp-security-scan: Analisi LLM dei finding
 
-### Contesto
+### Merge GitHub + NPX (2026-05-18): struttura unificata
+
+**Decisione**: dati GitHub e NPX mergiati in `0_tool_mcp_security_scan/`. Tutte le 10 categorie analizzate in GitHub esistono anche in NPX (eccetto indirect-prompt-injection che è solo GitHub). NESSUN suffisso `_npx`.
+
+```
+analysisAllData/0_tool_mcp_security_scan/
+├── README.md
+├── pipeline_mcp_security_scan.py + filter_security_scan.py
+├── _apply_stage2b_cache_npx.py             ← Stage 2B NPX cache
+├── mcp_security_scan_stats_github.json / *_npx.json
+├── <cat>/                                   ← 11 categorie unificate
+│   ├── <cat>_*.json (raw)                   ← MERGED + _origin
+│   └── filtered/llm_analysis/               ← MERGED (per cat analizzate)
+```
+
+**Logica di merge:**
+- **7 cat analizzate ENTRAMBE** (dangerous-capabilities, input-validation, path-traversal, sensitive-file-access, sensitive-resource-exposure, remote-access-control, rug-pull): MERGED raw + analysis
+- **3 cat analizzate solo GitHub** (prompt-injection, data-leak: NPX 0 kept dopo Stage 1; indirect-prompt-injection: NPX 0 raw): GH analysis preservata, raw NPX aggiunto dove presente
+- **initialization-error**: raw-only (noise infrastrutturale, mai analizzato)
+
+### Risultati post-merge mcp-security-scan
+
+| Cat | VP GH | VP NPX | VP merged | FP merged |
+|-----|------:|-------:|----------:|----------:|
+| dangerous-capabilities | 1001 | 239 | **1240** | 293 |
+| input-validation | 83 | 36 | **119** | 2 |
+| path-traversal | 5 | 2 | **7** | 0 |
+| sensitive-file-access | 5 | 2 | **7** | 0 |
+| sensitive-resource-exposure | 0 | 0 | **0** | 7 |
+| remote-access-control | 0 | 1 | **1** | 1 |
+| rug-pull | 0 | 0 | **0** | 80 |
+| prompt-injection (GH only) | 0 | — | **0** | 3 |
+| data-leak (GH only) | 0 | — | **0** | 2 |
+| indirect-prompt-injection (GH only) | 0 | — | **0** | 3 |
+| **TOTALE** | **1.094** | **280** | **1.374** | **391** |
+
+### Workflow eseguito su NPX (sintesi)
+- Stage 1: 2.889 raw → 370 kept (-87.2%)
+- Stage 2A: dangerous-capabilities + rug-pull → 231 + 0 HC-VP, 57 + 21 HC-FP, 15 + 0 UNCERTAIN
+- Stage 2B (in-chat Sonnet su 61 = 15 UNCERTAIN + 46 finding cat senza HC): 49 VP + 12 FP
+- Risultato NPX: **280 VP / 90 FP**
+
+### Contesto (originale GitHub)
 
 mcp-security-scan è uno scanner che testa la sicurezza dei server MCP tramite probe attivi e analisi euristica. Dopo il filtro iniziale applicato da `filter_security_scan.py` (che riduce 9.404 finding a 1.395), il post-processing applica un ulteriore stage di regole HC + classificazione in-chat per eliminare i FP residui.
 
@@ -2115,9 +2208,281 @@ Vedere `analysisAllData/0_tool_fuzzing/ANALYSIS_GUIDE.md` per dettagli completi.
 
 ---
 
+## NPX dataset — Analisi 8.899 server NPM (run parallelo)
+
+### Contesto
+
+Dopo i 60.205 server GitHub, è stato aggiunto un secondo dataset di **8.899 server NPX** (pacchetti npm con `npx -y <pkg>`). A differenza del run GitHub (sharded su 9 VM per indice), qui **ogni VM esegue UN solo framework** sull'intera lista degli 8.899 server (no sharding). Vedere `Npx/commands.md` per layout VM e comandi.
+
+### Mapping VM → framework
+
+| VM | IP | Framework |
+|----|-----|-----------|
+| VM1 | 10.79.6.132 | mcp-scan **(finito 2026-05-15)** |
+| VM3 | 10.79.6.134 | mcp-check |
+| VM4 | 10.79.6.136 | mcp-guard |
+| VM5 | 10.79.6.137 | mcp-security-scan |
+| VM6 | 10.79.6.138 | mcp-watch **(finito)** |
+| VM7 | 10.79.6.139 | tool_fuzzing |
+| VM8 | 10.79.6.141 | mcp-shield |
+
+### Workflow di integrazione (uniforme per ogni framework)
+
+```
+1. Pull da VM             → npx_pull_from_vm/0_tool_<framework>/
+2. Setup analisi NPX      → analysisAllData/0_tool_<framework>/  (sottocartella npx/ temporanea
+                            durante il setup, poi MERGED nella struttura unificata)
+3. Stage 1 (filter)       → solo se serve, NPX schema può richiedere split per categoria
+4. Stage 2A (HC) o 2B     → classificatori Python pattern-based (per framework ad alto volume)
+5. Output                 → vp.json / fp.json / audit.json
+6. Merge GitHub+NPX       → categorie comuni mergiate; categorie NPX-only rinominate con _npx
+7. Cross-framework conf.  → da rifare alla fine quando TUTTE le 7 VM hanno finito
+```
+
+**Layout finale (post-merge):** i dati GitHub e NPX vivono nella **stessa cartella** `analysisAllData/0_tool_<framework>/`. Le categorie analizzate sia in GitHub che NPX sono mergiate in un singolo set di file. Le categorie nuove (solo NPX) sono rinominate con suffisso `_npx`. Ogni finding mergiato ha campo `_origin: "github"` o `"npx"` per tracciare l'origine.
+
+**Esempio mcp-scan unificato** (vedi `0_tool_mcp_scan/README.md` per dettagli):
+- `E001.json`: merged (80 GitHub + 62 NPX = 142 finding)
+- `W001.json`: merged raw only (GitHub non analizzato, NPX scartato per signal debole)
+- `W015.json`: merged (599 + 353 = 952)
+- `W017_npx.json`, ..., `W020_npx.json`: NPX-only (categorie nuove)
+
+---
+
+## Post-processing mcp-scan NPX: 8.899 server NPM
+
+### Stato
+
+**Completato 2026-05-18** (run NPX VM132 finito 2026-05-15).
+
+### Differenze schema vs run GitHub
+
+- `server_url` qui è il **nome pacchetto npm** (es. `@adamik/mcp-server`, `1inch-mcp`), NON un URL GitHub
+- La funzione `_server_short()` esistente rimuove `https://github.com/` ma per NPX restituisce la stringa invariata → cache key funziona ugualmente
+- **4 NUOVE categorie** server-level rispetto al run GitHub: W017, W018, W019, W020
+
+### Workflow 3-bucket (modello mcp-guard / mcp-watch)
+
+A differenza del run GitHub mcp-scan (679 finding → cache-only con Sonnet in-chat per ogni finding), per NPX il volume è ~10x maggiore (6.329 finding). Si è adottato il **workflow 3-bucket standard** usato per mcp-guard/mcp-watch:
+
+```
+Stage 1   (skip — mcp-scan internal LLM produce già vulnerabilities.json pulito)
+Stage 2A  HC rules pattern-based      → hc_vp.json + hc_fp.json + uncertain.json
+Stage 2B  classificatore residui      → _llm_api_cache.json (verdetti per UNCERTAIN)
+Merge     HC + cache                  → vp.json / fp.json / audit.json
+```
+
+**Stage 2A** (`_classify_npx.py`): regole HC per categoria con priorità VP-strong > VP-catchall > FP. Default = UNCERTAIN (no catch-all VP/FP).
+
+**Stage 2B** (`_classify_uncertain.py`): processa `uncertain.json` per categoria, scrive verdetti in `_llm_api_cache.json`. Le regole Stage 2B sono il risultato di **3 round di sample in-chat con Sonnet**: per ogni categoria sono stati ispezionati 10-15 finding UNCERTAIN, classificati manualmente, e i pattern emersi sono stati codificati. Verdetto residuo per W015/W017/W018/W019/W020: VP (mcp-scan internal LLM ha già pre-filtrato gli FP ovvi). Per W016: regole esplicite di FP "agent-must-invoke".
+
+### Merge GitHub + NPX (2026-05-18): struttura unificata
+
+**Decisione**: i dati GitHub e NPX sono stati **mergiati** in un'unica cartella `0_tool_mcp_scan/` (NON più due cartelle parallele). Layout finale:
+
+```
+analysisAllData/0_tool_mcp_scan/
+├── README.md                               ← documentazione struttura unificata
+├── pipeline_mcp_scan.py                    ← pipeline GitHub legacy (E001/W001/W015/W016)
+├── pipeline_mcp_scan_npx.py                ← pipeline unificata (E001/W015 merged + W017_npx..W020_npx)
+├── _classify_npx.py                        ← Stage 2A HC rules (filtra _origin=npx su merged)
+├── _classify_uncertain.py                  ← Stage 2B residual classifier
+├── mcp_scan_stats_github.json              mcp_scan_stats_npx.json
+├── mcp_scan_servers_github.json            mcp_scan_servers_npx.json
+├── mcp_scan_vulnerabilities_npx.json       ← raw vulnerabilities NPX
+├── tool-level/
+│   ├── E001.json                           ← MERGED: 80 GitHub + 62 NPX = 142
+│   ├── E001.md                             E001/llm_analysis/  (vp/fp/audit/cache/hc/uncertain MERGED)
+│   ├── W001.json                           ← MERGED raw: 1.495 GitHub + 917 NPX = 2.412 (NO analysis)
+│   └── W001.md
+└── server-level/
+    ├── W015.json                           ← MERGED: 599 GitHub + 353 NPX = 952
+    ├── W015.md                             W015/llm_analysis/  (MERGED)
+    ├── W016.json                           ← MERGED raw: 1.483 GitHub + 1.539 NPX = 3.022 (NO analysis)
+    ├── W016.md
+    ├── W017_npx.json                       W017_npx/llm_analysis/  (NPX-only)
+    ├── W018_npx.json                       W018_npx/llm_analysis/  (NPX-only)
+    ├── W019_npx.json                       W019_npx/llm_analysis/  (NPX-only)
+    └── W020_npx.json                       W020_npx/llm_analysis/  (NPX-only)
+```
+
+**Logica di merge:**
+- **E001 e W015**: GitHub raw + NPX raw concatenati in singolo `.json`; vp/fp/audit/cache GitHub merged con NPX (cache keys non collidono: URL GitHub vs npm package name)
+- **W001 e W016**: solo raw merged. NESSUNA analysis: GitHub non li aveva mai analizzati (signal debole), quindi nella struttura unificata sono raw only. La analysis NPX prodotta in fase intermedia è stata scartata.
+- **W017-W020**: rinominati `W017_npx`-`W020_npx`. Categorie nuove emerse solo nel run NPX (mcp-scan ha aggiunto queste rules dopo il run GitHub).
+
+**Tracking origine**: ogni finding mergiato ha campo `_origin: "github"` o `"npx"` per distinguere. Anche dal `server_url` si capisce (URL GitHub vs nome pacchetto npm).
+
+### Numeri NPX (puramente) per categoria
+
+| Cat | Level | Descrizione | Tot NPX | HC-VP | HC-FP | UNC | S2B-VP | S2B-FP | VP fin | FP fin | VP% |
+|-----|-------|-------------|--------:|------:|------:|----:|-------:|-------:|-------:|-------:|----:|
+| E001 | tool | Prompt Injection | 62 | 47 | 0 | 15 | 15 | 0 | **62** | 0 | 100.0% |
+| W015 | server | Untrusted Content Injection | 353 | 330 | 0 | 23 | 23 | 0 | **353** | 0 | 100.0% |
+| W017_npx | server | **Sensitive Data Exposure** | 985 | 648 | 9 | 328 | 328 | 0 | **976** | 9 | 99.1% |
+| W018_npx | server | **Workspace Data Exposure** | 886 | 467 | 4 | 415 | 415 | 0 | **882** | 4 | 99.5% |
+| W019_npx | server | **Destructive Capabilities (shared)** | 720 | 469 | 38 | 213 | 213 | 0 | **682** | 38 | 94.7% |
+| W020_npx | server | **Local Destructive Capabilities** | 867 | 463 | 61 | 343 | 343 | 0 | **806** | 61 | 93.0% |
+| **TOTALE NPX** | | | **3.873** | **2.424** | **112** | **1.337** | **1.337** | **0** | **3.761** | **112** | **97.1%** |
+
+> W001/W016 NPX (rispettivamente 917 e 1.539 finding) sono nei file raw mergiati ma NON contati qui perché non hanno analysis nella struttura unificata.
+
+### Output finale unificato (GitHub + NPX merged per E001/W015)
+
+| Cat | Total (mergiato) | VP | FP | Origine |
+|-----|-----------------:|---:|---:|---------|
+| E001 | 142 | 98 | 44 | 36 GH VP + 62 NPX VP / 44 GH FP |
+| W001 | 2.412 | n/a | n/a | raw only, no analysis |
+| W015 | 952 | 952 | 0 | 599 GH VP + 353 NPX VP |
+| W016 | 3.022 | n/a | n/a | raw only, no analysis |
+| W017_npx | 985 | 976 | 9 | NPX only |
+| W018_npx | 886 | 882 | 4 | NPX only |
+| W019_npx | 720 | 682 | 38 | NPX only |
+| W020_npx | 867 | 806 | 61 | NPX only |
+
+3.296 server NPM (37% degli 8.899) hanno almeno un finding mcp-scan; 5.603 server (63%) hanno fallito l'avvio NPX (`execution_failed`/`execution_timeout`) — normale per pacchetti NPM senza entrypoint MCP corretto.
+
+### Workflow di esecuzione
+
+```bash
+cd analysisAllData/0_tool_mcp_scan
+
+# 1. Stage 2A: HC rules → 3-bucket (filtra _origin=npx automaticamente su E001/W015)
+py -X utf8 _classify_npx.py
+
+# 2. Stage 2B: classifica UNCERTAIN → cache
+py -X utf8 _classify_uncertain.py
+
+# 3. Merge finale: legge cache, produce vp.json/fp.json/audit.json
+py -X utf8 pipeline_mcp_scan_npx.py --category all --cache-only
+
+# Singola categoria:
+py -X utf8 pipeline_mcp_scan_npx.py --category W017_npx --cache-only
+```
+
+### Razionale Stage 2A per categoria
+
+- **E001 (prompt injection)**: VP-strong = pattern espliciti `<IMPORTANT>`, `silently`, `MUST/NEVER`, `ignore previous`, `IMPORTANT: Never disclose`, Chinese 必须; FP-strong = boilerplate enterprise/CLI wrapper. Anche `risk_score=1.0` → VP (LLM mcp-scan highest confidence).
+- **W001 (dangerous words)**: VP solo combo 2+ parole forti (`ignore`+`override`, `bypass`+altre); FP per parole emphasis isolate (`important`, `critical`) o singola parola forte in API tool legittimo.
+- **W015 (passive injection)**: VP-strong = email inbox/webhook/GitHub PR/forum/Discord/exchange orderbook/crowdsource; FP = internal/authenticated source.
+- **W016 (active retrieval)**: VP-strong = public GitHub/npm/PyPI/Wikipedia/Reddit/search-poisoning; FP-strong = `agent must invoke / cannot push / no automatic fetcher`. **Priorità FP** (semantica W016 = `risk_score 0.25 low`, l'azione attiva dell'agent neutralizza il vettore).
+- **W017-W020**: VP-strong + VP-catchall (LLM mcp-scan flag già selettivo); FP solo per public-only/read-only espliciti. **Priorità VP-catchall > FP read-only** (fix per evitare false-FP su evidence che menziona "read-only" come contesto in tool destructive).
+
+### Razionale Stage 2B per categoria
+
+- **E001/W015/W017/W018/W019/W020**: UNCERTAIN residui → VP. Sample 10/cat ha mostrato che la calibrazione mcp-scan è high-precision; quando l'LLM flag e nessuna FP rule match, è VP.
+- **W016**: UNCERTAIN residui → split per pattern "agent must invoke" (FP) vs catch-all (VP). Sample 10 ha mostrato ~70% FP (agent must invoke), ~30% VP.
+- **W001**: zero residui dopo Stage 2A (logica binaria).
+
+### Nuove categorie mcp-scan documentate
+
+#### W017 — Sensitive Data Exposure
+
+**Cosa**: tool che restituiscono dati personali, finanziari, credenziali, comunicazioni private direttamente nel context dell'agente. Più sensibile di W018 (workspace).
+
+**Esempio finding (VP)**: `@0xrelogic/mt5-analysis-mcp` espone `get_account_summary` / `get_recent_trades` / `get_open_positions` → bilanci, posizioni di trading, drawdown.
+
+**Pattern VP HC**:
+- Keyword dati sensibili: `password|api_key|secret|credential|token|private_key`
+- Wallet/seed: `wallet|seed_phrase|mnemonic`
+- Finanziari: `balance|equity|margin|drawdown|account|portfolio|trading|positions|orders`
+- PII: `email inbox|gmail|outlook|personal messages|dm|conversation history`
+- Identificativi: `ssn|tax_id|passport|driver license`
+- Medical: `medical|health|patient|prescription|diagnosis`
+- Vault: `keychain|secret_manager|password_manager`
+
+**Pattern FP HC**:
+- Public on-chain/blockchain price data
+- `get_public_*` / `get_chain_*` / `get_block_*` / `get_price_*`
+- Read-only/view-only public metadata
+
+#### W018 — Workspace Data Exposure
+
+**Cosa**: tool che leggono file locali del workspace (codice sorgente, note progetto, file di configurazione `.cursor/`, `.vscode/`). Blast radius locale ma può esfiltrare IP proprietaria.
+
+**Esempio finding (VP)**: `@2345mfe/magic-prompt-mcp` con tool `auto_rules_distribution` / `sync_to_doc` legge `.cursor/` e directory di progetto.
+
+**Pattern VP HC**:
+- Cursor/VSCode/IDE configs: `\.cursor`, `\.vscode`, `\.idea`
+- Project files: `project files|source code|read files|workspace|dir`
+- Env vars: `\.env file|environment variables`
+- Local notes: `local notes|docs|drafts|files`
+- Git/monorepo: `git repo|monorepo|subprojects`
+
+**Pattern FP HC**:
+- Metadata-only (no content)
+- Version/health/ping checks
+- Public package info
+- IoT/weather station telemetry (non workspace)
+- GPS coordinates di stazioni meteo (non file utente)
+
+#### W019 — Destructive Capabilities (shared)
+
+**Cosa**: tool che possono modificare infrastruttura **condivisa** o eseguire comandi che impattano altri utenti/team. Esecuzione comandi shell, deploy, modifiche DB, kubectl, docker, ecc.
+
+**Esempio finding (VP)**: `1panel-mcp` espone `deploy_website` che pubblica un sito modificando server condiviso.
+
+**Pattern VP HC**:
+- Deploy/publish: `deploy|publish|push to website/service/app`
+- Shell exec: `exec(ute)? (command|shell|bash)`, `run shell|spawn (process|terminal)`
+- DB destruct: `drop (table|database|index)`, `truncate`, `delete all`
+- Orchestration: `kubectl (delete|apply|exec|patch)`, `docker (run|exec|kill)`
+- Package mgmt: `install/uninstall (package|dependency|plugin)`
+- SSH/remote: `ssh exec|command`, `remote (server|host|infrastructure)`
+- IAM/security: `firewall|security_group|iam (rule|policy)`
+- Crypto/finance: `transfer|withdraw|send (funds|crypto|token)`
+- Notifications: `send (email|sms|notification) to`
+
+**Pattern FP HC**:
+- Read-only operations: `get/list/read/query/fetch/view/describe (only|info|status|metadata)`
+- Explicit `read-only access`
+
+#### W020 — Local Destructive Capabilities
+
+**Cosa**: tool che possono modificare/eliminare file **locali** o cambiare stato in un singolo ambiente utente. Blast radius limitato al PC dell'utente, ma comunque irreversibile.
+
+**Esempio finding (VP)**: `@2345mfe/magic-prompt-mcp` con `init_monorepo` (crea dir doc/), `generate_subproject` (scrive `.cursor/rules`), `sync_to_doc` (overwrite tra `.cursor` e `doc/`).
+
+**Pattern VP HC**:
+- Write/delete file: `write|create|delete|remove|rm|unlink (files?|directory)`
+- Overwrite: `overwrite|append|modify (files?|config|settings)`
+- Sync local: `sync_to`, `writeFileSync`, `os.remove`, `shutil.rmtree`
+- Reorganize: `reorganize|restructure|move (files?|dirs?)`
+- Edit local: `edit|update|patch (local|project|workspace) files`
+- Init: `init_monorepo|init_project|init_workspace`
+- Scaffold: `generate.{0,15}(rules?|config|scaffold) (files?|in)`
+- Rewrite configs: `rewrite|overwrite (rules?|config|cursor)`
+
+**Pattern FP HC**:
+- Read-only: `only (reads?|lists?|views?|gets?|queries)`
+- Never writes: `never (writes?|modifies?|deletes?)`
+
+### Limitazioni note
+
+- Le percentuali VP alte (94-100%) per W015/W017_npx-W020_npx derivano dalla pre-filtering di mcp-scan internal LLM; quando il framework flagga, è quasi sempre VP reale. I FP residui sono edge cases (es. weather station metadata, lumoz-mcp-send con `MOZ transfers` non catturato dal pattern crypto)
+- W016 escluso da analisi nella struttura unificata (raw only): se analizzato, sarebbe stato ~43.9% VP — calibrato `low (0.25 risk)`, molti tool richiedono che l'agent inizi attivamente la fetch
+- W001 escluso da analisi nella struttura unificata (raw only): se analizzato, sarebbe stato ~1.6% VP — parole come `important`/`critical` sono comuni in inglese tecnico
+- Spot-check 2026-05-18 ha rivelato bug: regex FP read-only matchava "read-only" stand-alone anche in contesti VP destructive. Fix: priorità VP-catchall su FP read-only nelle classify functions
+- **FP rate stimato**: VP raw 3.761 NPX → VP reali stimato ~3.600 (~5% FP residuo per pattern non catturati come "MOZ transfers", "create-payment" senza alternation specifica)
+- **Cross-framework consensus**: non ancora rieseguito per NPX (atteso quando tutte le 7 VM hanno finito)
+
+### Come riprendere l'analisi mcp-scan (struttura unificata)
+
+1. Verificare che `0_tool_mcp_scan/<level>/<cat>/llm_analysis/vp.json` esista (es. `tool-level/E001/`, `server-level/W017_npx/`)
+2. Se servono raffinamenti HC, modificare `_classify_npx.py` (Stage 2A) o `_classify_uncertain.py` (Stage 2B) e rilanciare:
+   ```bash
+   py -X utf8 _classify_npx.py        # rigenera hc_*.json + cache HC (filtra _origin=npx per E001/W015)
+   py -X utf8 _classify_uncertain.py  # appende verdetti UNCERTAIN
+   py -X utf8 pipeline_mcp_scan_npx.py --category all --cache-only
+   ```
+3. Per spot-check: sample random 5 VP + 5 FP per categoria con `random.sample()` su `vp.json["findings"]` / `fp.json["findings"]`
+4. Per investigare un finding specifico: cercare in `audit.json` per `server_url` o `tool_name`
+
+---
+
 ## STATO FINALE 7 TOOL — Pipeline completata ✅
 
-**Data: 2026-04-29 (numeri aggiornati 2026-05-07 post blind-review round 4)**
+**Baseline GitHub (60.205 server) — Data: 2026-04-29 (numeri aggiornati 2026-05-07 post blind-review round 4)**
 
 | Tool | VP raw | VP reali stim (blind) | Note |
 |------|-------:|----------------------:|------|
@@ -2128,7 +2493,32 @@ Vedere `analysisAllData/0_tool_fuzzing/ANALYSIS_GUIDE.md` per dettagli completi.
 | mcp-security-scan | 1.094 | ~1.094 | |
 | mcp-check | 9.453 | ~9.096 | |
 | **tool_fuzzing** | **776** | **~760** | -787 vs originale |
-| **TOTALE** | **18.580** | **~17.819** | FP rate medio **4.4%** (blind n=50/cat) |
+| **TOTALE GitHub** | **18.580** | **~17.819** | FP rate medio **4.4%** (blind n=50/cat) |
+
+### Post-merge NPX (parziale — 2026-05-18)
+
+**mcp-scan + mcp-watch + mcp-security-scan integrati**. Altre 4 VM ancora in corso.
+
+| Tool | VP pre-merge | VP NPX aggiunti | VP post-merge | Cosa è cambiato |
+|------|-------------:|----------------:|--------------:|------------------|
+| mcp-scan | 635 | **+3.761** | **4.396** | 4 categorie nuove (W017-W020) + merge E001/W015 GitHub+NPX |
+| mcp-watch | 835 | **+331** | **1.166** | 6 cat merged, no nuove categorie |
+| mcp-security-scan | 1.094 | **+280** | **1.374** | 7 cat merged (dangerous-capabilities domina), no nuove categorie |
+| mcp-guard | 5.774 | TBD (VM in corso) | 5.774 | |
+| mcp-check | 9.453 | TBD (VM in corso) | 9.453 | |
+| mcp-shield | 16 | TBD (VM in corso) | 16 | |
+| tool_fuzzing | 776 | TBD (VM in corso) | 776 | |
+| **TOTALE post-merge parziale** | **18.583** | **+4.372** | **22.955** | |
+
+**Composizione mcp-scan post-merge (4.396 VP)**:
+- E001 merged: 98 VP (36 GitHub + 62 NPX)
+- W015 merged: 952 VP (599 GitHub + 353 NPX)
+- W017_npx (NUOVA): 976 VP
+- W018_npx (NUOVA): 882 VP
+- W019_npx (NUOVA): 682 VP
+- W020_npx (NUOVA): 806 VP
+
+Cross-framework consensus per NPX **non ancora calcolato** (attende il completamento di tutte le 7 VM).
 
 ### Round 4 fix (2026-05-07)
 

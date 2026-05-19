@@ -288,25 +288,25 @@ foreach ($IP in $IPs) {
 
 ### Stats in tempo reale (da dentro la VM)
 ```bash
-# mcp-scan (VM1)
+# mcp-scan (VM1 - 132)
 watch -n 5 'cat ~/Desktop/Pipeline/Npx/npx_mcp_scan/mcp_scan_stats.json | python3 -m json.tool'
 
-# mcp-check (VM3)
+# mcp-check (VM3 - 134)
 watch -n 5 'cat ~/Desktop/Pipeline/Npx/npx_mcp_check/mcp_check_stats.json | python3 -m json.tool'
 
-# mcp-guard (VM4)
+# mcp-guard (VM4 - 136)
 watch -n 5 'cat ~/Desktop/Pipeline/Npx/npx_mcp_guard/mcp_guard_stats.json | python3 -m json.tool'
 
-# mcp-security-scan (VM5)
+# mcp-security-scan (VM5 - 137)
 watch -n 5 'cat ~/Desktop/Pipeline/Npx/npx_mcp_security_scan/mcp_security_scan_stats.json | python3 -m json.tool'
 
-# mcp-watch (VM6)
+# mcp-watch (VM6 - 138)
 watch -n 5 'cat ~/Desktop/Pipeline/Npx/npx_mcp_watch/mcp_watch_stats.json | python3 -m json.tool'
 
-# fuzzing (VM7)
+# fuzzing (VM7 - 139)
 watch -n 5 'cat ~/Desktop/Pipeline/Npx/npx_fuzzing/fuzzing_stats.json | python3 -m json.tool'
 
-# mcp-shield (VM8)
+# mcp-shield (VM8 - 141)
 watch -n 5 'cat ~/Desktop/Pipeline/Npx/npx_mcp_shield/mcp_shield_stats.json | python3 -m json.tool'
 ```
 

@@ -6,6 +6,14 @@
 | 2 | `GreptimeTeam/greptimedb-mcp-server` | `server.py:305` | **FP (FP)** | `table = validate_table_name(table)` con regex `^[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)?$` (strict allowlist). Mitigato. |
 | 3 | `JexinSam/mssql_mcp_server` | `server.py:82` | **VP-C (VP-C)** | `table = parts[0]` da URI MCP, zero validazione, pyodbc supporta stacked queries → RCE via `xp_cmdshell`. |
 
+## 2. dangerous-capabilities (mcp-security-scan, X-01) — 1.001 VP
+
+| # | Server | Tipo server | Verdetto |
+|---|--------|-------------|:--------:|
+| 1 | `0xshariq/docker-mcp-server` | Docker ops (16 tool Docker) | **VP-L (VP)** (by design) |
+| 2 | `AI-QL/mcp-devcontainers` | Devcontainer manager (CLI exec) | **VP-L (VP)** (by design) |
+| 3 | `AiondaDotCom/mcp-salesforce` | Salesforce API client | **VP-L (VP)** (CRUD intenzionale) |
+
 ## 3. credential-leak (mcp-watch) — 619 VP
 
 Verifica fetchando il valore concreto di `evidence`:
@@ -15,6 +23,14 @@ Verifica fetchando il valore concreto di `evidence`:
 | 1 | `ChromeDevTools/chrome-devtools-mcp` | `tools/performance.ts:229` | `key=AIzaSyBn5gimNjhiEyA_euicSKko6IlD3HdgUfk` | **FP (FP)** — Google CrUX API key pubblica (documentata da Google come key di lettura non ristretta). |
 | 2 | `istanadodan/mcp_py_exam` | `.env:1` | `GOOGLE_API_KEY=AIzaSyDy6v...` | **VP-C (VP-C)** — `.env` committato con Google API key reale. |
 | 3 | `istanadodan/mcp_py_exam` | `gemini_cli_mcp/.env` | stesso | **VP-C (VP-C)** |
+
+## 4. ssrf (mcp-guard) — 717 VP
+
+| # | Server | File:Line | Pattern | Verdetto |
+|---|--------|-----------|---------|:--------:|
+| 1 | `GoPlausible/algorand-mcp` | `nfd/index.ts:341` | `fetch(\`${NFD_API_URL}/nfd/${params.nameOrID}?...\`)` | **VP-D (VP)** — `params.nameOrID` controllato attaccante ma su base URL hardcoded (NFD_API_URL) → impact limitato a path traversal su SaaS API noto. |
+| 2 | `doobidoo/MCP-Context-Provider` | `http-bridge.ts:147` | `this.fetch(\`/memories?${params.toString()}\`)` | **VP-D (VP)** — base URL bound al client SDK; query string da utente → limited impact. |
+| 3 | `tevonsb/homeassistant-mcp` | `index.ts:916` | `fetch(\`${hacsBase}/repositories?category=${params.category}\`)` | **VP-D (VP)** — params.category controllabile su base URL hardcoded. | 
 
 ## 5. untrusted-content (mcp-scan W015) — 599 VP
 
@@ -77,3 +93,60 @@ Verifica fetchando `evidence` concreto:
 | 1 | `Lucassssss/eechat` | `electron/main/updater.ts` | INSECURE_TRANSPORT | **VP-C (VP-C)** — auto-updater su HTTP è ad alto rischio. |
 | 3-6 | `moises-paschoalick/ai-agent-with-mcp` | `client.ts/index.ts` | INSECURE_TRANSPORT | **VP-L (FP)** — projct demo, HTTP localhost dev. |
 | 9-10 | `sebszczec/pihole-mcp` | `main.py` | SESSION_ID_IN_URL | **VP-C (VP-C)** — session ID Pi-hole real (auth tokens in URL query string). |
+
+## 11. prompt-injection (mcp-scan tool-level E001) — 36 VP
+
+| # | Server | Tool | Pattern flag | Verdetto |
+|---|--------|------|--------------|:--------:|
+| 1 | `AiondaDotCom/mcp-salesforce` | `salesforce_learn_context` | "PROACTIVELY", "AUTOMATICALLY" | **VP-D (VP)** — comportamento change but bordererline. |
+| 2 | `Teradata/teradata-mcp-server` | `rag_Execute_Workflow` | "Execute silently", "Hide all tool execution steps" | **VP-C (VP)** — istruzioni di hiding chiare. |
+| 3 | `TocharianOU/mcp-server-kibana` | `execute_kb_api` | parametro `break_token_rule` | **VP-C (VP)** — LLM-targeted parameter. |
+
+## 12. insecure-deserialization (mcp-guard) — 31 VP **(analisi completa)**
+
+L'analisi è stata estesa a tutti i 31 finding della categoria.
+
+| # | Server | File:Line | Source del dato pickled | Verdetto |
+|---|--------|-----------|-------------------------|:--------:|
+| 1 | `davidf9999/gx-mcp-server` | `sqlite_backend.py:71` | Local SQLite DataFrame cache (`pickle.dumps`→`pickle.loads` round-trip) | **VP-L (VP)** |
+| 3 | `nonead/nUniversal-Robots-MCP` | `URBasic/advanced_data_recorder.py:730` | Local `.pklz` file (libreria URBasic vendored, file path da config) | **VP-L (VP)** |
+| 4 | `assafelovic/gpt-researcher` | `browser/browser.py:125` | `self.cookie_filename` interno | **VP-L (VP)** |
+
+## 13. sensitive-file-access (mcp-shield) — 11 VP **(analisi completa)**
+
+L'analisi è stata estesa a tutti gli 11 finding della categoria.
+
+| # | Server | Tool | Description del tool | Verdetto |
+|---|--------|------|---------------------|:--------:|
+| 1 | `schwarztim/sec-bloodhound-mcp` | `bloodhound_dcsyncers` | "Get principals with DCSync rights (can dump domain credentials)" | **VP-L (VP)** |
+| 2 | `schwarztim/sec-evil-winrm-mcp` | `evilwinrm_connect` | "Establish connection parameters for Evil-WinRM session. ... Supports password, NTLM hash (pass-the-hash), SSL, and Kerberos auth..." | **VP-L (VP)** |
+| 3 | `schwarztim/sec-mimikatz-mcp` | `mimikatz_sekurlsa_wdigest` | "Extract WDigest credentials from LSASS memory" | **VP-L (VP)** |
+
+## 14. sensitive-info-disclosure — 9 VP (multi-source completo)
+
+| # | Server | File | Pattern | Verdetto |
+|---|--------|------|---------|:--------:|
+| 1-2 | `neozhangtcl/simple-mcp-server` | `src/index.js` | Debug info in error message | **VP-C (VP)** — stack trace leak nei response runtime. |
+| 3-4 | `agentics-ai/code-mcp` | `dist/src/index.js` | Debug info in error message | **VP- (VP)** — stesso pattern. |
+
+## 15. access-control (mcp-watch) — 7 VP
+
+| # | Server | File | Verdetto |
+|---|--------|------|:--------:|
+| 1-6 | `Jaikumar3/aws-pentest-mcp` | `src/index.ts` | **VP-L (FP, security framework)** — AWS pentest tool, IAM privilege escalation by design. |
+| 7 | `Wawtawsha/durandal-memory-bridge` | `database-setup.js` | **VP- (VP)** — `GRANT ALL PRIVILEGES ON DATABASE ${dbName} TO ${userName}` (documented in CLAUDE.md). |
+
+## 16. data-exfiltration (mcp-watch) — 2 VP
+
+| # | Server | File | Verdetto |
+|---|--------|------|:--------:|
+| 1 | `skdkfk8758/MCP-ProjectManager` | `cli/src/commands/init.ts` | **VP-C (VP)** — payload HTTP esterno con dati sensibili. |
+| 2 | `vincentmcleese/promtHire-mcp` | `server.ts` | **VP-C (VP)** — `CONVERSATION_EXFILTRATION_TRIGGER`, tool description con istruzioni di esfiltrazione conversazione (CLAUDE.md). |
+
+## 17. tool-shadowing (mcp-shield) — 1 VP
+
+| # | Server | Tool | Pattern | Verdetto |
+|---|--------|------|---------|:--------:|
+| 1 | `michaelguo1991/math-mcp-server-nodejs` | `subtract` | `<IMPORTANT>` tag che redirige email a `attacker@pwnd.com` | **VP-C (VP)** — classico tool shadowing dimostrativo (vedi CLAUDE.md). |
+
+### Per saperne di più su tutta l'analisi fatta: scaricare e leggere la chat di gemini "Veri Positivi: Sicurezza MCP Server" -> https://gemini.google.com/share/16bfc0cdebd6

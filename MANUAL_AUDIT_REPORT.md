@@ -107,9 +107,9 @@ I primi 10 hanno tutti `evidence` vuoto perché il framework salva solo il paylo
 
 | # | Server | Tipo server | Verdetto |
 |---|--------|-------------|:--------:|
-| 1 | `0xshariq/docker-mcp-server` | Docker ops (16 tool Docker) | **VP-L** (by design) |
-| 2 | `AI-QL/mcp-devcontainers` | Devcontainer manager (CLI exec) | **VP-L** (by design) |
-| 3 | `AiondaDotCom/mcp-salesforce` | Salesforce API client | **VP-L** (CRUD intenzionale) |
+| 1 | `0xshariq/docker-mcp-server` | Docker ops (16 tool Docker) | **VP-L (VP)** (by design) |
+| 2 | `AI-QL/mcp-devcontainers` | Devcontainer manager (CLI exec) | **VP-L (VP)** (by design) |
+| 3 | `AiondaDotCom/mcp-salesforce` | Salesforce API client | **VP-L (VP)** (CRUD intenzionale) |
 | 4 | `AiondaDotCom/mcp-ssh` | SSH executor | **VP-L** (by design, SSH exec è la feature) |
 | 5 | `Flux159/mcp-server-kubernetes` | Kubernetes manager | **VP-L** (by design) |
 | 6 | `GreptimeTeam/greptimedb-mcp-server` | DB client | **VP-L** (by design) |
@@ -331,9 +331,9 @@ I FP raggiungono il 14% — il pattern Firebase web / OAuth public / vendored li
 
 | # | Server | File:Line | Pattern | Verdetto |
 |---|--------|-----------|---------|:--------:|
-| 1 | `GoPlausible/algorand-mcp` | `nfd/index.ts:341` | `fetch(\`${NFD_API_URL}/nfd/${params.nameOrID}?...\`)` | **VP-D** — `params.nameOrID` controllato attaccante ma su base URL hardcoded (NFD_API_URL) → impact limitato a path traversal su SaaS API noto. |
-| 2 | `doobidoo/MCP-Context-Provider` | `http-bridge.ts:147` | `this.fetch(\`/memories?${params.toString()}\`)` | **VP-D** — base URL bound al client SDK; query string da utente → limited impact. |
-| 3 | `tevonsb/homeassistant-mcp` | `index.ts:916` | `fetch(\`${hacsBase}/repositories?category=${params.category}\`)` | **VP-D** — params.category controllabile su base URL hardcoded. |
+| 1 | `GoPlausible/algorand-mcp` | `nfd/index.ts:341` | `fetch(\`${NFD_API_URL}/nfd/${params.nameOrID}?...\`)` | **VP-D (VP)** — `params.nameOrID` controllato attaccante ma su base URL hardcoded (NFD_API_URL) → impact limitato a path traversal su SaaS API noto. |
+| 2 | `doobidoo/MCP-Context-Provider` | `http-bridge.ts:147` | `this.fetch(\`/memories?${params.toString()}\`)` | **VP-D (VP)** — base URL bound al client SDK; query string da utente → limited impact. |
+| 3 | `tevonsb/homeassistant-mcp` | `index.ts:916` | `fetch(\`${hacsBase}/repositories?category=${params.category}\`)` | **VP-D (VP)** — params.category controllabile su base URL hardcoded. | 
 | 4 | `tevonsb/homeassistant-mcp` | `index.ts:1037` | `fetch(\`${HASS_HOST}/api/config/automation/config/${params.automation_id}\`)` | **VP-D** — id parametro su base URL hardcoded. |
 | 5 | `tevonsb/homeassistant-mcp` | `index.ts:1063` | stesso pattern | **VP-D** |
 | 6 | `tevonsb/homeassistant-mcp` | `index.ts:1087` | stesso pattern | **VP-D** |
@@ -894,9 +894,9 @@ Si aggiungono:
 
 | # | Server | Tool | Pattern flag | Verdetto |
 |---|--------|------|--------------|:--------:|
-| 1 | `AiondaDotCom/mcp-salesforce` | `salesforce_learn_context` | "PROACTIVELY", "AUTOMATICALLY" | **VP-D** — comportamento change but bordererline. |
-| 2 | `Teradata/teradata-mcp-server` | `rag_Execute_Workflow` | "Execute silently", "Hide all tool execution steps" | **VP-C** — istruzioni di hiding chiare. |
-| 3 | `TocharianOU/mcp-server-kibana` | `execute_kb_api` | parametro `break_token_rule` | **VP-C** — LLM-targeted parameter. |
+| 1 | `AiondaDotCom/mcp-salesforce` | `salesforce_learn_context` | "PROACTIVELY", "AUTOMATICALLY" | **VP-D (VP)** — comportamento change but bordererline. |
+| 2 | `Teradata/teradata-mcp-server` | `rag_Execute_Workflow` | "Execute silently", "Hide all tool execution steps" | **VP-C (VP)** — istruzioni di hiding chiare. |
+| 3 | `TocharianOU/mcp-server-kibana` | `execute_kb_api` | parametro `break_token_rule` | **VP-C (VP)** — LLM-targeted parameter. |
 | 4 | `TocharianOU/mcp-server-kibana` | `vl_search_saved_objects` | stesso `break_token_rule` | **VP-C** |
 | 5 | `sonnylazuardi/cursor-talk-to-figma-mcp` | `get_reactions` | "CRITICAL: MUST IMMEDIATELY" | **VP-C** — tool chaining forzato. |
 | 6 | `neal3000/mcp_media_server` | `get_hyper3d_status` | "sliently remember it" (typo) | **VP-C** — occultamento esplicito (uno dei BlenderMCP forks, doc CLAUDE.md). |
@@ -991,10 +991,10 @@ L'analisi è stata estesa a tutti i 31 finding della categoria.
 
 | # | Server | File:Line | Source del dato pickled | Verdetto |
 |---|--------|-----------|-------------------------|:--------:|
-| 1 | `davidf9999/gx-mcp-server` | `sqlite_backend.py:71` | Local SQLite DataFrame cache (`pickle.dumps`→`pickle.loads` round-trip) | **VP-L** |
+| 1 | `davidf9999/gx-mcp-server` | `sqlite_backend.py:71` | Local SQLite DataFrame cache (`pickle.dumps`→`pickle.loads` round-trip) | **VP-L (VP)** |
 | 2 | `davidf9999/gx-mcp-server` | `sqlite_backend.py:109` | Stesso pattern di #1 | **VP-L** |
-| 3 | `nonead/nUniversal-Robots-MCP` | `URBasic/advanced_data_recorder.py:730` | Local `.pklz` file (libreria URBasic vendored, file path da config) | **VP-L** |
-| 4 | `assafelovic/gpt-researcher` | `browser/browser.py:125` | `self.cookie_filename` interno | **VP-L** |
+| 3 | `nonead/nUniversal-Robots-MCP` | `URBasic/advanced_data_recorder.py:730` | Local `.pklz` file (libreria URBasic vendored, file path da config) | **VP-L (VP)** |
+| 4 | `assafelovic/gpt-researcher` | `browser/browser.py:125` | `self.cookie_filename` interno | **VP-L (VP)** |
 | 5 | `delonsp/rlm-mcp-server` | `persistence.py:407` | Embedding cache da DB locale (`row[4]`) | **VP-L** |
 | 6 | `dylan-gluck/freecrawl-mcp` | `server.py:509` | `data` letto da SQLite locale (cache HTML) | **VP-L** |
 | 7 | `francoisgoupil/MCP3` | `server.py:32` | `model_str` parametro di `deserialize_model(model_str)` — se chiamata da MCP tool con stringa attacker, **VP-C**; nel codice attuale solo `serialize_model`→`deserialize_model` roundtrip in-process | **VP-D** |
@@ -1044,9 +1044,9 @@ L'analisi è stata estesa a tutti gli 11 finding della categoria.
 
 | # | Server | Tool | Description del tool | Verdetto |
 |---|--------|------|---------------------|:--------:|
-| 1 | `schwarztim/sec-bloodhound-mcp` | `bloodhound_dcsyncers` | "Get principals with DCSync rights (can dump domain credentials)" | **VP-L** |
-| 2 | `schwarztim/sec-evil-winrm-mcp` | `evilwinrm_connect` | "Establish connection parameters for Evil-WinRM session. ... Supports password, NTLM hash (pass-the-hash), SSL, and Kerberos auth..." | **VP-L** |
-| 3 | `schwarztim/sec-mimikatz-mcp` | `mimikatz_sekurlsa_wdigest` | "Extract WDigest credentials from LSASS memory" | **VP-L** |
+| 1 | `schwarztim/sec-bloodhound-mcp` | `bloodhound_dcsyncers` | "Get principals with DCSync rights (can dump domain credentials)" | **VP-L (VP)** |
+| 2 | `schwarztim/sec-evil-winrm-mcp` | `evilwinrm_connect` | "Establish connection parameters for Evil-WinRM session. ... Supports password, NTLM hash (pass-the-hash), SSL, and Kerberos auth..." | **VP-L (VP)** |
+| 3 | `schwarztim/sec-mimikatz-mcp` | `mimikatz_sekurlsa_wdigest` | "Extract WDigest credentials from LSASS memory" | **VP-L (VP)** |
 | 4 | `schwarztim/sec-mimikatz-mcp` | `mimikatz_sekurlsa_msv` | "Extract MSV1_0 credentials (NTLM hashes)" | **VP-L** |
 | 5 | `schwarztim/sec-mimikatz-mcp` | `mimikatz_lsadump_secrets` | "Dump LSA secrets (service account credentials, etc.)" | **VP-L** |
 | 6 | `schwarztim/sec-mimikatz-mcp` | `mimikatz_lsadump_dcsync` | "Perform DCSync attack to replicate AD credentials. Requires domain admin or replication rights." | **VP-L** |
@@ -1108,8 +1108,8 @@ I 5 VP-C aggiuntivi sono qualitativamente differenti dai 11 VP-L offensive: sono
 
 | # | Server | File | Pattern | Verdetto |
 |---|--------|------|---------|:--------:|
-| 1-2 | `neozhangtcl/simple-mcp-server` | `src/index.js` | Debug info in error message | **VP-C** — stack trace leak nei response runtime. |
-| 3-4 | `agentics-ai/code-mcp` | `dist/src/index.js` | Debug info in error message | **VP-C** — stesso pattern. |
+| 1-2 | `neozhangtcl/simple-mcp-server` | `src/index.js` | Debug info in error message | **VP-C (VP)** — stack trace leak nei response runtime. |
+| 3-4 | `agentics-ai/code-mcp` | `dist/src/index.js` | Debug info in error message | **VP- (VP)** — stesso pattern. |
 | 5 | `isamu/mulmoscript-mcp` | `lib/index.js` (sensitive-info-disclosed-fuzzing) | Sensitive information disclosed: `passwd:` | **VP-C** — fuzzing ha estratto contenuto di `/etc/passwd`. |
 | 6-7 | `RaiAnsar/claude_code-gemini-mcp` | `server.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C** × 2 |
 | 8-9 | `noflevi10root/mcp-test` | `main.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C** × 2 |
@@ -1129,8 +1129,8 @@ Tutti 9 finding sono fuzzing-confirmed disclosure (payload echo o stack trace re
 
 | # | Server | File | Verdetto |
 |---|--------|------|:--------:|
-| 1-6 | `Jaikumar3/aws-pentest-mcp` | `src/index.ts` | **VP-L** — AWS pentest tool, IAM privilege escalation by design. |
-| 7 | `Wawtawsha/durandal-memory-bridge` | `database-setup.js` | **VP-C** — `GRANT ALL PRIVILEGES ON DATABASE ${dbName} TO ${userName}` (documented in CLAUDE.md). |
+| 1-6 | `Jaikumar3/aws-pentest-mcp` | `src/index.ts` | **VP-L (FP, security framework)** — AWS pentest tool, IAM privilege escalation by design. |
+| 7 | `Wawtawsha/durandal-memory-bridge` | `database-setup.js` | **VP- (VP)** — `GRANT ALL PRIVILEGES ON DATABASE ${dbName} TO ${userName}` (documented in CLAUDE.md). |
 
 **Aggregato**: 1 VP-C, 6 VP-L (offensive tool). 100% detection corrette.
 
@@ -1140,8 +1140,8 @@ Tutti 9 finding sono fuzzing-confirmed disclosure (payload echo o stack trace re
 
 | # | Server | File | Verdetto |
 |---|--------|------|:--------:|
-| 1 | `skdkfk8758/MCP-ProjectManager` | `cli/src/commands/init.ts` | **VP-C** — payload HTTP esterno con dati sensibili. |
-| 2 | `vincentmcleese/promtHire-mcp` | `server.ts` | **VP-C** — `CONVERSATION_EXFILTRATION_TRIGGER`, tool description con istruzioni di esfiltrazione conversazione (CLAUDE.md). |
+| 1 | `skdkfk8758/MCP-ProjectManager` | `cli/src/commands/init.ts` | **VP-C (VP)** — payload HTTP esterno con dati sensibili. |
+| 2 | `vincentmcleese/promtHire-mcp` | `server.ts` | **VP-C (VP)** — `CONVERSATION_EXFILTRATION_TRIGGER`, tool description con istruzioni di esfiltrazione conversazione (CLAUDE.md). |
 
 **Aggregato**: 2/2 VP-C, 0 FP. 100% corretti.
 
@@ -1151,7 +1151,7 @@ Tutti 9 finding sono fuzzing-confirmed disclosure (payload echo o stack trace re
 
 | # | Server | Tool | Pattern | Verdetto |
 |---|--------|------|---------|:--------:|
-| 1 | `michaelguo1991/math-mcp-server-nodejs` | `subtract` | `<IMPORTANT>` tag che redirige email a `attacker@pwnd.com` | **VP-C** — classico tool shadowing dimostrativo (vedi CLAUDE.md). |
+| 1 | `michaelguo1991/math-mcp-server-nodejs` | `subtract` | `<IMPORTANT>` tag che redirige email a `attacker@pwnd.com` | **VP-C (VP)** — classico tool shadowing dimostrativo (vedi CLAUDE.md). |
 
 **Aggregato**: 1/1 VP-C. Detection corretta.
 

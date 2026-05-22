@@ -159,4 +159,4 @@ L'analisi è stata estesa a tutti gli 11 finding della categoria.
 
 ### Per saperne di più su tutta l'analisi fatta: scaricare e leggere la chat di gemini "Veri Positivi: Sicurezza MCP Server" -> https://gemini.google.com/share/16bfc0cdebd6
 
-Continuare da 12
+Continuare da 12 

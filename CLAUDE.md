@@ -1413,7 +1413,78 @@ FP (21 esempi rappresentativi):
 
 ## Post-processing mcp-check: Analisi conformance MCP
 
-### Contesto
+### Merge GitHub + NPX (2026-05-21): struttura unificata
+
+**Decisione**: i dati GitHub e NPX sono stati **mergiati** in `0_tool_mcp_check/`
+(no più cartella separata). Tutte le 12 categorie analizzate in GitHub esistono
+anche in NPX tranne 4 (`handshake/invalid_arguments`, `tool_discovery/invalid_arguments`,
+`tool_discovery/unauthorized_or_auth_missing`, `tool_invocation/panic_or_crash`)
+dove NPX ha 0 raw entries — preservate GH-only. NESSUN suffisso `_npx` su cartelle.
+
+```
+analysisAllData/0_tool_mcp_check/
+├── README.md                                ← documentazione merge
+├── filter_mcp_check.py                      ← Stage 1
+├── pipeline_mcp_check.py                    ← Stage 2A + 2B + merge
+├── _classify_uncertain_npx.py               ← Stage 2B NPX (riproducibilità)
+├── _merge_github_npx.py                     ← script merge (riproducibilità)
+├── mcp_check_stats_github.json / *_npx.json
+├── <fase>/<cat>/                            ← raw MERGED + _origin field
+└── <fase>/<cat>/filtered/                   ← filtered + llm_analysis MERGED
+```
+
+**Logica di merge:**
+- **12 categorie analizzate ENTRAMBE**: raw + filtered + llm_analysis MERGED
+- **4 categorie GH-only** (NPX 0 raw): preservate intatte con `_origin: github`
+- Categorie noise (not_connected, timeout, connection_refused, file_not_found,
+  docker_missing, macos_specific_failed) raw kept ma NON analizzate
+
+Ogni finding mergiato ha campo `_origin: "github" | "npx"`.
+
+### Risultati post-merge mcp-check
+
+| Categoria | VP GH | VP NPX | VP merged | FP merged |
+|-----------|------:|-------:|----------:|----------:|
+| handshake/schema_violation | 49 | 54 | **103** | 0 |
+| handshake/other_errors | 110 | 28 | **138** | 9 |
+| handshake/method_not_found | 289 | 160 | **449** | 0 |
+| handshake/invalid_arguments (GH only) | 2 | — | **2** | 5 |
+| handshake/unauthorized_or_auth_missing | 0 | 0 | **0** | 8 |
+| tool_discovery/schema_violation | 229 | 84 | **313** | 0 |
+| tool_discovery/other_errors | 26 | 16 | **42** | 5 |
+| tool_discovery/method_not_found | 42 | 25 | **67** | 0 |
+| tool_discovery/warnings | 357 | 292 | **649** | 0 |
+| tool_invocation/schema_violation | 4.860 | 2.641 | **7.501** | 0 |
+| tool_invocation/other_errors | 3.361 | 2.185 | **5.546** | 672 |
+| tool_invocation/invalid_arguments | 74 | 18 | **92** | 242 |
+| tool_invocation/method_not_found | 50 | 27 | **77** | 0 |
+| tool_invocation/panic_or_crash (GH only) | 4 | — | **4** | 0 |
+| tool_invocation/unauthorized_or_auth_missing | 0 | 0 | **0** | 182 |
+| tool_invocation/warnings | 0 | 0 | **0** | 1.208 |
+| **TOTALE** | **9.453** | **5.530** | **14.983** | **2.331** |
+
+NPX VP rate: 5.530/6.213 = 89.0% (vs GitHub 9.453/11.101 = 85.2%).
+
+### Workflow eseguito per NPX (sintesi)
+- Stage 1: 22.621 raw → 6.213 kept (-72.5%)
+- Stage 2A: 5.520 HC-VP + 609 HC-FP + 84 UNCERTAIN
+- Stage 2B (in-chat Sonnet su 84): 10 VP + 74 FP
+- Risultato NPX: **5.530 VP / 683 FP**
+
+### Stage 2B NPX (84 UNCERTAIN classificati)
+
+- **tool_invocation/invalid_arguments** (10 → 0 VP / 10 FP): tutti server validano
+  correttamente input "test" (telefono format, SMILES, math expression, Hex string).
+- **tool_invocation/other_errors** (74 → 10 VP / 64 FP):
+  - 10 VP: JS runtime bugs (`prompt-flow-mcp` Cannot use 'in' on undefined),
+    URL parse undefined (`@undefined0_0/jira-mcp`, `chip-mcp`, `mcp-server-flomo`,
+    `image-to-matlab-mcp`, `llmready/mcp`), DEP0040 deprecation treated as error
+    (`bruno-mcp` x2), JSON Schema serialization (`crypto-earn-mcp`), undefined
+    method name (`mcp-server-rss3`).
+  - 64 FP: env vars missing, auth required, external API down, file format
+    rejected correctamente.
+
+### Contesto (originale GitHub)
 
 mcp-check è un **test harness di conformance** per il protocollo MCP (NON uno scanner di sicurezza). Testa i server MCP attraverso 3 fasi: **Handshake**, **Tool Discovery**, **Tool Invocation**. I finding rappresentano violazioni della specifica MCP.
 
@@ -2495,20 +2566,20 @@ py -X utf8 pipeline_mcp_scan_npx.py --category W017_npx --cache-only
 | **tool_fuzzing** | **776** | **~760** | -787 vs originale |
 | **TOTALE GitHub** | **18.580** | **~17.819** | FP rate medio **4.4%** (blind n=50/cat) |
 
-### Post-merge NPX (parziale — 2026-05-18)
+### Post-merge NPX (parziale — 2026-05-21)
 
-**mcp-scan + mcp-watch + mcp-security-scan integrati**. Altre 4 VM ancora in corso.
+**mcp-scan + mcp-watch + mcp-security-scan + mcp-check integrati**. Altre 3 VM ancora in corso.
 
 | Tool | VP pre-merge | VP NPX aggiunti | VP post-merge | Cosa è cambiato |
 |------|-------------:|----------------:|--------------:|------------------|
 | mcp-scan | 635 | **+3.761** | **4.396** | 4 categorie nuove (W017-W020) + merge E001/W015 GitHub+NPX |
 | mcp-watch | 835 | **+331** | **1.166** | 6 cat merged, no nuove categorie |
 | mcp-security-scan | 1.094 | **+280** | **1.374** | 7 cat merged (dangerous-capabilities domina), no nuove categorie |
+| mcp-check | 9.453 | **+5.530** | **14.983** | 12 cat merged (schema_violation/other_errors dominano), no nuove categorie |
 | mcp-guard | 5.774 | TBD (VM in corso) | 5.774 | |
-| mcp-check | 9.453 | TBD (VM in corso) | 9.453 | |
 | mcp-shield | 16 | TBD (VM in corso) | 16 | |
 | tool_fuzzing | 776 | TBD (VM in corso) | 776 | |
-| **TOTALE post-merge parziale** | **18.583** | **+4.372** | **22.955** | |
+| **TOTALE post-merge parziale** | **18.583** | **+9.902** | **28.485** | |
 
 **Composizione mcp-scan post-merge (4.396 VP)**:
 - E001 merged: 98 VP (36 GitHub + 62 NPX)

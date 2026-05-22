@@ -52,6 +52,9 @@ UVX = _uvx_path or str(Path.home() / "AppData/Local/Programs/Python/Python313/Sc
 
 EXCEL_PATH = Path.home() / "Desktop" / "Pipeline" / "0.0. All servers without duplicates, .git, _, hash and ERRORE (60205).xlsx"
 EXCEL_PATH_NPX = Path.home() / "Desktop" / "Pipeline" / "0.0. All servers npx  (8899).xlsx"
+# Unified GitHub+NPX excel for the 2026-05-21 fuzzing rerun. Built by
+# Pipeline/build_unified_excel.py. Has columns: Link, Type (github|npx).
+EXCEL_PATH_UNIFIED = Path.home() / "Desktop" / "Pipeline" / "0.0. All servers unified (69104).xlsx"
 TIMEOUT_SECONDS = 3600
 
 MCP_SECURITY_SCAN_CATEGORIES = {

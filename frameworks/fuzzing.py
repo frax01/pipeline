@@ -92,6 +92,10 @@ def _kill_server_processes(server_command: str):
         print(f"  Killed {killed} lingering server process(es)")
 
 def find_latest_fuzzing_report(base_path: Path) -> Path | None:
+    # NPX path is None — mcp-fuzzer writes reports/sessions relative to its
+    # cwd (Path.cwd() of run_fuzzing.py), so look there.
+    if base_path is None:
+        base_path = Path.cwd()
     reports_dir = base_path / "reports" / "sessions"
     if not reports_dir.exists():
         return None
@@ -316,15 +320,15 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
             "--phase", "both",
             "--protocol", "stdio",
             "--endpoint", endpoint,
-            # Fuzzing intensity — FAST profile (NPX run, 2026-05-16):
-            # most NPX servers expose 0 tools (tools/list fails), so time
-            # is dominated by protocol fuzzing (17 types × runs-per-type).
-            # Cutting runs-per-type 10→3 yields ~3x speedup with negligible
-            # impact on VP/FP detection (protocol categories saturate fast).
-            "--runs", "5",
-            "--runs-per-type", "3",
-            # Timeouts — 25s per request is plenty with --no-network
-            "--timeout", "25",
+            # Fuzzing intensity — FAST-V2 profile (rerun 69K, 2026-05-21):
+            # rerun is needed because previous schema dropped server_response
+            # and success_details. Halving --runs (5→3) and --runs-per-type
+            # (3→2) keeps 17×2=34 diverse protocol payloads per server which
+            # is enough to saturate HC rules in pipeline_fuzzing.
+            "--runs", "3",
+            "--runs-per-type", "2",
+            # Timeouts — 15s per request with --no-network (most fail fast)
+            "--timeout", "15",
             # Concurrency
             "--process-max-concurrency", "2",
             # Safety system — keep both fs sandbox AND no-network. Removing
@@ -341,13 +345,13 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
             "--safety-report",
             # Output
             "--output-format", "json",
-            # Watchdog (kill hung processes) — FAST profile: tighter
-            # timeouts to kill stuck servers earlier. NPX startup is
-            # ~5-15s for most packages, so 25s gives enough buffer.
+            # Watchdog — FAST-V2 profile: tighter timeouts. With --no-network
+            # most payloads either get an immediate response or time out
+            # quickly. 15s watchdog + 5s buffer kills stuck servers earlier.
             "--watchdog-check-interval", "1.0",
-            "--watchdog-process-timeout", "25",
+            "--watchdog-process-timeout", "15",
             "--watchdog-extra-buffer", "5",
-            "--watchdog-max-hang-time", "50",
+            "--watchdog-max-hang-time", "30",
             # Retry on transient failures — FAST profile: no retry
             "--process-retry-count", "1",
             "--process-retry-delay", "1.0",
@@ -362,23 +366,25 @@ def execute_mcp_fuzzing(path: Path, command: str, elem: str | list, mode: str = 
         # tail every log line in real time.
         env['PYTHONUNBUFFERED'] = '1'
 
-        # Hard cap on the whole mcp-fuzzer invocation — FAST profile:
-        # cut from 300s to 150s. With runs 5 / runs-per-type 3 / timeout 25s
-        # the worst-case fuzzing budget is roughly:
-        #   tools: ~13 tools * 5 runs * 25s = ~25min  (capped by watchdog)
-        #   protocol: 17 types * 3 runs * 25s = ~21min (capped by watchdog)
-        # In practice each server hits the per-tool watchdog (25s) and
-        # exits well under 150s.
-        process_timeout = 150 if mode in ("all", "both") else 90
+        # Hard cap on the whole mcp-fuzzer invocation — FAST-V2: 90s.
+        # With runs 3 / runs-per-type 2 / timeout 15s worst-case is:
+        #   tools: ~13 tools * 3 runs * 15s = ~10min  (capped by watchdog)
+        #   protocol: 17 types * 2 runs * 15s = ~8.5min (capped by watchdog)
+        # Each server in practice hits the per-tool watchdog (15s) and
+        # exits in 30-60s. 90s is the safety net for slow startups.
+        process_timeout = 90 if mode in ("all", "both") else 60
 
         # Run mcp-fuzzer via Popen and stream stdout/stderr to our own
         # stdout line-by-line. This is the only way to see watchdog /
         # tool_client / tool_fuzzer DEBUG traces in real time — the old
         # subprocess.run(capture_output=True) blocked until exit.
         accumulated_stdout: list[str] = []
+        # NPX servers have no cloned repo (path=None) — fall back to current
+        # working directory so subprocess.Popen doesn't try to chdir to 'None'.
+        cwd_dir = str(path) if path is not None else None
         proc = subprocess.Popen(
             cmd,
-            cwd=str(path),
+            cwd=cwd_dir,
             stdout=subprocess.PIPE,
             stderr=subprocess.STDOUT,  # merge stderr into stdout
             text=True,

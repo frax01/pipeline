@@ -13,16 +13,17 @@
 - **TOTALE pipeline GitHub**: **18.580** VP — FP rate medio 4.4% (blind n=50/cat), VP reali stim ~17.819
 - **Server con almeno una vulnerabilità**: 8.745 (14.5% del totale 60.205)
 
-### Post-merge NPX parziale (2026-05-18)
+### Post-merge NPX parziale (2026-05-21)
 
-È stato integrato un secondo dataset di **8.899 server NPX** (pacchetti npm). Finora **mcp-scan + mcp-watch + mcp-security-scan** integrati (vedi Appendice C, C-bis, C-ter):
+È stato integrato un secondo dataset di **8.899 server NPX** (pacchetti npm). Finora **mcp-scan + mcp-watch + mcp-security-scan + mcp-check** integrati (vedi Appendice C, C-bis, C-ter, C-quater):
 
 - **mcp-scan**: 635 → **4.396** VP (+3.761 VP, di cui 3.346 da 4 categorie nuove W017-W020)
 - **mcp-watch**: 835 → **1.166** VP (+331 VP, principalmente credential-leak e protocol-violation)
 - **mcp-security-scan**: 1.094 → **1.374** VP (+280 VP, dangerous-capabilities domina con +239)
-- **TOTALE pipeline post-merge parziale**: 18.580 → **22.955** VP
+- **mcp-check**: 9.453 → **14.983** VP (+5.530 VP, schema_violation e other_errors dominano)
+- **TOTALE pipeline post-merge parziale**: 18.580 → **28.485** VP
 
-Le altre 4 VM (mcp-guard/mcp-check/tool_fuzzing/mcp-shield in corso) **non ancora integrate**. Cross-framework consensus per NPX **non ancora calcolato**.
+Le altre 3 VM (mcp-guard/tool_fuzzing/mcp-shield in corso) **non ancora integrate**. Cross-framework consensus per NPX **non ancora calcolato**.
 
 ---
 
@@ -6450,12 +6451,119 @@ analysisAllData/0_tool_mcp_watch/
 
 ---
 
-### Totali aggiornati con NPX (post-merge mcp-scan + mcp-watch + mcp-security-scan)
+---
+
+## Appendice C-quater — mcp-check NPX merge
+
+### C-quater.1 Stato
+
+**Completato 2026-05-21** (run NPX VM134 finito 2026-05-20). Su 8.899 pacchetti NPM:
+- 8.678 server (97.5%) almeno parzialmente avviati e testati
+- 5.603 (63%) fallisce `execution_failed`/`execution_timeout` (normale per pkg NPM senza entrypoint MCP)
+- Dataset NPX raw mcp-check: 22.621 entry "interessanti" (escluse categorie noise infrastrutturale)
+
+### C-quater.2 Workflow eseguito su NPX
+
+| Stage | Output |
+|-------|--------|
+| **Stage 1** (filter_mcp_check.py) | 22.621 → 6.213 kept (-72.5%) |
+| **Stage 2A** (HC rules su 14 categorie) | 5.520 HC-VP + 609 HC-FP + 84 UNCERTAIN |
+| **Stage 2B** (in-chat Sonnet su 84 UNCERTAIN) | +10 VP + 74 FP |
+| **Merge** | **5.530 VP / 683 FP NPX** |
+
+Stage 1 scarta noise infrastrutturale: `not_connected` (16.408 entries),
+`timeout` (1.024), `connection_refused` (87), `file_not_found` (21).
+
+### C-quater.3 Numeri mcp-check NPX per categoria
+
+| Categoria | NPX raw | Stage 1 kept | VP fin | FP fin |
+|-----------|--------:|-------------:|-------:|-------:|
+| handshake/schema_violation | 54 | 54 | **54** | 0 |
+| handshake/other_errors | 186 | 30 | **28** | 2 |
+| handshake/method_not_found | 160 | 160 | **160** | 0 |
+| handshake/unauthorized_or_auth_missing | 3 | 3 | **0** | 3 |
+| tool_discovery/schema_violation | 84 | 84 | **84** | 0 |
+| tool_discovery/other_errors | 52 | 18 | **16** | 2 |
+| tool_discovery/method_not_found | 25 | 25 | **25** | 0 |
+| tool_discovery/warnings | 292 | 292 | **292** | 0 |
+| tool_invocation/schema_violation | 2.641 | 2.641 | **2.641** | 0 |
+| tool_invocation/other_errors | 2.516 | 2.401 | **2.185** | 216 |
+| tool_invocation/invalid_arguments | 81 | 81 | **18** | 63 |
+| tool_invocation/method_not_found | 27 | 27 | **27** | 0 |
+| tool_invocation/unauthorized_or_auth_missing | 67 | 67 | **0** | 67 |
+| tool_invocation/warnings | 330 | 330 | **0** | 330 |
+| **TOTALE NPX** | **6.518** | **6.213** | **5.530** | **683** |
+
+> Categorie GH-only (NPX 0 raw): `handshake/invalid_arguments`,
+> `tool_discovery/invalid_arguments`, `tool_discovery/unauthorized_or_auth_missing`,
+> `tool_invocation/panic_or_crash` — preservate intatte.
+
+### C-quater.4 Output unificato GitHub + NPX
+
+| Categoria | VP GH | VP NPX | **VP merged** | FP merged | NPX contributo |
+|-----------|------:|-------:|--------------:|----------:|----------------|
+| handshake/schema_violation | 49 | 54 | **103** | 0 | +110% |
+| handshake/other_errors | 110 | 28 | **138** | 9 | +25% |
+| handshake/method_not_found | 289 | 160 | **449** | 0 | +55% |
+| handshake/invalid_arguments (GH only) | 2 | — | **2** | 5 | — |
+| handshake/unauthorized_or_auth_missing | 0 | 0 | **0** | 8 | 0 |
+| tool_discovery/schema_violation | 229 | 84 | **313** | 0 | +37% |
+| tool_discovery/other_errors | 26 | 16 | **42** | 5 | +62% |
+| tool_discovery/method_not_found | 42 | 25 | **67** | 0 | +60% |
+| tool_discovery/warnings | 357 | 292 | **649** | 0 | +82% |
+| tool_invocation/schema_violation | **4.860** | **2.641** | **7.501** | 0 | +54% |
+| tool_invocation/other_errors | **3.361** | **2.185** | **5.546** | 672 | +65% |
+| tool_invocation/invalid_arguments | 74 | 18 | **92** | 242 | +24% |
+| tool_invocation/method_not_found | 50 | 27 | **77** | 0 | +54% |
+| tool_invocation/panic_or_crash (GH only) | 4 | — | **4** | 0 | — |
+| tool_invocation/unauthorized_or_auth_missing | 0 | 0 | **0** | 182 | 0 |
+| tool_invocation/warnings | 0 | 0 | **0** | 1.208 | 0 |
+| **TOTALE** | **9.453** | **5.530** | **14.983** | **2.331** | **+58.5%** |
+
+### C-quater.5 Pattern Stage 2B per categoria UNCERTAIN
+
+- **tool_invocation/invalid_arguments (10 UNCERTAIN → 0 VP / 10 FP)**: tutti
+  server validano correttamente input "test" inviato da mcp-check (telefono
+  format, SMILES notation, math expression, Hex string, YouTube URL, ecc.).
+  La validation lato server è il comportamento corretto.
+
+- **tool_invocation/other_errors (74 UNCERTAIN → 10 VP / 64 FP)**:
+  - **10 VP** — bug runtime reali:
+    - **JS runtime errors**: `prompt-flow-mcp` ("Cannot use 'in' operator on undefined")
+    - **URL parse undefined** (manca validazione input): `@undefined0_0/jira-mcp`,
+      `chip-mcp`, `mcp-server-flomo`, `@huangchen1989/image-to-matlab-mcp`,
+      `@llmready/mcp` (server costruisce URL con "undefined" o input non validato)
+    - **DEP0040 deprecation warning treated as error**: `@mseep/bruno-mcp`,
+      `bruno-mcp` (server fail su warning Node.js, non bug critico ma non-conformance)
+    - **JSON Schema serialization bug**: `@ericxstone/crypto-earn-mcp`
+      ("Custom types cannot be represented in JSON Schema")
+    - **Undefined method name**: `mcp-server-rss3` ("Method undefined not found")
+  - **64 FP** — comportamenti corretti o non-bug: env vars missing, auth required,
+    external API down/404, file format rejected, validation Zod corretta.
+
+### C-quater.6 Limitazioni note (NPX mcp-check)
+
+- **schema_violation domina**: 2.641 / 5.530 = 47.8% dei VP NPX sono
+  ValidationFailure Zod sul campo `tools` di `tools/list` (server non conformi
+  alla spec MCP). Conformance issue, non security.
+- **other_errors 86% VP rate**: 2.185 VP / 2.401 = `ErrorHandlingFailure`
+  (tool name injection potential): server non ritorna errore per tool inesistente.
+- **warnings 100% FP**: 330 warning non-determinismo (atteso e corretto).
+- **unauthorized_or_auth_missing 100% FP**: 67 server richiedono auth correttamente.
+- **Nessuna categoria nuova emersa nel run NPX**: stesso schema mcp-check del run GitHub.
+- **0 panic_or_crash NPX**: nessun server NPM ha crashato (pochissimi server Go in NPX,
+  vs 4 panic Go nil-pointer su GitHub).
+- **VP rate complessivo NPX 89%** vs GitHub 85.2%: NPX più "clean" (server NPM
+  meno legacy, ma più frequentemente non conformi).
+
+---
+
+### Totali aggiornati con NPX (post-merge mcp-scan + mcp-watch + mcp-security-scan + mcp-check)
 
 | Dataset | Server | Framework completati | VP totale |
 |---------|-------:|---------------------|----------:|
 | GitHub (run principale) | 60.205 | 7/7 | 18.580 |
-| **NPX (run parallelo)** | **8.899** | **3/7 (mcp-scan + mcp-watch + mcp-security-scan)** | **+4.372** |
-| **Pipeline post-merge parziale** | | | **22.955** |
+| **NPX (run parallelo)** | **8.899** | **4/7 (mcp-scan + mcp-watch + mcp-security-scan + mcp-check)** | **+9.902** |
+| **Pipeline post-merge parziale** | | | **28.485** |
 
-Quando il run NPX sarà completo per tutti i 7 framework (mcp-guard / mcp-check / tool_fuzzing / mcp-shield in corso), andrà rifatto il **cross-framework consensus** dedicato al dataset NPX e l'aggregazione finale dei VP.
+Quando il run NPX sarà completo per tutti i 7 framework (mcp-guard / tool_fuzzing / mcp-shield in corso), andrà rifatto il **cross-framework consensus** dedicato al dataset NPX e l'aggregazione finale dei VP.

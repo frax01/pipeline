@@ -13,10 +13,10 @@ import pandas as pd
 from pathlib import Path
 
 # Global per-server timeout (seconds) - kills the entire server if exceeded.
-# Back to the original 300s value used in the first rerun (12.5% fuzzed
-# rate). The 1100s bump only mattered when --no-network was removed; with
-# --no-network restored the per-server time stays well under 300s.
-SERVER_TIMEOUT = 300  # 5 minutes max per server
+# FAST-V2 profile (2026-05-21 rerun): 150s outer cap above the 90s
+# mcp-fuzzer internal cap, with margin for prepare_server (clone+detect)
+# and cleanup.
+SERVER_TIMEOUT = 150
 
 # Minimum free memory (MB) required to start fuzzing a new server
 MIN_FREE_MEMORY_MB = 200
@@ -85,8 +85,14 @@ from functions.helper import (
     periodic_cache_cleanup
 )
 from frameworks.fuzzing import execute_mcp_fuzzing, update_fuzzing_summary
-from functions.buildConfig import build_mcp_config, clone_repo
+from functions.buildConfig import build_mcp_config, clone_repo, write_mcp_config
 from functions.config import EXCEL_PATH
+
+# Optional unified Excel (GitHub + NPX) for the 2026-05-21 rerun.
+try:
+    from functions.config import EXCEL_PATH_UNIFIED
+except ImportError:
+    EXCEL_PATH_UNIFIED = None
 
 # Configuration for local storage
 CURRENT_DIR = Path(__file__).parent
@@ -374,6 +380,34 @@ def cleanup_repo(repo_path: Path):
             except Exception:
                 pass
 
+def prepare_npx_server(package_name: str) -> dict | None:
+    """Prepare an NPX server entry — no clone, just write the mcp config.
+
+    Mirrors Npx/npx_fuzzing/run_fuzzing.py:prepare_npx_server so the unified
+    loop can dispatch on Excel row Type column.
+    """
+    server_name = (package_name or "").strip()
+    print(f"Server (npx): {server_name}")
+    try:
+        write_mcp_config(
+            server_name=server_name,
+            command="npx",
+            args=["-y", server_name],
+            cwd=Path.cwd(),
+        )
+    except Exception as e:
+        print(f"ERROR writing NPX mcp config: {e}")
+        return None
+    return {
+        "server_name": server_name,
+        "server_url": server_name,
+        "server_language": "nodejs",
+        "repo_path": None,
+        "command": "npx",
+        "elem": ["-y", server_name],
+    }
+
+
 def prepare_server(server_url: str) -> dict | None:
     server_name = extract_server_name(server_url)
     print(f"Server: {server_name}")
@@ -454,7 +488,7 @@ def cleanup_orphan_repos(base_dir: Path):
 # MAIN
 # =====================================================
 
-def main(start_idx: int, end_idx: int = None, reset: bool = False):
+def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: str = None):
     stats = load_local_stats()
     last_index = stats.get("last_index", 0)
 
@@ -475,7 +509,17 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
 
     print(f"=== Running Fuzzing Standalone ===")
 
-    df_excel = pd.read_excel(EXCEL_PATH)
+    # Pick excel path: explicit CLI > unified > legacy GitHub-only
+    if excel_path is None:
+        if EXCEL_PATH_UNIFIED is not None and Path(EXCEL_PATH_UNIFIED).exists():
+            excel_path = str(EXCEL_PATH_UNIFIED)
+        else:
+            excel_path = str(EXCEL_PATH)
+    print(f"Excel: {excel_path}")
+
+    df_excel = pd.read_excel(excel_path)
+    if "Type" not in df_excel.columns:
+        df_excel["Type"] = "github"
     if end_idx is None:
         end_idx = len(df_excel)
 
@@ -494,9 +538,10 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
     for idx, row in df_excel.iloc[start_idx:end_idx].iterrows():
         start_time = time.time()
         server_url = row["Link"]
+        server_type = str(row.get("Type", "github") or "github").strip().lower()
 
         print("\n" + "=" * 50)
-        print(f"Index: {idx}")
+        print(f"Index: {idx} ({server_type})")
         periodic_cache_cleanup(idx)
 
         check_memory_available()
@@ -514,7 +559,10 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
         try:
             server_data = None
             try:
-                server_data = prepare_server(server_url)
+                if server_type == "npx":
+                    server_data = prepare_npx_server(server_url)
+                else:
+                    server_data = prepare_server(server_url)
             except subprocess.TimeoutExpired as e:
                 print(f"prepare_server timed out ({e}), skipping")
                 server_name = server_url.rstrip('/').split('/')[-1]
@@ -539,7 +587,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
                         framework_result = execute_mcp_fuzzing(
                             server_data["repo_path"],
                             server_data["command"],
-                            server_data["elem"][0],
+                            server_data["elem"],
                             mode="both"
                         )
                         _status = framework_result.get("mcp-fuzzing", {}).get("status", "failed")
@@ -593,6 +641,8 @@ if __name__ == "__main__":
     parser.add_argument("--start", "-s", type=int, default=-1, help="Start index (default: resume from last)")
     parser.add_argument("--end", "-e", type=int, default=None, help="End index")
     parser.add_argument("--reset", action="store_true", help="Reset stats and logs before starting")
+    parser.add_argument("--excel", type=str, default=None,
+                        help="Path to Excel (overrides EXCEL_PATH_UNIFIED / EXCEL_PATH)")
     args = parser.parse_args()
 
-    main(args.start, args.end, reset=args.reset)
+    main(args.start, args.end, reset=args.reset, excel_path=args.excel)

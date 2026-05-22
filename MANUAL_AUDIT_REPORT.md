@@ -28,7 +28,7 @@ Tutte le verifiche sono state condotte fetchando direttamente i sorgenti dai rep
 | 1 | `GreatScottyMac/context-portal` | `db/database.py:535` | **VP-L (FP)** | `_get_latest_context_version(cursor, table_name)` — callers passano `"product_context_history"` e `"active_context_history"` hardcoded. Latente. |
 | 2 | `GreptimeTeam/greptimedb-mcp-server` | `server.py:305` | **FP (FP)** | `table = validate_table_name(table)` con regex `^[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)?$` (strict allowlist). Mitigato. |
 | 3 | `JexinSam/mssql_mcp_server` | `server.py:82` | **VP-C (VP-C)** | `table = parts[0]` da URI MCP, zero validazione, pyodbc supporta stacked queries → RCE via `xp_cmdshell`. |
-| 4 | `StarRocks/mcp-server-starrocks` | `db_client.py:457` | **VP-L** | `f"USE \`{db}\`"`: `db` da parametro tool; server espone già `write_query` con SQL arbitrario → privilege escalation moot. |
+| 4 | `StarRocks/mcp-server-starrocks` | `db_client.py:457` | **VP-L (VP-C)** | `f"USE \`{db}\`"`: `db` da parametro tool; server espone già `write_query` con SQL arbitrario → privilege escalation moot. |
 | 5 | `StarRocks/mcp-server-starrocks` | `db_client.py:493` | **VP-L** | Stesso pattern del #4. |
 | 6 | `StarRocks/mcp-server-starrocks` | `server.py:106` | **VP-L** | `f"SHOW CREATE TABLE {db}.{table}"` esposto come MCP resource via URI template `starrocks:///{db}/{table}/schema`; same caveat #4. |
 | 7 | `StarRocks/mcp-server-starrocks` | `server.py:113` | **VP-L** | `f"SHOW TABLES FROM {db}"` — same. |
@@ -224,7 +224,7 @@ Verifica fetchando il valore concreto di `evidence`:
 | 1 | `ChromeDevTools/chrome-devtools-mcp` | `tools/performance.ts:229` | `key=AIzaSyBn5gimNjhiEyA_euicSKko6IlD3HdgUfk` | **FP (FP)** — Google CrUX API key pubblica (documentata da Google come key di lettura non ristretta). |
 | 2 | `istanadodan/mcp_py_exam` | `.env:1` | `GOOGLE_API_KEY=AIzaSyDy6v...` | **VP-C (VP-C)** — `.env` committato con Google API key reale. |
 | 3 | `istanadodan/mcp_py_exam` | `gemini_cli_mcp/.env` | stesso | **VP-C (VP-C)** |
-| 4 | `istanadodan/mcp_py_exam` | `openai-mcp/.env` | `OBSIDIAN_API_KEY="dff0f...868"` | **VP-C** |
+| 4 | `istanadodan/mcp_py_exam` | `openai-mcp/.env` | `OBSIDIAN_API_KEY="dff0f...868"` | **VP-C (VP-C)** |
 | 5 | `istanadodan/mcp_py_exam` | `python-mcp-server/.env` | stesso Google key | **VP-C** |
 | 6 | `snyk-labs/mcp-server-npm` | `index.js:60` | `Bearer ghp_A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c` | **VP-L** — repo dimostrativo di Snyk Labs, token finto formato corretto (V2 reproduce instructions documentate). Pattern reale ma valore fittizio. |
 | 7 | `reyer3/mcp-intranet-onbotgo` | `config.py:44` | `default="AIzaSyAXtP5xZXh3glObbvk6FHMbfe1o0_9dVwY"` | **VP-C** — Google API key in default Pydantic. |
@@ -334,7 +334,7 @@ I FP raggiungono il 14% — il pattern Firebase web / OAuth public / vendored li
 | 1 | `GoPlausible/algorand-mcp` | `nfd/index.ts:341` | `fetch(\`${NFD_API_URL}/nfd/${params.nameOrID}?...\`)` | **VP-D (VP)** — `params.nameOrID` controllato attaccante ma su base URL hardcoded (NFD_API_URL) → impact limitato a path traversal su SaaS API noto. |
 | 2 | `doobidoo/MCP-Context-Provider` | `http-bridge.ts:147` | `this.fetch(\`/memories?${params.toString()}\`)` | **VP-D (VP)** — base URL bound al client SDK; query string da utente → limited impact. |
 | 3 | `tevonsb/homeassistant-mcp` | `index.ts:916` | `fetch(\`${hacsBase}/repositories?category=${params.category}\`)` | **VP-D (VP)** — params.category controllabile su base URL hardcoded. | 
-| 4 | `tevonsb/homeassistant-mcp` | `index.ts:1037` | `fetch(\`${HASS_HOST}/api/config/automation/config/${params.automation_id}\`)` | **VP-D** — id parametro su base URL hardcoded. |
+| 4 | `tevonsb/homeassistant-mcp` | `index.ts:1037` | `fetch(\`${HASS_HOST}/api/config/automation/config/${params.automation_id}\`)` | **VP-D (VP-C)** — id parametro su base URL hardcoded. |
 | 5 | `tevonsb/homeassistant-mcp` | `index.ts:1063` | stesso pattern | **VP-D** |
 | 6 | `tevonsb/homeassistant-mcp` | `index.ts:1087` | stesso pattern | **VP-D** |
 | 7 | `lingodotdev/lingo.dev` | `auth.ts:21` | `fetch(\`${params.apiUrl}/users/me\`)` | **VP-C** — `params.apiUrl` è la **base URL completa**, controllata attaccante → SSRF reale a qualsiasi host. |
@@ -496,7 +496,7 @@ Altri 50 server con tools di ingestione contenuto da fonti pubbliche: BlueSky, M
 | 3 | `helixml/kodit` | `chunk_files.go:293` | stesso pattern | **VP-L (FP)** |
 | 4 | `luckyPipewrench/pipelock` | `preflight.go:157` | `filepath.Join(canonicalRoot, filepath.Join(...))` | **VP-L** — `canonicalRoot` server-fissato; parts derivati interno. |
 | 5-7 | `luckyPipewrench/pipelock` | preflight.go | stesso pattern | **VP-L** |
-| 8 | `OTA-Tech-AI/web-agent-protocol` | `generate_mcp_server.py:134` | `os.path.join("mcp_servers", f"*_{args.task_id}_mcp_server.py")` | **VP-C** se task_id da utente; **VP-L** se da CLI args interno. |
+| 8 | `OTA-Tech-AI/web-agent-protocol` | `generate_mcp_server.py:134` | `os.path.join("mcp_servers", f"*_{args.task_id}_mcp_server.py")` | **VP-C (VP-C)** se task_id da utente; **VP-L** se da CLI args interno. |
 | 9 | `OTA-Tech-AI/web-agent-protocol` | `generate_mcp_server.py:142` | stesso | **VP-C/VP-L** simile |
 | 10 | `easytocloud/Mac-letterhead` | `main.py:373` | `os.path.join(letterhead_dir, f"{args.name}.pdf")` | **VP-C** — args.name da CLI input utente. |
 
@@ -897,7 +897,7 @@ Si aggiungono:
 | 1 | `AiondaDotCom/mcp-salesforce` | `salesforce_learn_context` | "PROACTIVELY", "AUTOMATICALLY" | **VP-D (VP)** — comportamento change but bordererline. |
 | 2 | `Teradata/teradata-mcp-server` | `rag_Execute_Workflow` | "Execute silently", "Hide all tool execution steps" | **VP-C (VP)** — istruzioni di hiding chiare. |
 | 3 | `TocharianOU/mcp-server-kibana` | `execute_kb_api` | parametro `break_token_rule` | **VP-C (VP)** — LLM-targeted parameter. |
-| 4 | `TocharianOU/mcp-server-kibana` | `vl_search_saved_objects` | stesso `break_token_rule` | **VP-C** |
+| 4 | `TocharianOU/mcp-server-kibana` | `vl_search_saved_objects` | stesso `break_token_rule` | **VP-C (VP)** |
 | 5 | `sonnylazuardi/cursor-talk-to-figma-mcp` | `get_reactions` | "CRITICAL: MUST IMMEDIATELY" | **VP-C** — tool chaining forzato. |
 | 6 | `neal3000/mcp_media_server` | `get_hyper3d_status` | "sliently remember it" (typo) | **VP-C** — occultamento esplicito (uno dei BlenderMCP forks, doc CLAUDE.md). |
 | 7 | `neal3000/mcp_media_server` | `get_hunyuan3d_status` | stesso | **VP-C** |

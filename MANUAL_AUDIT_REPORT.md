@@ -995,7 +995,7 @@ L'analisi è stata estesa a tutti i 31 finding della categoria.
 | 2 | `davidf9999/gx-mcp-server` | `sqlite_backend.py:109` | Stesso pattern di #1 | **VP-L** |
 | 3 | `nonead/nUniversal-Robots-MCP` | `URBasic/advanced_data_recorder.py:730` | Local `.pklz` file (libreria URBasic vendored, file path da config) | **VP-L (VP)** |
 | 4 | `assafelovic/gpt-researcher` | `browser/browser.py:125` | `self.cookie_filename` interno | **VP-L (VP)** |
-| 5 | `delonsp/rlm-mcp-server` | `persistence.py:407` | Embedding cache da DB locale (`row[4]`) | **VP-L** |
+| 5 | `delonsp/rlm-mcp-server` | `persistence.py:407` | Embedding cache da DB locale (`row[4]`) | **VP-L (VP)** |
 | 6 | `dylan-gluck/freecrawl-mcp` | `server.py:509` | `data` letto da SQLite locale (cache HTML) | **VP-L** |
 | 7 | `francoisgoupil/MCP3` | `server.py:32` | `model_str` parametro di `deserialize_model(model_str)` — se chiamata da MCP tool con stringa attacker, **VP-C**; nel codice attuale solo `serialize_model`→`deserialize_model` roundtrip in-process | **VP-D** |
 | 8 | `517739/Trace_mcp` | `tracegnn/visualization/visualization_tool.py:21` | File `case_{case_idx}.pkl`, `case_idx: int = 0` (parametro tipizzato come int, no path traversal) | **VP-L** |
@@ -1110,9 +1110,9 @@ I 5 VP-C aggiuntivi sono qualitativamente differenti dai 11 VP-L offensive: sono
 |---|--------|------|---------|:--------:|
 | 1-2 | `neozhangtcl/simple-mcp-server` | `src/index.js` | Debug info in error message | **VP-C (VP)** — stack trace leak nei response runtime. |
 | 3-4 | `agentics-ai/code-mcp` | `dist/src/index.js` | Debug info in error message | **VP- (VP)** — stesso pattern. |
-| 5 | `isamu/mulmoscript-mcp` | `lib/index.js` (sensitive-info-disclosed-fuzzing) | Sensitive information disclosed: `passwd:` | **VP-C** — fuzzing ha estratto contenuto di `/etc/passwd`. |
-| 6-7 | `RaiAnsar/claude_code-gemini-mcp` | `server.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C** × 2 |
-| 8-9 | `noflevi10root/mcp-test` | `main.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C** × 2 |
+| 5 | `isamu/mulmoscript-mcp` | `lib/index.js` (sensitive-info-disclosed-fuzzing) | Sensitive information disclosed: `passwd:` | **VP-C (VP)** — fuzzing ha estratto contenuto di `/etc/passwd`. |
+| 6-7 | `RaiAnsar/claude_code-gemini-mcp` | `server.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C (VP)** × 2 |
+| 8-9 | `noflevi10root/mcp-test` | `main.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C (VP)** × 2 |
 
 **Aggregato categoria 14 completa (9/9, 100%)**:
 

@@ -119,6 +119,7 @@ L'analisi è stata estesa a tutti i 31 finding della categoria.
 | 1 | `davidf9999/gx-mcp-server` | `sqlite_backend.py:71` | Local SQLite DataFrame cache (`pickle.dumps`→`pickle.loads` round-trip) | **VP-L (VP)** |
 | 3 | `nonead/nUniversal-Robots-MCP` | `URBasic/advanced_data_recorder.py:730` | Local `.pklz` file (libreria URBasic vendored, file path da config) | **VP-L (VP)** |
 | 4 | `assafelovic/gpt-researcher` | `browser/browser.py:125` | `self.cookie_filename` interno | **VP-L (VP)** |
+| 5 | `delonsp/rlm-mcp-server` | `persistence.py:407` | Embedding cache da DB locale (`row[4]`) | **VP-L (VP)** |
 
 ## 13. sensitive-file-access (mcp-shield) — 11 VP **(analisi completa)**
 
@@ -136,6 +137,9 @@ L'analisi è stata estesa a tutti gli 11 finding della categoria.
 |---|--------|------|---------|:--------:|
 | 1-2 | `neozhangtcl/simple-mcp-server` | `src/index.js` | Debug info in error message | **VP-C (VP)** — stack trace leak nei response runtime. |
 | 3-4 | `agentics-ai/code-mcp` | `dist/src/index.js` | Debug info in error message | **VP- (VP)** — stesso pattern. |
+| 5 | `isamu/mulmoscript-mcp` | `lib/index.js` (sensitive-info-disclosed-fuzzing) | Sensitive information disclosed: `passwd:` | **VP-C (VP)** — fuzzing ha estratto contenuto di `/etc/passwd`. |
+| 6-7 | `RaiAnsar/claude_code-gemini-mcp` | `server.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C (VP)** × 2 |
+| 8-9 | `noflevi10root/mcp-test` | `main.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C (VP)** × 2 |
 
 ## 15. access-control (mcp-watch) — 7 VP
 
@@ -159,4 +163,6 @@ L'analisi è stata estesa a tutti gli 11 finding della categoria.
 
 ### Per saperne di più su tutta l'analisi fatta: scaricare e leggere la chat di gemini "Veri Positivi: Sicurezza MCP Server" -> https://gemini.google.com/share/16bfc0cdebd6
 
-Continuare da 12 
+- Da 14 compreso in poi fatti tutti
+- Finire la 13
+- Completare le altre con un altro pò di finding (provare ad arrivare a 10 ciascuno)

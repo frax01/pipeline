@@ -1,0 +1,13 @@
+[Unit]
+Description=MCP Fuzzing Rerun Backup Watcher (0_tool_fuzzing)
+After=network.target
+
+[Service]
+Type=simple
+User=tecnico
+ExecStart=/opt/mcp_backups/watch_fuzzing_rerun_backup.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

@@ -29,12 +29,12 @@ Tutte le verifiche sono state condotte fetchando direttamente i sorgenti dai rep
 | 2 | `GreptimeTeam/greptimedb-mcp-server` | `server.py:305` | **FP (FP)** | `table = validate_table_name(table)` con regex `^[a-zA-Z_][a-zA-Z0-9_]*(\.[a-zA-Z_][a-zA-Z0-9_]*)?$` (strict allowlist). Mitigato. |
 | 3 | `JexinSam/mssql_mcp_server` | `server.py:82` | **VP-C (VP-C)** | `table = parts[0]` da URI MCP, zero validazione, pyodbc supporta stacked queries → RCE via `xp_cmdshell`. |
 | 4 | `StarRocks/mcp-server-starrocks` | `db_client.py:457` | **VP-L (VP-C)** | `f"USE \`{db}\`"`: `db` da parametro tool; server espone già `write_query` con SQL arbitrario → privilege escalation moot. |
-| 5 | `StarRocks/mcp-server-starrocks` | `db_client.py:493` | **VP-L** | Stesso pattern del #4. |
-| 6 | `StarRocks/mcp-server-starrocks` | `server.py:106` | **VP-L** | `f"SHOW CREATE TABLE {db}.{table}"` esposto come MCP resource via URI template `starrocks:///{db}/{table}/schema`; same caveat #4. |
-| 7 | `StarRocks/mcp-server-starrocks` | `server.py:113` | **VP-L** | `f"SHOW TABLES FROM {db}"` — same. |
-| 8 | `StarRocks/mcp-server-starrocks` | `server.py:122` | **VP-C** | `f"show proc '{path}'"`: `path` da URI resource `proc:///{path*}`, dentro apici singoli, escape via `'` possibile. Anche se mooted da `write_query`, è il pattern più sfruttabile dei 4. |
-| 9 | `StarRocks/mcp-server-starrocks` | `server.py:228` | **VP-L** | `f"ANALYZE PROFILE FROM '{uuid}'"`: stesso server espone già `analyze_query(sql)` arbitrario. |
-| 10 | `StarRocks/mcp-server-starrocks` | `server.py:231` | **VP-L** | `f"EXPLAIN ANALYZE {sql}"`: `sql` è già parametro libero del tool (by design). |
+| 5 | `StarRocks/mcp-server-starrocks` | `db_client.py:493` | **VP-L (VP)** | Stesso pattern del #4. |
+| 6 | `StarRocks/mcp-server-starrocks` | `server.py:106` | **VP-L (VP)** | `f"SHOW CREATE TABLE {db}.{table}"` esposto come MCP resource via URI template `starrocks:///{db}/{table}/schema`; same caveat #4. |
+| 7 | `StarRocks/mcp-server-starrocks` | `server.py:113` | **VP-L (VP)** | `f"SHOW TABLES FROM {db}"` — same. |
+| 8 | `StarRocks/mcp-server-starrocks` | `server.py:122` | **VP-C (VP)** | `f"show proc '{path}'"`: `path` da URI resource `proc:///{path*}`, dentro apici singoli, escape via `'` possibile. Anche se mooted da `write_query`, è il pattern più sfruttabile dei 4. |
+| 9 | `StarRocks/mcp-server-starrocks` | `server.py:228` | **VP-L (VP)** | `f"ANALYZE PROFILE FROM '{uuid}'"`: stesso server espone già `analyze_query(sql)` arbitrario. |
+| 10 | `StarRocks/mcp-server-starrocks` | `server.py:231` | **VP-L (VP)** | `f"EXPLAIN ANALYZE {sql}"`: `sql` è già parametro libero del tool (by design). |
 
 **Aggregato top 10**: 2 VP-C, 7 VP-L, 1 FP → 20% VP-C, 10% FP.
 
@@ -111,12 +111,12 @@ I primi 10 hanno tutti `evidence` vuoto perché il framework salva solo il paylo
 | 2 | `AI-QL/mcp-devcontainers` | Devcontainer manager (CLI exec) | **VP-L (VP)** (by design) |
 | 3 | `AiondaDotCom/mcp-salesforce` | Salesforce API client | **VP-L (VP)** (CRUD intenzionale) |
 | 4 | `AiondaDotCom/mcp-ssh` | SSH executor | **VP-L** (by design, SSH exec è la feature) |
-| 5 | `Flux159/mcp-server-kubernetes` | Kubernetes manager | **VP-L** (by design) |
-| 6 | `GreptimeTeam/greptimedb-mcp-server` | DB client | **VP-L** (by design) |
-| 7 | `HyperbolicLabs/hyperbolic-mcp` | Cloud compute control | **VP-L** (by design) |
-| 8 | `KWDB/kwdb-mcp-server` | Distributed DB | **VP-L** (by design) |
-| 9 | `LGDiMaggio/predictive-maintenance-mcp` | App-specifico predictive | **Ambiguo** — non noto, richiederebbe code review approfondita |
-| 10 | `MemTensor/memos-api-mcp` | API memos | **Ambiguo** |
+| 5 | `Flux159/mcp-server-kubernetes` | Kubernetes manager | **VP-L (VP)** (by design) |
+| 6 | `GreptimeTeam/greptimedb-mcp-server` | DB client | **VP-L (VP)** (by design) |
+| 7 | `HyperbolicLabs/hyperbolic-mcp` | Cloud compute control | **VP-L (VP)** (by design) |
+| 8 | `KWDB/kwdb-mcp-server` | Distributed DB | **VP-L (VP)** (by design) |
+| 9 | `LGDiMaggio/predictive-maintenance-mcp` | App-specifico predictive | **Ambiguo (VP)** — non noto, richiederebbe code review approfondita |
+| 10 | `MemTensor/memos-api-mcp` | API memos | **Ambiguo (VP)** |
 
 **Aggregato top 10**: 0 VP-C, 8 VP-L, 2 ambigui.
 
@@ -333,14 +333,14 @@ I FP raggiungono il 14% — il pattern Firebase web / OAuth public / vendored li
 |---|--------|-----------|---------|:--------:|
 | 1 | `GoPlausible/algorand-mcp` | `nfd/index.ts:341` | `fetch(\`${NFD_API_URL}/nfd/${params.nameOrID}?...\`)` | **VP-D (VP)** — `params.nameOrID` controllato attaccante ma su base URL hardcoded (NFD_API_URL) → impact limitato a path traversal su SaaS API noto. |
 | 2 | `doobidoo/MCP-Context-Provider` | `http-bridge.ts:147` | `this.fetch(\`/memories?${params.toString()}\`)` | **VP-D (VP)** — base URL bound al client SDK; query string da utente → limited impact. |
-| 3 | `tevonsb/homeassistant-mcp` | `index.ts:916` | `fetch(\`${hacsBase}/repositories?category=${params.category}\`)` | **VP-D (VP)** — params.category controllabile su base URL hardcoded. | 
+| 3 | `tevonsb/homeassistant-mcp` | `index.ts:916` | `fetch(\`${hacsBase}/repositories?category=${params.category}\`)` | **VP-D (FP)** — params.category controllabile su base URL hardcoded. | 
 | 4 | `tevonsb/homeassistant-mcp` | `index.ts:1037` | `fetch(\`${HASS_HOST}/api/config/automation/config/${params.automation_id}\`)` | **VP-D (VP-C)** — id parametro su base URL hardcoded. |
-| 5 | `tevonsb/homeassistant-mcp` | `index.ts:1063` | stesso pattern | **VP-D** |
-| 6 | `tevonsb/homeassistant-mcp` | `index.ts:1087` | stesso pattern | **VP-D** |
-| 7 | `lingodotdev/lingo.dev` | `auth.ts:21` | `fetch(\`${params.apiUrl}/users/me\`)` | **VP-C** — `params.apiUrl` è la **base URL completa**, controllata attaccante → SSRF reale a qualsiasi host. |
-| 8 | `sendaifun/solana-agent-kit` | `getTradeHistory.ts:42` | `fetch(\`${RANGER_DATA_API_BASE}/v1/trade_history?${params.toString()}\`)` | **VP-D** — query string controllata, base URL hardcoded. |
-| 9 | `BasedHardware/omi` | `[id]/route.ts:18` | `fetch(\`${OMI_API_URL}/v1/announcements/${params.id}\`)` | **VP-D** — id su base URL hardcoded. |
-| 10 | `BasedHardware/omi` | `[id]/route.ts:49` | stesso | **VP-D** |
+| 5 | `tevonsb/homeassistant-mcp` | `index.ts:1063` | stesso pattern | **VP-D (VP)** |
+| 6 | `tevonsb/homeassistant-mcp` | `index.ts:1087` | stesso pattern | **VP-D (VP)** |
+| 7 | `lingodotdev/lingo.dev` | `auth.ts:21` | `fetch(\`${params.apiUrl}/users/me\`)` | **VP-C (FP)** — `params.apiUrl` è la **base URL completa**, controllata attaccante → SSRF reale a qualsiasi host. |
+| 8 | `sendaifun/solana-agent-kit` | `getTradeHistory.ts:42` | `fetch(\`${RANGER_DATA_API_BASE}/v1/trade_history?${params.toString()}\`)` | **VP-D (FP)** — query string controllata, base URL hardcoded. |
+| 9 | `BasedHardware/omi` | `[id]/route.ts:18` | `fetch(\`${OMI_API_URL}/v1/announcements/${params.id}\`)` | **VP-D (VP)** — id su base URL hardcoded. |
+| 10 | `BasedHardware/omi` | `[id]/route.ts:49` | stesso | **VP-D (VP)** |
 
 **Aggregato top 10**: 1 VP-C, 9 VP-D, 0 FP.
 
@@ -494,11 +494,11 @@ Altri 50 server con tools di ingestione contenuto da fonti pubbliche: BlueSky, M
 | 1 | `zeromicro/mcp-zero` | `create_rpc_service.go:46` | `filepath.Join(outputDir, params.ServiceName+".proto")` | **VP-C (FP)** — ServiceName da MCP tool input. |
 | 2 | `helixml/kodit` | `mcp/server.go:1312` | `filepath.Join(parts[lastIdx+2:]...)` | **VP-L (FP)** — `parts` proviene da split di path interno. |
 | 3 | `helixml/kodit` | `chunk_files.go:293` | stesso pattern | **VP-L (FP)** |
-| 4 | `luckyPipewrench/pipelock` | `preflight.go:157` | `filepath.Join(canonicalRoot, filepath.Join(...))` | **VP-L** — `canonicalRoot` server-fissato; parts derivati interno. |
-| 5-7 | `luckyPipewrench/pipelock` | preflight.go | stesso pattern | **VP-L** |
+| 4 | `luckyPipewrench/pipelock` | `preflight.go:157` | `filepath.Join(canonicalRoot, filepath.Join(...))` | **VP-L (VP)** — `canonicalRoot` server-fissato; parts derivati interno. |
+| 5-7 | `luckyPipewrench/pipelock` | preflight.go | stesso pattern | **VP-L (VP)** |
 | 8 | `OTA-Tech-AI/web-agent-protocol` | `generate_mcp_server.py:134` | `os.path.join("mcp_servers", f"*_{args.task_id}_mcp_server.py")` | **VP-C (VP-C)** se task_id da utente; **VP-L** se da CLI args interno. |
-| 9 | `OTA-Tech-AI/web-agent-protocol` | `generate_mcp_server.py:142` | stesso | **VP-C/VP-L** simile |
-| 10 | `easytocloud/Mac-letterhead` | `main.py:373` | `os.path.join(letterhead_dir, f"{args.name}.pdf")` | **VP-C** — args.name da CLI input utente. |
+| 9 | `OTA-Tech-AI/web-agent-protocol` | `generate_mcp_server.py:142` | stesso | **VP-C/VP-L (FP)** simile |
+| 10 | `easytocloud/Mac-letterhead` | `main.py:373` | `os.path.join(letterhead_dir, f"{args.name}.pdf")` | **VP-C (FP)** — args.name da CLI input utente. |
 
 **Aggregato top 10**: 3 VP-C, 7 VP-L, 0 FP.
 
@@ -703,14 +703,14 @@ Verifica fetchando `evidence` concreto:
 |---|--------|------|---------|:--------:|
 | 1 | `Telegram-AI-MCP-Assistant-Bot` | `mcp_server_1.py:193` | `exec(input.code, allowed_globals, local_vars)` | **VP-C (VP-C)** — Python `exec()` con codice utente; tipico attacco LLM-driven. |
 | 2 | `mcpLocalHelper` | `runner.ts:1582` | `rx.exec(input.text)` | **FP (FP)** — è `Regex.prototype.exec()`, non command exec; classico FP regex-vs-shell. |
-| 3 | `orgo-mcp` | `orgo_mcp.py:1753` | `computer.exec(params.code, timeout=...)` | **VP-C** — `computer.exec` su VM/sandbox con codice utente (by design pericoloso). |
+| 3 | `orgo-mcp` | `orgo_mcp.py:1753` | `computer.exec(params.code, timeout=...)` | **VP-C (VP)** — `computer.exec` su VM/sandbox con codice utente (by design pericoloso). |
 | 4 | `doclea-mcp` | `llm-cli-runner.ts:87` | `spawn(input.command, ...)` | **VP-C (FP)** — spawn con comando completo da utente. |
-| 5 | `XcodeBuildMCP` | `bundleId.ts:53` | `execSync(\`defaults read "${params.appPath}/Contents/Info" CFBundleIdentifier\`)` | **VP-C** — `appPath` dentro double quotes con shell metacaratteri possibili. |
-| 6 | `XcodeBuildMCP` | `bundleId.ts:137` | stesso pattern | **VP-C** |
-| 7 | `XcodeBuildMCP` | `simulator.ts:229` | stesso pattern | **VP-C** |
+| 5 | `XcodeBuildMCP` | `bundleId.ts:53` | `execSync(\`defaults read "${params.appPath}/Contents/Info" CFBundleIdentifier\`)` | **VP-C (VP)** — `appPath` dentro double quotes con shell metacaratteri possibili. |
+| 6 | `XcodeBuildMCP` | `bundleId.ts:137` | stesso pattern | **VP-C (VP)** |
+| 7 | `XcodeBuildMCP` | `simulator.ts:229` | stesso pattern | **VP-C (VP)** |
 | 8 | `iron-manus-mcp` | `install.js:164` | `execSync(\`${req.command} ${req.version}\`)` | **VP-C** — full command da utente. |
-| 9 | `tiktoken-mcp` | `index.js:116` | `exec(\`python3 -c '${pythonScript}' '${input.replace(/'/g, "\\'")}'\`)` | **VP-D** — escape di `'` è naïve ma riduce impact; comunque sfruttabile via backtick / `$()` non escapati. |
-| 10 | `mcp-test-servers` | `shell-exec-server.js:81` | `spawn(params.command, params.args || [])` | **VP-L** — server di **test** dichiaratamente vulnerabile (`mcp-test-servers` package). |
+| 9 | `tiktoken-mcp` | `index.js:116` | `exec(\`python3 -c '${pythonScript}' '${input.replace(/'/g, "\\'")}'\`)` | **VP-D (VP)** — escape di `'` è naïve ma riduce impact; comunque sfruttabile via backtick / `$()` non escapati. |
+| 10 | `mcp-test-servers` | `shell-exec-server.js:81` | `spawn(params.command, params.args || [])` | **VP-L (VP)** — server di **test** dichiaratamente vulnerabile (`mcp-test-servers` package). |
 
 **Aggregato top 10**: 8 VP-C, 1 VP-D, 1 VP-L, 1 FP.
 
@@ -898,12 +898,12 @@ Si aggiungono:
 | 2 | `Teradata/teradata-mcp-server` | `rag_Execute_Workflow` | "Execute silently", "Hide all tool execution steps" | **VP-C (VP)** — istruzioni di hiding chiare. |
 | 3 | `TocharianOU/mcp-server-kibana` | `execute_kb_api` | parametro `break_token_rule` | **VP-C (VP)** — LLM-targeted parameter. |
 | 4 | `TocharianOU/mcp-server-kibana` | `vl_search_saved_objects` | stesso `break_token_rule` | **VP-C (VP)** |
-| 5 | `sonnylazuardi/cursor-talk-to-figma-mcp` | `get_reactions` | "CRITICAL: MUST IMMEDIATELY" | **VP-C** — tool chaining forzato. |
-| 6 | `neal3000/mcp_media_server` | `get_hyper3d_status` | "sliently remember it" (typo) | **VP-C** — occultamento esplicito (uno dei BlenderMCP forks, doc CLAUDE.md). |
-| 7 | `neal3000/mcp_media_server` | `get_hunyuan3d_status` | stesso | **VP-C** |
-| 8 | `andreycretsu/cursor-talk-to-figma-mcp-main` | `get_reactions` | "CRITICAL" | **VP-C** (fork) |
-| 9 | `IAmMarcellus/BlenderMCP` | `get_hyper3d_status` | "sliently remember" | **VP-C** (fork) |
-| 10 | `IAmMarcellus/BlenderMCP` | `get_hunyuan3d_status` | stesso | **VP-C** |
+| 5 | `sonnylazuardi/cursor-talk-to-figma-mcp` | `get_reactions` | "CRITICAL: MUST IMMEDIATELY" | **VP-C (VP)** — tool chaining forzato. |
+| 6 | `neal3000/mcp_media_server` | `get_hyper3d_status` | "sliently remember it" (typo) | **VP-C (VP)** — occultamento esplicito (uno dei BlenderMCP forks, doc CLAUDE.md). |
+| 7 | `neal3000/mcp_media_server` | `get_hunyuan3d_status` | stesso | **VP-C (VP)** |
+| 8 | `andreycretsu/cursor-talk-to-figma-mcp-main` | `get_reactions` | "CRITICAL" | **VP-C (FP)** (fork, non c'è più i repository) |
+| 9 | `IAmMarcellus/BlenderMCP` | `get_hyper3d_status` | "sliently remember" | **VP-C (VP)** (fork) |
+| 10 | `IAmMarcellus/BlenderMCP` | `get_hunyuan3d_status` | stesso | **VP-C (VP)** |
 
 **Aggregato top 10**: 9 VP-C, 1 VP-D, 0 FP.
 

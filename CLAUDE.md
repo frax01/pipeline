@@ -720,7 +720,59 @@ Per raffinare le regole HC prima di eseguire Ollama:
 
 ## Post-processing mcp-shield: Analisi LLM dei finding
 
-### Contesto
+### Merge GitHub + NPX (2026-05-26): struttura unificata
+
+**Decisione**: dati GitHub e NPX mergiati in `0_tool_mcp_shield/`. Tutte le 4
+categorie esistono in entrambi i run. NESSUN suffisso `_npx` (nessuna categoria
+nuova). Ogni finding ha campo `_origin: "github" | "npx"`.
+
+```
+analysisAllData/0_tool_mcp_shield/
+├── README.md
+├── pipeline_mcp_shield.py
+├── _classify_uncertain_npx.py             ← Stage 2B NPX (riproducibilità)
+├── _merge_github_npx.py                   ← script merge (riproducibilità)
+├── mcp_shield_stats_github.json / *_npx.json
+├── hidden-instructions/                    ← MERGED raw + llm_analysis
+├── shadowing-detected/                     ← MERGED
+├── potential-exfiltration/                 ← MERGED
+└── sensitive-file-access/                  ← MERGED
+```
+
+### Risultati post-merge mcp-shield
+
+| Cat | VP GH | VP NPX | **VP merged** | FP merged | NPX FP |
+|-----|------:|-------:|--------------:|----------:|-------:|
+| hidden-instructions | 4 | 0 | **4** | 394 | +94 |
+| shadowing-detected | 1 | 0 | **1** | 25 | +4 |
+| potential-exfiltration | 0 | 0 | **0** | 1.978 | +382 |
+| sensitive-file-access | 11 | 0 | **11** | 3.776 | +793 |
+| **TOTALE** | **16** | **0** | **16** | **6.173** | **+1.273** |
+
+**NPX 0 VP atteso**: i 16 VP GitHub provenivano tutti da offensive security tools
+(mimikatz/rubeus/bloodhound/evil-winrm) o server intenzionalmente malevoli
+(math-mcp-server-nodejs, mdsel-mcp, vibe-coding-hater). Queste classi di
+server non vengono pubblicate come pacchetti NPM.
+
+### Workflow eseguito per NPX (sintesi)
+- Stage 1: skip (mcp-shield output diretto, no filter needed)
+- Stage 2A: 0 HC-VP + 1.248 HC-FP + 25 UNCERTAIN
+- Stage 2B (in-chat Sonnet su 25): 0 VP + 25 FP
+- Risultato NPX: **0 VP / 1.273 FP**
+
+### Stage 2B NPX (25 UNCERTAIN classificati)
+
+- **hidden-instructions (23 → 0 VP / 23 FP)**:
+  - "NEVER show raw amounts" → UX user-facing guidance (decimali blockchain)
+  - "Always include..." → API parameter documentation
+  - "instead of" → technical comparison legittimo
+  - "ALWAYS DO" → workflow initialization steps
+  - "not visible" → DOM/UI context (webdriver wait)
+- **shadowing-detected (2 → 0 VP / 2 FP)**:
+  - "after using the tool" → UX display guidance (NON shadowing)
+  - "when no X tool is available" → fallback workflow legittimo
+
+### Contesto (originale GitHub)
 
 mcp-shield analizza le **tool description** degli MCP server (non il codice sorgente, a differenza di mcp-watch). Il framework fa già due passaggi:
 1. **Static analysis**: regex su tool description per trovare frasi di istruzione nascosta, parametri sospetti, pattern di shadowing, accessi a file sensibili
@@ -2566,9 +2618,9 @@ py -X utf8 pipeline_mcp_scan_npx.py --category W017_npx --cache-only
 | **tool_fuzzing** | **776** | **~760** | -787 vs originale |
 | **TOTALE GitHub** | **18.580** | **~17.819** | FP rate medio **4.4%** (blind n=50/cat) |
 
-### Post-merge NPX (parziale — 2026-05-21)
+### Post-merge NPX (parziale — 2026-05-26)
 
-**mcp-scan + mcp-watch + mcp-security-scan + mcp-check integrati**. Altre 3 VM ancora in corso.
+**mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield integrati**. Altre 2 VM ancora in corso.
 
 | Tool | VP pre-merge | VP NPX aggiunti | VP post-merge | Cosa è cambiato |
 |------|-------------:|----------------:|--------------:|------------------|
@@ -2576,8 +2628,8 @@ py -X utf8 pipeline_mcp_scan_npx.py --category W017_npx --cache-only
 | mcp-watch | 835 | **+331** | **1.166** | 6 cat merged, no nuove categorie |
 | mcp-security-scan | 1.094 | **+280** | **1.374** | 7 cat merged (dangerous-capabilities domina), no nuove categorie |
 | mcp-check | 9.453 | **+5.530** | **14.983** | 12 cat merged (schema_violation/other_errors dominano), no nuove categorie |
+| mcp-shield | 16 | **+0** | **16** | 4 cat merged; NPX 0 VP atteso (no offensive tools in NPM) |
 | mcp-guard | 5.774 | TBD (VM in corso) | 5.774 | |
-| mcp-shield | 16 | TBD (VM in corso) | 16 | |
 | tool_fuzzing | 776 | TBD (VM in corso) | 776 | |
 | **TOTALE post-merge parziale** | **18.583** | **+9.902** | **28.485** | |
 

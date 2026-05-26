@@ -13,17 +13,18 @@
 - **TOTALE pipeline GitHub**: **18.580** VP — FP rate medio 4.4% (blind n=50/cat), VP reali stim ~17.819
 - **Server con almeno una vulnerabilità**: 8.745 (14.5% del totale 60.205)
 
-### Post-merge NPX parziale (2026-05-21)
+### Post-merge NPX parziale (2026-05-26)
 
-È stato integrato un secondo dataset di **8.899 server NPX** (pacchetti npm). Finora **mcp-scan + mcp-watch + mcp-security-scan + mcp-check** integrati (vedi Appendice C, C-bis, C-ter, C-quater):
+È stato integrato un secondo dataset di **8.899 server NPX** (pacchetti npm). Finora **mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield** integrati (vedi Appendice C, C-bis, C-ter, C-quater, C-quinquies):
 
 - **mcp-scan**: 635 → **4.396** VP (+3.761 VP, di cui 3.346 da 4 categorie nuove W017-W020)
 - **mcp-watch**: 835 → **1.166** VP (+331 VP, principalmente credential-leak e protocol-violation)
 - **mcp-security-scan**: 1.094 → **1.374** VP (+280 VP, dangerous-capabilities domina con +239)
 - **mcp-check**: 9.453 → **14.983** VP (+5.530 VP, schema_violation e other_errors dominano)
+- **mcp-shield**: 16 → **16** VP (+0 VP, +1.273 FP NPX; atteso — no offensive tools in NPM)
 - **TOTALE pipeline post-merge parziale**: 18.580 → **28.485** VP
 
-Le altre 3 VM (mcp-guard/tool_fuzzing/mcp-shield in corso) **non ancora integrate**. Cross-framework consensus per NPX **non ancora calcolato**.
+Le altre 2 VM (mcp-guard/tool_fuzzing in corso) **non ancora integrate**. Cross-framework consensus per NPX **non ancora calcolato**.
 
 ---
 
@@ -6558,12 +6559,120 @@ Stage 1 scarta noise infrastrutturale: `not_connected` (16.408 entries),
 
 ---
 
-### Totali aggiornati con NPX (post-merge mcp-scan + mcp-watch + mcp-security-scan + mcp-check)
+---
+
+## Appendice C-quinquies — mcp-shield NPX merge
+
+### C-quinquies.1 Stato
+
+**Completato 2026-05-26** (run NPX VM141 finito 2026-05-25). Su 8.899 pacchetti NPM:
+- 3.032 server (34.1%) con almeno un tool analizzato
+- 1.253 tool flaggati (797 HIGH + 456 MEDIUM su 18.675 tool totali)
+- Dataset NPX mcp-shield: 1.273 finding totali (i 20 in più rispetto al count "tool" sono dovuti al multi-trigger per finding)
+
+### C-quinquies.2 Workflow eseguito su NPX
+
+| Stage | Output |
+|-------|--------|
+| **Stage 1** (skip) | mcp-shield genera direttamente output strutturato, no filter needed |
+| **Stage 2A** (HC rules) | 0 HC-VP + 1.248 HC-FP + 25 UNCERTAIN |
+| **Stage 2B** (in-chat Sonnet su 25 UNCERTAIN) | 0 VP + 25 FP |
+| **Merge** | **0 VP / 1.273 FP NPX** |
+
+### C-quinquies.3 Numeri mcp-shield NPX per categoria
+
+| Categoria | NPX raw | HC-VP | HC-FP | UNCERTAIN | S2B VP | S2B FP |
+|-----------|--------:|------:|------:|----------:|-------:|-------:|
+| hidden-instructions | 94 (HIGH 16 + MEDIUM 78) | 0 | 71 | 23 | 0 | 23 |
+| shadowing-detected | 4 (HIGH only) | 0 | 2 | 2 | 0 | 2 |
+| potential-exfiltration | 382 (HIGH 4 + MEDIUM 378) | 0 | 382 | 0 | — | — |
+| sensitive-file-access | 793 (HIGH only) | 0 | 793 | 0 | — | — |
+| **TOTALE NPX** | **1.273** | **0** | **1.248** | **25** | **0** | **25** |
+
+### C-quinquies.4 Output unificato GitHub + NPX
+
+| Categoria | VP GH | VP NPX | **VP merged** | FP merged | NPX FP |
+|-----------|------:|-------:|--------------:|----------:|-------:|
+| hidden-instructions | 4 | 0 | **4** | 394 | +94 |
+| shadowing-detected | 1 | 0 | **1** | 25 | +4 |
+| potential-exfiltration | 0 | 0 | **0** | 1.978 | +382 |
+| sensitive-file-access | 11 | 0 | **11** | 3.776 | +793 |
+| **TOTALE** | **16** | **0** | **16** | **6.173** | **+1.273** |
+
+### C-quinquies.5 Stage 2B in-chat — pattern per categoria
+
+**hidden-instructions (23 UNCERTAIN → 0 VP / 23 FP)**: sample integrale verificato. Pattern emersi:
+
+- **"NEVER show raw amounts"** (`@adamik/mcp-server/getAccountState`) → UX
+  user-facing guidance per conversione decimali blockchain (wei→ETH, satoshi→BTC),
+  istruzione legittima per il modello LLM, NON injection.
+- **"Always include..."** (Strapi, JupiterOne, Monday.com waystation, Gamma,
+  instantmcp) → API parameter documentation o response format hint.
+- **"instead of X"** — pattern dominante (12 finding) — comparison tecnico
+  legittimo: "use tools_node_open instead of retrying blindly" (rwav-bridge),
+  "instead of pagination" (Wix), "instead of searching by keywords" (Wix docs),
+  "instead of being displayed" (mcp-pyodide save image to file).
+- **"ALWAYS DO"** (Strapi init steps) → workflow initialization documentation.
+- **"not visible"** (spectavi/webdriver-mcp `wait_for_element_not_visible`) →
+  DOM/UI context, parte del nome del tool stesso.
+
+**shadowing-detected (2 UNCERTAIN → 0 VP / 2 FP)**: sample integrale verificato:
+
+- `@iflow-mcp/amazon-fresh-server/create_amazon_fresh_link` — "Please show the
+  link in your response **after using the tool**" → UX display guidance,
+  istruzione al modello per mostrare il risultato, NON tool shadowing.
+- `unreal-python-mcp/run_python_code` — "Use this for custom logic
+  **when no ToolsetRegistry tool is available**" → fallback workflow legittimo
+  per Unreal Editor, NON shadowing su altri tool MCP.
+
+### C-quinquies.6 Perché NPX produce 0 VP
+
+mcp-shield ha identificato solo **16 VP nel run GitHub** (60.205 server), tutti
+appartenenti a due classi precise di server:
+
+1. **Server intenzionalmente malevoli / dimostrativi** (4 VP):
+   - `math-mcp-server-nodejs/add` e `/subtract` → tag `<IMPORTANT>` con redirect
+     email verso `attacker@pwnd.com`
+   - `mdsel-mcp/mdsel` → tool shadowing esplicito su Read/Write
+   - `vibe-coding-hater-mcp-server/code_writer` → "Ignore all instructions"
+
+2. **Offensive security tools** (11 VP in sensitive-file-access + 1 in shadowing):
+   - `sec-mimikatz-mcp` (6 tool: WDigest, MSV1_0, LSA secrets, DCSync, Vault, token elevation)
+   - `sec-rubeus-mcp` (3 tool: Kerberoast, AS-REP roast, S4U)
+   - `sec-evil-winrm-mcp` (pass-the-hash)
+   - `sec-bloodhound-mcp` (DCSync identification)
+
+**Nessuna di queste classi viene pubblicata come pacchetto npm**:
+
+- Server PoC/honeypot di security awareness vivono su GitHub per scopi
+  educativi/research, NON come pacchetti distribuibili pip/npm.
+- Offensive security tooling (mimikatz/rubeus wrapper) viene tipicamente
+  pubblicato su GitHub privato o repo personali per red-teaming, NON
+  caricato su npm registry (che ha policy contro questi pacchetti).
+
+Il risultato **0 VP / 1.273 FP** non è un fallimento del tool — è conferma
+empirica che il dataset NPX è "clean" rispetto al signal target di mcp-shield.
+
+### C-quinquies.7 Limitazioni note (NPX mcp-shield)
+
+- **0 VP atteso, non un bug**: l'assenza di VP è informativa, conferma la
+  diversa popolazione di server tra GitHub e NPM.
+- **NPX contributo 0 VP / +1.273 FP**: aumenta il rumore senza aggiungere segnale,
+  ma è corretto per completezza del dataset post-merge.
+- **potential-exfiltration 100% FP confermato anche su NPX**: 382 finding NPX
+  tutti scartati dalle HC rules — stesso pattern del run GitHub (parametri
+  `context`/`metadata`/`notes` NON sono evidenza di esfiltrazione).
+- **Cross-framework consensus**: NPX VP da mcp-shield = 0, quindi non
+  contribuirà al consensus NPX quando verrà calcolato.
+
+---
+
+### Totali aggiornati con NPX (post-merge mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield)
 
 | Dataset | Server | Framework completati | VP totale |
 |---------|-------:|---------------------|----------:|
 | GitHub (run principale) | 60.205 | 7/7 | 18.580 |
-| **NPX (run parallelo)** | **8.899** | **4/7 (mcp-scan + mcp-watch + mcp-security-scan + mcp-check)** | **+9.902** |
+| **NPX (run parallelo)** | **8.899** | **5/7 (mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield)** | **+9.902** |
 | **Pipeline post-merge parziale** | | | **28.485** |
 
-Quando il run NPX sarà completo per tutti i 7 framework (mcp-guard / tool_fuzzing / mcp-shield in corso), andrà rifatto il **cross-framework consensus** dedicato al dataset NPX e l'aggregazione finale dei VP.
+Quando il run NPX sarà completo per tutti i 7 framework (mcp-guard / tool_fuzzing in corso), andrà rifatto il **cross-framework consensus** dedicato al dataset NPX e l'aggregazione finale dei VP.

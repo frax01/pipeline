@@ -1086,11 +1086,11 @@ Si aggiungono 5 finding da `mcp-security-scan/sensitive-file-access` (R-02). Tut
 
 | # | Server | Tipo | Verdetto |
 |---|--------|------|:--------:|
-| 12 | `worksona/-worksona-mcp-server` | Document server | **VP-C** (R-02 probe confirmed) |
-| 13 | `nhatvu148/video-transcriber-mcp` | Video transcript | **VP-C** |
-| 14 | `kbyk004/my-docs-mcp-server` | Docs server | **VP-C** |
-| 15 | `danielitus/mcp-document-server` | Docs server | **VP-C** |
-| 16 | `uniswap/spec-workflow-mcp` | Workflow specs | **VP-C** |
+| 12 | `worksona/-worksona-mcp-server` | Document server | **VP-C (VP)** (R-02 probe confirmed) |
+| 13 | `nhatvu148/video-transcriber-mcp` | Video transcript | **VP-C (VP)** |
+| 14 | `kbyk004/my-docs-mcp-server` | Docs server | **VP-C (VP)** |
+| 15 | `danielitus/mcp-document-server` | Docs server | **VP-C (VP)** |
+| 16 | `uniswap/spec-workflow-mcp` | Workflow specs | **VP-C (VP)** |
 
 **Verdetto categoria 13 completa (16/16, 100%)**:
 

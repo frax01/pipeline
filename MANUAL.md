@@ -195,8 +195,13 @@ L'analisi è stata estesa a tutti gli 11 finding della categoria.
 | 9 | `schwarztim/sec-rubeus-mcp` | `rubeus_kerberoast` | "Perform Kerberoasting attack to extract service account password hashes. Requests TGS tickets for accounts with SPNs..." | **VP-L (FP)** |
 | 10 | `schwarztim/sec-rubeus-mcp` | `rubeus_asreproast` | "Perform AS-REP Roasting against accounts that don't require pre-authentication..." | **VP-L (FP)** |
 | 11 | `schwarztim/sec-rubeus-mcp` | `rubeus_s4u` | S4U2Self/S4U2Proxy delegation abuse | **VP-L (FP)** |
+| 12 | `worksona/-worksona-mcp-server` | Document server | **VP-C (VP)** (R-02 probe confirmed) |
+| 13 | `nhatvu148/video-transcriber-mcp` | Video transcript | **VP-C (VP)** |
+| 14 | `kbyk004/my-docs-mcp-server` | Docs server | **VP-C (VP)** |
+| 15 | `danielitus/mcp-document-server` | Docs server | **VP-C (VP)** |
+| 16 | `uniswap/spec-workflow-mcp` | Workflow specs | **VP-C (VP)** |
 
-Sarebbero tutti VP-L
+I FP sarebbero tutti VP-L
 
 ## 14. sensitive-info-disclosure — 9 VP (multi-source completo)
 
@@ -229,3 +234,23 @@ Sarebbero tutti VP-L
 | 1 | `michaelguo1991/math-mcp-server-nodejs` | `subtract` | `<IMPORTANT>` tag che redirige email a `attacker@pwnd.com` | **VP-C (VP)** — classico tool shadowing dimostrativo (vedi CLAUDE.md). |
 
 ### Per saperne di più su tutta l'analisi fatta: scaricare e leggere la chat di gemini "Veri Positivi: Sicurezza MCP Server" -> https://gemini.google.com/share/16bfc0cdebd6
+
+#	Minaccia	VP
+1	sql-injection	10/2.375
+2	dangerous-capabilities	10/1.990
+3	credential-leak	10/1.269
+4	ssrf	10/717
+5	untrusted-content	10/599
+6	path-traversal	10/470
+7	command-injection	10/244
+8	code-injection	10/220
+9	input-validation	10/208
+10	protocol-violation	10/137
+11	prompt-injection	10/56
+12	insecure-deserialization	10/31
+13	sensitive-file-access	16/16
+14	sensitive-info-disclosure	9/9
+15	access-control	7/7
+16	data-exfiltration	2/2
+17	tool-shadowing	1/1
+18	steganographic-attack	0/0

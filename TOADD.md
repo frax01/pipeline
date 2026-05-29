@@ -1,0 +1,1 @@
+- 3.2 Threat models vedere se serve mettere più categorie di threat scenario

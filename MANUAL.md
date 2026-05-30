@@ -164,6 +164,9 @@ Verifica fetchando `evidence` concreto:
 | 10 | `mcp-test-servers` | `shell-exec-server.js:81` | `spawn(params.command, params.args || [])` | **VP-L (VP)** — server di **test** dichiaratamente vulnerabile (`mcp-test-servers` package). |
 | 11 | `Amlan66/SSEEnabledMCPAgent` | `mcp_server_1.py:189` | **VP-C (FP)** | Template SSE MCP server con exec |
 | 12 | `Oortonaut/mcacp` | `acp/agent-requests.ts:107` | **VP-C (FP)** | Agent requests exec |
+| 13 | `RoyRushreeta/tsai-s8-sse-mcp` | `mcp_server_1.py:189` | **VP-C (FP)** | Clone template (TSAI corso) |
+| 14 | `aviban15/multi-mcp-agent` | `mcp_server_1.py:189` | **VP-C (FP)** | Clone template |
+| 15-19 | `barrhawk/barrhawk_premium_e2e_mcp` (5 file) | `index.ts`, `system-tools.ts:586/603/688`, `igor/index.ts:1778` | **VP-C (FP)** × 5 — varietà di pattern exec/spawn |
 
 ## 10. protocol-violation (mcp-watch) — 79 VP
 
@@ -272,8 +275,8 @@ I FP sarebbero tutti VP-L
 5	untrusted-content	15/599
 6	path-traversal	15/470
 7	command-injection	15/244
-8	code-injection	10/220
-9	input-validation	10/208
+8	code-injection	23/220
+9	input-validation	19/208
 10	protocol-violation	10/137
 11	prompt-injection	10/56
 12	insecure-deserialization	10/31

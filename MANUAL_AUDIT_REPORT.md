@@ -723,8 +723,8 @@ Tutti i finding hanno la stessa `evidence` standard ("Command injection vulnerab
 | 11 | `Amlan66/SSEEnabledMCPAgent` | `mcp_server_1.py:189` | **VP-C (FP)** | Template SSE MCP server con exec |
 | 12 | `Oortonaut/mcacp` | `acp/agent-requests.ts:107` | **VP-C (FP)** | Agent requests exec |
 | 13 | `RoyRushreeta/tsai-s8-sse-mcp` | `mcp_server_1.py:189` | **VP-C (FP)** | Clone template (TSAI corso) |
-| 14 | `aviban15/multi-mcp-agent` | `mcp_server_1.py:189` | **VP-C** | Clone template |
-| 15-19 | `barrhawk/barrhawk_premium_e2e_mcp` (5 file) | `index.ts`, `system-tools.ts:586/603/688`, `igor/index.ts:1778` | **VP-C** × 5 — varietà di pattern exec/spawn |
+| 14 | `aviban15/multi-mcp-agent` | `mcp_server_1.py:189` | **VP-C (FP)** | Clone template |
+| 15-19 | `barrhawk/barrhawk_premium_e2e_mcp` (5 file) | `index.ts`, `system-tools.ts:586/603/688`, `igor/index.ts:1778` | **VP-C (FP)** × 5 — varietà di pattern exec/spawn |
 | 20 | `djklmr2025/lobe-chat-arkaios` | `libs/mcp/client.ts:43` | **VP-D** | Client MCP, exec di tool legitimato |
 | 21 | `jytdemo/mcp-excel-server` | `mcp_excel_server.py:71` | **VP-C** | Excel server con exec |
 | 22 | `madebymlai/spec-context-mcp` | `tools/workflow/dispatch-executor.ts:29` | **VP-C** | Dispatch executor |

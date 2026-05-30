@@ -42,10 +42,10 @@ Tutte le verifiche sono state condotte fetchando direttamente i sorgenti dai rep
 
 I findings 11-30 sono tutti relativi a `Teradata/teradata-mcp-server` (#12-30) e StarRocks (#11). Pattern omogeneo: `cursor.execute(f"... {var}")` dove `var` è un identificatore SQL (table name, database name, schema).
 
-- **`StarRocks/mcp-server-starrocks` #11**: `SHOW CREATE TABLE \`{database}\`.\`{table}\`` da `db_summary_manager.py` — chiamato internamente con valori validati su `INFORMATION_SCHEMA`. **VP-L**.
-- **`Teradata/teradata-mcp-server` #12-13**: `SET QUERY_BAND = '{qb}' FOR SESSION` — `qb` è il "query band" Teradata, una stringa di metadata di sessione, passata dal client. **VP-D** — Teradata accetta query band strings con caratteri limitati, escape via `'` possibile ma effetto limitato a metadata.
-- **`Teradata` #14-19**: `SELECT MAX(id) AS id FROM {database_name}.{table_name}` in tool RAG — `database_name`/`table_name` da MCP tool argomento; il server espone già `execute_sql` arbitrario → **VP-L** × 6.
-- **`Teradata` #20-30**: `DROP TABLE {feature_db}.{tables['key']}` in `sql_opt_tools.py` — `feature_db` da config, `tables['key']` da **dict hardcoded** in modulo. **VP-L** × 11.
+- **`StarRocks/mcp-server-starrocks` #11**: `SHOW CREATE TABLE \`{database}\`.\`{table}\`` da `db_summary_manager.py` — chiamato internamente con valori validati su `INFORMATION_SCHEMA`. **VP-L (FP)**.
+- **`Teradata/teradata-mcp-server` #12-13**: `SET QUERY_BAND = '{qb}' FOR SESSION` — `qb` è il "query band" Teradata, una stringa di metadata di sessione, passata dal client. **VP-D (VP)** — Teradata accetta query band strings con caratteri limitati, escape via `'` possibile ma effetto limitato a metadata.
+- **`Teradata` #14-19**: `SELECT MAX(id) AS id FROM {database_name}.{table_name}` in tool RAG — `database_name`/`table_name` da MCP tool argomento; il server espone già `execute_sql` arbitrario → **VP-L (VP)** × 6.
+- **`Teradata` #20-30**: `DROP TABLE {feature_db}.{tables['key']}` in `sql_opt_tools.py` — `feature_db` da config, `tables['key']` da **dict hardcoded** in modulo. **VP-L (FP)** × 11.
 
 **Verdetto top 30**:
 
@@ -240,11 +240,11 @@ Spot-check su tutti i 20 finding aggiuntivi, con classificazione basata sul tipo
 
 | # | Server | File | Verdetto | Note |
 |---|--------|------|:--------:|------|
-| 11 | `dataontap/gorse` | `static/firebase-auth.js:7` | **FP** | Firebase **web config** (`apiKey: "AIzaSy..."`); Google docs lo definisce public per design. |
-| 12 | `dataontap/gorse` | `static/firebase-init.js:4` | **FP** | Stesso config Firebase web. |
-| 13 | `Pratham-Jain-3903/Chatbot-PWA-frontend` | `.env:1` | **VP-C** | `.env` committato. |
-| 14 | `ANSH-RIYAL/FastMCP` | `fastmcp_server.py:12` | **VP-C** | API key hardcoded in source. |
-| 15 | `MatheusgVentura/Project-One` | `api_mcp.py:93` | **VP-C** | Same pattern. |
+| 11 | `dataontap/gorse` | `static/firebase-auth.js:7` | **FP (FP)** | Firebase **web config** (`apiKey: "AIzaSy..."`); Google docs lo definisce public per design. |
+| 12 | `dataontap/gorse` | `static/firebase-init.js:4` | **FP (FP)** | Stesso config Firebase web. |
+| 13 | `Pratham-Jain-3903/Chatbot-PWA-frontend` | `.env:1` | **VP-C (VP)** | `.env` committato. |
+| 14 | `ANSH-RIYAL/FastMCP` | `fastmcp_server.py:12` | **VP-C (VP)** | API key hardcoded in source. |
+| 15 | `MatheusgVentura/Project-One` | `api_mcp.py:93` | **VP-C (VP)** | Same pattern. |
 | 16 | `Mokksh-bhatt/MCPs` | `mcp-bearer-token/mcp_starter.py:24` | **VP-C** | `genai.configure(api_key="AIzaSy...")` confermato Gemini key reale. |
 | 17 | `sirsambhav221/MCPDCOKER` | `temp.js:8` | **VP-C** | Token in temp file committato. |
 | 18 | `ravinwebsurgeon/seo-mcp` | `.env:1` | **VP-C** | `.env` committato. |
@@ -348,7 +348,7 @@ I FP raggiungono il 14% — il pattern Firebase web / OAuth public / vendored li
 
 | # | Server | Pattern URL | Verdetto |
 |---|--------|------------|:--------:|
-| 11-15 | `jango-blockchained/advanced-homeassistant-mcp` (5 occurrences) | `${hacsBase}/repos/...?category=${params.category}` e `${APP_CONFIG.HASS_HOST}/api/config/...${params.automation_id}` | **VP-D** × 5 (path/query controllati, base URL fissa) |
+| 11-15 | `jango-blockchained/advanced-homeassistant-mcp` (5 occurrences) | `${hacsBase}/repos/...?category=${params.category}` e `${APP_CONFIG.HASS_HOST}/api/config/...${params.automation_id}` | **VP-D (FP)** × 5 (path/query controllati, base URL fissa) |
 | 16 | `gitroomhq/postiz-app` | `https://api2.skool.com/groups/${params.id}` | **VP-D** |
 | 17 | `gitroomhq/postiz-app` | `fetch(params.baseUrl + url, {...})` | **VP-C** — `baseUrl` interamente da params |
 | 18-24 | `bmorphism/manifold-mcp-server` (7 occurrences) | `${API_BASE}/v0/market/${params.marketId or contractId}/...` | **VP-D** × 7 |
@@ -508,11 +508,11 @@ I 13 finding aggiuntivi completano la categoria al **100%**.
 
 | # | Server | File:Pattern | Verdetto |
 |---|--------|--------------|:--------:|
-| 11 | `easytocloud/Mac-letterhead` | `os.path.join(letterhead_dir, f"{args.name}.css")` | **VP-C** — CLI args.name |
-| 12 | `517739/Trace_mcp` | `test_without_infra.py` `os.path.join(args.data_root, f"{args.split}.jsonl")` | **VP-L** (test script CLI) |
-| 13 | `517739/Trace_mcp` | `test_aiops_svnd.py` stesso pattern | **VP-L** (test script) |
-| 14 | `517739/Trace_mcp` | `test_aiops_sv.py` `os.path.join(args.data_root, "runs", args.run_name, f"{args.task}_test")` | **VP-L** (test script) |
-| 15 | `517739/Trace_mcp` | `test_without_stat.py` stesso pattern | **VP-L** (test script) |
+| 11 | `easytocloud/Mac-letterhead` | `os.path.join(letterhead_dir, f"{args.name}.css")` | **VP-C (FP)** — CLI args.name |
+| 12 | `517739/Trace_mcp` | `test_without_infra.py` `os.path.join(args.data_root, f"{args.split}.jsonl")` | **VP-L (FP)** (test script CLI) |
+| 13 | `517739/Trace_mcp` | `test_aiops_svnd.py` stesso pattern | **VP-L (FP)** (test script) |
+| 14 | `517739/Trace_mcp` | `test_aiops_sv.py` `os.path.join(args.data_root, "runs", args.run_name, f"{args.task}_test")` | **VP-L (FP)** (test script) |
+| 15 | `517739/Trace_mcp` | `test_without_stat.py` stesso pattern | **VP-L (FP)** (test script) |
 | 16 | `Logan66666/noval-ranks-mcp-server` | `os.path.join(args.ocr_mapping_dir, f"{font_hash}_mapping.json")` | **VP-L** (font_hash internal, args.ocr_mapping_dir da CLI) |
 | 17 | `QuantML-Com/AI-Kline` | `os.path.join(args.save_path, f"{args.stock_code}_analysis_result.txt")` | **VP-C** se chiamato come MCP tool (stock_code da utente); **VP-L** se CLI |
 | 18-20 | `Ziqiao-git/MCP-R` | `ms-swift/swift/trainers/mixin.py` e `megatron/trainers/base.py` — checkpoint output paths con `process_index`/`iteration` interni | **VP-L** × 3 (training framework internal, vendored ms-swift) |
@@ -577,11 +577,11 @@ Il fuzzing pathological traversal alza notevolmente la % VP-C reali (4 → 55) p
 
 | # | Server | Pattern | Verdetto |
 |---|--------|---------|:--------:|
-| 11 | `ashwwwin/automation-mcp` | `execSync(\`screencapture -x -l${targetId} "${filePath}"\`)` | **VP-C** — targetId/filePath da MCP tool input |
-| 12 | `xzebra/mcp-server-runner` | `exec(\`taskkill /pid ${runningServer.process.pid} /T /F\`)` | **VP-L** — process.pid internal |
-| 13 | `SurgeX-Labs/awx-mcp-server` | stesso pattern di #12 | **VP-L** |
-| 14 | `agiletec-inc/airiscode` | `execSync(\`command -v ${command}\`)` | **VP-L** — command da config interna |
-| 15 | `agiletec-inc/airiscode` | stesso con `vscodeCommand` | **VP-L** |
+| 11 | `ashwwwin/automation-mcp` | `execSync(\`screencapture -x -l${targetId} "${filePath}"\`)` | **VP-C (VP)** — targetId/filePath da MCP tool input |
+| 12 | `xzebra/mcp-server-runner` | `exec(\`taskkill /pid ${runningServer.process.pid} /T /F\`)` | **VP-L (FP)** — process.pid internal |
+| 13 | `SurgeX-Labs/awx-mcp-server` | stesso pattern di #12 | **VP-L (FP)** |
+| 14 | `agiletec-inc/airiscode` | `execSync(\`command -v ${command}\`)` | **VP-L (FP)** — command da config interna |
+| 15 | `agiletec-inc/airiscode` | stesso con `vscodeCommand` | **VP-L (FP)** |
 | 16 | `fr0ster/mcp-abap-adt-auth-providers` | `exec(\`${command} "${authorizationUrl}"\`)` | **VP-C** — command + URL da config OAuth, controllo attaccante possibile |
 | 17 | `jarrett-au/cc-devkit` | `execSync(\`git clone ${repoUrl} "${tempDir}" --depth 1\`)` | **VP-C** — repoUrl + tempDir da MCP tool |
 | 18 | `jasoons/mcp-server-experiments-rescript` | `execSync("chmod +x " + scriptPath)` | **VP-D** — scriptPath dipende da come è chiamato |
@@ -635,7 +635,7 @@ Cluster significativo: **tmux-mcp** ha 27+ findings di command injection — un 
 
 | # | Server | Pattern | Verdetto |
 |---|--------|---------|:--------:|
-| 11-23 | `neuromechanist/matlab-mcp-tools` (13 occurrences) | `self.eng.eval(f"...{var}...")` su tutte le funzioni MATLAB helper | **VP-C** × 13 — stesso pattern del top 10, MATLAB eval con var attaccante |
+| 11-23 | `neuromechanist/matlab-mcp-tools` (13 occurrences) | `self.eng.eval(f"...{var}...")` su tutte le funzioni MATLAB helper | **VP-C (FP)** × 13 — stesso pattern del top 10, MATLAB eval con var attaccante |
 | 24 | `yetidevworks/yetibrowser-mcp` | `globalThis.eval(\`(${source})\`)` | **VP-C** — JS eval con source da MCP tool |
 | 25 | `andrewginns/agents-mcp-usage` | `model_data.eval(f"\`{series['column']}\` {series['condition']}")` | **VP-L** — pandas DataFrame.eval (safe expressions), series da config benchmark |
 | 26-28 | `papersgpt/papersgpt-for-zotero` (3 occurrences) | `window.eval(\`${codeString}\`)` in modulo views.ts | **VP-D** × 3 — codeString è codice di plugin Zotero, contesto plugin-trusted |
@@ -720,9 +720,9 @@ Tutti i finding hanno la stessa `evidence` standard ("Command injection vulnerab
 
 | # | Server | File | Verdetto | Note |
 |---|--------|------|:--------:|------|
-| 11 | `Amlan66/SSEEnabledMCPAgent` | `mcp_server_1.py:189` | **VP-C** | Template SSE MCP server con exec |
-| 12 | `Oortonaut/mcacp` | `acp/agent-requests.ts:107` | **VP-C** | Agent requests exec |
-| 13 | `RoyRushreeta/tsai-s8-sse-mcp` | `mcp_server_1.py:189` | **VP-C** | Clone template (TSAI corso) |
+| 11 | `Amlan66/SSEEnabledMCPAgent` | `mcp_server_1.py:189` | **VP-C (FP)** | Template SSE MCP server con exec |
+| 12 | `Oortonaut/mcacp` | `acp/agent-requests.ts:107` | **VP-C (FP)** | Agent requests exec |
+| 13 | `RoyRushreeta/tsai-s8-sse-mcp` | `mcp_server_1.py:189` | **VP-C (FP)** | Clone template (TSAI corso) |
 | 14 | `aviban15/multi-mcp-agent` | `mcp_server_1.py:189` | **VP-C** | Clone template |
 | 15-19 | `barrhawk/barrhawk_premium_e2e_mcp` (5 file) | `index.ts`, `system-tools.ts:586/603/688`, `igor/index.ts:1778` | **VP-C** × 5 — varietà di pattern exec/spawn |
 | 20 | `djklmr2025/lobe-chat-arkaios` | `libs/mcp/client.ts:43` | **VP-D** | Client MCP, exec di tool legitimato |

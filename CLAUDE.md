@@ -2268,66 +2268,108 @@ Vedere `analysisAllData/HANDOFF_FUZZING.md` per template completo di passaggio s
 
 ---
 
-## Post-processing tool_fuzzing: Stage 1 + Stage 2A/2B (settimo tool)
+## Post-processing tool_fuzzing: RE-RUN COMPLETO con risposte (settimo tool)
 
-### Contesto
+### Re-run 2026-05-29: dataset combinato GitHub+NPX, CON risposte
 
-tool_fuzzing fa **runtime fuzzing** dei server MCP (non SAST come mcp-guard/mcp-watch). Invia input fuzzati ai tool MCP e probe del protocol JSON-RPC, raccoglie statistiche di failure.
+**Decisione**: tool_fuzzing è stato **ri-eseguito da capo** (non solo integrazione NPX).
+Il run precedente NON salvava le risposte del server → impossibile distinguere input
+malevolo *accettato/eseguito* da *ignorato/respinto*. Il vecchio run è archiviato in
+`0_tool_fuzzing.OLD_no_responses/`. Il nuovo run salva `server_error_response`,
+`inputs_successful[].result`, `success_details[].server_response`.
 
-**Schema finding diverso**: NO response body, solo input + counters di success/failure.
+- **Dataset combinato**: **69.103 server = 60.191 GitHub + 8.912 NPX**, shardato su 9 VM.
+- Ogni finding ha `_origin: github|npx`. Niente "merge" separato: è già un run unico.
 
-### 4 categorie output
+### La distinzione server-analizzato vs tool-fuzzato (era la domanda chiave)
 
-| # | Categoria | Source files | Filt entries | VP | FP |
-|---|-----------|--------------|-------------:|---:|---:|
-| 1 | server-error-fuzzing | exceptions/Server_returned_error.json | 10.944 | 0 | 10.944 |
-| 2 | transport-failure-fuzzing | 3 file Failed_*/No_response (merged) | 3.385 | 0 | 3.385 |
-| 3 | server-crash-fuzzing | 'int'_object_has_no_attribute | 1 | 1 | 0 |
-| 4 | protocol-fuzzing | 17 file protocol/* (merged) | 3.511 | **775** | 2.736 |
-| **TOTALE** | | | **17.841** | **776** | **17.065** |
+Il framework conta `total_servers` (~36k "completed") includendo chi ha fatto **solo
+la fase protocol** e zero tool. Due fasi distinte:
+- **Protocol probing** (`protocol/*.json`, no `tool_name`) → TUTTI i completed
+- **Tool fuzzing** (`exceptions/*.json`, con `tool_name`+risposte) → solo chi espone tool
 
-**Pipeline (post fix 2026-05-06)**: 117.724 raw → 17.841 filtered → **776 VP / 17.065 FP** / 0 UNC.
+Coverage reale (`_coverage_report.json`): 69.103 nel dataset → 36.119 completed →
+**solo 406 con tool fuzzing recuperabile** (369 gh + 37 npx) → 35.713 completed senza
+alcun tool fuzzing (solo protocol).
 
-Cambio: protocol-fuzzing 1.562 → 775 VP (-787, fix `InitializeRequest` rate ≥80% = metodo valido + `ReadResourceRequest` con URI standard = compliance test, NO security signal).
+> ⚠️ **Limite framework**: i tool con 0 eccezioni (tutti-successo, ~75%) NON sono
+> salvati individualmente. L'analisi tool-level copre i 406 server con ≥1 eccezione.
 
-**Spot-check ha rivelato bug HC critici** (server-error e transport): regole rimosse perché confondevano "fuzz random rejection" con "DoS". **Stima VP reali: ~530-730** (signal weak per protocol-fuzzing, success_details vuoto).
+### Workflow (pull tool-level + pre-filtro protocol su VM)
+
+```
+Pull exceptions/ da 9 VM                         ~14 MB
+Pre-filtro protocol SU VM (14 GB → ~7 MB):       _prefilter_protocol_vm.py
+  tiene solo successful>0; *Notification = solo conteggio (FP by design)
+Aggrega 9 shard:                                 _aggregate_shards.py
+Stage 1:                                         filter_fuzzing.py
+Stage 2A HC + merge (0 UNCERTAIN):               pipeline_fuzzing.py --category all
+```
+
+### 4 categorie ridisegnate (sfruttano le risposte)
+
+| # | Categoria | Filtered | VP | FP |
+|---|-----------|---------:|---:|---:|
+| 1 | tool-input-accepted (payload accettato + result) | 580 | **0** | 580 |
+| 2 | tool-error-disclosure (stack trace/path/secret) | 1.864 | **6** | 1.858 |
+| 3 | tool-crash-dos (panic Go input-triggered) | 417 | **7** | 410 |
+| 4 | protocol-fuzzing (msg malformato accettato) | 1.791 | **0** | 1.791 |
+| **TOTALE** | | **4.652** | **13** | **4.639** |
+
+**13 VP = 7 GitHub (crash) + 6 NPX (disclosure)**, su **4 server distinti**.
+
+### I 13 VP
+
+**tool-crash-dos (7 VP / 3 server, panic Go INPUT-TRIGGERED):**
+- `sonar-mcp-server` (4 tool), `mcp-iot-go` (2), `opgen-mcp-server` (1) — handler che fa
+  type assertion non controllata su input (`interface conversion: interface {} is nil,
+  not <type>`); panic recuperato (`recover()`) → NON DoS pieno, ma bug di robustezza
+  input-handling (CWE-476) attacker-triggerable.
+- **Conferma cross-framework**: tutti e 3 già nei `panic_or_crash` di mcp-check.
+
+**tool-error-disclosure (6 VP / 1 server):**
+- `svg2png-mcp-server` (NPX) → stack trace Node.js con path sorgente nei messaggi d'errore
+
+**Riclassificati a FP (24 finding): `asgardeo-mcp-server` (19) + `talos-mcp` (5)** —
+panicano (`nil pointer dereference`) sul **100% degli input su ogni tool** → client/SDK
+`nil` da backend non configurato sulla VM, NON input-triggered → FP (bug config, non
+sicurezza). Discriminante VP/FP: `interface conversion` (type assertion su input) = VP;
+`nil pointer dereference` a rate 100% = FP config-driven.
+
+### Perché solo 13 VP (vs i 776 del vecchio run)
+
+Il vecchio run dichiarava 776 VP (775 protocol) ma SENZA risposte non erano
+confermabili. Le risposte ora **dimostrano** che:
+- **input-accepted → 0 VP**: i tool respingono (316 isError) o ignorano (264) i payload;
+  prototype-pollution droppato dal parsing JSON, path-traversal trattato come dominio/
+  search term, injection come dato letterale. 0 marker di exploitation.
+- **protocol → 0 VP**: i messaggi "accettati" hanno `server_response` vuoto
+  (notification-style, no processing) o sono metodi MCP validi gestiti correttamente.
+  → I 775 "VP protocol" del vecchio run sono **confermati FP** dalle risposte.
+- **crash → solo input-triggered**: i panic `nil pointer` config-driven (asgardeo/talos,
+  100% su ogni input) sono FP; VP solo i `interface conversion` input-triggered (3 server).
+- Unici VP reali: 3 server con panic input-triggered + 1 con stack-trace disclosure.
+
+Il re-run è un **miglioramento di qualità**: meno VP ma reali e provati.
 
 ### Comandi
 
 ```bash
-cd /c/Users/francesco/Desktop/pipeline/analysisAllData/0_tool_fuzzing/
-python -X utf8 filter_fuzzing.py
-python -X utf8 pipeline_fuzzing.py --category all --hc-only
-python -X utf8 _classify_protocol.py
-python -X utf8 pipeline_fuzzing.py --category all --cache-only
+cd analysisAllData/0_tool_fuzzing
+py -X utf8 _aggregate_shards.py        # se presenti gli _shards/
+py -X utf8 filter_fuzzing.py
+py -X utf8 pipeline_fuzzing.py --category all
 ```
-
-### HC rules security-first
-
-**server-error-fuzzing**: VP solo se input malicious accettato come `inputs_successful` o dangerous tool con 100% failure (DoS). Default FP (resilience issue ≠ security).
-
-**transport-failure-fuzzing**: VP solo se "Failed to send" + 100% failure (server crash). Default FP (transport noise).
-
-**server-crash-fuzzing**: 1 VP fissa (Python AttributeError = bug runtime).
-
-**protocol-fuzzing**: VP se protocol security-relevant (`GenericJSONRPCRequest`, `InitializeRequest`, `ReadResourceRequest`, `CreateMessageRequest`) + server processa request malformata. FP per notification + informational protocol.
 
 ### Limiti tool_fuzzing
 
-Schema povero per security: NO response body. Detection limitata a:
-- DoS (tool/server crashed)
-- Protocol violation (server accept malformed)
-- Python crash (rare)
-
-NON utile per: SAST findings, hidden instructions, hardcoded creds, injection vulns.
-
-### Bug noto fix applicato
-
-Regex `_SE_EXTERNAL_SERVER` matchava `github` in URL `https://github.com/...` → tutti i server flag esterni. Fix: applicare a `server_name`, NON `server_url`.
+- Tool tutti-successo non salvati (~75%) → tool-level copre i 406 con ≥1 eccezione.
+- `vuln_findings`/`invariant_violations` del framework sempre vuoti (placeholder).
+- Rileva crash/DoS + injection-eseguita + disclosure; NON SAST/hidden-instructions/creds.
 
 ### Documentazione
 
-Vedere `analysisAllData/0_tool_fuzzing/ANALYSIS_GUIDE.md` per dettagli completi.
+Vedere `analysisAllData/0_tool_fuzzing/README.md` per dettagli completi.
 
 ---
 
@@ -2618,9 +2660,9 @@ py -X utf8 pipeline_mcp_scan_npx.py --category W017_npx --cache-only
 | **tool_fuzzing** | **776** | **~760** | -787 vs originale |
 | **TOTALE GitHub** | **18.580** | **~17.819** | FP rate medio **4.4%** (blind n=50/cat) |
 
-### Post-merge NPX (parziale — 2026-05-26)
+### Post-merge NPX (parziale — 2026-05-29)
 
-**mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield integrati**. Altre 2 VM ancora in corso.
+**mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield + tool_fuzzing integrati**. Solo mcp-guard ancora in corso.
 
 | Tool | VP pre-merge | VP NPX aggiunti | VP post-merge | Cosa è cambiato |
 |------|-------------:|----------------:|--------------:|------------------|
@@ -2629,9 +2671,11 @@ py -X utf8 pipeline_mcp_scan_npx.py --category W017_npx --cache-only
 | mcp-security-scan | 1.094 | **+280** | **1.374** | 7 cat merged (dangerous-capabilities domina), no nuove categorie |
 | mcp-check | 9.453 | **+5.530** | **14.983** | 12 cat merged (schema_violation/other_errors dominano), no nuove categorie |
 | mcp-shield | 16 | **+0** | **16** | 4 cat merged; NPX 0 VP atteso (no offensive tools in NPM) |
+| tool_fuzzing | 776 (OLD) | **re-run** | **13** | RE-RUN completo con risposte (7 gh crash input-triggered + 6 npx disclosure); i 775 "VP protocol" OLD confermati FP |
 | mcp-guard | 5.774 | TBD (VM in corso) | 5.774 | |
-| tool_fuzzing | 776 | TBD (VM in corso) | 776 | |
-| **TOTALE post-merge parziale** | **18.583** | **+9.902** | **28.485** | |
+| **TOTALE post-merge parziale** | **18.583** | — | **27.722** | |
+
+> **tool_fuzzing**: NON è un incremento NPX ma un **re-run completo** (GitHub+NPX combinato, 69.103 server) perché il run vecchio non salvava le risposte. I 776 VP OLD → **13 VP reali** (3 server con panic Go input-triggered + 1 stack-trace disclosure). Le risposte dimostrano che i 775 "VP protocol" del vecchio run erano FP (server_response vuoto / metodi validi), e che i panic `nil pointer` di asgardeo/talos (24) sono FP config-driven (100% su ogni input = client nil, non input-triggered). I 3 server-crash VP (sonar, mcp-iot-go, opgen) confermano i `panic_or_crash` di mcp-check (consensus). Vedi `0_tool_fuzzing/README.md`.
 
 **Composizione mcp-scan post-merge (4.396 VP)**:
 - E001 merged: 98 VP (36 GitHub + 62 NPX)

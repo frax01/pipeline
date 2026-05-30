@@ -1,72 +1,77 @@
-# tool_fuzzing findings (4 categorie)
+# tool_fuzzing findings — RE-RUN completo con risposte (2026-05-29)
 
-**Numeri aggiornati 2026-05-06 post blind-review** (vedi `analysisAllData/UPDATED_NUMBERS_2026-05-06.md`).
+> ⚠️ **Questo documento riflette il RE-RUN completo** (dataset combinato GitHub+NPX,
+> con risposte del server). Il run precedente — che dichiarava **776 VP** senza salvare
+> le risposte — è archiviato in `analysisAllData/0_tool_fuzzing.OLD_no_responses/` ed è
+> **superato**. Documentazione completa: `analysisAllData/0_tool_fuzzing/README.md`.
 
-Pipeline: 117.724 raw → Stage 1 (`filter_fuzzing.py`) → 17.841 → Stage 2A (HC) → Stage 2B → **776 VP / 17.065 FP**.
+## Cosa è cambiato
 
-## Summary 4 categorie
+Il vecchio run non salvava `server_response` / `inputs_successful[].result`, quindi era
+impossibile distinguere un input malevolo *eseguito* da uno *ignorato/respinto*. Il
+re-run salva le risposte → si può classificare sulla base di cosa il server ha
+**davvero fatto**. Risultato: i **776 VP** del vecchio run (di cui 775 protocol) sono
+quasi tutti **confermati FP** dalle risposte; restano **13 VP reali**.
 
-| Categoria | Raw | Filtered | VP | FP | FP rate% (blind n=50) | Nota |
-|-----------|----:|---------:|---:|---:|----------------------:|------|
-| protocol-fuzzing | 103.394 | 3.511 | **775** | 2.736 | 2.1 | -787 vs precedente |
-| server-error-fuzzing | 10.944 | 10.944 | 0 | 10.944 | 0 | Tutti FP (resilience ≠ security) |
-| transport-failure-fuzzing | 3.385 | 3.385 | 0 | 3.385 | 0 | Tutti FP (transport noise) |
-| server-crash-fuzzing | 1 | 1 | 1 | 0 | 0 | 1 VP (Python AttributeError) |
-| **Totale** | **117.724** | **17.841** | **776** | **17.065** | | |
+- **Dataset**: 69.103 server combinati (60.191 GitHub + 8.912 NPX), shardato su 9 VM.
+- **Coverage tool-level**: solo **406 server** con tool fuzzing recuperabile (369 gh + 37 npx);
+  35.713 "completed" facevano solo protocol probing. Vedi `_coverage_report.json`.
 
-## Categorie
+## Summary 4 categorie (ridisegnate)
 
-### protocol-fuzzing (775 VP)
+| Categoria | Filtered | VP | FP | Nota |
+|-----------|---------:|---:|---:|------|
+| tool-input-accepted | 580 | **0** | 580 | payload accettato ma ignorato (264) o rifiutato isError (316); 0 exploitation |
+| tool-error-disclosure | 1.864 | **6** | 1.858 | svg2png-mcp-server: stack trace Node.js con path sorgente (CWE-209) |
+| tool-crash-dos | 417 | **7** | 410 | panic Go INPUT-triggered (3 server); asgardeo/talos config-driven = FP |
+| protocol-fuzzing | 1.791 | **0** | 1.791 | response vuota (no processing) o metodo MCP valido gestito |
+| **Totale** | **4.652** | **13** | **4.639** | 7 gh (crash) + 6 npx (disclosure), 4 server distinti |
 
-Probe runtime: invia richieste JSON-RPC malformate per ogni protocol type MCP.
+## I 13 VP
 
-VP = server processa richieste malformate su protocol type security-relevant:
-- `GenericJSONRPCRequest`: server processa metodi arbitrari (`unknown/method`, `custom/method`)
-- `CreateMessageRequest`: server processa LLM call malformato
-- `ReadResourceRequest`: server accetta resource read malformato (NON URI standard)
+### tool-crash-dos — 7 VP / 3 server (panic Go INPUT-triggered, robustezza low, NON DoS)
+Type assertion non controllata su input (`interface conversion: interface {} is nil,
+not <type>`): un input fuzzato specifico (parziale 1–4/6) crasha l'handler.
+- `sonar-mcp-server` (4 tool), `mcp-iot-go` (2), `opgen-mcp-server` (1)
+- **severity: low**, **CWE-20** → type-assertion panic (CWE-248). Il panic è
+  **recuperato** (`recover()`) → NON è un DoS pieno; è un bug di robustezza/input-handling
+  attacker-triggerable. Restano VP (difetto reale) e non FP (non sono falsi allarmi).
+- **Conferma cross-framework**: tutti e 3 già nei `panic_or_crash` di mcp-check.
 
-FP HC nuove (post 2026-05-06):
-- `InitializeRequest` con success rate ≥80% = comportamento corretto (initialize è metodo valido, NON malformed)
-- `ReadResourceRequest` con URI standard (file:///tmp/test.txt, resource://server/data, https://example.com/resource) = compliance test, NO security signal
+### Riclassificati a FP — asgardeo-mcp-server (19) + talos-mcp (5) = 24 finding
+Panicano (`nil pointer dereference`) sul **100% degli input su ogni tool** → client/SDK
+`nil` da backend non configurato sulla VM (input-INDEPENDENT, non attacker-triggered) → FP.
 
-### server-crash-fuzzing (1 VP)
+### tool-error-disclosure — 6 VP / 1 server
+`svg2png-mcp-server` (NPX): stack trace Node.js completi con path sorgente interni
+(`index.js:71:11`) nei messaggi d'errore → information disclosure (CWE-209), severity low.
 
-1 server con Python `AttributeError` runtime crash → bug reale, VP.
+## Perché protocol e input-accepted = 0 VP
 
-### server-error-fuzzing (0 VP)
-
-10.944 finding tutti FP. HC rules security-first:
-- VP solo se input malicious accettato come `inputs_successful` o dangerous tool con 100% failure (DoS)
-- Default FP (resilience issue ≠ security)
-
-### transport-failure-fuzzing (0 VP)
-
-3.385 finding tutti FP. HC rules:
-- VP solo se "Failed to send" + 100% failure (server crash)
-- Default FP (transport noise)
+- **input-accepted (0 VP)**: i tool **respingono** (316 isError) o **ignorano** (264) i
+  payload; prototype pollution droppato dal parsing JSON, path traversal trattato come
+  dominio/search term, injection come dato letterale. 0 marker di exploitation nei result.
+- **protocol-fuzzing (0 VP)**: i messaggi "accettati" hanno `server_response` vuoto
+  (notification-style, no processing) o sono metodi MCP validi gestiti correttamente
+  (InitializeRequest → capabilities, CompleteRequest → completions). I 775 "VP protocol"
+  del vecchio run sono confermati FP dalle risposte.
 
 ## Limiti tool_fuzzing
 
-**Schema povero**: NO response body nei finding raw. Detection limitata a:
-- DoS (tool/server crashed)
-- Protocol violation (server accept malformed)
-- Python crash (rare)
-
-NON utile per: SAST findings, hidden instructions, hardcoded creds, injection vulns.
-
-**Bug noto fix (2026-05-06)**: `_SE_EXTERNAL_SERVER` regex matchava `github` in URL `https://github.com/...` → tutti server flag esterni. Fix: applicare a `server_name`, NON `server_url`.
+- **Tool tutti-successo non salvati** (~75%): l'analisi tool-level copre i 406 server con
+  ≥1 eccezione. `vuln_findings`/`invariant_violations` del framework sempre vuoti.
+- Rileva crash/DoS + injection-eseguita + disclosure; NON SAST/hidden-instructions/creds.
 
 ## Output finali
 
 Per ogni categoria in `analysisAllData/0_tool_fuzzing/<cat>/filtered/llm_analysis/`:
-- `vp.json` — VP finali
-- `fp.json` — FP finali
-- `audit.json` — log completo
-- `_llm_api_cache.json` — cache verdetti
+`vp.json` (con campi `severity`/`cwe`/`vp_class`/`note`), `fp.json`, `audit.json`.
 
 ## Riferimenti
 
-- Pipeline source: `analysisAllData/0_tool_fuzzing/pipeline_fuzzing.py`
-- Filter source: `analysisAllData/0_tool_fuzzing/filter_fuzzing.py`
-- Updated numbers: `analysisAllData/UPDATED_NUMBERS_2026-05-06.md`
-- Analysis guide: `analysisAllData/0_tool_fuzzing/ANALYSIS_GUIDE.md`
+- Doc completa: `analysisAllData/0_tool_fuzzing/README.md`
+- Pre-filtro protocol su VM: `analysisAllData/0_tool_fuzzing/_prefilter_protocol_vm.py`
+- Aggregazione shard: `analysisAllData/0_tool_fuzzing/_aggregate_shards.py`
+- Stage 1: `analysisAllData/0_tool_fuzzing/filter_fuzzing.py`
+- Stage 2A + merge: `analysisAllData/0_tool_fuzzing/pipeline_fuzzing.py`
+- Coverage report: `analysisAllData/0_tool_fuzzing/_coverage_report.json`

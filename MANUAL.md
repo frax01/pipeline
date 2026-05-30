@@ -12,6 +12,10 @@
 | 8 | `StarRocks/mcp-server-starrocks` | `server.py:122` | **VP-C (VP)** | `f"show proc '{path}'"`: `path` da URI resource `proc:///{path*}`, dentro apici singoli, escape via `'` possibile. Anche se mooted da `write_query`, è il pattern più sfruttabile dei 4. |
 | 9 | `StarRocks/mcp-server-starrocks` | `server.py:228` | **VP-L (VP)** | `f"ANALYZE PROFILE FROM '{uuid}'"`: stesso server espone già `analyze_query(sql)` arbitrario. |
 | 10 | `StarRocks/mcp-server-starrocks` | `server.py:231` | **VP-L (VP)** | `f"EXPLAIN ANALYZE {sql}"`: `sql` è già parametro libero del tool (by design). |
+- **`StarRocks/mcp-server-starrocks` #11**: `SHOW CREATE TABLE \`{database}\`.\`{table}\`` da `db_summary_manager.py` — chiamato internamente con valori validati su `INFORMATION_SCHEMA`. **VP-L (FP)**.
+- **`Teradata/teradata-mcp-server` #12-13**: `SET QUERY_BAND = '{qb}' FOR SESSION` — `qb` è il "query band" Teradata, una stringa di metadata di sessione, passata dal client. **VP-D (VP)** — Teradata accetta query band strings con caratteri limitati, escape via `'` possibile ma effetto limitato a metadata.
+- **`Teradata` #14-19**: `SELECT MAX(id) AS id FROM {database_name}.{table_name}` in tool RAG — `database_name`/`table_name` da MCP tool argomento; il server espone già `execute_sql` arbitrario → **VP-L (VP)** × 6.
+- **`Teradata` #20-30**: `DROP TABLE {feature_db}.{tables['key']}` in `sql_opt_tools.py` — `feature_db` da config, `tables['key']` da **dict hardcoded** in modulo. **VP-L (FP)** × 11.
 
 ## 2. dangerous-capabilities (mcp-security-scan, X-01) — 1.001 VP
 
@@ -44,6 +48,11 @@ Verifica fetchando il valore concreto di `evidence`:
 | 8 | `Garblesnarff/gemini-mcp-server` | `config.js:24` | `'AIzaSyD0AGPlaa8aV8NCFu5xVPMRLdGaamRDIvc'` | **VP-C (VP)** |
 | 9 | `Garblesnarff/gemini-mcp-server` | `config.js:25` | `'AIzaSyC8BW5mHihe4jV-hczXrvgNcPo_dMdtEas'` | **VP-C (VP)** |
 | 10 | `Garblesnarff/gemini-mcp-server` | `config.js:26` | `'AIzaSyD6Ki3ZtL19-Km9y8EQcywZvHJLDiRDyNk'` | **VP-C (VP)** |
+| 11 | `dataontap/gorse` | `static/firebase-auth.js:7` | **FP (FP)** | Firebase **web config** (`apiKey: "AIzaSy..."`); Google docs lo definisce public per design. |
+| 12 | `dataontap/gorse` | `static/firebase-init.js:4` | **FP (FP)** | Stesso config Firebase web. |
+| 13 | `Pratham-Jain-3903/Chatbot-PWA-frontend` | `.env:1` | **VP-C (VP)** | `.env` committato. |
+| 14 | `ANSH-RIYAL/FastMCP` | `fastmcp_server.py:12` | **VP-C (VP)** | API key hardcoded in source. |
+| 15 | `MatheusgVentura/Project-One` | `api_mcp.py:93` | **VP-C (VP)** | Same pattern. |
 
 ## 4. ssrf (mcp-guard) — 717 VP
 
@@ -59,6 +68,7 @@ Verifica fetchando il valore concreto di `evidence`:
 | 8 | `sendaifun/solana-agent-kit` | `getTradeHistory.ts:42` | `fetch(\`${RANGER_DATA_API_BASE}/v1/trade_history?${params.toString()}\`)` | **VP-D (FP)** — query string controllata, base URL hardcoded. |
 | 9 | `BasedHardware/omi` | `[id]/route.ts:18` | `fetch(\`${OMI_API_URL}/v1/announcements/${params.id}\`)` | **VP-D (VP)** — id su base URL hardcoded. |
 | 10 | `BasedHardware/omi` | `[id]/route.ts:49` | stesso | **VP-D (VP)** |
+| 11-15 | `jango-blockchained/advanced-homeassistant-mcp` (5 occurrences) | `${hacsBase}/repos/...?category=${params.category}` e `${APP_CONFIG.HASS_HOST}/api/config/...${params.automation_id}` | **VP-D (FP)** × 5 (path/query controllati, base URL fissa) |
 
 ## 5. untrusted-content (mcp-scan W015) — 599 VP
 
@@ -74,6 +84,11 @@ Verifica fetchando il valore concreto di `evidence`:
 | 8 | `DLHellMe/telegram-mcp-server` | **VP-C (VP)** (Telegram messages) |
 | 9 | `DevEnterpriseSoftware/scrapi-mcp` | **VP-C (VP)** (web scraping) |
 | 10 | `Dumpling-AI/mcp-server-dumplingai` | **VP-C (VP)** (API esterna) |
+| 11 | `GoPlausible/algorand-mcp` | Algorand blockchain pubblica |
+| 12 | `aardeshir/youtube-mcp` | YouTube content |
+| 13 | `cnych/seo-mcp` | SEO data (web) |
+| 14 | `coinpaprika/dexpaprika-mcp` | DEX paprika prices |
+| 15 | `gomakers-ai/mcp-google-analytics` | Google Analytics |
 
 ## 6. path-traversal-static (mcp-guard) — 23 VP
 
@@ -87,6 +102,11 @@ Verifica fetchando il valore concreto di `evidence`:
 | 8 | `OTA-Tech-AI/web-agent-protocol` | `generate_mcp_server.py:134` | `os.path.join("mcp_servers", f"*_{args.task_id}_mcp_server.py")` | **VP-C (VP-C)** se task_id da utente; **VP-L** se da CLI args interno. |
 | 9 | `OTA-Tech-AI/web-agent-protocol` | `generate_mcp_server.py:142` | stesso | **VP-C/VP-L (FP)** simile |
 | 10 | `easytocloud/Mac-letterhead` | `main.py:373` | `os.path.join(letterhead_dir, f"{args.name}.pdf")` | **VP-C (FP)** — args.name da CLI input utente. |
+| 11 | `easytocloud/Mac-letterhead` | `os.path.join(letterhead_dir, f"{args.name}.css")` | **VP-C (FP)** — CLI args.name |
+| 12 | `517739/Trace_mcp` | `test_without_infra.py` `os.path.join(args.data_root, f"{args.split}.jsonl")` | **VP-L (FP)** (test script CLI) |
+| 13 | `517739/Trace_mcp` | `test_aiops_svnd.py` stesso pattern | **VP-L (FP)** (test script) |
+| 14 | `517739/Trace_mcp` | `test_aiops_sv.py` `os.path.join(args.data_root, "runs", args.run_name, f"{args.task}_test")` | **VP-L (FP)** (test script) |
+| 15 | `517739/Trace_mcp` | `test_without_stat.py` stesso pattern | **VP-L (FP)** (test script) |
 
 In realtà in questo file il vero pericolo è questo:
 
@@ -112,6 +132,11 @@ che il tool di scan non trova
 | 8 | `illustriousj/kite-mcp-server` | `kc/api.go:25` | `exec.Command("/b" + "in/sh", "-c", UhpF).Start()` | **VP-C (VP-C)** — **trojan** obfuscation. |
 | 9 | `killme2008/devtap` | `capture/errors.go:38` | `exec.Command(args[i], args[i+1:]...)` | **VP-C (FP)** — args spread potenzialmente attaccante. |
 | 10 | `xieyuschen/gopls-mcp` | `compilebench/main.go:427` | stesso di #3 (copia di golang/tools) | **VP-L (FP)** |
+| 11 | `ashwwwin/automation-mcp` | `execSync(\`screencapture -x -l${targetId} "${filePath}"\`)` | **VP-C (VP)** — targetId/filePath da MCP tool input |
+| 12 | `xzebra/mcp-server-runner` | `exec(\`taskkill /pid ${runningServer.process.pid} /T /F\`)` | **VP-L (FP)** — process.pid internal |
+| 13 | `SurgeX-Labs/awx-mcp-server` | stesso pattern di #12 | **VP-L (FP)** |
+| 14 | `agiletec-inc/airiscode` | `execSync(\`command -v ${command}\`)` | **VP-L (FP)** — command da config interna |
+| 15 | `agiletec-inc/airiscode` | stesso con `vscodeCommand` | **VP-L (FP)** |
 
 ## 8. code-injection-static (mcp-guard) — 184 VP
 
@@ -119,6 +144,7 @@ che il tool di scan non trova
 |---|--------|-----------|---------|:--------:|
 | 1-5 | `bigcodegen/mcp-neovim-server` | `neovim.ts:175,345,360,540,665` | `nvim.eval(\`system('${shellCommand.replace(...)}')\`)` etc. | **VP-C (VP-C)** — `shellCommand` da MCP tool, replace dei `'` non basta su Vim eval; possibile command injection via shell expansion in Vim. |
 | 6-10 | `neuromechanist/matlab-mcp-tools` | `engine.py:887-920` | `self.eng.eval(f"min({var}(:))", nargout=1)` | **VP-C (VP-C)** — `var` da MCP tool input, MATLAB eval esegue codice MATLAB arbitrario (incluso system commands via `!cmd`). |
+| 11-23 | `neuromechanist/matlab-mcp-tools` (13 occurrences) | `self.eng.eval(f"...{var}...")` su tutte le funzioni MATLAB helper | **VP-C (FP)** × 13 — stesso pattern del top 10, MATLAB eval con var attaccante |
 
 ## 9. input-validation (mcp-watch) — 125 VP
 
@@ -136,6 +162,8 @@ Verifica fetchando `evidence` concreto:
 | 8 | `iron-manus-mcp` | `install.js:164` | `execSync(\`${req.command} ${req.version}\`)` | **VP-C (VP-C)** — full command da utente. |
 | 9 | `tiktoken-mcp` | `index.js:116` | `exec(\`python3 -c '${pythonScript}' '${input.replace(/'/g, "\\'")}'\`)` | **VP-D (VP)** — escape di `'` è naïve ma riduce impact; comunque sfruttabile via backtick / `$()` non escapati. |
 | 10 | `mcp-test-servers` | `shell-exec-server.js:81` | `spawn(params.command, params.args || [])` | **VP-L (VP)** — server di **test** dichiaratamente vulnerabile (`mcp-test-servers` package). |
+| 11 | `Amlan66/SSEEnabledMCPAgent` | `mcp_server_1.py:189` | **VP-C (FP)** | Template SSE MCP server con exec |
+| 12 | `Oortonaut/mcacp` | `acp/agent-requests.ts:107` | **VP-C (FP)** | Agent requests exec |
 
 ## 10. protocol-violation (mcp-watch) — 79 VP
 
@@ -160,6 +188,7 @@ Verifica fetchando `evidence` concreto:
 | 8 | `andreycretsu/cursor-talk-to-figma-mcp-main` | `get_reactions` | "CRITICAL" | **VP-C (FP)** (fork, non c'è più i repository) |
 | 9 | `IAmMarcellus/BlenderMCP` | `get_hyper3d_status` | "sliently remember" | **VP-C (VP)** (fork) |
 | 10 | `IAmMarcellus/BlenderMCP` | `get_hunyuan3d_status` | stesso | **VP-C (VP)** |
+| 11 | `ashwwwin/automation-mcp` | `execSync(\`screencapture -x -l${targetId} "${filePath}"\`)` | **VP-C (VP)** — targetId/filePath da MCP tool input |
 
 ## 12. insecure-deserialization (mcp-guard) — 31 VP **(analisi completa)**
 
@@ -236,13 +265,13 @@ I FP sarebbero tutti VP-L
 ### Per saperne di più su tutta l'analisi fatta: scaricare e leggere la chat di gemini "Veri Positivi: Sicurezza MCP Server" -> https://gemini.google.com/share/16bfc0cdebd6
 
 #	Minaccia	VP
-1	sql-injection	10/2.375
+1	sql-injection	30/2.375
 2	dangerous-capabilities	10/1.990
-3	credential-leak	10/1.269
-4	ssrf	10/717
-5	untrusted-content	10/599
-6	path-traversal	10/470
-7	command-injection	10/244
+3	credential-leak	15/1.269
+4	ssrf	15/717
+5	untrusted-content	15/599
+6	path-traversal	15/470
+7	command-injection	15/244
 8	code-injection	10/220
 9	input-validation	10/208
 10	protocol-violation	10/137

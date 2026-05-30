@@ -1,0 +1,11 @@
+{
+  "name": "shell-exec-mcp-demo",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Riproduzione minima e fedele di un MCP server dangerous-capabilities (run_command -> child_process.exec, zero validazione). SOLO per demo di sicurezza controllata.",
+  "main": "server.js",
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "zod": "^3.22.0"
+  }
+}

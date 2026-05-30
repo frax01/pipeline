@@ -9,7 +9,7 @@
 ### Baseline GitHub (60.205 server)
 
 - **Veri Positivi totali (core security MCP)**: **8.351** VP, generati da cinque framework (mcp-guard, mcp-watch, mcp-scan, mcp-shield, mcp-security-scan) — post round 4 fix 2026-05-07
-- **Veri Positivi supplementari (protocol/compliance e fuzzing)**: **10.229** VP in Appendice (mcp-check 9.453 + tool_fuzzing 4 cat 776, di cui protocol-fuzzing 775 + server-crash-fuzzing 1)
+- **Veri Positivi supplementari (protocol/compliance e fuzzing)**: **10.229** VP in Appendice (mcp-check 9.453 + tool_fuzzing 4 cat 776, di cui protocol-fuzzing 775 + server-crash-fuzzing 1) — ⚠️ **il dato fuzzing 776 è il RUN VECCHIO (senza risposte), poi superato dal re-run: 13 VP reali** (vedi Appendice C-sexies; i 775 "VP protocol" sono confermati FP dalle risposte)
 - **TOTALE pipeline GitHub**: **18.580** VP — FP rate medio 4.4% (blind n=50/cat), VP reali stim ~17.819
 - **Server con almeno una vulnerabilità**: 8.745 (14.5% del totale 60.205)
 
@@ -22,9 +22,19 @@
 - **mcp-security-scan**: 1.094 → **1.374** VP (+280 VP, dangerous-capabilities domina con +239)
 - **mcp-check**: 9.453 → **14.983** VP (+5.530 VP, schema_violation e other_errors dominano)
 - **mcp-shield**: 16 → **16** VP (+0 VP, +1.273 FP NPX; atteso — no offensive tools in NPM)
-- **TOTALE pipeline post-merge parziale**: 18.580 → **28.485** VP
+- **tool_fuzzing**: **RE-RUN completo** (non incremento) — 776 VP OLD → **13 VP reali** (vedi Appendice C-sexies)
+- **TOTALE pipeline post-merge parziale**: **27.722** VP
 
-Le altre 2 VM (mcp-guard/tool_fuzzing in corso) **non ancora integrate**. Cross-framework consensus per NPX **non ancora calcolato**.
+Solo mcp-guard ancora in corso (NPX). Cross-framework consensus per NPX **non ancora calcolato**.
+
+> **Nota tool_fuzzing**: il framework è stato **ri-eseguito da capo** sul dataset
+> combinato (60.191 GitHub + 8.912 NPX) perché il run precedente non salvava le
+> risposte del server. Con le risposte i 775 "VP protocol" del vecchio run sono
+> **confermati FP** (server_response vuoto / metodi MCP validi). I 13 VP reali = 3
+> server Go con panic **input-triggered** (type assertion, 7 finding GitHub) + 1 server
+> NPX con disclosure di stack trace (6 finding). I panic `nil pointer` di asgardeo/talos
+> (24 finding) sono FP config-driven (100% su ogni input = client nil, non
+> attacker-triggered). Il totale post-merge passa da 28.485 a 27.722.
 
 ---
 
@@ -4427,11 +4437,20 @@ return "FP", "auth_required_by_design"
 - **Evidenza**: `MCP error 0: Panel API error: Unauthorized (code: 401)`
 - **Spiegazione**: il tool `create_website` richiede un API token del pannello 1Panel. Senza token la chiamata viene rifiutata con HTTP 401 — comportamento corretto, non vulnerabilità.
 
-#### Appendice B: tool_fuzzing (4 categorie)
+#### Appendice B: tool_fuzzing (4 categorie) — ⚠️ SUPERATA dal re-run (vedi Appendice C-sexies)
+
+> **NOTA IMPORTANTE**: questa appendice documenta il **run VECCHIO** di tool_fuzzing
+> (senza risposte del server), parte della baseline GitHub. È stata **interamente
+> sostituita** dal re-run completo con risposte descritto in **Appendice C-sexies**:
+> i 776 VP qui riportati (di cui 775 protocol) sono **confermati FALSI POSITIVI** dalle
+> risposte (server_response vuoto / metodi validi). Il dato corrente del fuzzing è
+> **13 VP reali** (7 crash input-triggered + 6 disclosure). Le categorie sono state
+> ridisegnate (tool-input-accepted / tool-error-disclosure / tool-crash-dos /
+> protocol-fuzzing). I numeri sotto sono conservati solo come record storico.
 
 Suite di runtime fuzzing dei server MCP. Raggruppa tutte le 4 categorie del framework: `protocol-fuzzing` (signal protocol-level), `server-crash-fuzzing` (1 VP critico Python), e le 2 scartate per 0 VP utili (`server-error-fuzzing`, `transport-failure-fuzzing`).
 
-Pipeline aggregata: 117.724 raw → Stage 1 → 17.841 filtrati → Stage 2A → Stage 2B → **776 VP / 16.788 FP**.
+Pipeline aggregata (VECCHIA): 117.724 raw → Stage 1 → 17.841 filtrati → Stage 2A → Stage 2B → **776 VP / 16.788 FP**.
 
 | Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5) |
 |-----------|----:|-----------------:|------:|------:|----------:|-------:|-------:|------------------|
@@ -4478,8 +4497,14 @@ Pipeline aggregata: 117.724 raw → Stage 1 → 17.841 filtrati → Stage 2A →
 | **CORE security MCP (5 framework)** | **8.351** | **33.538** | minacce 1-19 in §5 (post fix round 4 2026-05-07) |
 | **APPENDICI protocol/compliance (2 framework)** | **10.229** | **18.436** | mcp-check (9.453) + tool_fuzzing 4 cat (776) |
 | Di cui categorie tool_fuzzing scartate (0 VP) | — | 14.329 | server-error-fuzzing + transport-failure-fuzzing |
-| **TOTALE PIPELINE** | **18.580** | **51.974** | grand total VP=18.580 (post round 4) |
+| **TOTALE PIPELINE (baseline GitHub, storico)** | **18.580** | **51.974** | grand total VP=18.580 (post round 4) |
 | Stim VP reali blind | **~17.819** | — | FP rate medio **4.4%** su sample n=50/cat |
+
+> ⚠️ **Questa tabella è la baseline GitHub storica** (include il fuzzing VECCHIO = 776).
+> Stato **corrente** dopo re-run fuzzing + merge NPX (6/7 framework): **27.722 VP** —
+> il fuzzing scende da 776 a **13** (vedi intro §1 "Post-merge NPX" e Appendice C-sexies).
+> tool_fuzzing nelle Appendici diventa 13 VP, non 776; "Totale Appendici" → 9.466
+> (9.453 mcp-check + 13 fuzzing) per la sola parte GitHub baseline.
 
 ---
 
@@ -6093,7 +6118,17 @@ I 9.453 VP non sono inclusi nel totale Core della Sezione 5 perché rappresentan
 
 ---
 
-## Appendice B — `tool_fuzzing` (4 categorie, 776 VP)
+## Appendice B — `tool_fuzzing` (4 categorie, 776 VP) — ⚠️ SUPERATA dal re-run
+
+> **NOTA IMPORTANTE — questa appendice è il RUN VECCHIO (storico).** Descrive il run di
+> `tool_fuzzing` **senza risposte del server**, che dichiarava 776 VP (775 protocol).
+> È stata **interamente sostituita** dal **re-run completo con risposte** documentato in
+> **Appendice C-sexies**. Con le risposte: i 775 "VP protocol" sono **confermati FALSI
+> POSITIVI** (server_response vuoto / metodi MCP validi gestiti), e il dato corrente è
+> **13 VP reali** (7 crash Go input-triggered di robustezza low-severity + 6
+> information-disclosure). Le 4 categorie sono state ridisegnate
+> (`tool-input-accepted`, `tool-error-disclosure`, `tool-crash-dos`, `protocol-fuzzing`).
+> Il contenuto sotto è conservato solo come record storico/metodologico.
 
 L'intera suite del framework `mcp-server-fuzzer` (Agent-Hellboy/mcp-server-fuzzer) è collocata in Appendice. Il framework esegue runtime fuzzing dei server MCP avviandoli e mandando input fuzzati ai tool e probe JSON-RPC malformati ai 17 protocol type della specifica. Le quattro categorie di output (`protocol-fuzzing`, `server-crash-fuzzing`, `server-error-fuzzing`, `transport-failure-fuzzing`) hanno utilità diverse per la security analysis, e l'interpretazione corretta richiede di tenere conto di alcune scelte di design del framework che sono illustrate nelle sezioni B.4 e B.5.
 
@@ -6667,12 +6702,123 @@ empirica che il dataset NPX è "clean" rispetto al signal target di mcp-shield.
 
 ---
 
-### Totali aggiornati con NPX (post-merge mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield)
+---
+
+## Appendice C-sexies — tool_fuzzing RE-RUN completo (con risposte)
+
+### C-sexies.1 Stato e differenza dal run precedente
+
+**Completato 2026-05-29.** A differenza degli altri 6 framework (dove NPX era solo
+da integrare), tool_fuzzing è stato **ri-eseguito da capo** sul dataset combinato
+(**69.103 server = 60.191 GitHub + 8.912 NPX**, shardato su 9 VM). Motivo: il run
+precedente (archiviato in `0_tool_fuzzing.OLD_no_responses/`) **non salvava le
+risposte del server** — quindi era impossibile distinguere un input malevolo
+*accettato/eseguito* da uno *ignorato/respinto*. Il nuovo run salva
+`server_error_response`, `inputs_successful[].result`, `success_details[].server_response`.
+
+### C-sexies.2 Distinzione "server analizzato" vs "tool davvero fuzzato"
+
+Il framework conta `total_servers` (~36.119 "completed") includendo i server che
+hanno completato **solo la fase protocol** (probing JSON-RPC su ogni server) senza
+fuzzare alcun tool. Due fasi distinte nei dati:
+
+| Fase | File | `tool_name`? | Su quanti server |
+|------|------|:---:|------------------|
+| Protocol probing | `protocol/*.json` | no | tutti i completed (~36k) |
+| Tool fuzzing | `exceptions/*.json` | sì | solo chi espone tool |
+
+Coverage reale (da `_coverage_report.json`):
+
+| Metrica | Valore |
+|---------|-------:|
+| Server nel dataset combinato | 69.103 |
+| Server "completed" (= `total_servers` gonfiato) | 36.119 |
+| **Server con tool fuzzing recuperabile** | **406** (369 gh + 37 npx) |
+| Completed senza alcun tool fuzzing (solo protocol) | 35.713 |
+
+> ⚠️ Limite framework: i tool con 0 eccezioni (tutti-successo, ~75%) NON sono salvati
+> individualmente. L'analisi tool-level copre i 406 server con ≥1 eccezione.
+
+### C-sexies.3 Workflow
+
+```
+Pull exceptions/ da 9 VM (~14 MB)
+Pre-filtro protocol SU VM: 14 GB → ~7 MB (tiene successful>0; *Notification = solo conteggio)
+Aggrega 9 shard → exceptions/ + protocol_accepted.json
+Stage 1 (filter_fuzzing.py) → 4 categorie
+Stage 2A HC (pipeline_fuzzing.py) → vp/fp/audit  (0 UNCERTAIN, HC decisive)
+```
+
+### C-sexies.4 Risultati per categoria (combinato GitHub+NPX)
+
+| Categoria | Filtered | VP | FP | VP origin |
+|-----------|---------:|---:|---:|-----------|
+| tool-input-accepted | 580 | **0** | 580 | — |
+| tool-error-disclosure | 1.864 | **6** | 1.858 | 6 npx |
+| tool-crash-dos | 417 | **7** | 410 | 7 github |
+| protocol-fuzzing | 1.791 | **0** | 1.791 | — |
+| **TOTALE** | **4.652** | **13** | **4.639** | 7 gh + 6 npx |
+
+### C-sexies.5 I 13 VP (4 server distinti) e la distinzione crash input-triggered vs config-driven
+
+**tool-crash-dos — 7 VP / 3 server** (panic Go **INPUT-TRIGGERED**):
+`sonar-mcp-server` (4 tool), `mcp-iot-go` (2), `opgen-mcp-server` (1). Handler che fa
+una **type assertion non controllata su un parametro di input**
+(`interface conversion: interface {} is nil, not <type>`): valori fuzzati specifici
+(nil/tipo errato) triggerano il panic (rate parziale 1–4/6). Bug di input-handling
+(CWE-476) attacker-triggerable. Il panic è **recuperato** (`recover()`) → NON è un DoS
+pieno (processo vivo, ritorna `-32603`); il valore è come difetto di robustezza.
+**Conferma cross-framework**: tutti e 3 erano già nei `panic_or_crash` di mcp-check.
+
+**Riclassificati a FP — `asgardeo-mcp-server` (19 tool) + `talos-mcp` (5) = 24 finding**:
+panicano (`invalid memory address or nil pointer dereference`) sul **100% degli input
+(6/6) su OGNI tool**. Il messaggio identico ovunque + rate 100% dimostra che il panic
+**NON dipende dall'input** del fuzzer: è il client/SDK `nil` perché il backend
+(Asgardeo IAM / nodo Talos) non è configurato sulla VM di test → ogni chiamata
+dereferenzia nil. Non attacker-triggered → FP (bug di robustezza config-driven, non un
+finding di sicurezza). `talos-mcp` resta VP solo dalla lente *conformance* di mcp-check.
+
+**tool-error-disclosure — 6 VP / 1 server**: `svg2png-mcp-server` (NPX) restituisce
+stack trace Node.js completi con path sorgente interni nei messaggi d'errore.
+
+### C-sexies.6 Perché solo 13 VP (e perché i 776 del vecchio run erano gonfiati)
+
+Le risposte del re-run **dimostrano** che:
+
+1. **tool-input-accepted (580 → 0 VP)**: i tool **respingono** (316, `isError:true`) o
+   **ignorano** (264) i payload. Prototype pollution → chiavi droppate dal parsing
+   JSON; path traversal → trattato come nome dominio/search term; SQL/code injection →
+   dato letterale. **0 marker di exploitation** (nessun file/comando/secret nei result).
+2. **protocol-fuzzing (1.791 → 0 VP)**: i messaggi "accettati" hanno `server_response`
+   **vuoto** (notification-style, nessun processing) o sono **metodi MCP validi**
+   gestiti correttamente (InitializeRequest→capabilities, CompleteRequest→completions).
+   → I **775 "VP protocol" del vecchio run sono confermati FP** dalle risposte.
+3. **tool-crash-dos (417 → 7 VP)**: solo i panic **input-triggered** (type assertion
+   `interface conversion`, 3 server) sono VP; i panic `nil pointer dereference` di
+   asgardeo/talos (24 finding, 100% su ogni input) sono **FP config-driven** (client
+   nil da backend assente, non dipendono dall'input).
+4. Unici VP reali: 3 server con panic input-triggered + 1 con stack-trace disclosure.
+
+È un **miglioramento di qualità**: meno VP, ma reali e provati dalle risposte.
+
+### C-sexies.7 Limitazioni
+
+- Tool tutti-successo non salvati (~75%): un tool che accetta TUTTI i payload senza
+  errori sarebbe invisibile. Lo scan `exploit_marker` sui result salvati ha dato 0.
+- `vuln_findings`/`invariant_violations` del framework sempre vuoti (placeholder).
+- Rileva crash/DoS + injection-eseguita + disclosure; NON SAST/hidden-instructions/creds.
+
+---
+
+### Totali aggiornati con NPX (post-merge mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield + tool_fuzzing)
 
 | Dataset | Server | Framework completati | VP totale |
 |---------|-------:|---------------------|----------:|
-| GitHub (run principale) | 60.205 | 7/7 | 18.580 |
-| **NPX (run parallelo)** | **8.899** | **5/7 (mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield)** | **+9.902** |
-| **Pipeline post-merge parziale** | | | **28.485** |
+| GitHub (run principale) | 60.205 | 7/7 | 18.580 (di cui fuzzing OLD 776) |
+| **Pipeline post-merge (6/7 + fuzzing re-run)** | 60.205 + 8.899 | mcp-guard NPX in corso | **27.722** |
 
-Quando il run NPX sarà completo per tutti i 7 framework (mcp-guard / tool_fuzzing in corso), andrà rifatto il **cross-framework consensus** dedicato al dataset NPX e l'aggregazione finale dei VP.
+> tool_fuzzing è un re-run completo che **sostituisce** i 776 VP OLD con 13 VP reali
+> (perciò il totale scende da 28.485 a 27.722). Quando mcp-guard NPX sarà completo,
+> andrà rifatto il **cross-framework consensus** dedicato al dataset NPX. Nota: i 3
+> server-crash input-triggered del fuzzing rafforzano il consensus con i
+> `panic_or_crash` di mcp-check.

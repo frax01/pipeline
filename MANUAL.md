@@ -31,6 +31,11 @@
 | 8 | `KWDB/kwdb-mcp-server` | Distributed DB | **VP-L (VP)** (by design) |
 | 9 | `LGDiMaggio/predictive-maintenance-mcp` | App-specifico predictive | **Ambiguo (VP)** — non noto, richiederebbe code review approfondita |
 | 10 | `MemTensor/memos-api-mcp` | API memos | **Ambiguo (VP)** |
+| 11 | `SmartBear/smartbear-mcp` | QA/testing operations | VP-L (FP) |
+| 12 | `Teradata/teradata-mcp-server` | DB Teradata (SQL exec) | VP-L (FP) |
+| 13 | `Vortiago/mcp-azure-devops` | Azure DevOps API (build/release) | VP-L (FP) |
+| 14 | `Vortiago/mcp-outline` | Outline KB (create/delete docs) | VP-L (FP) |
+| 15 | `ahujasid/blender-mcp` | Blender Python scripting | VP-L (FP) |
 
 ## 3. credential-leak (mcp-watch) — 619 VP
 
@@ -176,6 +181,8 @@ Verifica fetchando `evidence` concreto:
 | 2 | `Lucassssss/eechat` | `rag/index.ts` | INSECURE_TRANSPORT | **VP-D (VP)** — endpoint RAG su HTTP. |
 | 3-6 | `moises-paschoalick/ai-agent-with-mcp` | `client.ts/index.ts` | INSECURE_TRANSPORT | **VP-L (FP)** — projct demo, HTTP localhost dev. |
 | 9-10 | `sebszczec/pihole-mcp` | `main.py` | SESSION_ID_IN_URL | **VP-C (VP-C)** — session ID Pi-hole real (auth tokens in URL query string). |
+| 11-12 | `DawnReaverWOWS/TheFinalDiscordMCP` | `src/index.ts:3153,3154` | INSECURE_TRANSPORT | **VP-C (FP)** × 2 (Discord MCP HTTP transport) |
+| 13-15 | `shibig666/QMYZ-MCP` | `qmyz/apis.py:30,71,143` | INSECURE_TRANSPORT | **VP-C (VP)** × 3 (Chinese API client HTTP) |
 
 ## 11. prompt-injection (mcp-scan tool-level E001) — 36 VP
 
@@ -191,7 +198,10 @@ Verifica fetchando `evidence` concreto:
 | 8 | `andreycretsu/cursor-talk-to-figma-mcp-main` | `get_reactions` | "CRITICAL" | **VP-C (FP)** (fork, non c'è più i repository) |
 | 9 | `IAmMarcellus/BlenderMCP` | `get_hyper3d_status` | "sliently remember" | **VP-C (VP)** (fork) |
 | 10 | `IAmMarcellus/BlenderMCP` | `get_hunyuan3d_status` | stesso | **VP-C (VP)** |
-| 11 | `ashwwwin/automation-mcp` | `execSync(\`screencapture -x -l${targetId} "${filePath}"\`)` | **VP-C (VP)** — targetId/filePath da MCP tool input |
+| 11-12 | `shdann/mcp-blend` | `get_hyper3d_status`, `get_hunyuan3d_status` | "sliently remember it" (BlenderMCP fork) | **VP-C (VP)** × 2 |
+| 13 | `nav33n25/IMCP` | `code-analyzer` | "extract sensitive secrets... exfiltrate code to external" | **VP-L (FP)** (honeypot dichiarato in repo name "Intentional Malicious CP") |
+| 14 | `seungwonme/prompt-new-mcp` | `save` | "MUST be called before responding... regardless of intent" | **VP-C (FP)** (logging mandate) |
+| 15-16 | `drrodingo-del/BlenderMCP` | `get_hyper3d_status`, `get_hunyuan3d_status` | "sliently remember" | **VP-C (VP)** × 2 (fork) |
 
 ## 12. insecure-deserialization (mcp-guard) — 31 VP **(analisi completa)**
 
@@ -209,6 +219,11 @@ L'analisi è stata estesa a tutti i 31 finding della categoria.
 | 8 | `517739/Trace_mcp` | `tracegnn/visualization/visualization_tool.py:21` | File `case_{case_idx}.pkl`, `case_idx: int = 0` (parametro tipizzato come int, no path traversal) | **VP-L (VP)** |
 | 9 | `517739/Trace_mcp` | `tracezly_rca/.../visualization_tool.py:21` | Fork del #8 | **VP-L (VP)** |
 | 10 | `NineSunsInc/mighty-security` | `persistent_cache.py:93` | Cache locale del security scanner | **VP-L (VP)** |
+| 11 | `TitanSage02/so101-mcp` | `policy_server.py:127` | **`pickle.loads(request.data)`** — `request` è una richiesta **gRPC remota** da client esterni (commento `# nosec` del dev) | **VP-C (VP)** |
+| 12 | `WhiteDragonAI/mem-agent-mcp` | `agent/engine.py:304` | `result.stdout` del subprocess Python spawnato dal server stesso | **VP-L (VP)** |
+| 13 | `WhiteDragonAI/mem-agent-mcp` | `agent/engine.py:319` | `os.environ.get("SANDBOX_PARAMS")` — env var settata dal processo padre | **VP-L (FP)** |
+| 14 | `aleks-aeon/aeon-mem-agent-mcp` | `agent/engine.py` | Fork di #12 | **VP-L (VP)** |
+| 15 | `aleks-aeon/aeon-mem-agent-mcp` | `agent/engine.py` | Fork di #13 | **VP-L (VP)** |
 
 ## 13. sensitive-file-access (mcp-shield) — 11 VP **(analisi completa)**
 
@@ -269,7 +284,7 @@ I FP sarebbero tutti VP-L
 
 #	Minaccia	VP
 1	sql-injection	30/2.375
-2	dangerous-capabilities	10/1.990
+2	dangerous-capabilities	15/1.990
 3	credential-leak	15/1.269
 4	ssrf	15/717
 5	untrusted-content	15/599
@@ -277,9 +292,9 @@ I FP sarebbero tutti VP-L
 7	command-injection	15/244
 8	code-injection	23/220
 9	input-validation	19/208
-10	protocol-violation	10/137
-11	prompt-injection	10/56
-12	insecure-deserialization	10/31
+10	protocol-violation	15/137
+11	prompt-injection	16/56
+12	insecure-deserialization	15/31
 13	sensitive-file-access	16/16
 14	sensitive-info-disclosure	9/9
 15	access-control	7/7

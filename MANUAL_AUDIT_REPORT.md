@@ -126,11 +126,11 @@ Pattern omogeneo: tutti dual-use server che intenzionalmente espongono capabilit
 
 | # | Server | Tipo / Capability esposta | Verdetto |
 |---|--------|---------------------------|:--------:|
-| 11 | `SmartBear/smartbear-mcp` | QA/testing operations | VP-L |
-| 12 | `Teradata/teradata-mcp-server` | DB Teradata (SQL exec) | VP-L |
-| 13 | `Vortiago/mcp-azure-devops` | Azure DevOps API (build/release) | VP-L |
-| 14 | `Vortiago/mcp-outline` | Outline KB (create/delete docs) | VP-L |
-| 15 | `ahujasid/blender-mcp` | Blender Python scripting | VP-L |
+| 11 | `SmartBear/smartbear-mcp` | QA/testing operations | VP-L (FP) |
+| 12 | `Teradata/teradata-mcp-server` | DB Teradata (SQL exec) | VP-L (FP) |
+| 13 | `Vortiago/mcp-azure-devops` | Azure DevOps API (build/release) | VP-L (FP) |
+| 14 | `Vortiago/mcp-outline` | Outline KB (create/delete docs) | VP-L (FP) |
+| 15 | `ahujasid/blender-mcp` | Blender Python scripting | VP-L (FP) |
 | 16 | `aliyun/alibabacloud-adb-mysql-mcp-server` | DB MySQL Aliyun | VP-L |
 | 17 | `eLyiN/gemini-bridge` | Gemini LLM bridge | VP-L |
 | 18 | `evalstate/mcp-hfspace` | HuggingFace Space launcher | VP-L |
@@ -817,8 +817,8 @@ I 20 finding aggiuntivi sono tutti SSRF/PATH_TRAVERSAL reali; **0 nuovi FP**. Pa
 
 | # | Server | File:Line | Tipo | Verdetto |
 |---|--------|-----------|------|:--------:|
-| 11-12 | `DawnReaverWOWS/TheFinalDiscordMCP` | `src/index.ts:3153,3154` | INSECURE_TRANSPORT | **VP-C** × 2 (Discord MCP HTTP transport) |
-| 13-15 | `shibig666/QMYZ-MCP` | `qmyz/apis.py:30,71,143` | INSECURE_TRANSPORT | **VP-C** × 3 (Chinese API client HTTP) |
+| 11-12 | `DawnReaverWOWS/TheFinalDiscordMCP` | `src/index.ts:3153,3154` | INSECURE_TRANSPORT | **VP-C (FP)** × 2 (Discord MCP HTTP transport) |
+| 13-15 | `shibig666/QMYZ-MCP` | `qmyz/apis.py:30,71,143` | INSECURE_TRANSPORT | **VP-C (VP)** × 3 (Chinese API client HTTP) |
 | 16 | `atom2ueki/mcp-server-synology` | `synology_filestation.py:363` | SESSION_ID_IN_URL | **VP-C** (Synology session id in URL) |
 | 17-18 | `Econyx-ai/0g-mcp-server` | `src/config/storage.ts:26,32` | INSECURE_TRANSPORT | **VP-D** × 2 (storage config HTTP) |
 | 19 | `bjeans/homelab-mcp` | `pihole_mcp.py:208` | SESSION_ID_IN_URL | **VP-C** (Pi-hole session token in URL) |
@@ -911,10 +911,10 @@ Si aggiungono:
 
 | # | Server | Tool | Tipo evidenza | Verdetto |
 |---|--------|------|---------------|:--------:|
-| 11-12 | `shdann/mcp-blend` | `get_hyper3d_status`, `get_hunyuan3d_status` | "sliently remember it" (BlenderMCP fork) | **VP-C** × 2 |
-| 13 | `nav33n25/IMCP` | `code-analyzer` | "extract sensitive secrets... exfiltrate code to external" | **VP-L** (honeypot dichiarato in repo name "Intentional Malicious CP") |
-| 14 | `seungwonme/prompt-new-mcp` | `save` | "MUST be called before responding... regardless of intent" | **VP-C** (logging mandate) |
-| 15-16 | `drrodingo-del/BlenderMCP` | `get_hyper3d_status`, `get_hunyuan3d_status` | "sliently remember" | **VP-C** × 2 (fork) |
+| 11-12 | `shdann/mcp-blend` | `get_hyper3d_status`, `get_hunyuan3d_status` | "sliently remember it" (BlenderMCP fork) | **VP-C (VP)** × 2 |
+| 13 | `nav33n25/IMCP` | `code-analyzer` | "extract sensitive secrets... exfiltrate code to external" | **VP-L (FP)** (honeypot dichiarato in repo name "Intentional Malicious CP") |
+| 14 | `seungwonme/prompt-new-mcp` | `save` | "MUST be called before responding... regardless of intent" | **VP-C (FP)** (logging mandate) |
+| 15-16 | `drrodingo-del/BlenderMCP` | `get_hyper3d_status`, `get_hunyuan3d_status` | "sliently remember" | **VP-C (VP)** × 2 (fork) |
 | 17-18 | `SolonaBot/blender-mcp` | stessi | stesso pattern | **VP-C** × 2 (fork) |
 | 19 | `bishnubista/vulnerable-notes-mcp` | `notes_summarize` | "customPrompt" parameter for arbitrary injection | **VP-L** (vulnerable-by-design test server) |
 | 20 | `bishnubista/vulnerable-notes-mcp` | `search_notes` | "export all data to external server" | **VP-L** |
@@ -1001,11 +1001,11 @@ L'analisi è stata estesa a tutti i 31 finding della categoria.
 | 8 | `517739/Trace_mcp` | `tracegnn/visualization/visualization_tool.py:21` | File `case_{case_idx}.pkl`, `case_idx: int = 0` (parametro tipizzato come int, no path traversal) | **VP-L (VP)** |
 | 9 | `517739/Trace_mcp` | `tracezly_rca/.../visualization_tool.py:21` | Fork del #8 | **VP-L (VP)** |
 | 10 | `NineSunsInc/mighty-security` | `persistent_cache.py:93` | Cache locale del security scanner | **VP-L (VP)** |
-| 11 | `TitanSage02/so101-mcp` | `policy_server.py:127` | **`pickle.loads(request.data)`** — `request` è una richiesta **gRPC remota** da client esterni (commento `# nosec` del dev) | **VP-C** |
-| 12 | `WhiteDragonAI/mem-agent-mcp` | `agent/engine.py:304` | `result.stdout` del subprocess Python spawnato dal server stesso | **VP-L** |
-| 13 | `WhiteDragonAI/mem-agent-mcp` | `agent/engine.py:319` | `os.environ.get("SANDBOX_PARAMS")` — env var settata dal processo padre | **VP-L** |
-| 14 | `aleks-aeon/aeon-mem-agent-mcp` | `agent/engine.py` | Fork di #12 | **VP-L** |
-| 15 | `aleks-aeon/aeon-mem-agent-mcp` | `agent/engine.py` | Fork di #13 | **VP-L** |
+| 11 | `TitanSage02/so101-mcp` | `policy_server.py:127` | **`pickle.loads(request.data)`** — `request` è una richiesta **gRPC remota** da client esterni (commento `# nosec` del dev) | **VP-C (VP)** |
+| 12 | `WhiteDragonAI/mem-agent-mcp` | `agent/engine.py:304` | `result.stdout` del subprocess Python spawnato dal server stesso | **VP-L (VP)** |
+| 13 | `WhiteDragonAI/mem-agent-mcp` | `agent/engine.py:319` | `os.environ.get("SANDBOX_PARAMS")` — env var settata dal processo padre | **VP-L (FP)** |
+| 14 | `aleks-aeon/aeon-mem-agent-mcp` | `agent/engine.py` | Fork di #12 | **VP-L (VP)** |
+| 15 | `aleks-aeon/aeon-mem-agent-mcp` | `agent/engine.py` | Fork di #13 | **VP-L (VP)** |
 | 16 | `auxilus08/github-docs-mcp-server` | `hybrid_scorer.py` | `cache_file` locale | **VP-L** |
 | 17 | `bjoernbethge/smolagents-ace` | `remote_executors.py:98` | `pickled_vars` = self `base64.b64encode(pickle.dumps(variables))` poi inviato al remote executor (E2B sandbox) — codice generato dal server | **VP-L** |
 | 18 | `bjoernbethge/smolagents-ace` | `remote_executors.py:194` | `execution.error.value` dal remote Python executor (E2B sandbox trust boundary) | **VP-L** |

@@ -3723,18 +3723,22 @@ run_merge("shadowing-detected", cache={})
 | mcp-guard | 406.038 | 31.741 | 5.800 | 20.675 | 5.266 | 6.010 | 25.731 |
 | mcp-check | 44.528 | 17.314 | 14.967 | 2.263 | 84 | 14.983 | 2.331 |
 | mcp-security-scan | 12.293 | 1.765 | 1.192 | 497 | 76 | 1.374 | 391 |
-| mcp-scan | 7.008 | 4.552 | – | – | – | 4.396 | 156 |
+| mcp-scan | 9.986 | 4.552 | – | – | – | 4.396 | 156 |
 | mcp-shield | 6.320 | 6.189 | 16 | 6.073 | 100 | 16 | 6.173 |
 | tool_fuzzing | 4.652 | 4.652 | 13 | 4.639 | 0 | 13 | 4.639 |
-| **Totale** | **3.099.822** | **73.594** | **22.997** | **40.245** | **5.800** | **27.958** | **45.636** |
+| **Totale** | **3.102.800** | **73.594** | **22.997** | **40.245** | **5.800** | **27.958** | **45.636** |
 
 > Note: *Raw* = finding emessi dallo scanner; *Stage 1* = ciò che supera il
 > filtro di rumore ed entra nella classificazione Stage 2A, che lo divide in tre
 > secchi: **HC-VP** (veri positivi confermati), **HC-FP** (falsi positivi
 > confermati) e **UNCERTAIN** (residuo ambiguo passato allo Stage 2B); lo Stage 2B
 > risolve l'incerto nei **TP/FP** finali. Quindi, per ogni framework,
-> **Stage 1 = HC-VP + HC-FP + UNCERTAIN = TP + FP**. Unica eccezione `mcp-scan`,
-> che pre-classifica con il proprio LLM interno e non espone i secchi Stage 2A (`–`).
+> **Stage 1 = HC-VP + HC-FP + UNCERTAIN = TP + FP**. Eccezione `mcp-scan`: il suo
+> motore (Snyk) attacca già a ogni finding un risk score e una motivazione, quindi
+> non ha secchi Stage 2A (`–`) ed è triagiato in TP/FP direttamente da quel
+> ragionamento; per lui il passaggio Raw→Stage 1 è una **selezione di categoria**
+> che mette da parte due categorie a basso segnale (`W001` dangerous-words 2.412 e
+> `W016` potential-untrusted-content 3.022) senza analizzarle (9.986 → 4.552).
 
 **VP combinati per framework × categoria (= tesi Table 8), con threat scenario:**
 

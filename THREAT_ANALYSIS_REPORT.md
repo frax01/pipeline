@@ -3719,20 +3719,24 @@ run_merge("shadowing-detected", cache={})
 
 | Framework | Raw | Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP (TP) | FP |
 |-----------|----:|--------:|------:|------:|----------:|--------:|---:|
-| mcp-watch | 2.618.983 | 7.612 | 1.009 | 6.329 | 274 | 1.166 | 6.215 |
+| mcp-watch | 2.618.983 | 7.381 | – | – | – | 1.166 | 6.215 |
 | mcp-guard | 406.038 | 32.090 | 5.861 | 20.675 | 5.554 | 6.010 | 25.731 |
 | mcp-check | 44.528 | 17.303 | 14.967 | 2.252 | 84 | 14.983 | 2.331 |
 | mcp-security-scan | 12.293 | 1.765 | 1.192 | 345 | 76 | 1.374 | 391 |
 | mcp-scan | 7.008 | 7.008 | – | – | – | 4.396 | 156 |
 | mcp-shield | 6.320 | 6.320 | 16 | 6.204 | 100 | 16 | 6.173 |
 | tool_fuzzing | 4.652 | 4.652 | 13 | 4.639 | 0 | 13 | 4.639 |
-| **Totale** | **3.099.822** | **76.750** | **23.058** | **40.444** | **6.088** | **27.958** | **45.636** |
+| **Totale** | **3.099.822** | **76.519** | **22.049** | **34.115** | **5.814** | **27.958** | **45.636** |
 
-> Note: `mcp-scan` non ha Stage 2A (LLM interno pre-classifica → HC `–`);
-> `mcp-security-scan` applica Stage 2A a 2 categorie su 10 (le altre risolte
-> direttamente, quindi HC non somma a Stage 1); `mcp-scan`/`mcp-shield` arrivano
-> già filtrati (Stage 1 = Raw). HC-VP+HC-FP+UNCERTAIN = Stage 1 per riga dove
-> Stage 2A si applica.
+> Note: dove le colonne HC sono presenti, **Stage 1 = HC-VP + HC-FP + UNCERTAIN**
+> e **TP + FP = Stage 1 − UNCERTAIN non risolti** (le poche centinaia di incerti
+> che lo Stage 2B non promuove a VP/FP; non sono mai contati come VP, quindi i
+> totali VP sono conservativi). `mcp-scan` non ha Stage 2A (LLM interno
+> pre-classifica → HC `–`); `mcp-security-scan` applica Stage 2A a 2 categorie su
+> 10 (le altre risolte direttamente, quindi HC non somma a Stage 1);
+> `mcp-scan`/`mcp-shield` arrivano già filtrati (Stage 1 = Raw). Per `mcp-watch`
+> i bucket HC sono omessi (`–`) perché i file HC mergiati sono incompleti: si
+> riportano solo Raw, Stage 1 (= insieme classificato = TP+FP) e TP/FP.
 
 **VP combinati per framework × categoria (= tesi Table 8), con threat scenario:**
 

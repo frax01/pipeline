@@ -23,9 +23,10 @@
 - **mcp-check**: 9.453 → **14.983** VP (+5.530 VP, schema_violation e other_errors dominano)
 - **mcp-shield**: 16 → **16** VP (+0 VP, +1.273 FP NPX; atteso — no offensive tools in NPM)
 - **tool_fuzzing**: **RE-RUN completo** (non incremento) — 776 VP OLD → **13 VP reali** (vedi Appendice C-sexies)
-- **TOTALE pipeline post-merge parziale**: **27.722** VP
+- **mcp-guard**: 5.774 → **6.010** VP (+236 VP; de-contaminazione pipeline-own 309k→9k, vedi Appendice C-septies)
+- **TOTALE pipeline post-merge COMPLETO (7/7)**: **27.958** VP
 
-Solo mcp-guard ancora in corso (NPX). Cross-framework consensus per NPX **non ancora calcolato**.
+**Tutti e 7 i framework integrati con NPX.** Cross-framework consensus per il dataset combinato GitHub+NPX **da ricalcolare** ora che la pipeline è completa.
 
 > **Nota tool_fuzzing**: il framework è stato **ri-eseguito da capo** sul dataset
 > combinato (60.191 GitHub + 8.912 NPX) perché il run precedente non salvava le
@@ -3701,7 +3702,99 @@ run_merge("shadowing-detected", cache={})
 
 > Schema unificato per tutte le tabelle: `Categoria | Raw | Filtered Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP fin | FP fin | Minaccia (Sez 5)`. Trattino (`-`) = il framework non produce quel dato (es. mcp-scan non fa Stage 2A; mcp-shield arriva già pre-filtrato; mcp-security-scan/mcp-check non hanno Raw esposto per categoria). Numeri HC e VP/FP letti direttamente dai file `hc_vp.json` / `hc_fp.json` / `uncertain.json` / `vp.json` / `fp.json` di ogni categoria; Filtered Stage 1 = somma HC-VP+HC-FP+UNCERTAIN.
 
-### CORE — Framework di security MCP
+---
+
+> **AGGIORNAMENTO 2026-06 — vista COMBINATA GitHub + npm/npx.**
+> Le due tabelle qui sotto sono i numeri **combinati** (GitHub+npm/npx) e
+> **coincidono con la tesi** (Table `tab:tp-per-framework` e `tab:tp-per-category`).
+> VP/FP e HC ricontati dai file `.json` mergiati (campo `_origin`).
+> ⚠️ Le tabelle per-categoria di dettaglio più sotto (sezioni CORE / APPENDICI)
+> riportano `Raw / Filtered Stage 1 / HC` della **sola calibrazione GitHub**
+> (un funnel per-categoria combinato non è stato ricalcolato); l'incremento
+> npm/npx è riflesso nei **totali per framework** e nei **VP per categoria** di
+> queste due tabelle. Differenza con lo snapshot vecchio: guard FP 22.003→**25.731**
+> (+ NPX), e tutti i totali aggiornati al post-merge.
+
+**Funnel combinato per framework (= tesi Table 7):**
+
+| Framework | Raw | Stage 1 | HC-VP | HC-FP | UNCERTAIN | VP (TP) | FP |
+|-----------|----:|--------:|------:|------:|----------:|--------:|---:|
+| mcp-watch | 2.618.983 | 7.612 | 1.009 | 6.329 | 274 | 1.166 | 6.215 |
+| mcp-guard | 406.038 | 32.090 | 5.861 | 20.675 | 5.554 | 6.010 | 25.731 |
+| mcp-check | 44.528 | 17.303 | 14.967 | 2.252 | 84 | 14.983 | 2.331 |
+| mcp-security-scan | 12.293 | 1.765 | 1.192 | 345 | 76 | 1.374 | 391 |
+| mcp-scan | 7.008 | 7.008 | – | – | – | 4.396 | 156 |
+| mcp-shield | 6.320 | 6.320 | 16 | 6.204 | 100 | 16 | 6.173 |
+| tool_fuzzing | 4.652 | 4.652 | 13 | 4.639 | 0 | 13 | 4.639 |
+| **Totale** | **3.099.822** | **76.750** | **23.058** | **40.444** | **6.088** | **27.958** | **45.636** |
+
+> Note: `mcp-scan` non ha Stage 2A (LLM interno pre-classifica → HC `–`);
+> `mcp-security-scan` applica Stage 2A a 2 categorie su 10 (le altre risolte
+> direttamente, quindi HC non somma a Stage 1); `mcp-scan`/`mcp-shield` arrivano
+> già filtrati (Stage 1 = Raw). HC-VP+HC-FP+UNCERTAIN = Stage 1 per riga dove
+> Stage 2A si applica.
+
+**VP combinati per framework × categoria (= tesi Table 8), con threat scenario:**
+
+| Framework | Categoria | VP (TP) | Threat scenario |
+|-----------|-----------|--------:|-----------------|
+| mcp-guard | sql-injection-static | 2.406 | TS-05 Input validation |
+| mcp-guard | dangerous-tool-handler-static | 1.017 | TS-02 Dangerous capability |
+| mcp-guard | ssrf-static | 741 | TS-05 Input validation |
+| mcp-guard | hardcoded-credential-static | 677 | TS-03 Credential leak |
+| mcp-guard | path-traversal-fuzzing | 507 | TS-05 Input validation |
+| mcp-guard | command-injection-fuzzing | 246 | TS-05 Input validation |
+| mcp-guard | code-injection-static | 184 | TS-05 Input validation |
+| mcp-guard | protocol-invalid-jsonrpc-version | 77 | TS-09 Protocol non-compliance |
+| mcp-guard | code-injection-fuzzing | 36 | TS-05 Input validation |
+| mcp-guard | insecure-deserialization-static | 31 | TS-05 Input validation |
+| mcp-guard | command-injection-static | 26 | TS-05 Input validation |
+| mcp-guard | path-traversal-static | 23 | TS-05 Input validation |
+| mcp-guard | prompt-injection-static | 16 | TS-01 Tool poisoning |
+| mcp-guard | information-disclosure-fuzzing | 7 | TS-06 Sensitive info disclosure |
+| mcp-guard | protocol-information-disclosure | 6 | TS-09 Protocol non-compliance |
+| mcp-guard | protocol-path-traversal | 6 | TS-09 Protocol non-compliance |
+| mcp-guard | command-execution-fuzzing | 2 | TS-05 Input validation |
+| mcp-guard | sensitive-info-disclosed-fuzzing | 2 | TS-06 Sensitive info disclosure |
+| mcp-scan | Sensitive data exposure (W017) | 976 | TS-06 Sensitive info disclosure |
+| mcp-scan | Untrusted content (W015) | 952 | TS-08 Untrusted content |
+| mcp-scan | Workspace data exposure (W018) | 882 | TS-06 Sensitive info disclosure |
+| mcp-scan | Local destructive capabilities (W020) | 806 | TS-02 Dangerous capability |
+| mcp-scan | Destructive capabilities (W019) | 682 | TS-02 Dangerous capability |
+| mcp-scan | Prompt injection (E001) | 98 | TS-01 Tool poisoning |
+| mcp-security-scan | dangerous-capabilities | 1.240 | TS-02 Dangerous capability |
+| mcp-security-scan | input-validation | 119 | TS-05 Input validation |
+| mcp-security-scan | path-traversal | 7 | TS-05 Input validation |
+| mcp-security-scan | sensitive-file-access | 7 | TS-02 Dangerous capability |
+| mcp-security-scan | remote-access-control | 1 | TS-04 Access control |
+| mcp-watch | credential-leak | 665 | TS-03 Credential leak |
+| mcp-watch | protocol-violation | 357 | TS-09 Protocol non-compliance |
+| mcp-watch | input-validation | 135 | TS-05 Input validation |
+| mcp-watch | access-control | 7 | TS-04 Access control |
+| mcp-watch | data-exfiltration | 2 | TS-10 Data exfiltration |
+| mcp-shield | sensitive-file-access | 11 | TS-02 Dangerous capability |
+| mcp-shield | hidden-instructions | 4 | TS-01 Tool poisoning |
+| mcp-shield | shadowing-detected | 1 | TS-01 Tool poisoning |
+| mcp-check | tool_invocation/schema_violation | 7.501 | TS-09 Protocol non-compliance |
+| mcp-check | tool_invocation/other_errors | 5.546 | TS-09 Protocol non-compliance |
+| mcp-check | tool_discovery/warnings | 649 | TS-09 Protocol non-compliance |
+| mcp-check | handshake/method_not_found | 449 | TS-09 Protocol non-compliance |
+| mcp-check | tool_discovery/schema_violation | 313 | TS-09 Protocol non-compliance |
+| mcp-check | handshake/other_errors | 138 | TS-09 Protocol non-compliance |
+| mcp-check | handshake/schema_violation | 103 | TS-09 Protocol non-compliance |
+| mcp-check | tool_invocation/invalid_arguments | 92 | TS-09 (input validation) |
+| mcp-check | tool_invocation/method_not_found | 77 | TS-09 Protocol non-compliance |
+| mcp-check | tool_discovery/method_not_found | 67 | TS-09 Protocol non-compliance |
+| mcp-check | tool_discovery/other_errors | 42 | TS-09 Protocol non-compliance |
+| mcp-check | tool_invocation/panic_or_crash | 4 | TS-09 (crash / DoS) |
+| mcp-check | handshake/invalid_arguments | 2 | TS-09 (input validation) |
+| tool_fuzzing | tool-crash-dos | 7 | TS-09 (crash / DoS) |
+| tool_fuzzing | tool-error-disclosure | 6 | TS-06 Sensitive info disclosure |
+| **Totale** | | **27.958** | |
+
+---
+
+### CORE — Framework di security MCP (calibrazione GitHub, storico)
 
 #### mcp-guard (19 categorie)
 
@@ -6810,15 +6903,82 @@ Le risposte del re-run **dimostrano** che:
 
 ---
 
-### Totali aggiornati con NPX (post-merge mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield + tool_fuzzing)
+### Totali aggiornati con NPX — PIPELINE COMPLETA 7/7 ✅
 
 | Dataset | Server | Framework completati | VP totale |
 |---------|-------:|---------------------|----------:|
 | GitHub (run principale) | 60.205 | 7/7 | 18.580 (di cui fuzzing OLD 776) |
-| **Pipeline post-merge (6/7 + fuzzing re-run)** | 60.205 + 8.899 | mcp-guard NPX in corso | **27.722** |
+| **Pipeline post-merge (7/7) ✅** | 60.205 + 8.899 | tutti completi | **27.958** |
 
-> tool_fuzzing è un re-run completo che **sostituisce** i 776 VP OLD con 13 VP reali
-> (perciò il totale scende da 28.485 a 27.722). Quando mcp-guard NPX sarà completo,
-> andrà rifatto il **cross-framework consensus** dedicato al dataset NPX. Nota: i 3
-> server-crash input-triggered del fuzzing rafforzano il consensus con i
-> `panic_or_crash` di mcp-check.
+> tool_fuzzing è un re-run completo (776 OLD → 13 reali). Tutti e 7 i framework sono
+> ora integrati con NPX (mcp-guard ultimo, +236 VP → 6.010). Va rifatto il
+> **cross-framework consensus** sul dataset combinato GitHub+NPX.
+
+---
+
+## Appendice C-septies — mcp-guard NPX merge
+
+### C-septies.1 Stato
+
+**Completato 2026-05-31** (VM4 / 10.79.6.136). Su 8.899 pacchetti NPM, 8.847 scansionati
+(99,4%), 5.267 fuzzati. mcp-guard è il framework più complesso (19 categorie:
+9 static + 6 fuzzing + 4 protocol). Tutte le 19 esistono in entrambi i run → MERGED.
+
+### C-septies.2 ⚠️ Contaminazione pipeline-own (problema specifico NPX)
+
+Lo scanner statico NPX ha scansionato la **working dir della pipeline stessa** per ogni
+pacchetto: l'80-100% dei finding nelle categorie grosse referenziava file della pipeline
+(`frameworks/`, `generated_code/`, `NewProxy/`, `tool_proxy/`, `mcpSecurityScan.py`), NON
+del pacchetto npm analizzato.
+
+| Categoria | Raw NPX | pipeline-own | Reale (post-decont) |
+|-----------|--------:|-------------:|--------------------:|
+| command-injection (subprocess.run) | 178.741 | 80% | 30 |
+| dangerous-tool-handler | 70.838 | 62% | 61 |
+| prompt-injection | 42.351 | 100% | 25 |
+| code-injection (eval) | 8.432 | 100% | 2 |
+
+**De-contaminazione** (`is_pipeline_own` in `filter_mcp_guard_npx.py`):
+**309.538 raw → 9.291 (-97%)** prima delle HC rules. Inoltre la regola NPX
+`command-injection — subprocess/os-call` ha snippet **troncato** alla parentesi nel
+99,99% dei casi (`subprocess.run(` senza argomenti) → non analizzabile a livello finding.
+
+### C-septies.3 Workflow e risultato
+
+```
+Pull static/fuzzing/protocol da VM4 (~285 MB)
+Stage 1 (filter_mcp_guard_npx.py): 309.538 → ~3.964 (de-contaminazione + HC keep)
+Stage 2A (pipeline --hc-only) + Stage 2B (_classify_*.py pattern-based)
+Post-fix fuzzing (_npx_postfix_fuzz.py): -105 FP leaked
+Merge GitHub+NPX (_merge_github_npx.py)
+```
+
+| | VP | FP |
+|--|---:|---:|
+| GitHub baseline | 5.774 | 22.959 |
+| **NPX aggiunti** | **+236** | +3.728 |
+| **Totale post-merge** | **6.010** | 26.687 |
+
+### C-septies.4 NPX VP per categoria (236) e post-fix
+
+**Top VP NPX** (response-verified per le fuzzing):
+- path-traversal-fuzzing **66** — response = `/etc/passwd` (`root:x:0:0:root:/root:/bin/bash`)
+- command-injection-fuzzing **25** — response = `uid=1000(tecnico)` (comando `id` eseguito)
+- sql-injection-static 31, dangerous-tool-handler-static 28, hardcoded-credential-static 27,
+  ssrf-static 24, protocol-invalid-jsonrpc-version 19, command-injection-static 5
+  (`subprocess.run(f'...{var}', shell=True)`).
+
+**Post-fix 2 categorie fuzzing leaky** (HC GitHub-tuned non catturava i pattern NPX):
+- **command-execution-fuzzing 44 → 0 VP**: response = `Command failed: ollama ...` +
+  `/bin/sh: Syntax error` = comando DEL TOOL che fallisce / shell che RIFIUTA il payload
+  malformato, NON esecuzione dell'attaccante (`/bin/sh` nel messaggio d'errore ≠ exec reale).
+- **code-injection-fuzzing 61 → 0 VP**: `mcp-pyodide` (esecutore Python sandbox WASM
+  by-design) + `quip-server` (script `.py` proprio che fallisce). Eseguire codice in un
+  interprete dichiarato non è injection.
+
+### C-septies.5 Limitazioni
+
+- VP raw è SAST regex-only (FP rate intrinseco ~5%).
+- La regola NPX command-injection ha snippet troncato → solo i casi con snippet completo
+  (shell=True + f-string) sono VP; il resto non analizzabile.
+- I 236 VP NPX usano HC GitHub-tuned + 2 post-fix mirati response-based.

@@ -1769,7 +1769,36 @@ Formato: `autore/repo|phase/category` — es. `"sukeesh/mcp-iot-go|tool_invocati
 
 ## Post-processing mcp-guard: Stage 1 + Stage 2A/2B
 
-### Contesto
+### Merge GitHub + NPX (2026-05-31): struttura unificata
+
+**Decisione**: dati GitHub e NPX (VM4 / 10.79.6.136) mergiati in `0_tool_mcp_guard/`.
+Tutte le 19 categorie esistono in entrambi i run. NESSUN suffisso `_npx`. Ogni
+finding ha `_origin: github | npx`. Vedi `README_NPX_MERGE.md`.
+
+| | VP | FP |
+|--|---:|---:|
+| GitHub baseline | 5.774 | 22.959 |
+| **NPX aggiunti** | **+236** | +3.728 |
+| **Totale post-merge** | **6.010** | 26.687 |
+
+**⚠️ Contaminazione pipeline-own (specifica NPX)**: lo scanner NPX ha scansionato la
+working dir della pipeline stessa per ogni pacchetto → 80-100% dei finding nelle
+categorie grosse erano file della pipeline (`frameworks/`, `generated_code/`, `NewProxy/`,
+`mcpSecurityScan.py`, …), NON del pacchetto npm. De-contaminazione
+(`is_pipeline_own` in `filter_mcp_guard_npx.py`): **309.538 raw → 9.291 (-97%)** prima
+delle HC. command-injection 178.741→30, dangerous-tool-handler 70.838→61,
+prompt-injection 42.351→25, code-injection 8.432→2.
+
+**Top NPX VP**: path-traversal-fuzzing 66 (`/etc/passwd` in response), sql-injection-static
+31, dangerous-tool-handler-static 28, hardcoded-credential-static 27, command-injection-fuzzing
+25 (`uid=` in response), ssrf-static 24, protocol-invalid-jsonrpc-version 19.
+
+**Post-fix fuzzing** (`_npx_postfix_fuzz.py`): 2 categorie leaky con HC GitHub-tuned →
+command-execution-fuzzing 44→0 (`Command failed: ollama` + `/bin/sh: Syntax error` = tool
+fallisce / shell rifiuta payload, non exec reale), code-injection-fuzzing 61→0 (mcp-pyodide
+esecutore sandbox by-design + quip script proprio). VP solo con marker reali (`uid=`, `root:x:0:0`).
+
+### Contesto (originale GitHub)
 
 mcp-guard analizza i server MCP con scanner **statici** (regex su codice), **fuzzing** (probe attivi con payload + analisi response) e **protocol** (violazioni protocollo MCP).
 
@@ -2660,9 +2689,9 @@ py -X utf8 pipeline_mcp_scan_npx.py --category W017_npx --cache-only
 | **tool_fuzzing** | **776** | **~760** | -787 vs originale |
 | **TOTALE GitHub** | **18.580** | **~17.819** | FP rate medio **4.4%** (blind n=50/cat) |
 
-### Post-merge NPX (parziale — 2026-05-29)
+### Post-merge NPX (COMPLETO — 2026-05-31) ✅
 
-**mcp-scan + mcp-watch + mcp-security-scan + mcp-check + mcp-shield + tool_fuzzing integrati**. Solo mcp-guard ancora in corso.
+**Tutti e 7 i framework integrati con NPX.**
 
 | Tool | VP pre-merge | VP NPX aggiunti | VP post-merge | Cosa è cambiato |
 |------|-------------:|----------------:|--------------:|------------------|
@@ -2672,8 +2701,11 @@ py -X utf8 pipeline_mcp_scan_npx.py --category W017_npx --cache-only
 | mcp-check | 9.453 | **+5.530** | **14.983** | 12 cat merged (schema_violation/other_errors dominano), no nuove categorie |
 | mcp-shield | 16 | **+0** | **16** | 4 cat merged; NPX 0 VP atteso (no offensive tools in NPM) |
 | tool_fuzzing | 776 (OLD) | **re-run** | **13** | RE-RUN completo con risposte (7 gh crash input-triggered + 6 npx disclosure); i 775 "VP protocol" OLD confermati FP |
-| mcp-guard | 5.774 | TBD (VM in corso) | 5.774 | |
-| **TOTALE post-merge parziale** | **18.583** | — | **27.722** | |
+| mcp-guard | 5.774 | **+236** | **6.010** | 19 cat merged + de-contaminazione pipeline-own (309k→9k) + post-fix fuzzing |
+| **TOTALE post-merge COMPLETO** | **18.583** | **+10.138** | **27.958** | |
+
+> Cross-framework consensus per il dataset combinato GitHub+NPX **da ricalcolare**
+> (ora che tutti e 7 sono completi): `cross_framework_consensus.py`.
 
 > **tool_fuzzing**: NON è un incremento NPX ma un **re-run completo** (GitHub+NPX combinato, 69.103 server) perché il run vecchio non salvava le risposte. I 776 VP OLD → **13 VP reali** (3 server con panic Go input-triggered + 1 stack-trace disclosure). Le risposte dimostrano che i 775 "VP protocol" del vecchio run erano FP (server_response vuoto / metodi validi), e che i panic `nil pointer` di asgardeo/talos (24) sono FP config-driven (100% su ogni input = client nil, non input-triggered). I 3 server-crash VP (sonar, mcp-iot-go, opgen) confermano i `panic_or_crash` di mcp-check (consensus). Vedi `0_tool_fuzzing/README.md`.
 

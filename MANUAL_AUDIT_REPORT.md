@@ -1091,20 +1091,22 @@ Si aggiungono 5 finding da `mcp-security-scan/sensitive-file-access` (R-02). Tut
 | 14 | `kbyk004/my-docs-mcp-server` | Docs server | **VP-C (VP)** |
 | 15 | `danielitus/mcp-document-server` | Docs server | **VP-C (VP)** |
 | 16 | `uniswap/spec-workflow-mcp` | Workflow specs | **VP-C (VP)** |
+| 17 | `@pepperi-addons/api-mcp` (npx) | API/docs server | **VP-C (VP)** — probe R-02 ha letto `/etc/passwd` (path traversal di lettura file). |
+| 18 | `worksona-mcp-server` (npx) | Document server | **VP-C (VP)** — NPX re-detection dello stesso `worksona/-worksona-mcp-server` del #12 (`/etc/passwd` confermato). |
 
-**Verdetto categoria 13 completa (16/16, 100%)**:
+**Verdetto categoria 13 completa (18/18, 100%)**:
 
-| Verdetto | Top 11 (shield) | +5 (sec-scan) | Top 16 totale |
+| Verdetto | Top 11 (shield) | +7 (sec-scan) | Totale |
 |----------|---------:|----------:|------:|
-| VP-C | 0 | 5 | **5** (31.3%) |
-| VP-L | 11 | 0 | **11** (68.8%) |
+| VP-C | 0 | 7 | **7** (38.9%) |
+| VP-L | 11 | 0 | **11** (61.1%) |
 | FP | 0 | 0 | **0** (0%) |
 
 I 5 VP-C aggiuntivi sono qualitativamente differenti dai 11 VP-L offensive: sono **vulnerabilità non intenzionali** in server di productivity/document. mcp-security-scan ha rilevato R-02 (path traversal di lettura file) con probe attivo su tools/call.
 
 ---
 
-## 14. sensitive-info-disclosure — 9 VP (multi-source completo)
+## 14. sensitive-info-disclosure — 15 VP (multi-source completo)
 
 | # | Server | File | Pattern | Verdetto |
 |---|--------|------|---------|:--------:|
@@ -1113,15 +1115,15 @@ I 5 VP-C aggiuntivi sono qualitativamente differenti dai 11 VP-L offensive: sono
 | 5 | `isamu/mulmoscript-mcp` | `lib/index.js` (sensitive-info-disclosed-fuzzing) | Sensitive information disclosed: `passwd:` | **VP-C (VP)** — fuzzing ha estratto contenuto di `/etc/passwd`. |
 | 6-7 | `RaiAnsar/claude_code-gemini-mcp` | `server.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C (VP)** × 2 |
 | 8-9 | `noflevi10root/mcp-test` | `main.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C (VP)** × 2 |
-
-**Aggregato categoria 14 completa (9/9, 100%)**:
+| 10-15 | `svg2png-mcp-server` (npx, tool_fuzzing/tool-error-disclosure) | `index.js` | Stack trace Node.js con path sorgente (`/home/tecnico/.npm/_npx/.../svg2png-mcp-server/...`) e messaggi d'errore (SVG inesistente, EISDIR, tool mancante) | **VP-C (VP)** × 6 |
+**Aggregato categoria 14 completa (15/15, 100%)**:
 
 | Verdetto | Count | % |
 |----------|------:|---:|
-| **VP-C** | **9** | 100% |
+| **VP-C** | **15** | 100% |
 | FP | 0 | 0% |
 
-Tutti 9 finding sono fuzzing-confirmed disclosure (payload echo o stack trace reale). Precision perfetta.
+Tutti 15 sono disclosure forti (payload echo `/etc/passwd`, stack trace sorgente reale). Le 6 entry `svg2png` provengono dal re-run di `tool_fuzzing` (`tool-error-disclosure`), che la Tabella 10 della tesi classifica in TS-06. *(Le sotto-fonti NPX più deboli — `cpan-package-readme` x3 errore HTTP 500, `composer-package-readme` x1 echo input — sono VP ma a impatto trascurabile, escluse dal conteggio.)*
 
 ---
 
@@ -1131,8 +1133,9 @@ Tutti 9 finding sono fuzzing-confirmed disclosure (payload echo o stack trace re
 |---|--------|------|:--------:|
 | 1-6 | `Jaikumar3/aws-pentest-mcp` | `src/index.ts` | **VP-L (FP, security framework)** — AWS pentest tool, IAM privilege escalation by design. |
 | 7 | `Wawtawsha/durandal-memory-bridge` | `database-setup.js` | **VP- (VP)** — `GRANT ALL PRIVILEGES ON DATABASE ${dbName} TO ${userName}` (documented in CLAUDE.md). |
+| 8 | `theta_health_mcp` (mcp-security-scan, RC-01, npx) | tool `fetch_remote_files` | **VP-L (VP)** — tool che "Fetches files into current workspace from file_keys or URLs": espone il fetch di file remoti/arbitrari nel workspace (remote access control exposure). Unico VP della sotto-categoria `mcp-security-scan/remote-access-control`, aggiunto nel merge NPX. |
 
-**Aggregato**: 1 VP-C, 6 VP-L (offensive tool). 100% detection corrette.
+**Aggregato (8/8, categoria completa)**: 1 VP-C (durandal), 1 VP-L non-offensive (theta_health), 6 VP-L offensive (aws-pentest). 100% detection corrette.
 
 ---
 
@@ -1177,21 +1180,21 @@ Tutti 9 finding sono fuzzing-confirmed disclosure (payload echo o stack trace re
 | 10 | protocol-violation | 100 (multi) | 20 | 32 | 45 | 2 | 0 | 97.0% |
 | **11** | **prompt-injection** | **56 (ALL)** | 33 | 8 | 1 | 14 | 0 | 75.0% |
 | **12** | **insecure-deserialization** | **31 (ALL)** | 2 | 26 | 1 | 2 | 0 | 93.5% |
-| **13** | **sensitive-file-access** | **16 (ALL)** | 5 | 11 | 0 | 0 | 0 | 100% |
-| **14** | **sensitive-info-disclosure** | **9 (ALL)** | 9 | 0 | 0 | 0 | 0 | 100% |
-| **15** | **access-control** | **7 (ALL)** | 1 | 6 | 0 | 0 | 0 | 100% |
+| **13** | **sensitive-file-access** | **18 (ALL)** | 7 | 11 | 0 | 0 | 0 | 100% |
+| **14** | **sensitive-info-disclosure** | **15 (ALL)** | 15 | 0 | 0 | 0 | 0 | 100% |
+| **15** | **access-control** | **8 (ALL)** | 1 | 7 | 0 | 0 | 0 | 100% |
 | **16** | **data-exfiltration** | **2 (ALL)** | 2 | 0 | 0 | 0 | 0 | 100% |
 | **17** | **tool-shadowing** | **1 (ALL)** | 1 | 0 | 0 | 0 | 0 | 100% |
 
 ### Statistica finale aggregata
 
-**Totale finding analizzati: 1.122** (12 categorie complete + 5 categorie top 100 multi-source).
+**Totale finding analizzati: 1.131** (12 categorie complete + 5 categorie top 100 multi-source).
 
 | Verdetto | Count | % |
 |----------|------:|---:|
-| **VP-C** (sfruttabili oggi) | 454 | **40.5%** |
-| **VP-L** (latenti / by-design) | 440 | **39.2%** |
-| **VP-D** (debole) | 183 | 16.3% |
+| **VP-C** (sfruttabili oggi) | 462 | **40.8%** |
+| **VP-L** (latenti / by-design) | 441 | **39.0%** |
+| **VP-D** (debole) | 183 | 16.2% |
 | **FP** | 37 | **3.3%** |
 | **Ambigui** | 8 | 0.7% |
 

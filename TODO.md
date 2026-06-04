@@ -1,1 +1,0 @@
-1. togliere il rug pull

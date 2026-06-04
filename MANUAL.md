@@ -247,10 +247,12 @@ L'analisi è stata estesa a tutti gli 11 finding della categoria.
 | 14 | `kbyk004/my-docs-mcp-server` | Docs server | **VP-C (VP)** |
 | 15 | `danielitus/mcp-document-server` | Docs server | **VP-C (VP)** |
 | 16 | `uniswap/spec-workflow-mcp` | Workflow specs | **VP-C (VP)** |
+| 17 | `@pepperi-addons/api-mcp` (npx) | API/docs server | **VP-C (VP)** — R-02 probe ha letto `/etc/passwd`. |
+| 18 | `worksona-mcp-server` (npx) | Document server | **VP-C (VP)** — re-detection NPX dello stesso server del #12. |
 
 I FP sarebbero tutti VP-L
 
-## 14. sensitive-info-disclosure — 9 VP (multi-source completo)
+## 14. sensitive-info-disclosure — 15 VP (multi-source completo)
 
 | # | Server | File | Pattern | Verdetto |
 |---|--------|------|---------|:--------:|
@@ -259,6 +261,7 @@ I FP sarebbero tutti VP-L
 | 5 | `isamu/mulmoscript-mcp` | `lib/index.js` (sensitive-info-disclosed-fuzzing) | Sensitive information disclosed: `passwd:` | **VP-C (VP)** — fuzzing ha estratto contenuto di `/etc/passwd`. |
 | 6-7 | `RaiAnsar/claude_code-gemini-mcp` | `server.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C (VP)** × 2 |
 | 8-9 | `noflevi10root/mcp-test` | `main.py` (protocol-info-disclosure) | Debug info disclosure x2 | **VP-C (VP)** × 2 |
+| 10-15 | `svg2png-mcp-server` (npx, tool_fuzzing/tool-error-disclosure) | `index.js` | Stack trace Node.js con path sorgente negli errori (×6) | **VP-C (VP)** × 6 |
 
 ## 15. access-control (mcp-watch) — 7 VP
 
@@ -266,6 +269,7 @@ I FP sarebbero tutti VP-L
 |---|--------|------|:--------:|
 | 1-6 | `Jaikumar3/aws-pentest-mcp` | `src/index.ts` | **VP-L (FP, security framework)** — AWS pentest tool, IAM privilege escalation by design. |
 | 7 | `Wawtawsha/durandal-memory-bridge` | `database-setup.js` | **VP- (VP)** — `GRANT ALL PRIVILEGES ON DATABASE ${dbName} TO ${userName}` (documented in CLAUDE.md). |
+| 8 | `theta_health_mcp` (mcp-security-scan, RC-01, npx) | tool `fetch_remote_files` | **VP-L (VP)** — fetch di file remoti/arbitrari nel workspace (remote access control exposure). |
 
 ## 16. data-exfiltration (mcp-watch) — 2 VP
 
@@ -283,21 +287,39 @@ I FP sarebbero tutti VP-L
 ### Per saperne di più su tutta l'analisi fatta: scaricare e leggere la chat di gemini "Veri Positivi: Sicurezza MCP Server" -> https://gemini.google.com/share/16bfc0cdebd6
 
 #	Minaccia	VP
-1	sql-injection	30/2.375
-2	dangerous-capabilities	15/1.990
-3	credential-leak	15/1.269
-4	ssrf	15/717
-5	untrusted-content	15/599
-6	path-traversal	15/470
-7	command-injection	15/244
+1	sql-injection	30/2406
+2	dangerous-capabilities	15/3745
+3	credential-leak	1258/1342
+4	ssrf	15/741
+5	untrusted-content	15/952
+6	path-traversal	15/537
+7	command-injection	15/274
 8	code-injection	23/220
-9	input-validation	19/208
-10	protocol-violation	15/137
-11	prompt-injection	16/56
+9	input-validation	19/254
+10	protocol-violation	15/15436
+11	prompt-injection	16/118
 12	insecure-deserialization	15/31
-13	sensitive-file-access	16/16
-14	sensitive-info-disclosure	9/9
-15	access-control	7/7
+13	sensitive-file-access	18/18
+14	sensitive-info-disclosure	15/1873
+15	access-control	8/8
 16	data-exfiltration	2/2
 17	tool-shadowing	1/1
-18	steganographic-attack	0/0
+
+---
+
+## Verifica automatica completa — credential-leak (intera categoria, fatta in chat)
+
+A differenza del campione di 15 della sezione 3, qui è stata classificata **l'intera categoria credential-leak** in modo meccanico, leggendo la riga `evidence` (mcp-watch) e il codice dopo `Code:` (mcp-guard `hardcoded-credential-static`).
+
+- **VP** = la riga contiene un segreto reale: chiave provider (`AIza`, `sk-`, `ghp_`, `AKIA`, `GOCSPX-`, `xox*`, Stripe `*_live_*`), JWT, private key, connection string con credenziali, oppure password/segreto hardcoded.
+- **FP** = placeholder (`your-api-key-here`, `***MASKED***`, AWS doc `...EXAMPLEKEY`), riferimento a env-var (`process.env`, `${token}` scritto in `.env`), chiave pubblica-by-design (Firebase web config, Google CrUX), valore == nome della variabile, valore vuoto.
+
+| Fonte | Entries | VP | FP |
+|-------|--------:|---:|---:|
+| mcp-watch credential-leak | 665 | 645 | 20 |
+| mcp-guard hardcoded-credential-static | 677 | 613 | 64 |
+| **TOTALE** | **1.342** | **1.258** | **84** |
+
+**Risultato: 1.258 VP su 1.342 entries (93,7%).** Coerente con il campione manuale (gli FP sono soprattutto Firebase/CrUX e placeholder, vedi #1/#11/#12 della sezione 3). Script riproducibile: `analysisAllData/_verify_credleak.py`.
+
+> Nota: il totale corrente è 1.342 (dataset merged GitHub+NPX); il "1.269" nella tabella sopra era il conteggio pre-merge (solo GitHub: 619 + 650).

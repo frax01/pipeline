@@ -1,0 +1,43 @@
+# Dipendenze e artefatti macchina
+node_modules/
+__pycache__/
+*.pyc
+.DS_Store
+dist/
+*.egg-info/
+
+# Virtualenv
+venv/
+.venv/
+poc_sqli/venv/
+
+# Dataset grezzi e pull dalle VM (NON versionati — vedere README "Dati")
+pullFromVM/
+npx_pull_from_vm/
+partial_results_*/
+
+# Output del post-processing per tool (vp/fp/audit + dati grezzi): solo codice versionato
+*/postprocessing/**/*.json
+*/postprocessing/**/*.jsonl
+*/postprocessing/**/*.txt
+
+# Output dell'aggregazione cross-framework
+cross_framework/*.json
+
+# Dati intermedi di deduplica del dataset
+hashAnalysis/*.json
+
+# Cache e file di lavoro temporanei
+top10_cache/
+stage2c_cache/
+stage2c_output/
+audit_context.json
+
+# Output del web_crawler (Excel per-sorgente) e dati di test
+web_crawler/**/*.xlsx
+web_crawler/**/*.xml
+# Output degli script vm di hashAnalysis
+hashAnalysis/vm/vm_jobs/
+hashAnalysis/vm/vm_results/
+hashAnalysis/vm/**/*.xlsx
+hashAnalysis/vm/**/*_progress.json

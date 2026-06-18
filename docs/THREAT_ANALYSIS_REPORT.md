@@ -1308,7 +1308,7 @@ run_merge("credential-leak", cache=load_cache("credential-leak"))
 - **File**: `web/js/app.js:15`
 - **Evidenza**:
   ```javascript
-  const OPENAI_API_KEY = 'sk-lZSmH5ZCX4boiBkaZNkwXkiBKSQ0C7YhHw20D8y3fjr29pUc';  // 请设置您的 API 密钥
+  const OPENAI_API_KEY = 'sk-REDACTED-PLACEHOLDER';  // 请设置您的 API 密钥
   ```
 - **Spiegazione**: chiave API OpenAI hardcoded direttamente nel codice JavaScript lato client (formato provider riconosciuto `sk-*` — OpenAI Legacy Key). Chiunque cloni il repo — o semplicemente apra il bundle JS servito al browser — ottiene una credenziale valida con accesso completo all'account OpenAI del manutentore: può consumare quota a piacimento (con costi fatturati al proprietario), accedere alla cronologia delle richieste e potenzialmente esfiltrare dati di altri progetti collegati allo stesso account. Il commento `请设置您的 API 密钥` ("imposta la tua API key") suggerisce che lo sviluppatore intendeva sostituirla, ma la chiave è stata committata in chiaro e resta pubblica nello storico Git anche se rimossa successivamente. Le credenziali devono stare in env var lato server o in un secret manager, mai in codice client-side.
 

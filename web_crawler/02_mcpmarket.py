@@ -90,8 +90,8 @@ def save_excel(servers):
     for row in servers:
         ws.append(row)
 
-    wb.save("mcp_market_servers.xlsx")
-    print("✔ File salvato: mcp_market_servers.xlsx")
+    wb.save("02_mcpmarket.xlsx")
+    print("✔ File salvato: 02_mcpmarket.xlsx")
 
 
 def save_failed():
@@ -108,8 +108,8 @@ def save_failed():
     for url, err in failed_requests:
         ws.append([url, err])
 
-    wb.save("failed_mcpmarket.xlsx")
-    print(f"✔ File errori salvato: failed_mcpmarket.xlsx ({len(failed_requests)} errori)")
+    wb.save("02_mcpmarket_failed.xlsx")
+    print(f"✔ File errori salvato: 02_mcpmarket_failed.xlsx ({len(failed_requests)} errori)")
 
 
 async def main():

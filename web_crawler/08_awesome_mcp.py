@@ -25,7 +25,7 @@ def main():
     for repo in sorted(github_repos):
         ws.append([repo])
 
-    output = "awesome_mcp_servers.xlsx"
+    output = "08_awesome_mcp.xlsx"
     wb.save(output)
 
     print(f"[✓] Excel salvato in: {output}")

@@ -101,7 +101,7 @@ def save_failed_servers():
     for url, err in failed_servers:
         ws.append([url, err])
 
-    wb.save("failed_serversNewAgain.xlsx")
+    wb.save("03_mcpso_failed.xlsx")
 
 
 async def main():
@@ -133,7 +133,7 @@ async def main():
         for row in results:
             ws.append(row)
 
-        wb.save("serversNewAgain.xlsx")
+        wb.save("03_mcpso.xlsx")
         save_failed_servers()
 
 

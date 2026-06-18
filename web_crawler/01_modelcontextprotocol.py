@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 # CONFIG
 # =========================
 URL = "https://github.com/modelcontextprotocol/servers"
-OUTPUT_XLSX = "mcp_servers_github_links.xlsx"
+OUTPUT_XLSX = "01_modelcontextprotocol.xlsx"
 
 # =========================
 # FETCH PAGE

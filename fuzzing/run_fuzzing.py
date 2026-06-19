@@ -611,7 +611,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False, excel_path: s
                     print(f"Error updating output files: {e}")
 
         except ServerTimeoutError:
-            print(f"⚠️ SERVER TIMEOUT ({SERVER_TIMEOUT}s) - skipping {server_url}")
+            print(f"SERVER TIMEOUT ({SERVER_TIMEOUT}s) - skipping {server_url}")
             _status = "timeout_global"
             server_name = server_url.rstrip('/').split('/')[-1]
             try:

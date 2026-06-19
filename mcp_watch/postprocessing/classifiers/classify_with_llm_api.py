@@ -2,9 +2,9 @@
 Stage 2B — Classificatore automatico via Ollama (llama3) per i finding UNCERTAIN.
 
 Uso:
-    python _classify_with_llm_api.py --category credential-leak
-    python _classify_with_llm_api.py --category data-exfiltration
-    python _classify_with_llm_api.py --category all
+    python classify_with_llm_api.py --category credential-leak
+    python classify_with_llm_api.py --category data-exfiltration
+    python classify_with_llm_api.py --category all
 
 Prerequisiti:
     Ollama installato e in esecuzione: https://ollama.com

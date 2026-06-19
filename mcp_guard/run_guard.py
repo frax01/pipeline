@@ -119,7 +119,7 @@ def save_vulnerability_entry(server_url: str, server_data: dict, mcp_guard_res: 
         for idx, vuln_info in instances.items():
             analysis_type = vuln_info.get("type", "unknown")
             if analysis_type not in ANALYSIS_TYPES:
-                # Fallback or ignore? Let's use it as is if it's alphanumeric
+                # tipo sconosciuto: lo uso comunque com'e'
                 pass
             
             # Category and Specific Title split
@@ -158,9 +158,7 @@ def save_vulnerability_entry(server_url: str, server_data: dict, mcp_guard_res: 
                 except Exception:
                     pass
             
-            # Simple check to avoid duplicated entries for same server (if re-running)
-            # Actually, per VM run we usually start fresh or append. 
-            # Let's just append for now.
+            # Su singola VM si parte da zero o si appende: niente dedup qui.
             data["vulnerabilities"].append(entry)
             data["total"] = len(data["vulnerabilities"])
             
@@ -320,7 +318,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
         # Periodic cache cleanup + RAM check
         ram_ok = periodic_cache_cleanup(idx)
         if not ram_ok:
-            print(f"\n⛔ STOPPING: RAM critically high. Saving state and exiting.")
+            print(f"\nSTOPPING: RAM critically high. Saving state and exiting.")
             print(f"   Resume with: python run_guard.py --start -1 --end {end_idx}")
             break
 

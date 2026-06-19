@@ -8,12 +8,12 @@ per-category file:
     <cat>/filtered/llm_analysis/_llm_api_cache.json
 
 mcp-watch instead runs hand-codified rules (_classify_3bucket.py and
-_classify_vp_fp.py) and writes vp.json / fp.json directly, with no
+classify_vp_fp.py) and writes vp.json / fp.json directly, with no
 cache artifact. This script rebuilds the equivalent cache from the
 existing outputs so that all frameworks expose the same artifact set
 in the repository.
 
-Cache format (identical to pipeline_mcp_watch.py::_cache_key):
+Cache format (identical to stage2_pipeline.py::_cache_key):
 
     {
       "<server_name>/<file>/<line>/<id>": {
@@ -48,7 +48,7 @@ CATEGORIES = [
 
 
 def cache_key(f: dict) -> str:
-    """Same format used by pipeline_mcp_watch.py::_cache_key."""
+    """Same format used by stage2_pipeline.py::_cache_key."""
     return f"{f.get('server_name','')}/{f.get('file','')}/{f.get('line',0)}/{f.get('id','')}"
 
 

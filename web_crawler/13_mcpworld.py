@@ -55,7 +55,7 @@ running = True
 
 def signal_handler(sig, frame):
     global running
-    print("\n⏸️  Interruzione richiesta! Salvataggio...")
+    print("\nInterruzione richiesta! Salvataggio...")
     running = False
 
 signal.signal(signal.SIGINT, signal_handler)
@@ -97,7 +97,7 @@ def save_state(last_pn, urls):
             json.dump(progress, f)
         os.replace(tmp_progress, str(PROGRESS_FILE))
     except Exception as e:
-        print(f"  ⚠️  Errore salvataggio progress: {e}")
+        print(f"   Errore salvataggio progress: {e}")
     
     # Salva URLs (un URL per riga)
     tmp_urls = str(URLS_FILE) + ".tmp"
@@ -107,7 +107,7 @@ def save_state(last_pn, urls):
                 f.write(url + "\n")
         os.replace(tmp_urls, str(URLS_FILE))
     except Exception as e:
-        print(f"  ⚠️  Errore salvataggio URLs: {e}")
+        print(f"   Errore salvataggio URLs: {e}")
 
 
 def save_excel(urls):
@@ -124,7 +124,7 @@ def save_excel(urls):
         wb.save(tmp_excel)
         os.replace(tmp_excel, str(EXCEL_FILE))
     except Exception as e:
-        print(f"  ⚠️  Errore salvataggio Excel: {e}")
+        print(f"   Errore salvataggio Excel: {e}")
 
 
 def fetch_page(pn, retries=MAX_RETRIES):
@@ -148,7 +148,7 @@ def fetch_page(pn, retries=MAX_RETRIES):
             if attempt < retries - 1:
                 time.sleep(2 ** attempt)
             else:
-                print(f"  ❌ Errore pn={pn}: {e}")
+                print(f"  Errore pn={pn}: {e}")
                 return None
     return None
 
@@ -167,22 +167,22 @@ def extract_github_urls(data):
 def main():
     global running
 
-    print("🌐 MCP World Scraper")
+    print("MCP World Scraper")
     print("=" * 60)
 
     last_pn, urls = load_state()
     start_pn = last_pn + 1
 
     if urls:
-        print(f"📌 Ripresa: {len(urls):,} link, da pagina {start_pn}")
+        print(f"Ripresa: {len(urls):,} link, da pagina {start_pn}")
     else:
-        print("🆕 Nuova sessione")
+        print("Nuova sessione")
 
     # Prima richiesta per totale
-    print(f"\n🔍 Controllo totale server...")
+    print(f"\nControllo totale server...")
     first_data = fetch_page(0)
     if not first_data:
-        print("❌ Impossibile raggiungere l'API.")
+        print("Impossibile raggiungere l'API.")
         return
     
     total = first_data.get("count", 0)
@@ -200,7 +200,7 @@ def main():
                 urls.add(u)
                 new += 1
         if new > 0:
-            print(f"  📡 pn=0: +{new} GitHub (tot: {len(urls):,})")
+            print(f"  pn=0: +{new} GitHub (tot: {len(urls):,})")
         start_pn = 1
 
     new_since_save = 0
@@ -214,7 +214,7 @@ def main():
         if not data:
             consecutive_empty += 1
             if consecutive_empty >= MAX_CONSECUTIVE_EMPTY:
-                print(f"\n⏹️  {MAX_CONSECUTIVE_EMPTY} pagine vuote. Fine.")
+                print(f"\n{MAX_CONSECUTIVE_EMPTY} pagine vuote. Fine.")
                 break
             continue
 
@@ -222,7 +222,7 @@ def main():
         if not page_urls:
             consecutive_empty += 1
             if consecutive_empty >= MAX_CONSECUTIVE_EMPTY:
-                print(f"\n⏹️  {MAX_CONSECUTIVE_EMPTY} pagine senza server. Fine.")
+                print(f"\n{MAX_CONSECUTIVE_EMPTY} pagine senza server. Fine.")
                 break
             continue
 
@@ -236,17 +236,17 @@ def main():
 
         if page_new > 0:
             consecutive_empty = 0
-            print(f"  📡 pn={pn}: +{page_new} GitHub (tot: {len(urls):,})")
+            print(f"  pn={pn}: +{page_new} GitHub (tot: {len(urls):,})")
         else:
             consecutive_empty += 1
             if pn % 100 == 0:
-                print(f"  📡 pn={pn}: nessun nuovo (tot: {len(urls):,})")
+                print(f"  pn={pn}: nessun nuovo (tot: {len(urls):,})")
 
         # Salva periodicamente
         if new_since_save >= SAVE_EVERY or (pn % 100 == 0 and new_since_save > 0):
             save_state(pn, urls)
             save_excel(urls)
-            print(f"  💾 Salvati {len(urls):,} link (pn={pn})")
+            print(f"  Salvati {len(urls):,} link (pn={pn})")
             new_since_save = 0
 
         time.sleep(DELAY)
@@ -256,12 +256,12 @@ def main():
     save_excel(urls)
 
     print("\n" + "=" * 60)
-    print(f"🎉 Completato!")
-    print(f"   📊 {len(urls):,} link GitHub unici")
-    print(f"   📁 Excel: {EXCEL_FILE}")
+    print(f"Completato!")
+    print(f"   {len(urls):,} link GitHub unici")
+    print(f"   Excel: {EXCEL_FILE}")
     print("=" * 60)
-    print(f"\n🔁 Per riprendere: rilancia lo script")
-    print(f"🗑️  Per ricominciare: cancella {PROGRESS_FILE.name} e {URLS_FILE.name}")
+    print(f"\nPer riprendere: rilancia lo script")
+    print(f"Per ricominciare: cancella {PROGRESS_FILE.name} e {URLS_FILE.name}")
 
 
 if __name__ == "__main__":

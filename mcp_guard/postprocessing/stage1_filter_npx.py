@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-filter_mcp_guard.py — Stage 1 filter per mcp-guard findings (19 categorie)
+stage1_filter.py — Stage 1 filter per mcp-guard findings (19 categorie)
 
 Tassonomia output (suffissi espliciti):
   STATIC (9):
@@ -15,7 +15,7 @@ Tassonomia output (suffissi espliciti):
     protocol-missing-id, protocol-invalid-jsonrpc-version
 
 Esecuzione:
-    py -X utf8 filter_mcp_guard.py
+    py -X utf8 stage1_filter.py
 """
 
 import json

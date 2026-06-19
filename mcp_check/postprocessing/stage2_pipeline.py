@@ -1,8 +1,8 @@
 """
-Pipeline LLM per i finding di mcp-check (post-filter_mcp_check.py).
+Pipeline LLM per i finding di mcp-check (post-stage1_filter.py).
 
 Funziona sulle cartelle <fase>/<categoria>/filtered/<cat>_filtered.json già prodotte
-da filter_mcp_check.py (Stage 1).
+da stage1_filter.py (Stage 1).
 
 mcp-check è un test harness di conformance MCP (NON uno scanner di sicurezza).
 I "VP" qui indicano veri problemi di conformance/robustezza, i "FP" sono errori
@@ -15,10 +15,10 @@ Flusso:
                            → vp.json / fp.json / audit.json
 
 Uso:
-    python -X utf8 pipeline_mcp_check.py --category tool_invocation/other_errors --hc-only
-    python -X utf8 pipeline_mcp_check.py --category tool_invocation/panic_or_crash --cache-only
-    python -X utf8 pipeline_mcp_check.py --category all --hc-only
-    python -X utf8 pipeline_mcp_check.py --category all --cache-only
+    python -X utf8 stage2_pipeline.py --category tool_invocation/other_errors --hc-only
+    python -X utf8 stage2_pipeline.py --category tool_invocation/panic_or_crash --cache-only
+    python -X utf8 stage2_pipeline.py --category all --hc-only
+    python -X utf8 stage2_pipeline.py --category all --cache-only
 
 Output in <fase>/<categoria>/filtered/llm_analysis/:
     hc_vp.json / hc_fp.json / uncertain.json   (con --hc-only, categorie HC)

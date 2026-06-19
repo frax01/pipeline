@@ -91,11 +91,11 @@ def main():
         for i, s in enumerate(scrapers, 1):
             env = REQUIRES_ENV.get(s)
             if env and not os.environ.get(env):
-                print(f"\n[{i}/{len(scrapers)}] ⏭  {s} — SALTATO (manca ${env})")
+                print(f"\n[{i}/{len(scrapers)}]  {s} — SALTATO (manca ${env})")
                 results.append((s, f"saltato (manca ${env})", 0.0))
                 continue
 
-            print(f"\n[{i}/{len(scrapers)}] ▶ {s}")
+            print(f"\n[{i}/{len(scrapers)}] {s}")
             start = time.time()
             rc = subprocess.run([sys.executable, str(HERE / s)], cwd=HERE).returncode
             dur = time.time() - start
@@ -111,7 +111,7 @@ def main():
     print("\n== Riepilogo ==")
     ok = 0
     for s, st, dur in results:
-        mark = "✓" if st == "ok" else ("⏭" if st.startswith("saltato") else "✗")
+        mark = "+" if st == "ok" else ("-" if st.startswith("saltato") else "x")
         if st == "ok":
             ok += 1
         print(f"  {mark} {s:<34} {st:<22} {dur:6.1f}s")

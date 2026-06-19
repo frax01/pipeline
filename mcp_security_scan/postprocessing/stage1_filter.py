@@ -19,9 +19,9 @@ Categorie e ID vulnerability:
   - initialization-error: noise infrastrutturale, SCARTATO
 
 Uso:
-  python filter_security_scan.py
-  python filter_security_scan.py --dry-run
-  python filter_security_scan.py --category input-validation
+  python stage1_filter.py
+  python stage1_filter.py --dry-run
+  python stage1_filter.py --category input-validation
 
 Output:
   - Per ogni categoria: <categoria>/filtered/<file>_filtered.json

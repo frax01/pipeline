@@ -9,8 +9,6 @@ Uso:
     python launch.py watch             # lancia mcp-watch da zero
     python launch.py security_scan     # lancia mcp-security-scan da zero
     python launch.py check             # lancia mcp-check da zero
-    python launch.py scanorama         # lancia scanorama da zero
-    python launch.py validator         # lancia mcp-validator da zero
 
     python launch.py scan --resume     # riprende da dove si era fermato
     python launch.py scan --start 500  # parte dall'indice 500
@@ -28,71 +26,67 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
 
+# Cartelle locali dei tool. Sulle VM, dopo il deploy, hanno il prefisso "tool_"
+# (es. mcp_scan -> tool_mcp_scan): _tool_dir() risolve l'una o l'altra.
 TOOLS = {
     "scan": {
-        "dir": "tool_mcp_scan",
+        "dir": "mcp_scan",
         "script": "run_scan.py",
         "stats": "mcp_scan_stats.json",
         "log": "mcp_scan_servers.json",
         "output": "scan_output.log",
     },
     "fuzzing": {
-        "dir": "tool_fuzzing",
+        "dir": "fuzzing",
         "script": "run_fuzzing.py",
         "stats": "fuzzing_stats.json",
         "log": "fuzzing_servers.json",
         "output": "fuzzing_output.log",
     },
     "shield": {
-        "dir": "tool_mcp_shield",
+        "dir": "mcp_shield",
         "script": "run_shield.py",
         "stats": "mcp_shield_stats.json",
         "log": "mcp_shield_servers.json",
         "output": "shield_output.log",
     },
     "guard": {
-        "dir": "tool_mcp_guard",
+        "dir": "mcp_guard",
         "script": "run_guard.py",
         "stats": "mcp_guard_stats.json",
         "log": "mcp_guard_servers.json",
         "output": "guard_output.log",
     },
     "watch": {
-        "dir": "tool_mcp_watch",
+        "dir": "mcp_watch",
         "script": "run_watch.py",
         "stats": "mcp_watch_stats.json",
         "log": "mcp_watch_servers.json",
         "output": "watch_output.log",
     },
     "security_scan": {
-        "dir": "tool_mcp_security_scan",
+        "dir": "mcp_security_scan",
         "script": "run_security_scan.py",
         "stats": "mcp_security_scan_stats.json",
         "log": "mcp_security_scan_servers.json",
         "output": "security_scan_output.log",
     },
     "check": {
-        "dir": "tool_mcp_check",
+        "dir": "mcp_check",
         "script": "run_check.py",
         "stats": "mcp_check_stats.json",
         "log": "mcp_check_servers.json",
         "output": "check_output.log",
     },
-    "scanorama": {
-        "dir": "tool_scanorama",
-        "script": "run_scanorama.py",
-        "stats": "scanorama_stats.json",
-        "log": "scanorama_servers.json",
-        "output": "scanorama_output.log",
-    },
-    "validator": {
-        "dir": "tool_mcp_validator",
-        "script": "run_validator.py",
-        "stats": "mcp_validator_stats.json",
-        "log": "mcp_validator_servers.json",
-        "output": "validator_output.log",
-    },
 }
+
+
+def _tool_dir(cfg):
+    """Cartella del tool: locale (es. mcp_scan) o remota su VM (tool_mcp_scan)."""
+    local = BASE_DIR / cfg["dir"]
+    if local.exists():
+        return local
+    return BASE_DIR / f"tool_{cfg['dir']}"
 
 
 def kill_running(tool_name=None):
@@ -136,8 +130,9 @@ def kill_running(tool_name=None):
 
 def reset_stats(tool_cfg):
     """Reset stats and log files to empty."""
-    stats_path = BASE_DIR / tool_cfg["dir"] / tool_cfg["stats"]
-    log_path = BASE_DIR / tool_cfg["dir"] / tool_cfg["log"]
+    tool_dir = _tool_dir(tool_cfg)
+    stats_path = tool_dir / tool_cfg["stats"]
+    log_path = tool_dir / tool_cfg["log"]
 
     with open(stats_path, "w") as f:
         json.dump({}, f)
@@ -153,7 +148,7 @@ def show_status():
     print("=" * 60)
 
     for name, cfg in TOOLS.items():
-        stats_path = BASE_DIR / cfg["dir"] / cfg["stats"]
+        stats_path = _tool_dir(cfg) / cfg["stats"]
         if stats_path.exists():
             try:
                 with open(stats_path, "r") as f:
@@ -190,7 +185,7 @@ def launch_tool(tool_name, start_idx, resume=False):
         sys.exit(1)
 
     cfg = TOOLS[tool_name]
-    script_path = BASE_DIR / cfg["dir"] / cfg["script"]
+    script_path = _tool_dir(cfg) / cfg["script"]
     output_path = BASE_DIR / cfg["output"]
 
     if not script_path.exists():
@@ -198,7 +193,7 @@ def launch_tool(tool_name, start_idx, resume=False):
         sys.exit(1)
 
     # Kill existing process for this tool
-    print(f"\n🔧 Lancio {tool_name}...")
+    print(f"\nLancio {tool_name}...")
     kill_running(tool_name)
 
     if resume:
@@ -220,7 +215,7 @@ def launch_tool(tool_name, start_idx, resume=False):
         print(f"  Su Windows non puoi lanciare in background con nohup.")
         print(f"  Esegui sul server:")
         print(f"    cd ~/Desktop/Pipeline")
-        print(f"    nohup python {cfg['dir']}/{cfg['script']} --start {start_arg} > {cfg['output']} 2>&1 &")
+        print(f"    nohup python tool_{cfg['dir']}/{cfg['script']} --start {start_arg} > {cfg['output']} 2>&1 &")
         print(f"    tail -f {cfg['output']}")
         return
 

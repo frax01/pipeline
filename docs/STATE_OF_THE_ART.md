@@ -4,7 +4,7 @@ Documento di tracking dei paper accademici letti per posizionare il lavoro di te
 
 I paper sono raggruppati per **tipo di contributo** (survey vs empirical vs benchmark vs defense framework) per facilitare il confronto con il mio lavoro.
 
-Path PDF: `C:\Users\francesco\Desktop\Tesi\Paper MCP\`
+Path PDF: `C:\Users\<user>\Desktop\Tesi\Paper MCP\`
 
 **Convenzioni**:
 - ✅ = paper **letto e analizzato** (PDF in `Tesi/Paper MCP/`)
@@ -89,7 +89,7 @@ Path PDF: `C:\Users\francesco\Desktop\Tesi\Paper MCP\`
 - **Risultati**: "MCP security represents a paradigm shift where the attack surface extends from traditional code execution to semantic interpretation of natural language metadata"
 - **Posizionamento vs mio lavoro**: utile come reference per la tassonomia difese; il mio lavoro USA molti dei framework citati.
 
-### 4-bis. ⚠️ NON LETTO — Systematization of Knowledge: Security and Safety in the Model Context Protocol Ecosystem
+### 4-bis. NON LETTO — Systematization of Knowledge: Security and Safety in the Model Context Protocol Ecosystem
 **Autori da verificare** — arXiv 2512.08290, Dec 2025 — https://arxiv.org/pdf/2512.08290
 
 - **Tipo**: paper SoK (Systematization of Knowledge) — verificato esistente dall'utente
@@ -138,7 +138,7 @@ Path PDF: `C:\Users\francesco\Desktop\Tesi\Paper MCP\`
 ### 7. Toward Understanding Security Issues in the MCP Ecosystem
 **Xiaofan Li, Xing Gao** (University of Delaware) — arXiv 2510.16558v1, Oct 2025
 
-- **Obiettivo**: prima security analysis comprehensive dell'**ecosistema** MCP (host + registry + server)
+- **Obiettivo**: prima security analysis completa dell'**ecosistema** MCP (host + registry + server)
 - **Metodologia**: qualitative analysis (mancanza output verification, vetting registry) + quantitative dataset analysis
 - **Dataset**: **67.057 server** da 6 registri pubblici (mcp.so, MCP Market, MCP Store, Pulse MCP, Smithery, npm)
 - **Validazione**: misura quanti server possono essere "hijacked" via mancanza di vetting nei registry
@@ -172,7 +172,7 @@ Path PDF: `C:\Users\francesco\Desktop\Tesi\Paper MCP\`
   - Blocca majority delle minacce con overhead minimo
 - **Posizionamento vs mio lavoro**: propone una soluzione (framework), io misuro il problema. Complementari.
 
-### 9-bis. ⚠️ NON LETTO — Compatibility at a Cost: Systematic Discovery and Exploitation of MCP Clause-Compliance Vulnerabilities
+### 9-bis. NON LETTO — Compatibility at a Cost: Systematic Discovery and Exploitation of MCP Clause-Compliance Vulnerabilities
 **Yang, Bai, Lu** — arXiv 2603.10163, Mar 2026 (da verificare la data esatta)
 
 - **Obiettivo** (da fonti secondarie / Gemini deep research): dissezionare formalmente il protocollo MCP per scoprire vulnerabilità sistematiche derivanti dalla rilassatezza della specifica
@@ -384,8 +384,8 @@ Riferimento incrociato tra tassonomie dei paper e categorie del mio scan:
 
 ## File documenti correlati
 
-- `analysisAllData/CROSS_FRAMEWORK_REPORT.md` — report aggregato cross-framework consensus
-- `analysisAllData/0_tool_mcp_<framework>/README.md` — documentazione per ogni framework
+- `cross_framework/` — aggregazione VP cross-framework (consensus)
+- `<framework>/howDoesItWork.md` — documentazione per ogni framework
 - `THREAT_ANALYSIS_REPORT.md` — report tesi finale
 - `CLAUDE.md` — contesto pipeline completo
 

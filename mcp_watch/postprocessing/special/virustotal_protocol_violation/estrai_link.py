@@ -31,14 +31,16 @@ def estrai_link_da_evidence(input_json, output_txt):
             for link in sorted(link_trovati):
                 file_out.write(link + '\n')
                 
-        print(f"✅ Estrazione completata con successo!")
-        print(f"🔗 Trovati {len(link_trovati)} link unici.")
-        print(f"📄 Risultati salvati in: {output_txt}")
+        print(f"Estrazione completata con successo!")
+        print(f"Trovati {len(link_trovati)} link unici.")
+        print(f"Risultati salvati in: {output_txt}")
         
     except FileNotFoundError:
-        print(f"❌ Errore: Il file '{input_json}' non è stato trovato.")
+        print(f"Errore: Il file '{input_json}' non è stato trovato.")
     except json.JSONDecodeError:
-        print(f"❌ Errore: Il file '{input_json}' non è un JSON valido.")
+        print(f"Errore: Il file '{input_json}' non è un JSON valido.")
 
-# Avvia la funzione con i nomi dei tuoi file
-estrai_link_da_evidence('C:\\Users\\francesco\\Desktop\\pipeline\\analysisAllData\\mcp_watch\\protocol-violation\\protocol_violation_high.json', 'C:\\Users\\francesco\\Desktop\\pipeline\\analysisAllData\\mcp_watch\\protocol-violation\\link_estratti.txt')
+if __name__ == "__main__":
+    # Input: il finding protocol-violation di mcp-watch nella cartella corrente.
+    # Output: link_estratti.txt, poi letto da vt_scan.py.
+    estrai_link_da_evidence("protocol_violation_high.json", "link_estratti.txt")

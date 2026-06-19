@@ -382,7 +382,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
         # Periodic cache cleanup + RAM check
         ram_ok = periodic_cache_cleanup(idx)
         if not ram_ok:
-            print(f"\n⛔ STOPPING: RAM critically high. Saving state and exiting.")
+            print(f"\nSTOPPING: RAM critically high. Saving state and exiting.")
             print(f"   Resume with: python run_check.py --start -1 --end {end_idx}")
             break
 

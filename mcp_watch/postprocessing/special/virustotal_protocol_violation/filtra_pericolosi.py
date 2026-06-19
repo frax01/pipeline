@@ -1,6 +1,6 @@
 import json
 
-FILE_INPUT = "C:\\Users\\francesco\\Desktop\\pipeline\\analysisAllData\\mcp_watch\\protocol-violation\\risultati_virustotal.jsonl"
+FILE_INPUT = "risultati_virustotal.jsonl"
 FILE_OUTPUT = "link_pericolosi.txt"
 
 def estrai_link_malevoli():
@@ -30,12 +30,12 @@ def estrai_link_malevoli():
             for link in link_trovati:
                 out_file.write(link + "\n")
                 
-        print("✅ Filtraggio completato!")
-        print(f"🚨 Trovati {len(link_trovati)} link con almeno 1 segnalazione 'malicious'.")
-        print(f"📄 Salvati nel file: {FILE_OUTPUT}")
+        print("Filtraggio completato!")
+        print(f"Trovati {len(link_trovati)} link con almeno 1 segnalazione 'malicious'.")
+        print(f"Salvati nel file: {FILE_OUTPUT}")
         
     except FileNotFoundError:
-        print(f"❌ Errore: Il file {FILE_INPUT} non è stato trovato. Assicurati di essere nella cartella giusta.")
+        print(f"Errore: Il file {FILE_INPUT} non è stato trovato. Assicurati di essere nella cartella giusta.")
 
 # Avvia la funzione
 estrai_link_malevoli()

@@ -23,7 +23,7 @@ def normalize_github_url(url: str) -> str:
     return m.group(1) if m else ""
 
 # =========================
-# 1️⃣ TOTAL COUNT
+# 1⃣ TOTAL COUNT
 # =========================
 
 r = requests.get(f"{BASE_API}/total-count", headers=HEADERS, timeout=30)
@@ -36,7 +36,7 @@ print(f"[+] Server totali: {total}")
 print(f"[+] Pagine da scaricare: {pages}")
 
 # =========================
-# 2️⃣ RACCOLTA SERVER
+# 2⃣ RACCOLTA SERVER
 # =========================
 
 repos = set()
@@ -72,10 +72,10 @@ for page in range(1, pages + 1):
         if gh:
             repos.add(gh)
 
-print(f"[✓] Repository GitHub unici: {len(repos)}")
+print(f"Repository GitHub unici: {len(repos)}")
 
 # =========================
-# 3️⃣ SALVA EXCEL
+# 3⃣ SALVA EXCEL
 # =========================
 
 wb = Workbook()
@@ -89,4 +89,4 @@ for repo in sorted(repos):
 
 wb.save(OUTPUT_FILE)
 
-print(f"[✓] Excel salvato in {OUTPUT_FILE}")
+print(f"Excel salvato in {OUTPUT_FILE}")

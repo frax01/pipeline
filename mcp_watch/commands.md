@@ -177,7 +177,7 @@ done
 
 ```powershell
 # Dal PC Windows
-tar -czf C:\tmp\mcp-watch.tar.gz -C C:\Users\francesco\Desktop\Frameworks mcp-watch
+tar -czf C:\tmp\mcp-watch.tar.gz -C C:\Users\<user>\Desktop\Frameworks mcp-watch
 $ips = @("10.79.6.132","10.79.6.133","10.79.6.134","10.79.6.136","10.79.6.137","10.79.6.138","10.79.6.139","10.79.6.141","10.79.6.142")
 foreach ($ip in $ips) { echo "--- $ip ---"; scp C:\tmp\mcp-watch.tar.gz tecnico@${ip}:/tmp/; ssh tecnico@$ip "mkdir -p ~/Desktop/Frameworks && cd ~/Desktop/Frameworks && tar xzf /tmp/mcp-watch.tar.gz && rm /tmp/mcp-watch.tar.gz && echo OK" }
 ```

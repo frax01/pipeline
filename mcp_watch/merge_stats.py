@@ -58,7 +58,7 @@ def merge_watch_stats(stats_files: list[str], output_file: str):
                     all_stats.append(data)
                     print(f"  Loaded {f}: total={data.get('total', 0)}, last_index={data.get('last_index', 0)}")
         except Exception as e:
-            print(f"  ⚠️ Skipping {f}: {e}")
+            print(f"  Skipping {f}: {e}")
 
     if not all_stats:
         print("No valid stats files found!")

@@ -2,9 +2,9 @@
 Pipeline Stage 2A + 2B per i finding di mcp-shield.
 
 Uso:
-    python pipeline_mcp_shield.py --category hidden-instructions --hc-only
-    python pipeline_mcp_shield.py --category hidden-instructions --merge
-    python pipeline_mcp_shield.py --category all --merge
+    python stage2_pipeline.py --category hidden-instructions --hc-only
+    python stage2_pipeline.py --category hidden-instructions --merge
+    python stage2_pipeline.py --category all --merge
 
 Stage 2A: regole HC (high-confidence) per categoria → HC-VP / HC-FP / UNCERTAIN
 Stage 2B: Ollama llama3 per i finding UNCERTAIN → VP o FP

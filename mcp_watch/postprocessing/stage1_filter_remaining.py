@@ -1,5 +1,5 @@
 """
-Stage 1 filter for the 4 mcp-watch categories not covered by filter_all_categories.py:
+Stage 1 filter for the 4 mcp-watch categories not covered by stage1_filter.py:
 
   1. tool-poisoning         (HIDDEN_TOOL_INSTRUCTIONS only, DECEPTIVE_TOOL_NAMING ignored)
   2. prompt-injection       (TOOL_DESCRIPTION_INJECTION only, RETRIEVAL_AGENT_DECEPTION ignored)
@@ -10,8 +10,8 @@ All these scanners produce massive false-positive noise due to over-broad regex 
 filter here is a WHITELIST: only findings matching hand-picked "high risk" patterns survive.
 
 Usage:
-  python -X utf8 filter_remaining_categories.py
-  python -X utf8 filter_remaining_categories.py --category tool-poisoning
+  python -X utf8 stage1_filter_remaining.py
+  python -X utf8 stage1_filter_remaining.py --category tool-poisoning
 
 Output: <cat>/filtered/<cat>_filtered.json
 

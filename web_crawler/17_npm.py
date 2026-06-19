@@ -180,4 +180,4 @@ while True:
 
     time.sleep(SLEEP_BETWEEN_SEARCH)
 
-print(f"[✓] Fine. Excel npm salvato in: {OUTPUT_FILE}")
+print(f"Fine. Excel npm salvato in: {OUTPUT_FILE}")

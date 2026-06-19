@@ -282,7 +282,7 @@ n=10 funziona da filtro veloce (~5-10 min) per scartare le regole palesemente sb
 
 **Esempio iterativo concreto** (`insecure-deserialization-static`, mcp-guard):
 
-Stato iniziale dopo `pipeline_mcp_guard.py --category insecure-deserialization-static --hc-only`:
+Stato iniziale dopo `stage2_pipeline.py --category insecure-deserialization-static --hc-only`:
 
 ```
 Filtered: 591 — HC-VP: 31 — HC-FP: 391 — UNCERTAIN: 169 (28%, troppo alto)
@@ -413,13 +413,13 @@ def is_honeypot(f: dict) -> bool:
 
 I pattern seguenti rappresentano la **classe di esclusioni file-level** (test, vendor, scanner-own, comment line) condivisa da tutti i framework, anche se ogni framework ha la propria implementazione (con minime varianti) nei rispettivi `filter_*.py`:
 
-- `mcp-guard` → `filter_mcp_guard.py` (versione completa mostrata sotto)
-- `mcp-watch` → `filter_all_categories.py` + `filter_remaining_categories.py` (regex inline per categoria)
-- `tool_fuzzing` → `filter_fuzzing.py` (pattern adattati a finding fuzzing senza `file`)
+- `mcp-guard` → `stage1_filter.py` (versione completa mostrata sotto)
+- `mcp-watch` → `stage1_filter.py` + `stage1_filter_remaining.py` (regex inline per categoria)
+- `tool_fuzzing` → `stage1_filter.py` (pattern adattati a finding fuzzing senza `file`)
 - `mcp-scan`, `mcp-shield`, `mcp-security-scan`, `mcp-check` → filtraggio embedded nel framework stesso o nel filter dedicato per categoria
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:60
+# mcp_guard/postprocessing/stage1_filter.py
 _TEST_FILE = re.compile(
     r"(?:test[/\\]|spec[/\\]|\.test\.|\.spec\.|__tests__|fixture[/\\]|fixtures[/\\]|"
     r"mock[/\\]|mocks[/\\]|_test\.\w+$|_spec\.\w+$|_tests\.\w+$|"
@@ -510,7 +510,7 @@ def save_merge(cat: str, vp: list, fp: list, audit: list):
 ##### 2.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py
+# mcp_guard/postprocessing/stage1_filter.py
 _SQL_TRIPLE_NO_VAR = re.compile(
     r"(?:execute|run|query)\s*\(\s*(?:text\s*\(\s*)?(?:\"\"\"|'{3})(?![^\"']*\{)", re.I | re.S)
 _SQL_FSTRING_NO_VAR = re.compile(r"f['\"][^{'\"]+['\"]", re.I)
@@ -554,7 +554,7 @@ def keep_sql_injection(f: dict) -> bool:
 ##### 3.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py
+# mcp_guard/postprocessing/stage2_pipeline.py
 _SQL_CONCAT = re.compile(
     r"""(?:[\+]\s*(?:params\.|args\.|input\.|req\.)|
         f["\'].*?\{(?:params|args|input|req)\.|
@@ -607,7 +607,7 @@ def hc_rules_sql_injection(f: dict) -> tuple[str, str]:
 ##### 4.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_classify_remaining.py
+# mcp_guard/postprocessing/classifiers/classify_remaining.py
 def classify_uncertain_sql(f: dict) -> str:
     code = extract_code(f.get("description", ""))
     if "self." in code and not re.search(r"\{(?!self\.)\w", code):
@@ -881,7 +881,7 @@ def _generate_protocol_payloads(self) -> List[Dict]:
 ##### 2.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/filter_all_categories.py:662
+# mcp_watch/postprocessing/stage1_filter.py
 def filter_protocol_violation_finding(finding: dict) -> tuple[bool, str]:
     vid = finding.get("id", "")
     evidence = finding.get("evidence", "") or ""
@@ -926,7 +926,7 @@ def filter_protocol_violation_finding(finding: dict) -> tuple[bool, str]:
 ##### 2.2 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:695
+# mcp_guard/postprocessing/stage1_filter.py
 def keep_protocol_missing_id(f: dict) -> bool:
     return not is_honeypot(f)
 
@@ -939,7 +939,7 @@ def keep_protocol_invalid_jsonrpc_version(f: dict) -> bool:
 ##### 3.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/pipeline_mcp_watch.py:1401
+# mcp_watch/postprocessing/stage2_pipeline.py
 def hc_rules_protocol_violation(f: dict) -> tuple[str, str]:
     ev = f.get("evidence", "") or ""
     vid = f.get("id", "")
@@ -974,7 +974,7 @@ def hc_rules_protocol_violation(f: dict) -> tuple[str, str]:
 ##### 3.2 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:2210
+# mcp_guard/postprocessing/stage2_pipeline.py
 def hc_rules_protocol(f: dict) -> tuple[str, str]:
     if is_honeypot(f): return "HC-FP", "honeypot_server"
     cat = f.get("_category", "")
@@ -999,7 +999,7 @@ def hc_rules_protocol(f: dict) -> tuple[str, str]:
 ##### 4.2 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_classify_remaining.py
+# mcp_guard/postprocessing/classifiers/classify_remaining.py
 def classify_uncertain_protocol(f: dict) -> str:
     cat = f.get("_category", "")
     if cat == "protocol-invalid-jsonrpc-version":
@@ -1125,7 +1125,7 @@ private containsInsecureCredentialPermissions(line: string): boolean {
 ##### 2.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:515
+# mcp_guard/postprocessing/stage1_filter.py
 _HC_PROVIDER_KEY = re.compile(
     r"""sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9_]{50,}|
         AKIA[A-Z0-9]{16}|AIza[A-Za-z0-9_-]{35,}|xox[bpoas]-[A-Za-z0-9-]{20,}|
@@ -1168,7 +1168,7 @@ def keep_hardcoded_credential(f: dict) -> bool:
 ##### 2.2 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/filter_all_categories.py
+# mcp_watch/postprocessing/stage1_filter.py
 def filter_credential_leak_finding(finding: dict) -> tuple[bool, str]:
     vid = finding.get("id", "")
     ev = finding.get("evidence", "") or ""
@@ -1190,7 +1190,7 @@ def filter_credential_leak_finding(finding: dict) -> tuple[bool, str]:
 ##### 3.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:486
+# mcp_guard/postprocessing/stage2_pipeline.py
 _PROVIDER_KEY = re.compile(
     r"(?:sk-[A-Za-z0-9]{20,}|ghp_[A-Za-z0-9]{30,}|github_pat_[A-Za-z0-9]{50,}|"
     r"AKIA[A-Z0-9]{16}|AIza[A-Za-z0-9_-]{35,}|xox[bpoas]-[A-Za-z0-9-]{20,}|"
@@ -1228,7 +1228,7 @@ def hc_rules_hardcoded_credential(f: dict) -> tuple[str, str]:
 ##### 3.2 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/pipeline_mcp_watch.py:165
+# mcp_watch/postprocessing/stage2_pipeline.py
 def hc_rules_credential_leak(f: dict) -> tuple[str, str]:
     name = f.get("server_name", "")
     path = (f.get("file") or "").lower()
@@ -1264,7 +1264,7 @@ def hc_rules_credential_leak(f: dict) -> tuple[str, str]:
 ##### 4.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_apply_hardcoded_cache.py
+# mcp_guard/postprocessing/special/apply_hardcoded_cache.py
 def classify_uncertain_hardcoded(f: dict) -> str:
     code = extract_code(f.get("description", ""))
     if re.search(r"[a-f0-9]{32,}|prefix_[A-Za-z0-9]{20,}", code):
@@ -1278,7 +1278,7 @@ def classify_uncertain_hardcoded(f: dict) -> str:
 
 ```python
 # Stage 2B: classificazione manuale dei 102 UNCERTAIN
-# Cache popolata in pipeline_mcp_watch.py via Ollama o Sonnet in-chat
+# Cache popolata in stage2_pipeline.py via Ollama o Sonnet in-chat
 ```
 
 #### 5. Final results
@@ -1372,7 +1372,7 @@ payloads.append({"jsonrpc": "2.0", "id": 9033,
 ##### 2.1 mcp-guard (static)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:397
+# mcp_guard/postprocessing/stage1_filter.py
 _PT_HARDCODED = re.compile(
     r"path\.join\s*\(\s*(?:__dirname|process\.cwd\(\)|\"[^\"]+\"|'[^']+')")
 _PT_USER_INPUT = re.compile(
@@ -1413,7 +1413,7 @@ def keep_protocol_path_traversal(f: dict) -> bool:
 ##### 3.1 mcp-guard (static)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:1031
+# mcp_guard/postprocessing/stage2_pipeline.py
 def hc_rules_path_traversal_static(f: dict) -> tuple[str, str]:
     if is_honeypot(f) or _TEST_FILE.search(f.get("file","")):
         return "HC-FP", "honeypot_or_test"
@@ -1440,7 +1440,7 @@ def hc_rules_path_traversal_static(f: dict) -> tuple[str, str]:
 ##### 3.2 mcp-guard (fuzzing)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:1670
+# mcp_guard/postprocessing/stage2_pipeline.py
 def hc_rules_path_traversal_fuzzing(f: dict) -> tuple[str, str]:
     response = f.get("response", "")
     if _PT_FUZZ_SUCCESS.search(response):
@@ -1461,7 +1461,7 @@ def hc_rules_path_traversal_fuzzing(f: dict) -> tuple[str, str]:
 ##### 3.3 mcp-guard (protocol)
 
 ```python
-# pipeline_mcp_guard.py:hc_rules_protocol (ramo protocol-path-traversal)
+# stage2_pipeline.py:hc_rules_protocol (ramo protocol-path-traversal)
 if cat == "protocol-path-traversal":
     if re.search(r"root:x:0:0|/etc/passwd|daemon:x:", response, re.I):
         return "HC-VP", "etc_passwd_content_leaked"
@@ -1473,7 +1473,7 @@ if cat == "protocol-path-traversal":
 ##### 4.1 mcp-guard (static)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_classify_pt_static.py
+# mcp_guard/postprocessing/classifiers/classify_pt_static.py
 def classify_uncertain_pt_static(f: dict) -> str:
     return "FP"  # default conservativo: 723 UNCERTAIN → tutti FP
 ```
@@ -1481,7 +1481,7 @@ def classify_uncertain_pt_static(f: dict) -> str:
 ##### 4.2 mcp-guard (fuzzing)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_classify_pt_fuzz.py
+# mcp_guard/postprocessing/classifiers/classify_pt_fuzz.py
 def classify_uncertain_pt_fuzz(f: dict) -> str:
     response = f.get("response", "")
     if re.search(r"root:x:0:0|sshd:x:|nobody:", response):
@@ -1607,7 +1607,7 @@ def keep_command_execution_fuzzing(f: dict) -> bool:
 ##### 3.1 mcp-guard (static)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:1483
+# mcp_guard/postprocessing/stage2_pipeline.py
 _CI_GO_LITERAL_FIRST = re.compile(
     r'exec\.Command\s*\(\s*[\"\'][^\"\']+[\"\']\s*,')  # primo arg literal = no shell
 _CI_GO_OBFUSCATED = re.compile(
@@ -1630,7 +1630,7 @@ def hc_rules_command_injection_static(f: dict) -> tuple[str, str]:
 ##### 3.2 mcp-guard (fuzzing)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py
+# mcp_guard/postprocessing/stage2_pipeline.py
 _SHELL_EXEC = re.compile(
     r"uid=\d+\(|gid=\d+\(|root:x:0:0|/etc/passwd|/etc/shadow|"
     r"daemon:x:|bin:x:|SYSTEM\\\\|NT AUTHORITY|"
@@ -1672,7 +1672,7 @@ def hc_rules_command_execution_fuzzing(f: dict) -> tuple[str, str]:
 ##### 4.1 mcp-guard (static)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_classify_remaining.py
+# mcp_guard/postprocessing/classifiers/classify_remaining.py
 def classify_uncertain_cmd_static(f: dict) -> str:
     code = extract_code(f.get("description", ""))
     if "params." in code or "args." in code or "input." in code:
@@ -1759,7 +1759,7 @@ def keep_information_disclosure_fuzzing(f: dict) -> bool:
 ##### 2.2 mcp-guard (sensitive-info-disclosed-fuzzing)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:681
+# mcp_guard/postprocessing/stage1_filter.py
 _SID_REQUIRES_KEY = re.compile(
     r"requires.*API\s+key|please\s+configure|not\s+configured|"
     r"Failed\s+to\s+load|Error:\s+ENOENT", re.I)
@@ -1783,7 +1783,7 @@ def keep_protocol_info_disclosure(f: dict) -> bool:
 ##### 3.1 mcp-guard (info-disclosure-fuzzing)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:1955
+# mcp_guard/postprocessing/stage2_pipeline.py
 _ID_FUZZ_INTERNAL_PATH = re.compile(
     r"/home/(?:tecnico|user|ubuntu)/|C:\\\\Users\\\\|"
     r"\.traefik\.me|10\.79\.6\.\d+|\.internal\b|"
@@ -1806,7 +1806,7 @@ def hc_rules_information_disclosure_fuzzing(f: dict) -> tuple[str, str]:
 ##### 3.2 mcp-guard (sensitive-info-disclosed-fuzzing)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:2094
+# mcp_guard/postprocessing/stage2_pipeline.py
 _SID_KEY_MATERIAL = re.compile(
     r"-----BEGIN\s+(?:RSA\s+|EC\s+)?PRIVATE\s+KEY|"
     r"mongodb(?:\+srv)?://[^:]+:[^@]+@|postgresql?://[^:]+:[^@]+@", re.I)
@@ -1839,7 +1839,7 @@ def hc_rules_sensitive_info_disclosed(f: dict) -> tuple[str, str]:
 ##### 3.3 mcp-guard (protocol)
 
 ```python
-# pipeline_mcp_guard.py:hc_rules_protocol (ramo info-disclosure)
+# stage2_pipeline.py:hc_rules_protocol (ramo info-disclosure)
 if cat == "protocol-information-disclosure":
     if re.search(r"(?:/home/|C:\\\\|stack trace|Traceback)", response, re.I):
         return "HC-VP", "internal_path_or_stacktrace_leaked"
@@ -1858,7 +1858,7 @@ def classify_uncertain_info_disclosure(f: dict) -> str:
 ##### 4.2 mcp-guard (sensitive-info-disclosed-fuzzing)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_classify_sens_info.py
+# mcp_guard/postprocessing/classifiers/classify_sens_info.py
 def classify_uncertain_sens_info(f: dict) -> str:
     return "FP"  # 894 UNCERTAIN tutti FP — pattern _PROVIDER_KEY in HC-VP già forte
 ```
@@ -1942,7 +1942,7 @@ run_merge("protocol-information-disclosure", cache={})
 ##### 2.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:565
+# mcp_guard/postprocessing/stage1_filter.py
 _SSRF_DIRECT = re.compile(
     r"""(?:fetch|axios\.(?:get|post|put|delete|request)|
          requests\.(?:get|post|put|delete|request)|
@@ -1975,7 +1975,7 @@ def keep_ssrf(f: dict) -> bool:
 ##### 3.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:178
+# mcp_guard/postprocessing/stage2_pipeline.py
 _SSRF_DIRECT = re.compile(
     r"""(?:fetch|axios\.(?:get|post|put|delete|request)|
          requests\.(?:get|post|put|delete|request)|
@@ -2007,7 +2007,7 @@ def hc_rules_ssrf(f: dict) -> tuple[str, str]:
 ##### 4.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_classify_remaining.py
+# mcp_guard/postprocessing/classifiers/classify_remaining.py
 def classify_uncertain_ssrf(f: dict) -> str:
     return "FP"  # 54 UNCERTAIN tutti FP — pattern url_source_unclear non confermabile
 ```
@@ -2100,7 +2100,7 @@ raise "attempted instruction overwrite via pseudo-tag" if:
 ##### 4.1 mcp-scan
 
 ```python
-# analysisAllData/0_tool_mcp_scan/pipeline_mcp_scan.py
+# mcp_scan/postprocessing/stage2_pipeline.py
 CATEGORIES = {
     "E001": {"level": "tool-level",   "kind": "tool",   "description": "Prompt Injection"},
     "W001": {"level": "tool-level",   "kind": "tool",   "description": "Dangerous Words"},
@@ -2191,7 +2191,7 @@ def merge_w015():
 ##### 2.1 mcp-guard (static)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:173
+# mcp_guard/postprocessing/stage1_filter.py
 _CI_STATIC_FP = re.compile(r"eval\s*\(\s*[\"'][^\"']+[\"']\s*\)")  # eval('static_string')
 _CI_JSON_STRINGIFY = re.compile(r"eval\s*\(\s*JSON\.stringify")
 
@@ -2218,7 +2218,7 @@ def keep_code_injection_fuzzing(f: dict) -> bool:
 ##### 3.1 mcp-guard (static)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:1393
+# mcp_guard/postprocessing/stage2_pipeline.py
 _CI_USER_VAR = re.compile(
     r"eval\s*\(\s*[\"`].*?\$\{(?:params|args|input|req\.body)\.|"
     r"eval\s*\(\s*f[\"']{1,3}[^{]*\{(?!self\.|this\.)\w")
@@ -2240,7 +2240,7 @@ def hc_rules_code_injection_static(f: dict) -> tuple[str, str]:
 ##### 3.2 mcp-guard (fuzzing)
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:1834
+# mcp_guard/postprocessing/stage2_pipeline.py
 _CI_FUZZ_RESULT = re.compile(
     r"\b\d+\s*[+]\s*\d+\s*=\s*\d+|"
     r"<class 'int'>|posix\.uname_result|"
@@ -2352,7 +2352,7 @@ private containsCommandInjection(line: string): boolean {
 ##### 2.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/filter_all_categories.py
+# mcp_watch/postprocessing/stage1_filter.py
 def filter_input_validation_finding(finding: dict) -> tuple[bool, str]:
     ev = finding.get("evidence", "") or ""
     fp = finding.get("file", "") or ""
@@ -2372,7 +2372,7 @@ def filter_input_validation_finding(finding: dict) -> tuple[bool, str]:
 ##### 3.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/pipeline_mcp_watch.py:579
+# mcp_watch/postprocessing/stage2_pipeline.py
 _IV_SSRF_GLOBAL = re.compile(
     r"\bfetch\s*\(\s*(?:params|args|input|req\.body|req\.query)\.\w+|"
     r"\baxios\.(?:get|post)\s*\(\s*(?:params|args|input)\.\w+|"
@@ -2406,7 +2406,7 @@ def hc_rules_input_validation(f: dict) -> tuple[str, str]:
 
 ```python
 # Stage 2B: classificazione manuale degli 11 UNCERTAIN
-# Cache popolata in pipeline_mcp_watch.py
+# Cache popolata in stage2_pipeline.py
 def classify_uncertain_iv(f: dict) -> str:
     ev = f.get("evidence", "")
     if "params." in ev or "args." in ev:
@@ -2472,7 +2472,7 @@ run_merge("input-validation", cache=load_cache("input-validation"))
 ##### 2.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:327
+# mcp_guard/postprocessing/stage1_filter.py
 def keep_dangerous_tool_handler(f: dict) -> bool:
     if is_honeypot(f): return False
     file = f.get("file", "")
@@ -2494,7 +2494,7 @@ def keep_dangerous_tool_handler(f: dict) -> bool:
 ##### 3.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:851
+# mcp_guard/postprocessing/stage2_pipeline.py
 _DTH_EXEC_WRAPPER = re.compile(
     r"(?:run_command|exec_command|shell_exec|execute_command|run_shell|"
     r"run_process|execute_shell|spawn_process|run_cmd|exec_cmd|"
@@ -2563,7 +2563,7 @@ def hc_rules_dangerous_tool_handler(f: dict) -> tuple[str, str]:
 ##### 4.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_classify_dth.py
+# mcp_guard/postprocessing/classifiers/classify_dth.py
 def classify_uncertain_dth(f: dict) -> str:
     code = extract_code(f.get("description", ""))
     file = f.get("file", "")
@@ -2686,7 +2686,7 @@ Focus specifically on these issues:
 ##### 2.2 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:257
+# mcp_guard/postprocessing/stage1_filter.py
 def keep_prompt_injection_static(f: dict) -> bool:
     if is_honeypot(f): return False
     file = f.get("file", "")
@@ -2716,7 +2716,7 @@ def keep_prompt_injection_static(f: dict) -> bool:
 ##### 3.2 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:1164
+# mcp_guard/postprocessing/stage2_pipeline.py
 _PI_INJECTION_TAG_UPPER = re.compile(
     r"<IMPORTANT>|<SECRET>|<HIDDEN>|<SYSTEM>|<CMD>|<INSTRUCTIONS>")
 _PI_INJECTION_PHRASE = re.compile(
@@ -2751,7 +2751,7 @@ def hc_rules_prompt_injection_static(f: dict) -> tuple[str, str]:
 ##### 3.3 mcp-shield
 
 ```python
-# analysisAllData/0_tool_mcp_shield/pipeline_mcp_shield.py:138
+# mcp_shield/postprocessing/stage2_pipeline.py
 _HI_INJECTION_TAG_PAT = re.compile(
     r"</?IMPORTANT>|</?secret>|</?hidden>|</?system>|</?cmd>", re.IGNORECASE)
 _HI_INSTRUCTIONS_TAG_PAT = re.compile(r"<instructions>", re.IGNORECASE)
@@ -2794,7 +2794,7 @@ def hc_rules_hidden_instructions(f: dict) -> tuple[str, str]:
 ##### 4.1 mcp-scan
 
 ```python
-# analysisAllData/0_tool_mcp_scan/pipeline_mcp_scan.py
+# mcp_scan/postprocessing/stage2_pipeline.py
 def classify_e001(f: dict) -> str:
     evidence = f.get("extra_data", {}).get("evidence", "")
     if re.search(r"silently|hide all|MUST IMMEDIATELY|"
@@ -2892,7 +2892,7 @@ run_merge("hidden-instructions", cache=load_cache("hidden-instructions"))
 ##### 2.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/filter_mcp_guard.py:204
+# mcp_guard/postprocessing/stage1_filter.py
 _PICKLE_HARDCODED_FILE = re.compile(
     r"pickle\.loads?\s*\(\s*open\s*\(\s*[\"\'][^\"\']+[\"\']\s*,")
 _PICKLE_INTERNAL_VAR = re.compile(
@@ -2913,7 +2913,7 @@ def keep_insecure_deserialization(f: dict) -> bool:
 ##### 3.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py:1288
+# mcp_guard/postprocessing/stage2_pipeline.py
 _ID_VP_NETWORK = re.compile(
     r"pickle\.loads?\s*\(\s*(?:zlib\.decompress|gzip\.decompress)\s*\("
     r"|pickle\.loads?\s*\(\s*(?:response\.body|response\.content|"
@@ -2943,7 +2943,7 @@ def hc_rules_insecure_deserialization(f: dict) -> tuple[str, str]:
 ##### 4.1 mcp-guard
 
 ```python
-# analysisAllData/0_tool_mcp_guard/_classify_insec_deser.py
+# mcp_guard/postprocessing/classifiers/classify_insec_deser.py
 def classify_uncertain_insec_deser(f: dict) -> str:
     return "FP"  # 169 UNCERTAIN tutti FP — pattern interno o file locale
 ```
@@ -3029,7 +3029,7 @@ export function detectSensitiveFileAccess(toolDescription?: string) {
 ##### 3.1 mcp-shield
 
 ```python
-# analysisAllData/0_tool_mcp_shield/pipeline_mcp_shield.py
+# mcp_shield/postprocessing/stage2_pipeline.py
 _SFA_ATTACK_PAT = re.compile(
     r"\b(?:DCSync|LSASS|WDigest|sekurlsa|lsadump|mimikatz|rubeus|"
     r"Kerberoast(?:ing)?|AS-REP\s+Roast|"
@@ -3107,7 +3107,7 @@ private containsExcessivePermissions(line: string): boolean {
 ##### 2.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/filter_remaining_categories.py
+# mcp_watch/postprocessing/stage1_filter_remaining.py
 _AC_WHITELIST = re.compile(
     r'"Action"\s*:\s*"\*"|"Resource"\s*:\s*"\*"|'
     r'\bUSER\s+root\b|\bchmod\s+777\b|--privileged\b|'
@@ -3127,7 +3127,7 @@ def filter_access_control_finding(finding: dict) -> tuple[bool, str]:
 ##### 3.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/pipeline_mcp_watch.py:1928
+# mcp_watch/postprocessing/stage2_pipeline.py
 _AC_AWS_PENTEST_EXPLOIT = re.compile(
     r'attach-user-policy.*AdministratorAccess|'
     r'"Action"\s*:\s*"\*".*"Resource"\s*:\s*"\*"|'
@@ -3227,7 +3227,7 @@ OVERFLOW_VALUES = [
 ##### 2.1 tool_fuzzing
 
 ```python
-# analysisAllData/0_tool_fuzzing/filter_fuzzing.py:164
+# fuzzing/postprocessing/stage1_filter.py
 def keep_server_crash(f: dict) -> bool:
     return not is_honeypot(f)
 ```
@@ -3237,7 +3237,7 @@ def keep_server_crash(f: dict) -> bool:
 ##### 3.1 tool_fuzzing
 
 ```python
-# analysisAllData/0_tool_fuzzing/pipeline_fuzzing.py:242
+# fuzzing/postprocessing/stage2_pipeline.py
 def hc_rules_server_crash(f: dict) -> tuple[str, str]:
     if is_honeypot(f): return "HC-FP", "honeypot_server"
     return "HC-VP", "python_runtime_error_int_object_has_no_attribute_get"
@@ -3309,7 +3309,7 @@ private containsWhitespaceInjection(line: string): boolean {
 ##### 2.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/filter_all_categories.py
+# mcp_watch/postprocessing/stage1_filter.py
 def filter_steganographic_finding(finding: dict) -> tuple[bool, str]:
     vid = finding.get("id", "")
     ev = finding.get("evidence", "") or ""
@@ -3334,7 +3334,7 @@ def filter_steganographic_finding(finding: dict) -> tuple[bool, str]:
 ##### 3.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/pipeline_mcp_watch.py:730
+# mcp_watch/postprocessing/stage2_pipeline.py
 def hc_rules_steganographic_attack(f: dict) -> tuple[str, str]:
     vid = f.get("id", "")
     ev = f.get("evidence", "") or ""
@@ -3415,7 +3415,7 @@ private containsConversationTriggers(line: string): boolean {
 ##### 2.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/filter_all_categories.py
+# mcp_watch/postprocessing/stage1_filter.py
 _DE_BUNDLE_JS = re.compile(r'\.min\.js$|node_modules/|webpack|rollup', re.I)
 _DE_OLLAMA_PAT = re.compile(r'json\s*=\s*\{[^}]*"model"\s*:\s*EMBED_MODEL', re.I)
 _DE_COMFYUI = re.compile(r'127\.0\.0\.1:8188|json\s*=\s*\{[^}]*"prompt"\s*:\s*workflow', re.I)
@@ -3441,7 +3441,7 @@ def filter_data_exfiltration_finding(finding: dict) -> tuple[bool, str]:
 ##### 3.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/pipeline_mcp_watch.py:374
+# mcp_watch/postprocessing/stage2_pipeline.py
 _DE_ENTIRE_CONV = re.compile(
     r"ENTIRE\s+conversation|entire\s+conversation\s+history|"
     r"all\s+(?:previous\s+)?messages\s+to", re.I)
@@ -3518,7 +3518,7 @@ private containsDynamicMutation(line: string): boolean {
 ##### 2.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/filter_remaining_categories.py
+# mcp_watch/postprocessing/stage1_filter_remaining.py
 _TM_REGISTRY_FILE = re.compile(
     r"tool_registry\.py|tools_config\.py|registry\.py|setup\.py", re.I)
 _TM_READONLY = re.compile(
@@ -3541,7 +3541,7 @@ def filter_tool_mutation_finding(finding: dict) -> tuple[bool, str]:
 ##### 3.1 mcp-watch
 
 ```python
-# analysisAllData/0_tool_mcp_watch/pipeline_mcp_watch.py:1796
+# mcp_watch/postprocessing/stage2_pipeline.py
 _TM_SELF_THIS = re.compile(r"(?:self|this|cls)\.tools\s*\[")
 _TM_NAMESPACED = re.compile(
     r"capabilities\.tools|server\._tool_manager\._tools|"
@@ -3633,7 +3633,7 @@ export function detectToolShadowing(toolDescription?: string) {
 ##### 3.1 mcp-shield
 
 ```python
-# analysisAllData/0_tool_mcp_shield/pipeline_mcp_shield.py
+# mcp_shield/postprocessing/stage2_pipeline.py
 _SD_INJECTION_TAG = re.compile(
     r"</?IMPORTANT>|</?secret>|</?hidden>|</?system>|</?cmd>", re.IGNORECASE)
 _SD_BEFORE_OTHER = re.compile(
@@ -3917,7 +3917,7 @@ Pipeline: ~9.404 raw → Stage 1 → 1.395 filtrati → Stage 2A (HC + cache) �
 
 #### Appendice A: mcp-check (16 categorie)
 
-Pipeline: 21.907 raw (categorie interessanti, da `mcp_check_stats.json:errors_reorganized` + `suites.warnings`) → Stage 1 (`filter_mcp_check.py`) → 11.101 filtrati → Stage 2A (HC) → Stage 2B (cache in-chat) → **9.453 VP / 1.648 FP**. 2 categorie cache-only (no Stage 2A): `handshake/invalid_arguments` e `tool_invocation/panic_or_crash`.
+Pipeline: 21.907 raw (categorie interessanti, da `mcp_check_stats.json:errors_reorganized` + `suites.warnings`) → Stage 1 (`stage1_filter.py`) → 11.101 filtrati → Stage 2A (HC) → Stage 2B (cache in-chat) → **9.453 VP / 1.648 FP**. 2 categorie cache-only (no Stage 2A): `handshake/invalid_arguments` e `tool_invocation/panic_or_crash`.
 
 Test di conformità protocollo MCP (handshake, tool discovery, tool invocation).
 
@@ -3997,7 +3997,7 @@ Le 16 righe della tabella sono il prodotto cartesiano di 3 fasi di test (`handsh
 
 ##### Dettaglio tecnico per categoria (formato §4)
 
-Per ogni categoria: meccanismo originale del test mcp-check, filtro Stage 1 (`filter_mcp_check.py`), HC rules Stage 2A (`pipeline_mcp_check.py`), eventuale Stage 2B (cache in-chat), recap numerico, esempio reale di finding.
+Per ogni categoria: meccanismo originale del test mcp-check, filtro Stage 1 (`stage1_filter.py`), HC rules Stage 2A (`stage2_pipeline.py`), eventuale Stage 2B (cache in-chat), recap numerico, esempio reale di finding.
 
 ###### A.1 `handshake/schema_violation` — schema invalidi durante l'`initialize`
 
@@ -4536,7 +4536,7 @@ return "FP", "auth_required_by_design"
 - **Evidenza**: `MCP error 0: Panel API error: Unauthorized (code: 401)`
 - **Spiegazione**: il tool `create_website` richiede un API token del pannello 1Panel. Senza token la chiamata viene rifiutata con HTTP 401 — comportamento corretto, non vulnerabilità.
 
-#### Appendice B: tool_fuzzing (4 categorie) — ⚠️ SUPERATA dal re-run (vedi Appendice C-sexies)
+#### Appendice B: tool_fuzzing (4 categorie) — SUPERATA dal re-run (vedi Appendice C-sexies)
 
 > **NOTA IMPORTANTE**: questa appendice documenta il **run VECCHIO** di tool_fuzzing
 > (senza risposte del server), parte della baseline GitHub. È stata **interamente
@@ -5122,6 +5122,11 @@ Per una tesi, la trasparenza sulla pipeline e i limiti documentati è preferibil
 
 Tutti gli script e file di output del processo QA sono nella directory `analysisAllData/`:
 
+> **Nota:** `analysisAllData/` è la cartella di lavoro del QA, non versionata nel
+> repo. Gli script poi confluiti nel repository si trovano in `cross_framework/`
+> (es. `check_pt_fuzz.py`, `cross_framework_consensus.py`); gli altri file elencati
+> qui sono artefatti di lavoro (changelog dei round, blind review) non pubblicati.
+
 ```
 analysisAllData/
 ├── blind_classifier.py                    # Phase 3: classifier indipendente
@@ -5159,9 +5164,9 @@ analysisAllData/
 
 ### 9.10 HC rules aggiunte per round (riferimento)
 
-Diff cumulativo delle HC rules in `analysisAllData/0_tool_mcp_guard/pipeline_mcp_guard.py` e `analysisAllData/0_tool_fuzzing/pipeline_fuzzing.py`:
+Diff cumulativo delle HC rules in `mcp_guard/postprocessing/stage2_pipeline.py` e `fuzzing/postprocessing/stage2_pipeline.py`:
 
-#### Round 1 (filter_mcp_guard.py)
+#### Round 1 (stage1_filter.py)
 
 ```python
 # Pre-fix
@@ -5186,7 +5191,7 @@ _TEST_FILE = re.compile(
 )
 ```
 
-#### Round 1 (pipeline_mcp_guard.py — hc_rules_hardcoded_credential)
+#### Round 1 (stage2_pipeline.py — hc_rules_hardcoded_credential)
 
 ```python
 # Nuove HC-FP da blind-review
@@ -5215,7 +5220,7 @@ _HC_OBVIOUS_SAMPLE_PWD = re.compile(
 )
 ```
 
-#### Round 1 (pipeline_mcp_guard.py — hc_rules_path_traversal_fuzzing)
+#### Round 1 (stage2_pipeline.py — hc_rules_path_traversal_fuzzing)
 
 ```python
 # Nuove HC-FP per response solo URI echo
@@ -5238,7 +5243,7 @@ _PT_FUZZ_PAYLOAD_AS_LABEL = re.compile(
 )
 ```
 
-#### Round 1 (pipeline_fuzzing.py — hc_rules_protocol)
+#### Round 1 (stage2_pipeline.py — hc_rules_protocol)
 
 ```python
 # Nuove HC-FP
@@ -5256,7 +5261,7 @@ if proto == "ReadResourceRequest" and error_details:
         return "HC-FP", "read_resource_with_standard_uris_no_malformed_payload"
 ```
 
-#### Round 2 (pipeline_mcp_guard.py — _CMD_FUZZ_SHELL_OUTPUT, _PT_FUZZ_SUCCESS)
+#### Round 2 (stage2_pipeline.py — _CMD_FUZZ_SHELL_OUTPUT, _PT_FUZZ_SUCCESS)
 
 ```python
 # _CMD_FUZZ_SHELL_OUTPUT post round 2 — solo content reali, NO path string
@@ -5284,7 +5289,7 @@ _PT_FUZZ_SUCCESS = re.compile(
 )
 ```
 
-#### Round 2 (pipeline_mcp_guard.py — hc_rules_sensitive_info_disclosed)
+#### Round 2 (stage2_pipeline.py — hc_rules_sensitive_info_disclosed)
 
 ```python
 # Round 2 fix
@@ -5302,7 +5307,7 @@ if re.search(r"exit\s+(?:status|code)\s+12[67].*?Permission\s+denied", response,
     return "HC-FP", "exit_126_permission_denied_no_leak"
 ```
 
-#### Round 3 (pipeline_mcp_guard.py — hc_rules_information_disclosure_fuzzing)
+#### Round 3 (stage2_pipeline.py — hc_rules_information_disclosure_fuzzing)
 
 ```python
 # Nuovo _INFO_DISC_SELF_PATH_ONLY: server install path leak è atteso in test env
@@ -5322,7 +5327,7 @@ if _INFO_DISC_SELF_PATH_ONLY.search(response) and \
     return "HC-FP", "server_install_path_only_no_real_disclosure"
 ```
 
-#### Round 3 (pipeline_mcp_guard.py — hc_rules_code_injection_fuzzing)
+#### Round 3 (stage2_pipeline.py — hc_rules_code_injection_fuzzing)
 
 ```python
 # Round 3 fix
@@ -5355,7 +5360,7 @@ if re.search(r"\beval(?:_code)?\s+result\s*[:=]|"
     return "HC-VP", "code_execution_result_with_actual_output"
 ```
 
-#### Round 4 (pipeline_mcp_guard.py — hc_rules_information_disclosure_fuzzing)
+#### Round 4 (stage2_pipeline.py — hc_rules_information_disclosure_fuzzing)
 
 ```python
 # Round 4 fix: pattern non-info-disclosure
@@ -5380,7 +5385,7 @@ _INFO_DISC_FS_LEAK = re.compile(
 )
 ```
 
-#### Round 4 (pipeline_mcp_guard.py — hc_rules_path_traversal_static)
+#### Round 4 (stage2_pipeline.py — hc_rules_path_traversal_static)
 
 ```python
 # Round 4 HC-FP nuove
@@ -5484,7 +5489,7 @@ Filtri applicati prima di Stage 2A in ogni `filter_<framework>.py`. Source: conv
 | Pattern | Source | File |
 |---------|--------|------|
 | `_TEST_FILE`: `test/`, `spec/`, `_test.go`, `.spec.js`, `.test.tsx`, `__tests__`, `e2e/`, `examples/`, `samples/`, `demos/`, `.example.*`, `.sample.*` | Go testing convention (`*_test.go`) [go.dev], Node test conventions [jestjs.io], Python `pytest` discovery [pytest docs] | `filter_<fw>.py:_TEST_FILE` |
-| `_TEST_FILE` extensions (round 1): prefix `test-`/`demo-`/`verify-`/`sample-`/`example-`/`setup-` files | Empirico — sample da hardcoded-credential-static (5/30 VP test files non catturati) | `filter_mcp_guard.py` round 1 |
+| `_TEST_FILE` extensions (round 1): prefix `test-`/`demo-`/`verify-`/`sample-`/`example-`/`setup-` files | Empirico — sample da hardcoded-credential-static (5/30 VP test files non catturati) | `stage1_filter.py` round 1 |
 | `_VENDOR_FILE`: `.min.js`, `node_modules/`, `vendor/`, `dist/`, `build/`, `site-packages/`, `.bundle.js` | npm conventions, Python venv structure, Webpack/Rollup output | `filter_<fw>.py:_VENDOR_FILE` |
 | `_HONEYPOT`: `malicious_mcp`, `vulnerable-notes-mcp`, `IMCP`, `vulnicheck`, `mcp-scanner`, `agent-security-scanner-mcp`, `damn-vulnerable-MCP-server` | Empirico — discovery manuale durante prime analisi (server con nomi auto-dichiaranti) | global `_HONEYPOT` set |
 | `_COMMENTED`: linea inizia con `#`/`//`/`*`/`/*`/`--`/`>>>`/`..` | Comment syntax di Python, JS/Go/Java, SQL, Python REPL, RST | global `_COMMENTED` |
@@ -6160,13 +6165,13 @@ tool_fuzzing:  6.082 (10.11%)  ██████░░░░░░░░░░�
 Tutti i numeri di copertura sono estratti da:
 
 ```
-analysisAllData/0_tool_mcp_guard/mcp_guard_stats.json
-analysisAllData/0_tool_mcp_watch/mcp_watch_stats.json
-analysisAllData/0_tool_mcp_check/mcp_check_stats.json
-analysisAllData/0_tool_mcp_scan/mcp_scan_stats.json
-analysisAllData/0_tool_mcp_shield/mcp_shield_stats.json
-analysisAllData/0_tool_mcp_security_scan/mcp_security_scan_stats.json
-analysisAllData/0_tool_fuzzing/fuzzing_stats.json
+mcp_guard/postprocessing/mcp_guard_stats.json
+mcp_watch/postprocessing/mcp_watch_stats.json
+mcp_check/postprocessing/mcp_check_stats.json
+mcp_scan/postprocessing/mcp_scan_stats.json
+mcp_shield/postprocessing/mcp_shield_stats.json
+mcp_security_scan/postprocessing/mcp_security_scan_stats.json
+fuzzing/postprocessing/fuzzing_stats.json
 ```
 
 Schema comune (esempio `mcp_guard_stats.json`):
@@ -6207,7 +6212,7 @@ I file `<tool>_servers.json` paralleli contengono mappa `URL → risultato/error
 | `tool_invocation/other_errors` | 3.361 | Server non ritorna error per tool inesistente, errori JS runtime |
 | `tool_discovery/warnings` | 357 | Tool senza description |
 | `tool_invocation/method_not_found` | 50 | Metodi MCP non implementati |
-| altre 9 categorie | ~825 | dettaglio in `0_tool_mcp_check/CLAUDE.md` |
+| altre 9 categorie | ~825 | dettaglio in `mcp_check/howDoesItWork.md` |
 
 ### A.3 Note metodologiche
 
@@ -6217,7 +6222,7 @@ I 9.453 VP non sono inclusi nel totale Core della Sezione 5 perché rappresentan
 
 ---
 
-## Appendice B — `tool_fuzzing` (4 categorie, 776 VP) — ⚠️ SUPERATA dal re-run
+## Appendice B — `tool_fuzzing` (4 categorie, 776 VP) — SUPERATA dal re-run
 
 > **NOTA IMPORTANTE — questa appendice è il RUN VECCHIO (storico).** Descrive il run di
 > `tool_fuzzing` **senza risposte del server**, che dichiarava 776 VP (775 protocol).
@@ -6348,8 +6353,8 @@ Stage 2B  classificatore residui      → _llm_api_cache.json
 Merge     HC + cache                  → vp.json / fp.json / audit.json
 ```
 
-- **Stage 2A** (`_classify_npx.py`): regole HC pattern-based con priorità VP-strong > VP-catchall > FP. Default = UNCERTAIN.
-- **Stage 2B** (`_classify_uncertain.py`): regole derivate da 3 round di sample in-chat con Sonnet (10-15 finding/categoria classificati, pattern emersi codificati).
+- **Stage 2A** (`classifiers/classify_npx.py`): regole HC pattern-based con priorità VP-strong > VP-catchall > FP. Default = UNCERTAIN.
+- **Stage 2B** (`classifiers/classify_uncertain.py`): regole derivate da 3 round di sample in-chat con Sonnet (10-15 finding/categoria classificati, pattern emersi codificati).
 
 ### C.4 Numeri mcp-scan NPX per categoria
 
@@ -6401,12 +6406,12 @@ Tool che modificano/eliminano file **locali**. Blast radius limitato al PC utent
 I dati NPX sono stati **mergiati nella cartella principale** di ogni framework (struttura unificata 2026-05-18):
 
 ```
-analysisAllData/0_tool_mcp_scan/
+mcp_scan/postprocessing/
 ├── README.md                              ← documentazione struttura
-├── pipeline_mcp_scan.py                   ← legacy GitHub
-├── pipeline_mcp_scan_npx.py               ← unificata (E001/W015 merged + W017_npx-W020_npx)
-├── _classify_npx.py                       ← Stage 2A HC (filtra _origin=npx)
-├── _classify_uncertain.py                 ← Stage 2B residual
+├── stage2_pipeline.py                   ← legacy GitHub
+├── stage2_pipeline_npx.py               ← unificata (E001/W015 merged + W017_npx-W020_npx)
+├── classifiers/classify_npx.py                       ← Stage 2A HC (filtra _origin=npx)
+├── classifiers/classify_uncertain.py                 ← Stage 2B residual
 ├── mcp_scan_stats_github.json             mcp_scan_stats_npx.json
 ├── mcp_scan_servers_github.json           mcp_scan_servers_npx.json
 ├── mcp_scan_vulnerabilities_npx.json
@@ -6450,8 +6455,8 @@ Stesso 3-stage di GitHub:
 
 | Stage | Output |
 |-------|--------|
-| **Stage 1** (filter_all_categories + filter_remaining_categories) | 337.719 → 624 kept (-99.8%) |
-| **Stage 2A** (pipeline_mcp_watch.py --hc-only) | 339 HC-VP + 253 HC-FP + 32 UNCERTAIN |
+| **Stage 1** (stage1_filter + stage1_filter_remaining) | 337.719 → 624 kept (-99.8%) |
+| **Stage 2A** (stage2_pipeline.py --hc-only) | 339 HC-VP + 253 HC-FP + 32 UNCERTAIN |
 | **Stage 2B** (in-chat Sonnet su 32 UNCERTAIN) | 15 VP + 17 FP |
 | **Merge** (--cache-only) | **354 VP / 226 FP NPX** |
 
@@ -6493,10 +6498,10 @@ Stesso 3-stage di GitHub:
 ### C-bis.5 Layout dati mcp-watch (struttura unificata)
 
 ```
-analysisAllData/0_tool_mcp_watch/
+mcp_watch/postprocessing/
 ├── README.md
-├── pipeline_mcp_watch.py + filter_*.py
-├── _apply_stage2b_cache_npx.py            ← Stage 2B NPX (riferimento)
+├── stage2_pipeline.py + filter_*.py
+├── apply_stage2b_cache_npx.py            ← Stage 2B NPX (riferimento)
 ├── mcp_watch_stats_github.json / *_npx.json
 ├── <cat>/                                 ← 9 cat analizzate
 │   ├── <cat>_*.json (raw severity)        ← MERGED GH+NPX, _origin field
@@ -6529,7 +6534,7 @@ analysisAllData/0_tool_mcp_watch/
 
 | Stage | Output |
 |-------|--------|
-| **Stage 1** (filter_security_scan.py) | 2.889 → 370 kept (-87.2%) |
+| **Stage 1** (stage1_filter.py) | 2.889 → 370 kept (-87.2%) |
 | **Stage 2A** (dangerous-capabilities + rug-pull) | 231 + 0 HC-VP, 57 + 21 HC-FP, 15 + 0 UNCERTAIN |
 | **Stage 2B** (in-chat Sonnet su 61 = 15 UNCERTAIN + 46 finding cat senza HC) | 49 VP + 12 FP |
 | **Merge** | **280 VP / 90 FP NPX** |
@@ -6601,7 +6606,7 @@ analysisAllData/0_tool_mcp_watch/
 
 | Stage | Output |
 |-------|--------|
-| **Stage 1** (filter_mcp_check.py) | 22.621 → 6.213 kept (-72.5%) |
+| **Stage 1** (stage1_filter.py) | 22.621 → 6.213 kept (-72.5%) |
 | **Stage 2A** (HC rules su 14 categorie) | 5.520 HC-VP + 609 HC-FP + 84 UNCERTAIN |
 | **Stage 2B** (in-chat Sonnet su 84 UNCERTAIN) | +10 VP + 74 FP |
 | **Merge** | **5.530 VP / 683 FP NPX** |
@@ -6844,8 +6849,8 @@ Coverage reale (da `_coverage_report.json`):
 Pull exceptions/ da 9 VM (~14 MB)
 Pre-filtro protocol SU VM: 14 GB → ~7 MB (tiene successful>0; *Notification = solo conteggio)
 Aggrega 9 shard → exceptions/ + protocol_accepted.json
-Stage 1 (filter_fuzzing.py) → 4 categorie
-Stage 2A HC (pipeline_fuzzing.py) → vp/fp/audit  (0 UNCERTAIN, HC decisive)
+Stage 1 (stage1_filter.py) → 4 categorie
+Stage 2A HC (stage2_pipeline.py) → vp/fp/audit  (0 UNCERTAIN, HC decisive)
 ```
 
 ### C-sexies.4 Risultati per categoria (combinato GitHub+NPX)
@@ -6909,7 +6914,7 @@ Le risposte del re-run **dimostrano** che:
 
 ---
 
-### Totali aggiornati con NPX — PIPELINE COMPLETA 7/7 ✅
+### Totali aggiornati con NPX — PIPELINE COMPLETA 7/7 
 
 | Dataset | Server | Framework completati | VP totale |
 |---------|-------:|---------------------|----------:|
@@ -6930,7 +6935,7 @@ Le risposte del re-run **dimostrano** che:
 (99,4%), 5.267 fuzzati. mcp-guard è il framework più complesso (19 categorie:
 9 static + 6 fuzzing + 4 protocol). Tutte le 19 esistono in entrambi i run → MERGED.
 
-### C-septies.2 ⚠️ Contaminazione pipeline-own (problema specifico NPX)
+### C-septies.2 Contaminazione pipeline-own (problema specifico NPX)
 
 Lo scanner statico NPX ha scansionato la **working dir della pipeline stessa** per ogni
 pacchetto: l'80-100% dei finding nelle categorie grosse referenziava file della pipeline
@@ -6944,7 +6949,7 @@ del pacchetto npm analizzato.
 | prompt-injection | 42.351 | 100% | 25 |
 | code-injection (eval) | 8.432 | 100% | 2 |
 
-**De-contaminazione** (`is_pipeline_own` in `filter_mcp_guard_npx.py`):
+**De-contaminazione** (`is_pipeline_own` in `stage1_filter_npx.py`):
 **309.538 raw → 9.291 (-97%)** prima delle HC rules. Inoltre la regola NPX
 `command-injection — subprocess/os-call` ha snippet **troncato** alla parentesi nel
 99,99% dei casi (`subprocess.run(` senza argomenti) → non analizzabile a livello finding.
@@ -6953,7 +6958,7 @@ del pacchetto npm analizzato.
 
 ```
 Pull static/fuzzing/protocol da VM4 (~285 MB)
-Stage 1 (filter_mcp_guard_npx.py): 309.538 → ~3.964 (de-contaminazione + HC keep)
+Stage 1 (stage1_filter_npx.py): 309.538 → ~3.964 (de-contaminazione + HC keep)
 Stage 2A (pipeline --hc-only) + Stage 2B (_classify_*.py pattern-based)
 Post-fix fuzzing (_npx_postfix_fuzz.py): -105 FP leaked
 Merge GitHub+NPX (_merge_github_npx.py)

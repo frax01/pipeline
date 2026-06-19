@@ -18,7 +18,7 @@ Il dataset finale è **unico**: `0.0. All servers unified (69104).xlsx`
 - **8.899 server NPX** (pacchetti npm eseguibili con `npx -y <pkg>`).
 
 Ogni riga ha una colonna `Type` (`github` | `npx`). Il file unico è costruito da
-[`fuzzing/build_unified_excel.py`](../fuzzing/build_unified_excel.py)
+[`fuzzing/postprocessing/special/build_unified_excel.py`](../fuzzing/postprocessing/special/build_unified_excel.py)
 e referenziato da tutti i tool tramite `EXCEL_PATH` in
 [`functions/config.py`](../functions/config.py).
 

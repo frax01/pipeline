@@ -56,13 +56,13 @@ def main():
                 list_url = LIST_URL.format(page_num)
                 print(f"\n[+] Pagina {page_num}/{TOTAL_PAGES}")
 
-                # 1️⃣ Carica pagina lista
+                # 1⃣ Carica pagina lista
                 page.goto(list_url, timeout=60000)
                 page.wait_for_load_state("networkidle")
                 time.sleep(0.8)
                 dismiss_overlay(page)
 
-                # 2️⃣ Estrai href della pagina (PRIMA di navigare altrove)
+                # 2⃣ Estrai href della pagina (PRIMA di navigare altrove)
                 cards = page.locator("a[href^='/servers/']")
                 count = cards.count()
 
@@ -76,7 +76,7 @@ def main():
 
                 print(f"    → Server trovati: {len(page_servers)}")
 
-                # 3️⃣ Visita i server della pagina
+                # 3⃣ Visita i server della pagina
                 for name, server_url in page_servers:
 
                     if server_url in processed:
@@ -114,7 +114,7 @@ def main():
         browser.close()
 
     wb.save(OUTPUT_XLSX)
-    print("\n[✓] Completato")
+    print("\nCompletato")
 
 # -------------------------
 # Entry point

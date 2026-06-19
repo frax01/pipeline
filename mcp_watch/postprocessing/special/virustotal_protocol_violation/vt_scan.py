@@ -19,7 +19,7 @@ def avvia_scansione_massiva():
         with open(FILE_INPUT, 'r', encoding='utf-8') as f:
             tutti_i_link = [linea.strip() for linea in f if linea.strip()]
     except FileNotFoundError:
-        print(f"❌ Errore: File {FILE_INPUT} non trovato.")
+        print(f"Errore: File {FILE_INPUT} non trovato.")
         return
 
     # 2. Controlliamo quali link abbiamo GIA' analizzato in passato
@@ -36,12 +36,12 @@ def avvia_scansione_massiva():
     # Filtriamo la lista per tenere solo i link ancora da fare
     link_da_fare = [link for link in tutti_i_link if link not in link_gia_fatti]
     
-    print(f"📊 Totale link nel file: {len(tutti_i_link)}")
-    print(f"✅ Link già analizzati: {len(link_gia_fatti)}")
-    print(f"⏳ Link da analizzare ora: {len(link_da_fare)}\n")
+    print(f"Totale link nel file: {len(tutti_i_link)}")
+    print(f"Link già analizzati: {len(link_gia_fatti)}")
+    print(f"Link da analizzare ora: {len(link_da_fare)}\n")
 
     if not link_da_fare:
-        print("🎉 Tutti i link sono già stati analizzati!")
+        print("Tutti i link sono già stati analizzati!")
         return
 
     # 3. Iniziamo il ciclo di scansione
@@ -82,15 +82,15 @@ def avvia_scansione_massiva():
                     print(f"   => Finito! Segnalazioni malevole: {malware_trovati}")
                     
                 except vt.error.APIError as e:
-                    print(f"   ❌ Errore API con {url}: {e}")
+                    print(f"   Errore API con {url}: {e}")
                     if "QuotaExceededError" in str(e):
-                        print("\n🛑 Hai superato il limite di richieste di VirusTotal!")
+                        print("\nHai superato il limite di richieste di VirusTotal!")
                         print("Lo script si ferma qui. I progressi sono stati salvati.")
                         break
                     time.sleep(16)
 
                 except Exception as e:
-                    print(f"   ❌ Errore generico con {url}: {e}")
+                    print(f"   Errore generico con {url}: {e}")
                     time.sleep(16)
 
 # Esegui la funzione

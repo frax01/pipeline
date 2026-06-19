@@ -37,7 +37,7 @@ async def get_server_detail_links(session, page_number):
 
     soup = BeautifulSoup(html, "html.parser")
 
-    # 🔍 Trova la griglia dei server
+    # Trova la griglia dei server
     grid = soup.select_one("div.grid.gap-4.grid-cols-1.sm\\:grid-cols-2.lg\\:grid-cols-3.xl\\:grid-cols-4")
     if not grid:
         return []
@@ -50,7 +50,7 @@ async def get_server_detail_links(session, page_number):
         if href.startswith("/server/"):
             servers.append(BASE_URL + href)
 
-    # 📌 Stampa quanti server trovati nella pagina
+    # Stampa quanti server trovati nella pagina
     print(f"Pagina {page_number}: trovati {len(servers)} server")
 
     return servers
@@ -68,13 +68,13 @@ async def extract_repo_link(session, detail_url):
     h1 = soup.find("h1")
     name = h1.text.strip() if h1 else "Unknown"
 
-    # 🔍 Cerca la div che contiene "Visit Server"
+    # Cerca la div che contiene "Visit Server"
     container = soup.select_one("div.flex.flex-wrap.items-start.gap-4.mt-8")
     if not container:
         failed_servers.append((detail_url, "Visit Server container missing"))
         return (name, detail_url, None)
 
-    # 🔍 Dentro ci sono div .px-8 con il link
+    # Dentro ci sono div .px-8 con il link
     repo_link = None
     for div in container.select("div.flex.items-center.gap-2.px-8 a"):
         if "Visit Server" in div.text:
@@ -116,7 +116,7 @@ async def main():
 
         all_detail_urls = set()
 
-        # ⬇️ Primo giro: tutte le pagine
+        # Primo giro: tutte le pagine
         for page in range(1, TOTAL_PAGES + 1):
             links = await get_server_detail_links(session, page)
             all_detail_urls.update(links)
@@ -125,7 +125,7 @@ async def main():
         print(f"Totale server trovati: {len(all_detail_urls)}")
         print("===================================\n")
 
-        # ⬇️ Secondo giro: dettagli server
+        # Secondo giro: dettagli server
         tasks = [extract_repo_link(session, url) for url in all_detail_urls]
         results = await asyncio.gather(*tasks)
 

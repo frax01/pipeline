@@ -1,16 +1,16 @@
 #!/usr/bin/env python3
 """
-pipeline_mcp_guard.py — Stage 2A + 2B + merge per mcp-guard findings
+stage2_pipeline.py — Stage 2A + 2B + merge per mcp-guard findings
 
-Usa i file _filtered.json prodotti da filter_mcp_guard.py e applica:
+Usa i file _filtered.json prodotti da stage1_filter.py e applica:
   Stage 2A: regole HC (High Confidence) per ogni categoria
   Stage 2B: classificazione LLM (Ollama) per gli UNCERTAIN
   Merge:    vp.json / fp.json / audit.json
 
 Esecuzione:
-    py -X utf8 pipeline_mcp_guard.py --category ssrf --hc-only
-    py -X utf8 pipeline_mcp_guard.py --category all --cache-only
-    py -X utf8 pipeline_mcp_guard.py --category all --merge
+    py -X utf8 stage2_pipeline.py --category ssrf --hc-only
+    py -X utf8 stage2_pipeline.py --category all --cache-only
+    py -X utf8 stage2_pipeline.py --category all --merge
 
 Categorie disponibili:
     ssrf, hardcoded-credential, sql-injection, dangerous-tool-handler,
@@ -2509,7 +2509,7 @@ def load_filtered(cat: str):
     safe = cat.replace("/", "_").replace("-", "_")
     p = BASE_DIR / cat / "filtered" / f"{safe}_filtered.json"
     if not p.exists():
-        print(f"  [WARN] {p} non trovato. Esegui prima filter_mcp_guard.py")
+        print(f"  [WARN] {p} non trovato. Esegui prima stage1_filter.py")
         return [], {}
     with open(p, encoding="utf-8") as fh:
         data = json.load(fh)
@@ -2717,7 +2717,7 @@ def run_merge(cat: str, cache: dict):
 # ── CLI ───────────────────────────────────────────────────────────────────────
 
 def main():
-    parser = argparse.ArgumentParser(description="pipeline_mcp_guard.py — Stage 2A + 2B + merge")
+    parser = argparse.ArgumentParser(description="stage2_pipeline.py — Stage 2A + 2B + merge")
     parser.add_argument("--category", default="all",
                         help="Categoria da processare (default: all)")
     parser.add_argument("--hc-only", action="store_true",

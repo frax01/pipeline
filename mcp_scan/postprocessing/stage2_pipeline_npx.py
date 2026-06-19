@@ -8,9 +8,9 @@ regole HC: il classificatore passa direttamente allo Stage 2B (seconda opinione
 LLM) con input arricchito.
 
 Uso:
-    python -X utf8 pipeline_mcp_scan.py --category E001 --merge
-    python -X utf8 pipeline_mcp_scan.py --category W015 --merge
-    python -X utf8 pipeline_mcp_scan.py --category all --merge
+    python -X utf8 stage2_pipeline.py --category E001 --merge
+    python -X utf8 stage2_pipeline.py --category W015 --merge
+    python -X utf8 stage2_pipeline.py --category all --merge
 
 Output in <level>/<categoria>/llm_analysis/:
     vp.json           VP finali

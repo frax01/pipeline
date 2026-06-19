@@ -48,7 +48,7 @@ def merge_security_scan_stats(stats_files: list[str], output_file: str):
                 if data and "total" in data:
                     all_stats.append(data)
         except Exception as e:
-            print(f"  ⚠️ Skipping {f}: {e}")
+            print(f"  Skipping {f}: {e}")
 
     if not all_stats:
         print("No valid stats files found!")

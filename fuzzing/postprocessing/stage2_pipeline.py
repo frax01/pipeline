@@ -15,8 +15,8 @@ HC rules basate sulle RISPOSTE del re-run (assenti nel run vecchio):
   protocol-fuzzing     FP: metodi validi gestiti o response vuota (no processing)
 
 Uso:
-  py -X utf8 pipeline_fuzzing.py --category all
-  py -X utf8 pipeline_fuzzing.py --category tool-crash-dos
+  py -X utf8 stage2_pipeline.py --category all
+  py -X utf8 stage2_pipeline.py --category tool-crash-dos
 """
 import argparse
 import json

@@ -9,9 +9,9 @@ Produce 3 bucket per categoria:
 Default = UNCERTAIN. NON c'e' default VP/FP catch-all.
 
 Workflow:
-  1. py -X utf8 _classify_npx.py           → Stage 2A: produce 3 bucket
+  1. py -X utf8 classifiers/classify_npx.py           → Stage 2A: produce 3 bucket
   2. classificare uncertain.json in-chat   → popola _llm_api_cache.json
-  3. py -X utf8 pipeline_mcp_scan_npx.py --merge  → produce vp.json/fp.json/audit.json
+  3. py -X utf8 stage2_pipeline_npx.py --merge  → produce vp.json/fp.json/audit.json
 
 Output in <level>/<cat>/llm_analysis/:
   hc_vp.json / hc_fp.json / uncertain.json

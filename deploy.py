@@ -148,6 +148,11 @@ TOOLS = {
 
 EXTRA_FILES = ["launch.py"]
 
+# I 7 tool realmente eseguibili. scanorama/validator restano in TOOLS solo per
+# fornire gli indirizzi di VM8/VM9 allo sharding a 9 vie: non sono tool a sé,
+# quindi non vanno esposti come scelte di --launch/--tail.
+RUNNABLE_TOOLS = [k for k in TOOLS if k not in ("scanorama", "validator")]
+
 
 def scp_file(local_path, server_addr, remote_path):
     """Copy a file to remote server via SCP."""
@@ -434,38 +439,6 @@ def pull_results(tool_names):
             print(f"   {name:<16} log    <- {cfg['vm']}")
 
 
-def pull_tool_all(tool_dir, stats_name, servers_name):
-    """Download a tool's results from ALL 9 VMs (for split analysis).
-    Saves as vm{i}_stats.json and vm{i}_servers.json in tool_dir/."""
-    print(f"\nScaricamento risultati {tool_dir} da tutte le 9 VM...")
-    local_dir = BASE_DIR / tool_dir
-    local_dir.mkdir(exist_ok=True)
-
-    for i, (name, cfg) in enumerate(TOOLS.items(), 1):
-        addr = cfg["addr"]
-        vm = cfg["vm"]
-
-        # Download stats
-        remote_stats = f"~/Desktop/Pipeline/{tool_dir}/{stats_name}"
-        local_stats = local_dir / f"vm{i}_stats.json"
-        ok = scp_download(addr, remote_stats, local_stats)
-        if ok:
-            print(f"   {vm} ({addr.split('@')[1]:<16}) -> vm{i}_stats.json")
-        else:
-            print(f"   {vm} ({addr.split('@')[1]:<16}) stats non trovato")
-
-        # Download server log
-        remote_log = f"~/Desktop/Pipeline/{tool_dir}/{servers_name}"
-        local_log = local_dir / f"vm{i}_servers.json"
-        ok = scp_download(addr, remote_log, local_log)
-        if ok:
-            print(f"   {vm} ({addr.split('@')[1]:<16}) -> vm{i}_servers.json")
-        else:
-            print(f"   {vm} ({addr.split('@')[1]:<16}) servers non trovato")
-
-    print(f"\nFile scaricati in {local_dir}")
-
-
 def pull_tool_all_deep(tool_dir):
     """Download a tool's results directory from ALL 9 VMs using tar.
     Saves and extracts to pullFromVM/vm{i}/{tool_dir}."""
@@ -535,28 +508,6 @@ def pull_tool_all_deep(tool_dir):
     print(f"\nPull profondo completato in {base_pull_dir}")
 
 
-def merge_tool_servers(tool_dir, output_name):
-    """Merge vm*_servers.json into a single servers file."""
-    local_dir = BASE_DIR / tool_dir
-    merged_servers = {}
-    count = 0
-    for i in range(1, 10):
-        f = local_dir / f"vm{i}_servers.json"
-        if f.exists():
-            with open(f, 'r', encoding='utf-8') as fh:
-                data = json.load(fh)
-                merged_servers.update(data)
-                count += 1
-                print(f"  vm{i}_servers.json: {len(data)} server")
-
-    if merged_servers:
-        output_servers = local_dir / output_name
-        with open(output_servers, 'w', encoding='utf-8') as fh:
-            json.dump(merged_servers, fh, indent=4, ensure_ascii=False)
-        print(f"\nMerge servers completato: {len(merged_servers)} server totali da {count} VM")
-        print(f"  -> {output_servers}")
-
-
 def pull_guard_all():
     pull_tool_all_deep("tool_mcp_guard")
 
@@ -576,25 +527,6 @@ def merge_guard():
         return
 
     merge_guard_all(base_pull_dir, out_dir)
-
-
-def pull_fuzzing_all():
-    pull_tool_all("tool_fuzzing", "fuzzing_stats.json", "fuzzing_servers.json")
-
-
-def merge_fuzzing():
-    import sys as _sys
-    module_dir = BASE_DIR / "fuzzing"
-    _sys.path.insert(0, str(module_dir))
-    from merge_stats import merge_fuzzing_stats
-    _sys.path.pop(0)
-    fuzzing_dir = BASE_DIR / "tool_fuzzing"
-    stats_files = [str(fuzzing_dir / f"vm{i}_stats.json") for i in range(1, 10)]
-    existing = [f for f in stats_files if Path(f).exists()]
-    print(f"\nMerge fuzzing stats: trovati {len(existing)}/9 file")
-    if existing:
-        merge_fuzzing_stats(existing, str(fuzzing_dir / "fuzzing_stats.json"))
-    merge_tool_servers("tool_fuzzing", "fuzzing_servers.json")
 
 
 TOTAL_SERVERS = 69104  # righe nel dataset unico (GitHub + NPX)
@@ -1617,14 +1549,14 @@ Esempi:
   python deploy.py --tail-all                   # ultime 10 righe di TUTTI i log
         """
     )
-    parser.add_argument("tool", nargs="?", choices=list(TOOLS.keys()), help="Tool specifico (opzionale)")
-    parser.add_argument("--launch", "-l", choices=list(TOOLS.keys()), help="Deploy + lancia un tool")
+    parser.add_argument("tool", nargs="?", choices=RUNNABLE_TOOLS, help="Tool specifico (opzionale)")
+    parser.add_argument("--launch", "-l", choices=RUNNABLE_TOOLS, help="Deploy + lancia un tool")
     parser.add_argument("--launch-all", action="store_true", help="Deploy + lancia TUTTI i tool")
     parser.add_argument("--start", type=int, default=0, help="Indice di partenza (default: 0)")
     parser.add_argument("--resume", "-r", action="store_true", help="Riprendi da dove si era fermato")
     parser.add_argument("--status", action="store_true", help="Mostra lo stato di tutti i tool")
     parser.add_argument("--pull", nargs="?", const="__all__", help="Scarica risultati (tutti o specifico tool)")
-    parser.add_argument("--tail", choices=list(TOOLS.keys()), help="Mostra ultime righe del log di un tool")
+    parser.add_argument("--tail", choices=RUNNABLE_TOOLS, help="Mostra ultime righe del log di un tool")
     parser.add_argument("--tail-all", action="store_true", help="Mostra ultime righe di TUTTI i log")
     parser.add_argument("--full-deploy", action="store_true", help="Sincronizza anche cartelle core (functions, frameworks, data, Excel)")
     parser.add_argument("--frameworks", action="store_true", help="Sincronizza anche la cartella Frameworks locale")

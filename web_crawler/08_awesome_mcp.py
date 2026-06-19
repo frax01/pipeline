@@ -28,7 +28,7 @@ def main():
     output = "08_awesome_mcp.xlsx"
     wb.save(output)
 
-    print(f"[✓] Excel salvato in: {output}")
+    print(f"Excel salvato in: {output}")
 
 if __name__ == "__main__":
     main()

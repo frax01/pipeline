@@ -338,7 +338,7 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
                     cleanup_repo(repo_path)
 
         except ServerTimeoutError:
-            print(f"⚠️ SERVER TIMEOUT ({SERVER_TIMEOUT}s) - skipping {server_url}")
+            print(f"SERVER TIMEOUT ({SERVER_TIMEOUT}s) - skipping {server_url}")
             _status = "timeout_global"
             server_name = server_url.rstrip('/').split('/')[-1]
             try:

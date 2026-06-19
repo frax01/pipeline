@@ -143,9 +143,9 @@ def run_llm_analysis(merged_llm: dict, repo_path: Path, command: str, args: list
         }
     else:
         tools = json.loads(result.stdout)
-        # Capture ALL tool descriptions (not only the LLM-analyzed ones) so
-        # that run_shield.py can save the full description that mcp-shield
-        # actually inspected — lets us audit false positives directly.
+        # Cattura le descrizioni di TUTTI i tool (non solo quelli analizzati
+        # dall'LLM) cosi' run_shield.py salva la descrizione completa che
+        # mcp-shield ha ispezionato: utile per verificare i falsi positivi.
         tool_descriptions = {
             t.get("name", ""): t.get("description", "") for t in tools
         }

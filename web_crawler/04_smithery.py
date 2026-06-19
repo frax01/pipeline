@@ -160,4 +160,4 @@ for page in range(START_PAGE, total_pages + 1):
 
     time.sleep(SLEEP_BETWEEN_PAGES)
 
-print(f"[✓] Fine. Excel salvato in: {OUTPUT_FILE}")
+print(f"Fine. Excel salvato in: {OUTPUT_FILE}")

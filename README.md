@@ -66,15 +66,28 @@ pipeline/
 
 ```bash
 pip install -r requirements.txt
+# I 7 framework di scanning si installano a parte (vedi i commands.md dei tool).
+```
 
-# Esecuzione distribuita sulle VM (vedere i commands.md in ogni cartella tool)
-python deploy.py --status              # stato di tutti i tool su tutte le VM
-python deploy.py --launch guard        # deploy + avvio di un tool
-python deploy.py --pull scan           # scarica i risultati
+Ogni entry point supporta `--help`. **Non** esiste un singolo comando che esegua
+l'intera analisi (69.104 server × 7 tool): è distribuita su 9 VM per progetto.
+Percorso consigliato:
 
-# Esecuzione locale di un singolo tool
-python launch.py scan
-python launch.py --status
+```bash
+# 1. (opzionale) ricostruire il dataset dai cataloghi MCP
+python web_crawler/run_all.py                     # --help, --list, --only, --skip
+
+# 2. provare UN tool in locale su pochi server (funziona ovunque, Windows incluso)
+python mcp_scan/run_scan.py --start 0 --end 20    # ogni run_*.py ha --help
+
+# 3. esecuzione distribuita completa, orchestrata da deploy.py
+python deploy.py --help                           # tutti i comandi: deploy/launch/pull/status
+python deploy.py --status                         # stato dei tool su tutte le VM
+#   i comandi esatti per ogni tool sono in <tool>/commands.md
+
+# 4. post-processing / triage a 3 stadi (per ogni tool)
+python mcp_guard/postprocessing/stage1_filter.py
+python mcp_guard/postprocessing/stage2_pipeline.py --category all --merge
 ```
 
 I parametri di configurazione (path del dataset, directory dei framework,
@@ -85,7 +98,7 @@ comandi) sono centralizzati in [`functions/config.py`](functions/config.py).
 Per mantenere il repository leggero e pulito, **non** sono versionati:
 i pull grezzi dalle VM, gli output JSON degli scanner e gli intermedi del
 post-processing (decine di GB). Restano invece il **codice** che li produce e i
-**report** leggibili. Per ri-eseguire i `pipeline_*.py` in `*/postprocessing/`
+**report** leggibili. Per ri-eseguire gli `stage2_pipeline.py` in `*/postprocessing/`
 è necessario ripristinare i dati grezzi.
 
 ## Risultati in sintesi

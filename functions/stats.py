@@ -346,7 +346,7 @@ def update_framework_categories(existing_data: dict, result: dict, name: str) ->
     #        existing_data["categories"][cat_name] = (
     #            existing_data["categories"].get(cat_name, 0) + count
     #        )
-    #        # 🔴 QUESTO ERA IL PEZZO CHE MANCAVA
+    #        # QUESTO ERA IL PEZZO CHE MANCAVA
     #        existing_data["vulnerabilities"]["total"] += count
 
 def safe_int(x: Any, default: int = 0) -> int:
@@ -830,7 +830,7 @@ def recompute_framework_probabilities(framework_block: dict, total_servers: int,
         for sev, c in counts.items():
             prob[sev] = round(safe_int(c, 0) / total_v, 6)
 
-        return  # ⬅️ NON cade nella logica legacy
+        return  # NON cade nella logica legacy
     
     if name == "mcp-check":
         # mcp-check doesn't track vulnerabilities, it tracks test results

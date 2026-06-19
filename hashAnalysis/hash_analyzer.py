@@ -52,8 +52,7 @@ def main():
             if repo_path.exists():
                 force_delete(repo_path)
             
-            # Using clone_repo from buildConfig which clones to a specific base
-            # We'll use a temp dir for this analysis to avoid conflicts
+            # clone_repo (da buildConfig) clona in una temp dir per evitare conflitti
             cloned_path = clone_repo(server_url, repo_path.parent)
             
             # Compute Hash
@@ -67,14 +66,7 @@ def main():
                 print(f"Original: {original['url']}")
                 print(f"Duplicate: {server_url}")
                 
-                # Requested format: "urlServer:urlDuplicato"
-                # Saving as an object for better structure, but fulfilling the requirements
-                # User asked: "salva per ogni elemento ... in questo modo urlServer:urlDuplicato"
-                # Interpreting as a JSON list of objects with this structure or a string
-                # I will save as an object with specific keys as per previous thought, or explicitly mapping the string requirement.
-                # "in cui salva per ogni elemento l'url del primo server, l'url del secondo server duplicato in questo modo urlServer:urlDuplicato"
-                # This suggests the content of the "saved element" should be that string/structure.
-                # Let's create a record that contains the pair.
+                # Record con la coppia originale/duplicato (urlServer:urlDuplicato).
                 
                 record = {
                     "original_url": original['url'],

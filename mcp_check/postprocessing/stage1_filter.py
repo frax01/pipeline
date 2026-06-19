@@ -23,9 +23,9 @@ Categorie NOISE (da scartare):
   - other_errors: errori generici (troppo rumorosi, da filtrare selettivamente)
 
 Uso:
-  python filter_mcp_check.py                    # Filtra tutto
-  python filter_mcp_check.py --dry-run          # Solo statistiche, non scrive file
-  python filter_mcp_check.py --category schema_violation  # Solo una categoria
+  python stage1_filter.py                    # Filtra tutto
+  python stage1_filter.py --dry-run          # Solo statistiche, non scrive file
+  python stage1_filter.py --category schema_violation  # Solo una categoria
 """
 
 import json

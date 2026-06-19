@@ -14,8 +14,8 @@ Categories covered:
   6. (bonus) tool-poisoning, prompt-injection, toxic-flow — kept for reference
 
 Usage:
-  python filter_all_categories.py
-  python filter_all_categories.py --input <base_dir> --output <output_dir>
+  python stage1_filter.py
+  python stage1_filter.py --input <base_dir> --output <output_dir>
 
 Output:
   - Per-category filtered JSON files in each category's subfolder

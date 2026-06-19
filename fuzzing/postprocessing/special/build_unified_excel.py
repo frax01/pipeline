@@ -4,7 +4,7 @@ Reads the GitHub (60205) and NPX (8899) Excels, adds a `Type` column,
 concatenates, and writes the unified file. Run once locally before
 deploying to the VMs.
 
-    py -X utf8 fuzzing/build_unified_excel.py
+    py -X utf8 fuzzing/postprocessing/special/build_unified_excel.py
 """
 import sys
 from pathlib import Path

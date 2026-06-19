@@ -6,7 +6,7 @@ Ecco la spiegazione dettagliata degli scanner e dei pattern rilevati da **snyk-a
 
 ---
 
-## 🚨 Issues (Vulnerabilità Critiche / Alta Gravità)
+## Issues (Vulnerabilità Critiche / Alta Gravità)
 Queste sono minacce di sicurezza confermate che possono compromettere il server MCP o l'agente.
 
 ### 1. `E001`: Prompt injection in tool description
@@ -33,7 +33,7 @@ Questo gruppo analizza i file specifici delle "Skill" (competenze/addestramenti)
 
 ---
 
-## ⚠️ Warnings (Avvisi / Media-Bassa Gravità)
+## Warnings (Avvisi / Media-Bassa Gravità)
 Queste segnalazioni indicano configurazioni o pratiche rischiose che richiedono indagini manuali.
 
 ### 1. `W001`: Suspicious words in tool description
@@ -58,7 +58,7 @@ Queste segnalazioni indicano configurazioni o pratiche rischiose che richiedono 
 
 ---
 
-## ☠️ Toxic Flows (Catene Pericolose / Critiche)
+## Toxic Flows (Catene Pericolose / Critiche)
 Questa è una caratteristica molto avanzata di **Snyk agent-scan**. Lo scanner esamina tutti i tool a disposizione dell'agente e li etichetta (labels) per capire se, usati in combinazione, permettono una kill-chain letale.
 
 ### 1. `TF001`: Data Leak Toxic Flow

@@ -67,7 +67,7 @@ async def scrape_all_servers():
                     name, detail_url, github, author, desc, stars
                 ])
 
-            # 🔥 La chiave corretta è pagination → hasMore
+            # La chiave corretta è pagination → hasMore
             pagination = data.get("pagination", {})
             has_more = pagination.get("hasMore", False)
 
@@ -91,12 +91,12 @@ def save_excel(servers):
         ws.append(row)
 
     wb.save("02_mcpmarket.xlsx")
-    print("✔ File salvato: 02_mcpmarket.xlsx")
+    print("File salvato: 02_mcpmarket.xlsx")
 
 
 def save_failed():
     if not failed_requests:
-        print("\n🎉 Nessun errore")
+        print("\nNessun errore")
         return
 
     wb = Workbook()
@@ -109,7 +109,7 @@ def save_failed():
         ws.append([url, err])
 
     wb.save("02_mcpmarket_failed.xlsx")
-    print(f"✔ File errori salvato: 02_mcpmarket_failed.xlsx ({len(failed_requests)} errori)")
+    print(f"File errori salvato: 02_mcpmarket_failed.xlsx ({len(failed_requests)} errori)")
 
 
 async def main():

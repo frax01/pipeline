@@ -1,8 +1,8 @@
 """
-Pipeline LLM per i finding di mcp-security-scan (post-filter_security_scan.py).
+Pipeline LLM per i finding di mcp-security-scan (post-stage1_filter.py).
 
 Funziona sulle cartelle <categoria>/filtered/<cat>_filtered.json già prodotte
-da filter_security_scan.py (Stage 1).
+da stage1_filter.py (Stage 1).
 
 Flusso:
     Stage 2A (HC rules)  — solo per categorie con has_hc=True (rug-pull, dangerous-capabilities)
@@ -14,11 +14,11 @@ Per le categorie senza HC rules (piccole + input-validation) si usa direttamente
 --cache-only: la cache è pre-popolata con verdetti in-chat (Sonnet).
 
 Uso:
-    python -X utf8 pipeline_mcp_security_scan.py --category rug-pull --hc-only
-    python -X utf8 pipeline_mcp_security_scan.py --category dangerous-capabilities --hc-only
-    python -X utf8 pipeline_mcp_security_scan.py --category prompt-injection --cache-only
-    python -X utf8 pipeline_mcp_security_scan.py --category all --cache-only
-    python -X utf8 pipeline_mcp_security_scan.py --category dangerous-capabilities --merge
+    python -X utf8 stage2_pipeline.py --category rug-pull --hc-only
+    python -X utf8 stage2_pipeline.py --category dangerous-capabilities --hc-only
+    python -X utf8 stage2_pipeline.py --category prompt-injection --cache-only
+    python -X utf8 stage2_pipeline.py --category all --cache-only
+    python -X utf8 stage2_pipeline.py --category dangerous-capabilities --merge
 
 Output in <categoria>/filtered/llm_analysis/:
     hc_vp.json / hc_fp.json / uncertain.json   (solo con --hc-only, categorie HC)
@@ -274,7 +274,7 @@ def hc_rules_dangerous_capabilities(finding: dict) -> tuple[str | None, str]:
     HC rules per dangerous-capabilities (X-01).
 
     Analizza la lista di tool nel campo details (ogni tool ha già passato
-    il filtro Stage 1 di filter_security_scan.py).
+    il filtro Stage 1 di stage1_filter.py).
 
     Ritorna: ("VP"/"FP"/None, reason)
       None = UNCERTAIN → da classificare via LLM

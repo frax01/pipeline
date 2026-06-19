@@ -2,9 +2,9 @@
 Pipeline unificata Stage 2A + 2B per i finding di mcp-watch.
 
 Uso:
-    python pipeline_mcp_watch.py --category credential-leak
-    python pipeline_mcp_watch.py --category data-exfiltration
-    python pipeline_mcp_watch.py --category all
+    python stage2_pipeline.py --category credential-leak
+    python stage2_pipeline.py --category data-exfiltration
+    python stage2_pipeline.py --category all
 
 Stage 2A: regole HC (high-confidence) per categoria → HC-FP / HC-VP / UNCERTAIN
 Stage 2B: Ollama llama3 per i finding UNCERTAIN → VP o FP

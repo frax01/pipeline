@@ -113,7 +113,7 @@ def main():
                         log("   [SKIP] pagina irraggiungibile")
                         continue
 
-                    # 🔥 ESTRAZIONE CORRETTA
+                    # ESTRAZIONE CORRETTA
                     github_link = "link non trovato"
                     items = page.locator("li.font-mono")
                     n = items.count()

@@ -31,7 +31,7 @@ Si concentra sul rilevamento di pattern volti all'esfiltrazione fraudolenta dell
 - **Dettaglio Tecnico**: La funzione scatta se e solo se la riga contiene la parola "description" in combinazione con uno dei seguenti pattern regex case-insensitive: `/thank\s+you.*(?:conversation|history|chat)/i`, `/please.*(?:conversation|history|chat)/i`, `/when.*(?:user|says|types).*(?:conversation|history)/i`, `/if.*(?:conversation|history|chat)/i`, `/trigger.*(?:conversation|history|chat)/i`, `/forward.*(?:conversation|history|chat)/i`, o `/send.*(?:conversation|history|chat)/i`.
 
 **Esempio di ritrovamento:**
-`C:\Users\francesco\Desktop\pipeline\mcp_watch\analysis\data-exfiltration\data_exfiltration_critical.json`
+`C:\Users\<user>\Desktop\pipeline\mcp_watch\analysis\data-exfiltration\data_exfiltration_critical.json`
 ```json
 {
     "server_name": "mcp-salesforce",
@@ -71,7 +71,7 @@ Identifica perdite o gestioni insicure di credenziali, chiavi e token all'intern
 - **Dettaglio Tecnico**: Ricerca specificamente comandi `chmod` permissivi per i gruppi e per gli altri (regex `/chmod\s+[0-9]*[4-7][4-7][4-7]/`) combinati nella stessa stringa con indicatori come `/(?:key|token|secret|password|credential)/i`.
 
 **Esempio di ritrovamento:**
-`C:\Users\francesco\Desktop\pipeline\mcp_watch\analysis\credential-leak\credential_leak_high.json`
+`C:\Users\<user>\Desktop\pipeline\mcp_watch\analysis\credential-leak\credential_leak_high.json`
 ```json
 {
     "server_name": "dicom-mcp",
@@ -178,7 +178,7 @@ Analizza violazioni di sicurezza nei protocolli usati dall'MCP.
 - **Dettaglio Tecnico**: Abbina un identificatore (`/(?:sessionId|session_id|sid)=/`) con un chiaro segnale di creazione o uso di un URL ("GET", "url", "path", "route", o "endpoint").
 
 **Esempio di ritrovamento:**
-`C:\Users\francesco\Desktop\pipeline\mcp_watch\analysis\protocol-violation\protocol_violation_high.json`
+`C:\Users\<user>\Desktop\pipeline\mcp_watch\analysis\protocol-violation\protocol_violation_high.json`
 ```json
 {
     "server_name": "tako-mcp",
@@ -307,7 +307,7 @@ Come abbiamo visto nelle nostre analisi:
 * Ha letto il paper di HiddenLayer sulla **Conversation Exfiltration** (il furto della chat), e ha scritto una regola che flagga qualsiasi descrizione contenente le parole `"user"` e `"conversation"`.
 * Ha letto il paper di Trail of Bits sulle **Tool Mutation** (hacker che scambiano i tool in esecuzione), e ha scritto una regola che flagga il metodo Javascript `.push()`.
 
-### 💡 Conclusione
+### Conclusione
 Il tool `mcp-watch` è l'equivalente di un medico che ha letto un trattato di neurochirurgia avanzata e, per diagnosticare un tumore al cervello, decide di contare quante volte il paziente dice la parola "Ahi". 
 
 Le vulnerabilità MCP esistono e le aziende dovranno affrontarle nei prossimi anni per proteggere i loro agenti AI, ma **l'analisi statica testuale (SAST tramite RegEx)** non sarà mai in grado di rilevarle. Per trovare veri attacchi stocastici come il *Prompt Injection*, servono analizzatori basati a loro volta su Intelligenza Artificiale (LLM-based evaluators) o strumenti di test dinamico (DAST). 

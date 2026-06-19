@@ -82,7 +82,7 @@ due valori si allineano da soli.
 
 ## Cosa ho cambiato dentro mcp-guard
 
-Lato framework (`C:\Users\francesco\Desktop\Frameworks\mcp-guard\mcp_scanner.py`)
+Lato framework (`C:\Users\<user>\Desktop\Frameworks\mcp-guard\mcp_scanner.py`)
 ho messo mano a parecchie cose, in buona parte per farlo girare bene sotto la
 pipeline e su Windows.
 
@@ -119,7 +119,7 @@ pattern-based spacciata per risultati dinamici. Le ho disabilitate e ho tolto il
 fallback che ci ricadeva sopra. Meglio nessun risultato che un risultato
 fabbricato. L'analisi statica vera, quella pattern-based con una funzione per ogni
 tipo di vulnerabilità, l'ho tenuta e marcata nel codice (trovi i miei commenti
-`[francesco]` dal punto in cui comincia).
+`[<user>]` dal punto in cui comincia).
 
 **Fuzzing basato sui tool veri.** Ho rifatto il cuore del fuzzing dinamico in
 `analyze_server_fuzzing`: prima inizializzo il server, poi faccio `tools/list` per

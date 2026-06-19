@@ -17,7 +17,7 @@ Razionale per categoria (basato su sample 3x in-chat con Sonnet):
 
 NOTE: questo script applica una classificazione "Stage 2B" basata sulla calibrazione
 di mcp-scan internal LLM. Per ogni UNCERTAIN aggiunge un verdetto al cache JSON,
-permettendo al pipeline_mcp_scan_npx.py --merge di produrre vp.json/fp.json/audit.json
+permettendo al stage2_pipeline_npx.py --merge di produrre vp.json/fp.json/audit.json
 combinando HC + cache.
 """
 
@@ -191,7 +191,7 @@ def main() -> None:
             tot[k] += v
     print("-" * 80)
     print(f"  TOTALE UNCERTAIN: {tot['uncertain']:5d}  ->  VP={tot['vp']:5d}  FP={tot['fp']:5d}")
-    print("\nProssimo: py -X utf8 pipeline_mcp_scan_npx.py --merge per produrre vp/fp/audit")
+    print("\nProssimo: py -X utf8 stage2_pipeline_npx.py --merge per produrre vp/fp/audit")
 
 
 if __name__ == "__main__":

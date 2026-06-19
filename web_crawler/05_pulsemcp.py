@@ -108,7 +108,7 @@ def main():
 
     output = "05_pulsemcp.xlsx"
     wb.save(output)
-    print(f"\n[✓] Excel salvato in: {output}")
+    print(f"\nExcel salvato in: {output}")
 
 
 if __name__ == "__main__":

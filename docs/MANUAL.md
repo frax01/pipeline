@@ -320,6 +320,6 @@ A differenza del campione di 15 della sezione 3, qui è stata classificata **l'i
 | mcp-guard hardcoded-credential-static | 677 | 613 | 64 |
 | **TOTALE** | **1.342** | **1.258** | **84** |
 
-**Risultato: 1.258 VP su 1.342 entries (93,7%).** Coerente con il campione manuale (gli FP sono soprattutto Firebase/CrUX e placeholder, vedi #1/#11/#12 della sezione 3). Script riproducibile: `analysisAllData/_verify_credleak.py`.
+**Risultato: 1.258 VP su 1.342 entries (93,7%).** Coerente con il campione manuale (gli FP sono soprattutto Firebase/CrUX e placeholder, vedi #1/#11/#12 della sezione 3). Script riproducibile: `cross_framework/_verify_credleak.py`.
 
 > Nota: il totale corrente è 1.342 (dataset merged GitHub+NPX); il "1.269" nella tabella sopra era il conteggio pre-merge (solo GitHub: 619 + 650).

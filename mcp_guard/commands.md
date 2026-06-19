@@ -1,6 +1,6 @@
 # MCP Guard - Comandi per 9 VM
 
-## 🧪 Primo Test Locale (Consigliato)
+## Primo Test Locale (Consigliato)
 Prima di fare il deploy sulle 9 VM, puoi testare la nuova cartellizzazione sulla tua macchina:
 ```bash
 # 1. Spostati nella cartella del tool
@@ -13,7 +13,7 @@ python mcp_guard/run_guard.py --start 0 --end 5 --reset
 # Dovresti vedere i file JSON organizzati per categoria.
 ```
 
-## 🚀 Deployment e Esecuzione (Tutte le 9 VM)
+## Deployment e Esecuzione (Tutte le 9 VM)
 Lo script `deploy.py` (nella cartella root) gestisce tutto il parco VM.
 
 ```bash
@@ -21,7 +21,7 @@ Lo script `deploy.py` (nella cartella root) gestisce tutto il parco VM.
 python deploy.py --deploy-guard-all
 ```
 
-## 📋 Comandi di lancio manuali (da eseguire su ogni VM)
+## Comandi di lancio manuali (da eseguire su ogni VM)
 
 # 1 - VM1 (10.79.6.132)
 pkill -f 'python.*run_guard.py'; sleep 1
@@ -68,7 +68,7 @@ pkill -f 'python.*run_guard.py'; sleep 1
 cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start 53512 --end 60205 --reset > guard_output.log 2>&1 &
 
-## 📋 Resume (Ripresa da arresto)
+## Resume (Ripresa da arresto)
 
 Se lo script si interrompe o la VM si riavvia, usa `--start -1` per riprendere dall'ultimo indice salvato.
 
@@ -135,7 +135,7 @@ cd ~/Desktop/Pipeline && source ~/pipeline-env/bin/activate
 nohup python tool_mcp_guard/run_guard.py --start -1 --end 60205 > guard_output.log 2>&1 &
 ```
 
-## 📥 Raccolta Risultati e Analisi
+## Raccolta Risultati e Analisi
 ```bash
 # 1. Scarica i risultati (incluse le cartelle delle categorie) da tutte le VM
 python deploy.py --pull-guard (prima cambiare sulla vm1 il nome della cartella da mcp_guard a tool_mcp_guard)
@@ -144,7 +144,7 @@ python deploy.py --pull-guard (prima cambiare sulla vm1 il nome della cartella d
 python deploy.py --merge-guard
 ```
 
-## 📊 Monitoraggio
+## Monitoraggio
 
 ### Da questo PC (remoto su tutte le VM)
 ```bash
@@ -208,5 +208,5 @@ echo "=== DYNAMIC ===" && find ~/Desktop/Pipeline/tool_mcp_guard/dynamic/ -name 
 ### Deploy di mcp_scanner.py (se modificato)
 ```powershell
 # Da Windows - copia mcp_scanner.py su tutte le 9 VM
-foreach ($ip in @("10.79.6.132","10.79.6.133","10.79.6.134","10.79.6.136","10.79.6.137","10.79.6.138","10.79.6.139","10.79.6.141","10.79.6.142")) { scp C:\Users\francesco\Desktop\Frameworks\mcp-guard\mcp_scanner.py tecnico@${ip}:~/Desktop/Frameworks/mcp-guard/mcp_scanner.py }
+foreach ($ip in @("10.79.6.132","10.79.6.133","10.79.6.134","10.79.6.136","10.79.6.137","10.79.6.138","10.79.6.139","10.79.6.141","10.79.6.142")) { scp C:\Users\<user>\Desktop\Frameworks\mcp-guard\mcp_scanner.py tecnico@${ip}:~/Desktop/Frameworks/mcp-guard/mcp_scanner.py }
 ```

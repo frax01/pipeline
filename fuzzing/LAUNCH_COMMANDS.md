@@ -3,7 +3,7 @@
 ## Perche'
 Il run precedente NON ha catturato `server_response` ne' `success_details`
 (schema vecchio in `frameworks/fuzzing.py`). Le HC rules di
-`pipeline_fuzzing.py` dipendono dalla response del server per
+`stage2_pipeline.py` dipendono dalla response del server per
 distinguere VP vs FP. Va rifatto su tutti i 69.104 server (60.205 GitHub
 + 8.899 NPX), su un unico Excel unificato.
 
@@ -20,7 +20,7 @@ Stima: ~45s avg per server → ~96 ore = ~4 giorni per VM (7679 server/VM).
 
 ```powershell
 # Genera l'Excel unificato (60205 GH + 8899 NPX → 69104 righe)
-py -X utf8 fuzzing/build_unified_excel.py
+py -X utf8 fuzzing/postprocessing/special/build_unified_excel.py
 
 # Backup dei dati vecchi locali
 py -X utf8 fuzzing/backup_old_fuzzing.py

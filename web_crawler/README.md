@@ -16,9 +16,11 @@ web_crawler/NN_*.py  (uno scraper per sorgente)  ──►  NN_*.xlsx per-sorgen
 
 ## Scraper per sorgente
 
-I numeri `NN_` corrispondono alle **fonti numerate nella tesi**. Ogni scraper
-`NN_nome.py` salva il proprio output in `NN_nome.xlsx`. Le poche fonti che
-richiedono più di uno script usano un suffisso (stesso numero).
+I numeri `NN_` seguono la numerazione delle **fonti nella tesi**. Ogni scraper
+`NN_nome.py` salva il proprio output in `NN_nome.xlsx`. La corrispondenza non è
+sempre 1:1: alcune fonti usano più script con lo stesso numero (es. 9, 14),
+mentre lo scraper npm copre **due** fonti (vedi sotto) — per questo gli script
+sono 17 ma le fonti 18.
 
 | # tesi | Script | Sorgente |
 |--------|--------|----------|
@@ -39,8 +41,12 @@ richiedono più di uno script usano un suffisso (stesso numero).
 | 14 | `14_mcprepository_collect.py` → `14_mcprepository_resolve.py` | mcprepository.com (pipeline 2 passi: raccogli URL → risolvi link GitHub) |
 | 15 | `15_aibase.py` | mcp.aibase.com |
 | 16 | `16_github_search.py` | github.com/search (richiede `GITHUB_TOKEN`) |
-| 17 | `17_npm.py` | registry npm |
-| 18 | — | npx-runnable: **non** uno scraper qui, è la pipeline npx (vedi `../npm_runner/`) |
+| 17 + 18 | `17_npm.py` | registry npm — **un solo scraper per due fonti**: i server **npm** (fonte 17) e i **npx-runnable** (fonte 18) sono entrambi pacchetti npm, raccolti dallo stesso scrape del registry |
+
+> Gli scraper sono **17**, le fonti **18**: lo scraper npm (`17_npm.py`) copre sia i
+> server npm sia i npx-runnable. `../npm_runner/` **non** è una fonte di raccolta —
+> è lo step di build (`npm run build`) usato in fase di **analisi** dei server
+> npm/npx, non per raccoglierne gli URL.
 
 ## Come eseguire
 

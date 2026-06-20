@@ -107,9 +107,11 @@ pipeline/
 └── docs/                 documentazione e report (vedi tabella sopra)
 ```
 
-> Il prefisso numerico `NN_` degli scraper in `web_crawler/` corrisponde alle
-> fonti numerate nella tesi. La fonte 18 (server npx-runnable) non è uno scraper
-> ma la pipeline di build in `npm_runner/`.
+> Il prefisso numerico `NN_` degli scraper in `web_crawler/` segue la numerazione
+> delle fonti nella tesi. Gli scraper sono **17** ma le fonti **18**: `17_npm.py`
+> raccoglie dal registry npm sia i server **npm** sia i **npx-runnable** (sono
+> pacchetti npm, stesso scrape → fonti 17 e 18). `npm_runner/` **non** è una fonte
+> di raccolta: è lo step di build (`npm run build`) usato in fase di analisi.
 
 ## I 7 strumenti
 

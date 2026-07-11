@@ -250,6 +250,24 @@ def cleanup_repo(repo_path: Path):
             except Exception:
                 pass
 
+def prepare_npx_server(package_name: str) -> dict | None:
+    """Server NPX: nessun clone. mcp-check avvia il pacchetto via `npx -y <pkg>`
+    (generate_mcp_check_config gestisce già command=='npx'). Serve solo una dir
+    temporanea per scrivere test-config.json (cleanup_repo la rimuove poi)."""
+    import tempfile
+    server_name = (package_name or "").strip()
+    print(f"Server (npx): {server_name}")
+    tmp = Path(tempfile.mkdtemp(prefix="npxcheck_", dir=Path.cwd()))
+    return {
+        "server_name": server_name,
+        "server_url": package_name,
+        "server_language": "nodejs",
+        "repo_path": tmp,
+        "command": "npx",
+        "elem": ["-y", server_name],
+    }
+
+
 def prepare_server(server_url: str, stats: dict) -> dict | None:
     server_name = extract_server_name(server_url)
     print(f"Server: {server_name}")
@@ -372,12 +390,16 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
     if use_alarm:
         signal.signal(signal.SIGALRM, _timeout_handler)
 
+    if "Type" not in df_excel.columns:
+        df_excel["Type"] = "github"
+
     for idx, row in df_excel.iloc[start_idx:end_idx].iterrows():
         start_time = time.time()
         server_url = row["Link"]
+        server_type = str(row.get("Type", "github") or "github").strip().lower()
 
         print("\n" + "=" * 50)
-        print(f"Index: {idx}")
+        print(f"Index: {idx} ({server_type})")
 
         # Periodic cache cleanup + RAM check
         ram_ok = periodic_cache_cleanup(idx)
@@ -412,7 +434,10 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
                     old_handler = signal.signal(signal.SIGALRM, _prepare_timeout_handler)
                     signal.alarm(PREPARE_TIMEOUT)
 
-                server_data = prepare_server(server_url, stats)
+                if server_type == "npx":
+                    server_data = prepare_npx_server(server_url)
+                else:
+                    server_data = prepare_server(server_url, stats)
 
                 if use_alarm:
                     signal.alarm(0)

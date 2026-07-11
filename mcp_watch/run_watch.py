@@ -289,6 +289,19 @@ def cleanup_repo(repo_path: Path):
             except Exception:
                 pass
 
+def prepare_npx_server(package_name: str) -> tuple[dict | None, str]:
+    """Server NPX: nessun clone. execute_mcp_watch, ricevendo un nome-pacchetto
+    (non-URL), fa `npm pack` per scaricarne il sorgente e lo analizza (scan:local)."""
+    server_name = (package_name or "").strip()
+    print(f"Server (npx): {server_name}")
+    return {
+        "server_name": server_name,
+        "server_url": server_name,
+        "server_language": "nodejs",
+        "repo_path": None,
+    }, ""
+
+
 def prepare_server(server_url: str, stats: dict) -> tuple[dict | None, str]:
     server_name = extract_server_name(server_url)
     print(f"Server: {server_name}")
@@ -373,12 +386,16 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
 
     print(f"Range server: {start_idx} - {end_idx} ({end_idx - start_idx} server)")
 
+    if "Type" not in df_excel.columns:
+        df_excel["Type"] = "github"
+
     for idx, row in df_excel.iloc[start_idx:end_idx].iterrows():
         start_time = time.time()
         server_url = row["Link"]
+        server_type = str(row.get("Type", "github") or "github").strip().lower()
 
         print("\n" + "=" * 50)
-        print(f"Index: {idx}")
+        print(f"Index: {idx} ({server_type})")
         periodic_cache_cleanup(idx)
 
         stats      = load_local_stats()
@@ -393,7 +410,10 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
                 raise TimeoutError("prepare_server timed out")
             old_handler = signal.signal(signal.SIGALRM, _timeout_handler)
             signal.alarm(PREPARE_TIMEOUT)
-            server_data, failure_reason = prepare_server(server_url, stats)
+            if server_type == "npx":
+                server_data, failure_reason = prepare_npx_server(server_url)
+            else:
+                server_data, failure_reason = prepare_server(server_url, stats)
             signal.alarm(0)
             signal.signal(signal.SIGALRM, old_handler)
         except (TimeoutError, subprocess.TimeoutExpired) as e:

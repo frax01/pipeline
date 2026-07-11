@@ -1,18 +1,25 @@
 from pathlib import Path
+import os
 import re
 import sys
 import platform
 import shutil
 
 BASE_DIR = Path.home() / "Desktop/Pipeline"
-CONFIG = BASE_DIR / "claude_desktop_config.json"
+# CONFIG e MCP_GUARD_DIR sono sovrascrivibili via env: servono per eseguire
+# PIU' worker dello stesso tool in parallelo sulla stessa VM senza che si
+# pestino il file di config condiviso / la dir di output del framework.
+# Senza env, comportamento identico a prima (retrocompatibile).
+CONFIG = Path(os.environ["MCP_CONFIG"]) if os.environ.get("MCP_CONFIG") \
+    else BASE_DIR / "claude_desktop_config.json"
 FRAMEWORKS = BASE_DIR / "analysis" / "frameworks.json"
 RECAP_SERVER = BASE_DIR / "analysis" / "recap_server.json"
 
 FRAMEWORKS_ROOT = Path.home() / "Desktop/Frameworks"
 
 # Directory dei framework effettivi (per eseguire i comandi npm/bin)
-MCP_GUARD_DIR = FRAMEWORKS_ROOT / "mcp-guard"
+MCP_GUARD_DIR = Path(os.environ["MCP_GUARD_DIR"]) if os.environ.get("MCP_GUARD_DIR") \
+    else FRAMEWORKS_ROOT / "mcp-guard"
 MCP_WATCH_DIR = FRAMEWORKS_ROOT / "mcp-watch"
 MCP_CHECK_DIR = FRAMEWORKS_ROOT / "mcp-check"
 

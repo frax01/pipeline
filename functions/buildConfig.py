@@ -449,6 +449,45 @@ def clone_repo(repo_url: str, repo_base: Path):
         return None
     return repo_path
 
+def npm_pack_source(package_name: str, repo_base: Path):
+    """Come clone_repo ma per un pacchetto NPX/npm: `npm pack` scarica il tarball
+    PUBBLICATO del pacchetto, lo estrae e ritorna la cartella del sorgente (per
+    l'analisi statica dei tool source-based, es. mcp-guard). None se fallisce."""
+    import tempfile
+    import tarfile
+    name = (package_name or "").strip()
+    if not name:
+        return None
+    dest = Path(repo_base) / (re.sub(r'[^A-Za-z0-9._-]', '_', name) + "__npx")
+    if dest.exists():
+        return dest
+    npm_cmd = "npm" if platform.system() in ("Darwin", "Linux") else NPM
+    tmp = tempfile.mkdtemp(prefix="npmpack_", dir=str(repo_base))
+    try:
+        proc = subprocess.run([npm_cmd, "pack", name], cwd=tmp,
+                              capture_output=True, text=True, timeout=120)
+        if proc.returncode != 0:
+            print(f"npm pack failed for {name}: {(proc.stderr or '')[:200]}")
+            return None
+        tgz = [f for f in os.listdir(tmp) if f.endswith(".tgz")]
+        if not tgz:
+            return None
+        with tarfile.open(os.path.join(tmp, tgz[0]), "r:gz") as tar:
+            if hasattr(tarfile, "data_filter"):
+                tar.extractall(path=tmp, filter="data")
+            else:
+                tar.extractall(path=tmp)
+        extracted = os.path.join(tmp, "package")
+        src = extracted if os.path.isdir(extracted) else tmp
+        shutil.move(src, str(dest))
+        return dest
+    except Exception as e:
+        print(f"npm pack error {name}: {e}")
+        return None
+    finally:
+        shutil.rmtree(tmp, ignore_errors=True)
+
+
 def build_mcp_config(repo_path: Path, language: str):
     server_name = repo_path.name
     

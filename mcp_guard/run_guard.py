@@ -21,7 +21,7 @@ from functions.helper import (
     _kill_orphan_server_processes
 )
 from frameworks.mcpGuard import execute_mcp_guard
-from functions.buildConfig import build_mcp_config, clone_repo
+from functions.buildConfig import build_mcp_config, clone_repo, npm_pack_source
 from functions.stats import update_framework
 from functions.config import EXCEL_PATH, BASE_DIR
 
@@ -193,6 +193,45 @@ def cleanup_repo(repo_path: Path):
             except Exception:
                 pass
 
+def prepare_npx_server(package_name: str) -> tuple[dict | None, str]:
+    """Server NPX: sorgente scaricato via `npm pack` (per l'analisi STATICA di
+    guard), poi stessa logica dei github (detect_language + build_mcp_config).
+    La parte dinamica gira sul sorgente buildato, come per i github."""
+    server_name = (package_name or "").strip()
+    print(f"Server (npx): {server_name}")
+    repo_path = npm_pack_source(server_name, Path.cwd())
+    if repo_path is None or not repo_path.exists():
+        return None, "npm_pack_failed"
+    try:
+        server_language = detect_language(repo_path)
+        print(f"Language: {server_language}")
+    except Exception as e:
+        print(f"ERROR Detecting Language: {e}")
+        cleanup_repo(repo_path)
+        return None, "language_detection_failed"
+    try:
+        server_name2, command, elem = build_mcp_config(repo_path, server_language)
+    except json.JSONDecodeError:
+        cleanup_repo(repo_path)
+        return None, "config_json_corrupted"
+    except Exception as e:
+        print(f"ERRORE nella costruzione della config: {e}")
+        cleanup_repo(repo_path)
+        return None, "config_build_failed"
+    if command is None:
+        command = "unknown"
+    if elem is None:
+        elem = ["unknown"]
+    return {
+        "server_name": server_name2,
+        "server_url": server_name,
+        "server_language": server_language,
+        "repo_path": repo_path,
+        "command": command,
+        "elem": elem,
+    }, ""
+
+
 def prepare_server(server_url: str, hash_cache: dict, stats: dict) -> tuple[dict | None, str]:
     """Returns (server_data, failure_reason). failure_reason is empty string on success."""
     server_name = extract_server_name(server_url)
@@ -308,12 +347,16 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
     total_in_range = end_idx - start_idx
     print(f"Range server: {start_idx} - {end_idx} ({total_in_range} server)")
 
+    if "Type" not in df_excel.columns:
+        df_excel["Type"] = "github"
+
     for idx, row in df_excel.iloc[start_idx:end_idx].iterrows():
         start_time = time.time()
         server_url = row["Link"]
+        server_type = str(row.get("Type", "github") or "github").strip().lower()
 
         print("\n" + "=" * 50)
-        print(f"Index: {idx}")
+        print(f"Index: {idx} ({server_type})")
 
         # Periodic cache cleanup + RAM check
         ram_ok = periodic_cache_cleanup(idx)
@@ -330,7 +373,10 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
         failure_reason = ""
 
         try:
-            server_data, failure_reason = prepare_server(server_url, None, stats)
+            if server_type == "npx":
+                server_data, failure_reason = prepare_npx_server(server_url)
+            else:
+                server_data, failure_reason = prepare_server(server_url, None, stats)
         except (TimeoutError, subprocess.TimeoutExpired) as e:
             print(f"prepare_server timed out ({e}), skipping")
             failure_reason = "prepare_timeout"

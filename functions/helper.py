@@ -437,7 +437,21 @@ CACHE_DIRS = [
 GO_TMP_PREFIX = "/tmp/go-build"
 
 _last_cache_cleanup = 0.0
-CACHE_CLEANUP_INTERVAL = 50  # every 50 servers
+CACHE_CLEANUP_INTERVAL = 25  # every 25 servers (era 50: la cache Go cresce in fretta)
+
+
+def _rmtree_force(d: Path):
+    """rmtree che gestisce i file READ-ONLY (la module cache di Go
+    ~/go/pkg/mod è read-only: shutil.rmtree normale fallisce silenziosamente
+    e la cache non viene MAI liberata -> disco pieno)."""
+    def onerror(func, p, exc_info):
+        try:
+            os.chmod(p, stat.S_IWRITE | stat.S_IREAD | stat.S_IEXEC)
+            func(p)
+        except Exception:
+            pass
+    shutil.rmtree(d, onerror=onerror)
+
 
 def cleanup_caches(force: bool = False):
     """Remove build/package caches to free disk space.
@@ -452,7 +466,7 @@ def cleanup_caches(force: bool = False):
         if d.exists() and d.is_dir():
             try:
                 size = sum(f.stat().st_size for f in d.rglob("*") if f.is_file())
-                shutil.rmtree(d, ignore_errors=True)
+                _rmtree_force(d)
                 freed += size
                 print(f"  Cache deleted: {d} ({size / (1024**2):.0f} MB)")
             except Exception as e:

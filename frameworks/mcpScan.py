@@ -198,32 +198,30 @@ def execute_mcp_scan(repo_path: Path):
     env["PYTHONUTF8"] = "1"
     uvx_command = UVX
 
-    # Persistent storage file at Pipeline root level (enables rug pull detection)
-    storage_file = os.path.expanduser("~/Desktop/Pipeline/mcp_scan_storage")
+    # Persistent storage file relativo alla cwd: per il tool singolo la cwd è
+    # ~/Desktop/Pipeline (identico a prima); per i worker paralleli ognuno ha il
+    # suo storage nella propria cartella -> nessuna collisione.
+    storage_file = os.path.join(os.getcwd(), "mcp_scan_storage")
 
     try:
-        # Build command: snyk-agent-scan with --json
-        # --dangerously-run-mcp-servers: skip interactive [y/N] consent prompt
-        # (necessario quando si gira in nohup senza TTY)
+        # Scanner: mcp-scan free di Invariant Labs, PINNATO a 0.4.2 (ultima
+        # versione pre-acquisizione Snyk). Le versioni successive (0.4.3+/
+        # snyk-agent-scan) richiedono un SNYK_TOKEN e un prompt di consenso
+        # interattivo, e sono un tool diverso: pinnare 0.4.2 riproduce lo
+        # scanner usato nella ricerca originale (nessun token, output JSON
+        # identico atteso da parse_mcp_scan).
         # --server-timeout 60: i pacchetti NPX richiedono >10s per scaricare+installare+bootare
+        SCAN_PKG = "mcp-scan==0.4.2"
         if uvx_command.endswith("uv") or uvx_command.endswith("uv.exe"):
-            cmd_scan = [
-                uvx_command, "tool", "run", "snyk-agent-scan@latest",
-                "--json",
-                "--storage-file", storage_file,
-                "--dangerously-run-mcp-servers",
-                "--server-timeout", "60",
-                str(CONFIG),
-            ]
+            base = [uvx_command, "tool", "run", SCAN_PKG, "scan"]
         else:
-            cmd_scan = [
-                uvx_command, "snyk-agent-scan@latest",
-                "--json",
-                "--storage-file", storage_file,
-                "--dangerously-run-mcp-servers",
-                "--server-timeout", "60",
-                str(CONFIG),
-            ]
+            base = [uvx_command, SCAN_PKG, "scan"]
+        cmd_scan = base + [
+            "--json",
+            "--storage-file", storage_file,
+            "--server-timeout", "60",
+            str(CONFIG),
+        ]
 
         stdout, stderr, elapsed, code = run_process(
             cmd=cmd_scan,

@@ -29,7 +29,7 @@ from functions.helper import (
     periodic_cache_cleanup
 )
 from frameworks.mcpSecurityScan import execute_mcp_security_scan
-from functions.buildConfig import clone_repo, build_mcp_config
+from functions.buildConfig import clone_repo, build_mcp_config, write_mcp_config
 from functions.stats import update_framework
 from functions.config import EXCEL_PATH
 
@@ -196,6 +196,27 @@ def cleanup_repo(repo_path: Path):
                 pass
 
 
+def prepare_npx_server(package_name: str) -> dict | None:
+    """Server NPX: nessun clone. Config MCP con `npx -y <pkg>` -> mcp-security-scan
+    avvia il pacchetto pubblicato e lo ispeziona."""
+    server_name = (package_name or "").strip()
+    print(f"Server (npx): {server_name}")
+    try:
+        write_mcp_config(server_name=server_name, command="npx",
+                         args=["-y", server_name], cwd=Path.cwd())
+    except Exception as e:
+        print(f"ERROR writing NPX mcp config: {e}")
+        return None
+    return {
+        "server_name": server_name,
+        "server_url": package_name,
+        "server_language": "nodejs",
+        "repo_path": None,
+        "command": "npx",
+        "elem": ["-y", server_name],
+    }
+
+
 def prepare_server(server_url: str) -> dict | None:
     server_name = extract_server_name(server_url)
     print(f"Server: {server_name}")
@@ -281,12 +302,16 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
     if use_alarm:
         signal.signal(signal.SIGALRM, _timeout_handler)
 
+    if "Type" not in df_excel.columns:
+        df_excel["Type"] = "github"
+
     for idx, row in df_excel.iloc[start_idx:end_idx].iterrows():
         start_time = time.time()
         server_url = row["Link"]
+        server_type = str(row.get("Type", "github") or "github").strip().lower()
 
         print("\n" + "=" * 50)
-        print(f"Index: {idx}")
+        print(f"Index: {idx} ({server_type})")
         periodic_cache_cleanup(idx)
 
         stats = load_local_stats()
@@ -305,7 +330,10 @@ def main(start_idx: int, end_idx: int = None, reset: bool = False):
             # Prepare server
             server_data = None
             try:
-                server_data = prepare_server(server_url)
+                if server_type == "npx":
+                    server_data = prepare_npx_server(server_url)
+                else:
+                    server_data = prepare_server(server_url)
             except subprocess.TimeoutExpired as e:
                 print(f"prepare_server timed out ({e}), skipping")
                 server_name = server_url.rstrip('/').split('/')[-1]

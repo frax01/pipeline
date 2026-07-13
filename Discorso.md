@@ -98,24 +98,24 @@ Per rispondere alla terza domanda, da questa analisi ho stilato **cinque antipat
 - l'*oversharing a runtime*: invece del segreto nel codice, è il tool che restituisce lo stato del server nella sua risposta. 
 - il *fidarsi del contenuto esterno*: server che recuperano contenuto esterno e lo passano all'LLM senza sanitizzazione, creando un canale di injection indiretta.
 
-## Slide 12 — Developer Recommendations (RQ3) *(~65s)*
+## Slide 12 — Developer Recommendations (RQ3) *(~50s)*
 Ecco invece alcune raccomandazioni concrete. 
-- Primo: **trattare ogni argomento di un tool come input non fidato** — l'argomento è prodotto dall'LLM e può essere guidato dall'utente o da contenuto esterno. 
-- Secondo, e fondamentale: **non usare mai l'LLM stesso come livello di validazione** — la validazione deve stare nel codice del server. 
-- Terzo: **minimo privilegio** sulle capacità pericolose — sandbox, directory ristretta, conferma esplicita, mai girare come root...
-- Quarto: **restituire solo il necessario** — mai restituire l'intero ambiente o i file di config o i segreti. 
-- Quinto: **tenere i segreti fuori dal repository**. 
-- Sesto: **isolare il contenuto esterno**, mai trattarlo come istruzioni. 
-- Settimo: **conformarsi al protocollo**. 
-- E infine, per chi installa: **preferire server controllati**.
+- Primo: **trattare ogni argomento di un tool come input da controllare** — l'argomento è prodotto dall'LLM e può essere guidato dall'utente o da contenuto esterno. 
+- Secondo: **non usare mai l'LLM come livello di validazione** che deve stare nel codice del server.
+- Poi **restituire solo i dati necessari** e non l'intero ambiente o i file di configurazione.
+- Quarto: **tenere i segreti fuori dal repository pubblico**. 
+- Poi **isolare il contenuto esterno** e non trattarlo come istruzioni.
+- Sesto, per chi installa i server: **preferire server controllati** e sicuri.
+- Settimo: **conformarsi al protocollo MCP** e alle sue specifiche.
+- Poi il **minimo privilegio** sulle capacità pericolose: applicare container, restrizioni, ridurre i privilegi... 
 
 ## Slide 13 — Conclusions & Future Works *(~55s)*
-In sintesi, il divario di sicurezza dell'ecosistema MCP oggi riguarda molto meno gli attacchi specifici per gli LLM (sebbene siano ampiamente presenti) e molto più i classici errori di programmazione sicura applicati a una superficie di attacco nuova e in rapida crescita.
+Per concludere, il divario di sicurezza dell'ecosistema MCP oggi riguarda molto meno gli attacchi specifici agli LLM (sebbene siano ampiamente presenti) e molto più i classici errori di programmazione applicati a una superficie di attacco nuova e in rapida crescita.
 
-Come **lavori futuri**: 
-- un fuzzing degli LLM tramite proxy, per provare la sfruttabilità a runtime invece di segnalare solo pattern; 
-- un monitoraggio continuo, ri-eseguendo la pipeline nel tempo per vedere come cambiano o evolvono i server e intercettare i rug pull
+Come **lavori futuri** propongo: 
+- un fuzzing degli LLM in stile proxy, per provare la sfruttabilità delle vulnerabilità a runtime, catturando input e output dei tool che invece un'analisi statica non può rilevare; 
+- un monitoraggio continuo, ri-eseguendo la pipeline, per vedere come cambiano o evolvono i server nel tempo, intercettando eventuali variazioni dannose nelle loro versioni aggiornate
 
-## Slide 14 — Chiusura *(~5s)*
-Grazie per l'attenzione. Resto a disposizione per le vostre domande.
+## Slide 14 — Chiusura
+Grazie per l'attenzione. Resto a disposizione per eventuali domande.
 

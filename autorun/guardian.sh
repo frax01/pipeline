@@ -27,7 +27,7 @@ LOG() { echo "[$(date '+%F %T')] $*"; }
 GRACE=${GUARDIAN_GRACE:-150}   # attesa iniziale prima del primo controllo
 DISK_THRESHOLD=80              # % oltre il quale si pulisce
 SNAP_EVERY=30                  # ogni ~30 cicli (~30 min) fa uno snapshot
-NKEEP=5                        # snapshot da conservare per cartella
+NKEEP=3                        # snapshot da conservare per cartella
 SLEEP=60
 
 CACHE_DIRS=(
@@ -100,7 +100,14 @@ snapshot_dir() {
   local src="$1"; [ -d "$src" ] || return
   local base; base="$(basename "$src")"
   mkdir -p "$BK/$base"
-  tar czf "$BK/$base/$(date '+%Y%m%d_%H%M%S').tar.gz" -C "$(dirname "$src")" "$base" 2>/dev/null
+  # ESCLUDI node_modules e i repo clonati (dir con .git): sono transitori e
+  # gonfiavano gli snapshot fino a decine di GB (era il vero mangia-disco).
+  # Si salvano solo i RISULTATI (stats, servers.json, cartelle finding).
+  local ex="--exclude=*/node_modules --exclude=*/.git" d
+  for d in "$src"/*/; do
+    [ -d "${d}.git" ] && ex="$ex --exclude=$base/$(basename "$d")"
+  done
+  tar czf "$BK/$base/$(date '+%Y%m%d_%H%M%S').tar.gz" $ex -C "$(dirname "$src")" "$base" 2>/dev/null
   ls -1t "$BK/$base"/*.tar.gz 2>/dev/null | tail -n +$((NKEEP+1)) | xargs -r rm -f
 }
 
@@ -128,8 +135,13 @@ while true; do
     # pulizia cloni orfani, SOLO nelle cwd dei worker (tool_*_wN)
     cwd_e="$(eval echo "$cwd")"
     case "$cwd_e" in *tool_*_w[0-9]*) clean_orphans "$cwd_e" ;; esac
-    # integrità: ripristina se stats assente/corrotto
-    if [ -e "$stats_e" ] && ! stats_ok "$stats_e"; then
+    # integrità: ripristina se la cartella/stats è SPARITA o corrotta.
+    # (dopo il grace period, uno stats assente = cartella cancellata -> auto-restore
+    #  dall'ultimo snapshot, così un incidente tipo-VM1 si ripara da solo).
+    if [ ! -e "$stats_e" ]; then
+      LOG "stats di '$name' ASSENTE (cartella sparita?) -> ripristino da snapshot"
+      restore_dir "$dir_e"
+    elif ! stats_ok "$stats_e"; then
       LOG "stats di '$name' corrotto -> ripristino"; restore_dir "$dir_e"
     fi
     li="$(last_index "$stats_e")"

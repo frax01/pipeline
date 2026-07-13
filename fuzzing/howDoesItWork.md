@@ -110,6 +110,22 @@ Per ogni tool, il report JSON contiene:
 - `exceptions`: il server ha crashato o non ha risposto
 - `arguments`: l'input esatto che ha causato l'eccezione (utile per riprodurre il bug)
 
+Nel contesto del fuzzing "successful" non vuol dire "l'attacco è riuscito". Vuol dire il contrario: il server ha ricevuto un input strano/malevolo e ha retto — ha risposto con un risultato JSON-RPC valido senza morire. Quindi è l'esito sano, quello che vuoi vedere.
+
+Il senso è quello di un crash test, non di un test funzionale:
+
+Non ti interessa se la risposta del server è "giusta" nel merito.
+Ti interessa solo se il server è rimasto in piedi.
+successful = è rimasto in piedi
+
+Quindi la lettura è:
+
+Campo	          Buono o cattivo?
+successful alto	Buono — server robusto, non crasha sotto input ostile
+exceptions = "Server returned error"	Buono — il server rifiuta l'input in modo pulito
+exceptions = "Failed to receive..." su tutti i run	Di solito rumore (problema di avvio/transport), non un bug
+exceptions = "Failed to receive..." su un input specifico mentre gli altri passano	Cattivo — potenziale crash da investigare
+
 ---
 
 ## Parte 2: Protocol Fuzzing

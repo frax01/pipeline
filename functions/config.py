@@ -5,7 +5,8 @@ import sys
 import platform
 import shutil
 
-BASE_DIR = Path.home() / "Desktop/Pipeline"
+BASE_DIR = Path(os.environ["PIPELINE_BASE"]) if os.environ.get("PIPELINE_BASE") \
+    else Path.home() / "Desktop/Pipeline"
 # CONFIG e MCP_GUARD_DIR sono sovrascrivibili via env: servono per eseguire
 # PIU' worker dello stesso tool in parallelo sulla stessa VM senza che si
 # pestino il file di config condiviso / la dir di output del framework.
@@ -57,7 +58,7 @@ UVX = _uvx_path or str(Path.home() / "AppData/Local/Programs/Python/Python313/Sc
 # Dataset unico GitHub+NPX (69.104 server). Colonne: Link, Type (github|npx).
 # Costruito da fuzzing/postprocessing/special/build_unified_excel.py. E' l'UNICO file di input
 # della pipeline: tutti i tool leggono da qui.
-EXCEL_PATH = Path.home() / "Desktop" / "Pipeline" / "0.0. All servers unified (69104).xlsx"
+EXCEL_PATH = BASE_DIR / "0.0. All servers unified (69104).xlsx"
 # Alias mantenuti per retrocompatibilita': ora puntano tutti al dataset unico.
 EXCEL_PATH_NPX = EXCEL_PATH
 EXCEL_PATH_UNIFIED = EXCEL_PATH

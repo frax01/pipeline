@@ -4,8 +4,8 @@
 Buongiorno a tutti. Sono Francesco Martignoni e presento la mia tesi *"How (In)secure Are MCP Servers?"*, un'analisi di sicurezza su larga scala dell'ecosistema Model Context Protocol, mostrando perché la sua sicurezza è un problema, il metodo che ho progettato per misurarla e i risultati principali.
 
 ## Slide 2 — Introduction *(~75s)*
-Il Model Context Protocol è uno standard introdotto da Anthropic a fine 2024, che serve a collegare un modello linguistico (LLM) a servizi esterni — un file system, un database, una API... 
-Il protocollo è costruito su JSON-RPC 2.0, che è un protocollo di comunicazione che permette l'invocazione remota di procedure mediante lo scambio di messaggi strutturati in formato JSON, anche tra sistemi eterogenei attraverso una sintassi rigorosa.
+Il Model Context Protocol è uno standard introdotto da Anthropic a fine 2024, che serve a collegare un modello linguistico (LLM) a servizi esterni, come un file system, un database, una API... Questo espande notevolmente le capacità degli LLM, ma ne amplia anche la superficie di attacco.
+Il protocollo è costruito su JSON-RPC 2.0, che è un protocollo di comunicazione che permette l'invocazione remota di procedure mediante lo scambio di messaggi in formato JSON, anche tra sistemi eterogenei.
 
 L'architettura ha **tre componenti**: 
 1. l'**host** è l'applicazione AI con cui parla l'utente, che è l'unico che comunica con l'LLM,

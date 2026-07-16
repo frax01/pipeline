@@ -4,13 +4,13 @@
 Buongiorno a tutti. Sono Francesco Martignoni e presento la mia tesi *"How (In)secure Are MCP Servers?"*, un'analisi di sicurezza su larga scala dell'ecosistema Model Context Protocol, mostrando perché la sua sicurezza è un problema, il metodo che ho progettato per misurarla e i risultati principali.
 
 ## Slide 2 — Model Context Protocol *(~70s)*
-Il Model Context Protocol è uno standard introdotto da Anthropic a fine 2024, che serve a collegare un modello linguistico (LLM) a servizi esterni, come un file system, un database, una API... Questo espande notevolmente le capacità degli LLM, ma ne amplia anche la superficie di attacco.
+Il Model Context Protocol è uno standard introdotto da Anthropic a fine 2024, che serve a collegare un modello linguistico (LLM) a servizi esterni, come un file system, un database, una API... Questo espande le capacità degli LLM, ma ne amplia anche la superficie di attacco.
 
 L'architettura ha tre componenti: 
 - l'**host**, l'applicazione con cui parla l'utente e l'unico che comunica con l'LLM; 
 - il **client**, uno per server, con una sessione dedicata; 
 - e il **server**, il programma che espone la capacità esterna e può avere **3 tipi di primitive**:
-    - i **tool**, azioni che l'LLM decide di invocare autonomamente durante il ragionamento. Ad esempio un utente può chiedere di creare un file sul Desktop con del contenuto specifico e il modello chiamerà il server *filesystem* e la sua funzione *write_file*, che svolgerà il compito assegnato, 
+    - i **tool**, azioni che l'LLM decide di invocare autonomamente durante il ragionamento. Ad esempio un utente può chiedere di creare un file sul Desktop con del contenuto specifico e il modello chiamerà il server *filesystem*, che svolgerà il compito assegnato, 
     - le **resource**, dati allegati alla conversazione per dare più contesto; 
     - e i **prompt**, scorciatoie pre-impostate per l'utente.
 
@@ -20,7 +20,7 @@ Ci sono infine due meccanismi di trasporto: `stdio` per i server locali e `HTTP/
 Il contributo dello studio è triplice. 
 - Primo, abbiamo analizzato un dataset su larga scala con oltre 69K server raccolti. 
 - Secondo, **SAMS** (Security Analysis of MCP Servers), una pipeline che combina sette framework di sicurezza, con una fase successiva di post-processing e una validazione finale manuale. 
-- Terzo, i risultati empirici trovati: l'ecosistema MCP ha molti problemi, ma la maggior parte sono errori classici di programmazione, non attacchi nuovi specifici degli LLM (sebbene largamente presenti).
+- Terzo, i risultati empirici trovati, con cui vediamo che la maggior parte dei problemi dell'ecosistema MCP sono errori classici di programmazione, non attacchi nuovi specifici degli LLM (sebbene largamente presenti).
 
 ## Slide 4 — Goals *(~40s)*
 L'obiettivo del lavoro è studiare e misurare quanto siano diffuse le vulnerabilità nell'intero ecosistema MCP, e fornire raccomandazioni pratiche per prevenirle.
@@ -55,7 +55,7 @@ Ho definito poi **nove scenari di minaccia**.
 
 ## Slide 7 — SAMS: a Pipeline for MCP Security Analysis *(~35s)*
 Per l'analisi ho sviluppato **SAMS**, una pipeline composta da quattro fasi. 
-- La **Collection**, che raccoglie più di 148K server, da cui analizzandoli ed eliminando i duplicati arriviamo a 69.104 server unici. 
+- La **Collection**, che raccoglie 69.104 server unici. 
 - L'**Analysis** che passa i server ai sette framework, che li analizzano con tecniche complementari. 
 - Il **Post-processing** che filtra i milioni di finding in tre step. 
 - E la **Validation** è una verifica manuale del codice sorgente, che serve a misurare l'affidabilità del metodo.
@@ -79,7 +79,7 @@ Per esempio *mcp-guard*, nella versione originale, per il fuzzing inventava le v
 Dopo aver esposto tutta la sequenza della nostra pipeline, ecco che i sette scanner producono più di 3 milioni di finding grezzi, ma la maggior parte è rumore: vanno filtrati prima di poterli interpretare. 
 Lo faccio in tre stage di post-processing diversi.
 1. Lo **Stage 1** è un filtro regex che elimina il rumore ovvio — per esempio un `api_key` che è solo un placeholder — e scendiamo a più di 73.000 findings.
-2. Lo **Stage 2A** applica regole di dominio che guardano l'identità del server (nome, linguaggio e file_path) — per esempio una query costruita con un'f-string non è una vulnerabilità se il compito di quel server è proprio eseguire SQL — e arriviamo a circa 23.000.
+2. Lo **Stage 2A** applica regole di dominio che guardano lo snippet di codice e l'identità del server (nome, linguaggio e file_path) — per esempio una query costruita con un'f-string non è una vulnerabilità se il compito di quel server è proprio eseguire SQL — e arriviamo a circa 23.000.
 3. Lo **Stage 2B** passa i casi ambigui a un LLM locale, che ne capisce il significato — per esempio una anon key pubblica di Supabase, che sembra un segreto ma è pubblica per definizione.
 
 Alla fine restano 27.958 high-confidence findings. E anticipando la validazione manuale, le vulnerabilità reali stimate sono circa 18.100.

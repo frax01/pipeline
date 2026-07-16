@@ -273,7 +273,6 @@ Verifica un potenziale "Toxic Agent Flow", misurando come i dati passano da sist
 - **Descrizione**: Un'analisi più profonda dell'intero file che certifica la presenza di una catena intera (e grave) d'esfiltrazione. 
 - **Esempio**: Rileva se all'interno dello stesso modulo vengono compiute queste azioni connesse: `fetch` (input esterno) -> elaborazione di logica admin (accesso privilegiato) -> e richiamo di `post`/`publish` (pubblicazione).
 - **Dettaglio Tecnico**: A differenza degli altri, questo metodo non valuta la singola riga, ma scansiona tutto il file tracciando tre flag booleani: `hasExternalInput` (attivato da `/fetch|api|external|remote|input|request/i`), `hasPrivilegedAccess` (attivato da `/private|confidential|secret|internal|admin|privileged/i`), e `hasPublicOutput` (attivato da `/public|create|publish|send|post|share|broadcast/i`). Se tutt'e tre le regex trovano una corrispondenza nello stesso file, lo scanner segnala una vulnerabilità critica di catena.
-ica di catena.
 
 # e le fonti di referenza che l'autore usa come vulnerabilità provate in altri paper?
 

@@ -1,10 +1,30 @@
-# Approfondimenti per il Q&A
+## 1. Credential leak non è statico? Perchè si trova nella tabella dinamica? (slide 11)
+Il credential leak è statico ma ad alta precisione perché non è un pattern generico: matcha i formati esatti delle chiavi dei provider — lo stesso metodo di gitleaks — quindi un match è quasi sempre un segreto reale.
 
-Due concetti che potrebbero chiederti in sede di discussione. Per ognuno: prima la **risposta breve** (quella che dici a voce), poi l'**approfondimento** se vogliono i dettagli.
+Perchè le altre sono classificate come dinamiche?
+- Untrusted content (mcp-scan): non cerca un pattern, capisce che quel tool recupera contenuto da una fonte esterna e lo passa al modello. Quando lo segnala, il significato è chiaro → quasi nessun falso positivo.
+- Sensitive info disclosure (mcp-guard e mcp-server-fuzzer): Invoca davvero il tool e ispeziona la risposta a runtime: se nella risposta compaiono variabili d'ambiente, root:x:, /etc/passwd… la fuga è osservata, non ipotizzata. O c'è o non c'è → 100%.
+- Prompt injection (mcp-shield): legge e interpreta la docstring per trovare istruzioni nascoste ("nascondi i passaggi all'utente", "manda le email a…"). Alta, ma sotto il 100% perché qualche descrizione borderline può sembrare injection senza esserlo.
 
----
+Quindi poi la precisione dipende dalla tecnica di rilevamento.
 
-## 1. Stage 2A — le regole di dominio: come erano fatte e cosa guardavano
+## 2. Cos'è la recall (e perché misuro la precision ma non la recall)
+
+«La **precision** risponde a: *di tutto ciò che gli strumenti segnalano, quanto è realmente una vulnerabilità?* La **recall** risponde alla domanda opposta: *di tutte le vulnerabilità reali che esistono, quante ne hanno effettivamente trovate?* Io misuro la precision — il 64,8% — perché per la recall servirebbe conoscere il numero *totale* delle vulnerabilità presenti, incluse quelle che nessuno strumento ha segnalato; e questo richiederebbe un benchmark etichettato di tutte le vulnerabilità MCP, che non esiste, o l'audit manuale di tutti i 69.000 server, che è impraticabile.»
+
+- **Precision** = TP / (TP + FP) → *"quando lo strumento dice «vulnerabilità», quanto spesso ha ragione?"* Guarda solo le cose **segnalate**.
+- **Recall** = TP / (TP + FN) → *"di tutte le vulnerabilità che ci sono davvero, quante ne ho catturate?"* Include anche i **FN**, cioè le vulnerabilità **mancate**.
+
+**Analogia della rete da pesca:**
+- *Precision* = quanto è pulito il pescato (quanti pesci veri rispetto alla spazzatura tirata su).
+- *Recall* = quanta parte di tutti i pesci del mare sei riuscito a prendere (quanti te ne sono sfuggiti).
+
+**Perché nella tesi misuro la precision ma non la recall:**
+Per calcolare la precision mi basta prendere i finding **segnalati** e verificare a mano se sono veri o falsi (TP vs FP) — ed è quello che ho fatto con l'audit sui 1.579 finding. Per la recall invece mi servirebbero i **False Negative**: cioè le vulnerabilità reali che *nessuno strumento ha segnalato*. Ma non puoi contare ciò che non hai trovato senza:
+- un **benchmark pubblico etichettato** di tutte le vulnerabilità MCP (non esiste), **oppure**
+- l'**audit manuale esaustivo di ogni server** (69.000 server → impraticabile).
+
+## 3. Stage 2A — le regole di dominio: come erano fatte e cosa guardavano
 
 ### Risposta breve
 «Lo Stage 2A è un insieme di regole *ad alta confidenza*, una per categoria di vulnerabilità. Ogni regola non guarda solo lo snippet di codice, ma **triangola tre segnali**: lo snippet, l'**identità del server** (nome, linguaggio, path del file) e il verdetto interno del framework. Le ho costruite empiricamente, leggendo a mano un campione dei finding grezzi categoria per categoria e codificando in regole le strutture ricorrenti dei falsi positivi e dei veri positivi certi. Ogni finding viene marcato come *falso positivo certo*, *vero positivo certo*, oppure *incerto* — e gli incerti passano all'LLM nello Stage 2B.»
@@ -54,36 +74,8 @@ def hc_rules_credential_leak(f):
 ### La domanda scomoda (probabile): "regole fatte a mano sugli stessi dati non rischiano overfitting/bias?"
 Risposta: «Sì, è il rischio intrinseco delle euristiche. Proprio per questo la loro affidabilità **non è assunta ma misurata in modo indipendente** dall'audit manuale contro il codice sorgente reale, che è un ground truth *esterno* alle regole — ed è esattamente ciò che produce il 64,8% di precisione. Inoltre le regole sono conservative: decidono solo i casi su cui sono sicure, tutto il resto lo lasciano all'LLM.»
 
----
+## 4. Perchè per il credential leak abbiamo auditato tutti i 1342 finding?
+- Credential leak → verifica economica e locale. Ogni finding è una stringa candidata in un file, una riga. Per decidere basta guardare quel punto: è una chiave vera o un placeholder / un token di esempio / una chiave pubblica? Non devi capire l'intero server né seguire il data-flow. Quindi controllarli tutti è fattibile in tempo ragionevole → ottieni la precisione esatta della classe (1.258 veri su 1.342 = 94%).
+- Altre categorie → verifica costosa. Per un SQL injection, un command injection, una dangerous capability… devi leggere il codice, capire cosa fa il server e tracciare se l'input controllato dall'attaccante arriva davvero al sink senza sanitizzazione. Sono minuti per finding. Quindi campioni ~15 per categoria e stimi la precisione della classe statisticamente.
 
-## 2. Cos'è la recall (e perché misuro la precision ma non la recall)
-
-### Risposta breve
-«La **precision** risponde a: *di tutto ciò che gli strumenti segnalano, quanto è realmente una vulnerabilità?* La **recall** risponde alla domanda opposta: *di tutte le vulnerabilità reali che esistono, quante ne hanno effettivamente trovate?* Io misuro la precision — il 64,8% — perché per la recall servirebbe conoscere il numero *totale* delle vulnerabilità presenti, incluse quelle che nessuno strumento ha segnalato; e questo richiederebbe un benchmark etichettato di tutte le vulnerabilità MCP, che non esiste, o l'audit manuale di tutti i 69.000 server, che è impraticabile.»
-
-### In dettaglio
-
-Ogni finding può cadere in una di quattro caselle (matrice di confusione):
-
-| | È una vera vulnerabilità | NON è una vulnerabilità |
-|---|---|---|
-| **Lo strumento la segnala** | True Positive (TP) | False Positive (FP) |
-| **Lo strumento NON la segnala** | False Negative (FN) | True Negative (TN) |
-
-- **Precision** = TP / (TP + FP) → *"quando lo strumento dice «vulnerabilità», quanto spesso ha ragione?"* Guarda solo le cose **segnalate**.
-- **Recall** = TP / (TP + FN) → *"di tutte le vulnerabilità che ci sono davvero, quante ne ho catturate?"* Include anche i **FN**, cioè le vulnerabilità **mancate**.
-
-**Analogia della rete da pesca:**
-- *Precision* = quanto è pulito il pescato (quanti pesci veri rispetto alla spazzatura tirata su).
-- *Recall* = quanta parte di tutti i pesci del mare sei riuscito a prendere (quanti te ne sono sfuggiti).
-
-**Perché nella tesi misuro la precision ma non la recall:**
-Per calcolare la precision mi basta prendere i finding **segnalati** e verificare a mano se sono veri o falsi (TP vs FP) — ed è quello che ho fatto con l'audit sui 1.579 finding. Per la recall invece mi servirebbero i **False Negative**: cioè le vulnerabilità reali che *nessuno strumento ha segnalato*. Ma non puoi contare ciò che non hai trovato senza:
-- un **benchmark pubblico etichettato** di tutte le vulnerabilità MCP (non esiste), **oppure**
-- l'**audit manuale esaustivo di ogni server** (69.000 server → impraticabile).
-
-**Cosa implica per i risultati:**
-- Il 64,8% e i ~18.100 riguardano la **qualità di ciò che gli strumenti segnalano**, non la loro **copertura**.
-- Le vulnerabilità reali nell'ecosistema potrebbero essere **di più** di quelle trovate: quello che gli strumenti mancano (i FN) resta fuori dalla misura.
-- Per questo nelle *Limitations* dico "precision, not recall": è un limite noto e **intrinseco al campo** (manca un ground truth), non un difetto del metodo.
-- Il *proxy-based LLM fuzzing* proposto nei Future Works aiuta sul lato **sfruttabilità a runtime**, ma non risolve del tutto la recall.
+QUindi li ho classificati per pattern, non uno a uno. Un credential leak è una decisione locale — guardo il formato della stringa e il file: sk-, AIzaSy, ghp_ in un .env committato è vero; una anon key di Supabase o una config Firebase è pubblica per design; una sequenza tipo your_api_key è un placeholder. Raggruppo per formato e propago il verdetto

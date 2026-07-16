@@ -32,7 +32,7 @@ In particolare, i problemi di sicurezza nascono da tre origini. Due sono dentro 
 
 ## Slide 5 — Research Questions *(~25s)*
 Da qui, ecco le tre domande di ricerca. 
-- La prima: in cui ci chiediamo quanto siano affidabili gli attuali framework di analisi di sicurezza per MCP e quanti finding sopravvivono ad un'analisi manuale? 
+- La prima: in cui ci chiediamo quanto siano affidabili gli attuali framework di analisi di sicurezza per MCP? 
 - La seconda: quali classi di vulnerabilità sono più diffuse nell'ecosistema? 
 - La terza: quali raccomandazioni pratiche possono ridurre questi rischi?
 

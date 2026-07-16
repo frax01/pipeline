@@ -152,3 +152,4 @@ QUindi li ho classificati per pattern, non uno a uno. Un credential leak è una 
 - External attacker della slide 4 e 6 sono praticamente uguali, non è una ripetizione?
 - Posso togliere dalla slide 10 le 18.100 estimated vulnerabilities?
 - Forse togliere la slide di data collection e dirla velocemente quando introduco la pipeline?
+- La slide 17 con le references come la gestisco?

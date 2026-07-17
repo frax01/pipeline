@@ -143,13 +143,3 @@ Per il prof, in una frase:
 - Altre categorie → verifica costosa. Per un SQL injection, un command injection, una dangerous capability… devi leggere il codice, capire cosa fa il server e tracciare se l'input controllato dall'attaccante arriva davvero al sink senza sanitizzazione. Sono minuti per finding. Quindi campioni ~15 per categoria e stimi la precisione della classe statisticamente.
 
 QUindi li ho classificati per pattern, non uno a uno. Un credential leak è una decisione locale — guardo il formato della stringa e il file: sk-, AIzaSy, ghp_ in un .env committato è vero; una anon key di Supabase o una config Firebase è pubblica per design; una sequenza tipo your_api_key è un placeholder. Raggruppo per formato e propago il verdetto
-
-
-
-
------
-
-- External attacker della slide 4 e 6 sono praticamente uguali, non è una ripetizione?
-- Posso togliere dalla slide 10 le 18.100 estimated vulnerabilities?
-- Forse togliere la slide di data collection e dirla velocemente quando introduco la pipeline?
-- La slide 17 con le references come la gestisco?

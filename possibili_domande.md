@@ -108,6 +108,48 @@ Il processo è empirico e iterativo, sempre lo stesso:
 4. Per ogni cluster decido keep/drop e codifico il perché in una regola: il cluster "test file" → una regex sul path; il cluster "placeholder" → una regex sulla stringa; il cluster "honeypot" → aggiungo quei nomi a una lista.
 5. Ri-eseguo, guardo il residuo, aggiungo regole. (È qui che nascono i "round" di tightening: ogni giro stringo le regole sui FP rimasti — es. ho ristretto _CMD_FUZZ_SHELL_OUTPUT a contenuti shell reali come uid=0(root) invece del semplice echo di /etc/passwd.)
 
+### Inolte si scartano i dati o si tengono nei vari stage?
+La risposta secca
+Non sono simmetrici, e il punto chiave è: il default non è mai "VP".
+
+Stage 1 è binario (keep/drop) e le regole sono scritte quasi tutte per eliminare. Il default è keep.
+Stage 2A è ternario (HC-FP / HC-VP / UNCERTAIN) e ha regole in entrambe le direzioni. Il default è UNCERTAIN.
+Quindi alla tua domanda "chi non rientra nelle regole allora è VP?" → no, mai, in nessuno dei due stadi. Ma per due motivi diversi.
+
+Stage 1 — solo regole di eliminazione, default = tieni
+In stage1_filter.py ogni categoria è una funzione keep_*(f) -> bool. Contando i rami in mcp-guard: 84 return False contro 21 return True. E i 21 True non sono "questo è un VP": sono quasi tutti scorciatoie di uscita anticipata (nel codice sono letteralmente commentati # VP forte: keep, es. stage1_filter.py:156, :270, :341) che saltano i controlli FP rimanenti — più l'ultimo return True di ogni funzione, che è il default.
+
+Struttura tipica:
+
+def keep_command_injection_static(f) -> bool:
+    if is_honeypot(f):              return False   # drop
+    if _TEST_FILE.search(file):     return False   # drop
+    if _COMMENTED.match(code):      return False   # drop
+    if _CIS_LITERAL_EXAMPLE(code):  return False   # drop
+    if _REAL_INJECTION(code):       return True    # scorciatoia
+    if _CIS_FP_PATTERN(code):       return False   # drop
+    return True                                    # ← DEFAULT: sopravvivi
+Il falso amico da evitare in discussione: sopravvivere allo Stage 1 non significa essere un VP, significa solo "sei ancora un candidato, passi allo stadio dopo". Stage 1 non promuove niente, si limita a togliere.
+
+Stage 2A — regole in entrambe le direzioni, default = non decido
+Qui il default cambia natura. In stage2_pipeline.py ogni hc_rules_* termina con return "UNCERTAIN", "...". Le regole esplicite sono asimmetriche ma bidirezionali:
+
+Tool	regole HC-FP	regole HC-VP
+mcp-guard	192	56
+mcp-watch	219	75
+mcp-check	83	39
+mcp-shield	28	26
+Circa 3 a 1 a favore dell'eliminazione, ma le regole di conferma esistono eccome e sono quelle che producono i VP certi (provider_key_format_recognized, google_oauth_client_secret_format, direct_user_param_in_url…).
+
+Perché l'asimmetria, e come difenderla
+È una conseguenza dei volumi e del costo dell'errore:
+
+Stage 1 gira su milioni di finding. A quella scala puoi solo scartare in modo aggressivo: non ti puoi permettere di dichiarare VP qualcosa basandoti su una regex, perché ogni falso "VP" si propagherebbe fino in fondo. Quindi elimina e basta.
+Stage 2A gira su centinaia. Qui te lo puoi permettere di essere chirurgico in entrambi i versi, perché hai letto il codice reale dei server e conosci il contesto.
+Il punto forte per la difesa: un finding diventa VP solo per decisione esplicita — o una regola HC-VP, o il verdetto LLM dello Stage 2B. Mai per assenza di regole. La pipeline non può gonfiare i VP per omissione: se dimentichi una regola, il finding finisce UNCERTAIN e lo decide l'LLM, non diventa automaticamente un VP.
+
+Il caveat onesto, se te lo chiedono: il costo sta dall'altra parte. Uno Stage 1 aggressivo verso il FP può scartare un VP reale, e quella perdita è silenziosa — non la vedi nella precisione del 64,8%, che misura solo la qualità di ciò che è sopravvissuto, non ciò che hai buttato. È un trade-off deliberato precision-over-recall, non una svista: con 69k server l'obiettivo era un set di VP azionabili, non l'esaustività.
+
 ### Qualcos'altro, l'entropia:
 L'entropia di Shannon è una misura di quanto una stringa è "casuale"/imprevedibile, espressa in bit per carattere. Serve a distinguere un segreto vero (che è casuale) da un placeholder (che è una parola leggibile), senza sapere il formato.
 

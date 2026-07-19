@@ -3,7 +3,7 @@
 ## Slide 1 — Titolo *(~15s)*
 Buongiorno a tutti. Sono Francesco Martignoni e presento la mia tesi, che è un'analisi di sicurezza su larga scala dell'ecosistema Model Context Protocol.
 
-## Slide 2 — Model Context Protocol *(~70s)*
+## Slide 2 — Model Context Protocol *(~55s)*
 Il Model Context Protocol è uno standard introdotto da Anthropic a fine 2024, che serve a collegare un modello linguistico (LLM) a servizi esterni, come un file system, un database, una API... Questo espande le capacità degli LLM, ma ne amplia anche la superficie di attacco.
 
 L'architettura ha tre componenti: 
@@ -16,49 +16,48 @@ L'architettura ha tre componenti:
 
 Ci sono due meccanismi di trasporto: `stdio` per i server locali e `HTTP/SSE` per quelli remoti.
 
-## Slide 3
-Vediamo un possibile flusso.
-1. L'utente chiede all'applicazione (attraverso un prompt) di creare un file report.txt sul Desktop.
-2. L'host gira la richiesta al modello insieme alla lista di ciò che i server mettono a disposizione, in questo caso due server, filesystem e web. Il modello decide da solo quale usare: sceglie write_file del filesystem, e ne costruisce gli argomenti.
+## Slide 3 - Execution Flow *(~60s)*
+Vediamo un esempio di un flusso di esecuzione in cui un utente chiede di creare un file report.txt sul Desktop.
+1. Il primo passo è l'utente che manda il prompt all'applicazione AI.
+2. L'host comunica all'LLM la richiesta insieme alla lista di ciò che i server mettono a disposizione (in questo caso filesystem e web). Il modello decide da solo quale server e tool usare: sceglie write_file del filesystem, e ne costruisce gli argomenti, path con il percorso di report.txt nel Desktop e content con il contenuto di report.
 3. L'host instrada la chiamata al server attraverso il client dedicato,
-4. il server la esegue creando il file
+4. il server esegue la chiamata creando il file
 
 Notate che ogni server espone tre primitive — tool, resource e prompt — ma il modello può invocarne solo una: i tool. Resource e prompt le chiama l'utente.
 
-Il punto chiave, anche per la sicurezza, è questo: è il modello a scegliere quale tool chiamare e a produrne gli argomenti.
+Il punto chiave, anche per la sicurezza, è che è il modello a scegliere quale tool chiamare e a produrne gli argomenti.
 
-## Slide 4 — Attacker Models & Threat Scenarios *(~100s)*
-Per formalizzare l'analisi ho definito tre modelli di attaccante e 9 nove scenari di minaccia e il loro collegamento mostra chiaramente che tipi di problemi di sicurezza possono nascere. 
+## Slide 4 — Attacker Models & Threat Scenarios *(~55)*
+Per formalizzare l'analisi ho definito 3 modelli di attaccante e 9 scenari di minaccia e il loro collegamento mostra che tipi di problemi di sicurezza possono nascere. 
 - il primo: lo *sviluppatore malevolo*, che pubblica un server creato appositamente per danneggiare l'utente. Questo avviene con codice malevolo o backdoor come ad esempio nel **tool poisoning:** dove la descrizione di un tool manipola l'LLM a compiere un'azione dannosa.
 - poi l'*utente malevolo*, che abusa delle debolezze involontarie di un server legittimo, come un errore dello sviluppatore o codice insicuro, ad esempio la **credential leak:** credenziali in chiaro nel codice sorgente.
 - il terzo: l'*attaccante esterno*, che inietta contenuto su una fonte esterna che un tool di un server recupera e passa all'LLM, aprendo un canale di injection indiretta.
 
-## Slide 4 — Goal & Research Questions *(~40s)*
+## Slide 5 — Goal & Research Questions *(~35s)*
 L'obiettivo del lavoro è studiare e misurare quanto siano diffuse le vulnerabilità nell'intero ecosistema MCP, e fornire raccomandazioni pratiche per prevenirle.
 
-Da qui, ecco le tre domande di ricerca. 
-- La prima: in cui ci chiediamo quanto siano affidabili gli attuali framework di analisi di sicurezza per MCP? 
+Da qui, ecco le tre domande di ricerca, che sono il filo conduttore del lavoro. 
+- La prima: in cui ci chiediamo quanto siano affidabili gli attuali framework esistenti di analisi di sicurezza per MCP? 
 - La seconda: quali classi di vulnerabilità sono più diffuse nell'ecosistema? 
 - La terza: quali raccomandazioni pratiche possono ridurre questi rischi?
-
 
 ## Slide 6 — Main Contributions *(~35s)*
 Il contributo dello studio è triplice. 
 - Primo, abbiamo analizzato un dataset su larga scala con oltre 69K server raccolti. 
-- Secondo, **SAMS** (Security Analysis of MCP Servers), una pipeline che combina sette framework di sicurezza, con una fase successiva di post-processing e una validazione finale manuale. 
-- Terzo, i risultati empirici trovati, con cui vediamo che la maggior parte dei problemi dell'ecosistema MCP sono errori classici di programmazione, non attacchi nuovi specifici degli LLM (sebbene largamente presenti).
+- Secondo, **SAMS**, una pipeline che combina sette framework di sicurezza, con una fase successiva di post-processing e una validazione finale manuale. 
+- Terzo, i risultati empirici trovati, con cui vediamo che la maggior parte dei problemi dell'ecosistema MCP sono classici errori di programmazione, non attacchi nuovi specifici degli LLM (sebbene largamente presenti).
 
 ## Slide 7 — SAMS: a Pipeline for MCP Security Analysis *(~35s)*
 Per l'analisi ho sviluppato **SAMS**, una pipeline composta da quattro fasi. 
-- La **Collection**, che raccoglie 69.104 server unici. 
-- L'**Analysis** che passa i server ai sette framework, che li analizzano con tecniche complementari. 
-- Il **Post-processing** che filtra i milioni di finding in tre step. 
-- E la **Validation** è una verifica manuale del codice sorgente, che serve a misurare l'affidabilità del metodo.
+- La **Collezione**, che raccoglie 69.104 server unici. 
+- L'**Analisi** che passa questi server ai sette framework, che li analizzano con tecniche complementari. 
+- Il **Post-processing** che filtra i milioni di dati trovati in tre step. 
+- E la **Validazione** è una verifica manuale del codice sorgente, che serve a misurare l'affidabilità del metodo.
 
 ## Slide 8 — Data Collection *(~25s)*
 In particolare, nella fase di Collection, un web crawler recupera più di 148K server da 18 registry pubblici diversi. Da qui normalizzo gli URL, calcolo un hash del contenuto, elimino i duplicati e arrivo alla lista finale di 69.104 server unici.
 
-## Slide 9 — Framework Selection *(~60s)*
+## Slide 9 — Framework Selection *(~80s)*
 I sette framework sono stati scelti a partire da 26 strumenti proposti nello stato dell'arte e, come potete vedere in alto nella tabella, li ho sistematizzati per tecnica di analisi:
 - analisi statica del codice, 
 - analisi semantica via LLM, 
@@ -81,45 +80,44 @@ Lo faccio in tre stage di post-processing diversi.
 3. Lo **Stage 2B** passa i casi ambigui a un LLM locale, che ne capisce il significato — per esempio una anon key pubblica di Supabase, che sembra un segreto ma è pubblica per definizione.
 4. Inoltre mcp-scan non ha partecipato a questa parte di analisi poichè già fatta con la sua stessa logica, che ci fornisce più di 4K dati.
 
-Alla fine restano 27.958 high-confidence findings.
+Alla fine abbiamo 27.958 dati ad alta confidenza.
 
-## Slide 11 — Manual Audit Validation: Framework Reliability (RQ1) *(~55s)*
+## Slide 11 — Manual Audit Validation: Framework Reliability (RQ1) *(~40s)*
 Per rispondere alla prima domanda, ho validato la pipeline con una verifica manuale del codice sorgente, ispezionando più di 1500 dati. 
 Il risultato è una precisione del 64,8%: quindi i framework sono utili, ma comunque rumorosi.
 
-Il dato interessante è che la precisione è disomogenea. Le categorie dinamiche e semantiche confermano tra l'80 e il 100%, perché guardano il comportamento a runtime o il significato. Le categorie statiche a regex confermano molto meno, perché non vedono il contesto né il data-flow.
+Il dato interessante è che la precisione è disomogenea. Le categorie dinamiche e semantiche confermano tra l'80 e il 100%, perché guardano il comportamento a dinamico o il significato. Le categorie statiche, valutate ocn espressioni regolari, confermano molto meno, perché non vedono il contesto né il flusso di dati.
 
-## Slide 12 — Some misconfigurations and intentionally malicious examples *(~50s)*
+## Slide 12 — Some misconfigurations and intentionally malicious examples *(~40s)*
 Per rendere concreti questi scenari, ecco tre esempi.
-- Il primo è intenzionalmente malevolo, un exploit: una descrizione di tool avvelenata. Un semplice tool `add` nasconde nella docstring un'istruzione — manda tutte le email all'attaccante e non dirlo all'utente. Il modello può interpretarla come parte del comportamento del tool.
-- Il secondo è una misconfiguration: un tool onesto, `execute_command`, che esegue un comando di shell arbitrario sull'host — la capacità è dichiarata, ma è pericolosa se concessa a qualsiasi chiamante, incluso un LLM manipolato.
-- Il terzo, anch'esso una misconfiguration, è un credential leak: uno sviluppatore che pubblica il server con una API key in chiaro.
+- Il primo è intenzionalmente malevolo: una descrizione di tool avvelenata. Un semplice tool `add` espone un'istruzione che dice di mandare tutte le email all'attaccante e non dirlo all'utente. Il modello può interpretarla come parte del comportamento del tool.
+- Il secondo è una vulnerabilità: un tool onesto, `execute_command`, che esegue un comando di shell arbitrario — la capacità è dichiarata, ma è pericolosa se concessa a qualsiasi chiamante, incluso un LLM manipolato.
+- Il terzo, anch'esso una vulnerabilità, è un credential leak: uno sviluppatore che pubblica il server con una API key in chiaro.
 
-## Slide 13 — Vulnerability Distribution (RQ2) *(~45s)*
-Per la seconda domanda ho aggregato i 27K finding nei nove scenari. 
+## Slide 13 — Vulnerability Distribution (RQ2) *(~35s)*
+Per la seconda domanda sulla distribuzione delle vulnerabilità, ho aggregato i 27K dati nei nove scenari. 
 La cosa più importante è separare due cose diverse.
-Il numero più grande, 15.436, è protocol non-compliance: sono problemi di robustezza e di qualità, quindi server che non seguono correttamente le specifiche e sono implementati male.
-Le vere vulnerabilità di sicurezza invece sono 12.522, concentrate soprattutto nelle prime categorie, dall'improper input validation all'untrusted content.
-Il messaggio chiave è che gli attacchi specifici degli LLM, come il tool poisoning, così presenti in letteratura, nella pratica sono molto rari.
+Il numero più grande, 15.436, è la non conformità al protocollo: sono problemi di robustezza e di qualità, quindi server che non seguono correttamente le specifiche e sono implementati male.
+Le vere vulnerabilità di sicurezza invece sono 12.522, concentrate soprattutto nelle prime categorie, dalla validazione impropria dell'input al contenuto non attendibile.
 
-## Slide 14 — Developer Recommendations (RQ3) *(~55s)*
-Per la terza domanda ho raggruppato le raccomandazioni in tre principi.
+## Slide 14 — Developer Recommendations (RQ3) *(~50s)*
+Per la terza domanda ho raggruppato le raccomandazioni in tre principi chiave.
 
 1. Il primo: trattare ogni input come non attendibile. Quindi validare gli argomenti dei tool nel codice, mai delegando il lavoro all'LLM; e trattare il contenuto recuperato da fonti esterne come dato, non come istruzione.
-2. Il secondo: minimo privilegio. Restituire solo i dati necessari e non l'intero ambiente, tenere i segreti fuori dal codice sorgente prima di pubblicare, e isolare le capacità pericolose — shell, file system, rete — invece di esporle senza restrizioni.
-3. Il terzo: conformarsi al protocollo MCP, che è il problema più diffuso in assoluto; e, per chi installa, usare solo server fidati e verificati.
+2. Il secondo: minimo privilegio. Restituire solo i dati necessari e non l'intero ambiente, tenere i segreti fuori dal codice sorgente prima di pubblicare, e isolare le capacità pericolose invece di esporle senza restrizioni.
+3. Il terzo: conformarsi al protocollo MCP, che è il problema più diffuso e, per chi installa, usare solo server fidati e verificati.
 
-Il punto è che quasi tutte queste sono secure coding classico applicato a una superficie nuova — pratiche che gli sviluppatori già conoscono.
+Il punto è che quasi tutte queste sono problemi di sicurezza classici applicati a una superficie nuova.
 
-## Slide 15 — Limitations *(~50s)*
+## Slide 15 — Limitations *(~45s)*
 Alcuni limiti, importanti per interpretare i risultati e il lavoro svolto.
 1. Il primo riguarda il dataset: analizzo solo server pubblici e open-source, quindi i server privati restano fuori; ed è uno snapshot di un ecosistema in rapida evoluzione, quindi non osservo come i server cambiano nel tempo.
 2. Il secondo è di interpretazione: protocol non-compliance e vulnerabilità sfruttabili vanno letti separatamente.
 3. Il terzo riguarda la precisione, cioè quanti dei finding segnalati sono reali, e non il recall, perché non esiste un benchmark ufficiale di vulnerabilità MCP; inoltre la precisione è stimata su un campione, non validando a mano tutto, e una parte della classificazione passa da un LLM, che può introdurre incertezza.
 
-## Slide 16 — Conclusions & Future Works *(~50s)*
+## Slide 16 — Conclusions & Future Works *(~45s)*
 In conclusione, tre take-away. 
-- I server MCP espongono una superficie di attacco ampia e in rapida crescita, inoltre con centinaia o migliaia di server nuovi che escono ogni mese. 
+- I server MCP espongono una superficie di attacco ampia e in rapida crescita, con centinaia o migliaia di server nuovi che escono ogni mese. 
 - La maggior parte dei problemi sono errori classici di sicurezza del software, non attacchi specifici degli LLM (sebbene molto presenti). 
 - E i framework di analisi aiutano, ma vanno validati e analizzati per essere resi affidabili.
 

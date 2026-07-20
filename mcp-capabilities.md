@@ -122,14 +122,28 @@ MCP ha tre primitive fondamentali lato server. Vale la pena saperle distinguere 
 Le capabilities non sono solo "sì/no": possono contenere **sotto-capacità** che descrivono funzioni più fini. Le due principali sono:
 
 ### `listChanged` — "la lista è cambiata"
-- **Cosa fa**: indica il supporto alle **notifiche di cambiamento di una lista**. Quando l'elenco di prompt, risorse o tool cambia (uno viene aggiunto, rimosso, modificato), il server può **notificare** il client, così il client aggiorna la sua vista senza doverla richiedere di continuo.
-- **Dove si applica**: **prompts, resources e tools** (tutti e tre gli elenchi).
-- *Esempio*: un server aggiunge un nuovo tool a runtime → invia una notifica `listChanged` → il client ricarica la lista dei tool disponibili.
+- **Cosa fa**: indica il supporto alle **notifiche di cambiamento di una lista**. Quando l'elenco cambia (un elemento viene aggiunto, rimosso, modificato), chi possiede la lista **notifica** l'altra parte, che aggiorna la sua vista senza doverla richiedere di continuo.
+- **Dove si applica**: **prompts, resources e tools** (le tre liste del *server*) **e anche i `roots`** (la lista del *client*).
+- *Esempio (server)*: un server aggiunge un nuovo tool a runtime → invia una notifica `listChanged` → il client ricarica la lista dei tool disponibili.
+- *Esempio (client)*: l'utente apre una nuova cartella di lavoro → il client invia `listChanged` sui `roots` → il server sa che i confini del filesystem sono cambiati.
+
+> ⚠️ **Attenzione a un dettaglio che il prof potrebbe verificare**: `listChanged` **non è solo del server**. Lo dichiara sempre **chi possiede la lista e manda la notifica**. Le tre primitive (prompts/resources/tools) sono del server, ma i `roots` sono del client → quindi `listChanged` esiste **da entrambe le parti**.
 
 ### `subscribe` — "avvisami su questo elemento specifico"
 - **Cosa fa**: permette al client di **abbonarsi (sottoscrivere) ai cambiamenti di un singolo elemento**, per ricevere aggiornamenti quando *quello specifico contenuto* cambia.
-- **Dove si applica**: **solo alle risorse (`resources`)**.
+- **Dove si applica**: **solo alle risorse (`resources`)** → quindi è una capability **esclusivamente del server**. Non esiste un equivalente lato client.
 - *Esempio*: il client si abbona a un file di log. Ogni volta che il file cambia, riceve una notifica di aggiornamento per quella risorsa.
+
+### Chi dichiara cosa (riepilogo)
+
+| Lista | Chi la possiede | `listChanged` | `subscribe` |
+|---|---|---|---|
+| `prompts` | Server | ✅ (server) | — |
+| `resources` | Server | ✅ (server) | ✅ (server) |
+| `tools` | Server | ✅ (server) | — |
+| `roots` | Client | ✅ (client) | — |
+
+Regola generale: **la sotto-capability la dichiara chi tiene la lista e invia la notifica**, non chi la riceve.
 
 ### Differenza chiave (importante per il prof)
 
@@ -137,7 +151,8 @@ Le capabilities non sono solo "sì/no": possono contenere **sotto-capacità** ch
 |---|---|---|
 | **Cosa monitora** | L'**elenco** (quali elementi esistono) | Il **contenuto di un singolo elemento** |
 | **Domanda a cui risponde** | "È cambiata la *lista* di ciò che offri?" | "È cambiato *questo specifico* contenuto?" |
-| **Si applica a** | prompts, resources, tools | solo resources |
+| **Si applica a** | prompts, resources, tools (server) + roots (client) | solo resources (server) |
+| **Da che parte sta** | server **e** client | solo server |
 
 In sintesi: `listChanged` = "la lista degli oggetti è cambiata"; `subscribe` = "abbonami ai cambiamenti di *questo* oggetto".
 
@@ -207,7 +222,10 @@ R: **Tool = azione** che il modello può eseguire (model-controlled). **Resource
 R: È la capacità del **server di chiedere al client** di far generare del testo dall'LLM. È utile perché il server può usare l'intelligenza del modello **senza avere una propria API/chiave**, restando sotto il controllo del client/utente.
 
 **D: Differenza tra `listChanged` e `subscribe`?**
-R: `listChanged` notifica che è cambiato l'**elenco** di prompt/resource/tool. `subscribe` (solo per le resource) permette di abbonarsi ai cambiamenti del **contenuto di un singolo elemento**.
+R: `listChanged` notifica che è cambiato l'**elenco**; `subscribe` (solo per le resource) permette di abbonarsi ai cambiamenti del **contenuto di un singolo elemento**.
+
+**D: `listChanged` e `subscribe` sono capability del client o del server?**
+R: Le dichiara sempre **chi possiede la lista e invia la notifica**. `listChanged` sta **da entrambe le parti**: server per prompts/resources/tools, client per i `roots`. `subscribe` invece è **solo del server**, perché riguarda unicamente le `resources`.
 
 **D: A cosa serve `experimental`?**
 R: A dichiarare il supporto a **funzionalità non standard/sperimentali**, così da poter estendere il protocollo senza romperne la compatibilità.

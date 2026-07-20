@@ -57,6 +57,19 @@ Uno scanner segnala `cursor.execute(f"... {table}")` come **SQL injection**, per
 
 → Conclusione: **HC-FP**. Eseguire SQL arbitrario *è la funzione voluta* di quel server, non una vulnerabilità. Lo **stesso identico snippet** in un server che *non* è un runner SQL, dove `table` arriva da un argomento non attendibile del tool, sarebbe invece un vero positivo. È esattamente il **contesto** che un semplice regex (Stage 1) non vede e che lo Stage 2A aggiunge tramite l'identità del server.
 
+### Obiezione probabile: "e se il SQL non lo scrive l'utente, ma arriva da untrusted content (l'utente 'se lo perde')? Non è allora una vulnerabilità / misconfiguration?"
+
+Qui **il rischio è reale** — ma non è "SQL injection" e non è un difetto del codice di `execute_sql`: è **compositivo** e vive in altre due categorie.
+
+- **Data-flow:** untrusted content → contesto dell'agente → l'LLM viene manipolato (**prompt injection indiretta**) → chiama `execute_sql("DROP TABLE users")` → il server esegue fedelmente.
+- **Non è un bug del server:** un `execute_sql` *perfettamente parametrizzato* eseguirebbe comunque quel `DROP TABLE`. Il problema nasce dalla **composizione** (sorgente untrusted + sink potente + agente autonomo, senza isolation né human-in-the-loop), non dal sorgente del server.
+- **Dove vive → due categorie che ho già:** `untrusted-content` sulla **sorgente** (il vettore vero) + `dangerous-capability`/`least-privilege` sul **sink** `execute_sql` (ciò che allarga il blast radius). Sommandole ottieni lo scenario; forzarlo su `execute_sql` come injection no.
+- **Perché lo scanner per-server non lo segnala lì:** analizza un server in **isolamento**, non può vedere il cablaggio di deployment tra sorgente e sink — è proprietà **di sistema**, e la cattura segnalando i due server separatamente.
+- **Test della fix:** parametrizzare non ferma nulla; le cure reali (ruolo DB **read-only**, **conferma umana** sulle operazioni distruttive, **context/tool isolation**) stanno tutte in least-privilege + untrusted-content → è lì il rischio.
+- **Letteratura:** è il *parasitic toolchain attack* di **Mind Your Server [12]** (MCP manca di *context-tool isolation* e *least-privilege*). Nemmeno loro lo chiamano SQL injection.
+
+**Frase pronta:** «Hai ragione che il sistema può essere insicuro, ma la vulnerabilità è compositiva: `untrusted-content` sulla sorgente + `least-privilege` sul sink `execute_sql`. Il server non ha un bug e la sua f-string non è iniettabile — parametrizzarla non fermerebbe l'attacco; le fix reali (ruolo read-only, conferma umana, isolamento del contesto) stanno in quelle due categorie, non in SQL injection. È il parasitic toolchain di Mind Your Server, e classificarlo nella casella giusta è precisione, non una lacuna.»
+
 **Esempio di pseudo-regola (categoria credential-leak):**
 ```python
 def hc_rules_credential_leak(f):

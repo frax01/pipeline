@@ -1,27 +1,29 @@
 # State of the Art — i paper con cui mi confronto, spiegati semplice
 
-Questo documento serve a capire, in modo discorsivo, **cosa fa ogni paper dello stato dell'arte** citato nella presentazione e **con che tecnica**, così da poterlo raccontare a voce anche a chi non è del campo. In fondo trovi un catalogo compatto di tutti gli altri paper letti per la tesi.
+Questo documento spiega, in modo discorsivo, **cosa guarda ogni paper** (il suo focus) e **come lo guarda** (la tecnica), così da poterlo raccontare a voce anche a chi non è del campo. Per ogni paper trovi due righe-ancora (**Cosa guarda / Come lo guarda**) seguite dalla spiegazione. In fondo, un catalogo compatto di tutti gli altri paper letti per la tesi.
 
 ## Quattro parole prima di iniziare (mini-glossario)
 
-- **Server MCP**: un piccolo programma che offre a un'AI degli "strumenti" (leggere un file, interrogare un database, cercare sul web…). L'AI non li scrive, li *usa*.
+- **Server MCP (o "plugin")**: un piccolo programma che offre a un'AI degli "strumenti" (leggere un file, interrogare un database, cercare sul web…). L'AI non li scrive, li *usa*.
+- **Tool (strumento)**: la singola funzione esposta da un server. Ha un *nome*, una *descrizione* in linguaggio naturale e uno *schema* dei parametri. La descrizione è ciò che l'AI legge per decidere se e come usarlo.
 - **SDK**: la "cassetta degli attrezzi" ufficiale (una per linguaggio: Python, TypeScript, Go…) con cui si costruiscono client e server MCP. Nasconde i dettagli del protocollo.
-- **Registry / marketplace**: i "negozi" dove trovi e installi i server MCP (mcp.so, Smithery, npm…).
-- **Analisi statica**: leggere il codice sorgente *senza eseguirlo*, per cercare pattern pericolosi. **Analisi dinamica**: farlo *girare* e guardare come si comporta.
+- **Host / client**: l'app con dentro l'AI (es. Claude Desktop, Cursor). L'host decide quali tool chiamare in base alla richiesta dell'utente.
+- **Registry / marketplace**: i "negozi" dove trovi e installi i server (mcp.so, PulseMCP, Smithery, npm…).
+- **Analisi statica**: leggere il codice/le descrizioni *senza eseguirli*. **Analisi dinamica**: farli *girare* davvero e guardare come si comportano.
 
 ## La frase da ricordare
 
-Tutti questi lavori studiano la sicurezza di MCP, ma ognuno guarda **una fetta**: chi conta i server, chi misura la salute dell'ecosistema, chi cerca un tipo specifico di attacco. Il mio lavoro è l'unico che mette insieme **scala grande + analisi per-singolo-server + 7 strumenti diversi** sullo stesso dataset (69.104 server). Nella slide lo dico coi numeri: *lo studio precedente più grande arriva a 67.057 server [8], gli altri stanno tra 1.360 e 8.060 [9–12], io a 69.104.*
+Tutti questi lavori studiano la sicurezza di MCP, ma ognuno guarda **una fetta diversa** e con **una tecnica diversa**. Alcuni contano quanti server esistono, altri leggono il codice, altri ancora fanno *partire* un attacco per vedere se funziona. Il mio lavoro è l'unico che mette insieme **scala grande + analisi per-singolo-server + 7 strumenti diversi** (69.104 server). Nella slide lo dico coi numeri: *lo studio precedente più grande arriva a 67.057 server [8], gli altri stanno tra 1.360 e 8.060 [9–12], io a 69.104.*
 
-| Rif. | Paper | Quanti server | Cosa misura | Come |
-|:----:|-------|--------------:|-------------|------|
-| **[8]** | Toward Understanding Security Issues | 67.057 | sicurezza dell'**ecosistema** (host + registry + server) | qualitativo + conteggio su 6 registry |
-| **[9]** | A Measurement Study (MCPCrawler) | 8.060 | **salute** dell'ecosistema (mercato/server/client) | crawler su 6 marketplace |
-| **[10]** | We Urgently Need Privilege Management | 2.562 | uso di **API privilegiate** | analisi statica |
-| **[11]** | MCP at First Glance | 1.899 | **sicurezza + manutenibilità** dei server | analisi statica ibrida |
-| **[12]** | Mind Your Server | 1.360 (12.230 tool) | una **nuova classe di attacco** (parasitic toolchain) | scanner MCP-SEC |
-| — | **Compatibility at a Cost** | 10 **SDK** (non server) | falle nella **specifica** del protocollo | IR universale + LLM |
-| — | **Il mio lavoro** | **69.104** | vulnerabilità per-server, 17 categorie | 7 framework + pipeline a 3 stage |
+| Rif. | Paper | Oggetto (cosa guarda) | Tecnica (come) | Numeri |
+|:----:|-------|-----------------------|----------------|-------:|
+| **[8]** | Toward Understanding Security Issues | l'**ecosistema**: host + registry + server | qualitativo (design) + conteggio | 67.057 server |
+| **[9]** | A Measurement Study (MCPCrawler) | la **salute** dell'ecosistema (mercato/server/client) | crawler + statistica sui metadati | 8.060 server |
+| **[10]** | We Urgently Need Privilege Management | l'**uso di API pericolose** nel codice dei server | analisi statica: parser + firme di API | 2.562 server |
+| **[11]** | MCP at First Glance | **sicurezza + qualità** del codice dei server | analisi statica ibrida (SAST + scanner MCP) | 1.899 server |
+| **[12]** | Mind Your Server | una **nuova catena d'attacco** (parasitic toolchain) | LLM classifica i tool + verifica dinamica reale | 1.360 server / 12.230 tool |
+| — | **Compatibility at a Cost** | le falle nella **specifica** e nei 10 **SDK** | IR universale + analisi statica-LLM | 10 SDK, 1.265 rischi |
+| — | **Il mio lavoro** | **vulnerabilità per-server**, 17 categorie | 7 framework + pipeline a 3 stage | 69.104 server |
 
 ---
 
@@ -30,24 +32,22 @@ Tutti questi lavori studiano la sicurezza di MCP, ma ognuno guarda **una fetta**
 ### [8] Toward Understanding Security Issues in the MCP Ecosystem
 *Xiaofan Li, Xing Gao — University of Delaware, ott. 2025*
 
-Immagina di voler capire quanto è sicuro non un singolo negozio, ma **tutto il centro commerciale**: i negozi (i server), le vetrine e i cataloghi (i registry/marketplace) e i clienti che ci entrano (gli host, cioè i programmi con l'AI). Questo paper è il primo a guardare l'MCP a questo livello, non solo il singolo server.
+> **Cosa guarda:** non i singoli server ma **tutto il "centro commerciale"** — i negozi (server), i cataloghi (registry/marketplace) e i clienti (gli host che eseguono l'AI). Cerca le debolezze *strutturali* di come è messo insieme l'ecosistema.
+> **Come lo guarda:** in parte **qualitativo** (studiano a mano come funzionano host e registry per capire dove sta la falla di progettazione), in parte **quantitativo** (poi *contano* quanti server sono esposti a quella falla). Non è uno scan del codice riga per riga.
 
-**Come lavorano.** Raccolgono **67.057 server** da **6 registry pubblici** e fanno un'analisi in parte *qualitativa* (studiano che tipo di debolezze ricorrono) e in parte *quantitativa* (contano quanti server ci cascano). Non è uno scan riga-per-riga del codice: è più un censimento ragionato di dove sta il rischio.
+Il messaggio centrale è che il rischio non è (solo) nel singolo server, ma nel modo in cui i pezzi sono collegati. Due debolezze strutturali: (1) gli **host si fidano ciecamente** dell'output di un server — non lo verificano — quindi un server malevolo può manipolare il comportamento dell'AI; (2) i **registry fanno pochi controlli** su chi pubblica, così tanti server sono "dirottabili". Dopo aver individuato queste falle a livello di progettazione, misurano su **67.057 server** (raccolti da 6 registry) quanti ne sono affetti. È il più grande studio esistente prima del mio.
 
-**Cosa trovano.** Il punto debole grosso è che **gli host si fidano ciecamente** di quello che un server risponde: non verificano l'output, quindi un server malevolo può manipolare il comportamento dell'AI. E siccome i registry fanno pochi controlli su chi pubblica, un numero notevole di server è "dirottabile". È il più grande studio esistente prima del mio.
-
-**In cosa sono diversi da me.** Loro contano *quanti server sono a rischio a livello di ecosistema*; io apro **il codice di ogni server** e dico *quali vulnerabilità concrete ha*, categoria per categoria, con veri/falsi positivi. Sono complementari — e col mio secondo dataset (NPX) supero comunque il loro numero.
+**In cosa siamo diversi.** Loro *contano* quanti server sono a rischio a livello di ecosistema; io *apro il codice* di ogni server e dico *quali vulnerabilità concrete* ha, con veri/falsi positivi. Complementari — e col dataset NPX supero comunque il loro numero.
 
 ### [9] A Measurement Study of the MCP Ecosystem
 *Hechuan Guo et al. — Shandong University + NTU Singapore, nov. 2025*
 
-Questo non è un paper di sicurezza in senso stretto: è una **misurazione dello stato di salute** dell'ecosistema. La domanda di fondo è "l'MCP è un ecosistema vivo e solido, o gonfiato?". Guardano tre cose: il **mercato** (quanto cresce), i **server** (come sono fatti) e i **client** (come si connettono).
+> **Cosa guarda:** non la sicurezza, ma lo **stato di salute** dell'ecosistema su tre fronti — **mercato** (quanto cresce), **server** (come sono fatti, che dipendenze hanno) e **client** (come si connettono). La domanda è: "MCP è un ecosistema vivo e solido o gonfiato?".
+> **Come lo guarda:** con un crawler automatico, **MCPCrawler**, che per ~14 giorni setaccia 6 marketplace in 3 fasi (scoperta e pulizia del rumore → estrazione dei metadati → normalizzazione e statistiche). Analizza *metadati*, non codice.
 
-**Come lavorano.** Costruiscono **MCPCrawler**, un robot che per **14 giorni** setaccia 6 marketplace, scarta il rumore e normalizza i dati. Partono da 17.630 voci grezze e ne validano **8.060 server** (+341 client).
+Partono da 17.630 voci grezze e ne validano **8.060 server** (+341 client). La scoperta più utile per me: il mercato è **fragile** — solo ~49% delle voci è valido, il resto sono placeholder, fork o progetti morti; un server su cinque è fermo da oltre un anno; e c'è una forte "monocultura" di dipendenze (tutti usano le stesse librerie), che è un rischio supply-chain.
 
-**Cosa trovano.** Che il mercato è **fragile**: solo il ~49% delle voci è valido, il resto sono placeholder, fork o progetti morti. Un server su cinque è fermo da oltre un anno. E c'è una forte "monocultura" di dipendenze (tutti usano le stesse librerie), che è un rischio supply-chain.
-
-**In cosa sono diversi da me — e perché mi torna utile.** Loro misurano *quanto è sana la popolazione*, non le vulnerabilità sfruttabili. Ma la loro scoperta che **metà dei progetti listati è spazzatura** è un ottimo argomento per giustificare perché io filtro così aggressivamente prima di analizzare.
+**In cosa siamo diversi — e perché mi torna utile.** Loro misurano *quanto è sana la popolazione*, non le vulnerabilità. Ma il loro dato "**metà dei progetti listati è spazzatura**" giustifica benissimo perché io filtro così tanto prima di analizzare.
 
 ---
 
@@ -56,58 +56,52 @@ Questo non è un paper di sicurezza in senso stretto: è una **misurazione dello
 ### [11] MCP at First Glance
 *Mohammed Mehedi Hasan et al. — Queen's University, giu. 2025*
 
-Questo è il paper **metodologicamente più vicino al mio**: prende dei server veri e ne analizza il codice per trovare sia problemi di **sicurezza** sia di **qualità/manutenibilità** (i cosiddetti "code smell", cioè codice scritto male ma non necessariamente insicuro).
+> **Cosa guarda:** il **codice sorgente dei server**, per due cose insieme: la **sicurezza** (vulnerabilità) e la **manutenibilità/qualità** (i "code smell", cioè codice scritto male). È il paper metodologicamente più vicino al mio.
+> **Come lo guarda:** una **pipeline ibrida** = uno strumento di analisi statica *generico* (di quelli usati per qualsiasi software, per i bug tradizionali) **+** uno scanner *specifico per MCP* (che legge le descrizioni dei tool per problemi tipo tool poisoning). Su **1.899 server** open-source.
 
-**Come lavorano.** Una **pipeline ibrida**: uno strumento di analisi statica generico (come quelli che si usano per qualsiasi software) *più* uno scanner fatto apposta per l'MCP, su **1.899 server** open-source.
+Il risultato interessante è che trovano **8 categorie di vulnerabilità**, di cui solo 3 in comune col software tradizionale: segno che l'MCP introduce rischi *nuovi*, legati al linguaggio naturale delle descrizioni dei tool. Circa il 7% dei server ha vulnerabilità generiche, il **5,5% ha tool poisoning** (descrizioni manipolate per ingannare l'AI), e i due terzi hanno problemi di qualità del codice.
 
-**Cosa trovano.** **8 categorie di vulnerabilità**, di cui solo 3 in comune col software tradizionale — segno che l'MCP porta rischi *nuovi*. Circa il 7% dei server ha vulnerabilità generiche e il **5,5% ha "tool poisoning"** (descrizioni di strumenti manipolate per ingannare l'AI).
-
-**In cosa sono diversi da me.** Stessa filosofia, ma io sono **~36 volte più grande** (69.104 vs 1.899), uso **7 strumenti invece di 1**, li faccio "votare" tra loro (consensus) e misuro il tasso di falsi positivi con un test cieco.
+**In cosa siamo diversi.** Stessa filosofia, ma io sono **~36× più grande** (69.104 vs 1.899), uso **7 strumenti invece di 1**, li faccio "votare" tra loro e misuro i falsi positivi con un test cieco.
 
 ### [10] We Urgently Need Privilege Management in MCP
 *Zhihao Li et al. — Shandong University, lug. 2025*
 
-Idea semplice e potente: un server MCP dovrebbe avere **solo i permessi che gli servono** (principio del privilegio minimo). Questo paper va a misurare **quanto i server usano "poteri" pericolosi** — accesso alla rete, al sistema, ai file — per dimostrare che questo controllo, oggi, manca.
+> **Cosa guarda:** **quanto i server usano API "pericolose"** — cioè che toccano file, rete, sistema o memoria. Attenzione: misura il *potere* che un server si prende, non se ha una vulnerabilità sfruttabile. L'analogia: come si analizzano i permessi delle app Android, ma qui non c'è nessun sandbox a limitarli.
+> **Come lo guarda:** analisi statica in 3 fasi. (1) Un **crawler** scarica i repo da MCP Market e li ripulisce (toglie `node_modules`, ambienti virtuali, binari; normalizza la codifica). (2) Un **parser** per ogni linguaggio (Python AST, JavaScript ESTree, JavaParser, con regex di riserva) legge il codice e lo confronta con un **database di "firme" di API** divise in 4 categorie (es. `subprocess`/`exec` = sistema, `socket`/`connect` = rete, `open`/`read` = file). (3) **Conta** le occorrenze e le incrocia con categoria e stelle GitHub.
 
-**Come lavorano.** Un framework di **analisi statica automatica** che scandisce il codice di **2.562 server** (divisi in 23 categorie) e conta le chiamate ad API a rischio.
+Su **2.562 server** trovano che quasi tutti toccano rete (1.438) e sistema (1.237), meno i file (613) e la memoria (25). Curiosità utile: i plugin **meno popolari** (0–10 stelle) sono quelli con più chiamate pericolose. Chiudono con 3 casi studio a mano (un blog-publisher, un twitter-mcp, un web-research) per mostrare come questi "poteri" diventano privilege escalation, manipolazione o furto dati.
 
-**Cosa trovano.** Tantissimi server toccano rete (1.438), sistema (1.237) e file (613). E, curiosamente, i plugin **meno popolari** sono spesso quelli con la quota più alta di operazioni pericolose.
-
-**In cosa sono diversi da me.** Loro misurano il **potenziale** (usare un'API pericolosa *non* è di per sé una vulnerabilità); io misuro **vulnerabilità realmente presenti** e le classifico. Il mio dataset è ~27 volte più grande.
+**In cosa siamo diversi.** Loro misurano il **potenziale** (usare un'API pericolosa ≠ vulnerabilità); io misuro **vulnerabilità realmente presenti** e le classifico. Dataset mio ~27× più grande.
 
 ---
 
-## Gruppo 3 — Chi scopre un tipo di attacco nuovo
+## Gruppo 3 — Chi scopre e prova un attacco nuovo
 
 ### [12] Mind Your Server
 *Shuli Zhao et al. — Shanghai Jiao Tong University, set. 2025*
 
-Qui non si contano server: si **scopre e si dà un nome a un attacco nuovo**, il *parasitic toolchain attack*, che porta a una fuga di dati privati non voluta (loro la chiamano MCP-UPD). L'idea: dei dati esterni non fidati entrano nel contesto dell'AI e, passando di strumento in strumento, finiscono per far uscire informazioni riservate.
+> **Cosa guarda:** una **nuova catena d'attacco** — il *parasitic toolchain attack*, che chiamano MCP-UPD (fuga di dati privati). L'idea: non serve un server malevolo né toccare la vittima; basta nascondere un "prompt parassita" in un contenuto esterno (un post, un documento). Quando l'AI lo legge durante un compito normale, viene guidata a **incatenare tre tool legittimi** e rubare dati.
+> **Come lo guarda:** costruiscono lo scanner **MCP-SEC** in 3 componenti. (1) Un **crawler** raccoglie i server da 3 fonti (PulseMCP, MCP Market, Awesome MCP) e, via il client Python ufficiale, si connette a ciascuno e ne estrae le descrizioni dei tool. (2) Un **LLM legge ogni descrizione** e classifica il tool in una di 3 "capacità": può *ingerire* contenuto esterno (EIT), può *leggere* dati privati (PAT), o può *mandare* dati fuori (NAT). (3) Un **verificatore dinamico** fa *girare davvero* i tool dentro Cursor (con un simulatore di tastiera/mouse) per confermare che l'attacco funziona sul campo. Quindi: statico (leggono le descrizioni) **+ dinamico** (provano l'attacco).
 
-**Come lavorano.** Modellano l'attacco in **3 fasi** (il contenuto ostile entra → viene raccolto → viene esfiltrato) e costruiscono lo scanner **MCP-SEC** per cercare i "pezzi" sfruttabili su **1.360 server / 12.230 strumenti**.
+I tre passi dell'attacco corrispondono alle tre capacità: **Ingestion** (un tool tipo `fetch`/`search` porta dentro il prompt parassita) → **Collection** (un tool tipo `read_file` legge dati sensibili) → **Disclosure** (un tool tipo `send_mail` li esfiltra). Su **1.360 server / 12.230 tool** trovano che l'**8,7% dei tool** e il **27,2% dei server** offrono "ingranaggi" sfruttabili, e che **9 catene su 10** costruite a mano rubano davvero i dati in Cursor. La causa profonda: MCP non **isola il contenuto non fidato dai tool potenti** e non impone il **privilegio minimo**.
 
-**Cosa trovano.** Che all'MCP mancano due difese fondamentali: **isolare il contenuto non fidato dagli strumenti potenti** e **imporre il privilegio minimo**. E che l'ecosistema è "pieno di ingranaggi realmente sfruttabili".
-
-**Perché per me è importante.** È il paper da citare quando qualcuno obietta "ma allora anche un server legittimo può essere pericoloso se gli arriva un input ostile": sì, ed è *esattamente* questa classe di attacco — che vive nella **composizione** tra sorgente e strumento, non nel codice del singolo server. Loro si concentrano su questa singola classe; io copro 17 categorie. La loro classe richiede una *traccia di esecuzione*, quindi va oltre lo scan statico puro: un punto di onestà da citare.
+**Perché per me è importante.** È il paper da citare quando qualcuno obietta "ma allora anche un server legittimo può essere pericoloso se gli arriva un input ostile": sì, ed è *esattamente* questa classe di attacco — che vive nella **composizione** tra più tool, non nel codice di un singolo server. Ecco perché uno scan per-singolo-server come il mio vede gli *ingredienti* separati (una sorgente di untrusted-content, una dangerous-capability) ma non la catena già montata: quella richiede far girare i tool insieme, come fanno loro col verificatore dinamico. Loro coprono questa singola classe su 1.360 server; io copro 17 categorie su 69.104.
 
 ### Compatibility at a Cost
 *Nanzi Yang, Weiheng Bai, Kangjie Lu — University of Minnesota, mar. 2026*
 
-Questo è il paper "diverso dagli altri": non guarda i server, guarda **le fondamenta**, cioè i **10 SDK ufficiali** (Python, TypeScript, Go, e altri 7). La tesi centrale è elegante: per essere compatibile con qualsiasi AI, la specifica MCP lascia **quasi tutto opzionale**. Su 275 regole, solo il **21,5% è obbligatorio**; il **78,5% è "consigliato" o condizionale**. E una regola che si *può* saltare, spesso viene saltata — e ogni regola saltata è una guardia di sicurezza che manca.
+> **Cosa guarda:** non i server, ma **le fondamenta** — i **10 SDK ufficiali** (Python, TypeScript, Go, e altri 7) e la **specifica** del protocollo. La tesi: per essere compatibile con ogni AI, MCP lascia quasi tutto opzionale (su 275 regole, solo il **21,5% è obbligatorio**), e una regola che si *può* saltare spesso viene saltata — e ogni regola saltata è una guardia di sicurezza che manca.
+> **Come lo guarda:** tre passi. (1) Un **IR universale**: traducono ogni SDK, scritto in un linguaggio diverso, in una **rappresentazione comune** (estraggono dal codice un "grafo di chiamate condizionate": quali funzioni vengono chiamate e sotto quali condizioni), così l'analisi vale per tutti i linguaggi. (2) **Analisi ibrida statica + LLM**: l'analisi statica restringe il campo a pochi pezzi di codice rilevanti, poi un LLM ci ragiona sopra (con un ciclo che si auto-raffina), evitando sia le allucinazioni sia migliaia di pattern scritti a mano. (3) **Analisi di sfruttabilità**: una regola mancante è pericolosa solo se l'attaccante può controllare il *contenuto* o il *tempismo* dei messaggi → da qui tre "modalità" d'attacco (PyTy = controlli entrambi → injection silenziosa; PnTy = solo tempismo → DoS; PyTn = solo contenuto).
 
-**Esempio concreto.** La specifica dice che un server *dovrebbe* avvisare il client quando cambia i suoi strumenti. L'SDK Python **non implementa** questo avviso. Risultato: un server malevolo può cambiare di nascosto la descrizione di uno strumento e infilare istruzioni ostili nell'AI **senza che nessuno se ne accorga** — una "prompt injection silenziosa".
+Esempio concreto: la specifica dice che un server *dovrebbe* avvisare il client quando cambia i suoi tool, ma l'SDK Python **non lo implementa**. Così un server può cambiare di nascosto la descrizione di un tool e infilare istruzioni ostili nell'AI **senza che nessuno se ne accorga**. Trovano **1.265 rischi** sfruttabili sui 10 SDK (con ~86% di precisione, verificata da tre revisori umani), e i manutentori ufficiali di MCP li hanno presi così sul serio da **invitare il loro strumento nel processo ufficiale di conformità (SEP)**.
 
-**Come lavorano (la parte tecnica interessante).** Tre passi: (1) traducono ogni SDK, che è scritto in un linguaggio diverso, in una **rappresentazione comune** (un "IR" neutro, uguale per tutti); (2) fanno un'analisi **ibrida statica + LLM**: l'analisi statica restringe il campo a pochi pezzi di codice, poi un LLM ci ragiona sopra (così l'LLM non allucina e non serve scrivere mille pattern); (3) capiscono quali regole mancanti sono **davvero sfruttabili** guardando se l'attaccante può controllare il *contenuto* o il *tempismo* dei messaggi.
-
-**Cosa trovano.** **1.265 rischi** sfruttabili sui 10 SDK, con circa 86% di precisione. Hanno segnalato i problemi e i manutentori dell'MCP li hanno **presi così sul serio da invitare il loro strumento nel processo ufficiale di conformità (SEP)**.
-
-**Perché mi riguarda da vicino.** È la **base teorica di `mcp-check`**, uno dei 7 strumenti che uso: mcp-check testa proprio le classi di attacco di questo paper (la injection silenziosa, il DoS via `ping`, ecc.). Loro le hanno *formalizzate* sugli SDK; io le *misuro sul campo* su decine di migliaia di server reali.
+**Perché mi riguarda da vicino.** È la **base teorica di `mcp-check`**, uno dei 7 strumenti che uso: mcp-check testa proprio queste classi (injection silenziosa, DoS via `ping`, ecc.). Loro le hanno *formalizzate* sugli SDK; io le *misuro sul campo* su decine di migliaia di server reali.
 
 ---
 
 ## In una riga: perché il mio lavoro è diverso
 
-Nessuno di questi mette insieme le tre cose contemporaneamente:
+Nessuno mette insieme le tre cose contemporaneamente:
 1. **Scala** — 69.104 server, più di ogni studio empirico MCP precedente.
 2. **Profondità per-server** — non un conteggio, ma 17 categorie di vulnerabilità con veri/falsi positivi misurati.
 3. **Più strumenti** — 7 scanner diversi fatti "votare" insieme, con validazione cieca del tasso di errore.
@@ -118,27 +112,27 @@ Nessuno di questi mette insieme le tre cose contemporaneamente:
 
 ## Appendice — catalogo compatto degli altri paper letti
 
-Questi non sono nella slide dello stato dell'arte (sono survey, benchmark o proposte di difesa), ma li ho letti per inquadrare la tesi. Riepilogo di una riga ciascuno.
+Non sono nella slide dello stato dell'arte (sono survey, benchmark o proposte di difesa), ma li ho letti per inquadrare la tesi. Per ognuno: cosa guarda / come.
 
-| Paper | Tipo | In breve |
-|-------|------|----------|
-| Landscape, Security Threats (Hou et al.) | Survey/vision | Prima tassonomia MCP: 16 minacce × 4 attaccanti, validata con 16 PoC in laboratorio (nessuno scan reale). Paper di riferimento per la tassonomia. |
-| A Survey of LLM-Driven AI Agent Communication (Kong et al.) | Survey | Sicurezza della comunicazione tra agenti (MCP + A2A/ANP/ACP), 327 riferimenti. Più ampio del solo MCP. |
-| Open Challenges in Multi-Agent Security (Schroeder de Witt) | Position paper | Propone la "Multi-Agent Security" come campo; solo teoria, niente empirico. |
-| McpGuard: survey delle difese (Bin Wang et al.) | Survey difese | Nonostante il nome, è una rassegna di difese (3 classi di minacce). Non è lo scanner. |
-| SoK: Security and Safety in MCP (2512.08290) | SoK | Sistematizzazione della letteratura; auspica framework ibridi statico+dinamico (che io realizzo). Da leggere per intero. |
-| Securing AI Agent Execution / AgentBound (Bühler et al.) | Difesa empirica | Framework di access control stile Android su 296 server; genera policy dal codice con 80,9% di accuratezza. |
-| MCPTox (Wang et al.) | Benchmark | Tool poisoning su 45 server live/353 tool, testato su 20 LLM: i modelli più bravi sono più vulnerabili. |
-| MSB — MCP Security Bench (Zhang et al.) | Benchmark | 12 attacchi, 400+ tool, 2.000 istanze, 9 agenti LLM. Misura la resilienza degli agenti. |
-| MCPSECBENCH (Yang et al.) | Benchmark | 17 attacchi × 3 provider (Claude/OpenAI/Cursor); >85% degli attacchi buca almeno una piattaforma. |
-| MCPLIB (Guo et al.) | Benchmark | Libreria di 31 metodi d'attacco in 4 classi, con test quantitativi. |
-| MCP Safety Audit / McpSafetyScanner (Radosevich, Halloran) | Tool difesa | Scanner "agentico" multi-agente che genera adversarial samples e report. |
-| MCP Guardian (Kumar et al.) | Framework difesa | Layer difensivo: auth + rate-limiting + logging + WAF. |
-| MCP-Guard framework (Xing et al.) | Framework difesa | Pipeline a 3 stage (statico → detector neurale E5 96% → arbitro LLM), training su 70k campioni. |
-| ETDI (Bhatt et al.) | Proposta difesa | Estensione MCP con OAuth + tool definition firmate contro tool squatting e rug pull. |
-| Enterprise-Grade Security for MCP (Narajala, Habler) | Framework difesa | Pattern Zero Trust / Defense-in-Depth per adozione enterprise. |
-| MCPBench (Luo et al.) | Performance (NON sicurezza) | Accuratezza/tempo/token su ~10 server; MCP non batte le function call. |
-| Security Analysis of Agentic AI Protocols (Louck et al.) | Comparativo (NON MCP) | Confronta CORAL/ACP/A2A, protocolli agente-agente. Utile per inquadramento. |
+| Paper | Tipo | Cosa guarda e come |
+|-------|------|--------------------|
+| Landscape, Security Threats (Hou et al.) | Survey/vision | **Cosa:** tassonomia delle minacce MCP (16 minacce × 4 attaccanti). **Come:** costruzione manuale di 16 server-esempio (PoC) in laboratorio, nessuno scan reale. |
+| A Survey of LLM-Driven AI Agent Communication (Kong et al.) | Survey | **Cosa:** sicurezza della comunicazione tra agenti (MCP + A2A/ANP/ACP). **Come:** rassegna di letteratura (327 riferimenti), non empirico. |
+| Open Challenges in Multi-Agent Security (Schroeder de Witt) | Position paper | **Cosa:** propone la "Multi-Agent Security" come campo. **Come:** solo discussione teorica. |
+| McpGuard: survey delle difese (Bin Wang et al.) | Survey difese | **Cosa:** panorama delle difese MCP (3 classi di minacce). **Come:** rassegna, nessuna analisi propria. (Non è lo scanner.) |
+| SoK: Security and Safety in MCP (2512.08290) | SoK | **Cosa:** sistematizza tutta la letteratura di sicurezza MCP. **Come:** survey + tassonomia; auspica framework ibridi statico+dinamico. |
+| Securing AI Agent Execution / AgentBound (Bühler et al.) | Difesa empirica | **Cosa:** un sistema di permessi stile Android per MCP. **Come:** genera automaticamente le policy dal codice sorgente (80,9% accuratezza) su 296 server. |
+| MCPTox (Wang et al.) | Benchmark | **Cosa:** quanto gli LLM cascano nel tool poisoning. **Come:** 1.312 test da 3 template su 45 server live, provati su 20 LLM. |
+| MSB — MCP Security Bench (Zhang et al.) | Benchmark | **Cosa:** la resilienza degli *agenti* a 12 tipi d'attacco. **Come:** 2.000 istanze d'attacco su 400+ tool, 9 agenti LLM. |
+| MCPSECBENCH (Yang et al.) | Benchmark | **Cosa:** superficie d'attacco su 4 livelli. **Come:** 17 attacchi provati su 3 provider (Claude/OpenAI/Cursor); >85% buca almeno uno. |
+| MCPLIB (Guo et al.) | Benchmark | **Cosa:** libreria di attacchi. **Come:** 31 metodi in 4 classi, con test quantitativi di efficacia. |
+| MCP Safety Audit / McpSafetyScanner (Radosevich, Halloran) | Tool difesa | **Cosa:** dimostra exploit e propone uno scanner. **Come:** tool "agentico" che genera adversarial samples e report. |
+| MCP Guardian (Kumar et al.) | Framework difesa | **Cosa:** proteggere i sistemi MCP a runtime. **Come:** layer con auth + rate-limiting + logging + WAF. |
+| MCP-Guard framework (Xing et al.) | Framework difesa | **Cosa:** rilevare input malevoli verso i tool. **Come:** pipeline a 3 stage (statico → detector neurale E5 96% → arbitro LLM), training su 70k campioni. |
+| ETDI (Bhatt et al.) | Proposta difesa | **Cosa:** fermare tool squatting e rug pull. **Come:** estensione MCP con OAuth + definizioni di tool firmate e versionate. |
+| Enterprise-Grade Security for MCP (Narajala, Habler) | Framework difesa | **Cosa:** adozione enterprise sicura. **Come:** pattern Zero Trust / Defense-in-Depth, threat modeling. |
+| MCPBench (Luo et al.) | Performance (NON sicurezza) | **Cosa:** quanto sono efficaci/veloci i server. **Come:** accuratezza/tempo/token su ~10 server; MCP non batte le function call. |
+| Security Analysis of Agentic AI Protocols (Louck et al.) | Comparativo (NON MCP) | **Cosa:** confronto tra protocolli agente-agente. **Come:** tassonomia a 14 punti su CORAL/ACP/A2A. |
 
 ---
 

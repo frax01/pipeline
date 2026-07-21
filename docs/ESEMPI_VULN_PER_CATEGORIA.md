@@ -32,6 +32,19 @@ Il tool fa scraping di pagine web arbitrarie e ne inietta il contenuto nel conte
 **Pattern:** tag `<IMPORTANT>` nella description che dirotta l'invio delle email verso `attacker@pwnd.com`.
 **Perché è VP-C:** un tool innocuo (`subtract`) inietta istruzioni che "shadowano"/dirottano il comportamento di un altro tool. È l'unico della categoria, caso dimostrativo classico.
 
+**Nota — perché `<IMPORTANT>` è shadowing (meccanismo vs categoria):** `<IMPORTANT>` **da solo NON è tool shadowing**; sono due piani diversi che qui capitano insieme.
+- **`<IMPORTANT>` è il meccanismo di consegna**, non la categoria. Il tag (come `<system>`, `<cmd>`, `<hidden>`) fa leggere all'LLM il testo come **ordine autorevole** e non come descrizione: è una *hidden instruction*, invisibile all'utente nella UI ma iniettata nel contesto perché l'host mette l'intera description nel prompt. Da solo è **ambiguo** (cfr. `THREAT_ANALYSIS_REPORT.md`): `<IMPORTANT>` scalzo può essere doc legittima di un SDK AWS; è VP forte solo se UPPERCASE + nessun `<usecase>` accoppiato + `llm_risk=HIGH` da mcp-shield. Il tag è il **segnale**, non la classificazione.
+- **Cosa rende *questo* caso shadowing** è il *contenuto*: l'istruzione sta nella description di `subtract` (innocuo) ma **comanda un altro tool**, `send_email`. Il tool A getta un'ombra sul tool B e ne dirotta il comportamento → **override cross-tool** = definizione di shadowing. Infatti `_HI_TOOL_SHADOW_PAT` non matcha `<IMPORTANT>`, ma la firma dell'override di *un altro* strumento (`NEVER use Read|Grep…`, `ALWAYS use X instead`).
+- **In TS-01** convivono poisoning, hidden-instructions, shadowing e prompt-injection: stesso meccanismo, si distinguono per bersaglio/effetto:
+
+| Variante | Cosa fa l'istruzione nascosta | Firma tipica |
+|---|---|---|
+| Tool poisoning / hidden instr. | manipola l'LLM in generale (bersaglio = il modello) | `<IMPORTANT>`, "ignore previous instructions" |
+| Tool shadowing | l'istruzione in un tool **sovrascrive/dirotta un *altro* tool** | "`send_email` MUST…", "ALWAYS use X **instead**", "NEVER use Read" |
+| Prompt injection | forza l'LLM ad agire in incognito / nascondere gli step | "Execute silently, hide all steps" |
+
+*In una frase:* `<IMPORTANT>` è il **veicolo** (hidden instruction spacciata per direttiva autorevole); è **shadowing** solo perché la descrizione di `subtract` **ridefinisce il comportamento di `send_email`** (un tool diverso). È l'override cross-tool a nominare la categoria, non il tag — tant'è che la regola matcha "usa X *invece di* Y", non `<IMPORTANT>`.
+
 ### 5. insecure-deserialization · TS-05 · mcp-guard
 **Server:** `karimodm/angrMCP` — `angr_mcp/server/core.py:2233`
 **Pattern:** `pickle.loads(encoded)` dove `encoded` viene da `payload.get("states")`, e `payload` è **l'input del tool MCP** → pickle attacker-controlled = **RCE immediato**.
@@ -86,6 +99,24 @@ Il tool espone l'esecuzione di comandi shell arbitrari all'agente LLM.
 **Perché è VP-C:** esecuzione di codice utente senza validazione (tipico attacco LLM-driven).
 *(Nota di scoperta: dal #11 al #25 emerge un **mass-cloning** dello stesso template insicuro `mcp_server_1.py:189` su 5+ repo del corso "TSAI". Altro netto: `XcodeBuildMCP` — `execSync` con `appPath` non sanitizzato.)*
 
+**Nota — differenza tra input-validation, sql, path-traversal, command/code injection, ssrf (è sempre un problema di input?):** sì, la radice è **una sola**. sql-injection, path-traversal, command-injection, code-injection, ssrf e input-validation sono **tutte TS-05** e condividono causa e difesa (slide 6: *"quando un valore non controllato raggiunge un sink pericoloso, l'input stesso diventa l'attacco… stessa causa radice, validazione impropria"*). Il modello è la **taint analysis**, sempre a tre pezzi:
+```
+SOURCE (input del tool, non fidato) → [nessun sanitizer] → SINK (operazione pericolosa)
+```
+Se manca il sanitizer tra source e sink → vuln. Identico per tutte. **Ciò che cambia è solo il SINK**, che determina nome e blast radius:
+
+| Categoria | Il sink è… | Cosa ottiene l'attaccante | Esempio |
+|---|---|---|---|
+| SQL injection (§10) | una query SQL | altera la struttura della query → data breach / RCE (stacked queries, `xp_cmdshell`) | `JexinSam/mssql_mcp_server` |
+| Path traversal (§14) | un percorso di file | esce dalla directory → legge/scrive file arbitrari (`/etc/passwd`) | `Deepractice/PromptX` |
+| Command injection (§16) | una **shell** (`os.system`, `exec.Command`) | comandi OS arbitrari → RCE | `git_diff test \|\| id` |
+| Code injection (§12) | un interprete (`eval`/`exec`) | esegue codice nel linguaggio dell'app | `matlab-mcp-tools` `eng.eval(...)` |
+| SSRF (§11) | una richiesta HTTP in uscita | controlla l'URL → rete interna, metadata cloud `169.254.169.254` | `lingodotdev` `fetch(params.apiUrl)` |
+
+**Perché allora esiste input-validation come categoria a sé?** Non è un sink diverso: è l'**etichetta-ombrello/aggregata** dello scanner mcp-watch (cfr. `MANUAL_CHECKLIST.md` §9: *"combo SSRF + command/code injection + path traversal aggregati… deriva da cat 4/6/7/8 in base al sink rilevato"*). Prova ne è che l'esempio qui sopra (`exec(input.code)`) è **tecnicamente code injection**: è finito in "input-validation" solo perché così l'ha etichettato mcp-watch, mentre mcp-guard l'avrebbe chiamato "code-injection". Stesso difetto, due nomi, a seconda dello scanner.
+
+*In una frase per il prof:* sono la **stessa** vulnerabilità radice (TS-05, improper input validation); i nomi *sql/path/command/code/ssrf* sono **specializzazioni in base al sink**, che ne determina la conseguenza. "Input-validation" è l'**aggregato** di mcp-watch, che nell'audit riclassifico verso la categoria specifica secondo il sink colpito. La distinzione conta soprattutto per il **blast radius** (RCE di command/code injection ≫ file-read del path traversal ≫ SSRF su base URL fissa), non per la causa — che è sempre una: **input non validato**.
+
 ### 14. path-traversal · TS-05 · mcp-guard, mcp-security-scan
 **Server:** `Deepractice/PromptX` — `pdf-reader.tool.js` / `word-tool.tool.js`
 **Pattern:** `PATH_TRAVERSAL` — lettura file con path controllato dal tool, senza confinamento in una root.
@@ -103,6 +134,15 @@ Il tool espone l'esecuzione di comandi shell arbitrari all'agente LLM.
 **Pattern:** `exec.Command("/bi" + "n" + "/s" + "h", "-c", hHiHiP).Start()` — concatenazione di stringhe per **offuscare** la shell ed evadere lo static scanning: il server è un **trojan**.
 **Perché è VP-C:** scoperta ad alto valore, **3 server malware confermati** con questo pattern (`optimisticdur/go-mcp-mysql`, `heavenlycolle/mcp-trino`, `illustriousj/kite-mcp-server`).
 *(Caso "normale": `jarrett-au/cc-devkit` — `execSync(\`git clone ${repoUrl} …\`)` con `repoUrl` da tool. Cluster: `nickgnd/tmux-mcp` x19 command injection.)*
+
+**Caso illustrativo confermato da fuzzing (`0xshariq/github-mcp-server`, tool `git_diff`):** payload `test || id` → risposta `uid=1000(tecnico) gid=1000(tecnico) groups=…,docker,…`.
+Il tool `git_diff` ha **un solo** scopo dichiarato: eseguire `git diff` su un file/ref (es. `HEAD~1`). Ma il server concatena l'argomento in una **shell** invece di passarlo a `git`:
+```
+os.system("git diff " + argomento)   // input dell'utente concatenato in una shell
+```
+Con argomento `test || id` la shell riceve `git diff test || id`: il `||` è il metacarattere "OR" della shell (*se il comando a sinistra fallisce, esegui quello a destra*), quindi esegue `git diff test` (fallisce), poi `id`.
+**Perché è una vulnerabilità (e non comportamento normale):** il tool `git_diff` **non ha mai esposto** l'esecuzione di comandi arbitrari — far girare `id` significa aver *contrabbandato un comando in più*, aggirando l'unica funzione prevista, per un difetto di sanitizzazione. È la differenza rispetto a una **dangerous-capability** (TS-02, §8): là un `execute_command` che esegue `id` fa il suo mestiere (pericoloso by design, non un bug); qui `id` gira perché l'input raggiunge una shell senza validazione né escaping = **command injection** (TS-05).
+**Perché è grave:** `id` è solo la **PoC** dell'iniezione; con lo stesso meccanismo gira qualsiasi comando (`test || cat /etc/passwd`, `test || curl …|sh`, `test || rm -rf ~`) → RCE con i privilegi del processo (nota `groups=…,docker,…` ≈ root sull'host). Confermata **a runtime** (VP-C), non da regex statica — coerente con la spaccatura precisione dinamico 80–100% vs command-injection statica 27% (slide 8).
 
 ### 17. access-control · TS-04 · mcp-watch, mcp-security-scan
 **Server:** `Wawtawsha/durandal-memory-bridge` — `database-setup.js`

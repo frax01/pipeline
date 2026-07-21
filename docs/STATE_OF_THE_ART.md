@@ -139,9 +139,31 @@ Non sono nella slide dello stato dell'arte (sono survey, benchmark o proposte di
 *File correlati: `PAPER_SOTA_PRESENTAZIONE.md` (stessi 5 paper della slide, in formato "domande del prof"), `THREAT_ANALYSIS_REPORT.md` (report finale), `ESEMPI_VULN_PER_CATEGORIA.md` (un esempio reale per categoria).*
 *Ultima revisione: 2026-07-21.*
 
-- Toward understanding: Gli host si fidano ciecamente degli output di un server
-- A measurement study: 
-- Mcp at first Glance:
+- Toward understanding: Gli host si fidano ciecamente degli output di un server, per fare questa analisi fanno: Qui non c'è nessuno strumento automatico. Studiano a mano il funzionamento dell'host — cioè come Cursor / Claude Desktop / Cline prendono l'output del modello e lo trasformano in una chiamata a un tool. Seguono il flusso:
+
+l'host legge nomi/parametri/descrizioni dei tool dai server configurati → li mette in una lista unica → manda al modello (system prompt + lista tool + storico) → il modello risponde "chiama il tool X con i parametri Y" → l'host esegue, senza controllare nulla.
+
+Da questo ragionamento sul design deducono la falla di fondo — l'host non verifica l'output del modello — e ne derivano gli scenari concreti che possono nascerne: la tool confusion, il context dangling tool, e gli effetti diretti/indiretti di una descrizione di tool avvelenata
+e poi i registry fanno pochi controlli su chi pubblica, questa analisi viene fatta così:
+2. Analisi quantitativa → su registry e server (per misurare quanti sono davvero esposti)
+Qui invece raccolgono dati e contano. Il procedimento:
+
+Crawling dei 6 registry (4 decentralizzati: mcp.so, MCP Market, MCP Store, Pulse MCP; 2 centralizzati: Smithery, npm) → 67.057 server.
+Per ciascun server, vanno a guardare il repository GitHub reale a cui punta. È questo il passaggio-chiave che risponde alla tua domanda: incrociano la voce del registry con il vero repo su GitHub e controllano se quell'aggancio è "attaccabile".
+Il caso più chiaro è il numero-simbolo, 304 server vulnerabili a redirection hijacking, e vale la pena spiegare come arrivano a quel 304:
+
+prendono l'URL GitHub dichiarato dal server;
+controllano lo stato dell'account/repo: se l'account che ospitava il server è stato cancellato o rinominato, quel nome-utente GitHub torna libero;
+un attaccante potrebbe ri-registrare quel nome, ricreare un repo con lo stesso nome e — siccome il registry punta ancora lì — servire un server malevolo al posto dell'originale;
+contano quanti server si trovano in questa condizione → 304.
+Con la stessa logica verificano gli altri due attacchi ai registry:
+
+token leak di mcp.so: ispezionano il registry stesso e trovano che espone i token dei proprietari → con quel token si inietterebbe codice in un server legittimo;
+name-squatting: sui registry centralizzati verificano che è possibile pubblicare un server con nome quasi identico a uno vero.
+Infine, estraggono 44.499 tool dai server scritti in Python e ne ispezionano le descrizioni/comportamenti per isolare quelli con intenti malevoli.
+
+- A measurement study: Guardano se i server che recuperano tramite un web crawler (circa 17K) sono validi, infatti alla fine solo 8K sono validi e altri sono server inutilizzati, fork, placeholder...
+- Mcp at first Glance: Guarda i codici sorgente lìdel server tramite mcp-scan e sonarQube (un semplice analizzatore per bug) e cerca veulnerabilità a seconda di quello che dicono questi scanner e la cosa che trovano di più sono le credential leak e protocol non compliance
 - We urgently need: API come exec/subprocess, connetc ecc... Quelle più frequenti sono chiamate di rete e sistema, meno file e memoria
 - Mind your server - Untrusted content con parasitic toolchain in cui concatena tool che hanno descrizioni che impattano con altri tool
 - Compatibility at a cost: Controlla il protocollo con cui sono implementati i server su 10sdk diversi attraverso regex e LLM, il messaggio chiave è che la compatibilità di un server è opzionale (può scegliere di non seguire le specifiche) ma ad un costo

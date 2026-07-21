@@ -20,7 +20,7 @@ Tutti questi lavori studiano la sicurezza di MCP, ma ognuno guarda **una fetta d
 | **[8]** | Toward Understanding Security Issues | l'**ecosistema**: host + registry + server | qualitativo (design) + conteggio | 67.057 server |
 | **[9]** | A Measurement Study (MCPCrawler) | la **salute** dell'ecosistema (mercato/server/client) | crawler + statistica sui metadati | 8.060 server |
 | **[10]** | We Urgently Need Privilege Management | l'**uso di API pericolose** nel codice dei server | analisi statica: parser + firme di API | 2.562 server |
-| **[11]** | MCP at First Glance | **sicurezza + qualità** del codice dei server | analisi statica ibrida (SAST + scanner MCP) | 1.899 server |
+| **[11]** | MCP at First Glance | **sicurezza + qualità** del codice dei server | SonarQube (SAST) + mcp-scan | 1.899 server |
 | **[12]** | Mind Your Server | una **nuova catena d'attacco** (parasitic toolchain) | LLM classifica i tool + verifica dinamica reale | 1.360 server / 12.230 tool |
 | — | **Compatibility at a Cost** | le falle nella **specifica** e nei 10 **SDK** | IR universale + analisi statica-LLM | 10 SDK, 1.265 rischi |
 | — | **Il mio lavoro** | **vulnerabilità per-server**, 17 categorie | 7 framework + pipeline a 3 stage | 69.104 server |
@@ -43,9 +43,9 @@ Il messaggio centrale è che il rischio non è (solo) nel singolo server, ma nel
 *Hechuan Guo et al. — Shandong University + NTU Singapore, nov. 2025*
 
 > **Cosa guarda:** non la sicurezza, ma lo **stato di salute** dell'ecosistema su tre fronti — **mercato** (quanto cresce), **server** (come sono fatti, che dipendenze hanno) e **client** (come si connettono). La domanda è: "MCP è un ecosistema vivo e solido o gonfiato?".
-> **Come lo guarda:** con un crawler automatico, **MCPCrawler**, che per ~14 giorni setaccia 6 marketplace in 3 fasi (scoperta e pulizia del rumore → estrazione dei metadati → normalizzazione e statistiche). Analizza *metadati*, non codice.
+> **Come lo guarda:** con un crawler automatico, **MCPCrawler**, che per ~14 giorni setaccia 6 marketplace in 3 fasi. (1) **Scoperta + pulizia**: aggrega le voci dai negozi e scarta con regole il rumore (fork inattivi, repository-placeholder, progetti senza codice eseguibile). (2) **Estrazione metadati**: da ogni voce valida ricava dipendenze dichiarate, attività del repo, linguaggio, categoria funzionale, protocollo e modalità di connessione. (3) **Normalizzazione + statistiche** per confrontare i mercati. Analizza *metadati*, non il codice.
 
-Partono da 17.630 voci grezze e ne validano **8.060 server** (+341 client). La scoperta più utile per me: il mercato è **fragile** — solo ~49% delle voci è valido, il resto sono placeholder, fork o progetti morti; un server su cinque è fermo da oltre un anno; e c'è una forte "monocultura" di dipendenze (tutti usano le stesse librerie), che è un rischio supply-chain.
+Partono da 17.630 voci grezze e ne validano **8.060 server** (+341 client), rispondendo a tre domande. **Mercato:** solo il ~49% delle voci è valido (mcp.so appena il 43%, MCP Market il 26%), e oltre metà sono placeholder, fork o progetti morti → crescita fragile; solo il 6,9% è indicizzato in ≥4 mercati. **Server:** forti *monoculture* di dipendenze (i server Java usano quasi tutti Spring → una falla come SpringShell si propagherebbe a valanga), un server su cinque fermo da oltre un anno, e l'**11,2%** chiama API sensibili (il 43% legate all'autenticazione). **Client:** SSE è ormai lo standard di fatto (**56,9%**) sopra stdio (38,1%), e l'81% gestisce una sola connessione alla volta.
 
 **In cosa siamo diversi — e perché mi torna utile.** Loro misurano *quanto è sana la popolazione*, non le vulnerabilità. Ma il loro dato "**metà dei progetti listati è spazzatura**" giustifica benissimo perché io filtro così tanto prima di analizzare.
 
@@ -56,12 +56,12 @@ Partono da 17.630 voci grezze e ne validano **8.060 server** (+341 client). La s
 ### [11] MCP at First Glance
 *Mohammed Mehedi Hasan et al. — Queen's University, giu. 2025*
 
-> **Cosa guarda:** il **codice sorgente dei server**, per due cose insieme: la **sicurezza** (vulnerabilità) e la **manutenibilità/qualità** (i "code smell", cioè codice scritto male). È il paper metodologicamente più vicino al mio.
-> **Come lo guarda:** una **pipeline ibrida** = uno strumento di analisi statica *generico* (di quelli usati per qualsiasi software, per i bug tradizionali) **+** uno scanner *specifico per MCP* (che legge le descrizioni dei tool per problemi tipo tool poisoning). Su **1.899 server** open-source.
+> **Cosa guarda:** il **codice sorgente dei server** su tre dimensioni insieme — **salute/sostenibilità** (il progetto è vivo e mantenuto?), **sicurezza** (vulnerabilità) e **manutenibilità** (code smell e bug). È il paper metodologicamente più vicino al mio.
+> **Come lo guarda:** una **pipeline ibrida** con strumenti concreti. Per la salute: metriche di attività (commit/settimana, adozione della CI, contributori) confrontate col software tradizionale. Per sicurezza e qualità: **SonarQube** (un analizzatore statico *generico*, per bug e vulnerabilità classiche) **+ mcp-scan** (uno scanner *specifico per MCP* che legge le descrizioni dei tool per il tool poisoning). Su **1.899 server** (343 dalla collezione ufficiale MCP + 1.556 presi da GitHub).
 
-Il risultato interessante è che trovano **8 categorie di vulnerabilità**, di cui solo 3 in comune col software tradizionale: segno che l'MCP introduce rischi *nuovi*, legati al linguaggio naturale delle descrizioni dei tool. Circa il 7% dei server ha vulnerabilità generiche, il **5,5% ha tool poisoning** (descrizioni manipolate per ingannare l'AI), e i due terzi hanno problemi di qualità del codice.
+Il risultato chiave: **SonarQube** segnala vulnerabilità nel **7,2%** dei server (8 pattern; il più comune è l'**esposizione di credenziali**, 3,6%), ma solo 3 di quegli 8 pattern coincidono col software tradizionale — l'MCP porta rischi *nuovi*. E **mcp-scan** trova un **5,5%** di *tool poisoning* che gli strumenti classici non vedono affatto: la lezione è che servono strumenti dedicati all'MCP. Sul fronte qualità, il **66%** ha code smell gravi (soprattutto complessità cognitiva alta) e il **14,4%** ha bug gravi — problemi molto simili al software normale, quindi curabili con le tecniche esistenti. *(Nota: `mcp-scan` è anche uno dei miei 7 framework.)*
 
-**In cosa siamo diversi.** Stessa filosofia, ma io sono **~36× più grande** (69.104 vs 1.899), uso **7 strumenti invece di 1**, li faccio "votare" tra loro e misuro i falsi positivi con un test cieco.
+**In cosa siamo diversi.** Stessa filosofia, ma io sono **~36× più grande** (69.104 vs 1.899), uso **7 strumenti invece di 1** (loro sostanzialmente SonarQube + mcp-scan), li faccio "votare" tra loro e misuro i falsi positivi con un test cieco.
 
 ### [10] We Urgently Need Privilege Management in MCP
 *Zhihao Li et al. — Shandong University, lug. 2025*
@@ -138,3 +138,10 @@ Non sono nella slide dello stato dell'arte (sono survey, benchmark o proposte di
 
 *File correlati: `PAPER_SOTA_PRESENTAZIONE.md` (stessi 5 paper della slide, in formato "domande del prof"), `THREAT_ANALYSIS_REPORT.md` (report finale), `ESEMPI_VULN_PER_CATEGORIA.md` (un esempio reale per categoria).*
 *Ultima revisione: 2026-07-21.*
+
+- Toward understanding: Gli host si fidano ciecamente degli output di un server
+- A measurement study: 
+- Mcp at first Glance:
+- We urgently need: API come exec/subprocess, connetc ecc... Quelle più frequenti sono chiamate di rete e sistema, meno file e memoria
+- Mind your server - Untrusted content con parasitic toolchain in cui concatena tool che hanno descrizioni che impattano con altri tool
+- Compatibility at a cost: Controlla il protocollo con cui sono implementati i server su 10sdk diversi attraverso regex e LLM, il messaggio chiave è che la compatibilità di un server è opzionale (può scegliere di non seguire le specifiche) ma ad un costo

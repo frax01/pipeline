@@ -1,0 +1,908 @@
+{
+ "batch": 28,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "0e5e56acb476",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:galacoder/mcp-memos",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_direct.py",
+    "code": "memos_api_key = \"REDACTED"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f571f180548a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:gbrigandi/soctalk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/soctalk/core/provisioning/render.py",
+    "code": "indexer_creds_secret = \"tenant-external-siem-creds\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "814205f208b8",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:gbrigandi/soctalk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bench/run_bench.py",
+    "code": "api_key = \"sk-bench-\" + secrets.token_hex(16)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e36835428a75",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:geehexx/mcp-web",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_web/summarizer.py",
+    "code": "api_key = \"not-needed\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c31687558dc",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:gptForYou/mcp-gusantong-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_server_gusantong/providers/alphavantage/getData.py",
+    "code": "api_key = '22ILL99ZWYAHJKXJ'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fb0f08873315",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:guruprasadgopinath/mcpchatbot-project-test",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-server/config.js",
+    "code": "OPENAI_API_KEY: 'sk-proj-REDACTED"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "63fdc6882841",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hamburgerwang/synologymcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/commands/list-download-tasks.ts",
+    "code": "message: 'Enter your NAS password:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "816b382a518e",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hamburgerwang/synologymcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/commands/nas-info.ts",
+    "code": "message: 'Enter your NAS password:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "574f8c3d69c7",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hamburgerwang/synologymcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/commands/reboot.ts",
+    "code": "message: 'Enter your NAS password:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "97f65ac190d7",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hamburgerwang/synologymcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/commands/add-download-task.ts",
+    "code": "message: 'Enter your NAS password:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "225e5ea5da84",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:harshadk99/mcp-deception-incubator-kubernetes",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "secret: \"configured (contact Platform Engineering for rotation)\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f98c634e6665",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:harshita-200/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tweets/server.py",
+    "code": "API_KEY = \"your api key\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "681bd0afa699",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:hasanuzzamanbe/server-connect-claude",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-todo-server.py",
+    "code": "APP_PASSWORD = \"lmub 2Kuv YYku bM8y Bzn7 H1DT\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dbf2ae05c3bd",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:hugo-onnx/mdm-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/upload_to_cos.py",
+    "code": "COS_API_KEY = \"REDACTED\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8c39f5d8c8dd",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:inasribrahim/Flutter-WebDriverIO-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "framework/flutter-allure-test-runner.js",
+    "code": "password: 'wrongpass'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80743d40c7b2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:itsablabla/garza-os-github",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/scout-mcp/src/index.ts",
+    "code": "const SCOUT_API_KEY = \"REDACTED\";"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1a15ae0de65a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:itsablabla/garza-os-github",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/unifi-protect-mcp/server.js",
+    "code": "const CONFIG = { unvr_host: \"192.168.10.49\", server_port: 3849, api_key: \"unifi-protect-2024-garza\" };"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5f6199f329e4",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:itsablabla/garza-os-github",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/unifi-protect-mcp/server.js",
+    "code": "req.write(JSON.stringify({ username: 'Jaden', password: '2kqc5fs-7JDgduMlLJ3z436YGaR16tnO', rememberMe: true }));"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ea5339788f9d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:itsablabla/garza-os-github",
+   "evidenza": {
+    "tipo": "static",
+    "file": "services/protect-vision/server.js",
+    "code": "password: 'mezzec-fizWo4-kisweq'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cba940dbaa23",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:itsablabla/garza-os-github",
+   "evidenza": {
+    "tipo": "static",
+    "file": "workers/mcp-gateway/worker.js",
+    "code": "const API_KEY = 'mcp-gateway-2025-garza';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2a68a229d3f0",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:janzheng/mcp-navigator",
+   "evidenza": {
+    "tipo": "static",
+    "file": "frontend/mcpNavApp.js",
+    "code": "apiKey: 'API Key:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9164610ea8cd",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:javpascal/companyprospect-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/index.py",
+    "code": "elif 'api_key=' in referer:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bda4bda5e781",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:jeremyhahn/go-keychain",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/fido2/types.go",
+    "code": "ExtensionHMACSecret = \"hmac-secret\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "70e3ef147c00",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jezweb/cloudflare-mcp-toolbox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/admin/tokens.ts",
+    "code": "const TOKEN_PREFIX = 'auth_token:';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "567184df6506",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jim-coyne/vast_MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "setup.js",
+    "code": "{ key: 'VAST_API_PASSWORD', prompt: 'Enter your VAST API password: ', isPassword: true },"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "704f6b67bfbf",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jivanshirpurkar/playwright-mcp-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "performance/load-test.js",
+    "code": "password: 'learning',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "28918aaeb61d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jivanshirpurkar/playwright-mcp-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.js",
+    "code": "password: 'learning'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "168ec32d7e15",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jivanshirpurkar/playwright-mcp-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/agents/TestAutomationAgent.js",
+    "code": "const { username = 'rahulshettyacademy', password = 'learning' } = params;"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa2be429d9e4",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:jplfaria/gem-flux-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_argo_phase2_ecoli.py",
+    "code": "argo_api_key=\"not-needed\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1dea6762b90a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:juanesmb/google-ads-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/infrastructure/api/gateway/client.go",
+    "code": "headerGatewaySecret = \"x-gateway-secret\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cdcba4a023f4",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:karthik-cb/ChatMCPDemo",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/safe-logger.ts",
+    "code": "api_key: 'sk-9876543210fedcba',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dd29b7c5b6a6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:kavita2314/mcp-weather-api-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "weather_server.py",
+    "code": "API_KEY = \"YOUR API KEY\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bd0bae12ec71",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:khalidsaidi/ragmap",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/api/src/env.ts",
+    "code": "openaiApiKey = t.slice('openapi_key:'.length).trim();"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b3d973ba23a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:khalidsaidi/ragmap",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/api/src/env.ts",
+    "code": "openaiApiKey = t.slice('OPENAI_API_KEY='.length).trim();"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f97975cecb4c",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:kpirabaharan/MCP-Weather-Tutorial",
+   "evidenza": {
+    "tipo": "static",
+    "file": "weather-tutorial/weather-mcp-client/client.py",
+    "code": "api_key = \"not-required\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3b62d34911ff",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:lakshmishac2002/Smart-Doctor-Assistant",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/test_smtp_simple.py",
+    "code": "smtp_password = \"fzrfxhaihisblywe\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "35d63ef07c6f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:liuchongchong1995/agentkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "python/coinbase-agentkit/coinbase_agentkit/action_providers/allora/allora_action_provider.py",
+    "code": "default_api_key = \"REDACTED\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9cceff236830",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:liuchongchong1995/agentkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "typescript/agentkit/src/action-providers/allora/alloraActionProvider.ts",
+    "code": "const DEFAULT_API_KEY = \"REDACTED\";"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "785c227ddb31",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:logos000/jm_mcp_server_ts",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/jmcomic.ts",
+    "code": "APP_TOKEN_SECRET: '18comicAPP',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aeab554862fd",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:logos000/jm_mcp_server_ts",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/jmcomic.ts",
+    "code": "APP_DATA_SECRET: 'REDACTED',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3611db882746",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:logos000/jm_mcp_server_ts",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/index.ts",
+    "code": "APP_TOKEN_SECRET: '18comicAPP',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4ffb2f095ea",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:logos000/jm_mcp_server_ts",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/index.ts",
+    "code": "APP_DATA_SECRET: 'REDACTED',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "15cf6de0e7e2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:lricher7329/zotero-mcp-claude-code",
+   "evidenza": {
+    "tipo": "static",
+    "file": "zotero-mcp-plugin/src/modules/semantic/embeddingService.ts",
+    "code": "const PREF_API_KEY = \"REDACTED\";"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9ae953a6c810",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mark-hingston/query-tool",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "apiKey: \"not-needed\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ad4754f07607",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:martyvasquez/lawmatics-mcp-v1.0",
+   "evidenza": {
+    "tipo": "static",
+    "file": "get_token_manual.py",
+    "code": "CLIENT_SECRET = \"REDACTED\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0daf075816fe",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:martyvasquez/lawmatics-mcp-v1.0",
+   "evidenza": {
+    "tipo": "static",
+    "file": "get_token_with_server.py",
+    "code": "CLIENT_SECRET = \"REDACTED\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "181ed7a44c42",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:martyvasquez/lawmatics-mcp-v1.0",
+   "evidenza": {
+    "tipo": "static",
+    "file": "get_token_auto.py",
+    "code": "CLIENT_SECRET = \"REDACTED\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "134abbce1e9d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mayko2003/nest-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/shared/validation/validation.messages.ts",
+    "code": "IS_STRONG_PASSWORD:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "303b7a72fe10",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mcp-shark/mcp-shark",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ui/src/components/Security/CategoryView/constants.js",
+    "code": "SECRET: 'Hardcoded Secrets',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "48c5c3048296",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:mcp-use/mcp-use",
+   "evidenza": {
+    "tipo": "static",
+    "file": "libraries/typescript/packages/mcp-use/src/telemetry/telemetry-browser.ts",
+    "code": "private readonly PROJECT_API_KEY ="
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2e17b8326cce",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:mcp-use/mcp-use",
+   "evidenza": {
+    "tipo": "static",
+    "file": "libraries/typescript/packages/mcp-use/src/telemetry/telemetry-node.ts",
+    "code": "private readonly PROJECT_API_KEY ="
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dec430480e19",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mcpmessenger/valuation-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "OneDrive/Desktop/Tooltip Companion Extension/background.js",
+    "code": "api_key: 'NOT_FOUND'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "95a30078d7c4",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:michelemercaldi/dl-mcp-test-anthropic-openai",
+   "evidenza": {
+    "tipo": "static",
+    "file": "alstom-from-claude/ai-azure-client.py",
+    "code": "api_key=\"not-needed\" # local models don't need keys"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ffd414748279",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mihai-satmarean/catalog-api-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "reimport-midocean-backpacks-with-dims.js",
+    "code": "const API_KEY = 'd1f5db62-b565-4b39-a9f5-ac52c105c7c8';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be30227a41dc",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mihai-satmarean/catalog-api-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "import-midocean-backpacks-v2.js",
+    "code": "const API_KEY = 'd1f5db62-b565-4b39-a9f5-ac52c105c7c8';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3b4c8b849a03",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mihai-satmarean/catalog-api-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "import-midocean-backpacks.js",
+    "code": "const API_KEY = 'd1f5db62-b565-4b39-a9f5-ac52c105c7c8';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf6368b610a5",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/httpx/_urls.py",
+    "code": "username=\"jo@gmail.com\", password=\"a secret\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7b1b0702b655",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/win32/lib/win32netcon.py",
+    "code": "NULL_USERSETINFO_PASSWD = \" \""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf49ff2e181a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/win32/lib/win32cryptcon.py",
+    "code": "szOID_USER_PASSWORD = \"2.5.4.35\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "faaa5fd4739e",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/authlib/oauth1/rfc5849/signature.py",
+    "code": "oauth_token=\"REDACTED\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

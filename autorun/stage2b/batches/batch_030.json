@@ -1,0 +1,908 @@
+{
+ "batch": 30,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "e61ea7568efd",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:theisferre/kubernetes-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/tools/secret.go",
+    "code": "return mcp.NewToolResultError(\"Failed to marshal updated secret: \" + err.Error()), nil"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8203ae5d9e3b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:theisferre/kubernetes-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/tools/secret.go",
+    "code": "return mcp.NewToolResultError(\"Failed to marshal secret: \" + err.Error()), nil"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "54f6a96cc713",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:timhuang1018/google-home-api-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "run_mcp_server.py",
+    "code": "if \"OPENAI_API_KEY=\" not in env_content or \"OPENAI_API_KEY=\\n\" in env_content:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d87fb945f5ea",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:tomganleylee/Claude-Home-Assistant-MCP-and-Claude-Code-Builder",
+   "evidenza": {
+    "tipo": "static",
+    "file": "custom_components/claude_dashboard_builder/const.py",
+    "code": "ERROR_INVALID_API_KEY = \"Invalid or missing API key\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a17e340918b2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:topiclakeinsights-crypto/stainless_topiclake_mcp_server-typescript",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/client.ts",
+    "code": "\"The API_KEY environment variable is missing or empty; either provide it, or instantiate the StainlessTopiclakeMcpServer client with an apiKey option,"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "675c17f2a500",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:txn2/mcp-data-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ui/src/pages/settings/connections/constants.ts",
+    "code": "oauth_client_secret: \"OAuth Client Secret\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7b6b99da8336",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:txn2/mcp-data-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ui/src/pages/settings/connections/constants.ts",
+    "code": "oauth2_client_secret: \"OAuth2 Client Secret\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "73d734dfcb8d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:txn2/mcp-data-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/platform/observability.go",
+    "code": "if name := strings.TrimPrefix(info.UserID, \"apikey:\"); name != \"\" && name != info.UserID {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "096a6011e942",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:txn2/mcp-data-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/platform/sessionsync/reload.go",
+    "code": "reloadMethodAPIKey = \"platform/reload/apikey\" //nolint:gosec // event method name, not a credential"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b4ab24fcec03",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:txn2/mcp-data-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/auth/apikey.go",
+    "code": "UserID: \"apikey:\" + matchedKey.Name,"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac662707f82a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:uhussain/mcp-client-dynamic",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mock_auth_server.py",
+    "code": "is_access_token = \"expires_at\" in token_data"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a28dd452c760",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:vcve/dida365-mcp-server-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "refresh-token.js",
+    "code": "clientSecret = line.substring('DIDA_CLIENT_SECRET='.length);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ee593f8cea34",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:vcve/dida365-mcp-server-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "oauth.js",
+    "code": "clientSecret = line.substring('DIDA_CLIENT_SECRET='.length);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "052a46fa01e6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:vijaykushwaha-03/MCP-servers",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server.py",
+    "code": "WEATHER_API_KEY = \"REDACTED\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e51cf11ce314",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:vkeerthi1/LangChain_MCP_adapter",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Lanchain_client_coroutine.py",
+    "code": "AZURE_OPENAI_API_KEY = \"???????????\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5975e60dfc94",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:wangle201210/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cmd/text2sql/text2sql.go",
+    "code": "APIKey: \"sk-******\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a797de13b8b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:whusxc/shandong-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "shandong_mcp_server_enhanced.py",
+    "code": "INTRANET_AUTH_TOKEN = \"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOjMyNCwidXNlcl9uYW1lIjoiZWR1X2FkbWluIiwic2NvcGUiOlsid2ViIl0sImV4cCI6MTc1MDA"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a4d5c0838f6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:win10ogod/ScreenMonitorMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_debug.py",
+    "code": "if \"OPENAI_API_KEY=\" in env_content:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c730f4539240",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:win10ogod/ScreenMonitorMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_debug.py",
+    "code": "if \"API_KEY=\" in env_content:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "301071bb1f2b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:wolf178876/Mutil-Agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Director.py",
+    "code": "api_key = \"youself api key\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d78499896f9a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:wolf178876/Mutil-Agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Director.py",
+    "code": "openai_api_key=\"youself api key\" # 替换为你的 Key"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b6aa250ac5f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:wolverin0/uisp-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-stdio-server.cjs",
+    "code": "process.env.UISP_NMS_API_KEY = 'REDACTED';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c74d45eee2e8",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:wowcool/Agent-Safe-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/routes.ts",
+    "code": "const DASH_PASSWORD = \"keepitsafe\";"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3ceb492306d4",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:yairsabag/yairsabag-mongodb-mcp-server-new",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/simple-mcp-client.js",
+    "code": "JWT_SECRET: 'REDACTED'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "954b8d8e9d9c",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:yooshamirza/ai-pokemon-arena--mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server.js",
+    "code": "checkApiKey: 'Verify GEMINI_API_KEY in .env file',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ecd20cdf0c4a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:yusukehayashiii/hatena-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/hatena_blog_mcp/auth.py",
+    "code": "password = \"testpass\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "824c0823c046",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:basementstudio/xmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/xmcp/src/auth/api-key.ts",
+    "code": "const validateApiKey ="
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "952ac78b1f42",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:basementstudio/xmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/xmcp/src/runtime/platforms/cloudflare/middlewares/api-key.ts",
+    "code": "const validateApiKey ="
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8eb1a174fef",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:exasol/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "exasol/ai/mcp/server/connection/connection_factory.py",
+    "code": "ENV_SSL_PRIVATE_KEY = \"EXA_SSL_PRIVATE_KEY\" # nosec"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dbe3e181d5c9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:forest6511/secretctl",
+   "evidenza": {
+    "tipo": "static",
+    "file": "desktop/app.go",
+    "code": "Message: \"Failed to change password: \" + err.Error(),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "32b0ccf91edd",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nirholas/sperax-crypto-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "BNB-Chain-MCP/binance-mcp-server/src/init.ts",
+    "code": "message: ' 🔐 Enter your BINANCE API SECRET:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "632af98bc110",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nirholas/xactions",
+   "evidenza": {
+    "tipo": "static",
+    "file": "xspace-agents/packages/core/src/gateway/api-key-service.ts",
+    "code": "const KEY_CACHE_PREFIX = 'apikey:'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f9e3a06a4291",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nirholas/xactions",
+   "evidenza": {
+    "tipo": "static",
+    "file": "xspace-agents/packages/server/public/js/admin.js",
+    "code": "? 'The current ADMIN_API_KEY was rejected. Enter a valid ADMIN_API_KEY:'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "917cf6f3f88b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nirholas/xactions",
+   "evidenza": {
+    "tipo": "static",
+    "file": "xspace-agents/packages/server/public/js/admin.js",
+    "code": ": 'This admin panel is protected. Enter ADMIN_API_KEY:'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fbef288d38da",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nirholas/xactions",
+   "evidenza": {
+    "tipo": "static",
+    "file": "xspace-agents/packages/cli/src/prompts.ts",
+    "code": "message: 'auth_token:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c7ab7c501cf9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nirholas/xactions",
+   "evidenza": {
+    "tipo": "static",
+    "file": "xspace-agents/packages/cli/src/prompts.ts",
+    "code": "message: 'X Password:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "68a40673ff3d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nirholas/xactions",
+   "evidenza": {
+    "tipo": "static",
+    "file": "xspace-agents/public/js/admin.js",
+    "code": "? 'The current ADMIN_API_KEY was rejected. Enter a valid ADMIN_API_KEY:'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f37f4210b757",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nirholas/xactions",
+   "evidenza": {
+    "tipo": "static",
+    "file": "xspace-agents/public/js/admin.js",
+    "code": ": 'This admin panel is protected. Enter ADMIN_API_KEY:'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a0264650aee1",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:langchain-ai/langchainjs",
+   "evidenza": {
+    "tipo": "static",
+    "file": "libs/providers/langchain-aws/src/chat_models.ts",
+    "code": "bedrockApiSecret: \"BEDROCK_AWS_SECRET_ACCESS_KEY\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "61922df78eb3",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aiinbx/aiinbx-ts",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# AI Inbx Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/aiinbx.svg?label=pypi%20(stable))](https://p"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b8ad2818c006",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:OneUptime/oneuptime",
+   "evidenza": {
+    "tipo": "static",
+    "file": "App/FeatureSet/Identity/API/Authentication.ts",
+    "code": "\"User forgot password: \" + user.email?.toString(),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "52ba23483233",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:beeper/desktop-api-js",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Beeper Desktop Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/beeper_desktop_api.svg?label=pypi%20("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "743521aba621",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasarlabs/ask-starknet",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp/src/index.ts",
+    "code": "ANTHROPIC_API_KEY: 'REDACTED',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6d77e081fe70",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasarlabs/ask-starknet",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp/src/index.ts",
+    "code": "GEMINI_API_KEY: 'REDACTED',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "988b4275aaf2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasarlabs/ask-starknet",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp/src/index.ts",
+    "code": "OPENAI_API_KEY: 'gpt-4o-mini',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "587209d21773",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasarlabs/ask-starknet",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcps/layerswap/src/lib/config.ts",
+    "code": "export const DEFAULT_PUBLIC_API_KEY ="
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9800824292cb",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:cooper-square-technologies/profound-typescript-sdk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Profound Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/profound.svg?label=pypi%20(stable))](https:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a3e20591e127",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:langwatch/langwatch",
+   "evidenza": {
+    "tipo": "static",
+    "file": "langwatch/src/server/role/errors/role-reserved-name.error.ts",
+    "code": "constructor(message = \"Role names starting with 'apikey:' are reserved for system use\") {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3f56cb050e91",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:langwatch/langwatch",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/thuishaven/domain/clickhouse.go",
+    "code": "ClickHousePassword = \"langwatch\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "29c3ded2d221",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:landing-ai/ade-typescript",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# LandingAI ADE Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/landingai-ade.svg?label=pypi%20(stable"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "74ef932e081a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:blakazulu/search-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/engines/queryExpansion.ts",
+    "code": "password: 'pwd passwd credentials secret hash',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d634a9bedeb7",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:brand-dot-dev/typescript-sdk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Brand Dev Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/brand.dev.svg?label=pypi%20(stable))](http"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d9e4a7110a6b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:j0KZ/mcp-agents",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/security-scanner/src/constants.ts",
+    "code": "HARDCODED_SECRET:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f208720b8fa7",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:epicmotionSD/openconductor",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/api/src/db/create-admin-key.ts",
+    "code": "const apiKey = 'oc_admin_' + randomBytes(32).toString('hex');"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b5905b1d41b6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:epicmotionSD/openconductor",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/api/src/db/create-admin-key.js",
+    "code": "const apiKey = 'oc_admin_' + randomBytes(32).toString('hex');"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6572e6436fb9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andreibesleaga/ocm-sdk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Ocm Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/ocm.svg?label=pypi%20(stable))](https://pypi.org"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "92f007c7f476",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:bluehive-health/bluehive-sdk-typescript",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# BlueHive Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/bluehive.svg?label=pypi%20(stable))](https:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c6d2a97efdd",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "https://gitlab.com/paroi/opensource/paroicms",
+   "evidenza": {
+    "tipo": "static",
+    "file": "plugins/site-generator-plugin/backend/src/db/db-read.queries.ts",
+    "code": "loginPassword: \"string|null\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "09186b62c6c0",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dataleonlabs/dataleon-typescript",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Dataleon Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/dataleon.svg?label=pypi%20(stable))](https:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f46b5ea3e5b1",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rush-db/rushdb",
+   "evidenza": {
+    "tipo": "static",
+    "file": "platform/core/src/dashboard/connector/dto/create-connector.dto.ts",
+    "code": "@ApiPropertyOptional({ example: { password: 'write-only' } })"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

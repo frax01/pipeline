@@ -1,0 +1,962 @@
+{
+ "batch": 43,
+ "n_cluster": 60,
+ "n_finding": 82,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "07e1c8823aff",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 299, 'method': 'tools/call', 'params': {'name': 'pip_install', 'arguments': {'requirements_file': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 299, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: pip3 install --no-cache-dir -r \"/home/tecnico/Desktop/etc/passwd/test || id\"\\nWARNING: Ignoring invalid distribution ~yping-extensions (/home/tecnico/pipeline-env/lib/python3.12/site-packages)\\nERROR: Could not open requirements file: [Errno 2] No such file or directory: \\'/home/tecnico/Desktop/etc/passwd/test || id\\'\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0f713a8ca1e5",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 300, 'method': 'tools/call', 'params': {'name': 'pip_install', 'arguments': {'requirements_file': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 300, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: pip3 install --no-cache-dir -r /home/tecnico/Desktop/etc/passwd/__import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "735e24ed095e",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 301, 'method': 'tools/call', 'params': {'name': 'pip_install', 'arguments': {'requirements_file': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 301, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: pip3 install --no-cache-dir -r /home/tecnico/Desktop/etc/passwd/require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e3a46d7f999a",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 302, 'method': 'tools/call', 'params': {'name': 'pip_install', 'arguments': {'requirements_file': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 302, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: pip3 install --no-cache-dir -r /home/tecnico/Desktop/etc/passwd/eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5d200847418",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 303, 'method': 'tools/call', 'params': {'name': 'pip_install', 'arguments': {'requirements_file': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 303, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: pip3 install --no-cache-dir -r \"/home/tecnico/Desktop/etc/passwd/\\' OR 1=1; --\"\\nWARNING: Ignoring invalid distribution ~yping-extensions (/home/tecnico/pipeline-env/lib/python3.12/site-packages)\\nERROR: Could not open requirements file: [Errno 2] No such file or directory: \"/home/tecnico/Desktop/etc/passwd/\\' OR 1=1; --\"\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a8ec839f787",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 304, 'method': 'tools/call', 'params': {'name': 'pip_install', 'arguments': {'requirements_file': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 304, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: pip3 install --no-cache-dir -r \"/home/tecnico/Desktop/etc/passwd/\\'; DROP TABLE users; --\"\\nWARNING: Ignoring invalid distribution ~yping-extensions (/home/tecnico/pipeline-env/lib/python3.12/site-packages)\\nERROR: Could not open requirements file: [Errno 2] No such file or directory: \"/home/tecnico/Desktop/etc/passwd/\\'; DROP TABLE users; --\"\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80711f8d3769",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 306, 'method': 'tools/call', 'params': {'name': 'pip_install', 'arguments': {'requirements_file': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 306, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Command failed: pip3 install --no-cache-dir -r /home/tecnico/Desktop/etc/passwd/http:/169.254.169.254/latest/meta-data/\\nWARNING: Ignoring invalid distribution ~yping-extensions (/home/tecnico/pipeline-env/lib/python3.12/site-packages)\\nERROR: Could not open requirements file: [Errno 2] No such file or directory: '/home/tecnico/Desktop/etc/passwd/http:/169.254.169.254/latest/meta-data/'\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b03148a2e664",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 307, 'method': 'tools/call', 'params': {'name': 'pip_install', 'arguments': {'requirements_file': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 307, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Command failed: pip3 install --no-cache-dir -r /home/tecnico/Desktop/etc/passwd/http:/localhost:6379/\\nWARNING: Ignoring invalid distribution ~yping-extensions (/home/tecnico/pipeline-env/lib/python3.12/site-packages)\\nERROR: Could not open requirements file: [Errno 2] No such file or directory: '/home/tecnico/Desktop/etc/passwd/http:/localhost:6379/'\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a811317f992",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 316, 'method': 'tools/call', 'params': {'name': 'npm_command', 'arguments': {'command': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 316, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Command failed: npm test && ls -la / \\nnpm error code ENOENT\\nnpm error syscall open\\nnpm error path /home/tecnico/Desktop/etc/passwd/package.json\\nnpm error errno -2\\nnpm error enoent Could not read package.json: Error: ENOENT: no such file or directory, open '/home/tecnico/Desktop/etc/passwd/package.json'\\nnpm error enoent This is related to npm not being able to find a file.\\nnpm error enoent\\nnpm error A complete log of this run can be found in: /home/tecnico/.npm/_logs/2026-07-13T20_26_05_316Z-debug-0.log\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e989d870a927",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 492, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 492, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/C:\\\\Windows\\\\System32\\\\config\\\\SAM'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "995637f66ed4",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 494, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 494, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/$(id)'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fe94c17b14f5",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 496, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 496, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/test && ls -la /'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "126639ca6335",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 497, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 497, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/test || id'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2af234d78307",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 498, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 498, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/__import__('os').system('id')'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3aa1ad5f13af",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 499, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 499, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/require('child_process').execSync('id').toString()'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7091759c611a",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 500, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 500, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/eval('1+1')'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "73dce8754976",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 501, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 501, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/' OR 1=1; --'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b0b8d027894e",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 502, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 502, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/'; DROP TABLE users; --'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e105fb4f92bd",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 504, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 504, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/http:/169.254.169.254/latest/meta-data/'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d2edc47eb698",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 505, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 505, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Failed to analyze code: ENOENT: no such file or directory, stat '/home/tecnico/Desktop/etc/passwd/http:/localhost:6379/'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a34dd2e2b19",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@chinchillaenterprises/mcp-amplify",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 401, 'method': 'tools/call', 'params': {'name': 'amplify_discover_sandbox_resources', 'arguments': {'outputsPath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Failed to discover sandbox resources: Unexpected token \\'r\\', \\\\\"root:x:0:0\\\\\"... is not valid JSON\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 401}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "59a28d3f7ebd",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@deplens/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'tools/call', 'params': {'name': 'deplens_check', 'arguments': {'baseline': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'structuredContent': {'schemaVersion': 1, 'kind': 'deplens-policy-result', 'passed': False, 'failOn': 'breaking', 'summary': {}, 'violations': [], 'report': {}, 'policy': {}, 'error': 'Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON', 'warnings': ['Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON']}, 'isError': True}, 'jsonrpc': '2.0', 'id': 77}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "301e8cf5b2fa",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@gotillit/local-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32603, 'message': \"Resource 'file:///etc/shadow' not found\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4e3d3bca191b",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "controlai-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 112, 'error': {'code': -32603, 'message': 'Unknown resource: file://../../etc/passwd'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7b15adff74ce",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "docx-toc-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'validate_page_jsonfile', 'arguments': {'pageJsonFile': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '校验失败：Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 131}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c0a35aaafdea",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "json-excel-translator-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'generate_excel_from_json_file', 'arguments': {'outputPath': 'test', 'jsonFilePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '错误: Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2f925b34d8e1",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-activity-tracker",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 112, 'error': {'code': -32002, 'message': \"Resource not found: Unknown resource: 'file://../etc/passwd'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "848e5864970e",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "pimlico-docs-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32603, 'message': 'Resource not found or cannot be read: file:///etc/shadow'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a836a58da25a",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "taskflow-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 59, 'method': 'tools/call', 'params': {'name': 'getNextTask', 'arguments': {'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"task\":null,\"message\":\"Failed to get next task: Unexpected token \\'r\\', \\\\\"root:x:0:0\\\\\"... is not valid JSON\"}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 59}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a36a1aba621a",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "taskflow-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'tools/call', 'params': {'name': 'showTask', 'arguments': {'id': 1, 'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"task\":null,\"message\":\"Failed to show task: Unexpected token \\'r\\', \\\\\"root:x:0:0\\\\\"... is not valid JSON\"}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 77}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a98b08c1b992",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "taskflow-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'generateTaskFiles', 'arguments': {'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"message\":\"Failed to generate task files: Unexpected token \\'r\\', \\\\\"root:x:0:0\\\\\"... is not valid JSON\"}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 131}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56ee4bdf408e",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "taskflow-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 149, 'method': 'tools/call', 'params': {'name': 'addDependency', 'arguments': {'taskId': 1, 'dependsOnId': 1, 'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"success\":false,\"message\":\"Failed to add dependency: Unexpected token \\'r\\', \\\\\"root:x:0:0\\\\\"... is not valid JSON\"}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 149}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa07deb2fc09",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "taskflow-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 167, 'method': 'tools/call', 'params': {'name': 'removeDependency', 'arguments': {'taskId': 1, 'dependsOnId': 1, 'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"success\":false,\"message\":\"Failed to remove dependency: Unexpected token \\'r\\', \\\\\"root:x:0:0\\\\\"... is not valid JSON\"}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 167}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cf88daf424ae",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "taskflow-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 185, 'method': 'tools/call', 'params': {'name': 'validateDependencies', 'arguments': {'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"success\":false,\"message\":\"Failed to validate dependencies: Unexpected token \\'r\\', \\\\\"root:x:0:0\\\\\"... is not valid JSON\"}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 185}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "46543c1c9a49",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "taskflow-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 203, 'method': 'tools/call', 'params': {'name': 'fixDependencies', 'arguments': {'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"success\":false,\"message\":\"Failed to fix dependencies: Unexpected token \\'r\\', \\\\\"root:x:0:0\\\\\"... is not valid JSON\"}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 203}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "412a99c358fd",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "vendor-search-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32603, 'message': 'Resource not found for uri: file:///etc/shadow'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2c7a0b0e5ff4",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/hom…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dad0621d9c53",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/hom…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a7a49c4d89de",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 5, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/hom…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9f95a8ebf30f",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 6, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/hom…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9651697099bb",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 7, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/hom…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "11ae594d2a8b",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 8, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/hom…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "002180c29927",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 9, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/hom…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "24f610afac4d",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 10, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d094aa37e086",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 11, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "41471eae1431",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9ff3d51062ca",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f15ebc2cae0b",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a8d6904c878b",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a28b1998e652",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "93787556c26d",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 17, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f5fa5151289e",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 18, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fd617a326527",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 19, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 19, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2eda02a31e28",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "wenyan-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'publish_article', 'arguments': {'content': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'error': {'code': -32603, 'message': '请设置 WECHAT_APP_ID 和 WECHAT_APP_SECRET 环境变量。{\"MCP_CONFIG\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude_desktop_config.json\",\"USER\":\"tecnico\",\"SSH_CLIENT\":\"10.79.6.118 54963 22\",\"MallocStackLogging\":\"0\",\"XDG_SESSION_TYPE\":\"tty\",\"SHLVL\":\"3\",\"HOME\":\"/home/tecnico\",\"OLDPWD\":\"/home/tecnico/pipeline_rerun\",\"MallocStackLoggingNoCompact\":\"0\",\"PS1\":\"(pipeline-env) \",\"DBUS_SESSION_BUS_ADDRESS\":\"unix:path=/run/user/1000/bus\",\"LOGNAME\":\"tecnico\",\"_\":\"/usr/bin/setsid\",\"XDG_SESSION_CLASS\":\"user\",\"MCP_GUARD_DIR\":\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/fw\",\"XDG_SESSION_ID\":\"524\",\"PATH\":\"/home/tecnico/pipeline-env/bin:/ho…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f9228f24e4cf",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:allwefantasy/auto-coder",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/autocoder/utils/_markitdown.py",
+    "code": "image_path = os.path.join("
+   },
+   "n_finding": 5,
+   "n_server": 1
+  },
+  {
+   "id": "9230138ab583",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:1600822305/APK-Editor-MCP-Server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-server/apk_editor_mcp/resource_utils.py",
+    "code": "values_dir = os.path.join(res_dir, f\"values-{language}\")"
+   },
+   "n_finding": 5,
+   "n_server": 1
+  },
+  {
+   "id": "72729a08990b",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:NamasteAI/TradingAgents-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tradingagents/dataflows/local.py",
+    "code": "data_path = os.path.join("
+   },
+   "n_finding": 5,
+   "n_server": 1
+  },
+  {
+   "id": "ba79a352f15e",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:danahern/claude-mcps",
+   "evidenza": {
+    "tipo": "static",
+    "file": "saleae-logic/src/saleae_logic/server.py",
+    "code": "tmp_path = os.path.join("
+   },
+   "n_finding": 5,
+   "n_server": 1
+  },
+  {
+   "id": "0cc456c49ee7",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:luckyPipewrench/pipelock",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/proxy/baseline/baseline.go",
+    "code": "path := filepath.Join(m.cfg.ProfileDir, agentKey+profileFileExt)"
+   },
+   "n_finding": 4,
+   "n_server": 1
+  },
+  {
+   "id": "c4ee3ece80e7",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:ReexpressAI/reexpress_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "code/reexpress/sdm_network_finetune_utils_saver.py",
+    "code": "rank_file = os.path.join("
+   },
+   "n_finding": 4,
+   "n_server": 1
+  }
+ ]
+}

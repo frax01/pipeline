@@ -1,0 +1,908 @@
+{
+ "batch": 14,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "bd345054bec8",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Spectro34/ansible-runner-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ansible-runner-mcp/ansible_runner_mcp_fastmcp.py",
+    "code": "def ansible_runner_stop("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d65e3c49697d",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Spectro34/ansible-runner-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ansible-runner-mcp/ansible_runner_mcp_fastmcp.py",
+    "code": "def ansible_runner_is_alive("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "93f392f38468",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Spectro34/ansible-runner-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ansible-runner-mcp/ansible_runner_mcp_fastmcp.py",
+    "code": "def ansible_runner_python_run("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "07996e9ebbee",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Spectro34/ansible-runner-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ansible-runner-mcp/ansible_runner_mcp_fastmcp.py",
+    "code": "def ansible_runner_worker("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a64a49fb6d70",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Spectro34/ansible-runner-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ansible-runner-mcp/ansible_runner_mcp_fastmcp.py",
+    "code": "def ansible_runner_process("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b1c96aa097b7",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:SurgeX-Labs/awx-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/src/awx_mcp_server/project_registry.py",
+    "code": "async def project_run_playbook("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "31ec126743b2",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:SwetaAIS2024/MCP_Tool_Code_Interpreter_Generator",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/sandbox.py",
+    "code": "def execute(self, code: str, data_path: str, timeout: int = 30) -> Dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8016f4aeabe",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Unity-Environmental-University/rhizome-kanban-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "kanban_mcp/mcp_server.py",
+    "code": "def prune_done(params: JSON) -> JSON:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "625935e8617f",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:Vasanthadithya-mundrathi/Pentest-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "kali/skills/tool_executor.py",
+    "code": "async def _hexstrike_execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "af0f718f102e",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:WalterSumbon/minicode-sdk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/minicode/tools/builtin/bash.py",
+    "code": "async def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "864b1739cf45",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:WalterSumbon/minicode-sdk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/minicode/tools/builtin/grep.py",
+    "code": "async def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5911b263c05",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:WenZH2233/Orangepi-Util-",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/tools/system/app_management/mac/scanner.py",
+    "code": "def scan_running_applications() -> List[Dict[str, str]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ccc8262c2efb",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:WenZH2233/Orangepi-Util-",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/tools/system/app_management/mac/killer.py",
+    "code": "def _list_running_applications_ps(filter_name: str = \"\") -> List[Dict[str, Any]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "375c0f7b1fa5",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:WenZH2233/Orangepi-Util-",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/tools/system/app_management/linux/scanner.py",
+    "code": "def scan_running_applications() -> List[Dict[str, str]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0c30e6b2a92a",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:WenZH2233/Orangepi-Util-",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/tools/system/app_management/windows/scanner.py",
+    "code": "def scan_running_applications() -> List[Dict[str, str]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "08ff554c4f3b",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:William12556/mcp-sed-awk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/sed_awk_mcp/platform/executor.py",
+    "code": "def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fdfff85f5b93",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Yeok-c/latex-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "latex_mcp_server/ts_bridge.py",
+    "code": "def call(self, public_name: str, payload: Dict[str, Any]) -> Any:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a5566b3a0f9e",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:aamir-gmail/lm_studio_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "MCP_core_server/rest_app.py",
+    "code": "def execute(req: ExecRequest):"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eff89ec716d7",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:aandreeva13/MCP_agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "frontend/app.py",
+    "code": "async def stop_run(run_id: str) -> JSONResponse:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f008c793bf63",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aazizisoufiane/mcp-python-repl",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_python_repl/server.py",
+    "code": "def repl_run_code(params: RunCodeInput) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "558928115489",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aganezov/ont_qc_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ont_qc_mcp/cli_wrappers.py",
+    "code": "def detect_container_runtime(tools: ToolPaths) -> Literal[\"docker\", \"apptainer\", None]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d3fae040f06a",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:agentidx/agentindex",
+   "evidenza": {
+    "tipo": "static",
+    "file": "overnight_crawl.py",
+    "code": "def is_running(module_name):"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2f91ecc9a919",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:agentidx/agentindex",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agentindex/crawlers/master_watchdog.py",
+    "code": "def is_running(grep_pattern):"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "949130cef6c1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ahmed-coding/Gravitas-Core",
+   "evidenza": {
+    "tipo": "static",
+    "file": "gravitas_mcp/terminal.py",
+    "code": "async def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5ac7957efce1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:ahostbr/kuroryuu-public",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/mcp_core/tools_repo_intel.py",
+    "code": "def _action_run("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "74e72c75859e",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:ahostbr/kuroryuu-public",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/kuroryuu_cli/commands.py",
+    "code": "async def handle(self, command: str) -> Tuple[bool, Optional[str]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6045185b7d50",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:aiagenta2z/mcp-marketplace",
+   "evidenza": {
+    "tipo": "static",
+    "file": "python/src/mcp_marketplace/app/mcp_tool_use/src/mcp_servers.py",
+    "code": "async def initialize_and_run_mcp_clients_parallel(server_map: Dict[str, Any]) -> Dict[str, List[str]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ad89580192e2",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:aiagenta2z/mcp-marketplace",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/mcp_tool_use/src/mcp_servers.py",
+    "code": "async def initialize_and_run_mcp_clients_parallel(server_map: Dict[str, Any]) -> Dict[str, List[str]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8cc793cbb926",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aimasteracc/tree-sitter-analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tree_sitter_analyzer/mcp/tools/semantic_classify_tool.py",
+    "code": "async def execute(self, arguments: dict[str, Any]) -> dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f3e8ed97f139",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aimasteracc/tree-sitter-analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tree_sitter_analyzer/mcp/tools/ast_diff_tool.py",
+    "code": "async def execute(self, arguments: dict[str, Any]) -> dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1121b3d0a103",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aimasteracc/tree-sitter-analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tree_sitter_analyzer/mcp/tools/utils/change_impact_analysis.py",
+    "code": "def _is_runnable_test_file("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cb1220850079",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aledlie/ast-grep-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/ast_grep_mcp/features/quality/orphan_detector.py",
+    "code": "def _grep_for_uncalled_functions("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5e7173578594",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aledlie/ast-grep-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/ast_grep_mcp/features/complexity/analyzer.py",
+    "code": "def _execute_ast_grep_for_classes(file_path: str, language: str, pattern: str) -> List[Dict[str, Any]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9d2563ff8658",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aledlie/ast-grep-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/ast_grep_mcp/features/deduplication/impact.py",
+    "code": "def _find_external_call_sites("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "75f26dfe66e0",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aledlie/ast-grep-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/ast_grep_mcp/features/deduplication/impact.py",
+    "code": "def _search_call_sites_for_name("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "96b990859dcf",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aledlie/ast-grep-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/ast_grep_mcp/features/deduplication/analyzer.py",
+    "code": "def _get_call_rule(self, language: str) -> Dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9dbca1228e5f",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:alexhatzo/agent-squared",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/tools/diagnostics.py",
+    "code": "async def _test_cursor_agent_call(cursor_agent_path: str, api_key: str | None) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "98c854aa0ba1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:anchore/grype-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_server.py",
+    "code": "def test_server_run():"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "09aa102f0de7",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:angrysky56/gemini-cli-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_simple.py",
+    "code": "async def test_simple_call():"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c6ff416dda6f",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:anortham/coa-codesearch-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "COA.CodeSearch.McpServer.Tests/Resources/GoldenMaster/Sources/agent.py",
+    "code": "def get_memory_log_handler() -> MemoryLogHandler:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9ce991f5626e",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:anortham/coa-codesearch-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "COA.CodeSearch.McpServer.Tests/Resources/GoldenMaster/Controls/agent.py",
+    "code": "def get_memory_log_handler() -> MemoryLogHandler:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "870e2004c636",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:anortham/coa-codesearch-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "COA.CodeSearch.McpServer.Tests/Resources/GoldenMaster/Controls/agent_delete_lines_5_7.py",
+    "code": "def get_memory_log_handler() -> MemoryLogHandler:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "42a1243d1ae2",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:anortham/coa-codesearch-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "COA.CodeSearch.McpServer.Tests/Resources/GoldenMaster/Controls/agent_search_replace_literal.py",
+    "code": "def get_memory_log_handler() -> MemoryLogHandler:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f1fcd1ed141d",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:apelogic-ai/db-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/core/src/db_mcp/benchmark/runner.py",
+    "code": "def _build_runtime_daemon_config("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "23cbe8b0fed8",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:apelogic-ai/db-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/core/src/db_mcp/benchmark/runner.py",
+    "code": "def _extract_runtime_answer_template(script: str) -> dict[str, Any] | None:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b8044c8fbe0b",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashen-dusk/mcp-redis",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/local-gateway/src/mcp_local_agent/cli_app.py",
+    "code": "def _runtime_title_lines(version: str, *, include_blank_tail: bool = False) -> list[str]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "49b7bada4123",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:assizalcaraz/pre_Cursor",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/pre_cursor/docs_manager.py",
+    "code": "def _execute_semantic_analysis(self, prompt: str) -> Dict:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eee4d543299b",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:baerautotech/cflow-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cflow_platform/core/uninstall_rollback_engine.py",
+    "code": "async def _execute_uninstall_step(self, step: UninstallStep) -> Dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8726874a8304",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:baerautotech/cflow-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cflow_platform/core/code_intel/callgraph_builder.py",
+    "code": "def _python_call_edges(file_path: Path, content: str, functions: List[FunctionInfo]) -> List[CallEdge]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8ed57294d7ad",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:batchlion/agentmessage",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server.py",
+    "code": "async def register_recall_id("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3c9982ed9ffb",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:bhadraagada/linux-mcp-suite",
+   "evidenza": {
+    "tipo": "static",
+    "file": "distros/ubuntu-webdev/server.py",
+    "code": "def _truncate(self, text: str, max_len: int = MAX_OUTPUT) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "101fda73fdb6",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:bhadraagada/linux-mcp-suite",
+   "evidenza": {
+    "tipo": "static",
+    "file": "distros/aws-cloud/server.py",
+    "code": "def _truncate(self, text: str, max_len: int = MAX_OUTPUT) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7087eb18b5c1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:bhemanth1/MCP-Server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/scanners/traceroute.py",
+    "code": "def safe_run(args, timeout=120, cwd=None):"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b0fc59ea290",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:bhemanth1/MCP-Server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/scanners/nslookupdns.py",
+    "code": "def safe_run(args, timeout=30, cwd=None):"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "06e13b27989e",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:billebel/catalyst_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "catalyst_mcp/packs/transforms.py",
+    "code": "def _execute_python_file(self, data: Dict[str, Any], config: TransformConfig, variables: Dict[str, Any]) -> Any:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a821b58861bd",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:bitranox/btx_fix_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/glintefy/subservers/common/logging.py",
+    "code": "def log_function_call("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b35f63820de1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:bitranox/btx_fix_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/glintefy/subservers/review/deps.py",
+    "code": "def execute(self) -> SubServerResult:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4952fb81661c",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:bitranox/btx_fix_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/glintefy/subservers/review/security.py",
+    "code": "def execute(self) -> SubServerResult:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "963c466f795d",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:bitranox/btx_fix_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/glintefy/subservers/review/perf.py",
+    "code": "def execute(self) -> SubServerResult:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e23143447445",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:bjoernbethge/smolagents-ace",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/smolagents/tools.py",
+    "code": "def __call__(self, *args, **kwargs) -> Any:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

@@ -1,0 +1,175 @@
+613b7dca2d62 | gh:Shashankss1205/CodeGraphContext | result = session.run(f""" => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+8f88c632c1c3 | gh:MaxGhenis/openmessages | rows, err := s.db.Query(` => ('FP', 'db.Query in Go con stringa fissa; segue tipicamente binding posizionale, nessuna concatenazione visibile')
+a32e13a53af1 | gh:OneUptime/oneuptime | await client.query({ => ('FP', 'client.query({...}) con oggetto di configurazione, pattern tipico di query parametrizzata')
+5df3504fb02d | gh:Shashankss1205/CodeGraphContext | session.run(f""" => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+dfad554812a0 | gh:aplavin/julia-mcp | result = await session.execute("println(1 + 1)", timeout=30.0) => ('FP', "file di test (test_server.py) e stringa eseguita e' un letterale fisso, nessun input esterno")
+237ca5ec698a | gh:subhashdasyam/mem0-server-mcp | result = session.run(f""" => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+6f62f630f0da | gh:alvnavraii/mcpDataBases | pg_cursor.execute(f"SELECT {', '.join(column_names)} FROM {table};") => ('FP', "column_names/table derivano da introspezione dello schema del DB sorgente, non da input dell'attaccante")
+f8a7c69cee82 | gh:Shashankss1205/CodeGraphContext | importers_result = session.run(f""" => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+63859ab88cbd | gh:Shashankss1205/CodeGraphContext | imports_result = session.run(f""" => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+1997cc5fe095 | gh:Coder-RL/Claude_MCPServer_Dev1 | await this.pgClient.query(` => ('FP', 'template literal Node senza contenuto visibile; uso idiomatico di pgClient.query con placeholder non escludibile')
+8614aeb8c52a | gh:Dicklesworthstone/ultimate_mcp_server | users = await db.query(f"SELECT username FROM users WHERE username LIK => ('VP', 'current_value (input utente per il completamento) interpolato direttamente in una clausola LIKE senza parametrizzazione')
+99053c8360f1 | gh:DayDreamerAI/ai-garden-railway-mcp | obs_result = db_session.run(f""" => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+da52a2f18ad4 | gh:Descomplicar-Marketing-e-Tecnologia/mcp-perfex-crm | await mysqlClient.query('UPDATE tblwiki_pages SET views = views + 1 WH => ('FP', 'query parametrizzata con placeholder ? e array di valori')
+820fa4480801 | gh:MaxGhenis/openmessages | rows, err := s.db.Query(` => ('FP', 'db.Query in Go con stringa fissa; pattern tipico di binding posizionale, nessuna concatenazione visibile')
+110b759227b4 | gh:MaxGhenis/openmessages | rows, err := s.db.Query(` => ('FP', 'db.Query in Go con stringa fissa; pattern tipico di binding posizionale, nessuna concatenazione visibile')
+6b2f119ca5de | gh:Tachakar/solvro-mcp-rag | fallback = query_engine.query(f"Tell me about {name}") => ('FP', "query_engine.query() e' un motore di ricerca RAG in linguaggio naturale, non una query SQL")
+8f1d6cb7e358 | gh:agentidx/agentindex | row = session.execute(text( => ('FP', 'session.execute(text(...)) di SQLAlchemy, contenuto non visibile: tipicamente usato con bind parameters')
+692cdba69ab3 | gh:agentidx/agentindex | row = session.execute(text( => ('FP', 'session.execute(text(...)) di SQLAlchemy, contenuto non visibile: tipicamente usato con bind parameters')
+5e03e3fd93ba | gh:caseys/ksp-mcp | await conn.raw( => ('FP', "conn.raw() di Knex senza contenuto visibile, non si puo' confermare interpolazione diretta di input")
+3e7b3b2f8589 | gh:felipeadeildo/whatsapp-mcp | rows, err := s.db.Query(query, "%"+q+"%", limit) => ('FP', 'db.Query(query, "%"+q+"%", limit) e\' parametrizzato: la concatenazione costruisce solo il valore del wildcard LIKE, passato come bind parameter')
+475927d07fb5 | gh:oikonai/code-ingest | self.client.query(f""" => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+930621d60b93 | gh:oikonai/code-ingest | count_result = self.client.query(f"SELECT count() FROM {table_name} GR => ('VP', 'table_name interpolato direttamente in query SurrealQL (count() FROM {table_name}) senza parametrizzazione')
+5ad1f4613e23 | gh:litmusautomation/litmus-mcp-server | rs = client.query(f'SELECT last(*) FROM "{output_topic}"') => ('VP', "output_topic interpolato direttamente tra virgolette nella query InfluxQL, nessuna parametrizzazione ne' escaping")
+82ab3d98dae9 | gh:marcelo-ochoa/servers | await connection.execute("EXPLAIN PLAN FOR " + sql); => ('VP', "concatenazione diretta di 'EXPLAIN PLAN FOR ' + sql, dove sql e' l'intera query fornita dall'utente allo strumento")
+b2331aded70b | gh:marcelo-ochoa/servers | const dbStats = await client.query(` => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+2772cac526b8 | gh:marcelo-ochoa/servers | const topIoQueries = await client.query(` => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+4b046f251dd1 | gh:marcelo-ochoa/servers | const tableStats = await client.query(` => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+2c112fbf1d7a | gh:memgraph/ai-toolkit | self._db.query(f"CREATE TEXT INDEX {_FULLTEXT_INDEX} ON :Memory(conten => ('FP', "variabile interpolata (_FULLTEXT_INDEX) e' una costante interna del modulo, non input esterno")
+2ab64014cd21 | gh:memgraph/ai-toolkit | self._db.query(f"DROP TEXT INDEX {_FULLTEXT_INDEX};") => ('FP', "variabile interpolata (_FULLTEXT_INDEX) e' una costante interna del modulo, non input esterno")
+96ba87d5af07 | gh:phlax/remember-me | cursor.execute(* => ('FP', 'cursor.execute(*args) con unpacking di tupla (query, params): pattern parametrizzato')
+8a74ae11dd81 | gh:Shashankss1205/CodeGraphContext | contained = session.run(f""" => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+ce55f9099545 | gh:Shashankss1205/CodeGraphContext | orphaned = session.run(f""" => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+1d9e9b00998e | gh:neuml/txtai | self.cursor.execute(Statement.COPY_SECTIONS % (name, select)) => ('FP', 'Statement.COPY_SECTIONS % (name, select) usa un template interno; contenuto non visibile per confermare input esterno')
+440da73deeb9 | gh:neuml/txtai | self.cursor.execute(Statement.CREATE_EXPRESSION_INDEX % (name, table, => ('FP', 'Statement.CREATE_EXPRESSION_INDEX % (...) usa un template interno; contenuto non visibile per confermare input esterno')
+701d182b57b4 | gh:rand-tech/pcm | cursor.execute(f"UPDATE notes SET {', '.join(update_parts)} WHERE id = => ('FP', 'SET dinamico costruito da lista di colonne note, ma la clausola WHERE usa placeholder ? con params legati separatamente')
+7489031bd1e3 | gh:joelmnz/mcp-markdown-manager | await database.query(` => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+018e5674a346 | gh:Lekssays/joern-mcp | conn.execute(f"UPDATE codebases SET {', '.join(sets)} WHERE hash = %s" => ('FP', 'SET dinamico costruito da colonne note, ma la clausola WHERE usa placeholder %s con params legati separatamente')
+e6ed50646dfb | gh:hannesrudolph/imessage-query-fastmcp-mcp-server | db.connection.execute(query, valid_ids + valid_ids) => ('FP', 'query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa')
+b8ae4b1b5fa3 | gh:irpus1603/mcp_sqlite | cursor.execute(query, values + params) => ('FP', 'query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa')
+cc248f6b8594 | gh:csrts/MySQL_MCP_Server | const [rows] = await connection.execute(` => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+16e342944963 | gh:csrts/MySQL_MCP_Server | const [tableSizes] = await connection.execute(` => ('FP', "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+59459e54ac2e | gh:ThomAub/clickhouse_mcp_server | table_result = client.query(f"SHOW TABLES FROM {database}") => ('VP', "database interpolato direttamente in 'SHOW TABLES FROM {database}' senza parametrizzazione ne' allowlist")
+7d5c9b8cddf9 | gh:ThomAub/clickhouse_mcp_server | result = client.query(f"SHOW TABLES FROM {database}") => ('VP', "database interpolato direttamente in 'SHOW TABLES FROM {database}' senza parametrizzazione ne' allowlist")
+0f07017bfc4b | gh:ThomAub/clickhouse_mcp_server | result = client.query(f"DESCRIBE TABLE {database}.{table}") => ('VP', "database e table interpolati direttamente in 'DESCRIBE TABLE {database}.{table}' senza parametrizzazione")
+55eee6f039b7 | gh:pshap/mcp-neolibrarian | cursor.execute(count_base + where_clause, params) => ('FP', 'where_clause con placeholder concatenata a count_base, valori legati tramite params: pattern parametrizzato')
+b310b185bee8 | gh:QuixiAI/agi-mcp-server | const results = await this.db.execute(sql` => ('FP', 'tagged template literal sql`...`: parametrizzazione automatica degli interpolati, pattern sicuro')
+7e02e4986c3e | gh:standardbeagle/agnt | if err := session.Run("sha256sum " + shellQuote(remotePath)); err != n => ('FP', 'remotePath passato tramite shellQuote() prima della concatenazione: escaping esplicito presente')
+fc56664d42a2 | gh:standardbeagle/agnt | _ = session.Run("rm -f " + shellQuote(remotePath)) => ('FP', 'remotePath passato tramite shellQuote() prima della concatenazione: escaping esplicito presente')
+f01830760b30 | gh:tanishra/MCP | await conn.execute(f"UPDATE expenses SET {','.join(fields)} WHERE id=$ => ('FP', 'placeholder posizionale $idx con *values passati come bind parameters: pattern parametrizzato')
+ba96d87e4996 | gh:vexxvakan/mcp-docsrs | db.run("DELETE FROM cache WHERE timestamp + ttl < ?", [ => ('FP', 'query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa')
+2bbedc2a4100 | gh:4R9UN/mcp-kql-server | cursor = conn.execute(query, tables + tables) => ('FP', 'query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa')
+472998c141b4 | gh:c4pt0r/mcp-server-tidb | tables = db.query(f"SHOW TABLES FROM {db_name}") => ('VP', "db_name interpolato direttamente in 'SHOW TABLES FROM {db_name}' senza parametrizzazione ne' allowlist")
+f02864b51e5b | gh:c4pt0r/mcp-server-tidb | rows = db.query(f"{sql}") => ('VP', 'db.query(f"{sql}") esegue direttamente la stringa sql fornita, equivalente a eseguire query arbitraria dell\'utente')
+d04383bccb5b | gh:akworob/mariadb_mcp_server | cursor.execute("SELECT 1 + 1 AS result") => ('FP', "file di test (test_connection.py) con query fissa 'SELECT 1+1', nessun input esterno")
+844730e20b0c | gh:isc-tdyar/medical-graphrag-assistant | cursor.execute(rel_sql, entity_list + entity_list) => ('FP', 'query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa')
+da940956c79d | gh:Samvox1/nl-supermarkt-mcp | cur.execute('SELECT p.*, s.name as supermarket_name, s.icon FROM produ => ('FP', 'query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa')
+25f953791562 | gh:Samvox1/nl-supermarkt-mcp | cur.execute('SELECT p.*, s.name as supermarket_name, s.icon FROM produ => ('FP', 'query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa')
+d4dd1798dd92 | gh:Samvox1/nl-supermarkt-mcp | cur.execute('SELECT p.*, s.name as sn, s.icon FROM products p JOIN sup => ('FP', 'query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa')
+aec2c8c30367 | gh:Samvox1/nl-supermarkt-mcp | cur.execute(f'SELECT * FROM promotions WHERE {" AND ".join(where)} ORD => ('FP', 'query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa')
+a44938b18da8 | gh:floriansmeyers/SFLOW-AIRunner-MCP-PRD | conn.execute(f"UPDATE jobs SET {', '.join(updates)} WHERE id = ?", par => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+b716c6ae3143 | gh:floriansmeyers/SFLOW-AIRunner-MCP-PRD | conn.execute(f"UPDATE webhooks SET {', '.join(updates)} WHERE id = ?", => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+707b13e658eb | gh:harn1shmodi/vsguard-mcp | cursor.execute("SELECT * FROM users WHERE username = '" + username + " => ('FP', "il codice e' contenuto in una stringa di template/documentazione (src/fixes/templates.py) che termina con triple-quote di chiusura, non codice eseguito realmente")
+6a05fd7b77b8 | gh:urjitbhatia/tpm-mcp | self.conn.execute(f"UPDATE tickets SET {', '.join(updates)} WHERE id = => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+0958827e6884 | gh:urjitbhatia/tpm-mcp | self.conn.execute(f"UPDATE tasks SET {', '.join(updates)} WHERE id = ? => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+ac1e6b82823b | gh:arturborycki/mcp-server | cur.execute(`sel ColumnName, CASE ColumnType => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+d9e4ddc95dd4 | gh:linimbus/go-mcp-file-server | rows, err = s.db.Query(TABLE_QUERY_LIKE_SQL, "%"+keyword+"%", limit) => ('FP', 'query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa')
+e65b828a0ac3 | gh:mattfoster/kcve | rows, err := db.Query("SELECT * FROM commits WHERE file_content LIKE ? => ('FP', 'query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa')
+8ee7727f2bdf | gh:MelloB1989/karma | rows, err := db.Query("SELECT * FROM " + o.tableName) => ('FP', "o.tableName e' un campo interno di un ORM impostato dal modello sviluppatore, non input diretto di un chiamante MCP")
+bf3dccb84b46 | gh:ilanbenb/wa_llm | raw_result = await conn.execute(text("SELECT 1 + 1 as test_result")) => ('FP', 'query completamente statica/fissa, nessuna variabile interpolata')
+4ff7ddf95e5b | gh:sheshbabu/zen | rows, err := sqlite.DB.Query(query, "{title content}: "+term, limit) => ('FP', 'query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa')
+4dcbcf647893 | gh:jolks/mcp-cron | rows, err := s.db.Query(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+79f1bf742b90 | gh:wanquanY/Plan_A | await conn.execute("SET TIME ZONE '+8:00';") => ('FP', 'query completamente statica/fissa, nessuna variabile interpolata')
+3a305434729b | gh:YaSh8202/remote-mcp | const vacuumStats = await client.query(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+e97b8f44ca50 | gh:YaSh8202/remote-mcp | const seqScanStats = await client.query(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+c6a96778e2ac | gh:simplyliz/codemcp | rows, err := h.db.Query(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+d7e55b08c5a3 | gh:simplyliz/codemcp | rows, err := r.db.Query(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+0c070fb738fe | gh:omega-memory/omega-memory | conn.execute(f"PRAGMA cache_size={-4000 if _is_http else -16000}") # 4 => ('FP', "valore interpolato (-4000/-16000) e' calcolato da un flag booleano interno (_is_http), non da input esterno")
+642166c2b437 | gh:AbhitejT/movie-mcp-assistant | cur.execute('ALTER TABLE ' + table_name + ' DISABLE trigger ALL;') => ('FP', "loader.py e' uno script di caricamento dati interno che itera su tabelle note in fase di setup, non un parametro di un tool MCP esposto")
+6a0b5980f2fa | gh:AbhitejT/movie-mcp-assistant | cur.execute('ALTER TABLE ' + table_name + ' ENABLE trigger ALL;') => ('FP', "loader.py e' uno script di caricamento dati interno che itera su tabelle note in fase di setup, non un parametro di un tool MCP esposto")
+3102414e77b5 | gh:Alemusica/social-cli-mcp | await db.query(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+6a53b4ac4e1e | gh:ArtMin96/yii2-mcp-server | const [tables] = await connection.execute(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+11f9559ffd00 | gh:Averyy/jlcpcb-mcp | rows = conn.execute(data_sql, params + order_params + [limit]).fetchal => ('FP', 'query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa')
+abdc073d4eb8 | gh:DaniManas/exp-tracker-local-mcp | cur = c.execute(f"UPDATE expenses SET {', '.join(updates)} WHERE id = => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+efc279e96cf7 | gh:DayDreamerAI/ai-garden-railway-mcp | db_session.run(f""" => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+072756e9b793 | gh:EstivenGg/An-lisis-de-datos-con-sistemas-inteligentes | cur.execute(f"UPDATE productos SET {', '.join(campos)} WHERE id = ?", => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+601f753b137b | gh:Everyone-Needs-A-Copilot/claude-copilot | conn.execute(f"UPDATE tasks SET {', '.join(updates)} WHERE id = ?", pa => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+e547a9a161e4 | gh:Everyone-Needs-A-Copilot/claude-copilot | conn.execute(f"UPDATE prds SET {', '.join(updates)} WHERE id = ?", par => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+24df32555890 | gh:GenAIwithMS/Expense-tracker-MCP | c.execute(f"UPDATE expenses SET {', '.join(fields)} WHERE id = ?", val => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+d614f94f9245 | gh:GenAIwithMS/Expense-tracker-MCP | c.execute(f"UPDATE credits SET {', '.join(fields)} WHERE id = ?", valu => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+eacf9ca3352b | gh:Jaggerxtrm/unified-ai-mcp-tool | const accessStmt = this.db.query(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+829a81183c32 | gh:Jarkius/agent-orchestra | db.run(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+7a2077e1c17e | gh:LogicFabric/FabriCore | res = conn.execute(text( => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+2ec234c5a9e9 | gh:MaxGhenis/openmessages | beforeRows, err := s.db.Query(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+29c6f8ce44ea | gh:MaxGhenis/openmessages | afterRows, err := s.db.Query(` => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+3a5b7ae41b3e | gh:MuhammadDastgeer/First_Remote-_Mcp_Server_App | await c.execute(f"UPDATE expenses SET {', '.join(fields)} WHERE id = ? => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+5e9e5f35e846 | gh:PlumbMonkey/local-ai-agent | cursor.execute(f"UPDATE contacts SET {', '.join(updates)} WHERE id = ? => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+9536c7ae6f90 | gh:SashaYerashoff/luxriot-mcp | conn.execute(f"UPDATE users SET {', '.join(updates)} WHERE user_id = ? => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+b91f7334f35b | gh:Sonadas21/ParseQri_MCP | conn.execute(text( => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+ec836d278420 | gh:Vangardo/mcp_hub | for r in conn.execute(sql, params_base + extra_params + [limit]).fetch => ('FP', 'query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa')
+a088d6227ff1 | gh:agentidx/agentindex | t = conn.execute(f"SELECT COUNT(*) as total, SUM(CASE WHEN is_bot=1 TH => ('FP', 'query di analytics con condizioni fisse (CASE/IS is_bot=1), nessuna variabile esterna visibile nel frammento')
+0949756b048c | gh:agentidx/agentindex | rows = conn.execute(text( => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+630b784d3fa5 | gh:agentidx/agentindex | session.execute(text( => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+73961609a483 | gh:agentidx/agentindex | session.execute(text( => ('FP', "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato")
+89e9b9131147 | gh:agentidx/agentindex | rows=conn.execute(f"SELECT * FROM defi_yields WHERE {' AND '.join(wc)} => ('FP', 'clausola WHERE dinamica costruita con placeholder e valori legati tramite params: pattern parametrizzato')
+8773d7bb53d1 | gh:ai-rio/redditharbor-graph-enhanced | "code": "# Analyze new submissions in real-time\nasync def analyze_new => ('FP', "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL")
+95e7a646554a | gh:ai-rio/redditharbor-graph-enhanced | "code": "# Score opportunities automatically\nopportunity_score = awai => ('FP', "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL")
+bf87d8ecdc21 | gh:ai-rio/redditharbor-graph-enhanced | "code": "# Analyze competitive landscape\ncompetition_analysis = await => ('FP', "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL")
+f4e5c6146589 | gh:ai-rio/redditharbor-graph-enhanced | "code": "# Get MVP guidance\nmvp_plan = await ai_client.query(f'''\nFo => ('FP', "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL")
+1a4090771422 | gh:ai-rio/redditharbor-graph-enhanced | opportunity_score = await ai_client.query(f''' => ('FP', "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL")
+cd49a3587646 | gh:ai-rio/redditharbor-graph-enhanced | competition_analysis = await ai_client.query(f''' => ('FP', "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL")
+dd268c933a91 | gh:ai-rio/redditharbor-graph-enhanced | mvp_plan = await ai_client.query(f""" => ('FP', "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL")
+6bbe74580142 | gh:alex-feel/mcp-context-server | cursor = source.execute(f'SELECT {", ".join(columns)} FROM embedding_m => ('FP', 'script CLI di migrazione (app/cli/migrate.py) eseguito amministrativamente, columns derivano dallo schema, non da un chiamante MCP esterno')
+f3d7072291cc | gh:andylbrummer/booklife-mcp | rows, err := s.db.Query(searchQuery, "%"+query+"%", "%"+query+"%", lim => ('FP', 'query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa')
+131446de093f | gh:aosyang/TaskMCP | cursor.execute(f"UPDATE tasks SET {', '.join(updates)} WHERE id = ?", => ('FP', 'SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)')
+3ce5f23d8d2e | gh:aplavin/julia-mcp | result = await session.execute("println(x + 1)", timeout=30.0) => ('FP', "file di test (test_server.py julia-mcp), stringa eseguita e' un letterale fisso, nessun input esterno")
+c591eab7a743 | gh:aplavin/julia-mcp | result = await session.execute("a = 1\nb = 2\nprintln(a + b)", timeout => ('FP', "file di test (test_server.py julia-mcp), stringa eseguita e' un letterale fisso, nessun input esterno")
+2c7c3372155e | gh:aplavin/julia-mcp | result = await session.execute("1 + 2\nprint(7)\n5 + 6", timeout=30.0) => ('FP', "file di test (test_server.py julia-mcp), stringa eseguita e' un letterale fisso, nessun input esterno")
+8019eef2a122 | gh:aplavin/julia-mcp | await session.execute("1 + 1", timeout=30.0) => None
+76ae6388e6a7 | gh:bastetlu299/multi-agent-cs-a2a-mcp | cur.execute(f"UPDATE customers SET {', '.join(fields)} WHERE id = ?", => None
+90d1d43e313c | gh:baturorkun/maven-dep-vuln-scan-remediator-ai-rag | project_risks = session.run(f""" => None
+5275cd382b72 | gh:baturorkun/maven-dep-vuln-scan-remediator-ai-rag | root_cause_risks = session.run(f""" => None
+3d25ecaeb533 | gh:baturorkun/maven-dep-vuln-scan-remediator-ai-rag | risky_deps = session.run(f""" => None
+5d68e9ea29f2 | gh:bcfmtolgahan/prometheus-mcp-server | up_result = await client.query(promql=f'up{{job="{job}"}}') => None
+ffa580fa1bfe | gh:btafoya/mailsandbox | rows, err := db.Query(`SELECT version FROM ` + tenant("darwin_migratio => None
+ceb7abaa96d2 | gh:caohaotiantian/joern_mcp | result = await self.client.execute("1 + 1", use_sync_endpoint=True) => None
+02d517bf96ec | gh:caseys/ksp-mcp | await conn.raw(`SET WARPMODE TO "${warpMode}". SET WARP TO ${currentWa => None
+e4512d193718 | gh:caseys/ksp-mcp | await conn.raw(`SET WARPMODE TO "${warpMode}". SET WARP TO ${currentWa => None
+54bd795d69af | gh:caseys/ksp-mcp | await conn.raw( => None
+8055b485cc1d | gh:codeforall/citus-mcp | rows, err := deps.Pool.Query(ctx, q, schemaFilter, cursorSchema, curso => None
+58323f978976 | gh:danieleugenewilliams/othello-agent | rows, err := s.db.Query(sqlQuery, "%"+query+"%", limit) => None
+6aa712fa7117 | gh:developerjillur/wordpress-mcp-server | const [sizeResult] = await connection.execute(` => None
+9eae841b736b | gh:developerjillur/wordpress-mcp-server | const [tableStats] = await connection.execute(` => None
+ff3d878abb8d | gh:developerjillur/wordpress-mcp-server | const [stats] = await connection.execute(` => None
+c500102cffc2 | gh:dolphina02/supersetAddAiChat | return conn.execute(f"SELECT id, {','.join(column_names)} FROM {table_ => None
+c893112df82e | gh:dublyo/mcp-gateway | rows, err := db.Query("EXPLAIN ANALYZE " + sqlStr) => None
+48ffa73a5816 | gh:ghadfield32/nba_api_mcp | filtered_df = duckdb.query(f"SELECT * FROM table WHERE {where_clause}" => None
+b620d458e4a0 | gh:ghadfield32/nba_api_mcp | sorted_df = duckdb.query(f"SELECT * FROM table ORDER BY {order_clause} => None
+9aab2de4b0b2 | gh:giridhar82/HelloMCP | cur.execute("EXPLAIN PLAN FOR " + query) => None
+64574d7a47f1 | gh:giridhar82/HelloMCP | cur.execute("EXPLAIN " + query) => None
+8d32ebb74c22 | gh:giridhar82/HelloMCP | cursor.execute("EXPLAIN " + query) => None
+7be537954521 | gh:git-aditya-star/clickhouse-mcp-agent | clickhouse_client.query(f"""CREATE TABLE {table_name} => None
+a1bcd9c8c7a0 | gh:git-aditya-star/clickhouse-mcp-agent | clickhouse_client.query(f"DROP TABLE {table_name}") => None
+3baf7d5fe7a6 | gh:hahayo/CC-memory | const updated = await db.execute(sql` => None
+a59f318df5aa | gh:hyunjunjeon/mcp-for-retriever-demo | await conn.execute("UPDATE counts SET value = value + 1") => None
+afbbfb9fa7cf | gh:i0Ta07/MCP.ExpenseTracker | cur.execute(f"SELECT {', '.join(update_fields)} FROM expenses WHERE id => None
+8c8266635591 | gh:jborjar/api-mcp | cursor.execute("SELECT COUNT(DISTINCT CardName + ISNULL(FederalTaxID, => None
+a2522fa57417 | gh:jpotter80/mcp | plan = self.db_connection.execute("EXPLAIN " + query, [query_vector]). => None
+b2af942ea25d | gh:khanglvm/tool-hub-mcp | rows, err := s.db.Query(query, toolName, since.Format(time.RFC3339)) => None
+a99a9c42c056 | gh:marc-shade/enhanced-memory-mcp | session.run(f""" => None
+350aa35757b7 | gh:marc-shade/enhanced-memory-mcp | result = session.run(f""" => None
+e4f25ae09553 | gh:novvoo/mcpchat | await client.query(` => None
+78d15db04ad2 | gh:novvoo/mcpchat | await client.query(` => None
+a75d0b92daf1 | gh:novvoo/mcpchat | await client.query(` => None
+288d4078bc94 | gh:oikonai/code-ingest | self.client.query(f"REMOVE TABLE {table_name};") => None
+6b5cb11bd96f | gh:oikonai/code-ingest | result = self.client.query(f"INFO FOR TABLE {table_name};") => None
+e84a1b7fbe6a | gh:oikonai/code-ingest | self.client.query(f"DELETE {table_name}:`{record_id}`;") => None
+832a551ad9b9 | gh:pgtgrly/bombe-mcp | rows = db.query(f"SELECT COUNT(*) AS cnt FROM {table};") => None
+93b664c878ba | gh:prashantpandeygit/vecmem | cur.execute("SELECT id, text FROM memory WHERE id=?", (idx + 1,)) => None
+72823dd6780e | gh:ramonemaxi/python-mcp-timesheet-assistant | cur.execute(f"UPDATE timesheets SET {', '.join(sets)} WHERE id = ?", t => None
+93fee95c83f6 | gh:robertmeisner/mcp_sqlite_memory_bank | sample_result = conn.execute(text(f"SELECT id, {', '.join(content_colu => None
+080f587b82b2 | gh:saibhossain/multi-agent-ai | cursor.execute("SELECT answer FROM faq WHERE question LIKE %s LIMIT 1" => None
+d30169899941 | gh:scopweb/mcp-go-mysql | result, err := client.Query("EXPLAIN " + sql) => None
+e261171ac8d1 | gh:senhub-io/mcp-server-prtg | groupRows, err := db.Query(ctx, groupQuery, "%"+searchTerm+"%", limit) => None
+af6c1bfb4550 | gh:senhub-io/mcp-server-prtg | deviceRows, err := db.Query(ctx, deviceQuery, "%"+searchTerm+"%", limi => None
+db368168cdc4 | gh:senhub-io/mcp-server-prtg | sensorRows, err := db.Query(ctx, sensorQuery, "%"+searchTerm+"%", limi => None
+bddcd79da6bc | gh:sycbs4t2dx-hue/mcp-enterprise-server | self.db.execute(sync_sql, { => None
+cbff360f61ca | gh:viktorprogger/mcp-memory | rows, err := m.db.Query("SELECT e.id, e.name, e.entity_type, o.content => None
+e4224644c2f0 | gh:viktorprogger/mcp-memory | rrows, err := m.db.Query("SELECT e1.name, e2.name, r.relation_type FRO => None
+5c7a940ea684 | gh:zeroinfinity03/sqlite3-mcpserver | rows = conn.execute("EXPLAIN QUERY PLAN " + sql, params or {}).fetchal => None
+e743e936efe9 | gh:forest6511/secretctl | rows, err := v.db.Query(` => None
+275d1db92f95 | gh:silkspace/llm-knowledge-graph | df = self.db.query(f"SELECT id, {text_fields} FROM documents WHERE sum => None
+af739353ccfe | gh:gregordimi/mcptodo | await db.run('UPDATE tasks SET position = position + 1 WHERE status = => None
+6ce32fd90352 | securitylens-mcp | db.query("SELECT * FROM users WHERE id = " + userId); => None
+1c32273f2e70 | securitylens-mcp | db.query("SELECT * FROM users WHERE id = " + userId); => None
+VP: 9 FP: 108 total matched: 117 of 174

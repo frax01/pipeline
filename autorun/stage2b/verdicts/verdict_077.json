@@ -1,0 +1,305 @@
+{
+ "batch": 77,
+ "verdetti": [
+  {
+   "id": "4a65dafe79b7",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'Configure PRIVATE_KEY', solo nome del parametro, nessun valore divulgato"
+  },
+  {
+   "id": "6935ec789768",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'Configure PRIVATE_KEY', solo nome del parametro, nessun valore divulgato"
+  },
+  {
+   "id": "629aeb98a08f",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'Configure PRIVATE_KEY', solo nome del parametro, nessun valore divulgato"
+  },
+  {
+   "id": "613b7dca2d62",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "8f88c632c1c3",
+   "verdetto": "FP",
+   "motivo": "db.Query in Go con stringa fissa; segue tipicamente binding posizionale, nessuna concatenazione visibile"
+  },
+  {
+   "id": "a32e13a53af1",
+   "verdetto": "FP",
+   "motivo": "client.query({...}) con oggetto di configurazione, pattern tipico di query parametrizzata"
+  },
+  {
+   "id": "5df3504fb02d",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "dfad554812a0",
+   "verdetto": "FP",
+   "motivo": "file di test (test_server.py) e stringa eseguita e' un letterale fisso, nessun input esterno"
+  },
+  {
+   "id": "237ca5ec698a",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "6f62f630f0da",
+   "verdetto": "FP",
+   "motivo": "column_names/table derivano da introspezione dello schema del DB sorgente, non da input dell'attaccante"
+  },
+  {
+   "id": "f8a7c69cee82",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "63859ab88cbd",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "1997cc5fe095",
+   "verdetto": "FP",
+   "motivo": "template literal Node senza contenuto visibile; uso idiomatico di pgClient.query con placeholder non escludibile"
+  },
+  {
+   "id": "8614aeb8c52a",
+   "verdetto": "VP",
+   "motivo": "current_value (input utente per il completamento) interpolato direttamente in una clausola LIKE senza parametrizzazione"
+  },
+  {
+   "id": "99053c8360f1",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "da52a2f18ad4",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata con placeholder ? e array di valori"
+  },
+  {
+   "id": "820fa4480801",
+   "verdetto": "FP",
+   "motivo": "db.Query in Go con stringa fissa; pattern tipico di binding posizionale, nessuna concatenazione visibile"
+  },
+  {
+   "id": "110b759227b4",
+   "verdetto": "FP",
+   "motivo": "db.Query in Go con stringa fissa; pattern tipico di binding posizionale, nessuna concatenazione visibile"
+  },
+  {
+   "id": "6b2f119ca5de",
+   "verdetto": "FP",
+   "motivo": "query_engine.query() e' un motore di ricerca RAG in linguaggio naturale, non una query SQL"
+  },
+  {
+   "id": "8f1d6cb7e358",
+   "verdetto": "FP",
+   "motivo": "session.execute(text(...)) di SQLAlchemy, contenuto non visibile: tipicamente usato con bind parameters"
+  },
+  {
+   "id": "692cdba69ab3",
+   "verdetto": "FP",
+   "motivo": "session.execute(text(...)) di SQLAlchemy, contenuto non visibile: tipicamente usato con bind parameters"
+  },
+  {
+   "id": "5e03e3fd93ba",
+   "verdetto": "FP",
+   "motivo": "conn.raw() di Knex senza contenuto visibile, non si puo' confermare interpolazione diretta di input"
+  },
+  {
+   "id": "3e7b3b2f8589",
+   "verdetto": "FP",
+   "motivo": "db.Query(query, \"%\"+q+\"%\", limit) e' parametrizzato: la concatenazione costruisce solo il valore del wildcard LIKE, passato come bind parameter"
+  },
+  {
+   "id": "475927d07fb5",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "930621d60b93",
+   "verdetto": "VP",
+   "motivo": "table_name interpolato direttamente in query SurrealQL (count() FROM {table_name}) senza parametrizzazione"
+  },
+  {
+   "id": "5ad1f4613e23",
+   "verdetto": "VP",
+   "motivo": "output_topic interpolato direttamente tra virgolette nella query InfluxQL, nessuna parametrizzazione ne' escaping"
+  },
+  {
+   "id": "82ab3d98dae9",
+   "verdetto": "VP",
+   "motivo": "concatenazione diretta di 'EXPLAIN PLAN FOR ' + sql, dove sql e' l'intera query fornita dall'utente allo strumento"
+  },
+  {
+   "id": "b2331aded70b",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "2772cac526b8",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "4b046f251dd1",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "2c112fbf1d7a",
+   "verdetto": "FP",
+   "motivo": "variabile interpolata (_FULLTEXT_INDEX) e' una costante interna del modulo, non input esterno"
+  },
+  {
+   "id": "2ab64014cd21",
+   "verdetto": "FP",
+   "motivo": "variabile interpolata (_FULLTEXT_INDEX) e' una costante interna del modulo, non input esterno"
+  },
+  {
+   "id": "96ba87d5af07",
+   "verdetto": "FP",
+   "motivo": "cursor.execute(*args) con unpacking di tupla (query, params): pattern parametrizzato"
+  },
+  {
+   "id": "8a74ae11dd81",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "ce55f9099545",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "1d9e9b00998e",
+   "verdetto": "FP",
+   "motivo": "Statement.COPY_SECTIONS % (name, select) usa un template interno; contenuto non visibile per confermare input esterno"
+  },
+  {
+   "id": "440da73deeb9",
+   "verdetto": "FP",
+   "motivo": "Statement.CREATE_EXPRESSION_INDEX % (...) usa un template interno; contenuto non visibile per confermare input esterno"
+  },
+  {
+   "id": "701d182b57b4",
+   "verdetto": "FP",
+   "motivo": "SET dinamico costruito da lista di colonne note, ma la clausola WHERE usa placeholder ? con params legati separatamente"
+  },
+  {
+   "id": "7489031bd1e3",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "018e5674a346",
+   "verdetto": "FP",
+   "motivo": "SET dinamico costruito da colonne note, ma la clausola WHERE usa placeholder %s con params legati separatamente"
+  },
+  {
+   "id": "e6ed50646dfb",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa"
+  },
+  {
+   "id": "b8ae4b1b5fa3",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa"
+  },
+  {
+   "id": "cc248f6b8594",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "16e342944963",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (f-string/template) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "59459e54ac2e",
+   "verdetto": "VP",
+   "motivo": "database interpolato direttamente in 'SHOW TABLES FROM {database}' senza parametrizzazione ne' allowlist"
+  },
+  {
+   "id": "7d5c9b8cddf9",
+   "verdetto": "VP",
+   "motivo": "database interpolato direttamente in 'SHOW TABLES FROM {database}' senza parametrizzazione ne' allowlist"
+  },
+  {
+   "id": "0f07017bfc4b",
+   "verdetto": "VP",
+   "motivo": "database e table interpolati direttamente in 'DESCRIBE TABLE {database}.{table}' senza parametrizzazione"
+  },
+  {
+   "id": "55eee6f039b7",
+   "verdetto": "FP",
+   "motivo": "where_clause con placeholder concatenata a count_base, valori legati tramite params: pattern parametrizzato"
+  },
+  {
+   "id": "b310b185bee8",
+   "verdetto": "FP",
+   "motivo": "tagged template literal sql`...`: parametrizzazione automatica degli interpolati, pattern sicuro"
+  },
+  {
+   "id": "7e02e4986c3e",
+   "verdetto": "FP",
+   "motivo": "remotePath passato tramite shellQuote() prima della concatenazione: escaping esplicito presente"
+  },
+  {
+   "id": "fc56664d42a2",
+   "verdetto": "FP",
+   "motivo": "remotePath passato tramite shellQuote() prima della concatenazione: escaping esplicito presente"
+  },
+  {
+   "id": "f01830760b30",
+   "verdetto": "FP",
+   "motivo": "placeholder posizionale $idx con *values passati come bind parameters: pattern parametrizzato"
+  },
+  {
+   "id": "ba96d87e4996",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa"
+  },
+  {
+   "id": "2bbedc2a4100",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa"
+  },
+  {
+   "id": "472998c141b4",
+   "verdetto": "VP",
+   "motivo": "db_name interpolato direttamente in 'SHOW TABLES FROM {db_name}' senza parametrizzazione ne' allowlist"
+  },
+  {
+   "id": "f02864b51e5b",
+   "verdetto": "VP",
+   "motivo": "db.query(f\"{sql}\") esegue direttamente la stringa sql fornita, equivalente a eseguire query arbitraria dell'utente"
+  },
+  {
+   "id": "d04383bccb5b",
+   "verdetto": "FP",
+   "motivo": "file di test (test_connection.py) con query fissa 'SELECT 1+1', nessun input esterno"
+  },
+  {
+   "id": "844730e20b0c",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa"
+  },
+  {
+   "id": "da940956c79d",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa"
+  },
+  {
+   "id": "25f953791562",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori passati separatamente (placeholder ?/%s/$n o array di binding), non concatenati nella stringa"
+  }
+ ]
+}

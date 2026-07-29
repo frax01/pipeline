@@ -1,0 +1,848 @@
+{
+ "batch": 102,
+ "n_cluster": 60,
+ "n_finding": 120,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "2d7df6cf1c32",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/AlexandreProenca/nuvemshop-mcp-server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"main.py\", \"line\": 100, \"evidence\": \"access_token = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "c0f6df7f2431",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/dbankscard/jamf-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/server/chatgpt-endpoints.ts\", \"line\": 7, \"evidence\": \"const DEV_TOKEN = 'eyJREDACTED.eyJREDACTED.REDACTED';\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:JWT Token\", \"llm_buc…"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "01b0feb70bdd",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/atsuki-sakai/ai_collaboration_mcp_server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"scripts/debug-startup.js\", \"line\": 23, \"evidence\": \"DEEPSEEK_API_KEY: 'sk-REDACTED',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "34c00c9af688",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/atsuki-sakai/ai_collaboration_mcp_server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"scripts/verify-deepseek.js\", \"line\": 18, \"evidence\": \"const DEEPSEEK_API_KEY = 'sk-REDACTED';\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "b960c6b40229",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/matthew-noeticos/2025-06-18-uk-crime-mcp\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/index.ts\", \"line\": 6, \"evidence\": \"const GEOCODING_API_KEY='REDACTED';\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "52afebddffa4",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/cevatkerim/chargenow-mcp\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/index.ts\", \"line\": 512, \"evidence\": \"globalServerConfig = { geocodeApiKey: \\\"REDACTED\\\" };\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "c50a55a912bb",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Deep-Intelligent-Pharma/Translationx-mcp-server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/tools/file_tools.py\", \"line\": 91, \"evidence\": \"\\\"token\\\": \\\"eyJREDACTED.eyJREDACTED.REDACTED\\\",\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:JWT Token\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "c370c15608e4",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Dicklesworthstone/tsap_mcp_server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/tsap/composite/patterns.py\", \"line\": 716, \"evidence\": \"'api_key = \\\"a1b2c3d4e5f6g7h8i9j0k1l2m3n4o5p6\\\"',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "1a277a016303",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/hanqizheng/media_kit_mcp_server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/mcpClient.ts\", \"line\": 18, \"evidence\": \"DEEP_SEEK_API_KEY: \\\"sk-REDACTED\\\",\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "6b00619522da",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/kalepail/stellar-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/passkey-kit.ts\", \"line\": 5, \"evidence\": \"const launchtubeJwt = 'eyJREDACTED.eyJREDACTED.REDACTED'\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:JWT Token\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "048a7c7c554b",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ag2-mcp-servers/telnyx-api\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"mcp_server/models.py\", \"line\": 8428, \"evidence\": \"'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ0ZWxueXhfdGVsZXBob255IiwiZXhwIjoxNTkwMDEwMTQzLCJpYXQiOjE1ODc1OTA5NDMsImlzcyI6InRlbG55eF90ZWxlcGhvbnkiLCJqdGkiOiJiOGM3NDgzNy1kODllLTRhNjUtOWNmMi0zNGM3YTZmYTYwYzgiLCJuYmYiOjE1ODc1OTA5NDIsInN1YiI6IjVjN2FjN2QwLWRiNjUtNGYxMS05OGUxLWVlYzBkMWQ1YzZhZSIsInRlbF90b2tlbiI6InJqX1pra1pVT1pNeFpPZk9tTHBFVUIzc2lVN3U2UmpaRmVNOXMtZ2JfeENSNTZXRktGQUppTXlGMlQ2Q0JSbWxoX1N5MGlfbGZ5VDlBSThzRWlmOE1USUlzenl6U2xfYURuRz…"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "b3fa4a1f0422",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ag2-mcp-servers/telnyx-api\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"mcp_server/models.py\", \"line\": 12324, \"evidence\": \"'refresh_token': 'eyJhbGciOiJFZDI1NTE5IiwidHlwIjoiSldUIn0.eyJhdWQiOiJ0ZWxueXhfYWNjZXNzX3Rva2VuIiwiZXhwIjoxNjE5MDkzNzA1LCJncmFudHMiOlt7ImFjdGlvbnMiOlsiam9pbiJdLCJyZXNvdXJjZXMiOlsidGVsbnl4OnZpZGVvOnJvb21zOjllMmEwY2JlLWNlNjYtNDExZS1hMWFjLTQ2OGYwYjEwM2M5YSJdLCJzdWJqZWN0cyI6WyJ0ZWxueXg6dXNlcnM6NzgyYjJjYmUtODQ2Ni00ZTNmLWE0ZDMtOTc4MWViNTc3ZTUwIl19XSwiZ3JhbnRzX3ZlcnNpb24iOiIxLjAuMCIsImlhdCI6MTYxOTA5MzY5NSwiaXNzIjoidGVsbnl4X2FjY2Vzc190b2tlbiIsImp0a…"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "dd1427f06874",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ahmad7744/weather-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/index.ts\", \"line\": 12, \"evidence\": \"const API_KEY = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "0bb69f232d3c",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alan5543/travel-agent-mcp-server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"apiService.py\", \"line\": 663, \"evidence\": \"api_key=\\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "aa0371e384e1",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/aryaman45/langchain_mcp_servers\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"servers/weather_server.py\", \"line\": 11, \"evidence\": \"OPENWEATHERMAP_API_KEY = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "263eeebbc728",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/bmya/claude-odoo-api\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"create_odoo_invoices.py\", \"line\": 4, \"evidence\": \"api_key = \\\"1b9d57b74136bd3645b971a04e2144fb2e6a2f6d\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "5237b2cd78b7",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/bobbylite/mcp-apps-example\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"server.ts\", \"line\": 135, \"evidence\": \"apiKey: \\\"435dcb31c41a196c75d8e3f4314385d07b677a5dca9e4848b70bdf687e989208c091114dc6ccb797f3241d6014cc8f013d91291fa60d56596e33cbfff2b26a18fb9cd5ad42fadc6570b6dd1dd64bdc2b5ca2534e9e89a85d3590a39518209a0abf09e35a7abda3870248499edebe56d8e758d52da11b142282b6c14973890f4f\\\",\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "06b1d6c4dffe",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/bondeyash/zerodha-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"trade.ts\", \"line\": 7, \"evidence\": \"let access_token = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "5183d8f11598",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ckagrawal89/qloo_confidential_mcp_server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/qloo_mcp_server/constant.py\", \"line\": 2, \"evidence\": \"QLOO_API_KEY = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "e054f2892b2c",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/djklmr2025/lobe-chat-arkaios\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"packages/model-runtime/src/types/error.ts\", \"line\": 15, \"evidence\": \"InvalidProviderAPIKey: 'InvalidProviderAPIKey',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "fde841993a46",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/djklmr2025/lobe-chat-arkaios\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"packages/types/src/asyncTask.ts\", \"line\": 16, \"evidence\": \"InvalidProviderAPIKey = 'InvalidProviderAPIKey',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "383ba3091be2",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/gloomysunday28/mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/index.ts\", \"line\": 22, \"evidence\": \"const API_KEY = 'REDACTED'\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "1aa7dd829b58",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/gloomysunday28/mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/sse.ts\", \"line\": 22, \"evidence\": \"const API_KEY = 'REDACTED'\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "e826401729a0",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/gyan-max/mcp-server-blender\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"backend/api/claude_api.py\", \"line\": 3, \"evidence\": \"CLAUDE_API_KEY = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "4877d98868fe",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ht-fujimoto/estat-aws-mcp-server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"fetch_complete_household_data.py\", \"line\": 28, \"evidence\": \"ESTAT_API_KEY = 'REDACTED'\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "1216e35a8aa1",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ladyk666/learnflowpro\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"mcp-server/src/simpleTokenManager.ts\", \"line\": 33, \"evidence\": \"return 'eyJREDACTED.eyJREDACTED.REDACTED';\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:JWT Token\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "f3b92a9a87e4",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ladyk666/learnflowpro\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"mcp-server/src/tokenManager.ts\", \"line\": 72, \"evidence\": \"return 'eyJREDACTED.eyJREDACTED.REDACTED';\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:JWT Token\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "66adcf5ac5bf",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ladyk666/learnflowpro\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"my-day-network-server/src/utils/TokenManager.ts\", \"line\": 33, \"evidence\": \"const defaultToken = 'eyJREDACTED.eyJREDACTED.REDACTED';\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:JWT Token\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "85df324673f1",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/lamdt1/mcp-servers\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/mp3ApiClient.ts\", \"line\": 72, \"evidence\": \"private readonly API_KEY = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "4e05aef6b936",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/leandrodantelab2dev/lab2-mcp-cap\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"srv/mcp/mcp.js\", \"line\": 5, \"evidence\": \"const SAP_API_KEY = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "7e4d8a3c6af2",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/mcpmessenger/mcp-registry\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"backend/src/scripts/update-brave-search-api-key.ts\", \"line\": 11, \"evidence\": \"const BRAVE_API_KEY = 'REDACTED'\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "a9947d555dce",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/me-eujene/flight-agent-eval\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"eval-final.js\", \"line\": 26, \"evidence\": \"const POLLINATIONS_API_KEY = 'REDACTED';\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "3cba15cadbe4",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/mohaimenhasan/mcp-weather-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/index.ts\", \"line\": 6, \"evidence\": \"const API_KEY = \\\"REDACTED\\\"; // Found this key online - not mine :)\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "8f032c58f837",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/muhammadzan/weather-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/index.ts\", \"line\": 12, \"evidence\": \"const API_KEY = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "4a1b10592939",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/my-mcp-hub/doc-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/tools/registerWatermarkJsPlus.ts\", \"line\": 32, \"evidence\": \"apiKey: 'REDACTED',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "e166f4626d37",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/nipun1311/zerodha-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"trade.ts\", \"line\": 4, \"evidence\": \"const apiSecret = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "60664add1bed",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/nipun1311/zerodha-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"trade.ts\", \"line\": 6, \"evidence\": \"const access_token = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "06a26a17be2f",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/nitesh-nandan/upstox-mcp-server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/auth/auth_manager.py\", \"line\": 85, \"evidence\": \"token = \\\"eyJREDACTED.eyJREDACTED.REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:JWT Token\", \"llm_bucket\": \"UNCERTAIN\", \"bu…"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "c9224ec1d167",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/omkarjoshi9/zerodha-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"trade.ts\", \"line\": 4, \"evidence\": \"let accessToken = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "9572ce479dee",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/pratik2374/mcp-server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"Task1 setup/flashcard.py\", \"line\": 11, \"evidence\": \"openai_api_key = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "8cd9c7809d0e",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/pratik2374/mcp-server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"Task1 setup/lessonPlan.py\", \"line\": 9, \"evidence\": \"openai_api_key = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "aefe8bd57609",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/pratik2374/mcp-server\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"Task1 setup/mcq.py\", \"line\": 9, \"evidence\": \"openai_api_key = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "b11f4ef1fab0",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/rohithatmakuri-187/AEVO-MCP-PROJECT\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"config.py\", \"line\": 15, \"evidence\": \"AEVO_API_KEY = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "eb4c1fd7570e",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/rohithatmakuri-187/AEVO-MCP-PROJECT\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"config.py\", \"line\": 16, \"evidence\": \"AEVO_API_SECRET = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "d11ae1790139",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/sahupra1357/StockSearhMCP\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"examples/sec_io.py\", \"line\": 12, \"evidence\": \"API_KEY='REDACTED'\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "0313366079fa",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/sarvajeet2003/tally_mcp_server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/index.ts\", \"line\": 10, \"evidence\": \"const API_KEY = 'REDACTED';\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "90cbd0808eeb",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/tenoch1986/MCP_agent\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"gnews_server.py\", \"line\": 21, \"evidence\": \"GNEWS_API_KEY = \\\"REDACTED\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "021623963388",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/valentin-harrang/pr-mcp-server\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/templates/gif-selector.ts\", \"line\": 4, \"evidence\": \"const GIPHY_API_KEY = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "1a0082c3ed17",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/wongyan-data/agent_mcp\", \"language\": \"python\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"mcp_langchain_app.py\", \"line\": 84, \"evidence\": \"OPENAI_API_KEY = \\\"sk-REDACTED\\\" # OpenAI API 密钥\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "993a3b05c3e1",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/yidayoung/lobe-chat\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"packages/model-runtime/src/types/error.ts\", \"line\": 15, \"evidence\": \"InvalidProviderAPIKey: 'InvalidProviderAPIKey',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "ece4a1d0cd28",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/yidayoung/lobe-chat\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"packages/types/src/asyncTask.ts\", \"line\": 16, \"evidence\": \"InvalidProviderAPIKey = 'InvalidProviderAPIKey',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "0a373cc1cad9",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/tomas-chudjak/doppio-coffee-mcp\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/index.ts\", \"line\": 26, \"evidence\": \"const API_KEY = \\\"REDACTED\\\";\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "828cc0eb5835",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/powerhouse-inc/powerhouse\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"apps/academy/docusaurus.config.ts\", \"line\": 159, \"evidence\": \"apiKey: \\\"REDACTED\\\",\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "12a46fd4014c",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/atxp-dev/sdk\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"packages/atxp-base/src/smartWalletHelpers.ts\", \"line\": 20, \"evidence\": \"const COINBASE_API_KEY = 'REDACTED';\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "814be4bc1dfc",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/instincthub/instincthub-react-ui\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"src/components/lib/utils.ts\", \"line\": 588, \"evidence\": \"\\\"eyJREDACTED.eyJREDACTED.REDACTED\\\",\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:JWT Token\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "a0536b4549d7",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/midwayjs/midway\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"site/docusaurus.config.js\", \"line\": 251, \"evidence\": \"apiKey: 'REDACTED',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "e1c099bdbf50",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ng-primitives/ng-primitives\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"apps/documentation/src/app/components/navbar/navbar.ts\", \"line\": 43, \"evidence\": \"apiKey: 'REDACTED',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "ec18dcf651ad",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ng-primitives/ng-primitives\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"apps/documentation/src/app/pages/index.page.ts\", \"line\": 99, \"evidence\": \"apiKey: 'REDACTED',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "e31f0ea8d079",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/prettier/prettier\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"website/docusaurus.config.js\", \"line\": 259, \"evidence\": \"apiKey: \\\"REDACTED\\\",\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "f888f94bf13d",
+   "tool": "watch",
+   "categoria": "credential-leak",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/VoltAgent/voltagent\", \"language\": \"nodejs\", \"id\": \"HARDCODED_CREDENTIALS\", \"category\": \"credential-leak\", \"description\": \"Hardcoded credentials detected\", \"file\": \"website/docusaurus.config.ts\", \"line\": 692, \"evidence\": \"apiKey: \\\"REDACTED\\\",\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"provider:Generic API Key Assignment\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  }
+ ]
+}

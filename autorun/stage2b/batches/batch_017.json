@@ -1,0 +1,908 @@
+{
+ "batch": 17,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "0206514cfa95",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:maxde-f/mcp-audit-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "gateway/mcp/http_server.py",
+    "code": "def recall_memory("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be9e0a069667",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mdlmarkham/SystemManager",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/services/app_scanner.py",
+    "code": "def _get_running_processes(self) -> List[str]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "048eb50121ad",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:michaelprinc/MCP_prompt_broker",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/llama-orchestrator/src/llama_orchestrator/engine/logging_config.py",
+    "code": "def get_stdout_handler(self) -> RotatingFileHandler:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fd321a3d9538",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:minorumochizuki2015-ship-it/mcp-gateway-gemini3",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_gateway/gateway.py",
+    "code": "def _block_reason_for_run(entry: dict, tool_caps: set[str]) -> dict | None:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c3d547718206",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:mutakeenbhat/mcp-ml-analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ts_js_extractor.py",
+    "code": "def detect_syscalls(code: str) -> Dict[str, List[str]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5f9417cfaf65",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:mutakeenbhat/mcp-ml-analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "rust_extractor.py",
+    "code": "def detect_syscalls(code: str) -> Dict[str, List[str]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4bfe59c725cb",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:mutakeenbhat/mcp-ml-analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "rust_extractor.py",
+    "code": "def detect_syscalls_rust(code: str) -> Dict[str, List[str]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4d9b086a9a09",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:mutakeenbhat/mcp-ml-analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "syscall_scanner_v4.py",
+    "code": "def severity_from_syscalls(info: Dict[str, List[str]]) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8305de17b64f",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:nikhildx/umcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "umcp/utils/executor.py",
+    "code": "async def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e7bcb9fa8f02",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:nofilmincamera-lab/document-skills-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "security.py",
+    "code": "def safe_subprocess_run("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "591212e0b554",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:noomz/playwright-mcp-proxy",
+   "evidenza": {
+    "tipo": "static",
+    "file": "playwright_mcp_proxy/server/app.py",
+    "code": "def truncate_error(error_msg: str, max_length: int = 500) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80470545d046",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:openshift-eng/ocp-performance-analyzer-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "elt/utils/analyzer_elt_utility.py",
+    "code": "def truncate_text(self, text: str, max_length: int = 30, suffix: str = '...') -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c198ebfbd2f0",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:openshift-eng/ocp-performance-analyzer-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/egressip/egressip_cornet_6498_runner.py",
+    "code": "async def _execute_test(self, config: Dict[str, Any], test_env: Dict[str, Any]) -> Dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9f651ac54bd1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:openshift-eng/ocp-performance-analyzer-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/egressip/corenet_6498_runner.py",
+    "code": "async def _execute_test(self, config: Dict[str, Any], test_env: Dict[str, Any]) -> Dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5a5eea07ca6",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:paragch/mcp-travel-planning-system",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_strand_agent.py",
+    "code": "def _call_server(self, request: dict) -> Optional[dict]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b57dece0d588",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:paraporoco/Wolfram-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "wolfram_mcp_server.py",
+    "code": "def execute(self, code: str, timeout: int = 30) -> Dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "82806bfc665e",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pasberry/mcp-api-experiment",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/telemetry.py",
+    "code": "def log_mcp_call("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "16cbc7e4bbc1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:passionworkeer/gaode_agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "chat_agent_qwen/agent_tools/tools.py",
+    "code": "def execute(self, params: Dict[str, Any]) -> Any:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5bd67b19d81",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:passionworkeer/gaode_agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "chat_agent_qwen/agent_tools/tools.py",
+    "code": "async def arun(self, **params: Dict[str, Any]) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "93c8fb77596f",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:passionworkeer/gaode_agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "chat_agent_qwen/agent_tools/tools.py",
+    "code": "def execute(self, params: Dict[str, Any]) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1dfbc96a0bb5",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:paulnegz/manim-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "manim_mcp/core/renderer.py",
+    "code": "async def _execute_render(self, input: RenderSceneInput, scene_name: str) -> RenderOutput:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eec6dadd2954",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pedrobsm/github-mcp-server-haos-addon",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_bridge/mcp_client.py",
+    "code": "async def execute(self, request: MCPRequest) -> MCPResponse:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "199fa4eb7fa5",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:prmiguel/vega-virtual-device-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server.py",
+    "code": "def _json_rpc_call(method: str, params: Dict[str, Any]) -> Any:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fc495341ecda",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:project-you-apps/membot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "membot_server.py",
+    "code": "def _soft_truncate(text: str, target_min: int = 250, hard_max: int = 550) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "514e8842b1fe",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:qtsone/workflows-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/workflows_mcp/engine/executor_base.py",
+    "code": "async def execute(self, inputs: ShellInput, context: Execution) -> ShellOutput:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c3c765a59960",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:qtsone/workflows-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/workflows_mcp/engine/executors_core.py",
+    "code": "async def execute( # type: ignore[override]"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "63c79d09a813",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:quyansiyuanwang/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_server/command_executor.py",
+    "code": "def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9ee52f114df1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:raheem-19/serena-optimized",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/serena/agent.py",
+    "code": "def get_memory_log_handler() -> MemoryLogHandler:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "efa37691016f",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:raheem-19/serena-optimized",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/solidlsp/language_servers/solargraph.py",
+    "code": "def _setup_runtime_dependencies(logger: LanguageServerLogger, config: LanguageServerConfig, repository_root_path: str) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8edd0d88a307",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:raheem-19/serena-optimized",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/solidlsp/language_servers/csharp_language_server.py",
+    "code": "def _ensure_dotnet_runtime_from_config("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e777932aa894",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:raheem-19/serena-optimized",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/solidlsp/language_servers/ruby_lsp.py",
+    "code": "def _setup_runtime_dependencies(logger: LanguageServerLogger, config: LanguageServerConfig, repository_root_path: str) -> list[str]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "11dd20686f3c",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ratfoot/hox-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "def list_runs(study_accession: str) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3e56f3cddf9e",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawpurplesmurf/model-context-protocol",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server.py",
+    "code": "async def _execute_ntp_sync(self) -> ToolCallResponse:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2c4e6162d638",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:redbuilding/ollama-chat-with-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/server_cli.py",
+    "code": "def _truncate(text: str) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "626df00b67e5",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:reg-kris/mcp-server-py",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server_refactored.py",
+    "code": "async def http_call_tool(request: ToolCallRequest):"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "191ec66146f9",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:religa/multi_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "multi_mcp/models/cli_executor.py",
+    "code": "async def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "032191a3a4c6",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:ronzimer/mcp-proxy",
+   "evidenza": {
+    "tipo": "static",
+    "file": "proxy_core.py",
+    "code": "def normalize_tools_call_params("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1deccae0ebd5",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:salah9003/Context7-ChatGPT-Bridge",
+   "evidenza": {
+    "tipo": "static",
+    "file": "context7_bridge.py",
+    "code": "def _call_context7(self, tool_name: str, arguments: Dict[str, Any]) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e94cedf55c40",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:sebschopf/mcp-blender-bridge",
+   "evidenza": {
+    "tipo": "static",
+    "file": "controller/validators/bpy_validator.py",
+    "code": "def detect_forbidden_calls(script: str) -> List[str]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "075f1f13b402",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:shams858/code-execution-with-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "code_executor.py",
+    "code": "async def execute(self, code: str) -> Dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "46b69d208481",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:shrav89/skill-scanner",
+   "evidenza": {
+    "tipo": "static",
+    "file": "skill_scanner/core/static_analysis/context_extractor.py",
+    "code": "def _extract_function_calls(self, node: ast.FunctionDef) -> list[dict[str, Any]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d984acf12579",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:shrav89/skill-scanner",
+   "evidenza": {
+    "tipo": "static",
+    "file": "skill_scanner/core/static_analysis/parser/python_parser.py",
+    "code": "def _get_call_name(self, node: ast.Call) -> str | None:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9b85ca0e7bf1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:shrav89/skill-scanner",
+   "evidenza": {
+    "tipo": "static",
+    "file": "skill_scanner/core/static_analysis/dataflow/forward_analysis.py",
+    "code": "def _get_call_name(self, node: ast.Call) -> str:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "35024062d2bc",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sirmaxworld/AI-Workspace",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agents/tool_integrations.py",
+    "code": "def _execute_python(self, code: str) -> Dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a1362692295e",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:sjswerdloff/pre-commit-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pre_commit_mcp/tools.py",
+    "code": "async def pre_commit_run() -> dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "93d1f91e98b6",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:slauzinho/vivado-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/vivado_mcp/vivado/session.py",
+    "code": "def truncate_output("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "69875bedd10c",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/model_manager.py",
+    "code": "def _get_running_model(self) -> str | None:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a686e8cc4bc0",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/api_routes.py",
+    "code": "def _parse_tool_calls_from_content(content: str) -> list[dict[str, Any]]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c6fd5c45968",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/tools/arc_connectivity_check.py",
+    "code": "async def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "36515d00fbfc",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/tools/aksarc_logs_tool.py",
+    "code": "async def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "32b6e39d1187",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/tools/aksarc_support_tool.py",
+    "code": "async def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "05e1bc53a026",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/tools/aks_arc_validate.py",
+    "code": "async def execute(self, arguments: dict[str, Any]) -> dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "84a9a375add5",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/tools/azlocal_envcheck_wrap.py",
+    "code": "async def execute(self, arguments: dict[str, Any]) -> dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f585f61af22d",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/tools/azlocal_tsg_tool.py",
+    "code": "async def execute("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a6863cdf1c1b",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/tools/packs/gpu_check.py",
+    "code": "async def execute(self, arguments: dict[str, Any]) -> dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e0def7182513",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/tools/packs/supply_chain_gate.py",
+    "code": "async def execute(self, arguments: dict[str, Any]) -> dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "518e18abe5ee",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:smitzlroy/arcops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/tools/packs/foundry_validate.py",
+    "code": "async def execute(self, arguments: dict[str, Any]) -> dict[str, Any]:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f2903bc07c12",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:softwarewrighter/game-mcp-poc",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_thinking_indicator.py",
+    "code": "def trigger_mcp_call():"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0309f711abb4",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:sophotechlabs/kube-lint-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/kube_lint_mcp/dryrun.py",
+    "code": "def kubectl_dry_run("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c1e8026cb4b8",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:stevenc81/gemini-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/gemini_mcp/gemini.py",
+    "code": "async def _call_gemini("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

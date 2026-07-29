@@ -1,0 +1,908 @@
+{
+ "batch": 49,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "ef25f0b8e5b3",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:KYBvWHxW/mcp-translation-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/resource_exporter.py",
+    "code": "package_file = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e1909404ed4b",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:KYBvWHxW/mcp-translation-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/resource_manager.py",
+    "code": "backup_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b3f82a568803",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:KYBvWHxW/mcp-translation-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/metrics_collector.py",
+    "code": "translation_file = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8d4c57526af4",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:KYBvWHxW/mcp-translation-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/metrics_collector.py",
+    "code": "resource_file = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1d3fd1127f9d",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:KYBvWHxW/mcp-translation-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/metrics_collector.py",
+    "code": "performance_file = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6ac8b2fd9f76",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:KYBvWHxW/mcp-translation-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/cache_predictor.py",
+    "code": "model_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dd8951c5d46c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:KYBvWHxW/mcp-translation-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/cache_predictor.py",
+    "code": "scaler_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b6600f60dd10",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:KYBvWHxW/mcp-translation-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/metrics_visualizer.py",
+    "code": "report_file = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "21c5c3692bf0",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mahmoudsalah84/eks-mcp-server-new",
+   "evidenza": {
+    "tipo": "static",
+    "file": "k8s_auth_config.py",
+    "code": "kubeconfig_path = os.path.join(kubeconfig_dir, f\"config-{cluster_name}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "23224c1f94c7",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:tuanknguyen/workflow-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "workflow_mcp_server/server.py",
+    "code": "file_path = os.path.join(self.frameworks_dir, f\"{framework.id}{file_ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "91a74173febf",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BlackSnufkin/LitterBox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/helpers.py",
+    "code": "result_folder = os.path.join(self.config['utils']['result_folder'], f'dynamic_{pid}')"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ce3d2701b7fc",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BlackSnufkin/LitterBox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/analyzers/dynamic/yara_analyzer.py",
+    "code": "filepath = os.path.join(rules_dir, potential_name + ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c918a768d12a",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BlackSnufkin/LitterBox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/analyzers/dynamic/yara_analyzer.py",
+    "code": "filepath = os.path.join(rules_dir, variation + ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "81b097f0ef84",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BlackSnufkin/LitterBox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/analyzers/static/yara_analyzer.py",
+    "code": "filepath = os.path.join(rules_dir, potential_name + ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8f6f5d4971c1",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BlackSnufkin/LitterBox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/analyzers/static/yara_analyzer.py",
+    "code": "filepath = os.path.join(rules_dir, variation + ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "04ea476c9a96",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BlackSnufkin/LitterBox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/blueprints/management.py",
+    "code": "process_folders = glob.glob(os.path.join(analysis_path, f'*_{target}_*'))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c1bb161cc0e4",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BlackSnufkin/LitterBox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/blueprints/api.py",
+    "code": "json_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5680c7cf62be",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BlackSnufkin/LitterBox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/blueprints/analysis.py",
+    "code": "result_folder = os.path.join(app.config['utils']['result_folder'], f'dynamic_{pid}')"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8890806c3887",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:easytocloud/Mac-letterhead",
+   "evidenza": {
+    "tipo": "static",
+    "file": "letterhead_pdf/installation/droplet_builder.py",
+    "code": "app_path = os.path.join(output_dir, f\"{app_name}.app\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8b667c552f9",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:easytocloud/Mac-letterhead",
+   "evidenza": {
+    "tipo": "static",
+    "file": "letterhead_pdf/installation/droplet_builder.py",
+    "code": "temp_app_path = os.path.join(temp_dir, f\"{app_name}.app\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b3179947c987",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Frostday/Agent4Molecule",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_agent/heme_binder_server.py",
+    "code": "diffusion_outputs = glob.glob(os.path.join(DIFFUSION_DIR, f\"{rundir}/out/*.pdb\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1257ccd6edf0",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Frostday/Agent4Molecule",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_agent/heme_binder_server.py",
+    "code": "diffusion_outputs = glob.glob(os.path.join(DIFFUSION_DIR, f\"{rundir}/out/*.pdb\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7dba020f02f4",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:superbunny38/YourMCPCodingMaster",
+   "evidenza": {
+    "tipo": "static",
+    "file": "utils.py",
+    "code": "csproj_path = os.path.join(CODE_STORAGE, f\"{code_name}.csproj\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "33edae1f7249",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:superbunny38/YourMCPCodingMaster",
+   "evidenza": {
+    "tipo": "static",
+    "file": "utils.py",
+    "code": "search_pattern = os.path.join(CODE_STORAGE, f\"{code_name}.*\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ea779c0ab24e",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:JameZUK/PeMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "arkana/mcp/tools_dotnet_deobfuscate.py",
+    "code": "os.path.join(tmp_dir, f\"{base}_cleaned{ext}\"),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c89e4e00b80d",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:JameZUK/PeMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "arkana/mcp/tools_dotnet_deobfuscate.py",
+    "code": "os.path.join(tmp_dir, f\"{base}_Slayed{ext}\"),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7668df552ec6",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:buildswithpaul/Frappe_Assistant_Core",
+   "evidenza": {
+    "tipo": "static",
+    "file": "frappe_assistant_core/plugins/core/tools/report_tools.py",
+    "code": "js_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b47900acf361",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:feustey/mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lnbits_internal/db.py",
+    "code": "self.path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4e30485aac07",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:feustey/mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lnbits_internal/db.py",
+    "code": "db_file = os.path.join(settings.lnbits_data_folder, f\"ext_{ext_id}.sqlite3\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9c4772686054",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:feustey/mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/simulator/node_simulator.py",
+    "code": "update_dir = os.path.join(simulation_dir, f\"update_{update_count}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "af85cce56452",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:m87shaonv/word_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "word_mcp.py",
+    "code": "output_path = os.path.join(output_dirname, f\"{output_basename}.{output_format}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "abacc5432b09",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:rrroger/mcp-box",
+   "evidenza": {
+    "tipo": "static",
+    "file": "sys_command.py",
+    "code": "pattern = os.path.join(dir, f\"{img_name}*\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2826565d2a19",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:flytohub/flyto-core",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/core/modules/atomic/document/word_parse.py",
+    "code": "image_path = os.path.join(images_output_dir, f\"image_{image_count}.{ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f92430aff16b",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:517739/Trace_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/tools/tracezly_rca/fix_root_cause_mapping.py",
+    "code": "output_path = os.path.join(processed_dir, f\"{dataset_name}_fixed\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a55110e786dc",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:517739/Trace_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/tools/tracezly_rca/fix_root_cause_mapping.py",
+    "code": "backup_db_file = os.path.join(processed_dir, f\"{dataset_name}_bytes.db.backup\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a065b97096cd",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ATOI-Ming/FreeCAD-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "freecad_mcp_server.py",
+    "code": "search_paths.append(os.path.join(macro_dir, f\"{macro_path}.FCMacro\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e0bbee3fa661",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:AbhiRawat4841/mathematica-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mathematica_mcp/session.py",
+    "code": "os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f7f4888afe91",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Akshaylinson/Ovi-local--Audio-Video-Generation-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "inference.py",
+    "code": "output_path = os.path.join(output_dir, f\"{formatted_prompt}_{'x'.join(map(str, video_frame_height_width))}_{seed+idx}_{global_rank}.mp4\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "25cdb6b24a04",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:AlexKissiJr/UnrealMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "MCP/TestScripts/test_commands_blueprint.py",
+    "code": "potential_path = os.path.join(location, f\"{blueprint_name}.uasset\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e33fd9590db2",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Amaze-with-AI/PCAP-Analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server.py",
+    "code": "pcap_with_ext = os.path.join(PCAPS_DIR, f\"{filename}.pcap\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "946648ab63c2",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Anubis44197/ILK-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "arsiv_temizleyici.py",
+    "code": "new_path = os.path.join(TARGET_BOOKS, f\"{new_folder_name}_v{counter}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4c8ea91dfd21",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Arminus42/FLY_AI_MCP_STUDY",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Week_345/TM/mcp-client-task-3.py",
+    "code": "test_file_path = os.path.join(results_dir, f\"test_{target}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "837870cd28bb",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ArthurSrz/graphRAGmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nano_graphrag/_storage/vdb_nanovectordb.py",
+    "code": "self._client_file_name = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "364b3dfb24a6",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ArthurSrz/graphRAGmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nano_graphrag/_storage/vdb_hnswlib.py",
+    "code": "self._index_file_name = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5e098add9e68",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ArthurSrz/graphRAGmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nano_graphrag/_storage/vdb_hnswlib.py",
+    "code": "self._metadata_file_name = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ae2a565ede27",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ArthurSrz/graphRAGmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nano_graphrag/_storage/gdb_networkx.py",
+    "code": "self._graphml_xml_file = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "166276045fc8",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:AuraFriday/stt_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "stt.py",
+    "code": "pattern = os.path.join(temp_dir, f\"{STT_TEMP_PREFIX}*.wav\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7159ebbdc5ad",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:AutoByteus/autobyteus_mcps",
+   "evidenza": {
+    "tipo": "static",
+    "file": "moss-ttsd-mcp/server.py",
+    "code": "file_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ef6e19d35eb4",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:B-A-M-N/UnityVibeBridge",
+   "evidenza": {
+    "tipo": "static",
+    "file": "collect_textures_final.py",
+    "code": "dest = os.path.join(EXPORT_DIR, f\"{base}_{len(seen)}{ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1e8fa2631fea",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BilalAltundag/Audio-Intelligence-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "transcript_path = os.path.join(transcript_dir, f\"{os.path.basename(path).rsplit('.', 1)[0]}_transcript_{get_timestamp()}.txt\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ce070aa5d81f",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BilalAltundag/Audio-Intelligence-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "plot_path = os.path.join(waveform_dir, f\"{os.path.basename(path).rsplit('.', 1)[0]}_waveform_{get_timestamp()}.png\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4756c1bb849",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BilalAltundag/Audio-Intelligence-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "metadata_path = os.path.join(metadata_dir, f\"{os.path.basename(path).rsplit('.', 1)[0]}_metadata_{get_timestamp()}.json\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0d468a86e3fe",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:BilalAltundag/Audio-Intelligence-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "new_path = os.path.join(conversion_dir, f\"{os.path.basename(path).rsplit('.', 1)[0]}_converted_{get_timestamp()}.{target_format}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "64a731d7cce3",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Biomolecular-Design-Nexus/esm_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/esm_train_fitness.py",
+    "code": "joblib.dump(model, os.path.join(fold_output_dir, f'head_model_{head_model}.joblib'))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "962b90ec602a",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Biomolecular-Design-Nexus/esm_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/esm_train_fitness.py",
+    "code": "model_path = os.path.join(final_output_dir, f'head_model_{head_model}.joblib')"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b38af60fcfc",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Biomolecular-Design-Nexus/mmseqs2_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "query_fasta = os.path.join(work_dir, f\"{sequence_name}.fasta\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c6340c0a5675",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Biomolecular-Design-Nexus/mmseqs2_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "query_db = os.path.join(work_dir, f\"{sequence_name}_db\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7c2f22510605",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Biomolecular-Design-Nexus/mmseqs2_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "result_db = os.path.join(work_dir, f\"{sequence_name}_result_db\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "05740165a909",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Biomolecular-Design-Nexus/mmseqs2_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "msa_db = os.path.join(work_dir, f\"{sequence_name}_msa_db\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1201be307d40",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Biomolecular-Design-Nexus/mmseqs2_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "msa_dir = os.path.join(work_dir, f\"{sequence_name}_msa\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

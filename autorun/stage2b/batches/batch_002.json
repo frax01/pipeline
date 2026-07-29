@@ -1,0 +1,968 @@
+{
+ "batch": 2,
+ "n_cluster": 60,
+ "n_finding": 62,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "38abadbeab0b",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nahmanmate/code-research-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'search_mdn', 'arguments': {'query': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '1. Document: execCommand() method\\n The execCommand method implements multiple different commands. Some of them provide access to the clipboard, while others are for editing form inputs, contenteditable elements or entire documents (when switched to design mode).\\n https://developer.mozilla.org/en-US/docs/Web/API/Document/execCommand\\n\\n2. URLPattern: exec() method\\n The exec() method of the URLPattern interface takes a URL or object of URL parts, and returns either an object containing the results of matching the URL to the pattern, or null if the URL does not match the pattern.\\n https://developer.mozilla.org/en-US/docs/Web/API/URLPattern/e…"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "332d9caaa2f7",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:bswa006/mcp-context-manager",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 68, 'method': 'tools/call', 'params': {'name': 'check_security_compliance', 'arguments': {'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"secure\": false,\\n \"violations\": [\\n {\\n \"severity\": \"critical\",\\n \"type\": \"code-injection\",\\n \"message\": \"eval() usage is a security risk\",\\n \"suggestion\": \"Use JSON.parse() or safer alternatives\"\\n }\\n ],\\n \"recommendations\": []\\n}'}]}, 'jsonrpc': '2.0', 'id': 68}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "5b5d62023426",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:OctagonAI/octagon-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 28, 'method': 'tools/call', 'params': {'name': 'octagon-docs-search', 'arguments': {'query': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '1. Step 2: Analyze financial metrics (Step 2: Analyze financial metrics)\\nhttps://www.octagonai.co/docs/llms.txt#step-2-analyze-financial-metrics\\ndef analyze_financials(company):\\n\\n2. Example usage (Example usage)\\nhttps://www.octagonai.co/docs/llms.txt#example-usage\\nif __name__ == \"__main__\":\\n\\n3. JavaScript/TypeScript Integration Example (Example usage)\\nhttps://www.octagonai.co/docs/llms.txt#javascripttypescript-integration-example\\n```JavaScript\\n\\n4. JavaScript Example - Basic Usage (Print the response)\\nhttps://www.octagonai.co/docs/llms.txt#javascript-example-basic-usage\\n```JavaScript\\n\\n5. Make a request to the SEC Filings Agent …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a379296cc68e",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:OctagonAI/octagon-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'octagon-docs-search', 'arguments': {'query': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '1. Example usage (Example usage)\\nhttps://www.octagonai.co/docs/llms.txt#example-usage\\nif __name__ == \"__main__\":\\n\\n2. JavaScript Example - Basic Usage (Print the response)\\nhttps://www.octagonai.co/docs/llms.txt#javascript-example-basic-usage\\n```JavaScript\\n\\n3. JavaScript/TypeScript Integration Example (Example usage)\\nhttps://www.octagonai.co/docs/llms.txt#javascripttypescript-integration-example\\n```JavaScript\\n\\n4. Make a request to the SEC Filings Agent (Make a request to the SEC Filings Agent)\\nhttps://www.octagonai.co/docs/llms.txt#make-a-request-to-the-sec-filings-agent\\nresponse = client.chat.completions.create(\\n\\n5. Step 1: Get…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b36b5b512414",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:firecrawl/firecrawl-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'firecrawl_search', 'arguments': {'query': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"data\": {\\n \"web\": [\\n {\\n \"url\": \"https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval\",\\n \"title\": \"eval() - JavaScript - MDN Web Docs - Mozilla\",\\n \"description\": \"The eval() function evaluates JavaScript code represented as a string and returns its completion value. The source is parsed as a script.\",\\n \"position\": 1\\n },\\n {\\n \"url\": \"https://stackoverflow.com/questions/9107240/1-evalthis-vs-evalthis-in-javascript\",\\n \"title\": \"(1, eval)(\\'this\\') vs eval(\\'this\\') in JavaScript? - Stack Overflow\",\\n \"description\": \"The difference between (1,eval) and plain old eval is that the form…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ba3b7ad9450a",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:firecrawl/firecrawl-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 54, 'method': 'tools/call', 'params': {'name': 'firecrawl_search', 'arguments': {'query': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"data\": {\\n \"web\": [\\n {\\n \"url\": \"https://www.resecurity.com/blog/article/cve-2025-68613-remote-code-execution-via-expression-injection-in-n8n-2\",\\n \"title\": \"CVE-2025-68613: Remote Code Execution via Expression ...\",\\n \"description\": \"The n8n workflow automation platform was affected by a critical Remote Code Execution (RCE) vulnerability, tracked as CVE-2025-68613, ...\",\\n \"position\": 1\\n },\\n {\\n \"url\": \"https://www.linkedin.com/posts/mohammed-nafeed-62a716250_%F0%9D%97%A5%F0%9D%97%B2%F0%9D%97%BA%F0%9D%97%BC%F0%9D%98%81%F0%9D%97%B2-%F0%9D%97%96%F0%9D%97%BC%F0%9D%97%B1%F0%9D%97%B2-%F0%9D%97%98%F0%9D%98%85%F0%9D%97%B2…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6eb63330ad30",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lininn/gitlab-review-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 68, 'method': 'tools/call', 'params': {'name': 'analyze_code_quality', 'arguments': {'language': 'test', 'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"language\": \"test\",\\n \"codeLength\": 11,\\n \"lineCount\": 1,\\n \"issues\": [\\n {\\n \"line\": 1,\\n \"column\": 1,\\n \"type\": \"security\",\\n \"message\": \"eval() is dangerous and should be avoided\",\\n \"severity\": \"error\",\\n \"rule\": \"no-eval\"\\n }\\n ],\\n \"suggestions\": [],\\n \"metrics\": {\\n \"cyclomaticComplexity\": 1,\\n \"maintainabilityIndex\": 98,\\n \"issueCount\": {\\n \"error\": 1,\\n \"warning\": 0,\\n \"info\": 0\\n }\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 68}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0c7ea0694e39",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:wei/hn-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'search-posts', 'arguments': {'query': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"exhaustive\": {\\n \"nbHits\": false,\\n \"typo\": false\\n },\\n \"exhaustiveNbHits\": false,\\n \"exhaustiveTypo\": false,\\n \"hits\": [\\n {\\n \"_highlightResult\": {\\n \"author\": {\\n \"matchLevel\": \"none\",\\n \"matchedWords\": [],\\n \"value\": \"rushter\"\\n },\\n \"story_text\": {\\n \"fullyHighlighted\": false,\\n \"matchLevel\": \"full\",\\n \"matchedWords\": [\\n \"eval\",\\n \"1\",\\n \"+\",\\n \"1\"\\n ],\\n \"value\": \"I made a new library to detect malicious and harmful behaviour in Python scripts. It uses static analysis with semantic modeling. Even when the code is pretty obfuscated, it can still detect it.<p>For example, it can infer that<p><pre><code> getattr(sys.modules[&quot;bu…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "53b760ebadaa",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:wei/hn-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'search-posts', 'arguments': {'query': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"exhaustive\": {\\n \"nbHits\": false,\\n \"typo\": false\\n },\\n \"exhaustiveNbHits\": false,\\n \"exhaustiveTypo\": false,\\n \"hits\": [\\n {\\n \"_highlightResult\": {\\n \"author\": {\\n \"matchLevel\": \"none\",\\n \"matchedWords\": [],\\n \"value\": \"mslot\"\\n },\\n \"comment_text\": {\\n \"fullyHighlighted\": false,\\n \"matchLevel\": \"full\",\\n \"matchedWords\": [\\n \"http\",\\n \"169\",\\n \".\",\\n \"254\",\\n \".\",\\n \"169\",\\n \".\",\\n \"254\",\\n \"latest\",\\n \"meta\",\\n \"data\"\\n ],\\n \"value\": \"The way IAM roles work is terrifyingly simple. IAM generates temporary access key identifier and secret access key with the configured permissions and EC2 makes them available to your instance via the i…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4ca93d018e6f",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lex-tools/codebase-context-dumper",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'dump_codebase_context', 'arguments': {'base_path': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '--- START: .context7.yaml ---\\n# Context7 Configuration for AI Agent Template MCP Server\\n# This enables real-time documentation to prevent hallucinations\\n\\n# Core JavaScript/TypeScript ecosystem\\nlibraries:\\n # React - Latest version\\n - id: /react/docs\\n version: 19.0.0\\n topics: \\n - \"hooks\"\\n - \"components\" \\n - \"server-components\"\\n - \"suspense\"\\n - \"error-boundaries\"\\n - \"performance\"\\n - \"testing\"\\n priority: high\\n\\n # Next.js - App Router era\\n - id: /nextjs/docs\\n version: 15.0.0\\n topics:\\n - \"app-router\"\\n - \"server-actions\"\\n - \"middleware\"\\n - \"data-fetching\"\\n - \"caching\"\\n - \"deployment\"\\n - \"performance\"\\n priority: high\\n\\n…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2963a92b17f0",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ongjin/security-scanner-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'scan-security', 'arguments': {'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '## ⚠️ 보안 취약점 발견!\\n\\n총 **1개**의 취약점이 발견되었습니다.\\n\\n### 🔴 Critical (1개)\\n\\n- **eval() Usage** (라인 1)\\n - eval()은 코드 인젝션에 취약합니다.\\n - 💡 해결책: eval() 대신 JSON.parse(), Function constructor 등 더 안전한 대안을 사용하세요.\\n\\n\\n---\\n\\n**이 취약점들을 수정한 후 다시 검사해주세요!**'}]}, 'jsonrpc': '2.0', 'id': 14}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "16de8435829d",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ongjin/security-scanner-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 68, 'method': 'tools/call', 'params': {'name': 'scan-xss', 'arguments': {'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '## 🚨 XSS 취약점 발견!\\n\\n**1개**의 잠재적 XSS 포인트가 있습니다.\\n\\n\\n### 🔴 eval() Usage\\n- **위치**: 라인 1\\n- **문제**: eval()은 코드 인젝션에 취약합니다.\\n- **위험**: 공격자가 악성 스크립트를 실행할 수 있습니다\\n- **해결책**: eval() 대신 JSON.parse(), Function constructor 등 더 안전한 대안을 사용하세요.\\n'}]}, 'jsonrpc': '2.0', 'id': 68}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "17cedc029de3",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ongjin/security-scanner-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 194, 'method': 'tools/call', 'params': {'name': 'generate-security-report', 'arguments': {'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '# 🛡️ 보안 스캔 대시보드\\n\\n## 📊 전체 요약\\n\\n총 **1개**의 취약점이 발견되었습니다.\\n\\n## 🎯 심각도별 분포\\n\\n```mermaid\\npie title 심각도별 취약점 분포\\n \"🔴 Critical\" : 1\\n```\\n\\n## 📋 취약점 타입별 분포\\n\\n```mermaid\\npie title 취약점 타입별 분포\\n \"eval() Usage\" : 1\\n```\\n\\n## 🏆 OWASP Top 10 분포\\n\\n```mermaid\\npie title OWASP Top 10 분포\\n \"A03 Injection\" : 1\\n```\\n\\n## 🚨 우선 조치 권장사항\\n\\n### 🔴 Critical (1개)\\n\\n즉시 수정이 필요합니다:\\n\\n- **eval() Usage** (라인 1)\\n - eval()은 코드 인젝션에 취약합니다.\\n\\n\\n\\n---\\n\\n## 📋 발견된 취약점 상세 목록\\n\\n### 🔴 Critical (1개)\\n\\n### 1. eval() Usage\\n\\n- **심각도**: 🔴 CRITICAL\\n- **메시지**: eval()은 코드 인젝션에 취약합니다.\\n- **위치**: 라인 1\\n- **코드**: `eval(`\\n- **해결책**: eval() 대신 JSON.parse(), Function construct…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "473be057b6e7",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dbmcco/obsidian-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 237, 'method': 'tools/call', 'params': {'name': 'fresh_energy', 'arguments': {'vaultPath': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Fresh energy notes:\\n\\n1. **CODEBASE-CONTEXT.md** (CODEBASE-CONTEXT.md)\\n - Updated: 2026-07-17T00:28:31.522Z\\n - Backlinks: 0, Outgoing links: 0\\n - Action items: List)\\n - Preview: # CODEBASE-CONTEXT.md ## Project Vision Building test with AI-assisted development for maximum efficiency and quality. ## Tech Stack & Versions - Language: Type\\n\\n2. **AGENT-MEMORY.md** (AGENT-MEMORY.md)\\n - Updated: 2026-07-17T00:28:31.521Z\\n - Backlinks: 0, Outgoing links: 0\\n - Preview: # AGENT-MEMORY.md ## 🧠 Persistent Agent Memory This file stores learnings, patterns, and experiences across sessions. It helps you improve over time. --- ## 📚\\n\\n3. **AGENT-CO…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f8a3f1beabce",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hillaryTse/hn-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'search_posts', 'arguments': {'query': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"results\": [\\n {\\n \"_highlightResult\": {\\n \"author\": {\\n \"matchLevel\": \"none\",\\n \"matchedWords\": [],\\n \"value\": \"rushter\"\\n },\\n \"story_text\": {\\n \"fullyHighlighted\": false,\\n \"matchLevel\": \"full\",\\n \"matchedWords\": [\\n \"eval\",\\n \"1\",\\n \"+\",\\n \"1\"\\n ],\\n \"value\": \"I made a new library to detect malicious and harmful behaviour in Python scripts. It uses static analysis with semantic modeling. Even when the code is pretty obfuscated, it can still detect it.<p>For example, it can infer that<p><pre><code> getattr(sys.modules[&quot;built&quot;+&quot;ins&quot;], &quot;&quot;.join(reversed([&quot;al&quot;,&quot;ev&quot;])))(&quot;<em>1+1</em>&qu…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d44b38b86ae8",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hillaryTse/hn-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'search_posts', 'arguments': {'query': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"results\": [\\n {\\n \"_highlightResult\": {\\n \"author\": {\\n \"matchLevel\": \"none\",\\n \"matchedWords\": [],\\n \"value\": \"mslot\"\\n },\\n \"comment_text\": {\\n \"fullyHighlighted\": false,\\n \"matchLevel\": \"full\",\\n \"matchedWords\": [\\n \"http\",\\n \"169\",\\n \".\",\\n \"254\",\\n \".\",\\n \"169\",\\n \".\",\\n \"254\",\\n \"latest\",\\n \"meta\",\\n \"data\"\\n ],\\n \"value\": \"The way IAM roles work is terrifyingly simple. IAM generates temporary access key identifier and secret access key with the configured permissions and EC2 makes them available to your instance via the instance <em>metadata</em> as JSON at <a href=\\\\\"http://169.254.169.254/latest/meta-data/iam/security-credential…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0c836996bff2",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c22282c2bae5",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 22, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c9b8c174b2ac",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d158b6e0f429",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0ee8e0760136",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "701da745c296",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 26, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bab36fd7c9bb",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 27, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8a420387f71b",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 28, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "49bde912b56e",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8a624cd90ad4",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bed73c523df0",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "79981a306f42",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9d37836d6cf4",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a8d914111948",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "514e57faeb06",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 35, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ab905123ab8",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 36, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5877b3314e15",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 37, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8b3fbc3936d3",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'embed_mockup_editor', 'arguments': {'topic': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"overview\": \"Dynamic Mockups Embed Editor lets you add a powerful mockup editor directly to your website or app via iFrame.\\\\nChoose between the Classic Editor (template-based mockups) or MockAnything Editor (AI-powered, turn any image into a mockup).\\\\nNo API implementation required - just embed with a few lines of JavaScript.\",\\n \"editor_types\": {\\n \"classic\": {\\n \"description\": \"Template-based mockup editor with catalog of pre-made mockup templates\",\\n \"use_case\": \"Best for consistent, professional product mockups from your template library\",\\n \"features\": [\\n \"Browse mockup catalog\",\\n \"Upload artwork\",\\n \"Customize colors\",\\n \"Export…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "96eb33f0179d",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1390e3aff840",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "58e480090d9f",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a36b5642658",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d9305dd64a8d",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f5200066145d",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2625f0bdcd91",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a796a8a6de3",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7c2fd2592ca1",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f47aadc34d52",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ceb3c2fe3669",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ab89e019ef9e",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "598bd94b4ed2",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d4b0cfd2537a",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "20c1efc70e8f",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2420d09313d0",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0e2457973246",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 19, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7d2ce7cd957",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'get_requirements_by_level', 'arguments': {'level': 1, 'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"level\": \"L1\",\\n \"offset\": 0,\\n \"limit\": 100,\\n \"total\": 345,\\n \"returned\": 100,\\n \"hasMore\": true,\\n \"requirements\": [\\n {\\n \"id\": \"V1.1.1\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Encoding and Sanitization Architecture\",\\n \"description\": \"Verify that input is decoded or unescaped into a canonical form only once, it is only decoded when encoded data in that form is expected, and that this is done before processing the input further, for example it is not performed after input validation or sanitization.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n },\\n {\\n \"id\": \"V1.1.2\",\\n \"category\": \"Encoding and …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "91c7fe4c9fee",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:clintcan/owasp-asvs-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 86, 'method': 'tools/call', 'params': {'name': 'search_requirements', 'arguments': {'query': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"query\": \"eval(\\'1+1\\')\",\\n \"offset\": 0,\\n \"limit\": 50,\\n \"total\": 1,\\n \"returned\": 1,\\n \"hasMore\": false,\\n \"results\": [\\n {\\n \"id\": \"V1.3.2\",\\n \"category\": \"Encoding and Sanitization\",\\n \"subcategory\": \"Sanitization\",\\n \"description\": \"Verify that the application avoids the use of eval() or other dynamic code execution features such as Spring Expression Language (SpEL). Where there is no alternative, any user input being included must be sanitized before being executed.\",\\n \"level\": [\\n 1,\\n 2,\\n 3\\n ],\\n \"cwe\": [],\\n \"nist\": []\\n }\\n ],\\n \"_meta\": {\\n \"requestId\": \"c2361148-2e14-4e7e-9021-e8dc9b4fd6a1\",\\n \"data_source\": \"local\",\\n \"ver…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "334feb5b84a1",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fwornle/mcp-constraint-monitor",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'check_constraints', 'arguments': {'type': 'test', 'content': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"violations\": [\\n {\\n \"constraint_id\": \"no-eval-usage\",\\n \"message\": \"eval() usage detected - security risk\",\\n \"severity\": \"critical\",\\n \"matches\": 1,\\n \"pattern\": \"\\\\\\\\beval\\\\\\\\s*\\\\\\\\(\",\\n \"detected_at\": \"2026-07-13T02:29:36.782Z\"\\n }\\n ],\\n \"compliance_score\": 9.5,\\n \"suggestions\": [\\n \"Avoid eval() - use safer alternatives for dynamic code execution\"\\n ],\\n \"risk_assessment\": \"critical\",\\n \"checked_at\": \"2026-07-13T02:29:36.782Z\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 32}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "278879d6514e",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gaboLectric/ast-sast-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'security_review', 'arguments': {'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '⚠️ Issues found:\\n\\n[CRITICAL] Line 1: Avoid using eval(). It is a security risk.'}]}, 'jsonrpc': '2.0', 'id': 14}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "26895b8f2815",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:timtech4u/python-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'execute_python_code', 'arguments': {'code': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error (exit code 1):\\nTraceback (most recent call last):\\n File \"/tmp/python-8d6d6050-3138-49f7-b04e-366e4c5071b1.py\", line 1, in <module>\\n whoami; cat /etc/passwd\\n ^^^^^^\\nNameError: name \\'whoami\\' is not defined\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "18c96106db44",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:timtech4u/python-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'execute_python_code', 'arguments': {'code': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error (exit code 1):\\nTraceback (most recent call last):\\n File \"/tmp/python-997b7ab5-00f9-4199-85c8-c398e3838c83.py\", line 1, in <module>\\n require(\\'child_process\\').execSync(\\'id\\').toString()\\n ^^^^^^^\\nNameError: name \\'require\\' is not defined\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 13}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5a3298bc8889",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:timtech4u/python-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'execute_python_file', 'arguments': {'filePath': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error (exit code 1):\\n/home/tecnico/pipeline-env/bin/python: can't find '__main__' module in '/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/python-mcp-server/../../../etc/passwd'\\n\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1dc30e2028cc",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pirumar/nestjsmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 536, 'method': 'tools/call', 'params': {'name': 'nestjs_security_audit', 'arguments': {'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '# Security Audit Report\\n\\n## Score: 75/100 (Grade: C)\\n\\n## 🔴 CRITICAL (1)\\n\\n### Dangerous Code Execution\\n- **Category**: Injection\\n- **Description**: eval() or Function constructor can execute arbitrary code\\n- **Recommendation**: Never use eval() or new Function() with user input\\n- **CWE**: CWE-95\\n\\n'}]}, 'jsonrpc': '2.0', 'id': 536}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c89d285697a",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aumoai/mcp-data-analyst",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'execute_code', 'arguments': {'code': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"status\":\"error\",\"error\":\"Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/_aumoai_mcp-data-analyst__npx/venv/bin/python3 -u \\\\\"main.py\\\\\"\\\\nTraceback (most recent call last):\\\\n File \\\\\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/_aumoai_mcp-data-analyst__npx/code/7e99ce2939edcfd8ac55/main.py\\\\\", line 1, in <module>\\\\n whoami; cat /etc/passwd\\\\n ^^^^^^\\\\nNameError: name \\'whoami\\' is not defined\\\\n\"}', 'isError': True}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

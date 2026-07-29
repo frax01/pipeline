@@ -1,0 +1,305 @@
+{
+ "batch": 78,
+ "verdetti": [
+  {
+   "id": "d4dd1798dd92",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa"
+  },
+  {
+   "id": "aec2c8c30367",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa"
+  },
+  {
+   "id": "a44938b18da8",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "b716c6ae3143",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "707b13e658eb",
+   "verdetto": "FP",
+   "motivo": "il codice e' contenuto in una stringa di template/documentazione (src/fixes/templates.py) che termina con triple-quote di chiusura, non codice eseguito realmente"
+  },
+  {
+   "id": "6a05fd7b77b8",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "0958827e6884",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "ac1e6b82823b",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "d9e4ddc95dd4",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa"
+  },
+  {
+   "id": "e65b828a0ac3",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa"
+  },
+  {
+   "id": "8ee7727f2bdf",
+   "verdetto": "FP",
+   "motivo": "o.tableName e' un campo interno di un ORM impostato dal modello sviluppatore, non input diretto di un chiamante MCP"
+  },
+  {
+   "id": "bf3dccb84b46",
+   "verdetto": "FP",
+   "motivo": "query completamente statica/fissa, nessuna variabile interpolata"
+  },
+  {
+   "id": "4ff7ddf95e5b",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa"
+  },
+  {
+   "id": "4dcbcf647893",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "79f1bf742b90",
+   "verdetto": "FP",
+   "motivo": "query completamente statica/fissa, nessuna variabile interpolata"
+  },
+  {
+   "id": "3a305434729b",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "e97b8f44ca50",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "c6a96778e2ac",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "d7e55b08c5a3",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "0c070fb738fe",
+   "verdetto": "FP",
+   "motivo": "valore interpolato (-4000/-16000) e' calcolato da un flag booleano interno (_is_http), non da input esterno"
+  },
+  {
+   "id": "642166c2b437",
+   "verdetto": "FP",
+   "motivo": "loader.py e' uno script di caricamento dati interno che itera su tabelle note in fase di setup, non un parametro di un tool MCP esposto"
+  },
+  {
+   "id": "6a0b5980f2fa",
+   "verdetto": "FP",
+   "motivo": "loader.py e' uno script di caricamento dati interno che itera su tabelle note in fase di setup, non un parametro di un tool MCP esposto"
+  },
+  {
+   "id": "3102414e77b5",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "6a53b4ac4e1e",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "11f9559ffd00",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa"
+  },
+  {
+   "id": "abdc073d4eb8",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "efc279e96cf7",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "072756e9b793",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "601f753b137b",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "e547a9a161e4",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "24df32555890",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "d614f94f9245",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "eacf9ca3352b",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "829a81183c32",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "7a2077e1c17e",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "2ec234c5a9e9",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "29c6f8ce44ea",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "3a5b7ae41b3e",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "5e9e5f35e846",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "9536c7ae6f90",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "b91f7334f35b",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "ec836d278420",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa"
+  },
+  {
+   "id": "a088d6227ff1",
+   "verdetto": "FP",
+   "motivo": "query di analytics con condizioni fisse (CASE/IS is_bot=1), nessuna variabile esterna visibile nel frammento"
+  },
+  {
+   "id": "0949756b048c",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "630b784d3fa5",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "73961609a483",
+   "verdetto": "FP",
+   "motivo": "evidenza mostra solo l'apertura della query (backtick/f-string/text()) senza la variabile interpolata visibile: non si puo' confermare input esterno non sanitizzato"
+  },
+  {
+   "id": "89e9b9131147",
+   "verdetto": "FP",
+   "motivo": "clausola WHERE dinamica costruita con placeholder e valori legati tramite params: pattern parametrizzato"
+  },
+  {
+   "id": "8773d7bb53d1",
+   "verdetto": "FP",
+   "motivo": "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL"
+  },
+  {
+   "id": "95e7a646554a",
+   "verdetto": "FP",
+   "motivo": "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL"
+  },
+  {
+   "id": "bf87d8ecdc21",
+   "verdetto": "FP",
+   "motivo": "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL"
+  },
+  {
+   "id": "f4e5c6146589",
+   "verdetto": "FP",
+   "motivo": "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL"
+  },
+  {
+   "id": "1a4090771422",
+   "verdetto": "FP",
+   "motivo": "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL"
+  },
+  {
+   "id": "cd49a3587646",
+   "verdetto": "FP",
+   "motivo": "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL"
+  },
+  {
+   "id": "dd268c933a91",
+   "verdetto": "FP",
+   "motivo": "file demo/archiviato (archive/archive/agent_sdk): codice di esempio mostrato come stringa di documentazione, e ai_client.query() e' un prompt in linguaggio naturale non una query SQL"
+  },
+  {
+   "id": "6bbe74580142",
+   "verdetto": "FP",
+   "motivo": "script CLI di migrazione (app/cli/migrate.py) eseguito amministrativamente, columns derivano dallo schema, non da un chiamante MCP esterno"
+  },
+  {
+   "id": "f3d7072291cc",
+   "verdetto": "FP",
+   "motivo": "query parametrizzata: valori legati separatamente (placeholder ?/%s e lista di bind), non concatenati nella stringa"
+  },
+  {
+   "id": "131446de093f",
+   "verdetto": "FP",
+   "motivo": "SET dinamico da colonne note, ma la clausola WHERE usa placeholder ? con valori legati separatamente (params)"
+  },
+  {
+   "id": "3ce5f23d8d2e",
+   "verdetto": "FP",
+   "motivo": "file di test (test_server.py julia-mcp), stringa eseguita e' un letterale fisso, nessun input esterno"
+  },
+  {
+   "id": "c591eab7a743",
+   "verdetto": "FP",
+   "motivo": "file di test (test_server.py julia-mcp), stringa eseguita e' un letterale fisso, nessun input esterno"
+  },
+  {
+   "id": "2c7c3372155e",
+   "verdetto": "FP",
+   "motivo": "file di test (test_server.py julia-mcp), stringa eseguita e' un letterale fisso, nessun input esterno"
+  }
+ ]
+}

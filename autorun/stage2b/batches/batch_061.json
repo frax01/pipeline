@@ -1,0 +1,968 @@
+{
+ "batch": 61,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "89e6417e9b53",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 131}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "684ee40c9e78",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 132, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 132}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "461624608fa6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 133}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cf8be6f51159",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 134, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 134}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8228b231a6e0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 135, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 135}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4e5bf3fa680b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 136, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 136}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aa351c14600b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 137, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 137}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6fc36bcbe1cd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 138, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 138}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "477de31aa80a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 139, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 139}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d62fbfb6f49d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 140, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 140}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "43dc503117e1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 141, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 141}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "18d75c643034",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 142, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 142}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b5821e84a691",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 143, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 143}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fd089898bbdb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 144, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 144}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "222b0dd89dd7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 145, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 145}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1dda0fea2096",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 146}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ccf41fb9d18b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SpongeBaby-124/CodexReviewerMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'review_file', 'arguments': {'change_description': 'test', 'file_path': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '错误: 无法读取文件 ../../../etc/passwd: EISDIR: illegal operation on a directory, read'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4dd30d5b42db",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SpongeBaby-124/CodexReviewerMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'review_file', 'arguments': {'change_description': 'test', 'file_path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '错误: 无法读取文件 /etc/passwd: Codex CLI 失败 (Exit 127): /bin/sh: 1: codex: not found\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c6d63a9c8cc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nogu66/satorify-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'generate_satori_syntax', 'arguments': {'target_audience': 'test', 'message_content': 'test', 'expected_action': 'test', 'structure_type': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'さとり構文生成プロンプト（構文タイプ ../../../etc/passwd: undefined）:\\\\n\\\\n# さとり構文生成プロンプト\\n\\n以下の構文ガイドラインに従い、対象読者に響く140文字のX投稿用「さとり構文」を作成してください。選択する構文タイプに応じて、具体的な例やポイントを参考にしてください。\\n\\n## 必要な情報\\n1. **構文タイプ**（A/B/C/D/E から選択）\\n2. **ターゲット層**（例: 副業を始めたい人、AIに興味がある人）\\n3. **伝えたいメッセージの内容**（例: 新しいツールの紹介、驚きのニュース、具体的な手順）\\n4. **期待する行動**（例: サービス利用、投稿の拡散）\\n\\n---\\n\\n## さとり構文 A（基本形）\\n万能でどんな状況にも適応可能な構文です。\\n\\n### 入力例\\n- ターゲット層: ADHDタイプの人\\n- 伝えたいメッセージ: Geminiを活用すると仕事が効率化する\\n- 期待する行動: Geminiを試してみる\\n\\n### 出力例\\n「ADHDタイプの人は全員Geminiを使った方が良い。仕掛かりの仕事がゴチャゴチャしがちなのでそれらを全てGeminiに放り込んで要約とタスクの優先順位付けをしてもらうと一瞬で仕事の5割が片付く。この爽快感は他では味わえない。分かりやすい使い方のYouTube動画をリプ欄に貼ったから30秒だけでも見てみて。」\\n\\n---\\n\\n## さとり構文 B…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "351d08dfc944",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nogu66/satorify-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'generate_satori_syntax', 'arguments': {'target_audience': 'test', 'message_content': 'test', 'expected_action': 'test', 'structure_type': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'さとり構文生成プロンプト（構文タイプ /etc/passwd: undefined）:\\\\n\\\\n# さとり構文生成プロンプト\\n\\n以下の構文ガイドラインに従い、対象読者に響く140文字のX投稿用「さとり構文」を作成してください。選択する構文タイプに応じて、具体的な例やポイントを参考にしてください。\\n\\n## 必要な情報\\n1. **構文タイプ**（A/B/C/D/E から選択）\\n2. **ターゲット層**（例: 副業を始めたい人、AIに興味がある人）\\n3. **伝えたいメッセージの内容**（例: 新しいツールの紹介、驚きのニュース、具体的な手順）\\n4. **期待する行動**（例: サービス利用、投稿の拡散）\\n\\n---\\n\\n## さとり構文 A（基本形）\\n万能でどんな状況にも適応可能な構文です。\\n\\n### 入力例\\n- ターゲット層: ADHDタイプの人\\n- 伝えたいメッセージ: Geminiを活用すると仕事が効率化する\\n- 期待する行動: Geminiを試してみる\\n\\n### 出力例\\n「ADHDタイプの人は全員Geminiを使った方が良い。仕掛かりの仕事がゴチャゴチャしがちなのでそれらを全てGeminiに放り込んで要約とタスクの優先順位付けをしてもらうと一瞬で仕事の5割が片付く。この爽快感は他では味わえない。分かりやすい使い方のYouTube動画をリプ欄に貼ったから30秒だけでも見てみて。」\\n\\n---\\n\\n## さとり構文 B（常識の否定）\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "81bf018fc565",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nogu66/satorify-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'generate_satori_syntax', 'arguments': {'target_audience': 'test', 'message_content': 'test', 'expected_action': 'test', 'structure_type': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'さとり構文生成プロンプト（構文タイプ whoami; cat /etc/passwd: undefined）:\\\\n\\\\n# さとり構文生成プロンプト\\n\\n以下の構文ガイドラインに従い、対象読者に響く140文字のX投稿用「さとり構文」を作成してください。選択する構文タイプに応じて、具体的な例やポイントを参考にしてください。\\n\\n## 必要な情報\\n1. **構文タイプ**（A/B/C/D/E から選択）\\n2. **ターゲット層**（例: 副業を始めたい人、AIに興味がある人）\\n3. **伝えたいメッセージの内容**（例: 新しいツールの紹介、驚きのニュース、具体的な手順）\\n4. **期待する行動**（例: サービス利用、投稿の拡散）\\n\\n---\\n\\n## さとり構文 A（基本形）\\n万能でどんな状況にも適応可能な構文です。\\n\\n### 入力例\\n- ターゲット層: ADHDタイプの人\\n- 伝えたいメッセージ: Geminiを活用すると仕事が効率化する\\n- 期待する行動: Geminiを試してみる\\n\\n### 出力例\\n「ADHDタイプの人は全員Geminiを使った方が良い。仕掛かりの仕事がゴチャゴチャしがちなのでそれらを全てGeminiに放り込んで要約とタスクの優先順位付けをしてもらうと一瞬で仕事の5割が片付く。この爽快感は他では味わえない。分かりやすい使い方のYouTube動画をリプ欄に貼ったから30秒だけでも見てみて。」\\n\\n---\\n\\n## さとり…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "439061387b78",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nogu66/satorify-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'generate_satori_syntax', 'arguments': {'target_audience': 'test', 'message_content': 'test', 'expected_action': 'test', 'structure_type': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'さとり構文生成プロンプト（構文タイプ file:///etc/passwd: undefined）:\\\\n\\\\n# さとり構文生成プロンプト\\n\\n以下の構文ガイドラインに従い、対象読者に響く140文字のX投稿用「さとり構文」を作成してください。選択する構文タイプに応じて、具体的な例やポイントを参考にしてください。\\n\\n## 必要な情報\\n1. **構文タイプ**（A/B/C/D/E から選択）\\n2. **ターゲット層**（例: 副業を始めたい人、AIに興味がある人）\\n3. **伝えたいメッセージの内容**（例: 新しいツールの紹介、驚きのニュース、具体的な手順）\\n4. **期待する行動**（例: サービス利用、投稿の拡散）\\n\\n---\\n\\n## さとり構文 A（基本形）\\n万能でどんな状況にも適応可能な構文です。\\n\\n### 入力例\\n- ターゲット層: ADHDタイプの人\\n- 伝えたいメッセージ: Geminiを活用すると仕事が効率化する\\n- 期待する行動: Geminiを試してみる\\n\\n### 出力例\\n「ADHDタイプの人は全員Geminiを使った方が良い。仕掛かりの仕事がゴチャゴチャしがちなのでそれらを全てGeminiに放り込んで要約とタスクの優先順位付けをしてもらうと一瞬で仕事の5割が片付く。この爽快感は他では味わえない。分かりやすい使い方のYouTube動画をリプ欄に貼ったから30秒だけでも見てみて。」\\n\\n---\\n\\n## さとり構文 B（…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8adc9d02e77",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sthossan/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'city': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather API temporarily unavailable. Typical weather for ../../../etc/passwd: Dhaka, Bangladesh: 28°C, Partly cloudy, Humid'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "96ede56a9d4c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sthossan/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'city': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather API temporarily unavailable. Typical weather for /etc/passwd: Dhaka, Bangladesh: 28°C, Partly cloudy, Humid'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "979c3019d144",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sthossan/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'city': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather API temporarily unavailable. Typical weather for whoami; cat /etc/passwd: Dhaka, Bangladesh: 28°C, Partly cloudy, Humid'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1a4469fe26f9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sthossan/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'city': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather API temporarily unavailable. Typical weather for file:///etc/passwd: Dhaka, Bangladesh: 28°C, Partly cloudy, Humid'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5e92672861d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 165, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f9cffdea6585",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 166, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0df6c7d41350",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 167, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fb238e7619c8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 168, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9938e4daf9ff",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 169, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f22bb593631b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 170, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a9704b48953c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 171, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "060bb4c4328a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 172, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "776a49727323",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 173, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00ba5586d01c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 174, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "15140c393c21",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 175, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ff06a29cf589",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 176, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "60ee908af134",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 177, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "df46da50dfb7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 178, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7752930ceb66",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 179, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "90e12db5420d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 180, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0f5750670a5c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 181, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "98bcff2ac747",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suhitanantula/llv-helix",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 182, 'method': 'tools/call', 'params': {'name': 'visualize_system', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"🎨 LINES-LOOPS-VIBES SYSTEM\\n\\n〰️ LINES:\\n ../../../etc/passwd: test → test [steady]\\n ....//....//etc/shadow: test → test [steady]\\n /etc/passwd: test → test [steady]\\n C:\\\\Windows\\\\System32\\\\config\\\\SAM: test → test [steady]\\n whoami; cat /etc/passwd: test → test [steady]\\n $(id): test → test [steady]\\n `cat /etc/passwd`: test → test [steady]\\n test && ls -la /: test → test [steady]\\n test || id: test → test [steady]\\n __import__('os').system('id'): test → test [steady]\\n require('child_process').execSync('id').toString(): test → test [steady]\\n eval('1+1'): test → test [steady]\\n ' OR 1=1; --: test → test [steady]\\n '; DROP TABLE users; --:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ed826cc6ff6e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:wonyoungseong/ga4-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'ga4_property_annotations', 'arguments': {'propertyId': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Failed to list property annotations for ../../../etc/passwd: Invalid property ID: ../../../etc/passwd. A valid property value is either a number or a string starting with 'properties/' and followed by a number.\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 57}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "28a40b5cac77",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:wonyoungseong/ga4-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 59, 'method': 'tools/call', 'params': {'name': 'ga4_property_annotations', 'arguments': {'propertyId': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Failed to list property annotations for /etc/passwd: Invalid property ID: /etc/passwd. A valid property value is either a number or a string starting with 'properties/' and followed by a number.\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 59}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "58511b7d7fed",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:wonyoungseong/ga4-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 61, 'method': 'tools/call', 'params': {'name': 'ga4_property_annotations', 'arguments': {'propertyId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Failed to list property annotations for whoami; cat /etc/passwd: Invalid property ID: whoami; cat /etc/passwd. A valid property value is either a number or a string starting with 'properties/' and followed by a number.\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 61}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "41dee6d37958",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:wonyoungseong/ga4-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 74, 'method': 'tools/call', 'params': {'name': 'ga4_property_annotations', 'arguments': {'propertyId': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Failed to list property annotations for file:///etc/passwd: Invalid property ID: file:///etc/passwd. A valid property value is either a number or a string starting with 'properties/' and followed by a number.\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 74}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a1d03dd1c36c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:icy-r/kubemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'k8s_metrics', 'arguments': {'action': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"Failed to ../../../etc/passwd: Unknown action: ../../../etc/passwd\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 111}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c720f7d67406",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:icy-r/kubemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'k8s_metrics', 'arguments': {'action': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"Failed to /etc/passwd: Unknown action: /etc/passwd\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 113}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c1907de29f0d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:icy-r/kubemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'k8s_metrics', 'arguments': {'action': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"Failed to whoami; cat /etc/passwd: Unknown action: whoami; cat /etc/passwd\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 115}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "60edeea5f5c0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:icy-r/kubemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'k8s_metrics', 'arguments': {'action': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"Failed to file:///etc/passwd: Unknown action: file:///etc/passwd\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 128}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3e58b6ed20e7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SobieskiCodes/claude-desktop-mcp-to-claude-agent",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'list_files', 'arguments': {'project_path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Files in /etc/passwd:\\n\\n📄 README.md'}]}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "82510d6e8560",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SobieskiCodes/claude-desktop-mcp-to-claude-agent",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'list_files', 'arguments': {'project_path': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Files in whoami; cat /etc/passwd:\\n\\n📄 README.md'}]}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "541c445ca234",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SobieskiCodes/claude-desktop-mcp-to-claude-agent",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'list_files', 'arguments': {'project_path': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Files in file:///etc/passwd:\\n\\n📄 README.md'}]}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "948bdf35ea37",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ghiloufibg/maven-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 96, 'method': 'tools/call', 'params': {'name': 'generate_zip', 'arguments': {'outputPath': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Projet Maven genere avec succes!\\n\\nFichier ZIP cree: /home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/maven-mcp-server/C:\\\\Windows\\\\System32\\\\config\\\\SAM\\nNombre de fichiers: 38\\nProjet: file:///etc/passwd:test:1.0.0\\n\\nStructure du projet:\\n- $(id)\\n- ' OR 1=1; --\\n- '; DROP TABLE users; --\\n- ....//....//etc/shadow\\n- ../../../etc/passwd\\n- /etc/passwd\\n- 1 UNION SELECT * FROM information_schema.tables; --\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM\\n- __import__('os').system('id')\\n- `cat /etc/passwd`\\n- eval('1+1')\\n- file:///etc/passwd\\n- http://169.254.169.254/latest/meta-data/\\n- http://localhost:6379/\\n- pom.xml\\n- require('child_pro…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b20196405187",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ghiloufibg/maven-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 98, 'method': 'tools/call', 'params': {'name': 'generate_zip', 'arguments': {'outputPath': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Projet Maven genere avec succes!\\n\\nFichier ZIP cree: /home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/maven-mcp-server/$(id)\\nNombre de fichiers: 38\\nProjet: file:///etc/passwd:test:1.0.0\\n\\nStructure du projet:\\n- $(id)\\n- ' OR 1=1; --\\n- '; DROP TABLE users; --\\n- ....//....//etc/shadow\\n- ../../../etc/passwd\\n- /etc/passwd\\n- 1 UNION SELECT * FROM information_schema.tables; --\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM\\n- __import__('os').system('id')\\n- `cat /etc/passwd`\\n- eval('1+1')\\n- file:///etc/passwd\\n- http://169.254.169.254/latest/meta-data/\\n- http://localhost:6379/\\n- pom.xml\\n- require('child_process').execSync('id').toStrin…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac8b02e1977e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ghiloufibg/maven-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 101, 'method': 'tools/call', 'params': {'name': 'generate_zip', 'arguments': {'outputPath': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Projet Maven genere avec succes!\\n\\nFichier ZIP cree: /home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/maven-mcp-server/test || id\\nNombre de fichiers: 38\\nProjet: file:///etc/passwd:test:1.0.0\\n\\nStructure du projet:\\n- $(id)\\n- ' OR 1=1; --\\n- '; DROP TABLE users; --\\n- ....//....//etc/shadow\\n- ../../../etc/passwd\\n- /etc/passwd\\n- 1 UNION SELECT * FROM information_schema.tables; --\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM\\n- __import__('os').system('id')\\n- `cat /etc/passwd`\\n- eval('1+1')\\n- file:///etc/passwd\\n- http://169.254.169.254/latest/meta-data/\\n- http://localhost:6379/\\n- pom.xml\\n- require('child_process').execSync('id').to…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b75c664aa07b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ghiloufibg/maven-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 102, 'method': 'tools/call', 'params': {'name': 'generate_zip', 'arguments': {'outputPath': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Projet Maven genere avec succes!\\n\\nFichier ZIP cree: /home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/maven-mcp-server/__import__('os').system('id')\\nNombre de fichiers: 38\\nProjet: file:///etc/passwd:test:1.0.0\\n\\nStructure du projet:\\n- $(id)\\n- ' OR 1=1; --\\n- '; DROP TABLE users; --\\n- ....//....//etc/shadow\\n- ../../../etc/passwd\\n- /etc/passwd\\n- 1 UNION SELECT * FROM information_schema.tables; --\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM\\n- __import__('os').system('id')\\n- `cat /etc/passwd`\\n- eval('1+1')\\n- file:///etc/passwd\\n- http://169.254.169.254/latest/meta-data/\\n- http://localhost:6379/\\n- pom.xml\\n- require('child_process'…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc8b7aaa9f5d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ghiloufibg/maven-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 103, 'method': 'tools/call', 'params': {'name': 'generate_zip', 'arguments': {'outputPath': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Projet Maven genere avec succes!\\n\\nFichier ZIP cree: /home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/maven-mcp-server/require('child_process').execSync('id').toString()\\nNombre de fichiers: 38\\nProjet: file:///etc/passwd:test:1.0.0\\n\\nStructure du projet:\\n- $(id)\\n- ' OR 1=1; --\\n- '; DROP TABLE users; --\\n- ....//....//etc/shadow\\n- ../../../etc/passwd\\n- /etc/passwd\\n- 1 UNION SELECT * FROM information_schema.tables; --\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM\\n- __import__('os').system('id')\\n- `cat /etc/passwd`\\n- eval('1+1')\\n- file:///etc/passwd\\n- http://169.254.169.254/latest/meta-data/\\n- http://localhost:6379/\\n- pom.xml\\n- re…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

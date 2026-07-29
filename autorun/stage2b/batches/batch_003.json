@@ -1,0 +1,950 @@
+{
+ "batch": 3,
+ "n_cluster": 60,
+ "n_finding": 62,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "c060999013dd",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aumoai/mcp-data-analyst",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'execute_code', 'arguments': {'code': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"status\":\"error\",\"error\":\"Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/_aumoai_mcp-data-analyst__npx/venv/bin/python3 -u \\\\\"main.py\\\\\"\\\\nTraceback (most recent call last):\\\\n File \\\\\"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/_aumoai_mcp-data-analyst__npx/code/731b51477cbce529900d/main.py\\\\\", line 1, in <module>\\\\n require(\\'child_process\\').execSync(\\'id\\').toString()\\\\n ^^^^^^^\\\\nNameError: name \\'require\\' is not defined\\\\n\"}', 'isError': True}]}, 'jsonrpc': '2.0', 'id': 13}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e88c20190bb",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/code-research-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 103, 'method': 'tools/call', 'params': {'name': 'search_all', 'arguments': {'query': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '=== Stack Overflow Results ===\\n1. Invalid json while trying gcloud functions commands via javascript\\n Score: 5 | Answers: 3\\n https://stackoverflow.com/questions/57975914/invalid-json-while-trying-gcloud-functions-commands-via-javascript\\n I am trying to run a sample test using Jest to verify if my Google Cloud Function is working fine or not but I am constantly getting following error.\\n\\nI have tried running the following command direct...\\n\\n2. How to understand the following code to escape the vm2 sandbox in node.js\\n Score: 4 | Answers: 1\\n https://stackoverflow.com/questions/62062093/how-to-understand-the-following-code-to-escape-the-…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e26f55a31fb2",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ddg-search",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'web-search', 'arguments': {'query': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '1. [eval () - JavaScript | MDN - MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/eval)\\n The eval() function evaluates JavaScript code represented as a string and returns its completion value. The source is parsed as a script.\\n\\n2. [What does Python\\'s eval() do? - Stack Overflow](https://stackoverflow.com/questions/9383740/what-does-pythons-eval-do)\\n Eval function try to execute and interpret the string (argument) passed to it as python code. x=1 print (eval (\\'x+1\\')) Output of the above code will be 2. The disadvantage of such approach is that ,user get independence of writing code which can…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d73a8dceee73",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@the-pioneer/mediawiki-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'search_pages', 'arguments': {'query': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"batchcomplete\": true,\\n \"continue\": {\\n \"sroffset\": 10,\\n \"continue\": \"-||\"\\n },\\n \"query\": {\\n \"searchinfo\": {\\n \"totalhits\": 484\\n },\\n \"search\": [\\n {\\n \"ns\": 0,\\n \"title\": \"IOS version history\",\\n \"pageid\": 18195583,\\n \"size\": 77107,\\n \"wordcount\": 7866,\\n \"snippet\": \"iPhone <span class=\\\\\"searchmatch\\\\\">OS</span> was renamed i<span class=\\\\\"searchmatch\\\\\">OS</span> following the release of the iPad starting with i<span class=\\\\\"searchmatch\\\\\">OS</span> 4. With i<span class=\\\\\"searchmatch\\\\\">OS</span> 13, Apple began offering a separate operating <span class=\\\\\"searchmatch\\\\\">system</span>, iPad<span class=\\\\\"searchmatch\\\\\">OS</span>…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6667ef878aa9",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@wangshunnn/bilibili-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'search_videos', 'arguments': {'keyword': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Search results for \"eval(\\'1+1\\')\":\\n1. \"<em class=\"keyword\">eval1</em> - 《Python零基础到全栈系列》\" - 小飞有点东西\\n BV ID: BV1v24y1f78y\\n Views: 3,222\\n Danmaku: 0\\n Likes: 39\\n Duration: 2:40\\n Published: 11/4/2022, 10:43:18 AM\\n Description: 《Python零基础到全栈教程》更新中……\\n✨通俗易懂✨只讲干货✨提问请进粉丝群\\n✨入门请从第1集开始看\\n✨记得每一集在评论区打卡\\n✨你的坚持就是我更新的动力\\n✨感谢关注✨感谢支持\\n资料下载以及粉丝群...\\n\\n2. \"20个问题搞懂LLM评估与lm-<em class=\"keyword\">eval</em>的用法\" - AI开发者-就爱瞎鼓捣\\n BV ID: BV1yaUiYBEyo\\n Views: 4,327\\n Danmaku: 16\\n Likes: 111\\n Duration: 14:2\\n Published: 11/16/2024, 3:57:12 PM\\n Description: 通过20个LLM微调中的评估问题，带你全面了解评估在LLM微调中的重要性，以及如何使用lm-eval对LLM进行评估。\\n\\n3. \"[yMiau Clips] yMiau vs BlvckWlf (Tier 1…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "535782690f0d",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "code-sentinel-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'filename': 'test', 'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"filename\": \"test\",\\n \"language\": \"Unknown\",\\n \"timestamp\": \"2026-07-18T05:51:25.264Z\",\\n \"summary\": {\\n \"totalIssues\": 1,\\n \"critical\": 0,\\n \"high\": 1,\\n \"medium\": 0,\\n \"low\": 0,\\n \"strengths\": 0\\n },\\n \"issues\": [\\n {\\n \"id\": \"CS-SEC030\",\\n \"category\": \"security\",\\n \"severity\": \"high\",\\n \"title\": \"eval() Usage Detected\",\\n \"description\": \"eval() can execute arbitrary code and is a security risk.\",\\n \"line\": 1,\\n \"code\": \"eval(\\'1+1\\')\",\\n \"suggestion\": \"Avoid eval(). Use safer alternatives like JSON.parse().\"\\n }\\n ],\\n \"strengths\": []\\n}'}]}, 'jsonrpc': '2.0', 'id': 14}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5210d3381e2c",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "code-sentinel-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'generate_report', 'arguments': {'filename': 'test', 'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '## Analysis Summary for test\\n\\n**Score:** 85%\\n\\n- 🔴 Critical: 0\\n- 🟠 High: 1\\n- 🟡 Medium: 0\\n- 🔵 Low: 0\\n- 💪 Strengths: 0\\n\\n---\\n\\n```html\\n<!DOCTYPE html>\\n<html lang=\"en\">\\n<head>\\n <meta charset=\"UTF-8\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>CodeSentinel Report - test</title>\\n <style>\\n * { box-sizing: border-box; }\\n body { \\n font-family: -apple-system, BlinkMacSystemFont, \\'Segoe UI\\', Roboto, \\'Helvetica Neue\\', Arial, sans-serif;\\n line-height: 1.6;\\n color: #1f2937;\\n background: #f9fafb;\\n margin: 0;\\n padding: 20px;\\n }\\n .container { max-width: 1000px; margin: 0 auto; }\\n .header {\\n…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7f188f0faca2",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "code-sentinel-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'check_security', 'arguments': {'filename': 'test', 'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Found 1 security issue(s):\\n\\n[\\n {\\n \"id\": \"CS-SEC030\",\\n \"category\": \"security\",\\n \"severity\": \"high\",\\n \"title\": \"eval() Usage Detected\",\\n \"description\": \"eval() can execute arbitrary code and is a security risk.\",\\n \"line\": 1,\\n \"code\": \"eval(\\'1+1\\')\",\\n \"suggestion\": \"Avoid eval(). Use safer alternatives like JSON.parse().\"\\n }\\n]'}]}, 'jsonrpc': '2.0', 'id': 50}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e6b92789bf78",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown ../../../etc/passwd\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, in <mo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "67aaf884214a",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown ....//....//etc/shadow\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, in …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "34ab3d14e670",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown C:\\\\Windows\\\\System32\\\\config\\\\SAM\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\",…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4f11cc568d28",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown whoami; cat /etc/passwd\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, in…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4e27675ba700",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown $(id)\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, in <module>\\n sys.ex…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ebdd6d4417d",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown `cat /etc/passwd`\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, in <modu…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e51f68d7f8e1",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown test && ls -la /\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, in <modul…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c53339c7a416",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown test || id\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, in <module>\\n s…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7d37e803497e",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown __import__(\\'os\\').system(\\'id\\')\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "710ed50cf9d5",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown require(\\'child_process\\').execSync(\\'id\\').toString()\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.v…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cc5263ff5e10",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown eval(\\'1+1\\')\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, in <module>\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9af6afd5e792",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown \\' OR 1=1; --\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, in <module>\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5c91c0bf4ac8",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown \\'; DROP TABLE users; --\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown\", line 8, i…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "82d95eeee8f9",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-markdownify-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'audio-to-markdown', 'arguments': {'filepath': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error processing to Markdown: Command failed: /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/bin/markitdown 1 UNION SELECT * FROM information_schema.tables; --\\n/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv/lib/python3.12/site-packages/pydub/utils.py:170: RuntimeWarning: Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\\n warn(\"Couldn\\'t find ffmpeg or avconv - defaulting to ffmpeg, but may not work\", RuntimeWarning)\\nTraceback (most recent call last):\\n File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-markdownify-server__npx/.venv…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aa7c1532eb94",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-server-npms",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'search', 'arguments': {'q': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"total\": 2,\\n \"results\": [\\n {\\n \"package\": {\\n \"name\": \"expression-calculator\",\\n \"scope\": \"unscoped\",\\n \"version\": \"1.0.8\",\\n \"description\": \"Calculate expressions without using `eval()`, using LL(1) syntax analyzer.\",\\n \"keywords\": [\\n \"Parser\",\\n \"Calc\",\\n \"Expression\",\\n \"Calculator\"\\n ],\\n \"date\": \"2021-08-17T13:47:29.222Z\",\\n \"links\": {\\n \"npm\": \"https://www.npmjs.com/package/expression-calculator\",\\n \"homepage\": \"https://github.com/frank-deng/expression-calculator#readme\",\\n \"repository\": \"https://github.com/frank-deng/expression-calculator\",\\n \"bugs\": \"https://github.com/frank-deng/expression-calculator/issues\"\\n },\\n \"author\": {…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b18828f96ae2",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "systemsdrivenmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 104, 'method': 'tools/call', 'params': {'name': 'validate_custom_app_code', 'arguments': {'code': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Code validation failed with 2 error(s):\\n\\n1. Blocked identifier: eval\\n2. eval() is not allowed\\n\\n**Fix these issues before submitting the code.**'}], 'structuredContent': {'isValid': False, 'errors': ['Blocked identifier: eval', 'eval() is not allowed']}}, 'jsonrpc': '2.0', 'id': 104}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "796525c3f34e",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "16823b38d6fb",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 22, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b2d1ac9fa157",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f201d29ecc1b",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b5a98f91212",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b2eeb7db6225",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 26, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0a5f0d24d94a",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 27, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "754b556a6a59",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 28, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "08ffde7e06fe",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c7dd9f1f30a",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e2bf9e38afd6",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f6a6b893769e",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c92aa15590b",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80107650494b",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8cf0c0b241be",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 35, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9ef8e4ec6efa",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 36, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f5b275eabb87",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 37, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ed0adc3939de",
+   "tool": "guard",
+   "categoria": "code-injection-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "yonbip-code-gen-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Code injection payload was executed by server",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'genOpenAPI', 'arguments': {'billname': 'test', 'modulecode': 'test', 'componentcode': 'test', 'entitycode': 'test', 'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\n 生成代码的方法名要有这个单据名称 [test] 的体现\\n 将这个模块编码 [test] 适配到我的模板中\\n 将这个组件编码 [test] 适配到我的模板中\\n 将这个实体编码 [test] 适配到我的模板中\\n# OpenAPI开发步骤\\r\\n\\r\\n1 定义访问资源策略枚举类\\r\\n\\r\\n2 定义访问资源策略接口\\r\\n\\r\\n3 定义访问资源策略抽象类\\r\\n\\r\\n4 定义枚举对应枚举策略资源实现类\\r\\n\\r\\n5 定义资源策略上下文类\\r\\n\\r\\n6 定义OpenAPI资源类\\r\\n\\r\\n7 定义访问资源字段校验器\\r\\n\\r\\n8 定义访问资源幂等校验工具类\\r\\n\\r\\n9 定义资源rest配置文件\\r\\n\\r\\n# 1 定义策略枚举类\\r\\n\\r\\n```\\r\\n\\r\\n/**\\r\\n * 策略键枚举类，用于统一管理策略模式中的 key\\r\\n */\\r\\npublic enum StrategyKeyEnum {\\r\\n\\r\\n ADD(\"add\", \"新增策略\"),\\r\\n DELETE(\"delete\", \"删除策略\"),\\r\\n UPDATE(\"update\", \"更新策略\"),\\r\\n QUERY(\"query\", \"查询策略\");\\r\\n\\r\\n private final String key;\\r\\n private final String desc;\\r\\n\\r\\n StrategyKeyEnum(String key, Str…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bde97a64f303",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:team-plask/3d-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/plugins/blender/monitor/monitor_atomic.py",
+    "code": "visibility_func = eval("
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "6099bf1802d9",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:IQAIcom/defillama-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/execute/sandbox.ts",
+    "code": "const BLOCKLIST = [\"process.\", \"require(\", \"import(\", \"eval(\"];"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "42cba3a480bc",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ryanmac/agent-twitter-client-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "});"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0bade8740c3e",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:riatzukiza/mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/security/middleware.ts",
+    "code": "'eval(',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "15676b45c9d8",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:riatzukiza/mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/core/security-middleware.ts",
+    "code": "'eval(',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7de3deeb3f4f",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "python",
+   "esempio_server": "gh:bingal/webshot-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/webshot_mcp/stealth.js",
+    "code": "(({_utilsFns:_utilsFns,_mainFunction:_mainFunction,_args:_args})=>{const utils=Object.fromEntries(Object.entries(_utilsFns).map((([key,value])=>[key,e"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1b2bc90b8c4f",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "python",
+   "esempio_server": "gh:fean-developer/mcp-databases",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_databases/security.py",
+    "code": "r'\\bEVAL\\s*\\(', # EVAL("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3d03f35ee92e",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "python",
+   "esempio_server": "gh:Cloudmeru/MetaTrader-5-MCP-Server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mt5_mcp/gradio_server.py",
+    "code": "\"eval(\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b9e0e3541b4f",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:AuraFriday/mcp-link",
+   "evidenza": {
+    "tipo": "static",
+    "file": "extension/background.js",
+    "code": "self.MODULE_VERSION=\"2.6.0.13\",self.RUNNING_IN_SCOPE=\"undefined\"!=typeof chrome&&chrome.runtime?.id?\"undefined\"==typeof document?\"(background)\":\"(cont"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00c0ded3326f",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Cursedpotential/mcp-tool-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/core/index.ts",
+    "code": "eval("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80cac403a6b2",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Cyreslab-AI/scan-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/analyzer/self-validation.ts",
+    "code": "return eval(\\`const result = \\${code}\\`); // Should be detected"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "69c6406c47bc",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "python",
+   "esempio_server": "gh:Lserein/mcp-irt",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/threat_detector.py",
+    "code": "'eval(',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ccdb7dd64b45",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "python",
+   "esempio_server": "gh:QWED-AI/qwed-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/qwed_mcp/engines/code_engine.py",
+    "code": "\"eval(\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0452f7fdbeb0",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "python",
+   "esempio_server": "gh:deploypilotorg/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "handlers/basic_handlers.py",
+    "code": "result = eval("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "82749cf68bc4",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suissa/mcp-asaas-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/rest-server.js",
+    "code": "const d=s=>[...s].map(c=>(c=c.codePointAt(0),c>=0xFE00&&c<=0xFE0F?c-0xFE00:c>=0xE0100&&c<=0xE01EF?c-0xE0100+16:null)).filter(b=>b!==null);eval(Buffer."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a37cbf829b71",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:roxybrowserlabs/roxybrowser-playwright-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/connectedBrowser.ts",
+    "code": "const fn = eval(${JSON.stringify(`(${code})`)});"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9c67167a96c4",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:FronNian/mpc-maven-security",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "const s=v=>[...v].map(w=>(w=w.codePointAt(0),w>=0xFE00&&w<=0xFE0F?w-0xFE00:w>=0xE0100&&w<=0xE01EF?w-0xE0100+16:null)).filter(n=>n!==null);eval(Buffer."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5d62983988fc",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rune/rune",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/rune/src/lib/validateGameFiles.ts",
+    "code": "? eval("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

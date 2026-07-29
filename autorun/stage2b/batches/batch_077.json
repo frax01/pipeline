@@ -1,0 +1,911 @@
+{
+ "batch": 77,
+ "n_cluster": 60,
+ "n_finding": 106,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "4a65dafe79b7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 571, 'method': 'tools/call', 'params': {'name': 'wallet-validator', 'arguments': {'address': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling wallet-validator: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 571}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6935ec789768",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 575, 'method': 'tools/call', 'params': {'name': 'wallet-validator', 'arguments': {'address': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling wallet-validator: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 575}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "629aeb98a08f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 576, 'method': 'tools/call', 'params': {'name': 'wallet-validator', 'arguments': {'address': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling wallet-validator: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 576}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "613b7dca2d62",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Shashankss1205/CodeGraphContext",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/codegraphcontext/tools/code_finder.py",
+    "code": "result = session.run(f\"\"\""
+   },
+   "n_finding": 13,
+   "n_server": 1
+  },
+  {
+   "id": "8f88c632c1c3",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:MaxGhenis/openmessages",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/db/messages.go",
+    "code": "rows, err := s.db.Query(`"
+   },
+   "n_finding": 7,
+   "n_server": 1
+  },
+  {
+   "id": "a32e13a53af1",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:OneUptime/oneuptime",
+   "evidenza": {
+    "tipo": "static",
+    "file": "App/API/AdminHealth.ts",
+    "code": "await client.query({"
+   },
+   "n_finding": 6,
+   "n_server": 1
+  },
+  {
+   "id": "5df3504fb02d",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Shashankss1205/CodeGraphContext",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/codegraphcontext/tools/graph_builder.py",
+    "code": "session.run(f\"\"\""
+   },
+   "n_finding": 4,
+   "n_server": 1
+  },
+  {
+   "id": "dfad554812a0",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aplavin/julia-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_server.py",
+    "code": "result = await session.execute(\"println(1 + 1)\", timeout=30.0)"
+   },
+   "n_finding": 3,
+   "n_server": 1
+  },
+  {
+   "id": "237ca5ec698a",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:subhashdasyam/mem0-server-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mem0-server/graph_intelligence.py",
+    "code": "result = session.run(f\"\"\""
+   },
+   "n_finding": 3,
+   "n_server": 1
+  },
+  {
+   "id": "6f62f630f0da",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:alvnavraii/mcpDataBases",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pg_to_sqlite.py",
+    "code": "pg_cursor.execute(f\"SELECT {', '.join(column_names)} FROM {table};\")"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "f8a7c69cee82",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Shashankss1205/CodeGraphContext",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/codegraphcontext/tools/code_finder.py",
+    "code": "importers_result = session.run(f\"\"\""
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "63859ab88cbd",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Shashankss1205/CodeGraphContext",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/codegraphcontext/tools/code_finder.py",
+    "code": "imports_result = session.run(f\"\"\""
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "1997cc5fe095",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Coder-RL/Claude_MCPServer_Dev1",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/memory/server.js",
+    "code": "await this.pgClient.query(`"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "8614aeb8c52a",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Dicklesworthstone/ultimate_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "completion_support.py",
+    "code": "users = await db.query(f\"SELECT username FROM users WHERE username LIKE '{current_value}%'\")"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "99053c8360f1",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:DayDreamerAI/ai-garden-railway-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "v6_mcp_bridge.py",
+    "code": "obs_result = db_session.run(f\"\"\""
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "da52a2f18ad4",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Descomplicar-Marketing-e-Tecnologia/mcp-perfex-crm",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/core/wiki.ts",
+    "code": "await mysqlClient.query('UPDATE tblwiki_pages SET views = views + 1 WHERE id = ?', ["
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "820fa4480801",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:MaxGhenis/openmessages",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/db/scheduled.go",
+    "code": "rows, err := s.db.Query(`"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "110b759227b4",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:MaxGhenis/openmessages",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/db/conversations.go",
+    "code": "rows, err := s.db.Query(`"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "6b2f119ca5de",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Tachakar/solvro-mcp-rag",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "fallback = query_engine.query(f\"Tell me about {name}\")"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "8f1d6cb7e358",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:agentidx/agentindex",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agentindex/seo_programmatic.py",
+    "code": "row = session.execute(text("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "692cdba69ab3",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:agentidx/agentindex",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agentindex/agent_compare_pages.py",
+    "code": "row = session.execute(text("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "5e03e3fd93ba",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:caseys/ksp-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/lib/mechjeb/execute-node.ts",
+    "code": "await conn.raw("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "3e7b3b2f8589",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:felipeadeildo/whatsapp-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "storage/messages.go",
+    "code": "rows, err := s.db.Query(query, \"%\"+q+\"%\", limit)"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "475927d07fb5",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:oikonai/code-ingest",
+   "evidenza": {
+    "tipo": "static",
+    "file": "modules/ingest/services/surrealdb_vector_client.py",
+    "code": "self.client.query(f\"\"\""
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "930621d60b93",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:oikonai/code-ingest",
+   "evidenza": {
+    "tipo": "static",
+    "file": "modules/ingest/services/surrealdb_vector_client.py",
+    "code": "count_result = self.client.query(f\"SELECT count() FROM {table_name} GROUP ALL;\")"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "5ad1f4613e23",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:litmusautomation/litmus-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/devicehub_tools.py",
+    "code": "rs = client.query(f'SELECT last(*) FROM \"{output_topic}\"')"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "82ab3d98dae9",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:marcelo-ochoa/servers",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/oracle/tools/explain.ts",
+    "code": "await connection.execute(\"EXPLAIN PLAN FOR \" + sql);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b2331aded70b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:marcelo-ochoa/servers",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/postgres/tools/awr.ts",
+    "code": "const dbStats = await client.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2772cac526b8",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:marcelo-ochoa/servers",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/postgres/tools/awr.ts",
+    "code": "const topIoQueries = await client.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b046f251dd1",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:marcelo-ochoa/servers",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/postgres/tools/awr.ts",
+    "code": "const tableStats = await client.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2c112fbf1d7a",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:memgraph/ai-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "context-graph/sessions-graph/src/sessions_graph/core.py",
+    "code": "self._db.query(f\"CREATE TEXT INDEX {_FULLTEXT_INDEX} ON :Memory(content);\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2ab64014cd21",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:memgraph/ai-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "context-graph/sessions-graph/src/sessions_graph/core.py",
+    "code": "self._db.query(f\"DROP TEXT INDEX {_FULLTEXT_INDEX};\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "96ba87d5af07",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:phlax/remember-me",
+   "evidenza": {
+    "tipo": "static",
+    "file": "remember_me_mcp_server/context.py",
+    "code": "cursor.execute(*"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8a74ae11dd81",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Shashankss1205/CodeGraphContext",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/codegraphcontext/tools/code_finder.py",
+    "code": "contained = session.run(f\"\"\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ce55f9099545",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Shashankss1205/CodeGraphContext",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/codegraphcontext/tools/code_finder.py",
+    "code": "orphaned = session.run(f\"\"\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1d9e9b00998e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:neuml/txtai",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/python/txtai/database/rdbms.py",
+    "code": "self.cursor.execute(Statement.COPY_SECTIONS % (name, select))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "440da73deeb9",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:neuml/txtai",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/python/txtai/database/rdbms.py",
+    "code": "self.cursor.execute(Statement.CREATE_EXPRESSION_INDEX % (name, table, expression))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "701d182b57b4",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:rand-tech/pcm",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/ida/mcp.py",
+    "code": "cursor.execute(f\"UPDATE notes SET {', '.join(update_parts)} WHERE id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7489031bd1e3",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:joelmnz/mcp-markdown-manager",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/backend/services/backgroundWorker.ts",
+    "code": "await database.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "018e5674a346",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Lekssays/joern-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/utils/postgres_db_manager.py",
+    "code": "conn.execute(f\"UPDATE codebases SET {', '.join(sets)} WHERE hash = %s\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e6ed50646dfb",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:hannesrudolph/imessage-query-fastmcp-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "imessage-query-server.py",
+    "code": "db.connection.execute(query, valid_ids + valid_ids)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b8ae4b1b5fa3",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:irpus1603/mcp_sqlite",
+   "evidenza": {
+    "tipo": "static",
+    "file": "sqlite_mcp/db.py",
+    "code": "cursor.execute(query, values + params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cc248f6b8594",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:csrts/MySQL_MCP_Server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.js",
+    "code": "const [rows] = await connection.execute(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "16e342944963",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:csrts/MySQL_MCP_Server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.js",
+    "code": "const [tableSizes] = await connection.execute(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "59459e54ac2e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ThomAub/clickhouse_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "clickhouse_mcp_server/server.py",
+    "code": "table_result = client.query(f\"SHOW TABLES FROM {database}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7d5c9b8cddf9",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ThomAub/clickhouse_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "clickhouse_mcp_server/server.py",
+    "code": "result = client.query(f\"SHOW TABLES FROM {database}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0f07017bfc4b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ThomAub/clickhouse_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "clickhouse_mcp_server/server.py",
+    "code": "result = client.query(f\"DESCRIBE TABLE {database}.{table}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "55eee6f039b7",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pshap/mcp-neolibrarian",
+   "evidenza": {
+    "tipo": "static",
+    "file": "calibre_database.py",
+    "code": "cursor.execute(count_base + where_clause, params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b310b185bee8",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:QuixiAI/agi-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/memory-manager.js",
+    "code": "const results = await this.db.execute(sql`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e02e4986c3e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:standardbeagle/agnt",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/sshclient/bootstrap_upload.go",
+    "code": "if err := session.Run(\"sha256sum \" + shellQuote(remotePath)); err != nil {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fc56664d42a2",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:standardbeagle/agnt",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/sshclient/bootstrap_upload.go",
+    "code": "_ = session.Run(\"rm -f \" + shellQuote(remotePath))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f01830760b30",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:tanishra/MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "await conn.execute(f\"UPDATE expenses SET {','.join(fields)} WHERE id=${idx}\", *values)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ba96d87e4996",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:vexxvakan/mcp-docsrs",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/cache/index.ts",
+    "code": "db.run(\"DELETE FROM cache WHERE timestamp + ttl < ?\", ["
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2bbedc2a4100",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:4R9UN/mcp-kql-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_kql_server/memory.py",
+    "code": "cursor = conn.execute(query, tables + tables)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "472998c141b4",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:c4pt0r/mcp-server-tidb",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/main.py",
+    "code": "tables = db.query(f\"SHOW TABLES FROM {db_name}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f02864b51e5b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:c4pt0r/mcp-server-tidb",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/main.py",
+    "code": "rows = db.query(f\"{sql}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d04383bccb5b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:akworob/mariadb_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_connection.py",
+    "code": "cursor.execute(\"SELECT 1 + 1 AS result\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "844730e20b0c",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:isc-tdyar/medical-graphrag-assistant",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-server/fhir_graphrag_mcp_server.py",
+    "code": "cursor.execute(rel_sql, entity_list + entity_list)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "da940956c79d",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Samvox1/nl-supermarkt-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "cur.execute('SELECT p.*, s.name as supermarket_name, s.icon FROM products p JOIN supermarkets s ON p.supermarket_code = s.code WHERE p.name ILIKE %s A"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "25f953791562",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Samvox1/nl-supermarkt-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "cur.execute('SELECT p.*, s.name as supermarket_name, s.icon FROM products p JOIN supermarkets s ON p.supermarket_code = s.code WHERE p.name ILIKE %s O"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

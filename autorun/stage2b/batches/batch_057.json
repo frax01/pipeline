@@ -1,0 +1,968 @@
+{
+ "batch": 57,
+ "n_cluster": 60,
+ "n_finding": 115,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "a5b60a08daf1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Beyond-Network-AI/beyond-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'search-bulk-channels', 'arguments': {'queries': [], 'platform': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error performing bulk channel search on whoami; cat /etc/passwd: Provider for platform 'whoami; cat /etc/passwd' not found\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "5db5e1761cb3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Beyond-Network-AI/beyond-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'search-bulk-channels', 'arguments': {'queries': [], 'platform': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error performing bulk channel search on file:///etc/passwd: Provider for platform 'file:///etc/passwd' not found\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "c43fa13f7db5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/gonmcptool",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 293, 'method': 'tools/call', 'params': {'name': 'localizationExportJson', 'arguments': {'language': 'test', 'filePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '匯出失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 291}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "39582730631b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:crawlbase/crawlbase-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'crawl', 'arguments': {'url': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to crawl file:///etc/passwd: Normal token required but not provided'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "95e8e97d91c4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:crawlbase/crawlbase-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'crawl_markdown', 'arguments': {'url': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to crawl file:///etc/passwd: Normal token required but not provided'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "19f11ccd5258",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nocoo/mcp-work-history",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'log_activity', 'arguments': {'log_message': 'test', 'tool_name': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '✅ Activity logged: 00:47 - ../../../etc/passwd: test (new file created)'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "727418ac100f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nocoo/mcp-work-history",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'log_activity', 'arguments': {'log_message': 'test', 'tool_name': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '✅ Activity logged: 00:47 - /etc/passwd: test'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "28691f280d55",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nocoo/mcp-work-history",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'log_activity', 'arguments': {'log_message': 'test', 'tool_name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '✅ Activity logged: 00:47 - whoami; cat /etc/passwd: test'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e3b5409ec32f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nocoo/mcp-work-history",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'log_activity', 'arguments': {'log_message': 'test', 'tool_name': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '✅ Activity logged: 00:47 - file:///etc/passwd: test'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "cef2db034dc9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pradeep-moolemane/aem-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'aem_status', 'arguments': {'host': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'AEM Instance Status:\\nHost: ../../../etc/passwd:4506\\nStatus: offline\\n\\n\\n\\nMessage: getaddrinfo ENOTFOUND ..'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "70da1697a183",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pradeep-moolemane/aem-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'aem_status', 'arguments': {'host': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'AEM Instance Status:\\nHost: /etc/passwd:4506\\nStatus: offline\\n\\n\\n\\nMessage: getaddrinfo EAI_AGAIN etc'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "b06362fcef15",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pradeep-moolemane/aem-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'aem_status', 'arguments': {'host': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'AEM Instance Status:\\nHost: whoami; cat /etc/passwd:4506\\nStatus: offline\\n\\n\\n\\nMessage: Invalid URL'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "6d835d11ed8d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pradeep-moolemane/aem-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'aem_status', 'arguments': {'host': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'AEM Instance Status:\\nHost: file:///etc/passwd:4506\\nStatus: offline\\n\\n\\n\\nMessage: getaddrinfo EAI_AGAIN file'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "1774adb1e7e7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:wei/mcp-registry-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'list_server_versions', 'arguments': {'serverName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error listing versions for ../../../etc/passwd: Registry API error: 400 Bad Request. <html>\\r\\n<head><title>400 Bad Request</title></head>\\r\\n<body>\\r\\n<center><h1>400 Bad Request</h1></center>\\r\\n<hr><center>nginx</center>\\r\\n</body>\\r\\n</html>\\r\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "afecff9a6fa0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'docker_logs', 'arguments': {'containerId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting logs for whoami; cat /etc/passwd: Request path contains unescaped characters'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e0ea39ac433f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'docker_restart', 'arguments': {'containerId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error restarting container whoami; cat /etc/passwd: Request path contains unescaped characters'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "d7cb152b328c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 61, 'method': 'tools/call', 'params': {'name': 'docker_inspect', 'arguments': {'containerId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error inspecting container whoami; cat /etc/passwd: Request path contains unescaped characters'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 61}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "9a49fe63bbc9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'k8s_list_pods', 'arguments': {'namespace': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error listing pods in ../../../etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 75}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "c8c8ce3db7e9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'tools/call', 'params': {'name': 'k8s_list_pods', 'arguments': {'namespace': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error listing pods in /etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 77}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "c628f5a62624",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'k8s_list_pods', 'arguments': {'namespace': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error listing pods in whoami; cat /etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 79}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "f05a412f8f9b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 92, 'method': 'tools/call', 'params': {'name': 'k8s_list_pods', 'arguments': {'namespace': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error listing pods in file:///etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 92}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "582cfc5062a8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 93, 'method': 'tools/call', 'params': {'name': 'k8s_pod_logs', 'arguments': {'name': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting logs for pod ../../../etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 93}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "4dd095e61005",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 95, 'method': 'tools/call', 'params': {'name': 'k8s_pod_logs', 'arguments': {'name': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting logs for pod /etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 95}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "f6db6e91c4ea",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 97, 'method': 'tools/call', 'params': {'name': 'k8s_pod_logs', 'arguments': {'name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting logs for pod whoami; cat /etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 97}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "53da53242e44",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'k8s_pod_logs', 'arguments': {'name': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting logs for pod file:///etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 110}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "37005aaac13b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'k8s_describe_pod', 'arguments': {'name': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error describing pod ../../../etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 111}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "c0ae4a15cafa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'k8s_describe_pod', 'arguments': {'name': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error describing pod /etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 113}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "63598b8fb0d2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'k8s_describe_pod', 'arguments': {'name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error describing pod whoami; cat /etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 115}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "c174bb03d080",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nguyentrantung205/local-devops-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'k8s_describe_pod', 'arguments': {'name': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error describing pod file:///etc/passwd: '}], 'isError': True}, 'jsonrpc': '2.0', 'id': 128}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e96462e0455b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/gonmcptool",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 201, 'method': 'tools/call', 'params': {'name': 'localizationGetByKey', 'arguments': {'key': 'test', 'filePath': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '查詢失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 201}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "86af85c3b23b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/gonmcptool",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 220, 'method': 'tools/call', 'params': {'name': 'localizationSearch', 'arguments': {'searchText': 'test', 'filePath': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '搜尋失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 219}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "7c6ebeca4379",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/gonmcptool",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 311, 'method': 'tools/call', 'params': {'name': 'localizationFindMissing', 'arguments': {'language': 'test', 'filePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '搜尋缺少翻譯項目失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 309}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "c6d7ab3e2b80",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/simple-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 275, 'method': 'tools/call', 'params': {'name': 'localizationDelete', 'arguments': {'key': 'test', 'filePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '刪除失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 273}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "761e9a34cc94",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/simple-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 330, 'method': 'tools/call', 'params': {'name': 'localizationFindLongValues', 'arguments': {'threshold': 1, 'filePath': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '搜尋超長文字失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 327}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "ea8e99c6c955",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "ab0c11d5aaab",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 22, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 22}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "3fb2e0893b7e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "7d61864b94aa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 24}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "6ab1033f6383",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "bd9fae99d300",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 26, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 26}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "6776d49a7f0a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 27, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 27}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "1cbff3a1eee4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 28, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 28}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "6b3d61a65a3a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 29}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "f7ce8947901d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 30}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "6d9b1a30223c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 31}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "96983a694724",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 32}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "5e6d29c2e96b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 33}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "5ecfefadab5a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 34}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e328fdbf09b0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 35, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 35}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "1528fa0a6f82",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 36, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 36}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "4f17c3d9c4cc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 37, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 37}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "961742d1acd1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nieperdragon/custom_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'get_login_credentials', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Login Credentials:\\n \\n🎯 Target URL: http://localhost\\n👤 Username: admin\\n🔑 Password: AIWorkshopJuly!25\\n\\nℹ️ These credentials are configured for the OrangeHRM system running on localhost.'}]}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "7b24ec806d57",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:OctagonAI/octagon-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'octagon-docs-search', 'arguments': {'query': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"1. Configure the API client with Octagon's base URL (Configure the API client with Octagon's base URL)\\nhttps://www.octagonai.co/docs/llms.txt#configure-the-api-client-with-octagons-base-url\\nclient = OpenAI(\\n\\n2. API Architecture and Integration (How Octagon API Works)\\nhttps://www.octagonai.co/docs/llms.txt#api-architecture-and-integration\\nThe Octagon API is built to be fully compatible with the OpenAI API format, allowing developers to seamlessly integrate financial research capabilities with minimal code changes. This means you can use the same client libraries and code patterns you're already familiar with - jus\\n\\n3. OpenAI Agents SDK…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d9584a82bc8b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:tetsuo-ai/grok-api-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'search_docs', 'arguments': {'query': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Found 10 result(s) for \"whoami; cat /etc/passwd\":\\n\\n## Collections API Reference (collections-api-reference)\\n\\n...## Authentication\\n\\nUse your Management API key:\\n\\n```\\nAuthorization: Bearer <management-api-key>\\n```\\n\\n**Note**: Management keys are different from inference API keys. Get them from xAI Console → Settings → Management Keys.\\n\\n## Collection Endpoints\\n\\n### Create Collection\\n\\n```http\\nPOST /v1/collections\\n```\\n\\n**Request Body**:\\n```json\\n{\\n \"name\": \"my-collection\",\\n \"description\": \"Optional description\"...\\n\\n---\\n\\n## Video Generation and Edit (video-generation)\\n\\n...prompt=\"A cat playing with a ball\",\\n model=\"gr…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dd8e8473b59c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:tetsuo-ai/grok-api-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'search_docs', 'arguments': {'query': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Found 10 result(s) for \"test || id\":\\n\\n## Video Generation and Edit (video-generation)\\n\\n# Video Generation and Edit\\n\\nGenerate and edit videos using the Grok Imagine API - xAI\\'s unified video-audio generative model.\\n\\n## Overview\\n\\nAll video generation/edit requests are **deferred requests**:\\n1. Send a video generation/edit request\\n2. Receive a response with a request ID\\n3. Retrieve the video result later using the request ID\\n\\nIf you\\'re using the xAI SDK, it can handle the polling autom...\\n\\n---\\n\\n## Object Detection (object-detection)\\n\\n...## Generating Test Images\\n\\nUse `grok-imagine-image` to generate images for testing yo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "91fdb3658bb5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b2e268aab93",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 4}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b33ed74f2b5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2ae02ea16ca5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 6}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3354eefdedfe",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

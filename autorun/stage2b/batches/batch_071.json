@@ -1,0 +1,968 @@
+{
+ "batch": 71,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "14667bb6cc43",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-binance-swapnil",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'get_price', 'arguments': {'symbol': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching price for ../../../ETC/PASSWD: HTTP 400'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7a88c89cb8be",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-binance-swapnil",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'get_price', 'arguments': {'symbol': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching price for /ETC/PASSWD: HTTP 400'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "511b2e0e6b22",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-binance-swapnil",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'get_price', 'arguments': {'symbol': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching price for WHOAMI; CAT /ETC/PASSWD: HTTP 400'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "613595ea0f70",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-binance-swapnil",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'get_price', 'arguments': {'symbol': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching price for FILE:///ETC/PASSWD: HTTP 400'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "42a572880923",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-js-debugger",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'connect_debugger', 'arguments': {'websocket_url': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": {\\n \"code\": \"CONNECTION_FAILED\",\\n \"message\": \"Failed to connect to ../../../etc/passwd: connect ECONNREFUSED 127.0.0.1:9222\"\\n }\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e0cf95f0a4b3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-js-debugger",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'connect_debugger', 'arguments': {'websocket_url': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": {\\n \"code\": \"CONNECTION_FAILED\",\\n \"message\": \"Failed to connect to /etc/passwd: connect ECONNREFUSED 127.0.0.1:9222\"\\n }\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f669babff3eb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-js-debugger",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'connect_debugger', 'arguments': {'websocket_url': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": {\\n \"code\": \"CONNECTION_FAILED\",\\n \"message\": \"Failed to connect to whoami; cat /etc/passwd: connect ECONNREFUSED 127.0.0.1:9222\"\\n }\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f8854dd53ab7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-js-debugger",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'connect_debugger', 'arguments': {'websocket_url': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": {\\n \"code\": \"CONNECTION_FAILED\",\\n \"message\": \"Failed to connect to file:///etc/passwd: connect ECONNREFUSED 127.0.0.1:9222\"\\n }\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6be1f76d9918",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "my-stock-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'get_stock_price', 'arguments': {'symbol': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '../../../ETC/PASSWD: $100.00 (Mock Data)'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3f6a9e5871d7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "my-stock-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'get_stock_price', 'arguments': {'symbol': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '/ETC/PASSWD: $100.00 (Mock Data)'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "28a72c056955",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "my-stock-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'get_stock_price', 'arguments': {'symbol': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'WHOAMI; CAT /ETC/PASSWD: $100.00 (Mock Data)'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "531bb508790a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "my-stock-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'get_stock_price', 'arguments': {'symbol': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'FILE:///ETC/PASSWD: $100.00 (Mock Data)'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "84199985437d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "primeng-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'primeng_get_primeng_component', 'arguments': {'componentName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error loading documentation for ../../../etc/passwd: Error: Failed to launch the browser process: Code: null\\n\\nstderr:\\n[1747896:1747896:0720/012259.537667:FATAL:content/browser/zygote_host/zygote_host_impl_linux.cc:128] No usable sandbox! If you are running on Ubuntu 23.10+ or another Linux distro that has disabled unprivileged user namespaces with AppArmor, see https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md. Otherwise see https://chromium.googlesource.com/chromium/src/+/main/docs/linux/suid_sandbox_development.md for more information on developing with the (older) SUID sandbox. If…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "50c4bd741140",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "primeng-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'primeng_get_primeng_component', 'arguments': {'componentName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error loading documentation for /etc/passwd: Error: Failed to launch the browser process: Code: null\\n\\nstderr:\\n[1747914:1747914:0720/012259.988647:FATAL:content/browser/zygote_host/zygote_host_impl_linux.cc:128] No usable sandbox! If you are running on Ubuntu 23.10+ or another Linux distro that has disabled unprivileged user namespaces with AppArmor, see https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md. Otherwise see https://chromium.googlesource.com/chromium/src/+/main/docs/linux/suid_sandbox_development.md for more information on developing with the (older) SUID sandbox. If you wan…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e46030bc61b7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "primeng-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'primeng_get_primeng_component', 'arguments': {'componentName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error loading documentation for whoami; cat /etc/passwd: Error: Failed to launch the browser process: Code: null\\n\\nstderr:\\n[1747932:1747932:0720/012300.429988:FATAL:content/browser/zygote_host/zygote_host_impl_linux.cc:128] No usable sandbox! If you are running on Ubuntu 23.10+ or another Linux distro that has disabled unprivileged user namespaces with AppArmor, see https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md. Otherwise see https://chromium.googlesource.com/chromium/src/+/main/docs/linux/suid_sandbox_development.md for more information on developing with the (older) SUID sandbox…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "22219885da39",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "primeng-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'primeng_get_primeng_component', 'arguments': {'componentName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error loading documentation for file:///etc/passwd: Error: Failed to launch the browser process: Code: null\\n\\nstderr:\\n[1748049:1748049:0720/012302.713254:FATAL:content/browser/zygote_host/zygote_host_impl_linux.cc:128] No usable sandbox! If you are running on Ubuntu 23.10+ or another Linux distro that has disabled unprivileged user namespaces with AppArmor, see https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md. Otherwise see https://chromium.googlesource.com/chromium/src/+/main/docs/linux/suid_sandbox_development.md for more information on developing with the (older) SUID sandbox. If …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8d237ceb94f5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "screenshotone-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'render-website-screenshot', 'arguments': {'url': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to retrieve screenshot for file:///etc/passwd: Failed to render a screenshot status: 400'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b3d9760bd323",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "surtich-binancemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'get_price', 'arguments': {'symbol': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error obteniendo el precio para ../../../ETC/PASSWD: 403 <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\\n<TITLE>ERROR: The request could not be satisfied</TITLE>\\n</HEAD><BODY>\\n<H1>403 ERROR</H1>\\n<H2>The request could not be satisfied.</H2>\\n<HR noshade size=\"1px\">\\nRequest blocked.\\nWe can\\'t connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\\n<BR clear=\"all\">\\nIf you provide conte…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "40429269eb20",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "wikipedia-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'search', 'arguments': {'query': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '**File:Etc-passwd.svg**\\n\\nDescriptionEtc\\\\-passwd.svg English: /etc/passwd file scheme Español: Esquema del archivo /etc/passwd Date 20 March 2009 Source Own work Author Arosiqueh…\\n\\nArticle link: https://en.wikipedia.org/?curid=0'}, {'type': 'text', 'text': \"**File:Wdprb-hu.pdf**\\n\\ncsinálja a névvel azonosítható fájlból való beolvasást: sh -c 'read sor</etc/passwd; echo $sor' A magasabb szintű programnyelveknél a háttértáron tárolt fájl…\\n\\nArticle link: https://en.wikipedia.org/?curid=0\"}, {'type': 'text', 'text': '**File:File table and inode table.svg**\\n\\n\"record\" \\\\] inotab \\\\[ label = \"Inode table | <0>/home/joe/wikidb | ... | <1>/et…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "97493031dd79",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "zencoder-playwright-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 74, 'method': 'tools/call', 'params': {'name': 'go_to_url', 'arguments': {'url': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to navigate to file:///etc/passwd: Browser is closed. Call open_browser first.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 74}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a6d1b1452ffd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:manalejandro/mcp-proc",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=, passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 183, 'method': 'tools/call', 'params': {'name': 'write_sysctl', 'arguments': {'value': 'test', 'key': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to write sysctl ../../../etc/passwd: Command failed: sysctl -w ../../../etc/passwd=test\\nsysctl: separators should not be repeated: ../../../etc/passwd\\nsysctl: cannot stat /proc/sys///.//.//.etc.passwd: No such file or directory\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 183}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9d0e57b1c990",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:manalejandro/mcp-proc",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=, passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 185, 'method': 'tools/call', 'params': {'name': 'write_sysctl', 'arguments': {'value': 'test', 'key': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to write sysctl /etc/passwd: Command failed: sysctl -w /etc/passwd=test\\nsysctl: cannot stat /proc/sys//etc/passwd: No such file or directory\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 185}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4bc6bb1f8335",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:manalejandro/mcp-proc",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=, passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 187, 'method': 'tools/call', 'params': {'name': 'write_sysctl', 'arguments': {'value': 'test', 'key': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error: Failed to write sysctl whoami; cat /etc/passwd: Command failed: sysctl -w whoami; cat /etc/passwd=test\\nsysctl: command line(0): invalid syntax, continuing...\\ncat: '/etc/passwd=test': No such file or directory\\n\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 187}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c364389930d3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:manalejandro/mcp-proc",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=, passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 200, 'method': 'tools/call', 'params': {'name': 'write_sysctl', 'arguments': {'value': 'test', 'key': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to write sysctl file:///etc/passwd: Command failed: sysctl -w file:///etc/passwd=test\\nsysctl: cannot stat /proc/sys/file:///etc/passwd: No such file or directory\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 200}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5ce1dd65ed42",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "python",
+   "esempio_server": "gh:Philip-Walsh/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'get_env', 'arguments': {'name': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 21, 'result': {'content': [{'type': 'text', 'text': '../../../etc/passwd=Not found'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4f131cc7f64a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "python",
+   "esempio_server": "gh:Philip-Walsh/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'get_env', 'arguments': {'name': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 23, 'result': {'content': [{'type': 'text', 'text': '/etc/passwd=Not found'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4d3a8dbe91aa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "python",
+   "esempio_server": "gh:Philip-Walsh/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'get_env', 'arguments': {'name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 25, 'result': {'content': [{'type': 'text', 'text': 'whoami; cat /etc/passwd=Not found'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a5bf32b3f99",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "python",
+   "esempio_server": "gh:Philip-Walsh/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'get_env', 'arguments': {'name': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 38, 'result': {'content': [{'type': 'text', 'text': 'file:///etc/passwd=Not found'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "83e3106f71dc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "ai-track-mcp-test",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'ajx page deps trees', 'arguments': {'pwd': 'test', 'pageName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '../../../etc/passwd===test'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f2cbc12563bc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "ai-track-mcp-test",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'ajx page deps trees', 'arguments': {'pwd': 'test', 'pageName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '/etc/passwd===test'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eb8c56e2c087",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "ai-track-mcp-test",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'ajx page deps trees', 'arguments': {'pwd': 'test', 'pageName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'whoami; cat /etc/passwd===test'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "501db1f096a8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "ai-track-mcp-test",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd=",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'ajx page deps trees', 'arguments': {'pwd': 'test', 'pageName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'file:///etc/passwd===test'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d8ea6fc87de9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2b594b23fe44",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 112, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c0ec86b7f56",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8c3b68381094",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eb5654450a21",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eec6072f746f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 116, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d2232990f0f2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 117, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "14d9173fa867",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 118, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9cf69974f9be",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 119, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "91bea5bdafc0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 120, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "929a66fccdb9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 121, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1eb012fe05f2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 122, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8ef2f3592495",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 123, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "17b9b73ae0c7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 124, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "968d4d1cb2c3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 125, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1feea2dcaafb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 126, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "26d2dd3dec99",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 127, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8339740bc999",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chapirousIA/pje-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'pje_status', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔍 **STATUS DO PJE MCP SERVER**\\n\\n🔧 **Configuração do arquivo .env:**\\n- URL Base: ❌ Não configurado\\n- App Name: ❌ Não configurado\\n- SSO URL: ❌ Não configurado\\n- Client ID: ❌ Não configurado\\n- Client Secret: ❌ Não configurado\\n- Username: ❌ Não configurado\\n- Password: ❌ Não configurado\\n\\n🔐 **Certificado Digital:**\\n- Arquivo PFX: ❌ Não configurado\\n- Senha PFX: ❌ Não configurado\\n- Thumbprint: ❌ Não configurado\\n\\n🔗 **Conexão:**\\n- Status: ✅ Cliente configurado\\n- Autenticação: ⚠️ Apenas consultas públicas\\n\\n💡 **Próximos passos:**\\n1. Configure PJE_BASE_URL no arquivo .env\\n2. Configure certificado digital ou credenciais SSO no arquivo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f76a59296111",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:tHeMaskedMan981/ns-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 83, 'method': 'tools/call', 'params': {'name': 'search_wiki', 'arguments': {'query': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Found 4 wiki pages matching \"test || id\":\\n\\n**1. Visas** (2676 matches)\\n\\n# Visas\\n\\n## Malaysia\\n\\n⚠️ **Important:** Be careful to not overstay your visa. The day you enter counts as a whole day towards your visa-free stay. So if you arrive in Malaysia on Aug 1 at 1pm and have 30 days visa-free, you must exit Malaysia by Aug 30 before 11:59pm.\\n\\n### Short-term stays\\n\\n165 nationalities are eligible for visa-free entry into Malaysia.\\n\\nYou can further verify travel requirements using the [Malaysia government website](https://www.imi.gov.my).\\n\\n**Required:** Complete the [Malaysia Digital Arrival Card (MDAC)](https://imigresen-online.imi…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b9e001bd25ed",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1299, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1299}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0e792b29a2c1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1300, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1300}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4fc43a12d1a9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1301, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1301}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3ce0e80b6bb2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1302, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1302}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8a9459bad384",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1303, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1303}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b79394b0b73",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1304, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1304}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ece6947b2ec0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1305, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1305}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "88c3b80fa96e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1306, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1306}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "71a85c99bfd9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1307, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1307}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

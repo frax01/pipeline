@@ -1,0 +1,908 @@
+{
+ "batch": 26,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "91d8dd931f5a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Slavislav/Playwright-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "k6/scenario-based-test.js",
+    "code": "password: 'testpass',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fd1c86285e02",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Slavislav/Playwright-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "k6/api-rest-test.js",
+    "code": "password: 'testpass',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cb95c382d576",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:SleekBeat/keyvault-pro",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cli/index.js",
+    "code": "const password = await this.promptPassword('Create master password: ');"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "020f27c65e49",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:SleekBeat/keyvault-pro",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cli/index.js",
+    "code": "const confirmPassword = await this.promptPassword('Confirm master password: ');"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d049dba10320",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:SleekBeat/keyvault-pro",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cli/index.js",
+    "code": "const password = await this.promptPassword('Master password: ');"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "07e6371ad07c",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Sohail7739/microsoft-teams-ai-agent-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/utils/validation.js",
+    "code": "AZURE_CLIENT_SECRET: 'Azure AD Client Secret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e7aa45f948f9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Sohail7739/microsoft-teams-ai-agent-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/utils/validation.js",
+    "code": "MCP_API_KEY: 'MCP API Key',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "657e78a44725",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:StanchPillow55/Safety-Proxy-MCP-Tools",
+   "evidenza": {
+    "tipo": "static",
+    "file": "proxy/secrets.py",
+    "code": "DB_PASSWORD = \"database/password\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80dcc7e8d759",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:StanchPillow55/Safety-Proxy-MCP-Tools",
+   "evidenza": {
+    "tipo": "static",
+    "file": "proxy/secrets.py",
+    "code": "ADMIN_API_KEY = \"admin/api_key\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e5b2975b2319",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:StanchPillow55/Safety-Proxy-MCP-Tools",
+   "evidenza": {
+    "tipo": "static",
+    "file": "proxy/secrets.py",
+    "code": "SIGN_PRIVATE_KEY = \"signing/private_key\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4186b9f344f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:StanchPillow55/Safety-Proxy-MCP-Tools",
+   "evidenza": {
+    "tipo": "static",
+    "file": "proxy/secrets.py",
+    "code": "OIDC_CLIENT_SECRET = \"oidc/client_secret\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "02d624870c19",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:StanchPillow55/Safety-Proxy-MCP-Tools",
+   "evidenza": {
+    "tipo": "static",
+    "file": "proxy/secrets.py",
+    "code": "REDIS_PASSWORD = \"redis/password\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8b802f398684",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Steve0verton/brave-search-vscode-mcp-extension",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/extension.ts",
+    "code": "const API_KEY_SECRET = \"braveSearchMcp.apiKey\";"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7a89a1aab076",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:SushyamNagallapati/Agentic-Financial-Claim-Assistant-MCP-RAG",
+   "evidenza": {
+    "tipo": "static",
+    "file": "utils.py",
+    "code": "SECRET = \"super-secret-key\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bb3c7be54316",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:TaoSeekAI/filecoin-mcp-nft-migration",
+   "evidenza": {
+    "tipo": "static",
+    "file": "deploy/pm2/ecosystem.config.js",
+    "code": "PRIVATE_KEY: '0xe4db9f0c28faad37e59e900592a45d2556e3d76137f7a45f83e5740ab35b7e9f',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d0e86276bdbb",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:TaoSeekAI/filecoin-mcp-nft-migration",
+   "evidenza": {
+    "tipo": "static",
+    "file": "deploy/pm2/ecosystem.config.js",
+    "code": "VALIDATOR_PRIVATE_KEY: 'REDACTED',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "858c82c6217e",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Terencelitianze/S.M.A.R.T-research-data-analysis-and-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "sensor_calibration.py",
+    "code": "password = \"smart_intern\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9e82c76b3416",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:TerrysPOV/ghl-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/index.js",
+    "code": "client_secret: \"not-required\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f009325be393",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Theprofitplatform/coolify-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "auto-import-monitors.mjs",
+    "code": "log(' With username/password:');"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4578ff7ad8f9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:TinTinWinata/bitbucket-automatic-pr-reviewer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "setup.js",
+    "code": "message: 'Enter your Bitbucket App Password:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "04bc78fc1f75",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:TinTinWinata/bitbucket-automatic-pr-reviewer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "setup.js",
+    "code": "message: 'Enter webhook secret:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d776c0489f63",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:TrBaPhong/xiaozhigetassetpricemcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "getassetprice.py",
+    "code": "BTMC_API_KEY = \"REDACTED\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9cc9e0db3d92",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Wintyx57/x402-bazaar-cli",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/commands/init.js",
+    "code": "message: \"Coinbase API Secret:\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cad12be47767",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Wintyx57/x402-bazaar-cli",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/commands/config.js",
+    "code": "message: 'Coinbase API Secret:',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e980f4f3f08f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:XmeleeLabs/mcp-server-nowcapital",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_mcp_integration.py",
+    "code": "if \"API_KEY=\" in line:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8e285100486d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Yourdaylight/stock_datasource",
+   "evidenza": {
+    "tipo": "static",
+    "file": "run_sentinel_demo.py",
+    "code": "password=\"clickhouse\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc93906e57a2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Zhixuan0318/Whisper-On-Base",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/app/api/sampleWebhook/route.js",
+    "code": "const WEBHOOK_SECRET ="
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b2faef77c657",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aaronshaf/md",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/cli/index.ts",
+    "code": "export MDQ_MCP_API_KEY=\"$(openssl rand -hex 32)\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3a03764c3e84",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aayushkumaraks/linux-mcp-redis",
+   "evidenza": {
+    "tipo": "static",
+    "file": "create_api_key.js",
+    "code": "const apiId = \"apikey:\" + randomUUID();"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "471ad8ed74a6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:abdelbarie141-ou/mcpserver",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/gemini.js",
+    "code": "const GEMINI_API_KEY = \"AIzaSyC0D-EXAMPLE123\";"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a3ea5aaa4c02",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:acceleronix/virtual-data-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_auth_generation.js",
+    "code": "const expectedPassword ="
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "10783f52deb7",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:adam-trustscope/trustscope-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/local.ts",
+    "code": "gcp_api_key: '[REDACTED-KEY]',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8b9dde0424e",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:adam-trustscope/trustscope-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/local.ts",
+    "code": "stripe_secret: '[REDACTED-KEY]',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3af95f2120ce",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:adam-trustscope/trustscope-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/local.ts",
+    "code": "rsa_private_key: '[REDACTED-PRIVATE-KEY]',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7bace870ac47",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:adam-trustscope/trustscope-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/local.ts",
+    "code": "openssh_private_key: '[REDACTED-PRIVATE-KEY]',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fddd81a6af9b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:adam-trustscope/trustscope-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/local.ts",
+    "code": "generic_private_key: '[REDACTED-PRIVATE-KEY]',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "142f9c2242e5",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aelkz/another-keycloak-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/common/constants.ts",
+    "code": "KEYCLOAK_CLIENT_SECRET: 'test12345',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "86ce65cd35e9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ag0os/claude-forge",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agents/personas/github.ts",
+    "code": "\"Failed to retrieve GitHub token from 1Password:\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "862f4357e1bf",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ag2-mcp-servers/amazon-workmail",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server/models.py",
+    "code": "WorkMailService_ResetPassword = 'WorkMailService.ResetPassword'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8123bfac0f42",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ag2-mcp-servers/aws-wafv2",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server/models.py",
+    "code": "AWSWAF_20190729_CreateAPIKey = 'REDACTED'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "13e96df9fe8a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ag2-mcp-servers/aws-wafv2",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server/models.py",
+    "code": "AWSWAF_20190729_GetDecryptedAPIKey = 'REDACTED'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7d1ccbc714f7",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agiletec-inc/airiscode",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/airiscode-cli/src/config/migration/versions/v1-to-v2-shared.ts",
+    "code": "tavilyApiKey: \"advanced.tavilyApiKey\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f654d480f6b0",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agiletec-inc/airiscode",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/airiscode-cli/src/config/migration/versions/v1-to-v2-shared.js",
+    "code": "tavilyApiKey: \"advanced.tavilyApiKey\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa29ae980193",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ai-rio/redditharbor-graph-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "archive/archive/scripts-2025-11-11/migration-tools/verify_migration_schema.py",
+    "code": "conn = psycopg2.connect(host='127.0.0.1', port='54322', user='postgres', password='postgres', database='postgres')"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc804a86885f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:airnub-labs/rfc-refactor",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/auditor-core/src/e2bClient.ts",
+    "code": "password: 'hashed_but_still_exposed_p@ssw0rd123',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a3ecb9439ec5",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aj-geddes/quorum-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/quorum_mcp/providers/openai_compatible_provider.py",
+    "code": "api_key=\"not-needed\" # LM Studio doesn't require key"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4441dcc6a7c8",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aj-geddes/quorum-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/quorum_mcp/providers/openai_compatible_provider.py",
+    "code": "api_key = \"not-needed\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c1b89c23ed8a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ajwestfield/geminichatbotv6",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/mcp/mcp-server-intelligence.ts",
+    "code": "env: { EXA_API_KEY: 'required' }"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "800da566ea2b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:akarnik23/mcp-marketplace-app",
+   "evidenza": {
+    "tipo": "static",
+    "file": "frontend/src/app/constants.ts",
+    "code": "INVALID_API_KEY: 'Invalid Render API key. Please check your API key and try again.',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dda0e3178a76",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:akrutsinger/binja-codemode-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "config.py",
+    "code": "DEFAULT_API_KEY = \"binja-codemode-local\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "26e1ebdf4a2d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:alanmc021/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/weather.tool.ts",
+    "code": "const API_KEY = 'SUA_CHAVE_OPENWEATHERMAP';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f98752c3ab34",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aledlie/ast-grep-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/ast_grep_mcp/features/cross_language/binding_generator.py",
+    "code": "\" if api_key:\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa11c96f66d3",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:ammilam/mcp-server-google-adk-sse-multi-tool-system",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/app.ts",
+    "code": "access_token: \"Optional OAuth token (adds Authorization: Bearer header)\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4c06fb004cf2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:and4804/ameya_sample_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "simple-chatgpt-github.js",
+    "code": "openaiApiKey:'sk-proj-REDACTED"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a7f631c8534b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewkaranu/melody-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/spotify-auth.js",
+    "code": "secret: 'mcp-spotify-secret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b9072d471299",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ankushthakur2007/miyami-pdf-mcptool",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/constants.ts",
+    "code": "INVALID_API_KEY: 'Invalid or inactive API key',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c18fc450f743",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aosyang/TaskMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "model_providers/lm_studio_provider.py",
+    "code": "return OpenAI(api_key=\"lm-studio\", base_url=base_url)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ce70b99a8891",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aosyang/TaskMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "model_providers/openai_compatible_provider.py",
+    "code": "return OpenAI(api_key=\"openai-compatible\", base_url=base_url)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e2ecceaeb31",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aplaceforallmystuff/mcp-local-llm",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "apiKey: \"not-needed\", // Local model doesn't need auth"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4e3b7cb12e31",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:appachhi/bugasura-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/issues.py",
+    "code": "'instruction': f'Please call bugasura_list_issue_comments again with issue_id parameter. Example: bugasura_list_issue_comments(api_key=\"{api_key[:4]}."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

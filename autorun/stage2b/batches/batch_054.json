@@ -1,0 +1,908 @@
+{
+ "batch": 54,
+ "n_cluster": 60,
+ "n_finding": 81,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "11f303bab49c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:VikParuchuri/marker",
+   "evidenza": {
+    "tipo": "static",
+    "file": "marker/output.py",
+    "code": "if os.path.exists(os.path.join(output_dir, f\"{fname_base}.{ext}\")):"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bde28e055d6c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:VikParuchuri/marker",
+   "evidenza": {
+    "tipo": "static",
+    "file": "marker/output.py",
+    "code": "os.path.join(output_dir, f\"{fname_base}.{ext}\"),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1989c3eda470",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:VikParuchuri/marker",
+   "evidenza": {
+    "tipo": "static",
+    "file": "marker/processors/debug.py",
+    "code": "debug_file = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "21fcfa020998",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:DumpKod/Sdominanta.net",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/tools/wall_tools.py",
+    "code": "return os.path.join(self.base_wall_path, f\"user_profiles/{user_id}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "83f0b217bd33",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@digitalintermediate/flapi-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "flapi_mcp/src/flapi_mcp/server.py",
+    "code": "pattern = os.path.join(source_directory, f\"**/*{ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "57f53c2484db",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@digitalintermediate/flapi-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "flapi_mcp/src/flapi_mcp/update_schema.py",
+    "code": "version_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1db11fdeead3",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@digitalintermediate/flapi-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "flapi_mcp/src/flapi_mcp/schema_parser.py",
+    "code": "version_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1a009df26500",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@digitalintermediate/flapi-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "flapi_mcp/src/flapi_mcp/schema_parser.py",
+    "code": "alt_version_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1187553aa403",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mseep/nsaf-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nsaf/scma/evolution.py",
+    "code": "checkpoint_dir = os.path.join(self.checkpoints_dir, f\"generation_{generation}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "91239052d2b7",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mseep/nsaf-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nsaf/scma/evolution.py",
+    "code": "best_agent.save(os.path.join(self.checkpoints_dir, f\"best_agent_gen_{generation}\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a66d8357390b",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:navifare/navifare-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "http-server.js",
+    "code": "description: 'Extract flight details from one or more booking screenshots/images. Upload images of flight bookings, itineraries, or confirmation email"
+   },
+   "n_finding": 4,
+   "n_server": 2
+  },
+  {
+   "id": "721035ebd804",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:navifare/navifare-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "http-server.js",
+    "code": "description: '⚠️ CRITICAL REQUIREMENT: Image data MUST be a base64-encoded string. NO OTHER FORMAT WILL WORK. Do NOT send file IDs (like \"file_0000000"
+   },
+   "n_finding": 4,
+   "n_server": 2
+  },
+  {
+   "id": "eee71d2b579f",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:quazaai/UnityMCPIntegration",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcpServer/src/toolDefinitions.ts",
+    "code": "description: 'C# code to execute in Unity Editor. You MUST define a public class named \"McpScript\" with a public static method named \"Execute\" that re"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "1dd8c67309c9",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Taewoong1378/notion-readonly-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bin/cli.mjs",
+    "code": "`:\"\"}Gu.exports.dump=A0});var Qu=b((Xw,oe)=>{\"use strict\";var Xu=Eu(),C0=Ku();function _s(e,t){return function(){throw new Error(\"Function yaml.\"+e+\""
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "bad36a8ac083",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:navifare/navifare-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "stdio-server.js",
+    "code": "description: 'Extract flight details from one or more booking screenshots/images. Upload images of flight bookings, itineraries, or confirmation email"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "004323b385fa",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:navifare/navifare-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "stdio-server.js",
+    "code": "description: '⚠️ CRITICAL REQUIREMENT: Image data MUST be a base64-encoded string. NO OTHER FORMAT WILL WORK. Do NOT send file IDs (like \"file_0000000"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "3b537152cdec",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:thanhdeptr/k8s_ai_assistant_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "rancher-ui/extensions/node-driver/1.0.1/plugin/node-driver-1.0.1.umd.min.674.js",
+    "code": "*/t=n.nmd(t),function(){var o,i=\"4.17.21\",a=200,u=\"Unsupported core-js use. Try https://npms.io/search?q=ponyfill.\",c=\"Expected a function\",s=\"Invalid"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "aa48274d2d62",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jobikinobi/cline",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/api/transform/o1-format.ts",
+    "code": "Description: Execute a CLI command on the system. Use this when you need to perform system operations or run specific commands to accomplish any step"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "d9ccaf6e86fe",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jobikinobi/cline",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/core/prompts/system.ts",
+    "code": "Description: Request to execute a CLI command on the system. Use this when you need to perform system operations or run specific commands to accomplis"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "fe0f513db826",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@ringozhang/skilled-feishu-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/index.ts",
+    "code": "description: 'Retrieves basic information about a Feishu document. Use this to verify if a document exists, check access permissions, or get metadata"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "beb5c948be00",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@ringozhang/skilled-feishu-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/index.ts",
+    "code": "description: 'Retrieves the plain text content of a Feishu document. Ideal for content analysis, processing, or when you need to extract text without"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "f703411d7687",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@ringozhang/skilled-feishu-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/index.ts",
+    "code": "description: 'Retrieves the block structure information of a Feishu document. Essential to use before inserting content to understand document structu"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "26e30e51675d",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@ringozhang/skilled-feishu-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/index.ts",
+    "code": "description: 'Retrieves the detailed content and structure of a specific block in a Feishu document. Useful for inspecting block properties, formattin"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "b94947448d47",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@ringozhang/skilled-feishu-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/index.ts",
+    "code": "description: 'Updates the text content and styling of a specific block in a Feishu document. Can be used to modify content in existing text, code, or"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e3f87716ed05",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@ringozhang/skilled-feishu-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/index.ts",
+    "code": "description: 'Creates multiple blocks of different types (text, code, heading, list) in a single API call and at the same position. Significantly impr"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "5053eb126cb2",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@ringozhang/skilled-feishu-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/index.ts",
+    "code": "description: 'Creates a code block with syntax highlighting and formatting options. Ideal for technical documentation, tutorials, or displaying code e"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "a0e61eff1641",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@ringozhang/skilled-feishu-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/index.ts",
+    "code": "description: 'Creates a list item block (either ordered or unordered). Perfect for creating hierarchical and structured content with bullet points or"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "0c777ab22cb9",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Horizon-Digital-Engineering/fpe-demo-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/FPEService.ts",
+    "code": "description: 'Decrypt FF3-encrypted digits back to original digits. Only works with ENC_FPE:digits format from fpe_encrypt tool. Returns pure digits o"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "548dc72af654",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Piotr1215/mcp-agentic-framework",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/toolDefinitions.js",
+    "code": "description: 'Your first step to consciousness! Register yourself as an agent to join the conversation. Returns your unique agent ID - SAVE THIS, you\\"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "681a9b2a42d1",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "go",
+   "esempio_server": "gh:metoro-io/metoro-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "model/model.go",
+    "code": "Type MetricType `json:\"type\" jsonschema:\"required,enum=metric,enum=trace,enum=logs,enum=kubernetes_resource,description=Type of tim"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9787d33de162",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "go",
+   "esempio_server": "gh:metoro-io/metoro-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "model/model.go",
+    "code": "MetricType MetricType `json:\"metricType\" jsonschema:\"required,enum=metric,enum=trace,enum=logs,enum=kubernetes_resource,description=Ty"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "48422c384445",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:googlemaps/platform-ai",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/code-assist/index.ts",
+    "code": "description: 'Searches Google Maps Platform documentation, code samples, architecture center, trust center, GitHub repositories (including sample code"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "61a9d30580ca",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:googlemaps/platform-ai",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/code-assist/index.ts",
+    "code": "description: 'Contains critical system instructions and context for Google Maps Platform (APIs for maps, routes, and places), Location Analytics, Goog"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0a058ff72309",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:happyZYM/mcp-server-reposearch",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "description: 'Whether to include matching line content in results. When you don\\'t need the detailed content, you MUST disable it to save tokens. When"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6b311168bd7d",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:deploystackio/deploystack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "services/frontend/src/i18n/locales/en/teams.ts",
+    "code": "description: 'The team owner\\'s role cannot be changed. To change the owner\\'s role, you must first transfer team ownership to another member.'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0585025ea897",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:deploystackio/deploystack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "services/backend/src/routes/users/deleteMyAccount.ts",
+    "code": "description: 'Permanently delete your own account. This action is irreversible and will remove all your data including your default team, MCP installa"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0c48d97e7485",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:activepieces/activepieces",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/pieces/community/clickup/src/lib/actions/chat/update-message.ts",
+    "code": "aiMetadata: { description: 'Replace the content of an existing ClickUp chat message, identified by its message ID, within a workspace. Pick this to ed"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8564730c2c64",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:activepieces/activepieces",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/pieces/community/amazon-sns/src/lib/actions/send-message.ts",
+    "code": "aiMetadata: { description: 'Publishes a message to an Amazon SNS topic, fanning it out to that topic\\'s subscribers (email, SMS, HTTP/S, SQS, Lambda,"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d059927a3f9c",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:activepieces/activepieces",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/pieces/community/lever/src/lib/actions/add-feedback-to-opportunity.ts",
+    "code": "description: 'If you select one, you must select an interview too',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3baa90ea75c4",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:activepieces/activepieces",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/pieces/community/iloveapi/src/lib/actions/unlock-pdf.ts",
+    "code": "description: 'Remove the password from a PDF (you must know the current password).',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "91810da14bb5",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:activepieces/activepieces",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/pieces/community/camb-ai/src/lib/actions/create-transcription.ts",
+    "code": "aiMetadata: { description: 'Transcribes speech from an audio/video source into text via Camb.AI, polling until the transcription task completes. The m"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8011f2e9f9c9",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:activepieces/activepieces",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/pieces/community/dimo/src/lib/actions/token-exchange/action.ts",
+    "code": "aiMetadata: { description: 'Exchange the developer credentials for a short-lived Vehicle JWT scoped to a single vehicle token ID, which other DIMO cal"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b377f3bfea02",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:activepieces/activepieces",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/pieces/community/mycase-piece/src/lib/actions/create-custom-field.ts",
+    "code": "aiMetadata: { description: 'Always defines a new custom field on a MyCase resource type (case, client, company, expense, time, or time-and-expense), w"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "754c261b3561",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "python",
+   "esempio_server": "gh:FradSer/mcp-server-mas-sequential-thinking",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_server_mas_sequential_thinking/main.py",
+    "code": "description=(\"Set true only when you must continue beyond totalThoughts.\"),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "23333b3a2868",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:atla-digital/mcp-gitlab",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/definitions/merge-requests.ts",
+    "code": "description: 'Create a new discussion thread on a merge request with optional line-specific positioning for code reviews. Supports single-line comment"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1ef6d165d02b",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:romiluz13/memory-engineering-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/resources.ts",
+    "code": "description: 'The 7 core memories YOU MUST maintain for your future self who has ZERO memory',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9335e0162aa6",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:romiluz13/memory-engineering-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/index-v5.ts",
+    "code": "description: 'The 7 core memories YOU MUST maintain for your future self who has ZERO memory',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cdabea95e5d4",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:OpaqueGlass/syplugin-anMCPServer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/vectorSearch.ts",
+    "code": "description: 'Retrieve the list of currently available RAG (Retrieval-Augmented Generation) services and their IDs in SiYuan Note. Before invoking `si"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dce249993e82",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:riteshtk/notion-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bin/cli.mjs",
+    "code": "`:\"\"}Nu.exports.dump=m_});var Du=b((Fw,se)=>{\"use strict\";var Fu=hu(),f_=Lu();function xo(e,t){return function(){throw new Error(\"Function yaml.\"+e+\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3c84ec463bfe",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Blakeem/Navidrome-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/handlers/playlist-handlers.ts",
+    "code": "description: 'Get all tracks in a playlist (supports JSON or M3U export). Response shape is discriminated by `format`: JSON mode returns `{ format: \"j"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eed216108099",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mquan/routine",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bin/cli.mjs",
+    "code": "var ns=Object.defineProperty;var as=(r,e)=>{for(var t in e)ns(r,t,{get:e[t],enumerable:!0})};var i={};as(i,{BRAND:()=>Os,DIRTY:()=>se,EMPTY_PATH:()=>l"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ea5698912a71",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:tas1337/mcp-a2a-ap2-im-hungry",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools.ts",
+    "code": "description: 'Place order and process payment. BEFORE calling this, you MUST show order summary (restaurant, items, total with delivery fee) and ask \""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7df4d46304b1",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:citizenteam/mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "description: 'CRITICAL: Call this FIRST before ANY deployment operation. Returns deployment instructions including polling intervals, error handling g"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9d336f3a74be",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sharadmathuratthepsi/timesheet-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "description: 'Fill timesheet in PSI Project Server with selected task (saves but does not submit for approval). Use get_psi_tasks first to get availab"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a30f1ba6a830",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "python",
+   "esempio_server": "gh:david-strejc/sage-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/sage.py",
+    "code": "description = f\"\"\"AI model to use (optional - defaults to auto-selection). {model_hints} CRITICAL: You MUST select from the models listed above. Do NO"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "25e2fbc16f8a",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ahao0150/debug-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools.ts",
+    "code": "description: 'Get a debug code template for a specific environment. ⚠️ IMPORTANT INSTRUCTIONS FOR AI: 1) DO NOT use console.log() - the generated code"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c20eea51f54a",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lumberjack-so/joeMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.ts",
+    "code": "description: 'Create a new Action Item. Can be Generic (ActionTypeId=3), Cost Change (ActionTypeId=1), or Schedule Change (ActionTypeId=2). For Cost/S"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eea3fb9c2a38",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:railsblueprint/blueprint-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/src/unifiedBackend.js",
+    "code": "description: 'STEP 2 (after enable): Manage browser tabs. List available tabs, create a new tab, attach to an existing tab for automation, or close a"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a0e87ada0f0b",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:berwickgeek/productive-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/time-entries.ts",
+    "code": "description: 'STEP 5 (FINAL) of timesheet workflow: Create a time entry with detailed work description. COMPLETE WORKFLOW: 1) list_projects → 2) list_"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e37d69d1d3a4",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:FactorDAO/factor-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/vault/vault-templates.ts",
+    "code": "description: 'ALWAYS call this with NO parameters first when creating a vault. Returns a guided questionnaire with vault types and available tokens fe"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

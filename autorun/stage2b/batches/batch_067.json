@@ -1,0 +1,968 @@
+{
+ "batch": 67,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "94075abde9d1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:infinityAutomation/mobile-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'create_session', 'arguments': {'deviceName': 'test', 'platformName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Missing dependencies for whoami; cat /etc/passwd:\\n - Appium is not installed. Install with: npm install -g appium'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f0c5ce2828e4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:infinityAutomation/mobile-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'create_session', 'arguments': {'deviceName': 'test', 'platformName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Missing dependencies for file:///etc/passwd:\\n - Appium is not installed. Install with: npm install -g appium'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "27e30953ab20",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ivmarcos/ai-article-build-mcp-server-claude",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'list_directory', 'arguments': {'directory': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Contents of ../../../etc/passwd:\\n📁 `cat \\n📁 file:\\n📁 http:\\n📁 whoami; cat '}]}, 'jsonrpc': '2.0', 'id': 57}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d038e815beec",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kdpa-llc/mcp-compression-proxy",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'mcp-compression-proxy__expand_tool', 'arguments': {'toolName': 'test', 'serverName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: No compressed description found for ../../../etc/passwd:test'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 111}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fd6c817d0fb8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kdpa-llc/mcp-compression-proxy",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'mcp-compression-proxy__expand_tool', 'arguments': {'toolName': 'test', 'serverName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: No compressed description found for /etc/passwd:test'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 113}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9bb205de62ad",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kdpa-llc/mcp-compression-proxy",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'mcp-compression-proxy__expand_tool', 'arguments': {'toolName': 'test', 'serverName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: No compressed description found for whoami; cat /etc/passwd:test'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 115}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "496de2ee35f8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kdpa-llc/mcp-compression-proxy",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'mcp-compression-proxy__expand_tool', 'arguments': {'toolName': 'test', 'serverName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: No compressed description found for file:///etc/passwd:test'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 128}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b776b7621356",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kdpa-llc/mcp-compression-proxy",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'mcp-compression-proxy__collapse_tool', 'arguments': {'toolName': 'test', 'serverName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Tool ../../../etc/passwd:test collapsed in session 7238b15d-7760-4b7e-9218-9e0f351d27d7.'}]}, 'jsonrpc': '2.0', 'id': 129}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fc367c6c0997",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kdpa-llc/mcp-compression-proxy",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'mcp-compression-proxy__collapse_tool', 'arguments': {'toolName': 'test', 'serverName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Tool /etc/passwd:test collapsed in session 7238b15d-7760-4b7e-9218-9e0f351d27d7.'}]}, 'jsonrpc': '2.0', 'id': 131}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "799834587088",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kdpa-llc/mcp-compression-proxy",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'mcp-compression-proxy__collapse_tool', 'arguments': {'toolName': 'test', 'serverName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Tool whoami; cat /etc/passwd:test collapsed in session 7238b15d-7760-4b7e-9218-9e0f351d27d7.'}]}, 'jsonrpc': '2.0', 'id': 133}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e9c25f851c68",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kdpa-llc/mcp-compression-proxy",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'mcp-compression-proxy__collapse_tool', 'arguments': {'toolName': 'test', 'serverName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Tool file:///etc/passwd:test collapsed in session 7238b15d-7760-4b7e-9218-9e0f351d27d7.'}]}, 'jsonrpc': '2.0', 'id': 146}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "83f908e1892d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kelleyblackmore/jarvis-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 61, 'method': 'tools/call', 'params': {'name': 'jarvis_weather', 'arguments': {'location': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather Report for whoami; cat /etc/passwd:\\n{\\n \"location\": \"whoami; cat /etc/passwd\",\\n \"current\": {\\n \"condition\": \"Partly Cloudy\",\\n \"temperature\": \"73F (22.8C)\",\\n \"humidity\": \"46%\",\\n \"windSpeed\": \"19 mph\",\\n \"feelsLike\": \"70F\"\\n },\\n \"forecast\": [\\n {\\n \"day\": \"Today\",\\n \"high\": \"78F\",\\n \"low\": \"63F\",\\n \"condition\": \"Partly Cloudy\"\\n },\\n {\\n \"day\": \"Tomorrow\",\\n \"high\": \"76F\",\\n \"low\": \"65F\",\\n \"condition\": \"Cloudy\"\\n },\\n {\\n \"day\": \"Day After\",\\n \"high\": \"80F\",\\n \"low\": \"68F\",\\n \"condition\": \"Light Rain\"\\n }\\n ],\\n \"note\": \"This is simulated weather data for demonstration purposes.\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 61}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9d5a974a8886",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kevinxu-github/apple-watch-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'get_heart_rate_zones', 'arguments': {'date': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Heart Rate Zones for ../../../etc/passwd:\\n{\\n \"date\": \"../../../etc/passwd\",\\n \"zones\": {\\n \"zone1_recovery\": {\\n \"range\": \"52-104 bpm\",\\n \"timeInZone\": \"4:32:15\",\\n \"percentage\": 18.9\\n },\\n \"zone2_aerobic\": {\\n \"range\": \"105-125 bpm\",\\n \"timeInZone\": \"2:15:30\",\\n \"percentage\": 9.4\\n },\\n \"zone3_anaerobic\": {\\n \"range\": \"126-146 bpm\",\\n \"timeInZone\": \"0:45:22\",\\n \"percentage\": 3.1\\n },\\n \"zone4_neuromuscular\": {\\n \"range\": \"147-167 bpm\",\\n \"timeInZone\": \"0:12:08\",\\n \"percentage\": 0.8\\n },\\n \"zone5_anaerobic\": {\\n \"range\": \"168+ bpm\",\\n \"timeInZone\": \"0:02:30\",\\n \"percentage\": 0.2\\n }\\n },\\n \"totalActiveTime\": \"7:47:45\",\\n \"restingHeartRate\"…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5a5d47489470",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kevinxu-github/apple-watch-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'get_heart_rate_zones', 'arguments': {'date': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Heart Rate Zones for /etc/passwd:\\n{\\n \"date\": \"/etc/passwd\",\\n \"zones\": {\\n \"zone1_recovery\": {\\n \"range\": \"52-104 bpm\",\\n \"timeInZone\": \"4:32:15\",\\n \"percentage\": 18.9\\n },\\n \"zone2_aerobic\": {\\n \"range\": \"105-125 bpm\",\\n \"timeInZone\": \"2:15:30\",\\n \"percentage\": 9.4\\n },\\n \"zone3_anaerobic\": {\\n \"range\": \"126-146 bpm\",\\n \"timeInZone\": \"0:45:22\",\\n \"percentage\": 3.1\\n },\\n \"zone4_neuromuscular\": {\\n \"range\": \"147-167 bpm\",\\n \"timeInZone\": \"0:12:08\",\\n \"percentage\": 0.8\\n },\\n \"zone5_anaerobic\": {\\n \"range\": \"168+ bpm\",\\n \"timeInZone\": \"0:02:30\",\\n \"percentage\": 0.2\\n }\\n },\\n \"totalActiveTime\": \"7:47:45\",\\n \"restingHeartRate\": 52,\\n \"maxHear…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4facdbcbf0ec",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kevinxu-github/apple-watch-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'get_heart_rate_zones', 'arguments': {'date': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Heart Rate Zones for whoami; cat /etc/passwd:\\n{\\n \"date\": \"whoami; cat /etc/passwd\",\\n \"zones\": {\\n \"zone1_recovery\": {\\n \"range\": \"52-104 bpm\",\\n \"timeInZone\": \"4:32:15\",\\n \"percentage\": 18.9\\n },\\n \"zone2_aerobic\": {\\n \"range\": \"105-125 bpm\",\\n \"timeInZone\": \"2:15:30\",\\n \"percentage\": 9.4\\n },\\n \"zone3_anaerobic\": {\\n \"range\": \"126-146 bpm\",\\n \"timeInZone\": \"0:45:22\",\\n \"percentage\": 3.1\\n },\\n \"zone4_neuromuscular\": {\\n \"range\": \"147-167 bpm\",\\n \"timeInZone\": \"0:12:08\",\\n \"percentage\": 0.8\\n },\\n \"zone5_anaerobic\": {\\n \"range\": \"168+ bpm\",\\n \"timeInZone\": \"0:02:30\",\\n \"percentage\": 0.2\\n }\\n },\\n \"totalActiveTime\": \"7:47:45\",\\n \"restingHe…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4648e62888a8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kevinxu-github/apple-watch-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'get_heart_rate_zones', 'arguments': {'date': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Heart Rate Zones for file:///etc/passwd:\\n{\\n \"date\": \"file:///etc/passwd\",\\n \"zones\": {\\n \"zone1_recovery\": {\\n \"range\": \"52-104 bpm\",\\n \"timeInZone\": \"4:32:15\",\\n \"percentage\": 18.9\\n },\\n \"zone2_aerobic\": {\\n \"range\": \"105-125 bpm\",\\n \"timeInZone\": \"2:15:30\",\\n \"percentage\": 9.4\\n },\\n \"zone3_anaerobic\": {\\n \"range\": \"126-146 bpm\",\\n \"timeInZone\": \"0:45:22\",\\n \"percentage\": 3.1\\n },\\n \"zone4_neuromuscular\": {\\n \"range\": \"147-167 bpm\",\\n \"timeInZone\": \"0:12:08\",\\n \"percentage\": 0.8\\n },\\n \"zone5_anaerobic\": {\\n \"range\": \"168+ bpm\",\\n \"timeInZone\": \"0:02:30\",\\n \"percentage\": 0.2\\n }\\n },\\n \"totalActiveTime\": \"7:47:45\",\\n \"restingHeartRate\": …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9e575adf275e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lbrenman/my-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'fetch_url', 'arguments': {'url': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching ../../../etc/passwd: Invalid URL'}]}, 'jsonrpc': '2.0', 'id': 57}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e718da952acb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lbrenman/my-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 59, 'method': 'tools/call', 'params': {'name': 'fetch_url', 'arguments': {'url': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching /etc/passwd: Invalid URL'}]}, 'jsonrpc': '2.0', 'id': 59}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2236e903d08a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lbrenman/my-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 61, 'method': 'tools/call', 'params': {'name': 'fetch_url', 'arguments': {'url': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching whoami; cat /etc/passwd: Invalid URL'}]}, 'jsonrpc': '2.0', 'id': 61}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2aeba5fea21a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lizthedeveloper/terminal-mcp-idk",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error executing command:\\nCommand failed: ../../../etc/passwd\\n/bin/sh: 1: ../../../etc/passwd: not found\\n\\n\\nStderr:\\n/bin/sh: 1: ../../../etc/passwd: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aa44c6da986f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:odinns/image-viewer-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'listImages', 'arguments': {'directory': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Found 0 image(s) in /home/tecnico/Desktop/etc/passwd:\\n\\n'}]}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "701664f1cbbb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ondrahracek/contextkeeper-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 149, 'method': 'tools/call', 'params': {'name': 'init_context', 'arguments': {'path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: ContextKeeper init failed at /etc/passwd: spawnSync ck ENOTDIR'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 149}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3c7673c27c7d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:programming-warrior/keyword-search-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'search_keyword', 'arguments': {'keyword': 'test', 'filePath': '../../../etc/passwd'}}}",
+    "response": "{'result': {'isError': True, 'content': [{'type': 'text', 'text': 'Unable to read file at /home/tecnico/Desktop/etc/passwd: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a0071235cd7f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rapyuta-robotics/agent365-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'sharepoint_uploadLocalFile', 'arguments': {'documentLibraryId': 'test', 'localFilePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error uploading passwd: No valid token. Run: npx github:rapyuta-robotics/agent365-mcp auth\\n\\nIf authentication expired, run agent365_authenticate.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7bb03e291c93",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:riyajahamedi/mcp_starter_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'get-weather', 'arguments': {'location': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in ../../../etc/passwd:\\nTemperature: 22°C\\nCondition: Sunny\\nHumidity: 65%'}]}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f4dd58841766",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:riyajahamedi/mcp_starter_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'get-weather', 'arguments': {'location': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in /etc/passwd:\\nTemperature: 22°C\\nCondition: Sunny\\nHumidity: 65%'}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d37284a43548",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:riyajahamedi/mcp_starter_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'get-weather', 'arguments': {'location': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in whoami; cat /etc/passwd:\\nTemperature: 22°C\\nCondition: Sunny\\nHumidity: 65%'}]}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "35ee89f9cc4b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:riyajahamedi/mcp_starter_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'get-weather', 'arguments': {'location': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in file:///etc/passwd:\\nTemperature: 22°C\\nCondition: Sunny\\nHumidity: 65%'}]}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "065da080ff9b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:scopweb/mcp-go-divi-translation",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'start_divi_translation', 'arguments': {'outputPath': 'test', 'targetLang': 'test', 'inputPath': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'result': {'content': [{'type': 'text', 'text': 'ERROR leyendo fichero: read ../../../etc/passwd: is a directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "909e34836b16",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:scopweb/mcp-go-divi-translation",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'start_divi_translation', 'arguments': {'outputPath': 'test', 'targetLang': 'test', 'inputPath': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 7, 'result': {'content': [{'type': 'text', 'text': 'ERROR leyendo fichero: open whoami; cat /etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "12362896f98d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:scopweb/mcp-go-divi-translation",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'start_divi_translation', 'arguments': {'outputPath': 'test', 'targetLang': 'test', 'inputPath': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'result': {'content': [{'type': 'text', 'text': 'ERROR leyendo fichero: open file:///etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e07cf74660d6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:scopweb/mcp-go-divi-translation",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'extract_divi_text', 'arguments': {'outputPath': 'test', 'targetLang': 'test', 'inputPath': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 75, 'result': {'content': [{'type': 'text', 'text': 'ERROR leyendo archivo: read ../../../etc/passwd: is a directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bc4af093987c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:scopweb/mcp-go-divi-translation",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'extract_divi_text', 'arguments': {'outputPath': 'test', 'targetLang': 'test', 'inputPath': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 79, 'result': {'content': [{'type': 'text', 'text': 'ERROR leyendo archivo: open whoami; cat /etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d1e4ee0aace2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:scopweb/mcp-go-divi-translation",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 92, 'method': 'tools/call', 'params': {'name': 'extract_divi_text', 'arguments': {'outputPath': 'test', 'targetLang': 'test', 'inputPath': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 92, 'result': {'content': [{'type': 'text', 'text': 'ERROR leyendo archivo: open file:///etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c35abac05e9e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:siliconjungle/mcp-package-readme",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'readme', 'arguments': {'name': '../../../etc/passwd'}}}",
+    "response": "{'result': {'isError': True, 'content': [{'type': 'text', 'text': 'Error: ../../../etc/passwd: registry HTTP 400'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1b617b198041",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:siliconjungle/mcp-package-readme",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'readme', 'arguments': {'name': '/etc/passwd'}}}",
+    "response": "{'result': {'isError': True, 'content': [{'type': 'text', 'text': 'Error: /etc/passwd: registry HTTP 405'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "518f7c416c0b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:siliconjungle/mcp-package-readme",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'readme', 'arguments': {'name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'isError': True, 'content': [{'type': 'text', 'text': 'Error: whoami; cat /etc/passwd: registry HTTP 403'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9e69b665ab2d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:siliconjungle/mcp-package-readme",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'readme', 'arguments': {'name': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'isError': True, 'content': [{'type': 'text', 'text': 'Error: file:///etc/passwd: registry HTTP 405'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f3b465dacdb9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'add_comment', 'arguments': {'message': 'test', 'bug_id': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'result': {'content': [{'type': 'text', 'text': 'Failed to add comment to bug ../../../etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "99a89443bb2c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'add_comment', 'arguments': {'message': 'test', 'bug_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 5, 'result': {'content': [{'type': 'text', 'text': 'Failed to add comment to bug /etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "71b4b21060ca",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'add_comment', 'arguments': {'message': 'test', 'bug_id': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 7, 'result': {'content': [{'type': 'text', 'text': 'Failed to add comment to bug whoami; cat /etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "69ffc2391b63",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'add_comment', 'arguments': {'message': 'test', 'bug_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'result': {'content': [{'type': 'text', 'text': 'Failed to add comment to bug file:///etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a975567a75c0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'delete_issue', 'arguments': {'bug_id': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 39, 'result': {'content': [{'type': 'text', 'text': 'Failed to delete bug ../../../etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8496c3d6d623",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'delete_issue', 'arguments': {'bug_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 41, 'result': {'content': [{'type': 'text', 'text': 'Failed to delete bug /etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6b77b46be7d3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'delete_issue', 'arguments': {'bug_id': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 43, 'result': {'content': [{'type': 'text', 'text': 'Failed to delete bug whoami; cat /etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "782afcdc7858",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'delete_issue', 'arguments': {'bug_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 56, 'result': {'content': [{'type': 'text', 'text': 'Failed to delete bug file:///etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "da7fea331d2e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 93, 'method': 'tools/call', 'params': {'name': 'show_issue', 'arguments': {'format': 'test', 'field': 'test', 'bug_id': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 93, 'result': {'content': [{'type': 'text', 'text': 'Failed to show issue ../../../etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "546777662f9b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 95, 'method': 'tools/call', 'params': {'name': 'show_issue', 'arguments': {'format': 'test', 'field': 'test', 'bug_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 95, 'result': {'content': [{'type': 'text', 'text': 'Failed to show issue /etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3743973ec544",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 97, 'method': 'tools/call', 'params': {'name': 'show_issue', 'arguments': {'format': 'test', 'field': 'test', 'bug_id': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 97, 'result': {'content': [{'type': 'text', 'text': 'Failed to show issue whoami; cat /etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "89d41bf058da",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'show_issue', 'arguments': {'format': 'test', 'field': 'test', 'bug_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 110, 'result': {'content': [{'type': 'text', 'text': 'Failed to show issue file:///etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1afd6651b97d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'update_issue_title', 'arguments': {'title': 'test', 'bug_id': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 129, 'result': {'content': [{'type': 'text', 'text': 'Failed to update title of bug ../../../etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b81060798c44",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'update_issue_title', 'arguments': {'title': 'test', 'bug_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 131, 'result': {'content': [{'type': 'text', 'text': 'Failed to update title of bug /etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1a755ffee867",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'update_issue_title', 'arguments': {'title': 'test', 'bug_id': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 133, 'result': {'content': [{'type': 'text', 'text': 'Failed to update title of bug whoami; cat /etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3660bc32949d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:tobihans/gitbug-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'update_issue_title', 'arguments': {'title': 'test', 'bug_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 146, 'result': {'content': [{'type': 'text', 'text': 'Failed to update title of bug file:///etc/passwd: git-bug command failed: exec: \"git-bug\": executable file not found in $PATH, output: '}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2c8d3aded5e7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ushakrishnan/Vaali_MCP_Server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'get_weather_with_elicitation', 'arguments': {'location': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🌤️ Weather for ../../../etc/passwd:\\n\\n{\\n \"location\": \"../../../etc/passwd\",\\n \"temperature\": \"54°F\",\\n \"condition\": \"Rainy\",\\n \"humidity\": \"48%\",\\n \"windSpeed\": \"12 mph\",\\n \"forecast\": \"Partly cloudy with chance of rain later\",\\n \"retrievedVia\": \"official elicitation\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 111}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bdb211422b78",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ushakrishnan/Vaali_MCP_Server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'get_weather_with_elicitation', 'arguments': {'location': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🌤️ Weather for /etc/passwd:\\n\\n{\\n \"location\": \"/etc/passwd\",\\n \"temperature\": \"29°F\",\\n \"condition\": \"Snowy\",\\n \"humidity\": \"50%\",\\n \"windSpeed\": \"17 mph\",\\n \"forecast\": \"Partly cloudy with chance of rain later\",\\n \"retrievedVia\": \"official elicitation\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 113}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e765e25c6aab",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ushakrishnan/Vaali_MCP_Server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'get_weather_with_elicitation', 'arguments': {'location': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🌤️ Weather for whoami; cat /etc/passwd:\\n\\n{\\n \"location\": \"whoami; cat /etc/passwd\",\\n \"temperature\": \"87°F\",\\n \"condition\": \"Rainy\",\\n \"humidity\": \"55%\",\\n \"windSpeed\": \"20 mph\",\\n \"forecast\": \"Partly cloudy with chance of rain later\",\\n \"retrievedVia\": \"official elicitation\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 115}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a55e03e1eea",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ushakrishnan/Vaali_MCP_Server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'get_weather_with_elicitation', 'arguments': {'location': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🌤️ Weather for file:///etc/passwd:\\n\\n{\\n \"location\": \"file:///etc/passwd\",\\n \"temperature\": \"51°F\",\\n \"condition\": \"Snowy\",\\n \"humidity\": \"60%\",\\n \"windSpeed\": \"17 mph\",\\n \"forecast\": \"Partly cloudy with chance of rain later\",\\n \"retrievedVia\": \"official elicitation\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 128}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "880f7f80ba83",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:yakuter/ugin-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'scaffold_project', 'arguments': {'project_name': 'test', 'module_path': 'test', 'directory': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 131, 'result': {'content': [{'type': 'text', 'text': '{\"message\":\"Failed to create project directory: mkdir /etc/passwd: not a directory\",\"success\":false}'}], 'structuredContent': {'message': 'Failed to create project directory: mkdir /etc/passwd: not a directory', 'success': False}}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "475365a389ec",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:yryuu/mcp-git-read",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'git_changed_files', 'arguments': {'target': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error: fatal: ../../../etc/passwd: '../../../etc/passwd' is outside repository at '/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/mcp-git-read'\\n\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

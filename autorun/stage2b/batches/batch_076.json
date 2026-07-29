@@ -1,0 +1,968 @@
+{
+ "batch": 76,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "6899de3af96d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 233, 'method': 'tools/call', 'params': {'name': 'ens-commit', 'arguments': {'name': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling ens-commit: ens-commit requires wallet context. Configure PRIVATE_KEY (or keychain/secret service settings).'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 233}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4d63a73207fa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 234, 'method': 'tools/call', 'params': {'name': 'ens-commit', 'arguments': {'name': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling ens-commit: ens-commit requires wallet context. Configure PRIVATE_KEY (or keychain/secret service settings).'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 234}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b691868f19fc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 235, 'method': 'tools/call', 'params': {'name': 'ens-commit', 'arguments': {'name': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling ens-commit: ens-commit requires wallet context. Configure PRIVATE_KEY (or keychain/secret service settings).'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 235}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa058f54c55f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 236, 'method': 'tools/call', 'params': {'name': 'ens-commit', 'arguments': {'name': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling ens-commit: ens-commit requires wallet context. Configure PRIVATE_KEY (or keychain/secret service settings).'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 236}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "97b589acfd1d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 381, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 381}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4abb6cf7c05e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 382, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 382}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5bb7e73a39f8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 383, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 383}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fda7418f6a14",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 384, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 384}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "17defa6c953a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 385, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 385}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "528e8f4e30d7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 386, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 386}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8d2b0465681b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 387, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 387}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b9a1f3627fd1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 388, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 388}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d372f4909e67",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 389, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 389}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3e5f8bf0a003",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 390, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 390}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "806eebf6af0b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 391, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 391}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b08f8e907bf7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 392, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 392}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e76b10d7a197",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 393, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 393}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "877b45c72622",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 394, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 394}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ee15092669e2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 395, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 395}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3940b63ec327",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 396, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 396}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9c57de1f1842",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 397, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 397}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ebda7c55c3f6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 398, 'method': 'tools/call', 'params': {'name': 'search-pools', 'arguments': {'query': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling search-pools: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 398}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1019cddf280e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 471, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 471}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "28bb8aab2de9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 472, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 472}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1833ba8755da",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 473, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 473}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "73b0128d520a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 474, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 474}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5e8a23402e1a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 475, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 475}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2a347c2515e9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 476, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 476}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ff4b34b6171a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 477, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 477}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6ec17b481d23",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 478, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 478}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a564291bed49",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 479, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 479}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e734dd109c6e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 480, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 480}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "983fda9a7e4b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 481, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 481}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f90e08fe2d68",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 482, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 482}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2788c7c3709d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 483, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 483}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1040444428ae",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 484, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 484}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8431022eb5f4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 485, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 485}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "69c5aed953b2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 486, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 486}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c2dfa4e3ad6a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 487, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 487}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "42788edf79c4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 488, 'method': 'tools/call', 'params': {'name': 'twitter-post', 'arguments': {'accessToken': 'test', 'text': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-post: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 488}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d3a07ef92685",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 489, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 489}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b54e306e465",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 490, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 490}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "21cc58297e7b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 491, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 491}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "591110d603b1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 492, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 492}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3d4097f36b37",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 493, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 493}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d800483b0975",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 494, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 494}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a6ed60a3fad8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 495, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 495}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "752c44d18a05",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 496, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 496}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f639a6c9eac7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 497, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 497}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc544a55d8c9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 498, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 498}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4fdaf0ed6864",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 499, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 499}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a171fed77003",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 500, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 500}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "79957f3a5129",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 501, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 501}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cc2b08754112",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 502, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 502}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ed5f25af01ee",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 503, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 503}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3e4c90f4a661",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 504, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 504}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b25d2c4136f3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 505, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 505}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "14e9fd58e4fe",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 506, 'method': 'tools/call', 'params': {'name': 'twitter-search', 'arguments': {'query': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling twitter-search: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 506}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8c77b914eed2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 564, 'method': 'tools/call', 'params': {'name': 'wallet-validator', 'arguments': {'address': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling wallet-validator: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 564}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "152ebd8c1aba",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:foodaka/paytoll-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 570, 'method': 'tools/call', 'params': {'name': 'wallet-validator', 'arguments': {'address': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error calling wallet-validator: Free tier exhausted or endpoint requires payment. Configure PRIVATE_KEY (or keychain/secret service settings) to enable paid access.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 570}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

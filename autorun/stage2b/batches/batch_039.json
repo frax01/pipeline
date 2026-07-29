@@ -1,0 +1,922 @@
+{
+ "batch": 39,
+ "n_cluster": 60,
+ "n_finding": 99,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "a6f624f5ea5c",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/memory_db_service.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2428d4dbcec4",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/migrate_direct.py",
+    "code": "data = pickle.loads(decompressed) # Use pickle, not JSON"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c81ba6726ffb",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/server_original_backup.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "79805d69b847",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/memory_db_service_v2.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eb7b97484abc",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/migrate_direct_sqlite.py",
+    "code": "entity_data = pickle.loads(decompressed_bytes)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "06dd50329125",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/server_otel.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d46e1ab9290c",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/server_backup_20250830_135313.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5fc5c14fe34a",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/server_git_enhanced.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "370570c38e7d",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/server/compression.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "57b41c68d383",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "intelligent-agents/proactive_memory_loader.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56d7e7ccf758",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/enhanced-memory-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_decompression.py",
+    "code": "data = pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "496759fa05d3",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/enhanced-memory-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "migrate_direct.py",
+    "code": "data = pickle.loads(decompressed) # Use pickle, not JSON"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dd79500cb4f7",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/enhanced-memory-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "migrate_direct_sqlite.py",
+    "code": "entity_data = pickle.loads(decompressed_bytes)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "36c4fd06e858",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/enhanced-memory-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server_otel.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "22c534e11439",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/enhanced-memory-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server_git_enhanced.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e94cc02d899c",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/enhanced-memory-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/compression.py",
+    "code": "return pickle.loads(pickle_bytes) # nosec B301 -- guarded by HMAC or deprecation warning"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a41ec5368aaa",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/pycparser/ply/yacc.py",
+    "code": "tabversion = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "367175021dfc",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/pycparser/ply/yacc.py",
+    "code": "self.lr_method = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56f213c41563",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/pycparser/ply/yacc.py",
+    "code": "signature = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6068c489e49d",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/pycparser/ply/yacc.py",
+    "code": "self.lr_action = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0d1aa9fc8a1d",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/pycparser/ply/yacc.py",
+    "code": "self.lr_goto = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2ff2ad7bf1f1",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/pycparser/ply/yacc.py",
+    "code": "productions = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "501bb1a3e8f6",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/pydantic/v1/parse.py",
+    "code": "return pickle.loads(bb)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2f4c447e69fb",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/pydantic/deprecated/parse.py",
+    "code": "return pickle.loads(bb)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a941a4e709f3",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/anyio/to_interpreter.py",
+    "code": "res = pickle.loads(res)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a034bc440531",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/anyio/to_process.py",
+    "code": "retval = pickle.loads(pickled_response)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0f8ebf249e1f",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/anyio/to_process.py",
+    "code": "command, *args = pickle.load(stdin.buffer)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8819a17dd5a7",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/fakeredis/commands_mixins/generic_mixin.py",
+    "code": "key.value = pickle.loads(value)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3500394b435e",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:nelssec/qualys-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "qualys/cache.py",
+    "code": "return pickle.loads(value_blob)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "caebbeb2d160",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nphenix/unitylangpx",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/core/async_cache.py",
+    "code": "return pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4323ccbb5b68",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:paulokuriki/RSNAAnonymizerMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/anonymizer/controller/create_projections.py",
+    "code": "projection = pickle.load(pkl_file)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f86b6d953e6a",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ptbhavsar/chainguard-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/middleware.py",
+    "code": "return pickle.loads(value)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3ac707e737a7",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ptbhavsar/chainguard-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/models/responses.py",
+    "code": "return pickle.loads(value)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c0f0beef9a7e",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ptbhavsar/chainguard-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/core/cache.py",
+    "code": "return pickle.loads(value)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc56771e2078",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ptbhavsar/chainguard-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/services/cache_service.py",
+    "code": "return pickle.loads(value)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "73c77e2b5c25",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:sankalp0412/stockfish-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/database/repository.py",
+    "code": "game = pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bc90d9b7b4d3",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:senga07/xAgentic",
+   "evidenza": {
+    "tipo": "static",
+    "file": "xAgentic-backend/utils/custom_serializer.py",
+    "code": "obj = pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b041f02bc00d",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:senga07/xAgentic",
+   "evidenza": {
+    "tipo": "static",
+    "file": "xAgentic-backend/utils/custom_serializer.py",
+    "code": "obj = pickle.loads(bytes_data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0cfd38d49ad9",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:triepod-ai/mcp_vulnerable_testbed",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "This tool accepts serialized data and deserializes it using pickle.loads(),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "84329d5c50fa",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:triepod-ai/mcp_vulnerable_testbed",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src-hardened/server.py",
+    "code": "Data is stored safely without calling pickle.loads()."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "de5a6cb2e735",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:triepod-ai/mcp_vulnerable_testbed",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src-hardened/tools/hardened.py",
+    "code": "HARDENED: No pickle.loads() - stores as blob."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7a0f85d3e62",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:triepod-ai/mcp_vulnerable_testbed",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src-hardened/tools/hardened.py",
+    "code": "note=\"Data stored safely without deserialization - no pickle.loads() called\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b5c7189f9bf1",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:usemanusai/jaegis-RAVERSE",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/utils/multi_level_cache.py",
+    "code": "return pickle.loads(result[0]['value'])"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1f28e184f218",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:vishnu2kmohan/mcp-server-langgraph",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_server_langgraph/core/cache.py",
+    "code": "value = pickle.loads(data) # type: ignore[arg-type]"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0f1e6f5a8812",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:zyzhang1130/ReasoningBank-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mind2web/dataset.py",
+    "code": "raw = pickle.load(handle)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "800622b73950",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:usemanusai/JAEGIS-AI-Web-OS",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server/cache_manager.py",
+    "code": "return pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cf7d3ff118ac",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:yikakia/godoc-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32002, 'message': 'Resource not found', 'data': {'uri': 'file:///etc/shadow'}}}"
+   },
+   "n_finding": 24,
+   "n_server": 24
+  },
+  {
+   "id": "ca6c00bee66f",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:davidferlay/mcp-golang-http-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32602, 'message': \"handler not found for resource URI 'file:///etc/shadow': resource not found\"}}"
+   },
+   "n_finding": 5,
+   "n_server": 5
+  },
+  {
+   "id": "61124c2a6060",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ShubhanshuSondhiya/MCP-TMDB",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32603, 'message': 'Resource not found: file:///etc/shadow'}}"
+   },
+   "n_finding": 5,
+   "n_server": 5
+  },
+  {
+   "id": "8b68d51bd360",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mgraczyk/json-query-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'json_query_jsonpath', 'arguments': {'jsonpath': 'test', 'file_path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to read or parse JSON file: SyntaxError: Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "cc1d7cff50ce",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mgraczyk/json-query-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'json_query_search_keys', 'arguments': {'query': 'test', 'file_path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to read or parse JSON file: SyntaxError: Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "053a3e211246",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mgraczyk/json-query-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'json_query_search_values', 'arguments': {'query': 'test', 'file_path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to read or parse JSON file: SyntaxError: Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "42004d30afdc",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ricleedo/JSON-MCP-Boilerplate",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info, Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'json_read', 'arguments': {'file_path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Invalid JSON in file /etc/passwd: Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "09e9736c23e0",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ricleedo/JSON-MCP-Boilerplate",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info, Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'json_extract', 'arguments': {'file_path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Invalid JSON in file /etc/passwd: Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "b0a2e391177b",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:berrydev-ai/json-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'generate_json_schema', 'arguments': {'filePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Schema generation failed: Invalid JSON in file: /etc/passwd - Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "16c42a671375",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:berrydev-ai/json-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'validate_json_schema', 'arguments': {'schemaFilePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Invalid JSON in file: /etc/passwd - Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "96b6213fd4ba",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:developerlabsai/debug-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32603, 'message': 'Unknown resource URI: file:///etc/shadow'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "24b50b614ad2",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 24, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/C:\\\\Windows\\\\System32\\\\config\\\\SAM'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3147c6dbbb40",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 26, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 26, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/$(id)'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3ca49bdbe0e6",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 28, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 28, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/test && ls -la '\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

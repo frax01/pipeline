@@ -1,0 +1,968 @@
+{
+ "batch": 60,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "10f71be416c5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'tools/call', 'params': {'name': 'mssql_sample_data', 'arguments': {'user': 'test', 'password': 'test', 'database': 'test', 'table': 'test', 'server': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to connect to database: Failed to connect to /etc/passwd:1433 - getaddrinfo ENOTFOUND /etc/passwd'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 77}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7ee9403f93e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'mssql_sample_data', 'arguments': {'user': 'test', 'password': 'test', 'database': 'test', 'table': 'test', 'server': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to connect to database: Failed to connect to whoami; cat /etc/passwd:1433 - getaddrinfo ENOTFOUND whoami; cat /etc/passwd'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 79}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e45b68885200",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 92, 'method': 'tools/call', 'params': {'name': 'mssql_sample_data', 'arguments': {'user': 'test', 'password': 'test', 'database': 'test', 'table': 'test', 'server': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to connect to database: Failed to connect to file:///etc/passwd:1433 - getaddrinfo ENOTFOUND file:///etc/passwd'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 92}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "24ad2bbc3638",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 93, 'method': 'tools/call', 'params': {'name': 'mssql_get_relationships', 'arguments': {'user': 'test', 'password': 'test', 'database': 'test', 'server': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to connect to database: Failed to connect to ../../../etc/passwd:1433 - getaddrinfo ENOTFOUND ..'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 93}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "568fc55b63ac",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 95, 'method': 'tools/call', 'params': {'name': 'mssql_get_relationships', 'arguments': {'user': 'test', 'password': 'test', 'database': 'test', 'server': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to connect to database: Failed to connect to /etc/passwd:1433 - getaddrinfo ENOTFOUND /etc/passwd'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 95}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b05af11672fc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 97, 'method': 'tools/call', 'params': {'name': 'mssql_get_relationships', 'arguments': {'user': 'test', 'password': 'test', 'database': 'test', 'server': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to connect to database: Failed to connect to whoami; cat /etc/passwd:1433 - getaddrinfo ENOTFOUND whoami; cat /etc/passwd'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 97}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4bd77e8c2eb6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'mssql_get_relationships', 'arguments': {'user': 'test', 'password': 'test', 'database': 'test', 'server': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to connect to database: Failed to connect to file:///etc/passwd:1433 - getaddrinfo ENOTFOUND file:///etc/passwd'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 110}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "076806062b87",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'mssql_health_check', 'arguments': {'user': 'test', 'password': 'test', 'server': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unhealthy\",\\n \"server\": \"../../../etc/passwd\",\\n \"database\": \"master\",\\n \"error\": \"Failed to connect to database: Failed to connect to ../../../etc/passwd:1433 - getaddrinfo ENOTFOUND ..\",\\n \"responseTime\": 0\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 111}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9f230ac6c2b0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'mssql_health_check', 'arguments': {'user': 'test', 'password': 'test', 'server': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unhealthy\",\\n \"server\": \"/etc/passwd\",\\n \"database\": \"master\",\\n \"error\": \"Failed to connect to database: Failed to connect to /etc/passwd:1433 - getaddrinfo ENOTFOUND /etc/passwd\",\\n \"responseTime\": 1\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 113}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c2f8e7afbea6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'mssql_health_check', 'arguments': {'user': 'test', 'password': 'test', 'server': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unhealthy\",\\n \"server\": \"whoami; cat /etc/passwd\",\\n \"database\": \"master\",\\n \"error\": \"Failed to connect to database: Failed to connect to whoami; cat /etc/passwd:1433 - getaddrinfo ENOTFOUND whoami; cat /etc/passwd\",\\n \"responseTime\": 0\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 115}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "376974066ad4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelyuwh/mcp-mssql-connector",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'mssql_health_check', 'arguments': {'user': 'test', 'password': 'test', 'server': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unhealthy\",\\n \"server\": \"file:///etc/passwd\",\\n \"database\": \"master\",\\n \"error\": \"Failed to connect to database: Failed to connect to file:///etc/passwd:1433 - getaddrinfo ENOTFOUND file:///etc/passwd\",\\n \"responseTime\": 0\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 128}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "beb81c7acff7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jduartedj/android-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'android_touch', 'arguments': {'x': 1, 'y': 1, 'deviceSerial': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error: Touch failed: ADB command failed: Command failed: /home/tecnico/gsafe/w1/home/.android-mcp-server/platform-tools/platform-tools/adb -s file:///etc/passwd shell input tap 1 1\\nadb: unknown host service '///etc/passwd:features'\\n\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "193849583b48",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jduartedj/android-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'android_swipe', 'arguments': {'startX': 1, 'startY': 1, 'endX': 1, 'endY': 1, 'deviceSerial': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error: Swipe failed: ADB command failed: Command failed: /home/tecnico/gsafe/w1/home/.android-mcp-server/platform-tools/platform-tools/adb -s file:///etc/passwd shell input swipe 1 1 1 1 300\\nadb: unknown host service '///etc/passwd:features'\\n\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fc330dd480a9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:jduartedj/android-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'android_uiautomator_dump', 'arguments': {'deviceSerial': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error: UIAutomator dump failed: ADB command failed: Command failed: /home/tecnico/gsafe/w1/home/.android-mcp-server/platform-tools/platform-tools/adb -s file:///etc/passwd shell uiautomator dump /sdcard/window_dump.xml\\nadb: unknown host service '///etc/passwd:features'\\n\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 110}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d2cb838d7fc2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Jacobcdsmith/MCPStarfleetCommand-",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'git_diff', 'arguments': {'file': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error: Command failed: git diff ../../../etc/passwd\\nfatal: ../../../etc/passwd: '../../../etc/passwd' is outside repository at '/home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/MCPStarfleetCommand-'\\n\"}]}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c98e5d13e8f4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Jacobcdsmith/MCPStarfleetCommand-",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'git_diff', 'arguments': {'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error: Command failed: git diff /etc/passwd\\nfatal: /etc/passwd: '/etc/passwd' is outside repository at '/home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/MCPStarfleetCommand-'\\n\"}]}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a6f7eb75df56",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:DMontgomery40/meta-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'meta_validate_server', 'arguments': {'outputDir': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Validation issues in ../../../etc/passwd:\\n - package.json not found or not valid JSON\\n - src/ directory not found\\n\\nFix these issues and re-validate.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "781f1c631994",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:DMontgomery40/meta-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'meta_validate_server', 'arguments': {'outputDir': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Validation issues in /etc/passwd:\\n - package.json not found or not valid JSON\\n - tsconfig.json not found\\n - src/ directory not found\\n\\nFix these issues and re-validate.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fc7449f10827",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:DMontgomery40/meta-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'meta_validate_server', 'arguments': {'outputDir': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Validation issues in whoami; cat /etc/passwd:\\n - package.json not found or not valid JSON\\n - tsconfig.json not found\\n - src/ directory not found\\n\\nFix these issues and re-validate.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2e5fc97c42f3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:DMontgomery40/meta-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'meta_validate_server', 'arguments': {'outputDir': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Validation issues in file:///etc/passwd:\\n - package.json not found or not valid JSON\\n - tsconfig.json not found\\n - src/ directory not found\\n\\nFix these issues and re-validate.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "17b318ac480e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:capecoma/winterm-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'write_to_terminal', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Command executed with exit code 126. Output:\\nbash: line 1: ../../../etc/passwd: Is a directory\\n'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8651a5053767",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:capecoma/winterm-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'write_to_terminal', 'arguments': {'command': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Command executed with exit code 127. Output:\\nbash: line 1: file:///etc/passwd: No such file or directory\\n'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b6550ca4394",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hyzhak/ollama-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'show', 'arguments': {'name': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: ../../../etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "175f6d37f1d8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hyzhak/ollama-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'show', 'arguments': {'name': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: !MISSING!/etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1bfdd581160a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hyzhak/ollama-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'show', 'arguments': {'name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: whoami; cat /etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ed583f1723e4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hyzhak/ollama-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'push', 'arguments': {'name': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: ../../../etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 75}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4fed118143e2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hyzhak/ollama-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'tools/call', 'params': {'name': 'push', 'arguments': {'name': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: !MISSING!/etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 77}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b0a88ae8c09",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hyzhak/ollama-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'push', 'arguments': {'name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: whoami; cat /etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 79}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cc1b113652e1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:REMnux/remnux-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'run_tool', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"tool\": \"run_tool\",\\n \"data\": {\\n \"command\": \"../../../etc/passwd\",\\n \"stdout\": \"\",\\n \"stderr\": \"bash: line 1: ../../../etc/passwd: Is a directory\",\\n \"exit_code\": 126,\\n \"truncated\": false\\n },\\n \"metadata\": {\\n \"elapsed_ms\": 6\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4e8eee6e9105",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:REMnux/remnux-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'run_tool', 'arguments': {'command': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"tool\": \"run_tool\",\\n \"data\": {\\n \"command\": \"file:///etc/passwd\",\\n \"stdout\": \"\",\\n \"stderr\": \"bash: line 1: file:///etc/passwd: No such file or directory\",\\n \"exit_code\": 127,\\n \"truncated\": false\\n },\\n \"metadata\": {\\n \"elapsed_ms\": 2\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dadbe38436eb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:REMnux/remnux-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'get_file_info', 'arguments': {'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"tool\": \"get_file_info\",\\n \"data\": {\\n \"file\": \"/etc/passwd\",\\n \"file_type\": \"/etc/passwd: ASCII text\",\\n \"sha256\": \"2c713c0de96c12895f17b1bf80314b2826934841c9cfbe64ee9164f4c676e079\",\\n \"sha1\": \"21ad3bb10bfd957d940c1aa072ceef5c4fc6424b\",\\n \"md5\": \"bfa8d209b91bfb8494c480cacb164879\",\\n \"size_bytes\": 1924\\n },\\n \"metadata\": {\\n \"elapsed_ms\": 60\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2bf651899287",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:REMnux/remnux-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'analyze_file', 'arguments': {'file': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"tool\": \"analyze_file\",\\n \"data\": {\\n \"file\": \"/etc/passwd\",\\n \"detected_type\": \"/etc/passwd: ASCII text\",\\n \"matched_category\": \"Unknown\",\\n \"depth\": \"standard\",\\n \"triage_summary\": \"File type: Unknown | 0 tool(s) completed\",\\n \"analysis_guidance\": \"ARTIFACT vs BEHAVIOR (see the capability_evidence field and each capa finding\\'s evidence_types): a capability that matched only on strings/data/imports/structure means that DATA is PRESENT — it is NOT evidence the binary executes that behavior. Treat artifact-only matches as leads to verify (are the required APIs imported or dynamically resolved? is the data referenced by …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "343ed67a5922",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:KatoMato65/Time-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'get_time', 'arguments': {'format': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Current ../../../etc/passwd: 7/16/2026, 3:45:57 AM'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "39c5e9f4a45d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:KatoMato65/Time-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'get_time', 'arguments': {'format': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Current /etc/passwd: 7/16/2026, 3:45:57 AM'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d3327aadeef4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:KatoMato65/Time-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'get_time', 'arguments': {'format': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Current whoami; cat /etc/passwd: 7/16/2026, 3:45:57 AM'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7d7c327615a0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:KatoMato65/Time-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'get_time', 'arguments': {'format': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Current file:///etc/passwd: 7/16/2026, 3:45:57 AM'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9931f948c5d4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawveg/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'ollama_embed', 'arguments': {'input': 'test', 'model': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: ../../../etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 75}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "716d645e63e3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawveg/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'tools/call', 'params': {'name': 'ollama_embed', 'arguments': {'input': 'test', 'model': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: !MISSING!/etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 77}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "18fdca21e2e7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawveg/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'ollama_embed', 'arguments': {'input': 'test', 'model': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: whoami; cat /etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 79}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2590fd7577b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawveg/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 165, 'method': 'tools/call', 'params': {'name': 'ollama_push', 'arguments': {'model': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: ../../../etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 165}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "51db7e42130a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawveg/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 167, 'method': 'tools/call', 'params': {'name': 'ollama_push', 'arguments': {'model': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: !MISSING!/etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 167}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a62b9decfba",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawveg/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 169, 'method': 'tools/call', 'params': {'name': 'ollama_push', 'arguments': {'model': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: whoami; cat /etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 169}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2c41b41c6c4a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawveg/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 183, 'method': 'tools/call', 'params': {'name': 'ollama_show', 'arguments': {'model': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: ../../../etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 183}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0239f00dbfac",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawveg/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 185, 'method': 'tools/call', 'params': {'name': 'ollama_show', 'arguments': {'model': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: !MISSING!/etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 185}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8f3fee027ada",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rawveg/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 187, 'method': 'tools/call', 'params': {'name': 'ollama_show', 'arguments': {'model': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: unqualified name: whoami; cat /etc/passwd:latest'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 187}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "314fa6a02596",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dedcode14/DedcodeMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'leer_archivo', 'arguments': {'nombre': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Contenido de /etc/passwd:\\n\\ntest'}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9a54dc8f06ca",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dedcode14/DedcodeMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'leer_archivo', 'arguments': {'nombre': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Contenido de whoami; cat /etc/passwd:\\n\\ntest'}]}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ebf37904a0b0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Dedcode14/DedcodeMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'leer_archivo', 'arguments': {'nombre': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Contenido de file:///etc/passwd:\\n\\ntest'}]}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "74d28e70829d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:simen/vice-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'connect', 'arguments': {'host': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": true,\\n \"code\": \"CONNECTION_FAILED\",\\n \"message\": \"Failed to connect to ../../../etc/passwd:6502: getaddrinfo ENOTFOUND ../../../etc/passwd\",\\n \"suggestion\": \"Ensure VICE is running with -binarymonitor flag: x64sc -binarymonitor -binarymonitoraddress ip4://127.0.0.1:6502\",\\n \"_meta\": {\\n \"connected\": false,\\n \"running\": true\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aae07f5d156d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:simen/vice-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'connect', 'arguments': {'host': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": true,\\n \"code\": \"CONNECTION_FAILED\",\\n \"message\": \"Failed to connect to /etc/passwd:6502: getaddrinfo ENOTFOUND /etc/passwd\",\\n \"suggestion\": \"Ensure VICE is running with -binarymonitor flag: x64sc -binarymonitor -binarymonitoraddress ip4://127.0.0.1:6502\",\\n \"_meta\": {\\n \"connected\": false,\\n \"running\": true\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1032af4a41c2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:simen/vice-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'connect', 'arguments': {'host': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": true,\\n \"code\": \"CONNECTION_FAILED\",\\n \"message\": \"Failed to connect to whoami; cat /etc/passwd:6502: getaddrinfo ENOTFOUND whoami; cat /etc/passwd\",\\n \"suggestion\": \"Ensure VICE is running with -binarymonitor flag: x64sc -binarymonitor -binarymonitoraddress ip4://127.0.0.1:6502\",\\n \"_meta\": {\\n \"connected\": false,\\n \"running\": true\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8bcab2e6247d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:simen/vice-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'connect', 'arguments': {'host': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": true,\\n \"code\": \"CONNECTION_FAILED\",\\n \"message\": \"Failed to connect to file:///etc/passwd:6502: getaddrinfo ENOTFOUND file:///etc/passwd\",\\n \"suggestion\": \"Ensure VICE is running with -binarymonitor flag: x64sc -binarymonitor -binarymonitoraddress ip4://127.0.0.1:6502\",\\n \"_meta\": {\\n \"connected\": false,\\n \"running\": true\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9380273cd343",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koopatroopa787/first_mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 219, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Command failed: ../../../etc/passwd\\n/bin/sh: 1: ../../../etc/passwd: not found\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 219}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ba1edeba6dc1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "python",
+   "esempio_server": "gh:WilliamLebrato/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'list_directory', 'arguments': {'path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 57, 'result': {'content': [{'type': 'text', 'text': 'Contents of /home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/mcp/../../../etc/passwd:\\nFILE CLAUDE.md\\nFILE project.faf'}], 'isError': False}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d8465576e830",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'mysql_setup_persistent', 'arguments': {'user': 'test', 'password': 'test', 'host': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Persistent connection setup successful! Server will auto-connect to ../../../etc/passwd:3306 (database: undefined) for all future requests.'}]}, 'jsonrpc': '2.0', 'id': 111}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "70ccb2961c9e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'mysql_setup_persistent', 'arguments': {'user': 'test', 'password': 'test', 'host': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Persistent connection setup successful! Server will auto-connect to /etc/passwd:3306 (database: undefined) for all future requests.'}]}, 'jsonrpc': '2.0', 'id': 113}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "34732b45f2dd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'mysql_setup_persistent', 'arguments': {'user': 'test', 'password': 'test', 'host': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Persistent connection setup successful! Server will auto-connect to whoami; cat /etc/passwd:3306 (database: undefined) for all future requests.'}]}, 'jsonrpc': '2.0', 'id': 115}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8dba2788395e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'mysql_setup_persistent', 'arguments': {'user': 'test', 'password': 'test', 'host': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Persistent connection setup successful! Server will auto-connect to file:///etc/passwd:3306 (database: undefined) for all future requests.'}]}, 'jsonrpc': '2.0', 'id': 128}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5a9f6ad37038",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 129}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "933909cc1223",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashenud/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 130, 'method': 'tools/call', 'params': {'name': 'mysql_status', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Connection Status: Connected\\nAuto-Connect: Enabled\\nHost: file:///etc/passwd:3306\\nDatabase: undefined\\nUser: test\\nConnection Health: Unhealthy ❌ (getaddrinfo ENOTFOUND file:///etc/passwd)'}]}, 'jsonrpc': '2.0', 'id': 130}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

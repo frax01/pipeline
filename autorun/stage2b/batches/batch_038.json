@@ -1,0 +1,908 @@
+{
+ "batch": 38,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "7b759036dae2",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:CMPT782Lab/MCPSecurityLab",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend.py",
+    "code": "obj = pickle.loads(decoded)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c8979932306",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:CMPT782Lab/MCPSecurityLab",
+   "evidenza": {
+    "tipo": "static",
+    "file": "frontend.py",
+    "code": "\"pickle.loads() on user data\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "414a26ea77ad",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ChrisGVE/localdata-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/localdata_mcp/pipeline/integration/performance_optimization/_cache.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ffa630accb14",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Fischlvor/agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/app/services/rag/vector_store_service.py",
+    "code": "return pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0dc37050be5e",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Inderj1/aug10-mantra-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ultimate_mcp_server/core/persistence/redis_adapter.py",
+    "code": "return pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "43381edadc4a",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Magic-Man-us/mcp_pydantic_docs",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_pydantic_docs/mcp.py",
+    "code": "bm25 = pickle.load(f1)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "878173c97a06",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Magic-Man-us/mcp_pydantic_docs",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_pydantic_docs/mcp.py",
+    "code": "records = pickle.load(f2)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b8d32da8897d",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:MdAhbab/MCP_Server_Benchmarks",
+   "evidenza": {
+    "tipo": "static",
+    "file": "serialization_benchmark.py",
+    "code": "pickle.loads(serialized)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f142e0c60045",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda/pycparser/ply/yacc.py",
+    "code": "tabversion = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00df74920f47",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda/pycparser/ply/yacc.py",
+    "code": "self.lr_method = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "42966280d29f",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda/pycparser/ply/yacc.py",
+    "code": "signature = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cd3317c29e64",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda/pycparser/ply/yacc.py",
+    "code": "self.lr_action = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b191bb92b6b",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda/pycparser/ply/yacc.py",
+    "code": "self.lr_goto = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "309eae1fbddb",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda/pycparser/ply/yacc.py",
+    "code": "productions = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7502aa2f79c5",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/pycparser/ply/yacc.py",
+    "code": "tabversion = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f4dadef2e046",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/pycparser/ply/yacc.py",
+    "code": "self.lr_method = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f78a70bd5f42",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/pycparser/ply/yacc.py",
+    "code": "signature = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0c3c0a3f05ad",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/pycparser/ply/yacc.py",
+    "code": "self.lr_action = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "400c6632fd12",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/pycparser/ply/yacc.py",
+    "code": "self.lr_goto = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "65468f52ab33",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/pycparser/ply/yacc.py",
+    "code": "productions = pickle.load(in_f)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b041faefa8e3",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/loguru/_recattrs.py",
+    "code": "value = pickle.loads(pickled_value)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b66a49fb206",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/pydantic/v1/parse.py",
+    "code": "return pickle.loads(bb)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9e6f5d53af92",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/pydantic/deprecated/parse.py",
+    "code": "return pickle.loads(bb)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "67174f0e914e",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/anyio/to_interpreter.py",
+    "code": "res = pickle.loads(res)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8095dcb19f76",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/anyio/to_process.py",
+    "code": "retval = pickle.loads(pickled_response)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a8699c4dcc12",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lambda-mcp-wrapper/lambda/anyio/to_process.py",
+    "code": "command, *args = pickle.load(stdin.buffer)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "122e7a02443b",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:MuratKomurcu1/ai-foundry",
+   "evidenza": {
+    "tipo": "static",
+    "file": "computer-vision/face-recognition/face_recognition_system.py",
+    "code": "encoding = pickle.loads(encoding_blob)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "714ace83f7d9",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Niels-8/isofinancial-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "iso_financial_mcp/reliability/cache_layer.py",
+    "code": "cached_data = pickle.loads(content)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d9c337be25a7",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:NineSunsInc/mighty-security",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/analyzers/llm/prompts.py",
+    "code": "- pickle.loads() on untrusted data"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "45fbfcad6155",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Saptak-cyber/Mcp-Server-CodeBase-Intelligence",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/storage/upstash_cache.py",
+    "code": "return pickle.loads(value)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "976ec9989f03",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Saptak-cyber/Mcp-Server-CodeBase-Intelligence",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/storage/upstash_cache.py",
+    "code": "result[key] = pickle.loads(value)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be316cb0356a",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ShakibaMirbagheri/mcp-google-drive",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/gdrive_mcp_server/auth_setup.py",
+    "code": "return pickle.load(token)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c2cae7188ca8",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Ziqiao-git/MCP-R",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ms-swift/swift/utils/torch_utils.py",
+    "code": "return pickle.loads(res[:buffer_size])"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf8236b24508",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:anandhasasidharan/vulngpt-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/scanners/mcp_vuln_scanner.py",
+    "code": "\"description\": \"Unsafe deserialization — yaml.load() and pickle.loads() can execute arbitrary code\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c070331c73b8",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:apn-ra/ollama-mcp-proxy",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/ollama_mcp_proxy/context_manager.py",
+    "code": "session_data = pickle.loads(pickled_data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4300e5c698b1",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:baerautotech/cflow-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cflow_platform/core/bmad_context_serialization.py",
+    "code": "return pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5ce0a9b68d79",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:baerautotech/cflow-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cflow_platform/core/intelligent_cache.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5db163feea44",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:brian95240/autonomous-vertex-ken-system",
+   "evidenza": {
+    "tipo": "static",
+    "file": "optimization/pruning/ken_temporary_pruning.py",
+    "code": "return pickle.loads(pickle.dumps(state))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "20f75d8d9be4",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:cerebustech-dev/rahho-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_security_analysis.py",
+    "code": "pickle.loads() on untrusted data can execute arbitrary code."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "525fe7ffbffc",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:cerebustech-dev/rahho-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_security_analysis.py",
+    "code": "session_data = pickle.loads(session_cookie)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "90529c12c07d",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:exploring-curiosity/MCP_Adapter",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api_server.py",
+    "code": "return pickle.loads(p.read_bytes())"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9ffa26096587",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:fhvilshoj/aula-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "client.py",
+    "code": "self._session = pickle.loads(pickled_data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e28851270633",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:griffingilreath/cursor-mcp-config",
+   "evidenza": {
+    "tipo": "static",
+    "file": "extensions/ms-python.debugpy-2025.6.0-darwin-arm64/bundled/libs/debugpy/_vendored/pydevd/pydevd_attach_to_process/winappdbg/crash.py",
+    "code": "key = pickle.loads(key)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7c423ba731d2",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:griffingilreath/cursor-mcp-config",
+   "evidenza": {
+    "tipo": "static",
+    "file": "extensions/ms-python.debugpy-2025.6.0-darwin-arm64/bundled/libs/debugpy/_vendored/pydevd/pydevd_attach_to_process/winappdbg/crash.py",
+    "code": "value = pickle.loads(value)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b2c050db033",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:hamulda/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "optimization/distributed_cache_optimizer.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2ab0efcd795c",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:hamulda/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "optimization/distributed_cache_optimizer.py",
+    "code": "return pickle.loads(payload)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1b7010dc20c5",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:hamulda/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "optimization/distributed_cache_optimizer.py",
+    "code": "return pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2d14791400a7",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:hjleepapa/convonet",
+   "evidenza": {
+    "tipo": "static",
+    "file": "shared/google_calendar.py",
+    "code": "creds = pickle.loads(token_data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ddf161eab6b1",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:hjleepapa/convonet",
+   "evidenza": {
+    "tipo": "static",
+    "file": "convonet/shared/google_calendar.py",
+    "code": "creds = pickle.loads(token_data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f9635607743f",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:igamenovoer/blender-remote",
+   "evidenza": {
+    "tipo": "static",
+    "file": "context/refcode/auto_mcp_remote/blender_mcp_client.py",
+    "code": "return pickle.loads(pickled_data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0a3e02fa5bf3",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:inbarajaldrin/mcp-tools-orchestrator",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_tools_orchestrator/code_executor.py",
+    "code": "saved = pickle.loads(sess_path.read_bytes())"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b1a8b037da8",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:jacobeverist/ts_api",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cache.py",
+    "code": "return pickle.loads(data[1:])"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3b800da8fe75",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:kolyslav/enhanced-mcp-config",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/performance/mcp-performance-optimizer.py",
+    "code": "model = pickle.loads(model_data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "71eee69ed565",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:maniam/home-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/apis/google_cloud.py",
+    "code": "creds = pickle.load(tf)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bcf93ad05334",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "demo_quality_gates_rejection.py",
+    "code": "print(\" - Using pickle.load() on untrusted data\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7a1925694425",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/SAFLA/safla/core/optimized_serialization.py",
+    "code": "return pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "96cd343a2f08",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/test_decompression.py",
+    "code": "data = pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a123010ef784",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/server_resources.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4ac88d976587",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/server_fastmcp.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac4020809819",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/agentic-system-oss",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/enhanced-memory-mcp/server_legacy_20251108_090108.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

@@ -1,0 +1,968 @@
+{
+ "batch": 34,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "05e8f0f3ab18",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 7, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html;…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bc049a95f835",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 9, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html;…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "107f0dac8c26",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5199ac75606",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1d35ed6f665d",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 17, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7dd305adb2ae",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 18, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00bbfb841795",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7bf0aba40d12",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'get_study_details', 'arguments': {'nct_id': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 33, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool get_study_details: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html; cha…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2b748e10f937",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'get_study_details', 'arguments': {'nct_id': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 34, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool get_study_details: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html; cha…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b5be37de8c05",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 35, 'method': 'tools/call', 'params': {'name': 'get_study_details', 'arguments': {'nct_id': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 35, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool get_study_details: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html; cha…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ab5182882d3b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 39, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8ebecacd98e9",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 40, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 40, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b6ffe84e1889",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 41, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a195ab9a7a14",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 43, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "67e7fa7bc57a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 45, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 45, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "43895220e092",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "16b442e86a1d",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b9870c9dadac",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 53, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 53, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0ddb784eb6c9",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 54, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 54, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9b72a0dc9b36",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'compare_adverse_events', 'arguments': {'drug_name': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 56, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool compare_adverse_events: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fbbbd83fcdaf",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 75, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2e219ea32474",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 76, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 76, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5148494e10dd",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 77, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d8473cd30a9a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 79, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3e0f3ca637fe",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 81, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 81, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "810fecf288dd",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 87, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 87, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1e6b10fdf32b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 88, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 88, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7621539ce652",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 89, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 89, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c0ec73322deb",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 90, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 90, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8f9fa1d49bdf",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 92, 'method': 'tools/call', 'params': {'name': 'analyze_safety_profile', 'arguments': {'drug_name': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 92, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool analyze_safety_profile: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "921571711274",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 238, 'method': 'tools/call', 'params': {'name': 'restore_task', 'arguments': {'task_id': 'test', 'project_id': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 238, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to restore task. Tried multiple endpoints. Last error: https://projectsapi.zoho.com/restapi/portal/mtcmedialtd/projects/....//....//etc/shadow/trash/restore/: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bb1c3a82ae66",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 239, 'method': 'tools/call', 'params': {'name': 'restore_task', 'arguments': {'task_id': 'test', 'project_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 239, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to restore task. Tried multiple endpoints. Last error: https://projectsapi.zoho.com/restapi/portal/mtcmedialtd/projects//etc/passwd/trash/restore/: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "10a60c2b879f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 244, 'method': 'tools/call', 'params': {'name': 'restore_task', 'arguments': {'task_id': 'test', 'project_id': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 244, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to restore task. Tried multiple endpoints. Last error: https://projectsapi.zoho.com/restapi/portal/mtcmedialtd/projects/test && ls -la //trash/restore/: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d9665f0df9f2",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 245, 'method': 'tools/call', 'params': {'name': 'restore_task', 'arguments': {'task_id': 'test', 'project_id': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 245, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to restore task. Tried multiple endpoints. Last error: https://projectsapi.zoho.com/restapi/portal/mtcmedialtd/projects/test || id/trash/restore/: 400 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 400 – Bad Request</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 400 – Bad Request</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "808591061ec4",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 252, 'method': 'tools/call', 'params': {'name': 'restore_task', 'arguments': {'task_id': 'test', 'project_id': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 252, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to restore task. Tried multiple endpoints. Last error: https://projectsapi.zoho.com/restapi/portal/mtcmedialtd/projects/http://169.254.169.254/latest/meta-data//trash/restore/: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></ht…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c3fda609598b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 253, 'method': 'tools/call', 'params': {'name': 'restore_task', 'arguments': {'task_id': 'test', 'project_id': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 253, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to restore task. Tried multiple endpoints. Last error: https://projectsapi.zoho.com/restapi/portal/mtcmedialtd/projects/http://localhost:6379//trash/restore/: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "86dfe44ecdaf",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 254, 'method': 'tools/call', 'params': {'name': 'restore_task', 'arguments': {'task_id': 'test', 'project_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 254, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to restore task. Tried multiple endpoints. Last error: https://projectsapi.zoho.com/restapi/portal/mtcmedialtd/projects/file:///etc/passwd/trash/restore/: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9964041a51eb",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 418, 'method': 'tools/call', 'params': {'name': 'update_phase', 'arguments': {'phase_id': 'test', 'project_id': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 418, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to fetch milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "74a717859d18",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 419, 'method': 'tools/call', 'params': {'name': 'update_phase', 'arguments': {'phase_id': 'test', 'project_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 419, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to fetch milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4300cb52bb9a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 424, 'method': 'tools/call', 'params': {'name': 'update_phase', 'arguments': {'phase_id': 'test', 'project_id': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 424, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to fetch milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ab69907f6a1a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 425, 'method': 'tools/call', 'params': {'name': 'update_phase', 'arguments': {'phase_id': 'test', 'project_id': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 425, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to fetch milestone: 400 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 400 – Bad Request</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 400 – Bad Request</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "647620a0afe6",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 432, 'method': 'tools/call', 'params': {'name': 'update_phase', 'arguments': {'phase_id': 'test', 'project_id': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 432, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to fetch milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8adcb720314b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 433, 'method': 'tools/call', 'params': {'name': 'update_phase', 'arguments': {'phase_id': 'test', 'project_id': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 433, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to fetch milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ced4e7a18f13",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 434, 'method': 'tools/call', 'params': {'name': 'update_phase', 'arguments': {'phase_id': 'test', 'project_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 434, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to fetch milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e820b0f1e156",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 436, 'method': 'tools/call', 'params': {'name': 'delete_phase', 'arguments': {'phase_id': 'test', 'project_id': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 436, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3c77761409ec",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 437, 'method': 'tools/call', 'params': {'name': 'delete_phase', 'arguments': {'phase_id': 'test', 'project_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 437, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8c3982f9cd7a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 442, 'method': 'tools/call', 'params': {'name': 'delete_phase', 'arguments': {'phase_id': 'test', 'project_id': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 442, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6e7c508bba49",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 443, 'method': 'tools/call', 'params': {'name': 'delete_phase', 'arguments': {'phase_id': 'test', 'project_id': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 443, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete milestone: 400 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 400 – Bad Request</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 400 – Bad Request</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "938dbe719a67",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 450, 'method': 'tools/call', 'params': {'name': 'delete_phase', 'arguments': {'phase_id': 'test', 'project_id': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 450, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4d9107c94620",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 451, 'method': 'tools/call', 'params': {'name': 'delete_phase', 'arguments': {'phase_id': 'test', 'project_id': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 451, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f85cc4540527",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 452, 'method': 'tools/call', 'params': {'name': 'delete_phase', 'arguments': {'phase_id': 'test', 'project_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 452, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete milestone: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0c0e7b27ab89",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 598, 'method': 'tools/call', 'params': {'name': 'list_task_attachments', 'arguments': {'task_id': 'test', 'project_id': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 598, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to list attachments: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f7b35808ad28",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 599, 'method': 'tools/call', 'params': {'name': 'list_task_attachments', 'arguments': {'task_id': 'test', 'project_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 599, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to list attachments: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "57d0957d6e33",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 604, 'method': 'tools/call', 'params': {'name': 'list_task_attachments', 'arguments': {'task_id': 'test', 'project_id': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 604, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to list attachments: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c3f9c7f566e7",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 605, 'method': 'tools/call', 'params': {'name': 'list_task_attachments', 'arguments': {'task_id': 'test', 'project_id': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 605, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to list attachments: 400 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 400 – Bad Request</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 400 – Bad Request</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "846de655de7e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 612, 'method': 'tools/call', 'params': {'name': 'list_task_attachments', 'arguments': {'task_id': 'test', 'project_id': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 612, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to list attachments: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f70a23b8a0b8",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 613, 'method': 'tools/call', 'params': {'name': 'list_task_attachments', 'arguments': {'task_id': 'test', 'project_id': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 613, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to list attachments: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f2e894e1eef2",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 614, 'method': 'tools/call', 'params': {'name': 'list_task_attachments', 'arguments': {'task_id': 'test', 'project_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 614, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to list attachments: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9ce583a0cdff",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 616, 'method': 'tools/call', 'params': {'name': 'delete_task_attachment', 'arguments': {'task_id': 'test', 'attachment_id': 'test', 'project_id': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 616, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete attachment: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>. Note: Deleting attachments requires ZohoPC.files.ALL OAuth scope.'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ee7614db1fed",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 617, 'method': 'tools/call', 'params': {'name': 'delete_task_attachment', 'arguments': {'task_id': 'test', 'attachment_id': 'test', 'project_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 617, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete attachment: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>. Note: Deleting attachments requires ZohoPC.files.ALL OAuth scope.'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

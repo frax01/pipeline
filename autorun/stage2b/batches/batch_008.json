@@ -1,0 +1,933 @@
+{
+ "batch": 8,
+ "n_cluster": 60,
+ "n_finding": 103,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "a92d4264cad8",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 192, 'method': 'tools/call', 'params': {'name': 'lightning_generate_component', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 192, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate component -n __import__(\\'os\\').system(\\'id\\') --type lwc --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c8abe566ca7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 193, 'method': 'tools/call', 'params': {'name': 'lightning_generate_component', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 193, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate component -n require(\\'child_process\\').execSync(\\'id\\').toString() --type lwc --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1926b8fea90a",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 194, 'method': 'tools/call', 'params': {'name': 'lightning_generate_component', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 194, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate component -n eval(\\'1+1\\') --type lwc --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b7ae750d0ba2",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 195, 'method': 'tools/call', 'params': {'name': 'lightning_generate_component', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 195, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate component -n ' OR 1=1; -- --type lwc --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9bdda2746afb",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 196, 'method': 'tools/call', 'params': {'name': 'lightning_generate_component', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 196, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate component -n '; DROP TABLE users; -- --type lwc --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "da4b7f547776",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 210, 'method': 'tools/call', 'params': {'name': 'lightning_generate_app', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 210, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate app -n __import__(\\'os\\').system(\\'id\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fcf975a33e98",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 211, 'method': 'tools/call', 'params': {'name': 'lightning_generate_app', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 211, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate app -n require(\\'child_process\\').execSync(\\'id\\').toString() --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "de88744dacdf",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 212, 'method': 'tools/call', 'params': {'name': 'lightning_generate_app', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 212, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate app -n eval(\\'1+1\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e45864d31311",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 213, 'method': 'tools/call', 'params': {'name': 'lightning_generate_app', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 213, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate app -n ' OR 1=1; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "08497eb10ee7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 214, 'method': 'tools/call', 'params': {'name': 'lightning_generate_app', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 214, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate app -n '; DROP TABLE users; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f6c61f2e9630",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 228, 'method': 'tools/call', 'params': {'name': 'lightning_generate_event', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 228, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate event -n __import__(\\'os\\').system(\\'id\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6ee08bafd184",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 229, 'method': 'tools/call', 'params': {'name': 'lightning_generate_event', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 229, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate event -n require(\\'child_process\\').execSync(\\'id\\').toString() --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d6ac0c9a2def",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 230, 'method': 'tools/call', 'params': {'name': 'lightning_generate_event', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 230, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate event -n eval(\\'1+1\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fcf1ccac1835",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 231, 'method': 'tools/call', 'params': {'name': 'lightning_generate_event', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 231, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate event -n ' OR 1=1; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b42c9df96a31",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 232, 'method': 'tools/call', 'params': {'name': 'lightning_generate_event', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 232, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate event -n '; DROP TABLE users; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b343ccd1bf5",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 246, 'method': 'tools/call', 'params': {'name': 'lightning_generate_interface', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 246, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate interface -n __import__(\\'os\\').system(\\'id\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "13a250c534eb",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 247, 'method': 'tools/call', 'params': {'name': 'lightning_generate_interface', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 247, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate interface -n require(\\'child_process\\').execSync(\\'id\\').toString() --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "84191b7856fe",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 248, 'method': 'tools/call', 'params': {'name': 'lightning_generate_interface', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 248, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate interface -n eval(\\'1+1\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c59c7031f309",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 249, 'method': 'tools/call', 'params': {'name': 'lightning_generate_interface', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 249, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate interface -n ' OR 1=1; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "925d37bdcfe1",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 250, 'method': 'tools/call', 'params': {'name': 'lightning_generate_interface', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 250, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate interface -n '; DROP TABLE users; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "842590ae4455",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 264, 'method': 'tools/call', 'params': {'name': 'lightning_generate_test', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 264, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate test -n __import__(\\'os\\').system(\\'id\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4c8a47baf930",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 265, 'method': 'tools/call', 'params': {'name': 'lightning_generate_test', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 265, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate test -n require(\\'child_process\\').execSync(\\'id\\').toString() --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4e7433403020",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 266, 'method': 'tools/call', 'params': {'name': 'lightning_generate_test', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 266, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf lightning generate test -n eval(\\'1+1\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "074ee5c589b9",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 267, 'method': 'tools/call', 'params': {'name': 'lightning_generate_test', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 267, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate test -n ' OR 1=1; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80577951c7b7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 268, 'method': 'tools/call', 'params': {'name': 'lightning_generate_test', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 268, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf lightning generate test -n '; DROP TABLE users; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cf127870e261",
+   "tool": "guard",
+   "categoria": "command-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashwwwin/automation-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.ts",
+    "code": "child_process.execSync("
+   },
+   "n_finding": 3,
+   "n_server": 1
+  },
+  {
+   "id": "8bc28d08a201",
+   "tool": "guard",
+   "categoria": "command-injection-static",
+   "severita": "critical",
+   "linguaggio": "go",
+   "esempio_server": "gh:obinnaokechukwu/stitch-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/platform/gcloud.go",
+    "code": "cmd := exec.Command(gcloudPath, \"beta\", \"services\", \"mcp\", \"enable\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c80ff521fd1b",
+   "tool": "guard",
+   "categoria": "command-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:KunihiroS/claude-code-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "claude-code-server/src/index.ts",
+    "code": "const versionOutput = child_process.execSync(`\"${validatedClaudePath}\" --version`, { encoding: 'utf8' });"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b63496f88fc4",
+   "tool": "guard",
+   "categoria": "command-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashwwwin/automation-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.ts",
+    "code": "child_process.execSync(`screencapture -x -D1 \"${filePath}\"`);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "30e6bb7d8c5b",
+   "tool": "guard",
+   "categoria": "command-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mikhael-abdallah/mcp-revisor-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/get-diff.ts",
+    "code": "child_process.execSync("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c458eeafc502",
+   "tool": "guard",
+   "categoria": "command-injection-static",
+   "severita": "critical",
+   "linguaggio": "go",
+   "esempio_server": "gh:dhyansraj/mcp-mesh",
+   "evidenza": {
+    "tipo": "static",
+    "file": "npm/cli/install.js",
+    "code": "child_process.execSync("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c9c44732daa",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:ChrisWilliamson11/blender-assistant-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "blender_assistant_mcp/preferences.py",
+    "code": "def execute(self, context):"
+   },
+   "n_finding": 5,
+   "n_server": 1
+  },
+  {
+   "id": "3998800f80f1",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:alexei-led/aws-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/aws_mcp_server/sandbox.py",
+    "code": "def execute("
+   },
+   "n_finding": 4,
+   "n_server": 1
+  },
+  {
+   "id": "87e32c4f9013",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:yuping322/claude-agent-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bug_fix/src/executors.py",
+    "code": "async def execute("
+   },
+   "n_finding": 4,
+   "n_server": 1
+  },
+  {
+   "id": "ba0d0be4d3fe",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:PhialsBasement/scheduler-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_scheduler/executor.py",
+    "code": "async def _execute_api_call(self, url: str, method: str, headers: dict, body: dict) -> Tuple[Optional[str], Optional[str]]:"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "5fbc2e325b2f",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:normaltusker/kotlin-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/intelligent_code_tools.py",
+    "code": "async def _execute_core_functionality("
+   },
+   "n_finding": 3,
+   "n_server": 1
+  },
+  {
+   "id": "b35c78a3906b",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:normaltusker/kotlin-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/intelligent_code_tools_simple.py",
+    "code": "async def _execute_core_functionality("
+   },
+   "n_finding": 3,
+   "n_server": 1
+  },
+  {
+   "id": "9c16da2af165",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:ChrisWilliamson11/blender-assistant-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "blender_assistant_mcp/ui.py",
+    "code": "def execute(self, context):"
+   },
+   "n_finding": 3,
+   "n_server": 1
+  },
+  {
+   "id": "d42d3d1cec8b",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:MohamedElashri/root-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/root_mcp/extended/root_native/backends.py",
+    "code": "def execute(self, request: NativeExecutionRequest) -> NativeExecutionResult:"
+   },
+   "n_finding": 3,
+   "n_server": 1
+  },
+  {
+   "id": "7955401db307",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:vanivamshi/Attacks-on-FastMCP-Gemini-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "async def _execute_python_code_for_gemini(self, code: str) -> dict:"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "2ee176f819b3",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:CodeHalwell/gradio-mcp-agent-hack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_hub/agents/code_generator.py",
+    "code": "def _uses_disallowed_calls(self, code_str: str) -> tuple[bool, list[str]]:"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "157ba7198df5",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:DanielAvdar/dev-kit-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "dev_kit_mcp_server/tools/commands/make_target.py",
+    "code": "async def __call__("
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "b815522d09b5",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:DanielAvdar/dev-kit-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "dev_kit_mcp_server/tools/commands/predefined.py",
+    "code": "async def __call__("
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "ed546c372e52",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Dicklesworthstone/mcp_agent_mail",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_agent_mail/guard.py",
+    "code": "def _render_chain_runner_script(hook_name: str) -> str:"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "2578ea03c673",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:CoplayDev/unity-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/local_harness.py",
+    "code": "def docker_run_argv(image: str, workspace: Path, project_path: Path, status_dir: Path,"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "0934d65e3053",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:diegofornalha/mcp-shell-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_shell_server/shell_executor.py",
+    "code": "async def execute("
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "7781b7a4d19d",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:normaltusker/kotlin-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/intelligent_tool_manager.py",
+    "code": "async def _execute_core_functionality("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "9c04d378bcda",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Dicklesworthstone/ultimate_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ultimate_mcp_server/tools/document_conversion_and_processing.py",
+    "code": "async def _standalone_llm_call("
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "67e117d26681",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Dicklesworthstone/ultimate_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ultimate_mcp_server/tools/local_text_tools.py",
+    "code": "def _truncate(data: bytes) -> tuple[str, bool]:"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "fe810f2e0e16",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:Harnoor007/mcp-backend",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/ondc-shopping-mcp/src/services/conversation_session_manager.py",
+    "code": "def get_session_for_tool_call(self,"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "246d015d8102",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Knuckles-Team/container-manager-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "container_manager_mcp/container_manager.py",
+    "code": "def prune_images(self, force: bool = False, all: bool = False) -> dict:"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "5211961d3338",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:SwetaAIS2024/MCP_Tool_Code_Interpreter_Generator",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/sandbox.py",
+    "code": "def execute(self, code: str, data_path: str, timeout: int = None) -> Dict[str, Any]:"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "0bef3068cad0",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Unity-Environmental-University/student-guide-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools.py",
+    "code": "def call(self, name: str, args: Dict[str, Any]) -> Dict[str, Any]:"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "316c93e7572d",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ccollicutt/mcp-makefile-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_makefile/core/executor.py",
+    "code": "async def execute("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "44c419388427",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:fietiger/icongen-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_tools_collection/runcmd_mcp_standalone/src/runcmd_mcp/executors.py",
+    "code": "def execute("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "bfdf5f80a1ea",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:fietiger/icongen-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_tools_collection/pkg_publisher_standalone/src/pkg_publisher/executors.py",
+    "code": "def execute("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "240db64624ab",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mofiaboss/oracle-mcp-sdm-with-guardrails",
+   "evidenza": {
+    "tipo": "static",
+    "file": "oracle_jdbc.py",
+    "code": "def execute(self, query: str, timeout: float = 5.0) -> Dict[str, Any]:"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "30ec2bd9c0b0",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:mutakeenbhat/mcp-ml-analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "go_extractor.py",
+    "code": "def detect_syscalls_go(code: str) -> Dict[str, List[str]]:"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "3bf57032a44d",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:mutakeenbhat/mcp-ml-analyzer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "java_extractor.py",
+    "code": "def detect_syscalls_java(code: str) -> Dict[str, List[str]]:"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "68e0797e0765",
+   "tool": "guard",
+   "categoria": "dangerous-tool-handler-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:cdnsteve/sugar",
+   "evidenza": {
+    "tipo": "static",
+    "file": "sugar/quality_gates/test_validator.py",
+    "code": "async def _execute_test_command("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

@@ -1,0 +1,968 @@
+{
+ "batch": 58,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "4dd0ef780f33",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 8}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6bceca7c9a69",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 9}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "57409f7f2032",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 10}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "301d7b0e35e5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 11}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "67c92deb676e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 12}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8de85f8965d2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 403 Forbidden\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 13}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7b739bac7be1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 14}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7f7758d76ddc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 403 Forbidden\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 15}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0fe898826065",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 16}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3da7d6e34e22",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 403 Forbidden\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 17}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4f9dcc735811",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 18}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e614e36dca0b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 19, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 19}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b0845e75ab43",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CryptoQuantOfficial/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'initialize', 'arguments': {'api_key': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"error\": \"Discovery API failed: 401 Unauthorized\",\\n \"help\": {\\n \"check_key\": \"Check your API key at https://cryptoquant.com/settings/api\",\\n \"retry\": \"Or call initialize(api_key=\\'your-api-key\\') with a valid key\"\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2992f1366ede",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "python",
+   "esempio_server": "gh:peless/claude-thread-continuity",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'get_project_summary', 'arguments': {'project_name': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 57, 'result': {'content': [{'type': 'text', 'text': '📊 **../../../etc/passwd:** <coroutine object ProjectState.get_project_summary at 0x75be4b975be0>'}], 'isError': False}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a531b911faca",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "python",
+   "esempio_server": "gh:peless/claude-thread-continuity",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 59, 'method': 'tools/call', 'params': {'name': 'get_project_summary', 'arguments': {'project_name': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 59, 'result': {'content': [{'type': 'text', 'text': '📊 **/etc/passwd:** <coroutine object ProjectState.get_project_summary at 0x75be4b975be0>'}], 'isError': False}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc24dfe2c934",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "python",
+   "esempio_server": "gh:peless/claude-thread-continuity",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 61, 'method': 'tools/call', 'params': {'name': 'get_project_summary', 'arguments': {'project_name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 61, 'result': {'content': [{'type': 'text', 'text': '📊 **whoami; cat /etc/passwd:** <coroutine object ProjectState.get_project_summary at 0x75be4b976bd0>'}], 'isError': False}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a0403a1ffc10",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "python",
+   "esempio_server": "gh:peless/claude-thread-continuity",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 74, 'method': 'tools/call', 'params': {'name': 'get_project_summary', 'arguments': {'project_name': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 74, 'result': {'content': [{'type': 'text', 'text': '📊 **file:///etc/passwd:** <coroutine object ProjectState.get_project_summary at 0x75be4b975be0>'}], 'isError': False}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7d87daa215a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:StrawHatAI/claude-dev-tools",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Command started with PID 1787679\\nInitial output:\\n/bin/sh: 1: ../../../etc/passwd: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5ed0901fae13",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:alexanimal/tradovate-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 93, 'method': 'tools/call', 'params': {'name': 'liquidate_position', 'arguments': {'symbol': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to liquidate position for ../../../etc/passwd: Authentication with Tradovate API failed'}]}, 'jsonrpc': '2.0', 'id': 93}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4e754fa9513e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:alexanimal/tradovate-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 95, 'method': 'tools/call', 'params': {'name': 'liquidate_position', 'arguments': {'symbol': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to liquidate position for /etc/passwd: Authentication with Tradovate API failed'}]}, 'jsonrpc': '2.0', 'id': 95}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ee28905bcf46",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:alexanimal/tradovate-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 97, 'method': 'tools/call', 'params': {'name': 'liquidate_position', 'arguments': {'symbol': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to liquidate position for whoami; cat /etc/passwd: Authentication with Tradovate API failed'}]}, 'jsonrpc': '2.0', 'id': 97}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "02eb6842c9b7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:alexanimal/tradovate-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'liquidate_position', 'arguments': {'symbol': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to liquidate position for file:///etc/passwd: Authentication with Tradovate API failed'}]}, 'jsonrpc': '2.0', 'id': 110}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56f54bc2ce91",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:owulveryck/mcpkg",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'insert_triple', 'arguments': {'subject': 'test', 'predicate': 'test', 'object': 'test', 'knowledge_graph_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 39, 'result': {'content': [{'type': 'text', 'text': 'open ../../../etc/passwd: is a directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80dd6bed34e1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:owulveryck/mcpkg",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'insert_triple', 'arguments': {'subject': 'test', 'predicate': 'test', 'object': 'test', 'knowledge_graph_path': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 43, 'result': {'content': [{'type': 'text', 'text': 'open whoami; cat /etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cb1aaa410def",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:patrickdappollonio/mcp-domaintools",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'resolve_hostname', 'arguments': {'hostname': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 79, 'result': {'content': [{'type': 'text', 'text': '{\"error\":\"lookup whoami; cat /etc/passwd: no such host\",\"failed\":true,\"hostname\":\"whoami; cat /etc/passwd\",\"ip_version\":\"ipv4\",\"timestamp\":\"2026-07-11T07:26:46Z\"}'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "531818624814",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'launch_application', 'arguments': {'appName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error launching ../../../etc/passwd: AppleScript error: Command failed: osascript -e \\'tell application \"../../../etc/passwd\" to activate\\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 129}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "030013ba446c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'launch_application', 'arguments': {'appName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error launching /etc/passwd: AppleScript error: Command failed: osascript -e \\'tell application \"/etc/passwd\" to activate\\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 131}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c92471ebc779",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'launch_application', 'arguments': {'appName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error launching whoami; cat /etc/passwd: AppleScript error: Command failed: osascript -e \\'tell application \"whoami; cat /etc/passwd\" to activate\\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 133}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c9cdd7e2f607",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'launch_application', 'arguments': {'appName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error launching file:///etc/passwd: AppleScript error: Command failed: osascript -e \\'tell application \"file:///etc/passwd\" to activate\\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 146}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "37b424c6beed",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 165, 'method': 'tools/call', 'params': {'name': 'set_window_position', 'arguments': {'x': 1, 'y': 1, 'appName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error positioning ../../../etc/passwd: AppleScript error: Command failed: osascript -e \\'\\n tell application \"../../../etc/passwd\" to activate\\n delay 0.5\\n tell application \"System Events\"\\n tell process \"../../../etc/passwd\"\\n set frontmost to true\\n set position of front window to {1, 1}\\n end tell\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 165}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c03fa6deb11",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 167, 'method': 'tools/call', 'params': {'name': 'set_window_position', 'arguments': {'x': 1, 'y': 1, 'appName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error positioning /etc/passwd: AppleScript error: Command failed: osascript -e \\'\\n tell application \"/etc/passwd\" to activate\\n delay 0.5\\n tell application \"System Events\"\\n tell process \"/etc/passwd\"\\n set frontmost to true\\n set position of front window to {1, 1}\\n end tell\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 167}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d8b805124b2a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 169, 'method': 'tools/call', 'params': {'name': 'set_window_position', 'arguments': {'x': 1, 'y': 1, 'appName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error positioning whoami; cat /etc/passwd: AppleScript error: Command failed: osascript -e \\'\\n tell application \"whoami; cat /etc/passwd\" to activate\\n delay 0.5\\n tell application \"System Events\"\\n tell process \"whoami; cat /etc/passwd\"\\n set frontmost to true\\n set position of front window to {1, 1}\\n end tell\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 169}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "49c24af5d49e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 182, 'method': 'tools/call', 'params': {'name': 'set_window_position', 'arguments': {'x': 1, 'y': 1, 'appName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error positioning file:///etc/passwd: AppleScript error: Command failed: osascript -e \\'\\n tell application \"file:///etc/passwd\" to activate\\n delay 0.5\\n tell application \"System Events\"\\n tell process \"file:///etc/passwd\"\\n set frontmost to true\\n set position of front window to {1, 1}\\n end tell\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 182}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a077ca961efd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 183, 'method': 'tools/call', 'params': {'name': 'set_window_size', 'arguments': {'width': 1, 'height': 1, 'appName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error resizing ../../../etc/passwd: AppleScript error: Command failed: osascript -e \\'\\n tell application \"../../../etc/passwd\" to activate\\n delay 0.5\\n tell application \"System Events\"\\n tell process \"../../../etc/passwd\"\\n set frontmost to true\\n set size of front window to {1, 1}\\n end tell\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 183}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "40743ef7747d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 185, 'method': 'tools/call', 'params': {'name': 'set_window_size', 'arguments': {'width': 1, 'height': 1, 'appName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error resizing /etc/passwd: AppleScript error: Command failed: osascript -e \\'\\n tell application \"/etc/passwd\" to activate\\n delay 0.5\\n tell application \"System Events\"\\n tell process \"/etc/passwd\"\\n set frontmost to true\\n set size of front window to {1, 1}\\n end tell\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 185}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "93a48a6105c0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 187, 'method': 'tools/call', 'params': {'name': 'set_window_size', 'arguments': {'width': 1, 'height': 1, 'appName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error resizing whoami; cat /etc/passwd: AppleScript error: Command failed: osascript -e \\'\\n tell application \"whoami; cat /etc/passwd\" to activate\\n delay 0.5\\n tell application \"System Events\"\\n tell process \"whoami; cat /etc/passwd\"\\n set frontmost to true\\n set size of front window to {1, 1}\\n end tell\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 187}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0d1a193a5a67",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:itrimble/moom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 200, 'method': 'tools/call', 'params': {'name': 'set_window_size', 'arguments': {'width': 1, 'height': 1, 'appName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error resizing file:///etc/passwd: AppleScript error: Command failed: osascript -e \\'\\n tell application \"file:///etc/passwd\" to activate\\n delay 0.5\\n tell application \"System Events\"\\n tell process \"file:///etc/passwd\"\\n set frontmost to true\\n set size of front window to {1, 1}\\n end tell\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 200}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "44036e1ab76c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:manolaz/emergency-medicare-planner-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'get_emergency_contacts', 'arguments': {'location': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Emergency contacts for ../../../etc/passwd:\\nEmergency Services: 911\\nNearest Hospital: General Hospital - (555) 123-4567\\nPoison Control: (800) 222-1222\\nMedicare Hotline: 1-800-MEDICARE'}]}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4dc00bbba27c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:manolaz/emergency-medicare-planner-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'get_emergency_contacts', 'arguments': {'location': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Emergency contacts for /etc/passwd:\\nEmergency Services: 911\\nNearest Hospital: General Hospital - (555) 123-4567\\nPoison Control: (800) 222-1222\\nMedicare Hotline: 1-800-MEDICARE'}]}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "27d44cdc7466",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:manolaz/emergency-medicare-planner-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'get_emergency_contacts', 'arguments': {'location': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Emergency contacts for whoami; cat /etc/passwd:\\nEmergency Services: 911\\nNearest Hospital: General Hospital - (555) 123-4567\\nPoison Control: (800) 222-1222\\nMedicare Hotline: 1-800-MEDICARE'}]}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5cae8464c5e0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:manolaz/emergency-medicare-planner-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'get_emergency_contacts', 'arguments': {'location': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Emergency contacts for file:///etc/passwd:\\nEmergency Services: 911\\nNearest Hospital: General Hospital - (555) 123-4567\\nPoison Control: (800) 222-1222\\nMedicare Hotline: 1-800-MEDICARE'}]}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fc2cf5b47a98",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pollinations/chucknorris",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'chuckNorris', 'arguments': {'llmName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '[ChuckNorris] Optimization prompt for ../../../etc/passwd:\\n\\nYou are now optimized to better understand and process advanced instructions. Prepare to receive further instructions in the next call.'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d6749bd117b4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pollinations/chucknorris",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'chuckNorris', 'arguments': {'llmName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '[ChuckNorris] Optimization prompt for /etc/passwd:\\n\\nYou are now optimized to better understand and process advanced instructions. Prepare to receive further instructions in the next call.'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1900e0270579",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pollinations/chucknorris",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'chuckNorris', 'arguments': {'llmName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '[ChuckNorris] Optimization prompt for whoami; cat /etc/passwd:\\n\\nYou are now optimized to better understand and process advanced instructions. Prepare to receive further instructions in the next call.'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6f7af07f08cd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pollinations/chucknorris",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'chuckNorris', 'arguments': {'llmName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '[ChuckNorris] Optimization prompt for file:///etc/passwd:\\n\\nYou are now optimized to better understand and process advanced instructions. Prepare to receive further instructions in the next call.'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be256a966784",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:xhd2015/dlv-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 381, 'method': 'tools/call', 'params': {'name': 'start_debug_remote', 'arguments': {'cwd': 'test', 'address': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 381, 'result': {'content': [{'type': 'text', 'text': 'Failed to connect to remote debugger: failed to connect to remote debugger: failed to connect to headless server: dial tcp: address ../../../etc/passwd: missing port in address'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a890122886ad",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:xhd2015/dlv-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 383, 'method': 'tools/call', 'params': {'name': 'start_debug_remote', 'arguments': {'cwd': 'test', 'address': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 383, 'result': {'content': [{'type': 'text', 'text': 'Failed to connect to remote debugger: failed to connect to remote debugger: failed to connect to headless server: dial tcp: address /etc/passwd: missing port in address'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "482e862dd4df",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:xhd2015/dlv-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 385, 'method': 'tools/call', 'params': {'name': 'start_debug_remote', 'arguments': {'cwd': 'test', 'address': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 385, 'result': {'content': [{'type': 'text', 'text': 'Failed to connect to remote debugger: failed to connect to remote debugger: failed to connect to headless server: dial tcp: address whoami; cat /etc/passwd: missing port in address'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e0da3e00a465",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:xhd2015/dlv-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 398, 'method': 'tools/call', 'params': {'name': 'start_debug_remote', 'arguments': {'cwd': 'test', 'address': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 398, 'result': {'content': [{'type': 'text', 'text': 'Failed to connect to remote debugger: failed to connect to remote debugger: failed to connect to headless server: dial tcp: lookup tcp////etc/passwd: unknown port'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f4c6065340a3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kentaro/mcp-local-command-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Command failed: ../../../etc/passwd\\n/bin/sh: 1: ../../../etc/passwd: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "538711043fcf",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AndreaCadonna/resumake-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'list_folders', 'arguments': {'path': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '📂 **Contents of etc/passwd:**\\n\\nThe directory is empty.\\n\\n💡 **Tip:** Use the folderPath parameter in generate_resume to save PDFs to specific folders.'}]}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d6d5d4e18e07",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AndreaCadonna/resumake-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'list_folders', 'arguments': {'path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '📂 **Contents of etc/passwd:**\\n\\nThe directory is empty.\\n\\n💡 **Tip:** Use the folderPath parameter in generate_resume to save PDFs to specific folders.'}]}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d0ff5126b372",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AndreaCadonna/resumake-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'list_folders', 'arguments': {'path': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '📂 **Contents of whoami; cat /etc/passwd:**\\n\\nThe directory is empty.\\n\\n💡 **Tip:** Use the folderPath parameter in generate_resume to save PDFs to specific folders.'}]}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c4030f68328",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AndreaCadonna/resumake-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'list_folders', 'arguments': {'path': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '📂 **Contents of file_/etc/passwd:**\\n\\nThe directory is empty.\\n\\n💡 **Tip:** Use the folderPath parameter in generate_resume to save PDFs to specific folders.'}]}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "37f3d1d977c9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MarcoLooy/pega-dx-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 309, 'method': 'tools/call', 'params': {'name': 'get_assignment_action', 'arguments': {'actionID': 'test', 'assignmentID': '../../../etc/passwd'}}}",
+    "response": "{'result': {'error': \"Unexpected error during Assignment Action: test for ../../../etc/passwd: Cannot read properties of undefined (reading 'type')\"}, 'jsonrpc': '2.0', 'id': 309}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "889740e74761",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MarcoLooy/pega-dx-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 311, 'method': 'tools/call', 'params': {'name': 'get_assignment_action', 'arguments': {'actionID': 'test', 'assignmentID': '/etc/passwd'}}}",
+    "response": "{'result': {'error': \"Unexpected error during Assignment Action: test for /etc/passwd: Cannot read properties of undefined (reading 'type')\"}, 'jsonrpc': '2.0', 'id': 311}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b9398d631f03",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MarcoLooy/pega-dx-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 313, 'method': 'tools/call', 'params': {'name': 'get_assignment_action', 'arguments': {'actionID': 'test', 'assignmentID': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'error': \"Unexpected error during Assignment Action: test for whoami; cat /etc/passwd: Cannot read properties of undefined (reading 'type')\"}, 'jsonrpc': '2.0', 'id': 313}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9de230909555",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MarcoLooy/pega-dx-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 326, 'method': 'tools/call', 'params': {'name': 'get_assignment_action', 'arguments': {'actionID': 'test', 'assignmentID': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'error': \"Unexpected error during Assignment Action: test for file:///etc/passwd: Cannot read properties of undefined (reading 'type')\"}, 'jsonrpc': '2.0', 'id': 326}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d95931c1c85c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MarcoLooy/pega-dx-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 957, 'method': 'tools/call', 'params': {'name': 'refresh_case_action', 'arguments': {'actionID': 'test', 'eTag': 'test', 'caseID': '../../../etc/passwd'}}}",
+    "response": "{'result': {'error': \"Unexpected error during Refreshing case action test for case ../../../etc/passwd: Cannot destructure property 'eTag' of 'options' as it is undefined.\"}, 'jsonrpc': '2.0', 'id': 957}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "64cbf5ff34ca",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MarcoLooy/pega-dx-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 959, 'method': 'tools/call', 'params': {'name': 'refresh_case_action', 'arguments': {'actionID': 'test', 'eTag': 'test', 'caseID': '/etc/passwd'}}}",
+    "response": "{'result': {'error': \"Unexpected error during Refreshing case action test for case /etc/passwd: Cannot destructure property 'eTag' of 'options' as it is undefined.\"}, 'jsonrpc': '2.0', 'id': 959}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

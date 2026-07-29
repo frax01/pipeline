@@ -1,0 +1,305 @@
+{
+ "batch": 73,
+ "verdetti": [
+  {
+   "id": "5e7d83c0fc53",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "76c267acfd97",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "75861b7d7fea",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "8d9143ce0991",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "73d6efc70edb",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "f3dc9ec9a773",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "a5ad4ac503d8",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "f2bf9ca5fe4b",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "f0e6eaf6ebea",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "f62741ad1044",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "655e368f4eee",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "83fd7763ba34",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "11c0d0dba023",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "e54e5cf86c84",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "2747a801b388",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "ce99d22029aa",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "673a71e76371",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "7dcfe0302bce",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "972b9b3fde5f",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "6199f399b642",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "a8d0a5fc1728",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "5f4063938ef9",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "8870fc6c20da",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "4c289bfbdc03",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "6c4191f1157c",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "70b443b05a74",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "33deebedd5b1",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "6f8fcefa3c2e",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "870ae31ebec5",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "4b318531118d",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "a5f6373b3780",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "46bfa9466406",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "e3488ad131ae",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "e145434241ef",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "cbe9977a6966",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "10d2652d9b6f",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "2901da6e585b",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "caed7ae79506",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "9fb1f3b12d34",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "bfec303401fe",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "94e7eadc2a78",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "d067cd2e559d",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "de0dd74c5673",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "1dedac6e0bbc",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "abb0af34d53b",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "097124b6b2c8",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "1183756a2b3d",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "bf444cadb470",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "c1437b17d0b4",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "142977e7cc81",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "f8addb8c81af",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "970becd3f741",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "ac8009b25fbf",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "f3c58fca132d",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "e3b2175f0f48",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "85a47751ba23",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "39291786e053",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "4492fe4c8cd1",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "8957988c714b",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  },
+  {
+   "id": "99cc8c91078b",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante (placeholder tipo 'seu_usuario'/'sua_senha'), nessun segreto reale divulgato"
+  }
+ ]
+}

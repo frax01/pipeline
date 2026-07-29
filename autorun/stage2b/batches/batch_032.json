@@ -1,0 +1,927 @@
+{
+ "batch": 32,
+ "n_cluster": 60,
+ "n_finding": 97,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "72b4e91000c8",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:veloxts/velox-ts-framework",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/velox/src/presets/defaults.ts",
+    "code": "RESEND_API_KEY: 'Resend API key (for transactional email)',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ad7f3f08081f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:veloxts/velox-ts-framework",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/auth/src/__type-tests__/auth.test-d.ts",
+    "code": "refreshSecret: 'refresh-secret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "30a905db4059",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CASParser/cas-parser-node",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'package main\\n\\nimport (\\n\\t\"context\"\\n\\t\"fmt\"\\n\\n\\t\"github.com/CASParser/cas-parser-go\"\\n\\t\"github.com/CASParser/cas-parser-go/option\"\\n)\\n\\nfunc ma"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a3810032dc18",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CASParser/cas-parser-node",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Cas Parser Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/cas-parser-python.svg?label=pypi%20(stabl"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "17edf507e5cb",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MichaelAharoni/cr-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/constants/server.constants.ts",
+    "code": "MISSING_API_KEY: 'Error: GitHub API key is required. Please provide it using the --gh_api_key flag.',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3d0389b0f8f6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mysleekdesigns/crawlforge-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/security/security-tests.js",
+    "code": "const secret = 'test-secret';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bb4e595ec493",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:griffinwork40/cursor-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/cli.js",
+    "code": "const key = flags.apiKey || flags['api-key'] || (await promptHidden('Enter CURSOR_API_KEY: '));"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f050e630ebfe",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ildunari/enhanced-word",
+   "evidenza": {
+    "tipo": "static",
+    "file": "word_document_server/tools/protection_tools.py",
+    "code": "- Wrong password: \"Incorrect password for unprotecting document\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "396d9367561e",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:isaacus-dev/isaacus-typescript",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Isaacus Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/isaacus.svg?label=pypi%20(stable))](https://"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f9eec134215a",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mr-wolf-gb/jasperreports-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/config/environment.js",
+    "code": "JASPER_PASSWORD: 'jasperadmin',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e5ce0a101233",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mr-wolf-gb/jasperreports-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/mcpTools.js",
+    "code": "password: 'jasperadmin',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80f6435a717b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mr-wolf-gb/jasperreports-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "dist-esm/config/environment.js",
+    "code": "JASPER_PASSWORD: 'jasperadmin',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5e02b88f0958",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mr-wolf-gb/jasperreports-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "dist-esm/tools/mcpTools.js",
+    "code": "password: 'jasperadmin',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4706d94d4ae9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:seeker-wen/mcp-auth-fetch",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.ts",
+    "code": "newRule.auth.client_secret = \"REDACTED\";"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "edccc7637d5f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:RachidChabane/mcp-secrets-vault",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/constants/text-constants.ts",
+    "code": "CONFIG_VALIDATOR_DUPLICATE_SECRET: 'Duplicate secret ID found: {id}',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "221055ee8fa9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:granular-software/mcpresso-oauth-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "secret: 'demo-secret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "048d263f928d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:xiiizoux/PromptHub",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/src/config.ts",
+    "code": "config.jwt.secret = 'dev-jwt-secret-' + Math.random().toString(36).substring(2, 15);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7557bf5bd739",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:williamzujkowski/puppeteer-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/resources/api-catalog.ts",
+    "code": "apikey: 'X-API-Key: <key>',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e45396a04de9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dorogoy/zipline-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/utils/security.ts",
+    "code": "? 'API_KEY='"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "adcf6193cc63",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dorogoy/zipline-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/utils/security.ts",
+    "code": "? 'PRIVATE_KEY='"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9a3c1e069a56",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@anonim0informal0vitalik/crypto-api-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "this.apiKey = \"REDACTED"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5466a72e72f5",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@cdilorenzo/mcp-dataforseo",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.js",
+    "code": "DATAFORSEO_PASSWORD: '[MASKED]'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6cd3fe2ecfba",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@fs-mcp/wms-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/config.mjs",
+    "code": "password: \"8)YkK_PZCD^j#Uc\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "58fb433aa58c",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@infordisa/bootstrap-docs-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "data/js/src/button.js",
+    "code": "const DATA_API_KEY = '.data-api'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "877d12be65b2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@infordisa/bootstrap-docs-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "data/js/src/carousel.js",
+    "code": "const DATA_API_KEY = '.data-api'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "14babae12501",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@infordisa/bootstrap-docs-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "data/js/src/dropdown.js",
+    "code": "const DATA_API_KEY = '.data-api'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5bd3f87c2795",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@infordisa/bootstrap-docs-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "data/js/src/scrollspy.js",
+    "code": "const DATA_API_KEY = '.data-api'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3b837696d8e2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@infordisa/bootstrap-docs-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "data/js/src/offcanvas.js",
+    "code": "const DATA_API_KEY = '.data-api'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ec09e9312c12",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@infordisa/bootstrap-docs-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "data/js/src/collapse.js",
+    "code": "const DATA_API_KEY = '.data-api'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3dbd4a561b57",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@infordisa/bootstrap-docs-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "data/js/src/modal.js",
+    "code": "const DATA_API_KEY = '.data-api'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "42bce5df21a0",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@magneticwatermelon/mcp-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/cli/commands/env.ts",
+    "code": "api_key: \"API key or token\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7c7488bd39ca",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mcp-forge/lodgify-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_phase3_advanced.js",
+    "code": "secret: 'test-secret-123'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0e63307cf221",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@monsoft/mcp-code-architect",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server/code-architect.ts",
+    "code": "const ANTHROPIC_API_KEY = 'REDACTED';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f34db50e2946",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mseep/gemini-sequential-thinking-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "setup.js",
+    "code": "apiKey = 'simulation';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "562d0e3ef453",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mseep/pgpt-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "security/generate_decrypted_password.js",
+    "code": "const encryptedPassword = await askEncryptedPassword('Please enter the encrypted password: '); // Prompt for encrypted password"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "339286081759",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@nasteroids/mcp-client",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-client.py",
+    "code": "smithery_api_key = \"REDACTED\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cc8d4aef9c1d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@orbt-finance/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "get_api_key: 'Visit https://orbt.finance for API access',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80c718a0acfe",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "balm-shared-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/managers/model-config-manager.js",
+    "code": "password: 'ui-textfield',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a4d1fcaf61e5",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-search-case",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/search.js",
+    "code": "const ACCESS_TOKEN = \"REDACTED"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "741138f5deed",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "onepassword-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "shared/tools/create-login-tool.js",
+    "code": "password: 'The password for the login.',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2924f299425",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "railway-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_api.js",
+    "code": "const API_KEY = '1d366bc913mshd8aba87813ff91dp106410jsn744262057f38';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e0007cbf1611",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 183, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 183, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"../../../etc/passwd\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'../../../etc/passwd\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "f86aea09bb89",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 184, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 184, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"....//....//etc/shadow\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'....//....//etc/shadow\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "8d530b73fc7a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 185, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 185, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"/etc/passwd\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'/etc/passwd\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "5d810bd3ebed",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 186, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 186, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\config\\\\\\\\SAM\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\config\\\\\\\\SAM\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "ffc05079d4fa",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 187, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 187, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"whoami; cat /etc/passwd\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'whoami; cat /etc/passwd\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "ba418535ba7f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 188, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 188, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"$(id)\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'$(id)\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "2a25c2aaea9a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 189, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 189, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"`cat /etc/passwd`\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'`cat /etc/passwd`\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "45f08249ec69",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 190, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 190, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"test && ls -la /\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'test && ls -la /\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "f50e994df33b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 191, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 191, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"test || id\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'test || id\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "cfb2ac5de9ba",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 192, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 192, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"__import__(\\'os\\').system(\\'id\\')\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'__import__(\\'os\\').system(\\'id\\')\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "1146f3e236f6",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 193, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 193, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"require(\\'child_process\\').execSync(\\'id\\').toString()\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'require(\\'child_process\\').execSync(\\'id\\').toString()\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "e687fe06763d",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 194, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 194, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"eval(\\'1+1\\')\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'eval(\\'1+1\\')\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "20ec0cf584d7",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 195, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 195, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"\\' OR 1=1; --\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'\\' OR 1=1; --\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "ff1da1175829",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 196, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 196, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"\\'; DROP TABLE users; --\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'\\'; DROP TABLE users; --\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "9ae9a94a2df8",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 197, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 197, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"1 UNION SELECT * FROM information_schema.tables; --\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'1 UNION SELECT * FROM information_schema.tables; --\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "93df1b3e5464",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 198, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 198, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"http://169.254.169.254/latest/meta-data/\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'http://169.254.169.254/latest/meta-data/\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "9eb4920af399",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 199, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 199, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"http://localhost:6379/\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'http://localhost:6379/\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "0d027336bb87",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:AdminQAq678/mcp-server-chat",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 200, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 200, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"file:///etc/passwd\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\",\\n \"dark\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\' | \\'dark\\', received \\'file:///etc/passwd\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "94fbcf5a04b3",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32603, 'message': \"Internal error: Agent '../../../etc/passwd' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  }
+ ]
+}

@@ -1,0 +1,968 @@
+{
+ "batch": 6,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "d88d5e3637a5",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 138, 'method': 'tools/call', 'params': {'name': 'doppler_configs_create', 'arguments': {'project': 'test', 'environment': 'test', 'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 138, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d49c3cdee105",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 139, 'method': 'tools/call', 'params': {'name': 'doppler_configs_create', 'arguments': {'project': 'test', 'environment': 'test', 'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 139, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0507bda96423",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 140, 'method': 'tools/call', 'params': {'name': 'doppler_configs_create', 'arguments': {'project': 'test', 'environment': 'test', 'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 140, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "29e57bc23c56",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 141, 'method': 'tools/call', 'params': {'name': 'doppler_configs_create', 'arguments': {'project': 'test', 'environment': 'test', 'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 141, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c11d5d897652",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 142, 'method': 'tools/call', 'params': {'name': 'doppler_configs_create', 'arguments': {'project': 'test', 'environment': 'test', 'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 142, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9855258d4d90",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 156, 'method': 'tools/call', 'params': {'name': 'doppler_environments_list', 'arguments': {'project': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 156, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "988dc7d8f218",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 157, 'method': 'tools/call', 'params': {'name': 'doppler_environments_list', 'arguments': {'project': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 157, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac90bf1a389c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 158, 'method': 'tools/call', 'params': {'name': 'doppler_environments_list', 'arguments': {'project': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 158, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5614486de334",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 159, 'method': 'tools/call', 'params': {'name': 'doppler_environments_list', 'arguments': {'project': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 159, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "88a98b20526c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 160, 'method': 'tools/call', 'params': {'name': 'doppler_environments_list', 'arguments': {'project': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 160, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7f73a9718049",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 174, 'method': 'tools/call', 'params': {'name': 'doppler_run', 'arguments': {'command': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 174, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "da2e0ed96f82",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 175, 'method': 'tools/call', 'params': {'name': 'doppler_run', 'arguments': {'command': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 175, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56aa09880ade",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 176, 'method': 'tools/call', 'params': {'name': 'doppler_run', 'arguments': {'command': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 176, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1d96abba66f3",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 177, 'method': 'tools/call', 'params': {'name': 'doppler_run', 'arguments': {'command': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 177, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "38718b08234e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 178, 'method': 'tools/call', 'params': {'name': 'doppler_run', 'arguments': {'command': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 178, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7512be2a2250",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:DanyelKirsch/git-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 276, 'method': 'tools/call', 'params': {'name': 'git_push', 'arguments': {'remote': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 276, 'error': {'code': -32603, 'message': 'MCP error -32603: Git operation failed: Pushing to C:\\\\Windows\\\\System32\\\\config\\\\SAM\\nssh: Could not resolve hostname c: Temporary failure in name resolution\\r\\nfatal: Could not read from remote repository.\\n\\nPlease make sure you have the correct access rights\\nand the repository exists.\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1174c4bbb6a0",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 480, 'method': 'tools/call', 'params': {'name': 'zellij_apply_layout', 'arguments': {'layout_name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 480, 'error': {'code': -32603, 'message': 'MCP error -32603: Command execution failed: Command failed: zellij --layout __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "22b748afde2d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 481, 'method': 'tools/call', 'params': {'name': 'zellij_apply_layout', 'arguments': {'layout_name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 481, 'error': {'code': -32603, 'message': 'MCP error -32603: Command execution failed: Command failed: zellij --layout require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a1acc526f090",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 482, 'method': 'tools/call', 'params': {'name': 'zellij_apply_layout', 'arguments': {'layout_name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 482, 'error': {'code': -32603, 'message': 'MCP error -32603: Command execution failed: Command failed: zellij --layout eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a54f121f6877",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 483, 'method': 'tools/call', 'params': {'name': 'zellij_apply_layout', 'arguments': {'layout_name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 483, 'error': {'code': -32603, 'message': \"MCP error -32603: Command execution failed: Command failed: zellij --layout ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "03d6981aed6d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 484, 'method': 'tools/call', 'params': {'name': 'zellij_apply_layout', 'arguments': {'layout_name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 484, 'error': {'code': -32603, 'message': \"MCP error -32603: Command execution failed: Command failed: zellij --layout '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8efc41235368",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 534, 'method': 'tools/call', 'params': {'name': 'zellij_new_tab_with_layout', 'arguments': {'layout_name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 534, 'error': {'code': -32603, 'message': 'MCP error -32603: Command execution failed: Command failed: zellij action new-tab --layout __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "10daf45adae1",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 535, 'method': 'tools/call', 'params': {'name': 'zellij_new_tab_with_layout', 'arguments': {'layout_name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 535, 'error': {'code': -32603, 'message': 'MCP error -32603: Command execution failed: Command failed: zellij action new-tab --layout require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8b0dafd4f46c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 536, 'method': 'tools/call', 'params': {'name': 'zellij_new_tab_with_layout', 'arguments': {'layout_name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 536, 'error': {'code': -32603, 'message': 'MCP error -32603: Command execution failed: Command failed: zellij action new-tab --layout eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2f1fe44a6abc",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 537, 'method': 'tools/call', 'params': {'name': 'zellij_new_tab_with_layout', 'arguments': {'layout_name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 537, 'error': {'code': -32603, 'message': \"MCP error -32603: Command execution failed: Command failed: zellij action new-tab --layout ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "61a744c45655",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:GitJuhb/zellij-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 538, 'method': 'tools/call', 'params': {'name': 'zellij_new_tab_with_layout', 'arguments': {'layout_name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 538, 'error': {'code': -32603, 'message': \"MCP error -32603: Command execution failed: Command failed: zellij action new-tab --layout '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eef40199aa2b",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:eddyv73/azure-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'az_execute', 'arguments': {'command': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32603, 'message': 'MCP error -32603: Azure CLI error: Command failed: az __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b0ece82cad21",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:eddyv73/azure-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'az_execute', 'arguments': {'command': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32603, 'message': 'MCP error -32603: Azure CLI error: Command failed: az require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80dd1fc7d3e2",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:eddyv73/azure-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'az_execute', 'arguments': {'command': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32603, 'message': 'MCP error -32603: Azure CLI error: Command failed: az eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "83b752274e6f",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:eddyv73/azure-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'az_execute', 'arguments': {'command': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': \"MCP error -32603: Azure CLI error: Command failed: az ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "680438790532",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:eddyv73/azure-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'az_execute', 'arguments': {'command': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': \"MCP error -32603: Azure CLI error: Command failed: az '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "76efd55df704",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 228, 'method': 'tools/call', 'params': {'name': 'explain_resource', 'arguments': {'resource': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 228, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Failed to explain resource: Kubectl command failed: Command failed: kubectl explain __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ca968464e662",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 229, 'method': 'tools/call', 'params': {'name': 'explain_resource', 'arguments': {'resource': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 229, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Failed to explain resource: Kubectl command failed: Command failed: kubectl explain require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ea8cbf8a0dd8",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 230, 'method': 'tools/call', 'params': {'name': 'explain_resource', 'arguments': {'resource': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 230, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Failed to explain resource: Kubectl command failed: Command failed: kubectl explain eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "34834f1885a1",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 231, 'method': 'tools/call', 'params': {'name': 'explain_resource', 'arguments': {'resource': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 231, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Failed to explain resource: Kubectl command failed: Command failed: kubectl explain ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d62f5644d53d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 232, 'method': 'tools/call', 'params': {'name': 'explain_resource', 'arguments': {'resource': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 232, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Failed to explain resource: Kubectl command failed: Command failed: kubectl explain '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b43ae982252c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 318, 'method': 'tools/call', 'params': {'name': 'list_api_resources', 'arguments': {'apiGroup': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 318, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Failed to list API resources: Kubectl command failed: Command failed: kubectl api-resources --api-group=__import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "648c2421a9f8",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 319, 'method': 'tools/call', 'params': {'name': 'list_api_resources', 'arguments': {'apiGroup': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 319, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Failed to list API resources: Kubectl command failed: Command failed: kubectl api-resources --api-group=require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b7684bb3f8ac",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 320, 'method': 'tools/call', 'params': {'name': 'list_api_resources', 'arguments': {'apiGroup': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 320, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Failed to list API resources: Kubectl command failed: Command failed: kubectl api-resources --api-group=eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "35b44dd5a51a",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 321, 'method': 'tools/call', 'params': {'name': 'list_api_resources', 'arguments': {'apiGroup': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 321, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Failed to list API resources: Kubectl command failed: Command failed: kubectl api-resources --api-group=' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8c89c41a419e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 322, 'method': 'tools/call', 'params': {'name': 'list_api_resources', 'arguments': {'apiGroup': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 322, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Failed to list API resources: Kubectl command failed: Command failed: kubectl api-resources --api-group='; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a3c4a038303c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 516, 'method': 'tools/call', 'params': {'name': 'uninstall_helm_chart', 'arguments': {'namespace': 'test', 'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 516, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Failed to uninstall Helm chart: Helm command failed: Command failed: helm uninstall __import__(\\'os\\').system(\\'id\\') --namespace test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "10db7dec623d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 517, 'method': 'tools/call', 'params': {'name': 'uninstall_helm_chart', 'arguments': {'namespace': 'test', 'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 517, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Failed to uninstall Helm chart: Helm command failed: Command failed: helm uninstall require(\\'child_process\\').execSync(\\'id\\').toString() --namespace test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "929cd80e9c91",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 518, 'method': 'tools/call', 'params': {'name': 'uninstall_helm_chart', 'arguments': {'namespace': 'test', 'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 518, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Failed to uninstall Helm chart: Helm command failed: Command failed: helm uninstall eval(\\'1+1\\') --namespace test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ecbe4e47429a",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 519, 'method': 'tools/call', 'params': {'name': 'uninstall_helm_chart', 'arguments': {'namespace': 'test', 'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 519, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Failed to uninstall Helm chart: Helm command failed: Command failed: helm uninstall ' OR 1=1; -- --namespace test\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "94fbbcf5cb3c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmathur/mcp-server-kubernetes",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 520, 'method': 'tools/call', 'params': {'name': 'uninstall_helm_chart', 'arguments': {'namespace': 'test', 'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 520, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Failed to uninstall Helm chart: Helm command failed: Command failed: helm uninstall '; DROP TABLE users; -- --namespace test\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "afcb42063fb0",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rudiarta/ask-ai-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'ask_gemini_with_file', 'arguments': {'prompt': 'test', 'file_path': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': -32603, 'message': 'Failed to call Gemini: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c99206ba3f6b",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rudiarta/ask-ai-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'ask_gemini_with_file', 'arguments': {'prompt': 'test', 'file_path': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': -32603, 'message': 'Failed to call Gemini: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d34d5a28d735",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rudiarta/ask-ai-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'ask_gemini_with_file', 'arguments': {'prompt': 'test', 'file_path': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 50, 'error': {'code': -32603, 'message': 'Failed to call Gemini: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "60567e5025f7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rudiarta/ask-ai-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'ask_gemini_with_file', 'arguments': {'prompt': 'test', 'file_path': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': -32603, 'message': 'Failed to call Gemini: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0dd9e89195a6",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rudiarta/ask-ai-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'ask_gemini_with_file', 'arguments': {'prompt': 'test', 'file_path': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': -32603, 'message': 'Failed to call Gemini: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "efbca934a8d5",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'task_raw', 'arguments': {'command': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32603, 'message': 'MCP error -32603: Taskwarrior error: Command failed: task __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2af0b0c12306",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'task_raw', 'arguments': {'command': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 31, 'error': {'code': -32603, 'message': 'MCP error -32603: Taskwarrior error: Command failed: task require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dab58f5a3d41",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'task_raw', 'arguments': {'command': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 32, 'error': {'code': -32603, 'message': 'MCP error -32603: Taskwarrior error: Command failed: task eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0e8176c1b0cd",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'task_raw', 'arguments': {'command': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 33, 'error': {'code': -32603, 'message': \"MCP error -32603: Taskwarrior error: Command failed: task ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1db1a3057ba2",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'task_raw', 'arguments': {'command': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 34, 'error': {'code': -32603, 'message': \"MCP error -32603: Taskwarrior error: Command failed: task '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7c97cb892c2d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'task_context_set', 'arguments': {'context': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': -32603, 'message': 'MCP error -32603: Taskwarrior error: Command failed: task context define __import__(\\'os\\').system(\\'id\\') project:__import__(\\'os\\').system(\\'id\\') or +__import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "46bf6984e733",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'task_context_set', 'arguments': {'context': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': -32603, 'message': 'MCP error -32603: Taskwarrior error: Command failed: task context define require(\\'child_process\\').execSync(\\'id\\').toString() project:require(\\'child_process\\').execSync(\\'id\\').toString() or +require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0fdd997400dc",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'task_context_set', 'arguments': {'context': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 50, 'error': {'code': -32603, 'message': 'MCP error -32603: Taskwarrior error: Command failed: task context define eval(\\'1+1\\') project:eval(\\'1+1\\') or +eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9d1756a53b2a",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'task_context_set', 'arguments': {'context': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': -32603, 'message': \"MCP error -32603: Taskwarrior error: Command failed: task context define ' OR 1=1; -- project:' OR 1=1; -- or +' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

@@ -1,0 +1,908 @@
+{
+ "batch": 45,
+ "n_cluster": 60,
+ "n_finding": 69,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "28806f562dde",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:ankush-10010/MCP_Image_gen",
+   "evidenza": {
+    "tipo": "static",
+    "file": "LoRA-training/toolkit/control_generator.py",
+    "code": "save_path = os.path.join("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "dae0486dd652",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:awsdataarchitect/financial-signals-dashboard",
+   "evidenza": {
+    "tipo": "static",
+    "file": "streamlit_app.py",
+    "code": "flag_path = os.path.join(flag_dir, f\"{flag_name}.flag\")"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "015df9d881c9",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:bibiibjorn/MCP-DEV",
+   "evidenza": {
+    "tipo": "static",
+    "file": "core/pbip/pbip_dependency_engine.py",
+    "code": "tmdl_path = os.path.join(tables_dir, f\"{table_name}.tmdl\")"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "03a60524f7e1",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:cool2341999/SAAGE",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-servers/control-plane/rib_diff.py",
+    "code": "output_path = os.path.join("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "5019fd38b5bb",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:fluxiia/whatsapp-ai-agent-fluxi",
+   "evidenza": {
+    "tipo": "static",
+    "file": "coding_agent/coding_router.py",
+    "code": "workspace = os.path.join(base, f\"coding_{cs.agente_id}\")"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "4ac38a52a985",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:hassan-shakudo/MCP_Data_Ingestion",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "base = os.path.join("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "a19a92b2fb77",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:tayyab415/directors-cut",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app.py",
+    "code": "final_path = os.path.join("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "3e567d4ac1bc",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:tayyab415/directors-cut",
+   "evidenza": {
+    "tipo": "static",
+    "file": "directors-cut/video_processing/download.py",
+    "code": "output_template = os.path.join(output_dir, f\"{filename}.%(ext)s\")"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "3748a3c73f38",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:LocalStack/localstack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "localstack-core/localstack/dev/kubernetes/__main__.py",
+    "code": "container_path=os.path.join("
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "7c3472e11b1f",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:korotovsky/slack-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/provider/api.go",
+    "code": "return filepath.Join(cacheDir, teamID+\"_\"+filename)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "29cb71f0393f",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:netdata/netdata",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/go/plugin/framework/filelock/filelock.go",
+    "code": "return filepath.Join(l.dir, name+l.suffix)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8f6d7ab732db",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:blacktop/mcp-tts",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cmd/guisession_darwin.go",
+    "code": "errPath := filepath.Join(dir, label+\".err\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "46b3b7b58ad7",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:zeromicro/mcp-zero",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/generate_template.go",
+    "code": "return filepath.Join(\"deploy\", serviceName+\".service\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e783d4082ed3",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:yoheimuta/protolint",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/linter/config/externalConfigProvider.go",
+    "code": "filePath := filepath.Join(dir, name+ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4302d9ce0274",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:standardbeagle/agnt",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/sshclient/control_unix.go",
+    "code": "return filepath.Join(dir, host+\".ctl\"), nil"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ed92e221844e",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:standardbeagle/agnt",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/daemon/publishstore/store.go",
+    "code": "path := filepath.Join(s.dir, sh.ID+recordSuffix)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dfa58c83cc99",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:golang/tools",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/imports/mod.go",
+    "code": "modDir := filepath.Join(dir[:index], matches[1]+\"@\"+matches[2])"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "add6d756a05b",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:golang/tools",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/imports/mod_cache.go",
+    "code": "modDir := filepath.Join(dir[:index], matches[1]+\"@\"+matches[2])"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "74c4c8a3c079",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:h0rv/d2-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "handlers.go",
+    "code": "return filepath.Join(dir, base+ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4fb3e8e616f8",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:mutablelogic/go-llm",
+   "evidenza": {
+    "tipo": "static",
+    "file": "etc/_old/_store/file.go",
+    "code": "return filepath.Join(dir, id+jsonExt)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "44316a738282",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:lyeslabs/mcpgen",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/generator/tools.go",
+    "code": "outputFilePath := filepath.Join(g.outputDir+\"/mcptools\", outputFileName)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "70c769950540",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:simplyliz/codemcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/suggest/analyzer.go",
+    "code": "testPath := filepath.Join(repoRoot, base+suffix)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8d362ca59b89",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:mark3labs/mcphost",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/config/config.go",
+    "code": "configPath := filepath.Join(homeDir, configName+\".\"+configType)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1a7161b629ec",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:AoManoh/openPic-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/tools/output_path.go",
+    "code": "candidate = filepath.Join(dir, withCountSuffix(base, attempt+1))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8c40318d00cd",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:Code4me2/autonomous-ollama",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/server/server.go",
+    "code": "filepath.Join(\"dist\", runtime.GOOS+\"-\"+runtime.GOARCH, name),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e205c4fc7c3a",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:Ed1s0nZ/CyberStrikeAI",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/c2/manager.go",
+    "code": "path := filepath.Join(dir, taskID+suffix)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fcbee621672d",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:adrianolaselva/dataql",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/cachehandler/cache.go",
+    "code": "return filepath.Join(h.cacheDir, cacheKey+\".duckdb\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c9d4d392280b",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:ba0f3/MCP-Kali-Server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/service/service_linux.go",
+    "code": "serviceFile := filepath.Join(\"/etc/systemd/system\", config.Name+\".service\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7f39c9e6e905",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:ba0f3/MCP-Kali-Server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/service/service_linux.go",
+    "code": "serviceFile := filepath.Join(\"/etc/systemd/system\", name+\".service\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3567277bebce",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:benoute/calibre-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/calibre/epub.go",
+    "code": "return filepath.Join(libraryPath, path, filename+\".epub\"), nil"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bb576044de0c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:dnlo/mcpio",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.go",
+    "code": "fifoPath := filepath.Join(mcpDir, name+\".in.fifo\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4aa7b07f2dd6",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:gaspardpetit/mcp-shell",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/doc/doc.go",
+    "code": "dest := filepath.Join(dir, base+\".\"+destFormat)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b634feb587fc",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:getmockd/mockd",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/cli/recordings.go",
+    "code": "sessionDir := filepath.Join(baseDir, *sessionName+\"-\"+timestamp)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "285b45d444b4",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:ironsheep/P2-Knowledge-Base-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/obex/obex.go",
+    "code": "targetDir = filepath.Join(\"OBEX\", objectID+\"-\"+slug)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5732f699505",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:kjstart/cursor_oracle_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/audit/auditor.go",
+    "code": "pattern := filepath.Join(a.dir, a.base+\"_*\"+a.ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6b67f181184d",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:luckyPipewrench/pipelock",
+   "evidenza": {
+    "tipo": "static",
+    "file": "enterprise/conductor/applycache/cache.go",
+    "code": "record, err := readBundleRecord(filepath.Join(c.bundlesDir, verified.BundleHash+recordExt))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f5778e9c2a4c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:luckyPipewrench/pipelock",
+   "evidenza": {
+    "tipo": "static",
+    "file": "enterprise/conductor/applycache/cache.go",
+    "code": "record, err := readBundleRecord(filepath.Join(c.bundlesDir, hash+recordExt))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f0ce19237ddb",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:luckyPipewrench/pipelock",
+   "evidenza": {
+    "tipo": "static",
+    "file": "enterprise/conductor/applycache/cache.go",
+    "code": "bundleRecord, err := readBundleRecord(filepath.Join(c.bundlesDir, active.BundleHash+recordExt))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b48b86b8d992",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:luckyPipewrench/pipelock",
+   "evidenza": {
+    "tipo": "static",
+    "file": "enterprise/conductor/applycache/cache.go",
+    "code": "wantConfigFile := filepath.ToSlash(filepath.Join(configsDirName, active.BundleHash+configExt))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b82e82d10ef8",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:luckyPipewrench/pipelock",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/mcpwrap/sidecar.go",
+    "code": "return filepath.Join(dir, configPrefix+\"-\"+serverPrefix+\"-\"+safeName+\".headers\"), nil"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "de47059d5010",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:luckyPipewrench/pipelock",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/proxy/baseline/baseline.go",
+    "code": "path := filepath.Join(m.cfg.ProfileDir, expected.AgentKey+profileFileExt)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "77d4e273196f",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:luckyPipewrench/pipelock",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/signing/keystore.go",
+    "code": "return filepath.Join(k.baseDir, trustedSubdir, name+trustedPubSuffix)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5fe4d8054755",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:luckyPipewrench/pipelock",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/cli/setup/vscode.go",
+    "code": "return filepath.Join(dir, configPrefix+\"-\"+serverPrefix+\"-\"+safeName+\".headers\"), nil"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3e182a62a495",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:manishiitg/mcp-agent-builder-go",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agent_go/cmd/testing/agent_browse_e2e.go",
+    "code": "_ = os.Remove(filepath.Join(stateDir, session+suffix))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2e71b7f7986c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:manishiitg/mcp-agent-builder-go",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agent_go/pkg/browser/cleanup.go",
+    "code": "os.Remove(filepath.Join(dir, baseName+ext))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c62f06668602",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:manishiitg/mcp-agent-builder-go",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agent_go/pkg/browser/cleanup.go",
+    "code": "extraFile := filepath.Join(baseDir, baseName+ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a8a5ea4b4fe3",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:manishiitg/mcp-agent-builder-go",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agent_go/pkg/browser/executor.go",
+    "code": "f := filepath.Join(dir, session+ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "76af279d8b0e",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:mykhaliev/agent-benchmark",
+   "evidenza": {
+    "tipo": "static",
+    "file": "explorer/explorer.go",
+    "code": "reportPath := filepath.Join(subdir, reportFileName+\".\"+rt)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e43b449f113c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:mykhaliev/agent-benchmark",
+   "evidenza": {
+    "tipo": "static",
+    "file": "explorer/explorer.go",
+    "code": "fmt.Printf(\" %s\\n\", filepath.ToSlash(filepath.Join(subdir, reportFileName+\".\"+rt)))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d3ed2a117727",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:peg/rampart",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cmd/rampart/cli/uninstall.go",
+    "code": "backup := filepath.Join(dir, tool+\".js.rampart-backup\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d24ca0a86993",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:peg/rampart",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cmd/rampart/cli/setup.go",
+    "code": "backup := filepath.Join(d, tool+\".js.rampart-backup\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9f206ff967fd",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:pmaojo/hexanorm-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/hexanorm/analysis/analysis.go",
+    "code": "resolved := filepath.Join(dir, base, targetPrefix+suffix)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a985d6fadf64",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:portertech/filesystem-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/stream/stream.go",
+    "code": "name := filepath.Join(dir, prefix+hex.EncodeToString(randBytes))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "37762d6651ac",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:sebastianhutter/local-rag",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/parser/calibre.go",
+    "code": "filePath := filepath.Join(libraryPath, book.RelativePath, filenameBase+\".\"+strings.ToLower(fmt))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8f55204bb8c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:viant/mcp-toolbox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "github/service/checkout.go",
+    "code": "parentNS := filepath.Join(parent, nsSafe+\"__\"+aliasSafe)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0bb1cde57adf",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:xieyuschen/gopls-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/internal/imports/mod.go",
+    "code": "modDir := filepath.Join(dir[:index], matches[1]+\"@\"+matches[2])"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f845b49d0bad",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:xieyuschen/gopls-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/internal/imports/mod_cache.go",
+    "code": "modDir := filepath.Join(dir[:index], matches[1]+\"@\"+matches[2])"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3402229635c6",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:yindia/rootcause",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cmd/rootcause/cli/skills_sync.go",
+    "code": "return filepath.Join(destRoot, skillName+\".mdc\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8fde40e969c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:kraklabs/cie",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cmd/cie/serve.go",
+    "code": "checkpointDir := filepath.Join(s.dataDir, projectID+\"-checkpoints\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b145eb499ab8",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:rocketship-ai/rocketship",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/browser/sessionfile/sessionfile.go",
+    "code": "return filepath.Join(runDir, sessionDir, sessionID+sessionExtension)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

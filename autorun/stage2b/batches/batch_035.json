@@ -1,0 +1,968 @@
+{
+ "batch": 35,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "61161978090e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 622, 'method': 'tools/call', 'params': {'name': 'delete_task_attachment', 'arguments': {'task_id': 'test', 'attachment_id': 'test', 'project_id': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 622, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete attachment: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>. Note: Deleting attachments requires ZohoPC.files.ALL OAuth scope.'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2575dfabe677",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 623, 'method': 'tools/call', 'params': {'name': 'delete_task_attachment', 'arguments': {'task_id': 'test', 'attachment_id': 'test', 'project_id': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 623, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete attachment: 400 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 400 – Bad Request</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 400 – Bad Request</h1></body></html>. Note: Deleting attachments requires ZohoPC.files.ALL OAuth scope.'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "68e216202e6c",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 630, 'method': 'tools/call', 'params': {'name': 'delete_task_attachment', 'arguments': {'task_id': 'test', 'attachment_id': 'test', 'project_id': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 630, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete attachment: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>. Note: Deleting attachments requires ZohoPC.files.ALL OAuth scope.'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "21436464dddf",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 631, 'method': 'tools/call', 'params': {'name': 'delete_task_attachment', 'arguments': {'task_id': 'test', 'attachment_id': 'test', 'project_id': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 631, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete attachment: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>. Note: Deleting attachments requires ZohoPC.files.ALL OAuth scope.'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "86ee840c5e37",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:andrewcraigmorgan/zoho-projects-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 632, 'method': 'tools/call', 'params': {'name': 'delete_task_attachment', 'arguments': {'task_id': 'test', 'attachment_id': 'test', 'project_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 632, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to delete attachment: 404 - <!doctype html><html lang=\"en\"><head><title>HTTP Status 404 – Not Found</title><style type=\"text/css\">body {font-family:Tahoma,Arial,sans-serif;} h1, h2, h3, b {color:white;background-color:#525D76;} h1 {font-size:22px;} h2 {font-size:16px;} h3 {font-size:14px;} p {font-size:12px;} a {color:black;} .line {height:1px;background-color:#525D76;border:none;}</style></head><body><h1>HTTP Status 404 – Not Found</h1></body></html>. Note: Deleting attachments requires ZohoPC.files.ALL OAuth scope.'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d6ae6f3dd65f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4366bdd5c376",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f1216e19ca5f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 5, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "416aa7287054",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 6, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "88ad7ec240a1",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 7, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "409c43e3511d",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 8, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dbe1b18cd8d0",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 9, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a1a5e14a195",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 10, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6cbf44d2a6a4",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 11, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "529db831acdf",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "69797572c3e6",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "22516702ceee",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "411d4c869005",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8787c88a76be",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c0812a7e4a3f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 17, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "480539a19740",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 18, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bafc0dbb4e9e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 19, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 19, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ab6b9b2e4c1c",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'create_area_chart_option', 'arguments': {'data': [], 'title': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4f73514cc11a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 111, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "470e110a8168",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 112, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 112, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d21723e7bfc1",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c914f73a85fe",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 114, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4fa23407af25",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 115, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5d5aed84e9df",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 116, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 116, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6f630168551d",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 117, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 117, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0c696eead4a3",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 118, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 118, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "31bdb3c358eb",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 119, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 119, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e7ac05d8ab9a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 120, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 120, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4e674e3e3bfe",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 121, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 121, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0f06c79bc2f3",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 122, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 122, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bfc598f6c51b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 123, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 123, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ad90d68f343e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 124, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 124, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2abb896a86a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 125, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 125, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "563771cf986f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 126, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 126, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5e30baddca12",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 127, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 127, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a1ea269962a",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:calebax/mcp-chart-option",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'create_line_chart_option', 'arguments': {'data': [], 'title': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 128, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7cd7a78fd8ba",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 39, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"../../../etc/passwd\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bab9be3c7595",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 40, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 40, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"....//....//etc/shadow\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a5e0295b0d1d",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 41, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"/etc/passwd\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ec0b54286c36",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 42, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 42, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"C:\\\\Windows\\\\System32\\\\config\\\\SAM\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "59e2d342202f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 43, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"whoami; cat /etc/passwd\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7dce90f2505b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 44, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 44, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"$(id)\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d326e77cabe2",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 45, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 45, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"`cat /etc/passwd`\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "35b150b6507d",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 46, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 46, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"test && ls -la /\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "434825d2ad07",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 47, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 47, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"test || id\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be7a69f9c829",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"__import__(\\'os\\').system(\\'id\\')\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c3cd21c30328",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"require(\\'child_process\\').execSync(\\'id\\').toString()\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "849db91d20d5",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 50, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"eval(\\'1+1\\')\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f6ab6cbd0403",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"\\' OR 1=1; --\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "062a9b08c701",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"\\'; DROP TABLE users; --\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6fbed63c787f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 53, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 53, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"1 UNION SELECT * FROM information_schema.tables; --\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2b5dd5e5d263",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 54, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 54, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"http://169.254.169.254/latest/meta-data/\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2ab55c842674",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 55, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 55, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"http://localhost:6379/\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a553e7ad2a4",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:koji/opentrons-document-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'search_document', 'arguments': {'filename': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 56, 'error': {'code': -32602, 'message': 'MCP error -32602: File \"file:///etc/passwd\" not found'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cf6b73ab73a1",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 129, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"../../../etc/passwd\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'../../../etc/passwd\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

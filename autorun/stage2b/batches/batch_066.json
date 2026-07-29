@@ -1,0 +1,968 @@
+{
+ "batch": 66,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "881c3916c7d3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 105, 'method': 'tools/call', 'params': {'name': 'list_signals', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Found 18 signals:\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://169.…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac6ac04f6a58",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 106, 'method': 'tools/call', 'params': {'name': 'list_signals', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Found 18 signals:\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://169.…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0a1c27cbd82d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 107, 'method': 'tools/call', 'params': {'name': 'list_signals', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Found 18 signals:\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://169.…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "edf8af765bc0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 108, 'method': 'tools/call', 'params': {'name': 'list_signals', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Found 18 signals:\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://169.…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a15ec0028b3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 109, 'method': 'tools/call', 'params': {'name': 'list_signals', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Found 18 signals:\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://169.…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5a4d73a5d41",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'list_signals', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Found 18 signals:\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://169.…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ca4616d880cb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 255, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5e32179878e1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 256, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e1563be77272",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 257, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "48f25460299c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 258, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "566703f2e218",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 259, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9882838b66d1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 260, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "92fbd61295bc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 261, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "57402eba87f6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 262, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0ade1d6ccadd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 263, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5efd568d4849",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 264, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6943c765bffa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 265, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b84622780113",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 266, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b72e83cbea21",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 267, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "40814fd00217",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 268, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "864170e035cb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 269, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "91e20c4ef210",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 270, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "401d46cb6955",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 271, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b24bb6bb6938",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desmonddak/rohd-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 272, 'method': 'tools/call', 'params': {'name': 'get_watched_signals', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Watched signals (18):\\n- ../../../etc/passwd: test (1 bits)\\n- ....//....//etc/shadow: test (1 bits)\\n- /etc/passwd: test (1 bits)\\n- C:\\\\Windows\\\\System32\\\\config\\\\SAM: test (1 bits)\\n- whoami; cat /etc/passwd: test (1 bits)\\n- $(id): test (1 bits)\\n- `cat /etc/passwd`: test (1 bits)\\n- test && ls -la /: test (1 bits)\\n- test || id: test (1 bits)\\n- __import__('os').system('id'): test (1 bits)\\n- require('child_process').execSync('id').toString(): test (1 bits)\\n- eval('1+1'): test (1 bits)\\n- ' OR 1=1; --: test (1 bits)\\n- '; DROP TABLE users; --: test (1 bits)\\n- 1 UNION SELECT * FROM information_schema.tables; --: test (1 bits)\\n- http://…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9144581404d8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:dlukt/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'fs_delete', 'arguments': {'path': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 23, 'result': {'content': [{'type': 'text', 'text': 'stat failed: stat /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w1/mcp-server/etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "74f1d16c7031",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:dlukt/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'fs_delete', 'arguments': {'path': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 25, 'result': {'content': [{'type': 'text', 'text': 'stat failed: stat /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w1/mcp-server/whoami; cat /etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "70387f95763b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:dlukt/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'fs_delete', 'arguments': {'path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 38, 'result': {'content': [{'type': 'text', 'text': 'stat failed: stat /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w1/mcp-server/file:/etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b3068949a7fb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:dlukt/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'fs_list', 'arguments': {'path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 56, 'result': {'content': [{'type': 'text', 'text': 'list failed: open /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w1/mcp-server/file:/etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e5e40ed65160",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:dlukt/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 74, 'method': 'tools/call', 'params': {'name': 'fs_read', 'arguments': {'path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 74, 'result': {'content': [{'type': 'text', 'text': 'read failed: open /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w1/mcp-server/file:/etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eab0fb1d6517",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:domt301/claude_mcp_weather_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'city': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in ../../../etc/passwd:\\nTemperature: 14°C\\nConditions: Partly cloudy\\nHumidity: 45%'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "89d96faba917",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:domt301/claude_mcp_weather_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'city': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in /etc/passwd:\\nTemperature: 38°C\\nConditions: Partly cloudy\\nHumidity: 44%'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "adb74bb37e90",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:domt301/claude_mcp_weather_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'city': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in whoami; cat /etc/passwd:\\nTemperature: 32°C\\nConditions: Partly cloudy\\nHumidity: 80%'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4195febb9087",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:domt301/claude_mcp_weather_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'city': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in file:///etc/passwd:\\nTemperature: 26°C\\nConditions: Partly cloudy\\nHumidity: 24%'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a171a4a1036b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fellanH/klar-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 183, 'method': 'tools/call', 'params': {'name': 'shell_command', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: /bin/sh: 1: ../../../etc/passwd: not found\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 183}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d057df78acf7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'calendar', 'arguments': {'operation': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in calendar ../../../etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "586746841481",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'calendar', 'arguments': {'operation': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in calendar /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c0a9daa602a5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'calendar', 'arguments': {'operation': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in calendar whoami; cat /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3479371cf871",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'calendar', 'arguments': {'operation': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in calendar file:///etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "01ef03184ed2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 147, 'method': 'tools/call', 'params': {'name': 'files', 'arguments': {'operation': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in files ../../../etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 147}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7804404b5b8d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 149, 'method': 'tools/call', 'params': {'name': 'files', 'arguments': {'operation': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in files /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 149}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "681c50113a0e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 151, 'method': 'tools/call', 'params': {'name': 'files', 'arguments': {'operation': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in files whoami; cat /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 151}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "38b1730bfcb7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 164, 'method': 'tools/call', 'params': {'name': 'files', 'arguments': {'operation': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in files file:///etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 164}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1eee17e62973",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 201, 'method': 'tools/call', 'params': {'name': 'contacts', 'arguments': {'operation': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in contacts ../../../etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 201}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8ddc22ea14d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 203, 'method': 'tools/call', 'params': {'name': 'contacts', 'arguments': {'operation': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in contacts /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 203}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4650caeb4d2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 205, 'method': 'tools/call', 'params': {'name': 'contacts', 'arguments': {'operation': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in contacts whoami; cat /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 205}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ef1f95547eaa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 218, 'method': 'tools/call', 'params': {'name': 'contacts', 'arguments': {'operation': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in contacts file:///etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 218}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "441a112fb487",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 219, 'method': 'tools/call', 'params': {'name': 'todo', 'arguments': {'operation': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in todo ../../../etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 219}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b21d97343e80",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 221, 'method': 'tools/call', 'params': {'name': 'todo', 'arguments': {'operation': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in todo /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 221}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dcac9b255d61",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 223, 'method': 'tools/call', 'params': {'name': 'todo', 'arguments': {'operation': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in todo whoami; cat /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 223}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1ce3320335ed",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 236, 'method': 'tools/call', 'params': {'name': 'todo', 'arguments': {'operation': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in todo file:///etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 236}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a962fb4945c2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 237, 'method': 'tools/call', 'params': {'name': 'groups', 'arguments': {'operation': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in groups ../../../etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 237}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b55c756b8163",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 239, 'method': 'tools/call', 'params': {'name': 'groups', 'arguments': {'operation': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in groups /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 239}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e33781d5f7e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 241, 'method': 'tools/call', 'params': {'name': 'groups', 'arguments': {'operation': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in groups whoami; cat /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 241}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "beff9e565be3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 254, 'method': 'tools/call', 'params': {'name': 'groups', 'arguments': {'operation': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in groups file:///etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 254}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c73f28a922dc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 255, 'method': 'tools/call', 'params': {'name': 'directory', 'arguments': {'operation': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in directory ../../../etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 255}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ffa91a1feae4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 257, 'method': 'tools/call', 'params': {'name': 'directory', 'arguments': {'operation': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in directory /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 257}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b1f2310d5a4c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 259, 'method': 'tools/call', 'params': {'name': 'directory', 'arguments': {'operation': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in directory whoami; cat /etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 259}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bc639c25f857",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hvkshetry/office-365-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 272, 'method': 'tools/call', 'params': {'name': 'directory', 'arguments': {'operation': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error in directory file:///etc/passwd: Authentication required'}]}, 'jsonrpc': '2.0', 'id': 272}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "15bbbc7332f1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:infinityAutomation/mobile-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'create_session', 'arguments': {'deviceName': 'test', 'platformName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Missing dependencies for ../../../etc/passwd:\\n - Appium is not installed. Install with: npm install -g appium'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ce1edbe8ba64",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:infinityAutomation/mobile-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'create_session', 'arguments': {'deviceName': 'test', 'platformName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Missing dependencies for /etc/passwd:\\n - Appium is not installed. Install with: npm install -g appium'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

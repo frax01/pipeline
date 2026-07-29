@@ -1,0 +1,968 @@
+{
+ "batch": 5,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "95bb5abed28d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 66, 'method': 'tools/call', 'params': {'name': 'stop_container', 'arguments': {'container': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 66, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker stop __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "79b7de1a4896",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 67, 'method': 'tools/call', 'params': {'name': 'stop_container', 'arguments': {'container': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 67, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker stop require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "391c718575c6",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 68, 'method': 'tools/call', 'params': {'name': 'stop_container', 'arguments': {'container': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 68, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker stop eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b34a75c88040",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 69, 'method': 'tools/call', 'params': {'name': 'stop_container', 'arguments': {'container': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 69, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing Docker command: Command failed: docker stop ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cdf63df770b7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 70, 'method': 'tools/call', 'params': {'name': 'stop_container', 'arguments': {'container': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 70, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing Docker command: Command failed: docker stop '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6e792c142cfb",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 84, 'method': 'tools/call', 'params': {'name': 'remove_container', 'arguments': {'container': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 84, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker rm __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2198b413b71",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 85, 'method': 'tools/call', 'params': {'name': 'remove_container', 'arguments': {'container': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 85, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker rm require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2d3f0870a958",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 86, 'method': 'tools/call', 'params': {'name': 'remove_container', 'arguments': {'container': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 86, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker rm eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "53cb148a3e9e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 87, 'method': 'tools/call', 'params': {'name': 'remove_container', 'arguments': {'container': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 87, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing Docker command: Command failed: docker rm ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "74e6f42898fc",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 88, 'method': 'tools/call', 'params': {'name': 'remove_container', 'arguments': {'container': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 88, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing Docker command: Command failed: docker rm '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ce9adc96f8d2",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 102, 'method': 'tools/call', 'params': {'name': 'pull_image', 'arguments': {'image': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 102, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker pull __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b2c31a1a2179",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 103, 'method': 'tools/call', 'params': {'name': 'pull_image', 'arguments': {'image': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 103, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker pull require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8a27da83a829",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 104, 'method': 'tools/call', 'params': {'name': 'pull_image', 'arguments': {'image': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 104, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker pull eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7305b6af4a8b",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 105, 'method': 'tools/call', 'params': {'name': 'pull_image', 'arguments': {'image': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 105, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing Docker command: Command failed: docker pull ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d1b1cdf689a5",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 106, 'method': 'tools/call', 'params': {'name': 'pull_image', 'arguments': {'image': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 106, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing Docker command: Command failed: docker pull '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6fa67567e409",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'adb_connect_wifi', 'arguments': {'ip_address': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Command failed: adb connect __import__(\\'os\\').system(\\'id\\'):5555\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "73243e1cbac0",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'adb_connect_wifi', 'arguments': {'ip_address': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Command failed: adb connect require(\\'child_process\\').execSync(\\'id\\').toString():5555\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e5e21c9b6d3a",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'adb_connect_wifi', 'arguments': {'ip_address': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Command failed: adb connect eval(\\'1+1\\'):5555\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9e182e414082",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'adb_connect_wifi', 'arguments': {'ip_address': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Command failed: adb connect ' OR 1=1; --:5555\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "94788cee62a9",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'adb_connect_wifi', 'arguments': {'ip_address': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Command failed: adb connect '; DROP TABLE users; --:5555\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7fc02b92553f",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 66, 'method': 'tools/call', 'params': {'name': 'adb_disconnect', 'arguments': {'ip_address': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 66, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Command failed: adb disconnect __import__(\\'os\\').system(\\'id\\'):5555\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "66f7f381c7af",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 67, 'method': 'tools/call', 'params': {'name': 'adb_disconnect', 'arguments': {'ip_address': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 67, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Command failed: adb disconnect require(\\'child_process\\').execSync(\\'id\\').toString():5555\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6776334e2bdd",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 68, 'method': 'tools/call', 'params': {'name': 'adb_disconnect', 'arguments': {'ip_address': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 68, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Command failed: adb disconnect eval(\\'1+1\\'):5555\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "576c1c4c657c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 69, 'method': 'tools/call', 'params': {'name': 'adb_disconnect', 'arguments': {'ip_address': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 69, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Command failed: adb disconnect ' OR 1=1; --:5555\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "45bc30cccaa7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 70, 'method': 'tools/call', 'params': {'name': 'adb_disconnect', 'arguments': {'ip_address': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 70, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Command failed: adb disconnect '; DROP TABLE users; --:5555\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "39825f03377a",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 84, 'method': 'tools/call', 'params': {'name': 'adb_device_info', 'arguments': {'device_id': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 84, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Command failed: adb -s __import__(\\'os\\').system(\\'id\\') shell getprop ro.build.version.release\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "03322310c518",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 85, 'method': 'tools/call', 'params': {'name': 'adb_device_info', 'arguments': {'device_id': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 85, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Command failed: adb -s require(\\'child_process\\').execSync(\\'id\\').toString() shell getprop ro.build.version.release\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d4378fce9b60",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 86, 'method': 'tools/call', 'params': {'name': 'adb_device_info', 'arguments': {'device_id': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 86, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Error: Command failed: adb -s eval(\\'1+1\\') shell getprop ro.build.version.release\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b2b00b18cb4",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 87, 'method': 'tools/call', 'params': {'name': 'adb_device_info', 'arguments': {'device_id': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 87, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Command failed: adb -s ' OR 1=1; -- shell getprop ro.build.version.release\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "86860bf957c6",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:desamtralized/adb-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 88, 'method': 'tools/call', 'params': {'name': 'adb_device_info', 'arguments': {'device_id': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 88, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Error: Command failed: adb -s '; DROP TABLE users; -- shell getprop ro.build.version.release\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9c33d4769260",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_get', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d83d92d88fdd",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_get', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "508e9661ca57",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_get', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc82dd69909c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_get', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ea508b0564e8",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_get', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "08f3ae8d806b",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_list', 'arguments': {'project': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "92361f3735fb",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_list', 'arguments': {'project': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 31, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b51d3adc182d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_list', 'arguments': {'project': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 32, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "94f0f8ffeec5",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_list', 'arguments': {'project': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 33, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "444399548c30",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_list', 'arguments': {'project': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 34, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "253cf6188f83",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_set', 'arguments': {'value': 'test', 'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "54050b08c40f",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_set', 'arguments': {'value': 'test', 'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "79625feb844e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_set', 'arguments': {'value': 'test', 'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 50, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e85b7d94c34e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_set', 'arguments': {'value': 'test', 'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "84fb0c3655ab",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_set', 'arguments': {'value': 'test', 'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "315f6d2f38f1",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 66, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_delete', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 66, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8e7de386d2a",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 67, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_delete', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 67, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c80a734133f2",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 68, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_delete', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 68, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0003c7b7fa9f",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 69, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_delete', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 69, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b381b0996a5",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 70, 'method': 'tools/call', 'params': {'name': 'doppler_secrets_delete', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 70, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "28c2624ef136",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 102, 'method': 'tools/call', 'params': {'name': 'doppler_projects_create', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 102, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "450b5659257e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 103, 'method': 'tools/call', 'params': {'name': 'doppler_projects_create', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 103, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cf653befdc67",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 104, 'method': 'tools/call', 'params': {'name': 'doppler_projects_create', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 104, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8ef0a4f7f975",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 105, 'method': 'tools/call', 'params': {'name': 'doppler_projects_create', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 105, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "49273c5d4324",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 106, 'method': 'tools/call', 'params': {'name': 'doppler_projects_create', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 106, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "169dd61e761f",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 120, 'method': 'tools/call', 'params': {'name': 'doppler_configs_list', 'arguments': {'project': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 120, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "584ad70f253f",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 121, 'method': 'tools/call', 'params': {'name': 'doppler_configs_list', 'arguments': {'project': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 121, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b4020d94daeb",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 122, 'method': 'tools/call', 'params': {'name': 'doppler_configs_list', 'arguments': {'project': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 122, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa63cf785e98",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 123, 'method': 'tools/call', 'params': {'name': 'doppler_configs_list', 'arguments': {'project': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 123, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "07daf414904d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aledlie/doppler-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 124, 'method': 'tools/call', 'params': {'name': 'doppler_configs_list', 'arguments': {'project': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 124, 'error': {'code': -32603, 'message': 'MCP error -32603: Doppler CLI error: Doppler CLI command failed: /bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

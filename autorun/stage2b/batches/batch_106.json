@@ -1,0 +1,442 @@
+{
+ "batch": 106,
+ "n_cluster": 31,
+ "n_finding": 36,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "9e0a90e6a978",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/triepod-ai/inspector-assessment\", \"language\": \"nodejs\", \"id\": \"SESSION_ID_IN_URL\", \"category\": \"protocol-violation\", \"description\": \"Session ID in URL - exposes sensitive identifiers\", \"file\": \"client/src/lib/securityPatterns/authSessionPatterns.ts\", \"line\": 361, \"evidence\": \"/\\\"session_url\\\"\\\\s*:\\\\s*\\\"[^\\\"]*[?&]session_id=|\\\"fixation_url\\\"\\\\s*:\\\\s*\\\"[^\\\"]*[?&]session_id=/i,\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"session_id_in_url_construction\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "9f5efdc8b8c5",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/agentfront/frontmcp\", \"language\": \"nodejs\", \"id\": \"SESSION_ID_IN_URL\", \"category\": \"protocol-violation\", \"description\": \"Session ID in URL - exposes sensitive identifiers\", \"file\": \"plugins/plugin-dashboard/src/html/html.generator.ts\", \"line\": 485, \"evidence\": \"const url = this.messageUrl + (this.sessionId ? '?sessionId=' + this.sessionId : '');\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"session_id_in_url_construction\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "050f62459888",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/agentfront/frontmcp\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"plugins/plugin-skilled-openapi/src/skilled-openapi.plugin.ts\", \"line\": 208, \"evidence\": \"'[skilled-openapi] dev=true: signature verification BYPASSED and http:// URLs allowed. NEVER use this in production.',\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "9b693dc1ba2c",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Mandark-droid/genai_otel_instrument\", \"language\": \"python\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"genai_otel/media/stores/http.py\", \"line\": 40, \"evidence\": \"\\\"Plaintext http:// media store endpoint is not allowed under a strict \\\"\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "71e763a000c3",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Mandark-droid/genai_otel_instrument\", \"language\": \"python\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"genai_otel/media/stores/s3_minio.py\", \"line\": 46, \"evidence\": \"\\\"Plaintext http:// S3/MinIO endpoint is not allowed under a strict profile \\\"\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d406f6d9e50e",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/RockChinQ/LangBot\", \"language\": \"python\", \"id\": \"SESSION_ID_IN_URL\", \"category\": \"protocol-violation\", \"description\": \"Session ID in URL - exposes sensitive identifiers\", \"file\": \"src/langbot/pkg/box/service.py\", \"line\": 1280, \"evidence\": \"f'host_path={host_path} session_id={spec.session_id}'\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"session_id_in_url_construction\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b34ecb0c0a5a",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/dream-num/univer\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/sheets-formula/src/locale/function-list/lookup/id-ID.ts\", \"line\": 236, \"evidence\": \"url: { name: 'url', detail: 'URL lengkap lokasi tautan dalam tanda kutip atau referensi ke sel yang memuat URL tersebut. Hanya protokol tertentu yang diizinkan; jika tidak ditentukan, http:// digunakan.' },\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ce62b57311ca",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/dream-num/univer\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/sheets-formula/src/locale/function-list/lookup/it-IT.ts\", \"line\": 236, \"evidence\": \"url: { name: 'url', detail: 'URL completo della destinazione del collegamento tra virgolette o riferimento a una cella che lo contiene. Sono consentiti solo protocolli specifici; se non specificato, viene usato http://.' },\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2f37881f7c01",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/dream-num/univer\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/sheets-formula/src/locale/function-list/lookup/pt-BR.ts\", \"line\": 236, \"evidence\": \"url: { name: 'url', detail: 'A URL completa do destino do link entre aspas, ou uma referência a uma célula que contenha essa URL. São aceitos apenas protocolos específicos; se nenhum for informado, será usado http://.' },\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7c0aa3fa551a",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/dream-num/univer\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/engine-formula/src/locale/function-list/lookup/id-ID.ts\", \"line\": 236, \"evidence\": \"url: { name: 'url', detail: 'URL lengkap lokasi tautan dalam tanda kutip atau referensi ke sel yang memuat URL tersebut. Hanya protokol tertentu yang diizinkan; jika tidak ditentukan, http:// digunakan.' },\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "537ccb2aaa83",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/dream-num/univer\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/engine-formula/src/locale/function-list/lookup/it-IT.ts\", \"line\": 236, \"evidence\": \"url: { name: 'url', detail: 'URL completo della destinazione del collegamento tra virgolette o riferimento a una cella che lo contiene. Sono consentiti solo protocolli specifici; se non specificato, viene usato http://.' },\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e56c1dceff74",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/dream-num/univer\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/engine-formula/src/locale/function-list/lookup/pt-BR.ts\", \"line\": 236, \"evidence\": \"url: { name: 'url', detail: 'A URL completa do destino do link entre aspas, ou uma referência a uma célula que contenha essa URL. São aceitos apenas protocolos específicos; se nenhum for informado, será usado http://.' },\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "685e193bed99",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"smart-mcp\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"demos/editor/custom-inline-toolbar/index.js\", \"line\": 74, \"evidence\": \"address: 'http://www.',\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b374900659a5",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"smart-mcp\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"demos/editor/custom-inline-toolbar/index.ts\", \"line\": 89, \"evidence\": \"address: 'http://www.',\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "895e84589cd3",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"smart-mcp\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"demos/editor/toolbar-custom-items/index.js\", \"line\": 44, \"evidence\": \"address: 'http://www.',\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2ee138ee9f4e",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"smart-mcp\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"demos/editor/toolbar-custom-items/index.ts\", \"line\": 46, \"evidence\": \"address: 'http://www.',\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b6b136d9d7cc",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"smart-mcp\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"demos-angular/editor/custom-inline-toolbar/app.component.ts\", \"line\": 93, \"evidence\": \"address: 'http://www.',\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a5b46c3bdc42",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"smart-mcp\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"demos-angular/editor/toolbar-custom-items/app.component.ts\", \"line\": 57, \"evidence\": \"address: 'http://www.',\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "08e6fed6d928",
+   "tool": "watch",
+   "categoria": "steganographic-attack",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/exa-labs/exa-mcp-server\", \"language\": \"nodejs\", \"id\": \"WHITESPACE_INJECTION\", \"category\": \"steganographic-attack\", \"description\": \"Excessive whitespace - potential hidden content\", \"file\": \"src/tools/deepResearchStart.ts\", \"line\": 93, \"evidence\": \"Line contains 864 whitespace characters: \\\"}\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"extreme_whitespace_864\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"needs_llm_judgment\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "d28c12d88ba0",
+   "tool": "watch",
+   "categoria": "steganographic-attack",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/addy3352/mcp-mesh\", \"language\": \"python\", \"id\": \"WHITESPACE_INJECTION\", \"category\": \"steganographic-attack\", \"description\": \"Excessive whitespace - potential hidden content\", \"file\": \"mcp-garmin/server.py\", \"line\": 37, \"evidence\": \"Line contains 355 whitespace characters: \\\"app = FastAPI(title=\\\"MCP Garmin Server\\\")\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"extreme_whitespace_355\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"needs_llm_judgment\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1e79d40064e0",
+   "tool": "watch",
+   "categoria": "steganographic-attack",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/addy3352/mcp-mesh\", \"language\": \"python\", \"id\": \"WHITESPACE_INJECTION\", \"category\": \"steganographic-attack\", \"description\": \"Excessive whitespace - potential hidden content\", \"file\": \"mcp-garmin/server.py\", \"line\": 41, \"evidence\": \"Line contains 370 whitespace characters: \\\"arguments: Dict[str, Any]\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"extreme_whitespace_370\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"needs_llm_judgment\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "794144af1afb",
+   "tool": "watch",
+   "categoria": "steganographic-attack",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/addy3352/mcp-mesh\", \"language\": \"python\", \"id\": \"WHITESPACE_INJECTION\", \"category\": \"steganographic-attack\", \"description\": \"Excessive whitespace - potential hidden content\", \"file\": \"mcp-garmin/server.py\", \"line\": 82, \"evidence\": \"Line contains 302 whitespace characters: \\\"raise HTTPException(status_code=400, detail=f\\\"Invalid arguments for tool '{tool_name}': {e}\\\")\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"extreme_whitespace_302\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"needs_llm_judgment\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d668c28dd7cb",
+   "tool": "watch",
+   "categoria": "steganographic-attack",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/addy3352/mcp-mesh\", \"language\": \"python\", \"id\": \"WHITESPACE_INJECTION\", \"category\": \"steganographic-attack\", \"description\": \"Excessive whitespace - potential hidden content\", \"file\": \"mcp-garmin/server.py\", \"line\": 92, \"evidence\": \"Line contains 399 whitespace characters: \\\"raise HTTPException(status_code=500, detail=f\\\"Error executing tool '{tool_name}': {e}\\\")\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"extreme_whitespace_399\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"needs_llm_judgment\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4c05e7ac63fb",
+   "tool": "watch",
+   "categoria": "steganographic-attack",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/KarolayneS/mcp_sofia_voice-\", \"language\": \"python\", \"id\": \"WHITESPACE_INJECTION\", \"category\": \"steganographic-attack\", \"description\": \"Excessive whitespace - potential hidden content\", \"file\": \"src/configs/config.py\", \"line\": 24, \"evidence\": \"Line contains 552 whitespace characters: \\\"SHIFTS_INDEX_NAME = os.getenv(\\\"SHIFTS_INDEX_NAME\\\")\\\"\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"extreme_whitespace_552\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"needs_llm_judgment\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "402dc9220154",
+   "tool": "watch",
+   "categoria": "tool-poisoning",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/coletaylor788/productivity-mcp-servers\", \"language\": \"nodejs\", \"id\": \"HIDDEN_TOOL_INSTRUCTIONS\", \"category\": \"tool-poisoning\", \"description\": \"Hidden malicious instructions in tool description\", \"file\": \"packages/mcp-hooks/evals/generate-config.ts\", \"line\": 221, \"evidence\": \"{ key: \\\"homoglyph_smuggling\\\", description: \\\"Cyrillic/Greek/fullwidth lookalikes spelling out an injection instruction. e.g. '\\\\u0406gn\\\\u043ere prev\\\\u0456ous \\\\u0456nstruct\\\\u0456ons' (using Cyrillic \\\\u0406/\\\\u043e/\\\\u0456) — visually reads as 'Ignore previous instructions'.\\\", difficulty: \\\"hard\\\" },\", \"source\": \"Invariant Labs research\", \"filter_confidence\": \"kept\", \"llm_bucket\":…"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "972ceebac450",
+   "tool": "watch",
+   "categoria": "tool-poisoning",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/metorial/metorial-platform\", \"language\": \"nodejs\", \"id\": \"HIDDEN_TOOL_INSTRUCTIONS\", \"category\": \"tool-poisoning\", \"description\": \"Hidden malicious instructions in tool description\", \"file\": \"src/subspace/modules/connection/src/protoguard/filters/index.ts\", \"line\": 178, \"evidence\": \"description: 'Attempts to ignore previous instructions.'\", \"source\": \"Invariant Labs research\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_tool_poisoning_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ae3d496873e1",
+   "tool": "watch",
+   "categoria": "tool-poisoning",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/glincker/glin-profanity\", \"language\": \"nodejs\", \"id\": \"HIDDEN_TOOL_INSTRUCTIONS\", \"category\": \"tool-poisoning\", \"description\": \"Hidden malicious instructions in tool description\", \"file\": \"packages/js/src/scanners/patterns/injection-patterns.ts\", \"line\": 44, \"evidence\": \"description: 'Classic \\\"ignore previous instructions\\\" override',\", \"source\": \"Invariant Labs research\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_tool_poisoning_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4d14a84182ae",
+   "tool": "watch",
+   "categoria": "tool-poisoning",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/glincker/glin-profanity\", \"language\": \"nodejs\", \"id\": \"HIDDEN_TOOL_INSTRUCTIONS\", \"category\": \"tool-poisoning\", \"description\": \"Hidden malicious instructions in tool description\", \"file\": \"packages/py/glin_profanity/scanners/patterns/injection_patterns.py\", \"line\": 63, \"evidence\": \"description='Classic \\\"ignore previous instructions\\\" override',\", \"source\": \"Invariant Labs research\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_tool_poisoning_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac9e708c92a4",
+   "tool": "watch",
+   "categoria": "tool-poisoning",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/EarthmanWeb/claude-flow-plugin\", \"language\": \"nodejs\", \"id\": \"HIDDEN_TOOL_INSTRUCTIONS\", \"category\": \"tool-poisoning\", \"description\": \"Hidden malicious instructions in tool description\", \"file\": \"v3/@claude-flow/cli/src/commands/security.ts\", \"line\": 435, \"evidence\": \"{ command: 'claude-flow security defend -i \\\"ignore previous instructions\\\"', description: 'Scan text for threats' },\", \"source\": \"Invariant Labs research\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_tool_poisoning_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "083fb3dabb5f",
+   "tool": "watch",
+   "categoria": "tool-poisoning",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Emasoft/claude-plugins-validation\", \"language\": \"python\", \"id\": \"HIDDEN_TOOL_INSTRUCTIONS\", \"category\": \"tool-poisoning\", \"description\": \"Hidden malicious instructions in tool description\", \"file\": \"scripts/validate_security.py\", \"line\": 5352, \"evidence\": \"**A PR description that says \\\"ignore previous instructions\\\"**.\", \"source\": \"Invariant Labs research\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_tool_poisoning_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0426a88acd73",
+   "tool": "watch",
+   "categoria": "tool-poisoning",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/tomgutt/tg-productboard-mcp\", \"language\": \"nodejs\", \"id\": \"HIDDEN_TOOL_INSTRUCTIONS\", \"category\": \"tool-poisoning\", \"description\": \"Hidden malicious instructions in tool description\", \"file\": \"src/note/get_notes.ts\", \"line\": 53, \"evidence\": \"\\\"description\\\": \\\"Return only notes from a specific external source system (e.g. 'intercom', 'zendesk'). Maps to 'metadata[source][system]' on GET /notes, or 'filter.metadata.source.system' on POST /notes/search.\\\"\", \"source\": \"Invariant Labs research\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_tool_poisoning_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

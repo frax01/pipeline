@@ -1,0 +1,305 @@
+{
+ "batch": 76,
+ "verdetti": [
+  {
+   "id": "6899de3af96d",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "4d63a73207fa",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "b691868f19fc",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "fa058f54c55f",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "97b589acfd1d",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "4abb6cf7c05e",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "5bb7e73a39f8",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "fda7418f6a14",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "17defa6c953a",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "528e8f4e30d7",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "8d2b0465681b",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "b9a1f3627fd1",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "d372f4909e67",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "3e5f8bf0a003",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "806eebf6af0b",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "b08f8e907bf7",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "e76b10d7a197",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "877b45c72622",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "ee15092669e2",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "3940b63ec327",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "9c57de1f1842",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "ebda7c55c3f6",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "1019cddf280e",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "28bb8aab2de9",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "1833ba8755da",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "73b0128d520a",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "5e8a23402e1a",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "2a347c2515e9",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "ff4b34b6171a",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "6ec17b481d23",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "a564291bed49",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "e734dd109c6e",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "983fda9a7e4b",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "f90e08fe2d68",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "2788c7c3709d",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "1040444428ae",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "8431022eb5f4",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "69c5aed953b2",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "c2dfa4e3ad6a",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "42788edf79c4",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "d3a07ef92685",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "0b54e306e465",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "21cc58297e7b",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "591110d603b1",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "3d4097f36b37",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "d800483b0975",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "a6ed60a3fad8",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "752c44d18a05",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "f639a6c9eac7",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "dc544a55d8c9",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "4fdaf0ed6864",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "a171fed77003",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "79957f3a5129",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "cc2b08754112",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "ed5f25af01ee",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "3e4c90f4a661",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "b25d2c4136f3",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "14e9fd58e4fe",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "8c77b914eed2",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  },
+  {
+   "id": "152ebd8c1aba",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico ('Configure PRIVATE_KEY' / 'Free tier exhausted'), solo nome del parametro, nessun valore reale divulgato"
+  }
+ ]
+}

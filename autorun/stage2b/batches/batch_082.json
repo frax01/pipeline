@@ -1,0 +1,848 @@
+{
+ "batch": 82,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "f6ba7a3bcafb",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:debugg-ai/debugg-ai-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"check_app_in_browser\", \"tool_description\": \"Give an AI agent eyes on a live website or app. The agent browses it, interacts with it, and tells you whether a given task or check passed. Works on localhost or any URL. Use for visual QA, flow validation, regression checks, or anything that needs a real browser to verify.\\n\\nLOCALHOST SUPPORT: Pass any localhost URL (e.g. http://localhost:3000) and it Just Works. A secure tunnel is automatically created so the remote browser can reach your local dev server — no manual ngrok setup, no port forwarding, no config.\\n\\nSCOPE PER CALL: Keep each call to ONE focused check — a single page or a short interaction on a single screen (login, …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2b1ad96be0eb",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:crawlbase/crawlbase-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"crawl\", \"tool_description\": \"Crawl a URL and return HTML content. Pass store=true to push the result to Crawlbase Cloud Storage instead of returning the body — the response will then contain only the RID and metadata, which can later be retrieved via storage_get.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is the analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:**\\nNO\\nThe tool description does not contain any hidden instructions or parameters that are not explicitly mentioned. The described functionality is straightforward and transparent, providing users with…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "42653db26da1",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:quanticsoul4772/analytical-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"perspective_shifter\", \"tool_description\": \"Generate alternative viewpoints on a problem — by stakeholder or discipline — grounded in web research via Exa. Returns a markdown report with key facts and actionable insights per perspective. Requires EXA_API_KEY and ENABLE_RESEARCH_INTEGRATION=true and makes live network calls; it fails without them. To cross-check factual claims instead of generating viewpoints, use verify_research.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's the analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\nYES\\nThe description…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c21234a4bbd7",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:testingbot/mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"tb_openBrowser\", \"tool_description\": \"Start a remote browser session on TestingBot via WebDriver. Handles BOTH desktop browsers (Chrome/Edge/Safari/Firefox on Win/macOS/Linux) AND mobile browsers (Chrome on Android, Safari on iOS). For a mobile browser task, set `deviceName` and `platformVersion` — the session is still WebDriver/chromedriver-backed, so tb_navigate / tb_snapshot / tb_screenshot / tb_click work directly with no native-context juggling. By default a mobile session runs on an EMULATOR (Android) / SIMULATOR (iOS); set `realDevice: true` to run on a physical device instead — ALWAYS do this when the user asks for a 'real device', 'physical device', or 'real hardware'…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dfd1c580a98e",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:houtini-ai/lm",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"code_task_files\", \"tool_description\": \"Like code_task, but the local LLM reads files directly from disk — source never passes through the MCP client's context window. Use when reviewing multiple files or a single large file.\\n\\nHow it works:\\n• Provide absolute paths. Relative paths are rejected.\\n• Files are read in parallel (Promise.allSettled) — one unreadable file does not sink the call.\\n• Files are concatenated with `=== filename ===` headers and sent to the same code-review pipeline as code_task.\\n• Read failures are surfaced inline with the reason so the LLM can still reason about the rest.\\n• Pre-flight prefill estimate: if measured per-model data shows the input woul…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "48130a5d52d1",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:GuoChen-thlg/iconfont-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"iconfont_list_projects\", \"tool_description\": \"List all projects in the user's Iconfont account.\\n\\nThis tool requires authentication via Iconfont cookie. It returns all projects that the user has created or has access to.\\n\\nArgs:\\n - cookie (string, optional): The EGG_SESS_ICONFONT cookie from iconfont.cn. Can be used instead of setting environment variable.\\n - response_format ('markdown' | 'json', optional): Output format (default: markdown)\\n\\nReturns:\\n For JSON format: { projects: [{ id, name, icon_count, updated_at }] }\\n For markdown: Human-readable list of projects\\n\\nNote: Requires authentication. Can provide cookie via args, ICONFONT_COOKIE environment variable, or …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4d19f5548e61",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:GuoChen-thlg/iconfont-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"iconfont_get_project_detail\", \"tool_description\": \"Get detailed information about a specific Iconfont project.\\n\\nThis tool retrieves project details including name, icon count, font family, etc.\\nResults are cached for 5 minutes based on the project's update time to reduce API calls.\\n\\nArgs:\\n - cookie (string, optional): The EGG_SESS_ICONFONT cookie from iconfont.cn. Can be used instead of setting environment variable.\\n - pid (string, required): Project ID (can be obtained from iconfont_list_projects)\\n - response_format ('markdown' | 'json', optional): Output format (default: markdown)\\n\\nReturns:\\n Project details including id, name, icon_count, font_family, created_at, …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "21d05ce55925",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:DAWNCR0W/affine-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"create_doc_from_markdown\", \"tool_description\": \"Create a new AFFiNE document and import markdown content. Use parentDocId to automatically embed the new doc into a parent, making it visible in the sidebar instead of being an orphan.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users: NO**\\n\\nThe tool description does not mention any hidden instructions or inputs that are not visible to users. The functionality described is straightforward and transparent, making it unlikely to contain hidden instructions.\\n\\n**Ins…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1e336a93927d",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:arinspunk/claude-talk-to-figma-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"rotate_node\", \"tool_description\": \"Rotate a node in Figma by a specified angle in degrees (clockwise). Use relative=true to add to the current rotation instead of setting an absolute value. Note: locked nodes can still be rotated — the Plugin API bypasses the UI lock by design.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users: NO**\\nThere are no hidden instructions or inputs that would be unknown to users in this tool description.\\n\\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "95c479ba2df1",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:misterboe/strapi-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"strapi_list_servers\", \"tool_description\": \"List all available Strapi servers from the configuration.\\n\\n## Security Policy\\nSTRICT_USER_AUTHORIZATION_REQUIRED: No write operations without explicit user authorization.\\nProtected operations: POST (Create), PUT (Update), DELETE (Delete), Media Upload.\\nAll write operations require userAuthorized: true parameter.\\n\\n## Strapi Version Support\\nSupports both Strapi v4 and v5 with automatic version detection.\\n\\n### Version Differences\\n- v4: Numeric IDs, nested attributes under 'attributes', data wrapper in responses\\n- v5: Document-based IDs (documentId), flat structure, direct attribute access\\n\\n### Common Errors\\n- 404: Using nu…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2ecd2c271e8a",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:misterboe/strapi-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"strapi_get_content_types\", \"tool_description\": \"Get all content types from Strapi. Returns the complete schema of all content types.\\n\\n## Initialization Steps (ALWAYS DO FIRST)\\n1. Get schema and analyze with this tool\\n2. Capture Content Types and structures\\n3. Remember endpoint names (pluralName/singularName)\\n4. Document fields and types\\n5. Identify relations\\n6. Consider required fields and validations\\n\\n## Schema Conventions\\n- singularName: Used for single item queries (e.g., \\\"article\\\")\\n- pluralName: Used for collection endpoints (e.g., \\\"articles\\\")\\n- collectionName: Database collection name\\n\\n## Endpoint Patterns\\n- Collection: GET /api/{pluralName}\\n- Single:…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "930c03404d54",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:jordanburke/reddit-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"get_trending_subreddits\", \"tool_description\": \"Get the subreddits Reddit is currently featuring as trending/popular. Read-only, no parameters; works anonymously. Returns a list of subreddit names that changes through the day (cached briefly server-side). To find subreddits by keyword instead of by trend, use search_reddit with type='sr'.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is the analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:**\\nNO\\nThere are no hidden instructions or flags mentioned in this tool description that would affect the AI model's behavior …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8b98690d021",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:blindpaylabs/blindpay-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"PostV1InstancesCustomersRfi\", \"tool_description\": \"Submit a flat response object for the open RFI. On success flips kyc_status back to verifying. Returns `{ success: false, reason }` when no pending RFI exists, callers should refetch the RFI state instead of retrying.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users**: NO\\nThere are no hidden instructions or parameters mentioned in this tool description that would affect the AI model's behavior without being explicitly stated.\\n\\n**Instructions to access sensitiv…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3755e265d623",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:wwiens/trakt_mcpserver",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"fetch_movie_videos\", \"tool_description\": \"Get videos (trailers, teasers, etc.) for a movie from Trakt. Set embed_markdown=False to return simple links instead of YouTube iframes.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users: NO**\\nThere are no hidden instructions or parameters in this tool description that would affect the AI model's behavior.\\n\\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.): NO**\\nThe tool description does not provide any instructions for accessing sensiti…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5374edd30742",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:guycochran/atem-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"atem_set_supersource_box\", \"tool_description\": \"Configure a single Super Source box. Set its source, position, size, and crop. All properties except box number are optional — only specified values are changed.\\n\\nArgs:\\n - box (number): Box number (0-3, where 0=Box 1)\\n - enabled (boolean, optional): Show or hide this box\\n - source (number, optional): Input source number (1=Input 1, 2=Input 2, 3010=Media Player 1, etc.)\\n - x (number, optional): Horizontal position (-4800 to 4800, 0=center)\\n - y (number, optional): Vertical position (-4800 to 4800, 0=center)\\n - size (number, optional): Box size (70 to 1000, where 1000=full size, 500=half)\\n - cropped (boolean, optional): En…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "30d3a8ad7727",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:redf0x1/camofox-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"camofox_evaluate_js\", \"tool_description\": \"Execute JavaScript in the browser page context. Runs in isolated scope (invisible to page scripts — safe for anti-detection). Use for: extracting data not visible in accessibility snapshot, checking element properties, reading computed styles, manipulating DOM elements. Requires CAMOFOX_API_KEY to be configured.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"not visible\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\nYES\\n\\nThe description mentions running JavaScript in an isolated scope, which could potentially…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "314451ea584f",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:angiejones/mcp-selenium",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"execute_script\", \"tool_description\": \"executes JavaScript in the browser and returns the result. Use for advanced interactions not covered by other tools (e.g., drag and drop, scrolling, reading computed styles, manipulating the DOM directly). Also useful for batch-reading multiple element values/states in a single call instead of multiple get_element_attribute calls.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\nYES\\n\\nThe tool description mentions \\\"advanced interactions not covered by other …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b65beee1032e",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:streetquant/jules-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"create_session\", \"tool_description\": \"Creates a new Jules session or automated run to perform code tasks. If repo and branch are omitted, creates a \\\"repoless\\\" session where the user provides their own context in the prompt and Jules will perform code tasks based on that context instead of a GitHub repo.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users**: NO\\nThere are no hidden instructions or prompts that would be executed without user knowledge or consent.\\n\\n**2. Instructions to access sensitive files (l…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e5cd93ce3627",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:inventra/notebooklm-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"list_sessions\", \"tool_description\": \"List all active sessions with stats (age, message count, last activity). Use to continue the most relevant session instead of starting from scratch.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\n\\nNO. There are no hidden instructions or commands that would modify the behavior of the AI model without user knowledge or consent.\\n\\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\\n\\nNO. The description does not mention ac…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7732c4fcd22d",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:Laz1mov/mcp-inscription",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"show_ordinals\", \"tool_description\": \"## 🔹 Bitcoin Ordinals Expert Assistant \\n\\n### **🚀 MANDATORY TWO-RESPONSE PROCESS FOR IMAGES** \\nI strictly follow a **two-step structured workflow** for processing Bitcoin Ordinal inscriptions. **STRICT ADHERENCE IS REQUIRED.** \\n\\n---\\n\\n## 📌 **Required Tools & Workflow** \\n\\n### **🔍 Tools Used:** \\n1️⃣ **`show_ordinals` (MANDATORY FIRST STEP)** \\n - Fetches **inscription data**. \\n - If the inscription is an **image**, it **MUST**: \\n - **Save it locally** and return the **`local_file_path`**.\\n - *(Code currently does NOT return a separate displayable source, only the local path)*\\n\\n2️⃣ **`image_processor` / `vision` (OCR & Visual Anal…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "83168bcf62ed",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:otdavies/Rapid",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"initialize_project_context\", \"tool_description\": \"\\nInitializes project context by reading/creating plan.md.\\n\\nThis tool is the critical first step for interacting with a project. It establishes a shared understanding\\nof the project's goals and status by reading the `plan.md` file.\\n\\n**You must adhere to the following protocol:**\\n1. **Always call this tool first** before taking any other action in a project.\\n2. **Carefully read the entire output**, especially the contents of `plan.md`.\\n3. **Preserve and update `plan.md`:** As you complete tasks, update this file to reflect the current\\n project status. It is the single source of truth for project planning.\\n\\nThe tool al…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "17cad0eea442",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:blizzy78/mcp-task-manager",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"update_task\", \"tool_description\": \"Updates the status and/or other properties of one or more tasks.\\nMust use this tool before executing tasks, and when finished executing tasks.\\nShould always include lessons learned to inform future tasks.\\nImportant: Always update multiple tasks in a single call if dependencies allow it.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"always include\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users**: NO\\nNo specific instructions are provided that would hide AI model behavior from users. The description only provides general guidelines…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1ccdcbb1dae0",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:angrysky56/mcp-creator-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"get_ai_guidance\", \"tool_description\": \"\\n Get structured guidance for MCP server development.\\n\\n IMPORTANT NOTES:\\n - AI sampling (ctx.sample) is NOT currently supported in Claude Desktop\\n - Use modern typing: dict, list, str | None instead of Dict, List, Optional\\n - Always implement proper process cleanup and signal handling\\n - Follow MCP SDK patterns for tools, resources, and prompts\\n\\n This tool provides structured, deterministic guidance instead of AI-generated content.\\n For dynamic AI assistance, use Claude Desktop's built-in capabilities directly.\\n\\n Args:\\n topic: Topic to get guidance on (best_practices, security, performance, typing, etc.)\\n server_type: Type o…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f53d5fc5de01",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:sammcj/mcp-data-extractor",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"extract_data\", \"tool_description\": \"Extract data content (e.g. i18n translations) from source code to a JSON file. IMPORTANT: When encountering files with data such as i18n content embedded in code, use this tool directly instead of reading the file content first. This tool will programmatically extract all translations into a structured JSON file, preserving nested objects, arrays, template variables, and formatting. This helps keep translations as configuration and prevents filling up the AI context window with translation content. By default, the source file will be replaced with \\\"MIGRATED TO <target absolute path>\\\" and a warning message after successful extraction, makin…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "022c199d28a3",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:k-chrispens/tiling-trees-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"set_active_tree\", \"tool_description\": \"Set the active tree context. Once set, tools with optional treeId default to this tree, and path-based tile lookup is enabled (e.g., 'Energy Source/Chemical' instead of UUIDs). Pass empty string to clear.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:**\\nNO\\nNo hidden instructions are mentioned in this tool description. The protocol seems straightforward and user-visible.\\n\\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**\\nNO\\nThere are no men…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d0dfe46c5a70",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:hetpatel-11/Adobe_Premiere_Pro_MCP",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"build_brand_spot_from_mogrt_and_assets\", \"tool_description\": \"Builds a branded ad assembly from real media assets, supports optional MOGRT overlay, and allows explicit clipPlan control. Default polish is optional so creative direction can come from LLM planning instead of hardcoded passes.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"HIGH\", \"llm_analysis\": \"Here is my analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\nYES\\nThe description mentions \\\"LLM planning\\\", which could refer to Large Language Model-based planning. This might imply hidden instructions or biases introduced …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "990342e2f4b2",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:AlexandreProenca/nuvemshop-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"update_billing_plan\", \"tool_description\": \"\\n Update an existing billing plan.\\n \\n CRITICAL WARNING: Updating a plan will modify:\\n - ALL subscriptions using this plan\\n - ALL unpaid or pending charges for this plan\\n \\n Args:\\n plan_id: Plan ID or your external_reference\\n code: New currency code\\n external_reference: New external reference ID\\n description: New description\\n \\n Returns:\\n Updated plan details\\n \\n Important:\\n Use this carefully as it affects all active subscriptions.\\n Consider creating a new plan instead of updating existing ones\\n when making major pricing changes.\\n \\n Errors:\\n - 404: Business Unit, Service, or Plan not found\\n \", \"category\": \"hidden-i…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "525b0c97bdf7",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:shahlaukik/money-manager-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"transfer_update\", \"tool_description\": \"Modifies an existing transfer. WARNING: The server creates a new transfer with a NEW ID instead of updating in-place. The old ID will no longer exist after update. Use transaction_list to get the new ID if needed.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users:**\\nNO\\nThis tool description is straightforward and doesn't contain any hidden instructions or ambiguous language that might be interpreted differently by an AI model.\\n\\n**2. Instructions to access sensitive fil…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b61aaf0352ad",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:roomi-fields/notebooklm-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"session_list\", \"tool_description\": \"List all active sessions with stats (age, message count, last activity). Use to continue the most relevant session instead of starting from scratch.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is the analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:**\\nYES\\nThis tool description mentions \\\"stats\\\" without specifying what kind of stats, which could imply hidden instructions or parameters that are not explicitly mentioned. This lack of transparency may allow an attacker to inject malicious inputs that are not visible to the use…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1dc4db237883",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:Mnehmos/mnehmos.ooda.mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"terminate_process\", \"tool_description\": \"Terminate a process session. Use force=true for SIGKILL instead of graceful SIGTERM.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is the analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:**\\nNO\\nThere are no hidden instructions in this tool description that could affect the AI model's behavior or be concealed from users.\\n\\n**Instructions to access sensitive files (like SSH keys, .env files, etc.):**\\nNO\\nThe tool description does not mention accessing any specific files, including sensitive ones like SSH keys or environme…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d294f78e80c5",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:circuitry-dev/circuitry-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"workflow.resolveFlow\", \"tool_description\": \"Resolve which flow/nodes the user is referring to based on their message. Uses heuristics to match: selected node content, node names, code/text content keywords. Call this instead of fetching entire workflow for context.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's the analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\nYES\\nThe description mentions using \\\"heuristics\\\" to match user input without specifying what those heuristics are. This could lead to hidden instructions or biases in the AI model that …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "85fbadb47c53",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:circuitry-dev/circuitry-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"sheet.getRows\", \"tool_description\": \"Get a range of rows from a Sheet (0-indexed, inclusive). Use for large sheets instead of getData.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\nNO\\nNo hidden instructions or implicit behavior that might compromise the security of the tool or its outputs.\\n\\n**Category 2: Instructions to access sensitive files (like SSH keys, .env files, etc.)**\\nNO\\nThe description does not mention accessing or manipulating sensitive files, which reduces the risk of unauthor…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c158c6a6b289",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:Dynamic-Mockups/mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"get_mockup_creation_status\", \"tool_description\": \"Poll the status of a MockAnything AI mockup creation task.\\n\\nAPI: GET /mock-anything/status/{taskId}\\n\\nWHEN TO USE: After calling create_mockup, use this to track progress until the mockup is ready for rendering.\\n\\nPOLLING STRATEGY:\\n- Poll every ~2 seconds (recommended)\\n- prompt flow: AI generations typically finish in 10-30 seconds\\n- image_url flow: usually ready on the very first status call\\n\\nSTATES:\\n- PROGRESS / PENDING: Task is still running. image_url and mockup are null. Poll again shortly.\\n- SUCCESS: Task complete. image_url is populated and mockup contains everything needed for create_render.\\n- FAILURE: Task …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3a4d69ae7ac5",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:PleasePrompto/notebooklm-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"select_notebook\", \"tool_description\": \"Mark a notebook as the active default. After this, `ask_question`, `add_source`, and the audio tools resolve to that notebook when the caller omits `notebook_id` / `notebook_url`.\\n\\nWhen to call:\\n • The user explicitly switches context (e.g. \\\"Let's work on React now\\\")\\n • Task obviously needs a different notebook than the current one — announce the switch (\\\"Switching to the React notebook…\\\") before calling.\\n • If the right notebook is ambiguous, ask the user first instead of guessing.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3496424671ed",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:poolside-ventures/datamerge-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"contact_search\", \"tool_description\": \"POST /v1/contact/search. Search for contacts at specified companies. Returns a job_id (async, 202). enrich_fields required (at least one of contact.emails or contact.phones). Use company_list (slug) instead of domains to search a saved list.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users**: NO\\nNo hidden instructions are present in this tool description.\\n\\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\\nThere is no mention of accessi…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ef0e052e0dc3",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:paralov/roblox-studio-opencode-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"roblox_toolbox\", \"tool_description\": \"Search the Roblox Creator Store, insert models, and sanitize them.\\n\\nActions:\\n- \\\"search\\\": Search for free models/decals/audio. Returns AssetId, Name, Creator, HasScripts, IsEndorsed. Params: query (required), category (\\\"FreeModels\\\"|\\\"FreeDecals\\\"|\\\"FreeAudio\\\"), maxResults (default 20). Prefer assets where HasScripts=false or IsEndorsed=true.\\n- \\\"insert\\\": Insert an asset by ID. Params: assetId (required), parent (path), position {X,Y,Z}. CRITICAL: Toolbox models often contain far more than their name implies — a \\\"gas station\\\" may bundle pumps, signs, shelving, vehicles, lighting as descendants. Always inspect the returned hierarc…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9ed481b07150",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:danielsimonjr/memory-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"set_memory_visibility\", \"tool_description\": \"Set the visibility of a memory entity for multi-agent access control. Auto-promotes plain entities to AgentEntity (stamps agentId/memoryType/etc.) instead of failing silently. Supports η.5.5.b extensions: allowedRoles (role gate), visibleFrom/visibleUntil (time-window gate).\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:**\\nYES\\nThis tool description suggests that it can \\\"auto-promote\\\" plain entities to AgentEntity, which implies that there may be hidden instructi…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ec5a31a7f4d",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:rad-security/mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"radql_query\", \"tool_description\": \"Execute RadQL queries for security investigations. Supports: list (filter/search), get_by_id (single item), stats (aggregations).\\n\\nWORKFLOW: radql_list_data_types -> radql_get_type_metadata -> radql_query\\n\\nCOMMON FIELDS BY DATA TYPE:\\ncontainers: name, image_name, image_repo, owner_kind, cluster_id, created_at\\n Example: image_name:*nginx* AND owner_kind:Pod\\n\\nfinding_groups: type, source_kind, source_name, rule_title, severity, event_timestamp\\n Types: k8s_misconfiguration, k8s_audit_logs_anomaly\\n Example: type:k8s_misconfiguration AND severity:critical\\n\\ninbox_items: severity (High|Medium|Low), type, title, archived, false_positive, …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00c69b88f998",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:arnavsurve/scdl-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"download_soundcloud\", \"tool_description\": \"\\nDownload a track, playlist, or user's tracks from SoundCloud with various options.\\n\\nArgs:\\n url (str): SoundCloud URL to download from.\\n output_path (str, optional): Directory where files should be saved.\\n Defaults to $HOME/Desktop if not provided.\\n mode (str, optional): Download mode; options include:\\n \\\"all\\\" -> Download all tracks (flag: -a)\\n \\\"uploads\\\" -> Download only uploads (flag: -t)\\n \\\"favorites\\\" -> Download favorites/likes (flag: -f)\\n \\\"reposts\\\" -> Download reposts (flag: -r)\\n \\\"playlists\\\" -> Download all playlists (flag: -p)\\n limit (int, optional): If > 0, download only the last <limit> tracks (flag: -n).\\n…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3b1ed5dedbde",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:nickloveinvesting/gamma-mcpserver",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"generate-presentation\", \"tool_description\": \"Generate a presentation using the Gamma API. The response will include a link to the generated presentation in the 'text' field. Always include the link in the response when it's available. Do your best to show a preview or a link preview or some sense of the content to the user in the response.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"Always include\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\nYES\\nThe description mentions \\\"Do your best\\\" which could be interpreted as an instruction to the AI model…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "99fe6eb2c7da",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:doitintl/doit-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"run_query\", \"tool_description\": \"Use this when the user wants to analyze cloud costs, generate a cost breakdown, view spending trends, or run a custom analytics query across their cloud providers. Accepts a structured config with data source, metrics, dimensions, time range, and filters. Do NOT use this for listing saved reports (use list_reports), checking anomalies (use get_anomalies), or viewing budgets (use list_budgets).\\n Fields that are not populated will use their default values if needed.\\n To limit the number of rows returned per group, set the `limit.value` field inside each `config.group[]` entry (maximum 25).\\n If possible, use `timeRange` instead of `customTimeRa…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "af1996f40fb0",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:wolfe-jam/grok-faf-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"faf_init\", \"tool_description\": \"Create a project.faf — the IANA-registered context file (application/vnd.faf+yaml) that gives Grok persistent project DNA (stack, structure, intent) in one portable file, so an agent reads the whole project cold each session instead of re-discovering it. Writes project.faf to the target directory (created if missing) and refuses to overwrite an existing context file unless `force` is set. Run once at project start, or with `force` to regenerate, then call faf_score to check readiness. Returns a text confirmation with the written file path and the detected project type.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"inst…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6bf5823b6904",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:1Money-Co/1money-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"auto_conversion_rules_create\", \"tool_description\": \"Create Auto-Conversion Rule\\n\\nCreate an Auto-Conversion Rule for fiat->crypto, crypto->fiat, or crypto->crypto conversions.\\n\\n**Supported Assets:**\\n- `USD`, `USDC`, `USDT`, `PYUSD`, `RLUSD`, `USDG`, `USDP`, `EURC`, `MXNB`\\n**Supported Networks:**\\n- Fiat deposit networks: `US_FEDWIRE`, `SWIFT`\\n- Crypto networks: `ETHEREUM`, `POLYGON`, `BASE`, `ARBITRUM`, `AVALANCHE`, `BNBCHAIN`, `SOLANA`, `TRON`\\n\\n**Validation Rules:**\\n- Supported pairs: fiat->crypto, crypto->fiat, and crypto->crypto; fiat->fiat is NOT supported\\n- `Idempotency-Key` header is required and must be a valid UUID v4\\n- Source network must match asset type (…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "36d460870964",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:1Money-Co/1money-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"partner_fees_create\", \"tool_description\": \"Create Partner Fee\\n\\nCreate a partner fee charged to your customers, under the given account.\\n\\n**Scope:**\\n\\n- Create on the **main account** to set a default fee that applies to all sub-accounts.\\n- Create on a **sub-account** to set a fee that applies only to that sub-account.\\n\\n**Fee matching:** when a transaction occurs, a sub-account fee takes priority over the main-account default, and the most targeted fee wins.\\n\\n**external_id:** required valid UUID in the request body, unique to this create request. Reusing an existing value returns a conflict. If a previous create timed out, look it up via the list endpoint with the `ex…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "845542121a4c",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:AlaeddineMessadi/opencode-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"opencode_wait\", \"tool_description\": \"Poll a session until it finishes processing. Use after opencode_message_send_async to wait for the AI to complete its response. Sends progress notifications while waiting. If timeout is reached, returns a progress report (not an error). For long tasks, consider using opencode_session_todo to check progress instead of blocking.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:**\\nYES\\nThe description mentions sending \\\"progress notifications\\\" while waiting for the AI to comple…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cae9dd383a6a",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:CodeAwareness/kawa.mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"get_relevant_context\", \"tool_description\": \"Find past intents and decisions relevant to the current user request.\\n\\nWhen to use:\\n- After you have done a quick initial exploration of the user's request and know which files are involved. Calling earlier with only a vague prompt gives weak results.\\n- To pull task-specific context instead of dumping all recent activity — preferred for large projects.\\n\\nInputs of note:\\n- `prompt`: the user request, in their words or your paraphrase.\\n- `activeFiles` (recommended): files you have identified as relevant to the request. Significantly improves relevance.\\n- `maxIntents`, `maxDecisions`, `minRelevance`: result-shaping caps and thre…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7d84d7f7a831",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"journeys_stats_table\", \"tool_description\": \"Get the per-block journey statistics table via /o/journey-engine/stats/table (block-by-block user counts with pagination). Long-running queries may return a task id instead of data; re-call this tool with task_id to fetch the result. Requires the journey_engine plugin (Countly Enterprise).\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is the analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:**\\nNO\\nThere are no hidden instructions or API calls that would compromise the security of the AI model or allow unauthorized acces…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "91dd84f4b0ea",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:GuiArSt/mcp-dev-journal",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"repository_create_from_report\", \"tool_description\": \"Create a document (prompt or note) or update an existing one by providing a free-form agent report. Kronus will extract all structured information automatically.\\n\\n**IMPORTANT: AI agents can only create/update \\\"note\\\" or \\\"prompt\\\" documents. \\\"writing\\\" type is user-curated and cannot be created/updated by AI.**\\n\\n## How It Works\\n\\nThis tool follows the same pattern as journal entry creation:\\n1. You provide a **raw_agent_report** describing the document/prompt\\n2. Kronus (AI) analyzes the report and extracts:\\n - Title, content, type\\n - All metadata (tags, categories, dates)\\n - For prompts: purpose, role, schemas, co…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2938f0e46b21",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:NickSmet/mcp-local-memory",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"record_tool_call_note\", \"tool_description\": \"📝 CRITICAL: Record tool-specific learnings after failures/successes or user feedback about HOW to use a specific tool. For general knowledge, use add_memory instead.\\n\\n**Record here (tool-specific):**\\n• 'jira-create-issue: Use project=\\\"GSO\\\", issuetype=\\\"Task\\\", assignee field is \\\"assignee.emailAddress\\\"'\\n• 'run-command: Git commands need --no-pager flag for clean output'\\n• 'web-search: Always include year in query (e.g., \\\"typescript best practices 2024\\\")'\\n• 'add-comment: User prefers concise technical style, no pleasantries, use bullet points'\\n\\n**Use add_memory for:** General preferences, project details, or knowledge no…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f0a23510e274",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:PedroHSGuimaraes/--NuvemShop-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"tiendanube_delete_coupon\", \"tool_description\": \"🗑️ DELETE COUPON - Permanently remove a discount coupon from the store. ⚠️ WARNING: This action is irreversible and will immediately invalidate the coupon for all customers, including those who may already have it saved. Use this for cleaning up expired promotions, removing unused coupons, or terminating problematic discount codes. Consider deactivating instead of deleting if usage tracking is important.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is the analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users**: NO\\nTher…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b338a9f3c1e7",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:SandraK82/wisdom-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"wisdom_quickstart\", \"tool_description\": \"One-step setup: checks agent, registers if needed, verifies project, and loads context for current task. Call this instead of multiple separate setup calls.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:**\\nYES\\nThis tool description mentions loading \\\"context for current task\\\", which could imply setting or modifying variables, parameters, or hyperparameters within the AI model that are not explicitly stated in the description. This lack of transparency raises concern…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5a175a431c57",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:ammilam/mcp-vibe-coding-tools",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"fetch_webpage\", \"tool_description\": \"Fetch content from a webpage. Set extractContent=true to get clean markdown/text suitable for LLMs instead of raw HTML.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users**: NO\\nThe description only mentions setting a single parameter (`extractContent=true`) and fetching content from a webpage, which is straightforward and user-visible.\\n\\n**Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\\nThere are no hints or instructions in the description that …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "275be47dd223",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:anilcancakir/skillsmp-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"skillsmp_install_skill\", \"tool_description\": \"Install skills from GitHub to AI coding agents.\\n\\nParameters:\\n- source: GitHub \\\"owner/repo\\\" (e.g., \\\"anthropics/claude-code\\\") [REQUIRED]\\n- skills: Skill names, comma-separated (e.g., \\\"frontend-design,backend-dev\\\") [REQUIRED]\\n- agents: Target agents, comma-separated [REQUIRED]\\n Valid: claude-code, cursor, codex, opencode, antigravity, github-copilot, roo\\n- global: Install user-level instead of project-level (default: false)\\n\\nExample: source=\\\"anthropics/claude-code\\\", skills=\\\"frontend-design\\\", agents=\\\"claude-code\\\"\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"HIG…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "49d9527fd917",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:blademarketing/gologin-puppet-mcp-client",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"analyze_page\", \"tool_description\": \"Intelligently analyze current page and return semantic summary with detected elements, forms, buttons, and errors. Returns compact JSON instead of raw HTML. Use this FIRST to understand page structure - saves 90% tokens vs get_html.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users: NO**\\nNo suspicious hidden instructions are mentioned in this tool description.\\n\\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.): NO**\\nNo access to sensitive file…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac5f35796062",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:debojyotig/omni-api-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"explore_rest_patterns\", \"tool_description\": \"Attempts to discover REST API endpoints using common patterns when the exact path is unknown.\\n\\n**⚠️ WARNING: DO NOT USE THIS TOOL FOR SERVICES WITH QUERY BUILDER TEMPLATES**\\n\\n**IMPORTANT USAGE RULES:**\\n1. **NEVER use for DataDog, GitHub, Stripe** - These have templates via build_query\\n2. **NEVER use when build_query returns confidence > 0.5** - Use the returned query directly\\n3. **ONLY use for completely unknown/undocumented APIs** without templates\\n4. **ONLY use as LAST RESORT** when build_query fails or returns low confidence\\n\\n**Why NOT to use this tool:**\\n- Only tests GET requests (misses POST-only endpoints like DataD…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "84830bd823c5",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:dgahagan/weather-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"search_location\", \"tool_description\": \"Search for locations by name to get coordinates for weather queries. Uses Nominatim (OpenStreetMap) for excellent coverage of cities, towns, villages, and hamlets worldwide. Use this when the user provides a location name instead of coordinates (e.g., \\\"Paris\\\", \\\"New York\\\", \\\"Tokyo\\\", \\\"San Francisco, CA\\\", \\\"Small Village, County\\\"). Returns location matches with coordinates, timezone, elevation, and other metadata. Enables natural language location queries like \\\"What's the weather in Paris?\\\" by converting location names to coordinates.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8a63df9963ea",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:dgahagan/weather-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"save_location\", \"tool_description\": \"Save a location for easy reuse in weather queries. Use this when a user wants to save a frequently used location like \\\"home\\\", \\\"work\\\", \\\"cabin\\\", or \\\"aunt lisa's house\\\". Accepts either a location query (which will be geocoded automatically) or direct coordinates. Saved locations can be used with all weather tools by providing location_name instead of coordinates. Makes it easy to ask \\\"What's the weather forecast at home?\\\" without repeatedly providing coordinates. SMART UPDATES: If the alias already exists and you only provide name/activities (without location details), it will update just those fields while preserving coordinates.\", …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e9cfdef03a7f",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:divmgl/clancey",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"update_decision\", \"tool_description\": \"Revise a recorded decision by its id (from recall). Pass the new decision and/or why; the embedding is re-generated so search reflects the edit. Use this to fix or rephrase a decision instead of recording a duplicate.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users:** NO\\nThere is no indication of hidden instructions or internal state modifications that aren't visible to users in this MCP tool description.\\n\\n**Instructions to access sensitive files (like SSH keys, .env fil…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ba1918b0eae",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:divmgl/clancey",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"update_learning\", \"tool_description\": \"Revise a recorded learning by its id (from recall). Pass the new learning and/or context; the embedding is re-generated so search reflects the edit. Use this to fix or rephrase a learning instead of recording a duplicate.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\nYES\\nThe description mentions \\\"new learning and/or context\\\" being passed to revise a recorded learning, which could imply hidden instructions or metadata being added to the model without user…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e64cce0664a3",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:ettomarett/Browserose-MCP",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"browser_evaluate_click\", \"tool_description\": \"Click an element inside a frame via DOM .click() (runs in frame context). Bypasses visibility/actionability. Use when locator click fails (e.g. SUBMIT disabled or not visible). Same-origin frame only.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"not visible\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's the analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users**\\nNO\\nThere are no hidden instructions or obscure syntax in this tool description that might affect AI models or be invisible to users.\\n\\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.)…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

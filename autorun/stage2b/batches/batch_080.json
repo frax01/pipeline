@@ -1,0 +1,954 @@
+{
+ "batch": 80,
+ "n_cluster": 60,
+ "n_finding": 67,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "eb6718a16f34",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Applied-AI-Research-Lab/ORAM.AI-A-Multi-Agent-Chatbot-for-Adaptive-Fitness-Recommendation",
+   "evidenza": {
+    "tipo": "static",
+    "file": "static/chat-widget.js",
+    "code": "const response = await fetch(config.apiUrl, {"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "cec28c85c32f",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:arimxyer/ass",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/enricher.ts",
+    "code": "const response = await fetch(CONFIG.github.graphqlEndpoint, {"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "4a4833be951d",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:durgapradeepch/mcp-chatbot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server.js",
+    "code": "const response = await axios.post(config.LLAMA_API_ENDPOINT, payload, {"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "a61705501755",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kingler/vividwalls-mas",
+   "evidenza": {
+    "tipo": "static",
+    "file": "assets/static/vividwalls-copilot-enhanced.js",
+    "code": "const response = await fetch(CONFIG.artAnalysisEndpoint, {"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "077248dec906",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kingler/vividwalls-mas",
+   "evidenza": {
+    "tipo": "static",
+    "file": "services/plugins/vividwalls-copilot-plugin/assets/vividwalls-copilot-enhanced.js",
+    "code": "const response = await fetch(CONFIG.artAnalysisEndpoint, {"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "6aebdd603a1e",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-images",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.js",
+    "code": "const response = await fetch(config.providers.dalle3.endpoint, {"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "db7380fede38",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chiisen/docs",
+   "evidenza": {
+    "tipo": "static",
+    "file": "themes/next/source/js/local-search.js",
+    "code": "fetch(CONFIG.root + searchPath)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5450968bd662",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Odiabackend099/odiadev-mcp-2025",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/tts/speak.js",
+    "code": "const response = await fetch(config.tts.baseUrl, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3ba73cefd2a6",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Lee-SiHyeon/mcp-server-3gpp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/search/hydeExpander.js",
+    "code": "const response = await fetch(config.apiUrl, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "14062e40356b",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Lee-SiHyeon/mcp-server-3gpp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/search/reranker.js",
+    "code": "const response = await fetch(config.apiUrl, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aaec9e471b8e",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sophtron/chagpt-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/widget.ts",
+    "code": "const response = await fetch(config.WidgetHostBaseUrl + '/api/token?userId=' + encodeURIComponent(user_id), {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "61cbf2eda850",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:puppygraph/puppygraph-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/utils/schema.ts",
+    "code": "const response = await fetch(config.url, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "830d995bb3f9",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Chieko-Seren/ARIES",
+   "evidenza": {
+    "tipo": "static",
+    "file": "web/js/components/ModelManager.js",
+    "code": "const response = await fetch(config.apiEndpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c19e6bcd1389",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:KarolFilipKowalczyk/AIRON",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/airon-relay.js",
+    "code": "const tokenResponse = await fetch(config.token_endpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "734617fb2fa2",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:RockChinQ/LangBot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/langbot/templates/embed/widget.js",
+    "code": "fetch(CONFIG.baseUrl + \"/api/v1/embed/\" + CONFIG.botUuid + \"/feedback\", {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6ef6e8350305",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Sborgi/superops-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/client.ts",
+    "code": "const response = await fetch(CONFIG.API_URL, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b070b08274ac",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ScrapeAlchemist/The_Missing_Link_in_AI",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/brightdata_api_demo.js",
+    "code": "const response = await fetch(CONFIG.endpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b6c448f19e8",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ScrapeAlchemist/The_Missing_Link_in_AI",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/brightdata_api_demo.js",
+    "code": "const res = await fetch(CONFIG.endpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "500cc2daa085",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ahzia/Nexi",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/lib/services/chat/anthropic-client.ts",
+    "code": "const response = await fetch(options.endpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bb51c24627a4",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dmdund/dmdund-cloudflare-mcp-authless-urlhaus",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "const response = await fetch(config.urlhaus.apiUrl, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3bb1b071cab6",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:durgapradeepch/mcp-demo-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-server/server.js",
+    "code": "const response = await axios.post(config.LLAMA_API_ENDPOINT, payload, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "540138df1fdb",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:jger/mcp-flutter-deprecations-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/services/flutter_api.go",
+    "code": "resp, err := http.Get(config.FLUTTER_API_URL + fmt.Sprintf(\"?per_page=%d\", config.MAX_RELEASES))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1122a81703ba",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:khill1269/servalsheets",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/services/audit-logger.ts",
+    "code": "const response = await fetch(config.endpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b44c67cfb97",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kingler/vividwalls-mas",
+   "evidenza": {
+    "tipo": "static",
+    "file": "assets/static/vividwalls-copilot-enhanced.js",
+    "code": "const response = await fetch(CONFIG.batchAnalysisEndpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "050637620aa4",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kingler/vividwalls-mas",
+   "evidenza": {
+    "tipo": "static",
+    "file": "services/plugins/vividwalls-copilot-plugin/assets/vividwalls-copilot-enhanced.js",
+    "code": "const response = await fetch(CONFIG.batchAnalysisEndpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b0be8b3702c",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:loongJiu/kimi-vision-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.js",
+    "code": "const response = await fetch(CONFIG.API_URL, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8e7c0b802b70",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lza6/perfect-assistant-mcp-2api",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.js",
+    "code": "const response = await fetch(CONFIG.UPSTREAM_URL, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b8eb624f5ece",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:sworddut/mcp-edge",
+   "evidenza": {
+    "tipo": "static",
+    "file": "edge-worker/src/redis.js",
+    "code": "const res = await fetch(config.baseUrl, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "62813eac5d66",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aigrc/aigrc",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp/src/telemetry.ts",
+    "code": "const response = await fetch(config.telemetryEndpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8775c6ea192b",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentfront/frontmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "libs/sdk/src/auth/instances/instance.local-primary-auth.ts",
+    "code": "const response = await fetch(config.userInfoEndpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "893891a0691e",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mrlynn/netpad-v3",
+   "evidenza": {
+    "tipo": "static",
+    "file": "templates/standalone-app/src/lib/monitoring/metrics.ts",
+    "code": "await fetch(config.endpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2353db32d026",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nullplatform/np-mcp-controlplane-proxy",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-proxy.js",
+    "code": "const resp = await axios.post(config.apiEndpoint, request, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c6fbbc641782",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Embassy-of-the-Free-Mind/sourcelibrary-v2",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/lib/import-utils.ts",
+    "code": "const manifestRes = await fetch(config.manifest_url, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e6661a1f9868",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:monitoringartist/logicmonitor-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/utils/core/oauth-strategy.ts",
+    "code": "const response = await fetch(config.userProfileUrl, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6e0d8bca9460",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:milisp/mcp-auth-core",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp-auth.ts",
+    "code": "const response = await fetch(config.provider.userInfoUrl, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d71b50bf4d16",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MikahDev/prime-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/client/oauth.ts",
+    "code": "const response = await fetch(config.primeOAuthUrl, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0471355d6e63",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-images",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.js",
+    "code": "const response = await fetch(config.providers.stability.endpoint, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b6ee3c614a0",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:weidwonder/terminal-mcp-server",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "execute_command",
+    "desc": "Execute commands on remote hosts or locally (This tool can be used for both remote hosts and the current machine)",
+    "schema": "{\"type\": \"object\", \"properties\": {\"host\": {\"type\": \"string\", \"description\": \"Host to connect to (optional, if not provided the command will be executed locally)\"}, \"username\": {\"type\": \"string\", \"description\": \"Username for SSH connection (required when host is specified)\"}, \"session\": {\"type\": \"str…",
+    "match": "dangerous_desc:\\b(execut(e|es|ing)\\s+(a\\s+)?command)"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "8763fde21ce9",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:1Panel-dev/mcp-1panel",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "install_openresty",
+    "desc": "install openresty, if not set name, default is openresty, if not set http_port, default is 80, if not set https_port, default is 443",
+    "schema": "{\"type\": \"object\", \"properties\": {\"name\": {\"type\": \"string\", \"description\": \"openresty name\"}, \"http_port\": {\"type\": \"number\", \"description\": \"openresty http port\"}, \"https_port\": {\"type\": \"number\", \"description\": \"openresty https port\"}}, \"additionalProperties\": false}",
+    "match": "dangerous_desc:\\b(install|uninstall)\\s+"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2cafd6c4af6a",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:signal-slot/mcp-remotetouch",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "touch_connect",
+    "desc": "Connect to a remote Linux device via SSH and start the touch daemon. Returns a session ID for subsequent touch commands.",
+    "schema": "{\"$schema\": \"http://json-schema.org/draft-07/schema#\", \"type\": \"object\", \"properties\": {\"host\": {\"description\": \"SSH host (default: env REMOTETOUCH_SSH_HOST)\", \"type\": \"string\"}, \"user\": {\"description\": \"SSH user (default: env REMOTETOUCH_SSH_USER or 'pi')\", \"type\": \"string\"}, \"port\": {\"description\"…",
+    "match": "dangerous_desc:\\b(ssh|scp|rsync)\\b"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fe79223bc75c",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:atlcomgit/mcp-ssh",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "ssh_exec",
+    "desc": "Выполнение команды по SSH в существующей сессии или одноразово",
+    "schema": "{\"type\": \"object\", \"properties\": {\"sessionId\": {\"type\": \"string\"}, \"command\": {\"type\": \"string\"}, \"cwd\": {\"type\": \"string\"}, \"timeoutMs\": {\"type\": \"integer\"}}, \"required\": [\"command\"], \"additionalProperties\": false}",
+    "match": "dangerous_desc:\\b(ssh|scp|rsync)\\b"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "990dfacb1fe0",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:hidenorigoto/sacloud-mcp",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "get_sshkey_info",
+    "desc": "Get detailed information about a specific SSH key",
+    "schema": "{\"type\": \"object\", \"properties\": {\"sshkeyId\": {\"type\": \"string\", \"description\": \"The ID of the SSH key to retrieve\"}}, \"required\": [\"sshkeyId\"]}",
+    "match": "dangerous_desc:\\b(ssh|scp|rsync)\\b"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f1f2ca9412d5",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:InstalabsAI/instagit",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "ask_repo",
+    "desc": "Analyze any Git repository with AI. Point it at a repo and ask questions about the codebase. Example prompts by use case: Understanding Architecture: - repo: \"nginx/nginx\", prompt: \"How does nginx handle concurrent connections? Walk through the event loop, worker process model, and connection state …",
+    "schema": "{\"type\": \"object\", \"properties\": {\"repo\": {\"type\": \"string\", \"description\": \"Repository to analyze. Accepts GitHub URLs (https://github.com/owner/repo), shorthand (owner/repo), GitLab/Bitbucket URLs, or any public Git URL\"}, \"prompt\": {\"type\": \"string\", \"description\": \"What to analyze or ask about t…",
+    "match": "dangerous_desc:\\b(docker.*(exec|run|compose))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9f957f3a9f43",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:patrickkabwe/rn-mcp",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "get-react-native-diff",
+    "desc": "Gets the React Native diff between the current version and the user provided version. OVERVIEW: This diff will show all changes needed to upgrade React Native, including: • Package.json dependencies and their versions • iOS configuration changes (Podfile, xcodeproj settings) • Android configuration …",
+    "schema": "{\"type\": \"object\", \"properties\": {\"fromVersion\": {\"type\": \"string\", \"description\": \"The current React Native version to compare from (defaults to version in package.json)\"}, \"toVersion\": {\"type\": \"string\", \"description\": \"The target React Native version to upgrade to\"}}, \"required\": [\"fromVersion\", …",
+    "match": "dangerous_desc:\\b(install|uninstall)\\s+"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d2a6c4012a9f",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:disnet/flint-note-mcp",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "remove_vault",
+    "desc": "Remove a vault from the registry (does not delete files)",
+    "schema": "{\"type\": \"object\", \"properties\": {\"id\": {\"type\": \"string\", \"description\": \"ID of the vault to remove\"}}, \"required\": [\"id\"]}",
+    "match": "dangerous_desc:\\b(delet(e|es|ing)\\s+(file|director))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a28f0716ffe5",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:hazzel-cn/node-terminal-mcp",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "terminal_create",
+    "desc": "Create a new persistent terminal session that will continue running until explicitly closed. Terminal sessions maintain their state, environment variables, working directory, and command history. Use this to establish a long-running interactive environment for executing commands, running processes, …",
+    "schema": "{\"type\": \"object\", \"properties\": {\"sessionId\": {\"type\": \"string\", \"description\": \"Unique identifier for the terminal session. Use descriptive names like \\\"main\\\", \\\"build\\\", \\\"test\\\", or \\\"deploy\\\" to organize different terminal contexts.\"}, \"shell\": {\"type\": \"string\", \"description\": \"Shell to use (…",
+    "match": "dangerous_desc:\\b(execut(e|es|ing)\\s+(a\\s+)?command)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "26ec84c7c8e1",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:markolive1501/MCP",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "delete_files",
+    "desc": "Delete files or directories (permanent removal)",
+    "schema": "{\"type\": \"object\", \"properties\": {\"paths\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}, \"description\": \"List of paths to delete\"}}, \"required\": [\"paths\"]}",
+    "match": "dangerous_desc:\\b(delet(e|es|ing)\\s+(file|director))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1572371a933a",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:jackyxhb/InferMCPServer",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "trainClassifier",
+    "desc": "Run classifier training commands on a remote host via SSH",
+    "schema": "{\"type\": \"object\", \"properties\": {\"profile\": {\"type\": \"string\", \"description\": \"Credential profile for SSH access\"}, \"subclasses\": {\"type\": \"array\", \"items\": {\"type\": \"string\"}, \"minItems\": 1, \"description\": \"List of subclasses to train\"}, \"datasetPath\": {\"type\": \"string\", \"description\": \"Remote dat…",
+    "match": "dangerous_desc:\\b(ssh|scp|rsync)\\b"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6303bb9610b5",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:schwarztim/bambu-mcp",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "makerworld_download",
+    "desc": "Download a 3MF print file from MakerWorld (makerworld.com). Accepts a URL, instance_id, or path to an already-downloaded file. When Cloudflare blocks direct access, returns step-by-step instructions for browser-assisted download using Firefox DevTools MCP. DEPENDENCY: Firefox DevTools MCP is require…",
+    "schema": "{\"type\": \"object\", \"properties\": {\"url\": {\"type\": \"string\", \"description\": \"MakerWorld model URL (e.g., https://makerworld.com/en/models/12345-model-name)\"}, \"instance_id\": {\"type\": \"string\", \"description\": \"MakerWorld instance ID for direct download (from __NEXT_DATA__ on the model page: design.ins…",
+    "match": "dangerous_desc:\\b(install|uninstall)\\s+"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "794a7760fc81",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:chrishayuk/chuk-mcp-solver",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "solve_constraint_model",
+    "desc": "Solve a general constraint or optimization model. This tool solves discrete optimization and constraint satisfaction problems. It supports integer and boolean variables, linear constraints, global constraints (all_different, element, table), implications, and linear objectives. Use cases include: - …",
+    "schema": "{\"type\": \"object\", \"properties\": {\"mode\": {\"type\": \"string\"}, \"variables\": {\"type\": \"array\", \"items\": {\"type\": \"object\"}}, \"constraints\": {\"type\": \"array\", \"items\": {\"type\": \"object\"}}, \"objective\": {\"type\": \"object\"}, \"search\": {\"type\": \"object\"}}, \"required\": [\"mode\", \"variables\", \"constraints\"]}",
+    "match": "dangerous_desc:\\b(sudo|su\\s)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "72294191c450",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:bsmi021/mcp-python-executor",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "execute_python",
+    "desc": "Execute Python code in a secure, isolated environment with configurable resource limits. Features: - Automatic virtual environment management - Resource monitoring (memory, CPU) - Input/output stream handling - Error handling and timeout protection - Support for both inline code and existing script …",
+    "schema": "{\"type\": \"object\", \"properties\": {\"code\": {\"type\": \"string\", \"description\": \"Python code to execute. Can include multiple lines and import statements.\"}, \"scriptPath\": {\"type\": \"string\", \"description\": \"Path to an existing Python script file to execute instead of inline code.\"}, \"inputData\": {\"type\"…",
+    "match": "dangerous_desc:\\b(install|uninstall)\\s+"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4c0bbd1bd498",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:nagypeterjob/brew-mcp",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "install",
+    "desc": "Install a formula or cask.",
+    "schema": "{\"type\": \"object\", \"properties\": {\"formula\": {\"description\": \"name of the specifc formula or cask\", \"type\": \"string\"}, \"overwrite\": {\"description\": \"Delete files that already exist in the prefix while linking\", \"type\": \"boolean\"}}, \"required\": [\"formula\"]}",
+    "match": "dangerous_desc:\\b(install|uninstall)\\s+"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "430d47df5073",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:Curzibn/mcp-bisheng",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "install_chromium",
+    "desc": "Install Chromium browser for Playwright. Call this when read_url fails with Chromium not found error, then retry read_url.",
+    "schema": "{\"type\": \"object\", \"properties\": {\"with_deps\": {\"type\": \"boolean\", \"default\": false}}, \"additionalProperties\": false, \"$schema\": \"http://json-schema.org/draft-07/schema#\"}",
+    "match": "dangerous_desc:\\b(install|uninstall)\\s+"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "876015654e27",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:Esty8321/git-mcp-server",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "git_clone",
+    "desc": "Clone a remote Git repository into a local directory (non-interactive). Use when: - You need to download a repository to a specific local path for further git operations. Inputs: - repo_url: repository URL (https/ssh) - dest_dir: local directory path (must be empty or not exist) - timeout_sec: comma…",
+    "schema": "{\"properties\": {\"repo_url\": {\"title\": \"Repo Url\", \"type\": \"string\"}, \"dest_dir\": {\"title\": \"Dest Dir\", \"type\": \"string\"}, \"timeout_sec\": {\"default\": 60, \"title\": \"Timeout Sec\", \"type\": \"integer\"}}, \"required\": [\"repo_url\", \"dest_dir\"], \"title\": \"git_cloneArguments\", \"type\": \"object\"}",
+    "match": "dangerous_desc:\\b(ssh|scp|rsync)\\b"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a71d2e66521a",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:Hadar301/mcp-openshift-installer-checker",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "fetch_repo_content",
+    "desc": "Extract and list application requirements from a repository. NO cluster involvement. ⚠️ ALWAYS USE THIS TOOL when user asks about requirements WITHOUT mentioning cluster: - \"what are the requirements for X?\" - \"what does X need to run?\" - \"analyze requirements for X\" - \"list the requirements for X\" …",
+    "schema": "{\"properties\": {\"repo_url\": {\"title\": \"Repo Url\", \"type\": \"string\"}}, \"required\": [\"repo_url\"], \"title\": \"fetch_repo_contentArguments\", \"type\": \"object\"}",
+    "match": "dangerous_desc:\\b(install|uninstall)\\s+"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5a480d92ffa1",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:Kranthithota/codedev-mcp",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "iac_analyze",
+    "desc": "Analyze infrastructure-as-code definitions. Parses Terraform (.tf), CloudFormation, Kubernetes manifests, and Docker Compose files. Returns resources, providers, and issues.",
+    "schema": "{\"type\": \"object\", \"properties\": {\"directory\": {\"type\": \"string\", \"description\": \"Subdirectory to search\"}}, \"additionalProperties\": false, \"$schema\": \"http://json-schema.org/draft-07/schema#\"}",
+    "match": "dangerous_desc:\\b(docker.*(exec|run|compose))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eed4a9ed9e67",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:Krelborn/docker-compose-mcp",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "docker_compose_update",
+    "desc": "Update Docker Compose containers by stopping them, pulling latest images, and restarting. This tool executes the standard update workflow: 1. Stop running containers (docker compose down) 2. Pull latest images (docker compose pull) 3. Start containers with new images (docker compose up -d) Args: - c…",
+    "schema": "{\"type\": \"object\", \"properties\": {\"compose_file\": {\"type\": \"string\", \"description\": \"Absolute path to the docker-compose.yml file\"}, \"detached\": {\"type\": \"boolean\", \"default\": true, \"description\": \"Run containers in detached mode (default: true)\"}}, \"required\": [\"compose_file\"], \"additionalPropertie…",
+    "match": "dangerous_desc:\\b(docker.*(exec|run|compose))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "14e71709d1b1",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:aswinsuryan/gcp-openshift-mcp-server",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "delete_cluster",
+    "desc": "Delete an OpenShift cluster and clean up all GCP resources using openshift-install destroy.",
+    "schema": "{\"type\": \"object\", \"properties\": {\"cluster_name\": {\"type\": \"string\", \"description\": \"Name of the cluster to delete\"}}, \"required\": [\"cluster_name\"]}",
+    "match": "dangerous_desc:\\b(install|uninstall)\\s+"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3dcdaf18d05e",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:bensonfx/mcp-liner",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "generate_dialer_config",
+    "desc": "生成代理拨号器配置，支持 local、socks5、http2、http3、ssh、wss 等类型",
+    "schema": "{\"type\": \"object\", \"additionalProperties\": {}}",
+    "match": "dangerous_desc:\\b(ssh|scp|rsync)\\b"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "126cf2be0dad",
+   "tool": "security_scan",
+   "categoria": "dangerous-capabilities",
+   "severita": "high",
+   "linguaggio": null,
+   "esempio_server": "gh:cloudwarriors-ai/mcp-docs",
+   "evidenza": {
+    "tipo": "capability",
+    "tool": "get_package",
+    "desc": "Get detailed information about a specific CloudWarriors package including install command, usage examples, and configuration options",
+    "schema": "{\"type\": \"object\", \"properties\": {\"name\": {\"type\": \"string\", \"description\": \"The package name (e.g., \\\"@cloudwarriors-ai/rlm\\\" or just \\\"rlm\\\")\"}}, \"required\": [\"name\"]}",
+    "match": "dangerous_desc:\\b(install|uninstall)\\s+"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

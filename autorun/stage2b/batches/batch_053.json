@@ -1,0 +1,908 @@
+{
+ "batch": 53,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "137deb159177",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mdlmarkham/SystemManager",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/utils/inventory_persistence.py",
+    "code": "archive_file = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b2a31c2d859",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:microsoft/claims-processing-hack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "challenge-1/statements_processing/mistral_doc_intelligence.py",
+    "code": "md_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "02cb0c10094c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/win32com/server/register.py",
+    "code": "pyfile = os.path.join(path, baseName + ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "33ad892e0c4c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/win32com/server/register.py",
+    "code": "loadername = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e16c396ef5c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/click/utils.py",
+    "code": "return os.path.join(os.path.expanduser(f\"~/.{_posixify(app_name)}\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "92cfd8ddc9d1",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/cffi/setuptools_ext.py",
+    "code": "c_file = os.path.join(tmpdir, module_name + source_extension)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "89f8af8e033a",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/cffi/verifier.py",
+    "code": "self.sourcefilename = os.path.join(self.tmpdir, modulename + source_extension)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "da65bf3be67b",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/cffi/verifier.py",
+    "code": "self.modulefilename = os.path.join(self.tmpdir, modulename + suffix)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4570c80c692e",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mobvoi/mobvoi-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mobvoi_mcp/api_client.py",
+    "code": "temp_file = os.path.join(temp_dir, f\"chunk_{range_index}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f741d7bbefa0",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:muhammadnoman76/magicconvert_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "magicconvert_server/server.py",
+    "code": "temp_path = os.path.join(processor.temp_dir, f\"temp_content_{os.getpid()}{extension}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2610793378a3",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:neosun100/Step1X-Edit-Docker",
+   "evidenza": {
+    "tipo": "static",
+    "file": "GEdit-Bench/run_gedit_score.py",
+    "code": "pattern = os.path.join(folder_path, f\"{basename}.*\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4c9d5c20edc",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:neosun100/Step1X-Edit-Docker",
+   "evidenza": {
+    "tipo": "static",
+    "file": "library/train_util.py",
+    "code": "img_paths.extend(glob.glob(glob.escape(os.path.join(directory, base + ext))))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b6db5c0f7668",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:nikolasil/chronicle-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "chronicle_mcp/connection.py",
+    "code": "return os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "690547a99875",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:nishanthabimanyu/sky-culture-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/processing/ssc_generator.py",
+    "code": "filename = os.path.join(self.output_dir, f\"load_{culture_id}.ssc\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "10bae4f5a9ae",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:okuno-dsi/revit-mcp-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Codex/Scripts/Reference/fill_rooms_by_live_load_with_filled_regions.py",
+    "code": "out_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6fc0acd2d142",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:okuno-dsi/revit-mcp-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Codex/Scripts/Reference/export_room_masses_snapshot.py",
+    "code": "work_dir = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d1220f6dccc8",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:okuno-dsi/revit-mcp-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Codex/Scripts/Reference/export_room_masses_snapshot.py",
+    "code": "out_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "719fe97e17cc",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:okuno-dsi/revit-mcp-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Codex/PythonRunnerScripts/fill_rooms_by_live_load_with_filled_regions.py",
+    "code": "out_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "49349423661f",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:okuno-dsi/revit-mcp-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Codex/PythonRunnerScripts/export_room_masses_snapshot.py",
+    "code": "work_dir = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ce3283684098",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:okuno-dsi/revit-mcp-toolkit",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Codex/PythonRunnerScripts/export_room_masses_snapshot.py",
+    "code": "out_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2b54f922da84",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ovitrac/CloakMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cloakmcp/cli.py",
+    "code": "vault_file = os.path.join(VAULTS_DIR, f\"{slug}.vault\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3eeb9c427059",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ovitrac/CloakMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cloakmcp/installer.py",
+    "code": "backup_dir = os.path.join(claude_dir,"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "95f2c800e4a1",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ovitrac/CloakMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cloakmcp/storage.py",
+    "code": "return os.path.join(VAULTS_DIR, f\"{slug}.vault\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "12a53faed411",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:paulnegz/manim-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "manim_mcp/core/renderer.py",
+    "code": "os.path.join(media_dir, f\"{scene_name}.{ext}\"),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d0ea028df5fb",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pomilo-ai/annual_report_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "annual_report_mcp_server.py",
+    "code": "output_filename = os.path.join(STORAGE_DIR, f\"{org_no}_{year}.xhtml\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c1ae0a72dbb",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pomilo-ai/annual_report_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "annual_report_mcp_server.py",
+    "code": "xhtml_file_path = os.path.join(STORAGE_DIR, f\"{org_no}_{year}.xhtml\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c8ac7e7126ab",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pomilo-ai/annual_report_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "annual_report_mcp_server.py",
+    "code": "index_path = os.path.join(STORAGE_DIR, f\"{org_no}_{year}_index\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "68da818ab13a",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pxxcpo/pixxio-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pixxio_mcp.py",
+    "code": "file_path = os.path.join(tmp_dir, f\"{file_name}.{ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d187fd152374",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:qduc/code-rag",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/code_rag/api.py",
+    "code": "return os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6257d6ec2bf7",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:raghujayan/openvds-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-ui-client/backend/app/vds_object_store.py",
+    "code": "vds_path = os.path.join(base_path, f\"{vds_name}.vds\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7a7c66c1e348",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:raheem-19/serena-optimized",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/serena/config/serena_config.py",
+    "code": "return os.path.join(log_dir, prefix + \"_\" + datetime_tag() + \".txt\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d01866511635",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:raistlinJ/pgpt-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pentestgpt/utils/vectorDB.py",
+    "code": "self.local_context_directory = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9e556bfc2c86",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:revspace7777/google-ads-mcp-official_main",
+   "evidenza": {
+    "tipo": "static",
+    "file": "official-google-ads-mcp/ads_mcp/tools/docs.py",
+    "code": "os.path.join(MODULE_DIR, f\"context/views/{view}.yaml\"),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ffb6fbfcb364",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:rohit-seelam/youtube-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/youtube_mcp/youtube_client.py",
+    "code": "subtitle_files = glob.glob(os.path.join(temp_dir, f\"*.{chosen_lang}.srt\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1e0e53daf7bc",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:rohit-seelam/youtube-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/youtube_mcp/youtube_client.py",
+    "code": "subtitle_files = glob.glob(os.path.join(temp_dir, f\"*.{lang_base}.srt\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf84f222d6f3",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:sagaaidev/saaga-mcp-servers",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/saaga_mcp_servers/operations/mcp-gsuite/src/mcp_gsuite/lib/auth/utils.py",
+    "code": "return os.path.join(gsuite_config.credentials_dir, f\".oauth2.{user_id}.pickle\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ccfe1f25e319",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:sagaaidev/saaga-mcp-servers",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/saaga_mcp_servers/operations/mcp-gsuite/src/mcp_gsuite/lib/auth/credentials.py",
+    "code": "path = os.path.join(gsuite_config.credentials_dir, f\".oauth2.{user_id}.pickle\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "97d6d62d1ccb",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:sagaaidev/saaga-mcp-servers",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/saaga_mcp_servers/operations/mcp-gsuite/src/mcp_gsuite/lib/auth/credentials.py",
+    "code": "cred_file_path = os.path.join(gsuite_config.credentials_dir, f\".oauth2.{user_email}.pickle\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "290300b9ca7c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:schreiverj/cookie-cutter-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cookie_cutter_mcp/server.py",
+    "code": "image_files.extend(glob(os.path.join(input_directory, f\"*.{pattern.strip()}\")))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dfb30d687202",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:schreiverj/cookie-cutter-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cookie_cutter_mcp/server.py",
+    "code": "output_path = os.path.join(output_directory, f\"{image_name}_cutter.stl\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b18fc5db91ed",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:seanpjlab/dataeval_dingo",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server.py",
+    "code": "abs_output_dir = os.path.join(input_parent_dir, f\"dingo_output_{task_name}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3b375677c9fb",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:seanpjlab/dataeval_dingo",
+   "evidenza": {
+    "tipo": "static",
+    "file": "dingo/exec/local.py",
+    "code": "output_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ec90710e7a56",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:shantanu1711/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "organize_pdfs.py",
+    "code": "target_path = os.path.join(target_dir, f\"{base}_{counter}{ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "373060fe3b7b",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:silver0510/mermail-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server.py",
+    "code": "input_file = os.path.join(TEMP_DIR, f\"{unique_id}.mmd\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f343e167cb69",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:silver0510/mermail-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server.py",
+    "code": "input_file = os.path.join(TEMP_DIR, f\"{unique_id}.mmd\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4c22afd97d1c",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:simranjotkaur6/personal-ai-assistant",
+   "evidenza": {
+    "tipo": "static",
+    "file": "processors/pdf_processor.py",
+    "code": "pattern = os.path.join(self.pdf_files_dir, f\"*{ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "026ae6c5fdb0",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:tayyab415/directors-cut",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/showrunner.py",
+    "code": "frame_path = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b25eb5519edf",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:tedescomicchidev/MultiClaudeMCPTest",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/orchestrator/app.py",
+    "code": "worktree_path = os.path.join(run_dir_rel, f\"agent-{agent_id}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d29bccc84713",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:unknownaaa/office-pdf-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "PDF-Server.py",
+    "code": "img_path = os.path.join(temp_dir, f\"img_{img_index}.{image_ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a0dfba4ad7b5",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:unknownaaa/office-pdf-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "PDF-Server.py",
+    "code": "img_path = os.path.join(temp_dir, f\"p{page_num}_img{img_index}.{image_ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0cee60d8e8c0",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:vincentspereira/Enhanced-Cognee",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cognee/infrastructure/databases/graph/ladybug/ladybug_migrate.py",
+    "code": "base = os.path.join(envs_dir, f\"{package_name}_{version}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c733efb65710",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:vincentspereira/Enhanced-Cognee",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cognee/infrastructure/databases/graph/ladybug/ladybug_migrate.py",
+    "code": "dst_new = os.path.join(base_dir, name + ext)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "194f4709e364",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:weinaike/galaxy_morphology_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/galfits_fitting.py",
+    "code": "mockfile = os.path.join(mock_profile_root, f'{band}.fits') # mock path"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "30e5afd40c72",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:weinaike/galaxy_morphology_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/render_original.py",
+    "code": "output_path = os.path.join(lyric_dir,"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "df260667128a",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:weinaike/galaxy_morphology_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/run_galfits.py",
+    "code": "new_lyric_file = os.path.join(workplace_dir, f\"{config_basename}_for_image_sed_fitting\" + (f\"{config_ext}\" if config_ext else \"\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "37c33fc2bd33",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:xd3an/midi-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "output_path = os.path.join(default_output_dir, f\"{title}.mid\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "39026fb7be9b",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:yusufkaraaslan/Skill_Seekers",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/skill_seekers/cli/video_visual.py",
+    "code": "candidate = os.path.join(output_dir, f\"video.{ext}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "35b1dd00dd3d",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:zkbkb/fusion-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "install_addin.py",
+    "code": "src_manifest = os.path.join(src_addin_dir, f\"{addin_name}.manifest\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ef731bd66d0a",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:zkbkb/fusion-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "install_addin.py",
+    "code": "dst_manifest = os.path.join(addin_path, f\"{addin_name}.manifest\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b7e94b126654",
+   "tool": "guard",
+   "categoria": "path-traversal-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:LocalStack/localstack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "localstack-core/localstack/services/opensearch/packages.py",
+    "code": "tmp_archive = os.path.join("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

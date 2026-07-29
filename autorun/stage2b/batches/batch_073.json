@@ -1,0 +1,968 @@
+{
+ "batch": 73,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "5e7d83c0fc53",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 53, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "76c267acfd97",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 54, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "75861b7d7fea",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 55, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8d9143ce0991",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "73d6efc70edb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f3dc9ec9a773",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 58, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a5ad4ac503d8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 59, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f2bf9ca5fe4b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 60, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f0e6eaf6ebea",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 61, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f62741ad1044",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 62, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "655e368f4eee",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 63, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "83fd7763ba34",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 64, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "11c0d0dba023",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 65, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e54e5cf86c84",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 66, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2747a801b388",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 67, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ce99d22029aa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 68, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "673a71e76371",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 69, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7dcfe0302bce",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 70, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "972b9b3fde5f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 71, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6199f399b642",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 72, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a8d0a5fc1728",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 73, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5f4063938ef9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 74, 'method': 'tools/call', 'params': {'name': 'mysql_get_table_info', 'arguments': {'table': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8870fc6c20da",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4c289bfbdc03",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 76, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c4191f1157c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "70b443b05a74",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 78, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "33deebedd5b1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6f8fcefa3c2e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 80, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "870ae31ebec5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 81, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b318531118d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 82, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a5f6373b3780",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 83, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "46bfa9466406",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 84, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e3488ad131ae",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 85, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e145434241ef",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 86, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cbe9977a6966",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 87, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "10d2652d9b6f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 88, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2901da6e585b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 89, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "caed7ae79506",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 90, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9fb1f3b12d34",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 91, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bfec303401fe",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 92, 'method': 'tools/call', 'params': {'name': 'mysql_execute_query', 'arguments': {'query': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "94e7eadc2a78",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d067cd2e559d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 130, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "de0dd74c5673",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1dedac6e0bbc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 132, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "abb0af34d53b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "097124b6b2c8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 134, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1183756a2b3d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 135, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf444cadb470",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 136, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c1437b17d0b4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 137, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "142977e7cc81",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 138, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f8addb8c81af",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 139, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "970becd3f741",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 140, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac8009b25fbf",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 141, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f3c58fca132d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 142, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e3b2175f0f48",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 143, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "85a47751ba23",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 144, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "39291786e053",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 145, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4492fe4c8cd1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'mysql_analyze_schema', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8957988c714b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 147, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "99cc8c91078b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 148, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

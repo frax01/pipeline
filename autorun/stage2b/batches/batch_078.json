@@ -1,0 +1,908 @@
+{
+ "batch": 78,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "d4dd1798dd92",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Samvox1/nl-supermarkt-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "cur.execute('SELECT p.*, s.name as sn, s.icon FROM products p JOIN supermarkets s ON p.supermarket_code = s.code WHERE p.name ILIKE %s ORDER BY p.pric"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aec2c8c30367",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Samvox1/nl-supermarkt-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.py",
+    "code": "cur.execute(f'SELECT * FROM promotions WHERE {\" AND \".join(where)} ORDER BY discount_percent DESC NULLS LAST LIMIT %s', params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a44938b18da8",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:floriansmeyers/SFLOW-AIRunner-MCP-PRD",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server.py",
+    "code": "conn.execute(f\"UPDATE jobs SET {', '.join(updates)} WHERE id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b716c6ae3143",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:floriansmeyers/SFLOW-AIRunner-MCP-PRD",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server.py",
+    "code": "conn.execute(f\"UPDATE webhooks SET {', '.join(updates)} WHERE id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "707b13e658eb",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:harn1shmodi/vsguard-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/fixes/templates.py",
+    "code": "cursor.execute(\"SELECT * FROM users WHERE username = '\" + username + \"'\")\"\"\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a05fd7b77b8",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:urjitbhatia/tpm-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tpm_mcp/db.py",
+    "code": "self.conn.execute(f\"UPDATE tickets SET {', '.join(updates)} WHERE id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0958827e6884",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:urjitbhatia/tpm-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tpm_mcp/db.py",
+    "code": "self.conn.execute(f\"UPDATE tasks SET {', '.join(updates)} WHERE id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac1e6b82823b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:arturborycki/mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/teradata/index.ts",
+    "code": "cur.execute(`sel ColumnName, CASE ColumnType"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d9e4ddc95dd4",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:linimbus/go-mcp-file-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "database.go",
+    "code": "rows, err = s.db.Query(TABLE_QUERY_LIKE_SQL, \"%\"+keyword+\"%\", limit)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e65b828a0ac3",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:mattfoster/kcve",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cmd/stdio-mcp/types.go",
+    "code": "rows, err := db.Query(\"SELECT * FROM commits WHERE file_content LIKE ? OR message LIKE ? LIMIT 100\", \"%\"+keyword+\"%\", \"%\"+keyword+\"%\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8ee7727f2bdf",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:MelloB1989/karma",
+   "evidenza": {
+    "tipo": "static",
+    "file": "orm/main.go",
+    "code": "rows, err := db.Query(\"SELECT * FROM \" + o.tableName)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf3dccb84b46",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ilanbenb/wa_llm",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/api/status.py",
+    "code": "raw_result = await conn.execute(text(\"SELECT 1 + 1 as test_result\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4ff7ddf95e5b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:sheshbabu/zen",
+   "evidenza": {
+    "tipo": "static",
+    "file": "features/notes/notes_model.go",
+    "code": "rows, err := sqlite.DB.Query(query, \"{title content}: \"+term, limit)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4dcbcf647893",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:jolks/mcp-cron",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/store/sqlite.go",
+    "code": "rows, err := s.db.Query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "79f1bf742b90",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:wanquanY/Plan_A",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/create_db.py",
+    "code": "await conn.execute(\"SET TIME ZONE '+8:00';\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3a305434729b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:YaSh8202/remote-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/app/mcp/apps/postgres/tools/health.ts",
+    "code": "const vacuumStats = await client.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e97b8f44ca50",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:YaSh8202/remote-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/app/mcp/apps/postgres/tools/analysis.ts",
+    "code": "const seqScanStats = await client.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c6a96778e2ac",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:simplyliz/codemcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/api/index_queries.go",
+    "code": "rows, err := h.db.Query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7e55b08c5a3",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:simplyliz/codemcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/storage/repositories.go",
+    "code": "rows, err := r.db.Query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0c070fb738fe",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:omega-memory/omega-memory",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/omega/sqlite_store/_base.py",
+    "code": "conn.execute(f\"PRAGMA cache_size={-4000 if _is_http else -16000}\") # 4MB / 16MB"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "642166c2b437",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:AbhitejT/movie-mcp-assistant",
+   "evidenza": {
+    "tipo": "static",
+    "file": "loader.py",
+    "code": "cur.execute('ALTER TABLE ' + table_name + ' DISABLE trigger ALL;')"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a0b5980f2fa",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:AbhitejT/movie-mcp-assistant",
+   "evidenza": {
+    "tipo": "static",
+    "file": "loader.py",
+    "code": "cur.execute('ALTER TABLE ' + table_name + ' ENABLE trigger ALL;')"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3102414e77b5",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Alemusica/social-cli-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/core/content-drafter.ts",
+    "code": "await db.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a53b4ac4e1e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ArtMin96/yii2-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/database.ts",
+    "code": "const [tables] = await connection.execute(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "11f9559ffd00",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Averyy/jlcpcb-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/pcbparts_mcp/boards_db/search.py",
+    "code": "rows = conn.execute(data_sql, params + order_params + [limit]).fetchall()"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "abdc073d4eb8",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:DaniManas/exp-tracker-local-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "cur = c.execute(f\"UPDATE expenses SET {', '.join(updates)} WHERE id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "efc279e96cf7",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:DayDreamerAI/ai-garden-railway-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "v6_mcp_bridge.py",
+    "code": "db_session.run(f\"\"\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "072756e9b793",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:EstivenGg/An-lisis-de-datos-con-sistemas-inteligentes",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server.py",
+    "code": "cur.execute(f\"UPDATE productos SET {', '.join(campos)} WHERE id = ?\", valores)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "601f753b137b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Everyone-Needs-A-Copilot/claude-copilot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/tc/src/tc/services/tasks.py",
+    "code": "conn.execute(f\"UPDATE tasks SET {', '.join(updates)} WHERE id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e547a9a161e4",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Everyone-Needs-A-Copilot/claude-copilot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/tc/src/tc/services/prds.py",
+    "code": "conn.execute(f\"UPDATE prds SET {', '.join(updates)} WHERE id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "24df32555890",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:GenAIwithMS/Expense-tracker-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "c.execute(f\"UPDATE expenses SET {', '.join(fields)} WHERE id = ?\", values)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d614f94f9245",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:GenAIwithMS/Expense-tracker-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "c.execute(f\"UPDATE credits SET {', '.join(fields)} WHERE id = ?\", values)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eacf9ca3352b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Jaggerxtrm/unified-ai-mcp-tool",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/specialist/observability-sqlite.ts",
+    "code": "const accessStmt = this.db.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "829a81183c32",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Jarkius/agent-orchestra",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/db/matrix-messages.ts",
+    "code": "db.run(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7a2077e1c17e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:LogicFabric/FabriCore",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/app/services/data_manager.py",
+    "code": "res = conn.execute(text("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2ec234c5a9e9",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:MaxGhenis/openmessages",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/db/messages.go",
+    "code": "beforeRows, err := s.db.Query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "29c6f8ce44ea",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:MaxGhenis/openmessages",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/db/messages.go",
+    "code": "afterRows, err := s.db.Query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3a5b7ae41b3e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:MuhammadDastgeer/First_Remote-_Mcp_Server_App",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main.py",
+    "code": "await c.execute(f\"UPDATE expenses SET {', '.join(fields)} WHERE id = ?\", values)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5e9e5f35e846",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:PlumbMonkey/local-ai-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "interfaces/desktop/business/database.py",
+    "code": "cursor.execute(f\"UPDATE contacts SET {', '.join(updates)} WHERE id = ?\", values)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9536c7ae6f90",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:SashaYerashoff/luxriot-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/app/app_db.py",
+    "code": "conn.execute(f\"UPDATE users SET {', '.join(updates)} WHERE user_id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b91f7334f35b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Sonadas21/ParseQri_MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "CSV_Agent/agents/postgres_handler.py",
+    "code": "conn.execute(text("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ec836d278420",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Vangardo/mcp_hub",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/integrations/memory/store.py",
+    "code": "for r in conn.execute(sql, params_base + extra_params + [limit]).fetchall()"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a088d6227ff1",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:agentidx/agentindex",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agentindex/flywheel_dashboard.py",
+    "code": "t = conn.execute(f\"SELECT COUNT(*) as total, SUM(CASE WHEN is_bot=1 THEN 1 ELSE 0 END) as bots, SUM(CASE WHEN is_bot=0 THEN 1 ELSE 0 END) as humans, C"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0949756b048c",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:agentidx/agentindex",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agentindex/intelligence/scan_stats.py",
+    "code": "rows = conn.execute(text("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "630b784d3fa5",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:agentidx/agentindex",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agentindex/crawlers/npm_enrichment.py",
+    "code": "session.execute(text("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "73961609a483",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:agentidx/agentindex",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agentindex/crawlers/pypi_enrichment.py",
+    "code": "session.execute(text("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "89e9b9131147",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:agentidx/agentindex",
+   "evidenza": {
+    "tipo": "static",
+    "file": "agentindex/crypto/yield_risk_engine.py",
+    "code": "rows=conn.execute(f\"SELECT * FROM defi_yields WHERE {' AND '.join(wc)} AND apy IS NOT NULL ORDER BY apy DESC LIMIT 10000\",params).fetchall()"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8773d7bb53d1",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ai-rio/redditharbor-graph-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "archive/archive/agent_sdk/agent_sdk_simple_demo.py",
+    "code": "\"code\": \"# Analyze new submissions in real-time\\nasync def analyze_new_submissions():\\n new_posts = get_latest_reddit_data()\\n for post in new_p"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "95e7a646554a",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ai-rio/redditharbor-graph-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "archive/archive/agent_sdk/agent_sdk_simple_demo.py",
+    "code": "\"code\": \"# Score opportunities automatically\\nopportunity_score = await ai_client.query(f'''\\nScore this opportunity on 1-10 scale:\\nProblem: {problem"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf87d8ecdc21",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ai-rio/redditharbor-graph-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "archive/archive/agent_sdk/agent_sdk_simple_demo.py",
+    "code": "\"code\": \"# Analyze competitive landscape\\ncompetition_analysis = await ai_client.query(f'''\\nResearch existing apps that solve: {problem}\\nIdentify:\\n"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f4e5c6146589",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ai-rio/redditharbor-graph-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "archive/archive/agent_sdk/agent_sdk_simple_demo.py",
+    "code": "\"code\": \"# Get MVP guidance\\nmvp_plan = await ai_client.query(f'''\\nFor this app concept: {concept}\\nSuggest MVP with 1-3 core features:\\n- Feature 1:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1a4090771422",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ai-rio/redditharbor-graph-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "archive/archive/agent_sdk/agent_sdk_demo.py",
+    "code": "opportunity_score = await ai_client.query(f'''"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cd49a3587646",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ai-rio/redditharbor-graph-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "archive/archive/agent_sdk/agent_sdk_demo.py",
+    "code": "competition_analysis = await ai_client.query(f'''"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dd268c933a91",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ai-rio/redditharbor-graph-enhanced",
+   "evidenza": {
+    "tipo": "static",
+    "file": "archive/archive/agent_sdk/agent_sdk_demo.py",
+    "code": "mvp_plan = await ai_client.query(f\"\"\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6bbe74580142",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:alex-feel/mcp-context-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/cli/migrate.py",
+    "code": "cursor = source.execute(f'SELECT {\", \".join(columns)} FROM embedding_metadata')"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f3d7072291cc",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:andylbrummer/booklife-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "booklife-mcp/internal/history/store.go",
+    "code": "rows, err := s.db.Query(searchQuery, \"%\"+query+\"%\", \"%\"+query+\"%\", limit, offset)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "131446de093f",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:aosyang/TaskMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server.py",
+    "code": "cursor.execute(f\"UPDATE tasks SET {', '.join(updates)} WHERE id = ?\", params)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3ce5f23d8d2e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aplavin/julia-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_server.py",
+    "code": "result = await session.execute(\"println(x + 1)\", timeout=30.0)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c591eab7a743",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aplavin/julia-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_server.py",
+    "code": "result = await session.execute(\"a = 1\\nb = 2\\nprintln(a + b)\", timeout=30.0)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2c7c3372155e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aplavin/julia-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_server.py",
+    "code": "result = await session.execute(\"1 + 2\\nprint(7)\\n5 + 6\", timeout=30.0)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

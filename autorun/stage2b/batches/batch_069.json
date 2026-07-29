@@ -1,0 +1,968 @@
+{
+ "batch": 69,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "294059cbc155",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'hubspot_get_deals_by_owner', 'arguments': {'stage': 'test', 'ownerId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching deals by owner whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getWonDealsTool** - Get won deals by quarter or year (RECOMMENDED for time-based queries)\\n• **searchDealsTool** - General deal search with flexible filtering\\n• **getDealsByYearTool** - Get deals closed in a specific year (any stage)\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a1c6e0672cf4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'hubspot_get_deals_by_owner', 'arguments': {'stage': 'test', 'ownerId': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching deals by owner file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getWonDealsTool** - Get won deals by quarter or year (RECOMMENDED for time-based queries)\\n• **searchDealsTool** - General deal search with flexible filtering\\n• **getDealsByYearTool** - Get deals closed in a specific year (any stage)\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e672c399cf28",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'hubspot_get_won_deals', 'arguments': {'dateStr': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching won deals for ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getWonDealsTool** - Get won deals by quarter or year (RECOMMENDED for time-based queries)\\n• **searchDealsTool** - General deal search with flexible filtering\\n• **getDealsByYearTool** - Get deals closed in a specific year (any stage)\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a24a8f10eec7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'hubspot_get_won_deals', 'arguments': {'dateStr': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching won deals for /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getWonDealsTool** - Get won deals by quarter or year (RECOMMENDED for time-based queries)\\n• **searchDealsTool** - General deal search with flexible filtering\\n• **getDealsByYearTool** - Get deals closed in a specific year (any stage)\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "246a441f4379",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'hubspot_get_won_deals', 'arguments': {'dateStr': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching won deals for whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getWonDealsTool** - Get won deals by quarter or year (RECOMMENDED for time-based queries)\\n• **searchDealsTool** - General deal search with flexible filtering\\n• **getDealsByYearTool** - Get deals closed in a specific year (any stage)\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0e0d68c1c157",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'hubspot_get_won_deals', 'arguments': {'dateStr': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching won deals for file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getWonDealsTool** - Get won deals by quarter or year (RECOMMENDED for time-based queries)\\n• **searchDealsTool** - General deal search with flexible filtering\\n• **getDealsByYearTool** - Get deals closed in a specific year (any stage)\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "43980d78aa5d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 93, 'method': 'tools/call', 'params': {'name': 'hubspot_get_high_potential_prospects', 'arguments': {'dateStr': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching high-potential prospects for ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_high_potential_prospects** - Get companies ranked by email engagement in a time period\\n• **hubspot_get_high_potential_prospects_by_meetings** - Get companies ranked by meeting activity\\n• **hubspot_get_company_recent_emails** - View recent email history for a specific company\\n• **hubspot_get_company_recent_meetings** - View recent meeting history for a specific company\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the al…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bee5ed47b161",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 95, 'method': 'tools/call', 'params': {'name': 'hubspot_get_high_potential_prospects', 'arguments': {'dateStr': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching high-potential prospects for /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_high_potential_prospects** - Get companies ranked by email engagement in a time period\\n• **hubspot_get_high_potential_prospects_by_meetings** - Get companies ranked by meeting activity\\n• **hubspot_get_company_recent_emails** - View recent email history for a specific company\\n• **hubspot_get_company_recent_meetings** - View recent meeting history for a specific company\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alternativ…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f7ec297ea47e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 97, 'method': 'tools/call', 'params': {'name': 'hubspot_get_high_potential_prospects', 'arguments': {'dateStr': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching high-potential prospects for whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_high_potential_prospects** - Get companies ranked by email engagement in a time period\\n• **hubspot_get_high_potential_prospects_by_meetings** - Get companies ranked by meeting activity\\n• **hubspot_get_company_recent_emails** - View recent email history for a specific company\\n• **hubspot_get_company_recent_meetings** - View recent meeting history for a specific company\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but th…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be6fc68ecd47",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'hubspot_get_high_potential_prospects', 'arguments': {'dateStr': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching high-potential prospects for file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_high_potential_prospects** - Get companies ranked by email engagement in a time period\\n• **hubspot_get_high_potential_prospects_by_meetings** - Get companies ranked by meeting activity\\n• **hubspot_get_company_recent_emails** - View recent email history for a specific company\\n• **hubspot_get_company_recent_meetings** - View recent meeting history for a specific company\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alt…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "47f42563b119",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'hubspot_get_high_potential_prospects_by_meetings', 'arguments': {'dateStr': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching high-potential prospects by meetings for ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_high_potential_prospects** - Get companies ranked by email engagement in a time period\\n• **hubspot_get_high_potential_prospects_by_meetings** - Get companies ranked by meeting activity\\n• **hubspot_get_company_recent_emails** - View recent email history for a specific company\\n• **hubspot_get_company_recent_meetings** - View recent meeting history for a specific company\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "304845e58ad2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'hubspot_get_high_potential_prospects_by_meetings', 'arguments': {'dateStr': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching high-potential prospects by meetings for /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_high_potential_prospects** - Get companies ranked by email engagement in a time period\\n• **hubspot_get_high_potential_prospects_by_meetings** - Get companies ranked by meeting activity\\n• **hubspot_get_company_recent_emails** - View recent email history for a specific company\\n• **hubspot_get_company_recent_meetings** - View recent meeting history for a specific company\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but th…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c7151296a27a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'hubspot_get_high_potential_prospects_by_meetings', 'arguments': {'dateStr': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching high-potential prospects by meetings for whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_high_potential_prospects** - Get companies ranked by email engagement in a time period\\n• **hubspot_get_high_potential_prospects_by_meetings** - Get companies ranked by meeting activity\\n• **hubspot_get_company_recent_emails** - View recent email history for a specific company\\n• **hubspot_get_company_recent_meetings** - View recent meeting history for a specific company\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an e…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "25c07418c375",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'hubspot_get_high_potential_prospects_by_meetings', 'arguments': {'dateStr': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching high-potential prospects by meetings for file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_high_potential_prospects** - Get companies ranked by email engagement in a time period\\n• **hubspot_get_high_potential_prospects_by_meetings** - Get companies ranked by meeting activity\\n• **hubspot_get_company_recent_emails** - View recent email history for a specific company\\n• **hubspot_get_company_recent_meetings** - View recent meeting history for a specific company\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error,…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d81e12629d8c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'hubspot_get_company_recent_emails', 'arguments': {'companyNameOrId': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"❌ Error fetching recent emails for company ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_companies** - Search by exact name with operator: 'EQ' or partial match with 'CONTAINS'\\n• **hubspot_get_company_recent_emails** - Check recent email communications (accepts company name)\\n• **hubspot_get_company_recent_meetings** - Check recent meetings (accepts company name)\\n• **hubspot_get_company_recent_emails** - See email communications from the last 30 days (or custom period)\\n• **hubspot_get_company_recent_meetings** - See meeting history from the last 30 days (or custom period)\\n• *…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c3a84bcec842",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'hubspot_get_company_recent_emails', 'arguments': {'companyNameOrId': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"❌ Error fetching recent emails for company /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_companies** - Search by exact name with operator: 'EQ' or partial match with 'CONTAINS'\\n• **hubspot_get_company_recent_emails** - Check recent email communications (accepts company name)\\n• **hubspot_get_company_recent_meetings** - Check recent meetings (accepts company name)\\n• **hubspot_get_company_recent_emails** - See email communications from the last 30 days (or custom period)\\n• **hubspot_get_company_recent_meetings** - See meeting history from the last 30 days (or custom period)\\n• **hubspot…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa6c91e25d32",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'hubspot_get_company_recent_emails', 'arguments': {'companyNameOrId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"❌ Error fetching recent emails for company whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_companies** - Search by exact name with operator: 'EQ' or partial match with 'CONTAINS'\\n• **hubspot_get_company_recent_emails** - Check recent email communications (accepts company name)\\n• **hubspot_get_company_recent_meetings** - Check recent meetings (accepts company name)\\n• **hubspot_get_company_recent_emails** - See email communications from the last 30 days (or custom period)\\n• **hubspot_get_company_recent_meetings** - See meeting history from the last 30 days (or custom period)\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a1e5596fc743",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'hubspot_get_company_recent_emails', 'arguments': {'companyNameOrId': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"❌ Error fetching recent emails for company file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_companies** - Search by exact name with operator: 'EQ' or partial match with 'CONTAINS'\\n• **hubspot_get_company_recent_emails** - Check recent email communications (accepts company name)\\n• **hubspot_get_company_recent_meetings** - Check recent meetings (accepts company name)\\n• **hubspot_get_company_recent_emails** - See email communications from the last 30 days (or custom period)\\n• **hubspot_get_company_recent_meetings** - See meeting history from the last 30 days (or custom period)\\n• **…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7b50a17e19d6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 147, 'method': 'tools/call', 'params': {'name': 'hubspot_get_company_recent_meetings', 'arguments': {'companyNameOrId': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"❌ Error fetching recent meetings for company ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_companies** - Search by exact name with operator: 'EQ' or partial match with 'CONTAINS'\\n• **hubspot_get_company_recent_emails** - Check recent email communications (accepts company name)\\n• **hubspot_get_company_recent_meetings** - Check recent meetings (accepts company name)\\n• **hubspot_get_company_recent_emails** - See email communications from the last 30 days (or custom period)\\n• **hubspot_get_company_recent_meetings** - See meeting history from the last 30 days (or custom period)\\n•…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8e6a4db325f0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 149, 'method': 'tools/call', 'params': {'name': 'hubspot_get_company_recent_meetings', 'arguments': {'companyNameOrId': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"❌ Error fetching recent meetings for company /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_companies** - Search by exact name with operator: 'EQ' or partial match with 'CONTAINS'\\n• **hubspot_get_company_recent_emails** - Check recent email communications (accepts company name)\\n• **hubspot_get_company_recent_meetings** - Check recent meetings (accepts company name)\\n• **hubspot_get_company_recent_emails** - See email communications from the last 30 days (or custom period)\\n• **hubspot_get_company_recent_meetings** - See meeting history from the last 30 days (or custom period)\\n• **hubsp…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fcd00959c306",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 151, 'method': 'tools/call', 'params': {'name': 'hubspot_get_company_recent_meetings', 'arguments': {'companyNameOrId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"❌ Error fetching recent meetings for company whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_companies** - Search by exact name with operator: 'EQ' or partial match with 'CONTAINS'\\n• **hubspot_get_company_recent_emails** - Check recent email communications (accepts company name)\\n• **hubspot_get_company_recent_meetings** - Check recent meetings (accepts company name)\\n• **hubspot_get_company_recent_emails** - See email communications from the last 30 days (or custom period)\\n• **hubspot_get_company_recent_meetings** - See meeting history from the last 30 days (or custom period…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "345590e5b598",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 164, 'method': 'tools/call', 'params': {'name': 'hubspot_get_company_recent_meetings', 'arguments': {'companyNameOrId': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"❌ Error fetching recent meetings for company file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_companies** - Search by exact name with operator: 'EQ' or partial match with 'CONTAINS'\\n• **hubspot_get_company_recent_emails** - Check recent email communications (accepts company name)\\n• **hubspot_get_company_recent_meetings** - Check recent meetings (accepts company name)\\n• **hubspot_get_company_recent_emails** - See email communications from the last 30 days (or custom period)\\n• **hubspot_get_company_recent_meetings** - See meeting history from the last 30 days (or custom period)\\n• …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7cafdea1226a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 183, 'method': 'tools/call', 'params': {'name': 'hubspot_get_contact', 'arguments': {'contactId': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching HubSpot contact ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_contacts** - General contact search with flexible filtering\\n• **hubspot_get_contacts_by_company** - Get all contacts for a company\\n• **hubspot_search_companies** - Find the company first, then retrieve its contacts\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 183}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5c0aa78438b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 185, 'method': 'tools/call', 'params': {'name': 'hubspot_get_contact', 'arguments': {'contactId': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching HubSpot contact /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_contacts** - General contact search with flexible filtering\\n• **hubspot_get_contacts_by_company** - Get all contacts for a company\\n• **hubspot_search_companies** - Find the company first, then retrieve its contacts\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 185}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3ff9eb0c242a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 187, 'method': 'tools/call', 'params': {'name': 'hubspot_get_contact', 'arguments': {'contactId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching HubSpot contact whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_contacts** - General contact search with flexible filtering\\n• **hubspot_get_contacts_by_company** - Get all contacts for a company\\n• **hubspot_search_companies** - Find the company first, then retrieve its contacts\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 187}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eda33063acd0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 200, 'method': 'tools/call', 'params': {'name': 'hubspot_get_contact', 'arguments': {'contactId': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching HubSpot contact file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_search_contacts** - General contact search with flexible filtering\\n• **hubspot_get_contacts_by_company** - Get all contacts for a company\\n• **hubspot_search_companies** - Find the company first, then retrieve its contacts\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 200}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1905015c1191",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 201, 'method': 'tools/call', 'params': {'name': 'hubspot_get_contacts_by_company', 'arguments': {'companyId': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching contacts for company ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_contacts_by_company** - Get contacts for a specific company (use Company ID)\\n• **hubspot_search_companies** - Search for the company first to get its ID\\n• **hubspot_search_contacts** - Search contacts with company association filter\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 201}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eab8ace96b70",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 203, 'method': 'tools/call', 'params': {'name': 'hubspot_get_contacts_by_company', 'arguments': {'companyId': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching contacts for company /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_contacts_by_company** - Get contacts for a specific company (use Company ID)\\n• **hubspot_search_companies** - Search for the company first to get its ID\\n• **hubspot_search_contacts** - Search contacts with company association filter\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 203}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eb90f37ffabb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 205, 'method': 'tools/call', 'params': {'name': 'hubspot_get_contacts_by_company', 'arguments': {'companyId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching contacts for company whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_contacts_by_company** - Get contacts for a specific company (use Company ID)\\n• **hubspot_search_companies** - Search for the company first to get its ID\\n• **hubspot_search_contacts** - Search contacts with company association filter\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 205}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2fc0319ca1f9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 218, 'method': 'tools/call', 'params': {'name': 'hubspot_get_contacts_by_company', 'arguments': {'companyId': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching contacts for company file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **hubspot_get_contacts_by_company** - Get contacts for a specific company (use Company ID)\\n• **hubspot_search_companies** - Search for the company first to get its ID\\n• **hubspot_search_contacts** - Search contacts with company association filter\\n\\n**Action required:** Please try one of the suggested approaches above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 218}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a4631c6f3a89",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 237, 'method': 'tools/call', 'params': {'name': 'hubspot_get_email_campaign', 'arguments': {'campaignId': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching email campaign ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailCampaignTool** - Get details for the specific campaign\\n• **getCampaignMetricsTool** - Get performance metrics for the campaign\\n• **getCampaignPerformanceTool** - Get detailed performance data for the campaign\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 237}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "39e01ec7b534",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 239, 'method': 'tools/call', 'params': {'name': 'hubspot_get_email_campaign', 'arguments': {'campaignId': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching email campaign /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailCampaignTool** - Get details for the specific campaign\\n• **getCampaignMetricsTool** - Get performance metrics for the campaign\\n• **getCampaignPerformanceTool** - Get detailed performance data for the campaign\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 239}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "85a89fa19386",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 241, 'method': 'tools/call', 'params': {'name': 'hubspot_get_email_campaign', 'arguments': {'campaignId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching email campaign whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailCampaignTool** - Get details for the specific campaign\\n• **getCampaignMetricsTool** - Get performance metrics for the campaign\\n• **getCampaignPerformanceTool** - Get detailed performance data for the campaign\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 241}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "688a470bd87d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 254, 'method': 'tools/call', 'params': {'name': 'hubspot_get_email_campaign', 'arguments': {'campaignId': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching email campaign file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailCampaignTool** - Get details for the specific campaign\\n• **getCampaignMetricsTool** - Get performance metrics for the campaign\\n• **getCampaignPerformanceTool** - Get detailed performance data for the campaign\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 254}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b29439ba6628",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 273, 'method': 'tools/call', 'params': {'name': 'hubspot_get_campaign_performance', 'arguments': {'startDate': 'test', 'endDate': 'test', 'campaignId': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching campaign performance for ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailCampaignTool** - Get details for the specific campaign\\n• **getCampaignMetricsTool** - Get performance metrics for the campaign\\n• **getCampaignPerformanceTool** - Get detailed performance data for the campaign\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 273}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0a6923d22b6c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 275, 'method': 'tools/call', 'params': {'name': 'hubspot_get_campaign_performance', 'arguments': {'startDate': 'test', 'endDate': 'test', 'campaignId': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching campaign performance for /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailCampaignTool** - Get details for the specific campaign\\n• **getCampaignMetricsTool** - Get performance metrics for the campaign\\n• **getCampaignPerformanceTool** - Get detailed performance data for the campaign\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 275}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "41589f103515",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 277, 'method': 'tools/call', 'params': {'name': 'hubspot_get_campaign_performance', 'arguments': {'startDate': 'test', 'endDate': 'test', 'campaignId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching campaign performance for whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailCampaignTool** - Get details for the specific campaign\\n• **getCampaignMetricsTool** - Get performance metrics for the campaign\\n• **getCampaignPerformanceTool** - Get detailed performance data for the campaign\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 277}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "53367514055c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 290, 'method': 'tools/call', 'params': {'name': 'hubspot_get_campaign_performance', 'arguments': {'startDate': 'test', 'endDate': 'test', 'campaignId': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching campaign performance for file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailCampaignTool** - Get details for the specific campaign\\n• **getCampaignMetricsTool** - Get performance metrics for the campaign\\n• **getCampaignPerformanceTool** - Get detailed performance data for the campaign\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 290}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a050f7634ec6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 291, 'method': 'tools/call', 'params': {'name': 'hubspot_get_email_statistics_histogram', 'arguments': {'dateStr': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching email statistics histogram for ../../../etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailStatisticsHistogramTool** - Get monthly/quarterly performance metrics for the time period\\n• **searchEmailCampaignsTool** - Find campaigns created in the specified time range\\n• **getCampaignPerformanceTool** - Get performance data for campaigns in the time period\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 291}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6e6cfd62e2dd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 293, 'method': 'tools/call', 'params': {'name': 'hubspot_get_email_statistics_histogram', 'arguments': {'dateStr': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching email statistics histogram for /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailStatisticsHistogramTool** - Get monthly/quarterly performance metrics for the time period\\n• **searchEmailCampaignsTool** - Find campaigns created in the specified time range\\n• **getCampaignPerformanceTool** - Get performance data for campaigns in the time period\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 293}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "410220a16286",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 295, 'method': 'tools/call', 'params': {'name': 'hubspot_get_email_statistics_histogram', 'arguments': {'dateStr': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching email statistics histogram for whoami; cat /etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailStatisticsHistogramTool** - Get monthly/quarterly performance metrics for the time period\\n• **searchEmailCampaignsTool** - Find campaigns created in the specified time range\\n• **getCampaignPerformanceTool** - Get performance data for campaigns in the time period\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 295}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00854540b752",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/hubspot-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 308, 'method': 'tools/call', 'params': {'name': 'hubspot_get_email_statistics_histogram', 'arguments': {'dateStr': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Error fetching email statistics histogram for file:///etc/passwd: No HubSpot access token available\\n\\n💡 **Recommended alternatives:**\\n• **getEmailStatisticsHistogramTool** - Get monthly/quarterly performance metrics for the time period\\n• **searchEmailCampaignsTool** - Find campaigns created in the specified time range\\n• **getCampaignPerformanceTool** - Get performance data for campaigns in the time period\\n\\n**Action required:** Please try one of the suggested tools above. The current tool encountered an error, but the alternative tools should work for your query.'}]}, 'jsonrpc': '2.0', 'id': 308}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "96ccccbda449",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/jira-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'jira_get_issue_info', 'arguments': {'issueKey': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error fetching JIRA issue ../../../etc/passwd: Cannot read properties of undefined (reading 'fields')\"}]}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "42c40ced2838",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/jira-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'jira_get_issue_info', 'arguments': {'issueKey': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error fetching JIRA issue /etc/passwd: Cannot read properties of undefined (reading 'fields')\"}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b97b1894cdb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/jira-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'jira_get_issue_info', 'arguments': {'issueKey': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error fetching JIRA issue whoami; cat /etc/passwd: Cannot read properties of undefined (reading 'fields')\"}]}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3f4500d1c6ba",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@aot-tech/jira-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'jira_get_issue_info', 'arguments': {'issueKey': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error fetching JIRA issue file:///etc/passwd: Cannot read properties of undefined (reading 'fields')\"}]}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5931a59b6bcd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@blac3k/bash-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'execute_bash_command', 'arguments': {'command': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Command execution failed.\\n\\n--- ERROR ---\\n/usr/bin/bash: line 1: file:///etc/passwd: No such file or directory'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8aab70171414",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@bwlab/prestashop-devtools-mcpserver",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 93, 'method': 'tools/call', 'params': {'name': 'create_admin_controller', 'arguments': {'moduleName': 'test', 'nameSpace': 'test', 'controllerName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\nCreate an Admin Controller for the PrestaShop module \\'test\\'.\\n\\n## Files to Create\\n\\n### 1. Controller File\\n**Path:** `modules/test/src/Controller/../../../etc/passwd.php`\\nThis is the content of the file. Don\\'t edit the content of the file:\\n```php\\n<?php\\n\\nnamespace test\\\\Controller;\\n\\nif (!defined(\\'_PS_VERSION_\\')) {\\n exit;\\n}\\n\\nuse PrestaShopBundle\\\\Controller\\\\Admin\\\\FrameworkBundleAdminController;\\nuse Symfony\\\\Component\\\\HttpFoundation\\\\Request;\\nuse Symfony\\\\Component\\\\HttpFoundation\\\\Response;\\n\\nclass ../../../etc/passwd extends FrameworkBundleAdminController\\n{\\n public function indexAction(Request $request): Response\\n…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "52e5cf0a690a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@bwlab/prestashop-devtools-mcpserver",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 95, 'method': 'tools/call', 'params': {'name': 'create_admin_controller', 'arguments': {'moduleName': 'test', 'nameSpace': 'test', 'controllerName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\nCreate an Admin Controller for the PrestaShop module \\'test\\'.\\n\\n## Files to Create\\n\\n### 1. Controller File\\n**Path:** `modules/test/src/Controller//etc/passwd.php`\\nThis is the content of the file. Don\\'t edit the content of the file:\\n```php\\n<?php\\n\\nnamespace test\\\\Controller;\\n\\nif (!defined(\\'_PS_VERSION_\\')) {\\n exit;\\n}\\n\\nuse PrestaShopBundle\\\\Controller\\\\Admin\\\\FrameworkBundleAdminController;\\nuse Symfony\\\\Component\\\\HttpFoundation\\\\Request;\\nuse Symfony\\\\Component\\\\HttpFoundation\\\\Response;\\n\\nclass /etc/passwd extends FrameworkBundleAdminController\\n{\\n public function indexAction(Request $request): Response\\n {\\n return $thi…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1d52da136d5e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@bwlab/prestashop-devtools-mcpserver",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 97, 'method': 'tools/call', 'params': {'name': 'create_admin_controller', 'arguments': {'moduleName': 'test', 'nameSpace': 'test', 'controllerName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\nCreate an Admin Controller for the PrestaShop module \\'test\\'.\\n\\n## Files to Create\\n\\n### 1. Controller File\\n**Path:** `modules/test/src/Controller/Whoami; cat /etc/passwd.php`\\nThis is the content of the file. Don\\'t edit the content of the file:\\n```php\\n<?php\\n\\nnamespace test\\\\Controller;\\n\\nif (!defined(\\'_PS_VERSION_\\')) {\\n exit;\\n}\\n\\nuse PrestaShopBundle\\\\Controller\\\\Admin\\\\FrameworkBundleAdminController;\\nuse Symfony\\\\Component\\\\HttpFoundation\\\\Request;\\nuse Symfony\\\\Component\\\\HttpFoundation\\\\Response;\\n\\nclass Whoami; cat /etc/passwd extends FrameworkBundleAdminController\\n{\\n public function indexAction(Request $request): Re…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5090389545c5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@bwlab/prestashop-devtools-mcpserver",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'create_admin_controller', 'arguments': {'moduleName': 'test', 'nameSpace': 'test', 'controllerName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '\\nCreate an Admin Controller for the PrestaShop module \\'test\\'.\\n\\n## Files to Create\\n\\n### 1. Controller File\\n**Path:** `modules/test/src/Controller/File:///etc/passwd.php`\\nThis is the content of the file. Don\\'t edit the content of the file:\\n```php\\n<?php\\n\\nnamespace test\\\\Controller;\\n\\nif (!defined(\\'_PS_VERSION_\\')) {\\n exit;\\n}\\n\\nuse PrestaShopBundle\\\\Controller\\\\Admin\\\\FrameworkBundleAdminController;\\nuse Symfony\\\\Component\\\\HttpFoundation\\\\Request;\\nuse Symfony\\\\Component\\\\HttpFoundation\\\\Response;\\n\\nclass File:///etc/passwd extends FrameworkBundleAdminController\\n{\\n public function indexAction(Request $request): Response\\n {…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2f495de3198d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@codai/analytics-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'generate_insights', 'arguments': {'metricName': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Analytics Insights for ../../../etc/passwd:\\n{\\n \"metric\": \"../../../etc/passwd\",\\n \"period\": \"7 days\",\\n \"statistics\": {\\n \"avg\": 1,\\n \"min\": 1,\\n \"max\": 1,\\n \"count\": 1\\n },\\n \"trend\": {\\n \"direction\": \"decreasing\",\\n \"percentage\": null\\n },\\n \"insights\": [\\n \"Average ../../../etc/passwd: 1.00\",\\n \"Range: 1 - 1\",\\n \"Trend: decreasing by NaN% over 7 days\",\\n \"Total data points: 1\"\\n ],\\n \"recommendations\": []\\n}'}]}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2db0ff494a3e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@codai/analytics-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'generate_insights', 'arguments': {'metricName': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Analytics Insights for /etc/passwd:\\n{\\n \"metric\": \"/etc/passwd\",\\n \"period\": \"7 days\",\\n \"statistics\": {\\n \"avg\": 1,\\n \"min\": 1,\\n \"max\": 1,\\n \"count\": 1\\n },\\n \"trend\": {\\n \"direction\": \"decreasing\",\\n \"percentage\": null\\n },\\n \"insights\": [\\n \"Average /etc/passwd: 1.00\",\\n \"Range: 1 - 1\",\\n \"Trend: decreasing by NaN% over 7 days\",\\n \"Total data points: 1\"\\n ],\\n \"recommendations\": []\\n}'}]}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2807983997d2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@codai/analytics-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'generate_insights', 'arguments': {'metricName': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Analytics Insights for whoami; cat /etc/passwd:\\n{\\n \"metric\": \"whoami; cat /etc/passwd\",\\n \"period\": \"7 days\",\\n \"statistics\": {\\n \"avg\": 1,\\n \"min\": 1,\\n \"max\": 1,\\n \"count\": 1\\n },\\n \"trend\": {\\n \"direction\": \"decreasing\",\\n \"percentage\": null\\n },\\n \"insights\": [\\n \"Average whoami; cat /etc/passwd: 1.00\",\\n \"Range: 1 - 1\",\\n \"Trend: decreasing by NaN% over 7 days\",\\n \"Total data points: 1\"\\n ],\\n \"recommendations\": []\\n}'}]}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d2438d4a3633",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@codai/analytics-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'generate_insights', 'arguments': {'metricName': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Analytics Insights for file:///etc/passwd:\\n{\\n \"metric\": \"file:///etc/passwd\",\\n \"period\": \"7 days\",\\n \"statistics\": {\\n \"avg\": 1,\\n \"min\": 1,\\n \"max\": 1,\\n \"count\": 1\\n },\\n \"trend\": {\\n \"direction\": \"decreasing\",\\n \"percentage\": null\\n },\\n \"insights\": [\\n \"Average file:///etc/passwd: 1.00\",\\n \"Range: 1 - 1\",\\n \"Trend: decreasing by NaN% over 7 days\",\\n \"Total data points: 1\"\\n ],\\n \"recommendations\": []\\n}'}]}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "871b3c0ba177",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@deplens/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'deplens_project_diff', 'arguments': {'from': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Command failed: git show ../../../etc/passwd:package-lock.json\\nfatal: not a git repository (or any of the parent directories): .git\\n'}], 'structuredContent': {'schemaVersion': 1, 'kind': 'deplens-project-diff', 'from': None, 'to': None, 'summary': {}, 'changes': [], 'warnings': ['Command failed: git show ../../../etc/passwd:package-lock.json\\nfatal: not a git repository (or any of the parent directories): .git\\n'], 'error': 'Command failed: git show ../../../etc/passwd:package-lock.json\\nfatal: not a git repository (or any of the parent directories): .git\\n', 'errorInfo': {'code': 128, 'phase': 'unknown', 'retryable': False, 'details…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "719f6e0b976c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@deplens/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 61, 'method': 'tools/call', 'params': {'name': 'deplens_project_diff', 'arguments': {'from': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Command failed: git show whoami; cat /etc/passwd:package-lock.json\\nfatal: not a git repository (or any of the parent directories): .git\\n'}], 'structuredContent': {'schemaVersion': 1, 'kind': 'deplens-project-diff', 'from': None, 'to': None, 'summary': {}, 'changes': [], 'warnings': ['Command failed: git show whoami; cat /etc/passwd:package-lock.json\\nfatal: not a git repository (or any of the parent directories): .git\\n'], 'error': 'Command failed: git show whoami; cat /etc/passwd:package-lock.json\\nfatal: not a git repository (or any of the parent directories): .git\\n', 'errorInfo': {'code': 128, 'phase': 'unknown', 'retryable': Fal…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3f5cac104f5c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@deplens/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 74, 'method': 'tools/call', 'params': {'name': 'deplens_project_diff', 'arguments': {'from': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Command failed: git show file:///etc/passwd:package-lock.json\\nfatal: not a git repository (or any of the parent directories): .git\\n'}], 'structuredContent': {'schemaVersion': 1, 'kind': 'deplens-project-diff', 'from': None, 'to': None, 'summary': {}, 'changes': [], 'warnings': ['Command failed: git show file:///etc/passwd:package-lock.json\\nfatal: not a git repository (or any of the parent directories): .git\\n'], 'error': 'Command failed: git show file:///etc/passwd:package-lock.json\\nfatal: not a git repository (or any of the parent directories): .git\\n', 'errorInfo': {'code': 128, 'phase': 'unknown', 'retryable': False, 'details': …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2cca9bb1fcda",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@hugolc/teste-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'getenv', 'arguments': {'name': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '../../../etc/passwd: Não definido'}]}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2e0d2bb60cc9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@hugolc/teste-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'getenv', 'arguments': {'name': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '/etc/passwd: Não definido'}]}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

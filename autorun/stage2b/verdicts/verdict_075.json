@@ -1,0 +1,305 @@
+{
+ "batch": 75,
+ "verdetti": [
+  {
+   "id": "f7586fad52d8",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "bf0c8b133ac8",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "326a775b0c34",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "b5bdcbcf287e",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "8fbe36e95dcc",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "e4f9ce811ca7",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "de5345d3cad2",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "a526347d07d0",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "4bf194e080d5",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "1d33ce36bcc4",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "b43c8f5edad6",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "1d6c065528e0",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "358ae1b06dd0",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "bddc72484b17",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "efeb64b88e50",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "f02791175ab2",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "c6d332f08731",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "f93a89f61fce",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "4c60300818e6",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "ff24bbf7950b",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "153015219d4f",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "dee63ad05f2b",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "e1812916cebc",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "34734a679dd1",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "52ad7252db98",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "b93d8964bc66",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "a6fd5369111c",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "d169dd5607cd",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'PRIVATE_KEY not set in .env', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "4f6b5d080f07",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "1dbd57a4dce7",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "6857dbb2ceff",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "69149339b715",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "d1bfbd68e6a0",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "ee23e59b71ae",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "54db96d87e0b",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "d1fb70847c21",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "da65e91eb01f",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "0258f05702f5",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "5532e4c405b5",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "77749ec348be",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "b2650eb2c14f",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "045da2792495",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "0e018efb05a8",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "fa375a2c915c",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "63885fd41778",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "e585790dbdad",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "dd87edd4d789",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "2ac3a6b95c5f",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "6505cbb03404",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "e8fe48d0ec34",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "5463635cdfce",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "288fd5203c07",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "93fc98046c2c",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "20101c131461",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "064e64a7715f",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "62f315b9fd00",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "51dc2841af69",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "0877f81a7323",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "59b92bdf73e5",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  },
+  {
+   "id": "1d576e1d95ed",
+   "verdetto": "FP",
+   "motivo": "messaggio d'errore generico 'requires wallet context / Configure PRIVATE_KEY', solo nome del parametro, nessun valore"
+  }
+ ]
+}

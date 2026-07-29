@@ -1,0 +1,968 @@
+{
+ "batch": 1,
+ "n_cluster": 60,
+ "n_finding": 75,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "3632a408fce1",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:augmented-nature/pdb-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_structure_info-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32602: MCP error -32602: Invalid PDB ID arguments"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "ad1e0b23099a",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:OctoMind-dev/octomind-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_book-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error 0: validating tool output: validating root: validating /properties/identifiers: type: <invalid reflect.Value> has type \"null\", want \"object\""
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "2e2c38185ebd",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "gh:ulucaydin/mcp-server-newrelic",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_style-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: Invalid category: test"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "4462f94096c6",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:lyarwood/kubevirt-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-create_vm-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: the server could not find the requested resource (post virtualmachines.kubevirt.io)"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "b402956d84f1",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_image_info-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: Get image info failed: unsupported file type: undefined (file: /home/tecnico/Desktop/Frameworks/mcp-check/test)"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "644d8857688e",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:RSS3-Network/mcp-server-rss3",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-API-get-input-schema-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: Method undefined not found"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "f60afe162707",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nodlab/mcp-assistant",
+   "evidenza": {
+    "tipo": "check",
+    "test": "initialization",
+    "err": "InitializationError",
+    "msg": "MCP error -32603: The \"path\" argument must be of type string or an instance of Buffer or URL. Received undefined"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "924fd57e6a58",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sdimitrov/mcp-memory",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-memory.create-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32000:"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "2947de8f07de",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:negokaz/excel-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-excel_copy_sheet-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: zip: not a valid zip file"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "162e3131c08c",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:docker-hackerxbt68/mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "initialization",
+    "err": "InitializationError",
+    "msg": "MCP error -32603: Request failed: Not Found"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "7c4b68535831",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kittolau/mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-convert_docx_to_markdown-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: convert_docx_to_markdown failed"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "2d5fa90b92ff",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "gh:surajmandalcell/pgsql-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_temperature-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: temperature service returned status: 404 Not Found"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "3dc849babc19",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:MakingChatbots/genesys-cloud-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-proxychains_run-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: SSH command failed: The argument 'command' must be a string without null bytes. Received `ssh kali \"echo '# ProxyChains-ng configuration generated by proxychains-mcp\\n` + '\\n' + 'dynamic_chain\\n' + '\\n' + 'pro..."
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "b7e9e12ec08c",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:Vrivaans/handsai-bridge",
+   "evidenza": {
+    "tipo": "check",
+    "test": "initialization",
+    "err": "InitializationError",
+    "msg": "MCP error -32603: HTTP 401"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "7be26e885006",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:vibeclasses/follow-plan-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "initialization",
+    "err": "InitializationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to connect to backend: MCP error -32603: Backend error: Not Found - <!doctype html><meta charset=\"utf-8\"><title>Not found</title> <body style=\"font:16px/1.6 system-ui;max-width:32rem;margin:15vh auto;padding:0 1rem;text-align:center;color:#333\"> <h1 style=\"…"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "c92db57dc9a5",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pinkpixel-dev/npm-helper-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-fetch_package_content-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32602: MCP error -32602: Invalid arguments: [object Object]"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dd0fcc41ec7d",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:bhavik-dreamz/shopify-mcp-server-graphql",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-calculate-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32602: MCP error -32602: Invalid characters in expression"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6f0632d54286",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:PWalaGov/File-Control-MCP",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-set_working_directory-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32602: MCP error -32602: Invalid directory: Path is not a directory"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "68891ee945d5",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:haasonsaas/deep-code-reasoning-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-escalate_analysis-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32602: MCP error -32602: Invalid parameters: depth_level: Required"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf480812361e",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dm0lz/swiss-ephemeris-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-calculate_solar_revolution-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32602: MCP error -32602: return_year must be a number between 1900 and 2100"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ab24a675c6d8",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:dshills/gocontext-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_status-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32602: invalid path"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5535be887825",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liuyoshio/mcp-compass",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-recommend-mcp-servers-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: COMPASS API request failed with status 525"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e2d9c4e49b18",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:madhukarkumar/singlestore-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-generate_er_diagram-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Database connection error:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e3a932c59e2",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kemalersin/fonparam-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-compare_funds-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: FonParam API Error: API Error 400: Bad Request"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cce618ab8028",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:automattic/mcp-wordpress-remote",
+   "evidenza": {
+    "tipo": "check",
+    "test": "initialization",
+    "err": "InitializationError",
+    "msg": "MCP error -32603: MCP error -32603: Cannot process tools/list: WordPress connection failed during initialization"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fb9612a730db",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:scrapybara/scrapybara-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-start_instance-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: Status code: 404 Body: { \"ok\": false, \"error\": { \"reason\": \"non-json\", \"statusCode\": 404, \"rawBody\": \"\\n<html><head>\\n<meta http-equiv=\\\"content-type\\\" content=\\\"text/html;charset=utf-8\\\">\\n<title>404 Page not found</title>\\n</head>\\n<body text=#000000 bgcolor=#ffffff>\\n<h1>Error: …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0f8ae43ee227",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ryanmazzolini/minimal-godot-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_diagnostics-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: file_path must be a .gd file"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bbdb97f83bc8",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rishipradeep-think41/drive-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-gdrive_search-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: Failed to authenticate"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "25e8924ae4b1",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:emilioejus/Windows-MCP",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-delete_folder-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: La ruta no existe"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "798ee83897fb",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "gh:rftsngl/SpaceX-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_latest_launch-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32000: En son fırlatma verisi alınamadı"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "054d7aefd357",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:falahgs/MCP-CSV-Analysis-with-Gemini-AI",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-analyze-csv-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: CSV file is empty or could not be parsed"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "613383524791",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:quinny1187/obsidian-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_vault_info-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to execute get_vault_info: Invalid vault path: test"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0262cf68d036",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ananddtyagi/gif-creator-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-convert_video_to_gif-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to convert video to GIF: ffmpeg exited with code 1: test: Invalid data found when processing input"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5e53308205be",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Sunwood-ai-labs/aira-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_status-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to get git status: Error: MCP error -32600: 指定されたパス 'test' はGitリポジトリではありません。"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e99ee328b603",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hongaah/swiftcode-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-generate_api_client-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to generate API client"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dbe965fd190a",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:falahgs/MCP-Storybook-Image-Generator",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-generate_storybook_image-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to generate image: got status: 400 Bad Request. {\"error\":{\"message\":\"exception parsing response\",\"code\":400,\"status\":\"Bad Request\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1ba9e74e1844",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:StuMason/coolify-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-list-resources-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: {\"error\":\"Coolify API error: 503 Service Unavailable\",\"status\":503,\"details\":{}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ed3af0739e66",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:falahgs/mcp-3d-style-cartoon-gen-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-generate_3d_cartoon-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to generate image: got status: 400 Bad Request. {\"error\":{\"message\":\"exception parsing response\",\"code\":400,\"status\":\"Bad Request\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e8f30128bf4b",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:michaelneale/deepseek-r1-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-reasoner-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: Ollama API error: 404 Not Found"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f13cfc68b16d",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:r-huijts/ethics-check-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-ethics_check-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to execute tool: Failed to complete ethics analysis"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f880fbd1d5db",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:haasonsaas/deliberate-reasoning-engine",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-log_thought-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Error: SQLITE_BUSY: database is locked"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aeca3a8511be",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:bsmi021/mcp-python-executor",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-execute_python-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: Invalid Python execution arguments"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d61dca7a6da2",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:nagypeterjob/brew-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-config-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: find brew binary :exec: \"brew\": executable file not found in $PATH"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f678ede8df59",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ashellearl123/mysql_mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-execute_query-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: ❌ 执行失败: MCP error -32600: ❌ 请先使用 connect_database 工具连接到数据库"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "abdb3a74ec4d",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:balena-io-experimental/balenamcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-device-list-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: failed to execute command: exec: \"balena\": executable file not found in $PATH Output:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "df8244e600cb",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:bodangren/components-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-update_component-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32600: MCP error -32600: Component not found"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e913923e33cc",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:centanetdc/mcp-server-ad-code",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-GetUnitBaseByAdCode-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to generate : HTTP error! status: 401"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "88acd08189bb",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:challamani/trace_gateway_failures",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_pod_logs-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32000: Failed to retrieve pod logs"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d72ce7c449af",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:christyfrink/mcp-maryland-opendata",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-query_dataset-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32600: MCP error -32600: Maryland Open Data API error: Not found"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e865827cf9f2",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:croffasia/mcp-project-manager",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-create_idea-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Error executing tool: 🚫 APPROVAL REQUIRED: Tool \"create_idea\" requires user approval. WORKFLOW: 1. Propose your changes to the user 2. Wait for explicit approval (e.g., \"Yes, create these tasks\") 3. Call this tool again with \"_approval_confirmed: true\" parameter E…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e10b42f95202",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:devdotbo/mcp-terminal-bridge",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-get_cursor_position-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: session_id must be a valid UUID"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0f8e6a5691ff",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:dido18/arduino-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-compile-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: failed to execute arduino-cli: exec: \"arduino-cli\": executable file not found in $PATH"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "83d511074da1",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dm0lz/swiss-ephemeris-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-calculate_planetary_positions-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Tool execution failed: Swiss Ephemeris calculation failed: Invalid datetime format. Use ISO8601 format like 1985-04-12T23:20:50Z"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3f9b5dda09c5",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dynamics365ninja/d365fo-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-search-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: database is locked"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7943bf7dc22",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:e-roux/mcp-git-issues",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-create-issue-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: failed to create issue: POST https://api.github.com/repos/mcereal/mcp-check/issues: 401 Requires authentication []"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7c43e68f76bc",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:tamas54/brave-mcp-server",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-brave_navigate-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: Brave böngésző nem található. Állítsd be a BRAVE_PATH környezeti változót!"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4d700f84ffad",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "go",
+   "esempio_server": "gh:wahyurudiyan/go-mcp-docker",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-docker_deployer-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: no actions specified"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8bd38945076d",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:garnet-org/garnet-platform-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "initialization",
+    "err": "InitializationError",
+    "msg": "MCP error -32603: Invalid response from server"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d8177feba7a6",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:General-Intelligence-Labs/mcp-gdrive",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-gsheets_update_cell-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error 401: Login Required."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d9cf8d7eb989",
+   "tool": "check",
+   "categoria": "?",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hesreallyhim/diy-tools-mcp",
+   "evidenza": {
+    "tipo": "check",
+    "test": "tool-add_tool-basic-invocation",
+    "err": "InvocationError",
+    "msg": "MCP error -32603: MCP error -32603: Failed to add tool: Must specify either code or codePath"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

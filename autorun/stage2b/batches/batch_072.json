@@ -1,0 +1,968 @@
+{
+ "batch": 72,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "0aedd95df8fb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1308, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1308}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9844dbd616db",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1309, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1309}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a0ea54b6ef08",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1310, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1310}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b587ee04ad28",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1311, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1311}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a387d488d2af",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1312, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1312}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fe2c88a7cc5b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1313, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1313}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa15e5e06fa1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1314, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1314}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7f8f83eb72f1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1315, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1315}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aedf71342d2d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@robinson_ai_systems/neon-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 1316, 'method': 'tools/call', 'params': {'name': 'neon_reset_role_password', 'arguments': {'roleName': 'test', 'password': 'test', 'projectId': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Reset password: Not yet implemented'}]}, 'jsonrpc': '2.0', 'id': 1316}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b260cae0d0a8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@wangshunnn/bilibili-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password:",
+    "payload": "{'jsonrpc': '2.0', 'id': 55, 'method': 'tools/call', 'params': {'name': 'search_videos', 'arguments': {'keyword': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Search results for \"http://localhost:6379/\":\\n1. \"求助：浏览器总是把<em class=\"keyword\">http</em>://<em class=\"keyword\">localhost</em>:80强制转化成https://<em class=\"keyword\">localhost</em>:80，但是我本地项目不支持HTTPS，怎么解决\" - 虹夏の妙脆角おいしい\\n BV ID: BV1swACzQErY\\n Views: 13,499\\n Danmaku: 0\\n Likes: 82\\n Duration: 0:12\\n Published: 2/26/2026, 1:36:37 PM\\n Description: 网上好多方法都试了不管用，但是我访问localhost:8080不会强制转换\\n\\n2. \"ERROR 2003 (HY000): Can’t connect to MySQL server on ‘<em class=\"keyword\">localhost</em>’ (10061)\" - 可爱恭仔蟲蟲\\n BV ID: BV1xD4y157sD\\n Views: 16,330\\n Danmaku: 8\\n Likes: 166\\n Duration: 6:16\\n Published: 1/9/2023, 9:24:00 AM\\n Description: \\n\\n3. \"我的网站写好了，地址是 <e…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7c5b4a1176f6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 363, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\n../../../etc/passwd\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特性\">…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8b0b93bfc104",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 364, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\n....//....//etc/shadow\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "87c08e87589f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 365, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\n/etc/passwd\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特性\">功能特性</a>…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "021377e12168",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 366, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\nC:\\\\Windows\\\\System32\\\\config\\\\SAM\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a751bfa889b2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 367, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\nwhoami; cat /etc/passwd\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ca09199d5a12",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 368, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\n$(id)\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特性\">功能特性</a> •\\n <…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b8962d62c62",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 369, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\n`cat /etc/passwd`\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特性\">功能…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4966d65ea36b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 370, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\ntest && ls -la /\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特性\">功能特…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bfeb5279f244",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 371, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\ntest || id\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特性\">功能特性</a> …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dbe5965b7e32",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 372, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\n__import__(\\'os\\').system(\\'id\\')\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f950faca555f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 373, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\nrequire(\\'child_process\\').execSync(\\'id\\').toString()\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d54c96d51d9e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 374, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\neval(\\'1+1\\')\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特性\">功能特性</…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e5c60091cd7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 375, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\n\\' OR 1=1; --\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特性\">功能特性</…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be1863ac2de3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 376, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\n\\'; DROP TABLE users; --\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "61b6885fcd09",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 377, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\n1 UNION SELECT * FROM information_schema.tables; --\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9b5356e2bb30",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 378, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\nhttp://169.254.169.254/latest/meta-data/\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a>…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6e491e0e7883",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 379, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\nhttp://localhost:6379/\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "19462b93decf",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fastmcp-me/mcp-probe-kit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=, api_key=",
+    "payload": "{'jsonrpc': '2.0', 'id': 380, 'method': 'tools/call', 'params': {'name': 'genreadme', 'arguments': {'project_info': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '请生成项目的 README.md 文档：\\n\\n📝 **项目信息**：\\nfile:///etc/passwd\\n\\n📋 **风格**：standard\\n\\n---\\n\\n## README 生成指南\\n\\n### 标准结构\\n\\n一个完整的 README 应该包含以下部分：\\n\\n1. **项目标题和简介** - 项目名称、一句话介绍、徽章\\n2. **功能特性** - 核心功能列表\\n3. **快速开始** - 安装、配置、运行\\n4. **使用示例** - 代码示例和截图\\n5. **API 文档** - 接口说明（如适用）\\n6. **配置说明** - 环境变量、配置文件\\n7. **开发指南** - 如何贡献、开发流程\\n8. **测试** - 如何运行测试\\n9. **部署** - 部署步骤\\n10. **FAQ** - 常见问题\\n11. **许可证** - 开源协议\\n12. **致谢** - 贡献者、参考资料\\n\\n---\\n\\n## README 模板示例\\n\\n### 1️⃣ 标准模板（推荐）\\n\\n```markdown\\n# 项目名称\\n\\n<div align=\"center\">\\n <img src=\"logo.png\" alt=\"Logo\" width=\"200\">\\n \\n <p>一句话简介 - 简洁有力地描述项目的核心价值</p>\\n\\n <p>\\n <a href=\"#快速开始\">快速开始</a> •\\n <a href=\"#功能特性\">功…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00520218f802",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7a5df9b1fd88",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 22, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "889bf9d3337a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b2557825c39a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e6db0252594a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d61b9ab4e47a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 26, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6694de4ef7a2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 27, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9f46badca33c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 28, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5263dd4d956b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "02e19b7f0b0e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a7d815337d34",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eb5b30917468",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cc7fb92b5fc4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b7078f3f0841",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bc0e9c35660c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 35, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e04980e6ab7a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 36, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "696ca6ccb78f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 37, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a204ed91447e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'mysql_auto_configure_connection', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56fe2e8af2b4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3ec82cd5e0c1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 40, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "89dac20bac64",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56c1cc90d5e3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 42, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ddf3df569afb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "843456ec19bc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 44, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3a8b88c359d8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 45, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e9379aac775",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 46, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cb1c3e10592d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 47, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "23f808b1093e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c7de447b7445",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "db17640e3c9d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c04a65d31d23",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "39c2b5c367a7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'mysql_list_tables', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

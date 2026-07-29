@@ -1,0 +1,968 @@
+{
+ "batch": 74,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "5bebd3fd4fc3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 149, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "315384749822",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 150, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eac2845423bc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 151, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e9d5472215a8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 152, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7739cc890b92",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 153, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8a70cf2f5c5d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 154, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a6fa9cd1742e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 155, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "33732790c1ef",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 156, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "813048073c81",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 157, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f7485ba86a8f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 158, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fb42212c725f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 159, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "70c87e02ac6e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 160, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cd0aa15dc0f4",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 161, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e6bb5cf88a0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 162, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ed79d36f62b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 163, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "97dde19ec338",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:efeabio/mcp-mysql-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 164, 'method': 'tools/call', 'params': {'name': 'mysql_list_foreign_keys', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '🔧 **Configuração MySQL necessária!**\\n\\nPara usar as ferramentas MySQL, você precisa configurar uma conexão.\\n\\n💡 **Opções disponíveis:**\\n\\n1️⃣ **Configuração automática (recomendado):**\\n • Configure variáveis de ambiente:\\n ```\\n MYSQL_HOST=seu_servidor\\n MYSQL_PORT=3306\\n MYSQL_USER=seu_usuario\\n MYSQL_PASSWORD=sua_senha\\n MYSQL_DATABASE=seu_banco\\n ```\\n\\n2️⃣ **Configuração manual:**\\n • Use a tool: `mysql_configure_connection`\\n • Forneça os parâmetros manualmente\\n\\n3️⃣ **Configuração via arquivo:**\\n • Crie um `config.json` com:\\n ```json\\n {\\n \"mysql\": {\\n \"host\": \"seu_servidor\",\\n \"port\": 3306,\\n \"user\": \"seu_usuario\",\\n \"password\":…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6dc2b73f16d8",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ef18b7f31a0f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 130, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a970a294903a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2cc60d47e850",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 132, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b0c7af8e358a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "31d0178e8acd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 134, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2d6debcf40d3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 135, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "61409c326a33",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 136, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ab016bc9781",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 137, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "abff60bbed92",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 138, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "995b174fd9e7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 139, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b5092d5b0f97",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 140, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ee4cee20361b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 141, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7bec1e081441",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 142, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "70e257a3ccdb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 143, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "491381d143c5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 144, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2a86a6e58f5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 145, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "129504e72a4b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: password=",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'get_docker_compose', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'services:\\n traefik:\\n image: traefik:v2.10\\n command:\\n - \"--api.insecure=true\"\\n - \"--providers.docker=true\"\\n - \"--providers.docker.exposedbydefault=false\"\\n - \"--entrypoints.web.address=:80\"\\n ports:\\n - \"8000:80\" # Changed from 80:80 to 8000:80\\n - \"8080:8080\" # Traefik dashboard\\n volumes:\\n - /var/run/docker.sock:/var/run/docker.sock:ro\\n networks:\\n - weikio-network\\n\\n nats:\\n image: nats:latest\\n command: [\"-p\", \"4222\", \"-m\", \"8222\", \"-js\", \"-sd\", \"/var/data\"]\\n volumes:\\n - data:/var/data\\n ports:\\n - \"4222:4222\" # Expose NATS TCP port\\n networks:\\n - weikio-network\\n\\n backend:\\n image: weikio/backend:dev\\n restart: unless-stopped…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c16f3c8a6202",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 273, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e8b6001f115d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 274, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc83ccc7dab7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 275, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56c351f8160b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 276, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "85c1d561c534",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 277, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b47680d51f1c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 278, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6dc1fae10bda",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 279, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "93cac7c051d5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 280, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "547fc293a305",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 281, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c7b9b9bb8fa7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 282, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9fe96eb9cc7a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 283, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c9f7413415aa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 284, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1edeb0d179a1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 285, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b6578ea93217",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 286, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "78e84f4547fd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 287, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aca536d75906",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 288, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "01e8a28ab1c1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 289, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80abb8b7ddea",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:CodaLabs-xyz/base-dev-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 290, 'method': 'tools/call', 'params': {'name': 'get_base_deployment_guide', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"tool\": {\\n \"setup\": \"// hardhat.config.ts\\\\nimport { HardhatUserConfig } from \\\\\"hardhat/config\\\\\";\\\\nimport \\\\\"@nomicfoundation/hardhat-toolbox\\\\\";\\\\n\\\\nconst config: HardhatUserConfig = {\\\\n solidity: \\\\\"0.8.20\\\\\",\\\\n networks: {\\\\n base: {\\\\n url: \\\\\"https://mainnet.base.org\\\\\",\\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 8453,\\\\n },\\\\n baseSepolia: {\\\\n url: \\\\\"https://sepolia.base.org\\\\\", \\\\n accounts: [process.env.PRIVATE_KEY!],\\\\n chainId: 84532,\\\\n }\\\\n },\\\\n etherscan: {\\\\n apiKey: {\\\\n base: process.env.BASESCAN_API_KEY!,\\\\n baseSepolia: process.env.BASESCAN_API_KEY!,\\\\n },\\\\n customChains: [\\\\n {\\\\n network: \\\\\"base\\\\…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4495c2326542",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SandraK82/wisdom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'wisdom_whoami', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unconfigured\",\\n \"agent_uuid\": null,\\n \"has_private_key\": false,\\n \"gateway_url\": \"http://localhost:8080\",\\n \"gateway_reachable\": false,\\n \"current_project\": null,\\n \"default_tags\": [],\\n \"default_transform\": null,\\n \"config_paths\": {\\n \"project_root\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp\",\\n \"project_config\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp/.wisdom/config.json\",\\n \"global_config\": \"/home/tecnico/gsafe/w2/home/.config/claude/wisdom.json\"\\n },\\n \"hint\": \"No private key configured. Run wisdom_generate_keypair to create one.\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "579b82ee2503",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SandraK82/wisdom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'wisdom_whoami', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unconfigured\",\\n \"agent_uuid\": null,\\n \"has_private_key\": false,\\n \"gateway_url\": \"http://localhost:8080\",\\n \"gateway_reachable\": false,\\n \"current_project\": null,\\n \"default_tags\": [],\\n \"default_transform\": null,\\n \"config_paths\": {\\n \"project_root\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp\",\\n \"project_config\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp/.wisdom/config.json\",\\n \"global_config\": \"/home/tecnico/gsafe/w2/home/.config/claude/wisdom.json\"\\n },\\n \"hint\": \"No private key configured. Run wisdom_generate_keypair to create one.\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 4}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9339b8faf902",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SandraK82/wisdom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'wisdom_whoami', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unconfigured\",\\n \"agent_uuid\": null,\\n \"has_private_key\": false,\\n \"gateway_url\": \"http://localhost:8080\",\\n \"gateway_reachable\": false,\\n \"current_project\": null,\\n \"default_tags\": [],\\n \"default_transform\": null,\\n \"config_paths\": {\\n \"project_root\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp\",\\n \"project_config\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp/.wisdom/config.json\",\\n \"global_config\": \"/home/tecnico/gsafe/w2/home/.config/claude/wisdom.json\"\\n },\\n \"hint\": \"No private key configured. Run wisdom_generate_keypair to create one.\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d3475ccd7134",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SandraK82/wisdom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'wisdom_whoami', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unconfigured\",\\n \"agent_uuid\": null,\\n \"has_private_key\": false,\\n \"gateway_url\": \"http://localhost:8080\",\\n \"gateway_reachable\": false,\\n \"current_project\": null,\\n \"default_tags\": [],\\n \"default_transform\": null,\\n \"config_paths\": {\\n \"project_root\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp\",\\n \"project_config\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp/.wisdom/config.json\",\\n \"global_config\": \"/home/tecnico/gsafe/w2/home/.config/claude/wisdom.json\"\\n },\\n \"hint\": \"No private key configured. Run wisdom_generate_keypair to create one.\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 6}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5df86706f8cb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SandraK82/wisdom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'wisdom_whoami', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unconfigured\",\\n \"agent_uuid\": null,\\n \"has_private_key\": false,\\n \"gateway_url\": \"http://localhost:8080\",\\n \"gateway_reachable\": false,\\n \"current_project\": null,\\n \"default_tags\": [],\\n \"default_transform\": null,\\n \"config_paths\": {\\n \"project_root\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp\",\\n \"project_config\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp/.wisdom/config.json\",\\n \"global_config\": \"/home/tecnico/gsafe/w2/home/.config/claude/wisdom.json\"\\n },\\n \"hint\": \"No private key configured. Run wisdom_generate_keypair to create one.\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b60b602a34af",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SandraK82/wisdom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'wisdom_whoami', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unconfigured\",\\n \"agent_uuid\": null,\\n \"has_private_key\": false,\\n \"gateway_url\": \"http://localhost:8080\",\\n \"gateway_reachable\": false,\\n \"current_project\": null,\\n \"default_tags\": [],\\n \"default_transform\": null,\\n \"config_paths\": {\\n \"project_root\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp\",\\n \"project_config\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp/.wisdom/config.json\",\\n \"global_config\": \"/home/tecnico/gsafe/w2/home/.config/claude/wisdom.json\"\\n },\\n \"hint\": \"No private key configured. Run wisdom_generate_keypair to create one.\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 8}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ddf5ebb5d14b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SandraK82/wisdom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'wisdom_whoami', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unconfigured\",\\n \"agent_uuid\": null,\\n \"has_private_key\": false,\\n \"gateway_url\": \"http://localhost:8080\",\\n \"gateway_reachable\": false,\\n \"current_project\": null,\\n \"default_tags\": [],\\n \"default_transform\": null,\\n \"config_paths\": {\\n \"project_root\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp\",\\n \"project_config\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp/.wisdom/config.json\",\\n \"global_config\": \"/home/tecnico/gsafe/w2/home/.config/claude/wisdom.json\"\\n },\\n \"hint\": \"No private key configured. Run wisdom_generate_keypair to create one.\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 9}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c58a22dc6f60",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SandraK82/wisdom-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: private_key",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'wisdom_whoami', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"unconfigured\",\\n \"agent_uuid\": null,\\n \"has_private_key\": false,\\n \"gateway_url\": \"http://localhost:8080\",\\n \"gateway_reachable\": false,\\n \"current_project\": null,\\n \"default_tags\": [],\\n \"default_transform\": null,\\n \"config_paths\": {\\n \"project_root\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp\",\\n \"project_config\": \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/wisdom-mcp/.wisdom/config.json\",\\n \"global_config\": \"/home/tecnico/gsafe/w2/home/.config/claude/wisdom.json\"\\n },\\n \"hint\": \"No private key configured. Run wisdom_generate_keypair to create one.\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 10}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

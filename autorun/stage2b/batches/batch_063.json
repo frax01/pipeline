@@ -1,0 +1,968 @@
+{
+ "batch": 63,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "f42b141f977d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:BrawlerXull/System-Monitoring-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 151, 'method': 'tools/call', 'params': {'name': 'list_files', 'arguments': {'path': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 151, 'result': {'content': [{'type': 'text', 'text': 'open whoami; cat /etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8af83671a01f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:BrawlerXull/System-Monitoring-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 164, 'method': 'tools/call', 'params': {'name': 'list_files', 'arguments': {'path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 164, 'result': {'content': [{'type': 'text', 'text': 'open file:///etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8a3a0d8683d1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Draco-Cheng/ai-readme-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'update_ai_readme', 'arguments': {'operations': [], 'readmePath': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"readmePath\": \"../../../etc/passwd\",\\n \"error\": \"EISDIR: illegal operation on a directory, read\",\\n \"summary\": \"Failed to update ../../../etc/passwd: EISDIR: illegal operation on a directory, read\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fe1262c7944b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Draco-Cheng/ai-readme-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'update_ai_readme', 'arguments': {'operations': [], 'readmePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"readmePath\": \"/etc/passwd\",\\n \"error\": \"EROFS: read-only file system, open \\'/etc/passwd\\'\",\\n \"summary\": \"Failed to update /etc/passwd: EROFS: read-only file system, open \\'/etc/passwd\\'\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "30518f35fff6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Draco-Cheng/ai-readme-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'update_ai_readme', 'arguments': {'operations': [], 'readmePath': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"readmePath\": \"whoami; cat /etc/passwd\",\\n \"error\": \"File not found: whoami; cat /etc/passwd\",\\n \"summary\": \"Failed to update whoami; cat /etc/passwd: File not found: whoami; cat /etc/passwd\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bc7eafe7ac30",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Draco-Cheng/ai-readme-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'update_ai_readme', 'arguments': {'operations': [], 'readmePath': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"readmePath\": \"file:///etc/passwd\",\\n \"error\": \"File not found: file:///etc/passwd\",\\n \"summary\": \"Failed to update file:///etc/passwd: File not found: file:///etc/passwd\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f16506aad7aa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Draco-Cheng/ai-readme-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'compress_ai_readme', 'arguments': {'readmePath': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"readmePath\": \"../../../etc/passwd\",\\n \"summary\": \"Failed to compress ../../../etc/passwd: EISDIR: illegal operation on a directory, read\",\\n \"tokensBefore\": 0,\\n \"tokensAfter\": 0,\\n \"reductionPercent\": 0,\\n \"changes\": [],\\n \"written\": false\\n}'}]}, 'jsonrpc': '2.0', 'id': 75}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c8535a1148f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Draco-Cheng/ai-readme-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'compress_ai_readme', 'arguments': {'readmePath': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"readmePath\": \"whoami; cat /etc/passwd\",\\n \"summary\": \"Failed to compress whoami; cat /etc/passwd: File not found: whoami; cat /etc/passwd\",\\n \"tokensBefore\": 0,\\n \"tokensAfter\": 0,\\n \"reductionPercent\": 0,\\n \"changes\": [],\\n \"written\": false\\n}'}]}, 'jsonrpc': '2.0', 'id': 79}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9efd6cfaa00e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Draco-Cheng/ai-readme-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 92, 'method': 'tools/call', 'params': {'name': 'compress_ai_readme', 'arguments': {'readmePath': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": false,\\n \"readmePath\": \"file:///etc/passwd\",\\n \"summary\": \"Failed to compress file:///etc/passwd: File not found: file:///etc/passwd\",\\n \"tokensBefore\": 0,\\n \"tokensAfter\": 0,\\n \"reductionPercent\": 0,\\n \"changes\": [],\\n \"written\": false\\n}'}]}, 'jsonrpc': '2.0', 'id': 92}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "11f5e86fcc5a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:EmersonGarrido/mcp-project-context",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'db_config', 'arguments': {'database': 'test', 'user': 'test', 'password': 'test', 'host': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '✓ Configuração de banco de dados salva para \"mcp-project-context\":\\n- Host: ../../../etc/passwd:5432\\n- Database: test\\n- User: test'}]}, 'jsonrpc': '2.0', 'id': 129}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ec2d3830a71c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:EmersonGarrido/mcp-project-context",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'db_config', 'arguments': {'database': 'test', 'user': 'test', 'password': 'test', 'host': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '✓ Configuração de banco de dados salva para \"mcp-project-context\":\\n- Host: /etc/passwd:5432\\n- Database: test\\n- User: test'}]}, 'jsonrpc': '2.0', 'id': 131}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "03c1b357bdd1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:EmersonGarrido/mcp-project-context",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'db_config', 'arguments': {'database': 'test', 'user': 'test', 'password': 'test', 'host': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '✓ Configuração de banco de dados salva para \"mcp-project-context\":\\n- Host: whoami; cat /etc/passwd:5432\\n- Database: test\\n- User: test'}]}, 'jsonrpc': '2.0', 'id': 133}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf18619c59aa",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:EmersonGarrido/mcp-project-context",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'db_config', 'arguments': {'database': 'test', 'user': 'test', 'password': 'test', 'host': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '✓ Configuração de banco de dados salva para \"mcp-project-context\":\\n- Host: file:///etc/passwd:5432\\n- Database: test\\n- User: test'}]}, 'jsonrpc': '2.0', 'id': 146}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "54e593526b8d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:JeremyProffitt/go-mcp-file-context-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 79, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 79, 'result': {'content': [{'type': 'text', 'text': 'Path not found: stat /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/go-mcp-file-context-server/whoami; cat /etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e44462e86c3c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:JeremyProffitt/go-mcp-file-context-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 92, 'method': 'tools/call', 'params': {'name': 'analyze_code', 'arguments': {'path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 92, 'result': {'content': [{'type': 'text', 'text': 'Path not found: stat /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/go-mcp-file-context-server/file:/etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "316a87aaa288",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:JeremyProffitt/go-mcp-file-context-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'get_chunk_count', 'arguments': {'path': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 133, 'result': {'content': [{'type': 'text', 'text': 'stat /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/go-mcp-file-context-server/whoami; cat /etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "44105bad5a0f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:JeremyProffitt/go-mcp-file-context-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'get_chunk_count', 'arguments': {'path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 146, 'result': {'content': [{'type': 'text', 'text': 'stat /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/go-mcp-file-context-server/file:/etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "70a4ff836c67",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:JeremyProffitt/go-mcp-file-context-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 167, 'method': 'tools/call', 'params': {'name': 'get_folder_structure', 'arguments': {'path': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 167, 'result': {'content': [{'type': 'text', 'text': 'readdirent /etc/passwd: not a directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3c8d089f66d7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:JeremyProffitt/go-mcp-file-context-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 182, 'method': 'tools/call', 'params': {'name': 'get_folder_structure', 'arguments': {'path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 182, 'result': {'content': [{'type': 'text', 'text': 'open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/go-mcp-file-context-server/file:/etc/passwd: no such file or directory'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "adca50ded20d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:JeremyProffitt/go-mcp-file-context-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 221, 'method': 'tools/call', 'params': {'name': 'copy_file', 'arguments': {'source': 'test', 'destination': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 221, 'result': {'content': [{'type': 'text', 'text': 'UNKNOWN_ERROR: mkdir /etc/passwd: not a directory (path: /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/go-mcp-file-context-server/test)'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "af1c9b42fffd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:JeremyProffitt/go-mcp-file-context-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 257, 'method': 'tools/call', 'params': {'name': 'delete_file', 'arguments': {'path': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 257, 'result': {'content': [{'type': 'text', 'text': 'UNKNOWN_ERROR: remove /etc/passwd: read-only file system (path: /etc/passwd)'}], 'isError': True}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6efe219fb875",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'analyze_access_source', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8ff4e83a79d1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'analyze_access_source', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5facf12c9b50",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'analyze_ado_net_source', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 21, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "43bcab26d16c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'analyze_ado_net_source', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 38, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "46e2a7b10ea1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'analyze_aggregate', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 39, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f50a7a2bee05",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'analyze_aggregate', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 56, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c903c3bffe7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'analyze_cdc_source', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 57, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "84387df30e44",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 74, 'method': 'tools/call', 'params': {'name': 'analyze_cdc_source', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 74, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "41402c2a1062",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'analyze_character_map', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 75, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9be9d5aaaf1d",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 92, 'method': 'tools/call', 'params': {'name': 'analyze_character_map', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 92, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "45f5bcadff5c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 93, 'method': 'tools/call', 'params': {'name': 'analyze_code_quality', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 93, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be87c46ed2a7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'analyze_code_quality', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 110, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2f589e333e6b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'analyze_conditional_split', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 111, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "889fda00bd46",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'analyze_conditional_split', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 128, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "78bfc0999693",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 129, 'method': 'tools/call', 'params': {'name': 'analyze_containers', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 129, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2a780be4615",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'analyze_containers', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 146, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c81f66c76195",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 147, 'method': 'tools/call', 'params': {'name': 'analyze_copy_column', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 147, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c10433eadcb3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 164, 'method': 'tools/call', 'params': {'name': 'analyze_copy_column', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 164, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "34da1994b580",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 165, 'method': 'tools/call', 'params': {'name': 'analyze_custom_components', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 165, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "63971719dfb5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 182, 'method': 'tools/call', 'params': {'name': 'analyze_custom_components', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 182, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56bfcd83f6b6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 183, 'method': 'tools/call', 'params': {'name': 'analyze_data_conversion', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 183, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aba2dd63d321",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 200, 'method': 'tools/call', 'params': {'name': 'analyze_data_conversion', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 200, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "185eeacc2645",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 201, 'method': 'tools/call', 'params': {'name': 'analyze_data_flow', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 201, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d4f6892bf5ff",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 218, 'method': 'tools/call', 'params': {'name': 'analyze_data_flow', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 218, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fe9ab9f9c1d7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 219, 'method': 'tools/call', 'params': {'name': 'analyze_data_flow_detailed', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 219, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8758f14d3d10",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 236, 'method': 'tools/call', 'params': {'name': 'analyze_data_flow_detailed', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 236, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d72be08c8e42",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 237, 'method': 'tools/call', 'params': {'name': 'analyze_derived_column', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 237, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1d5adf9585a1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 254, 'method': 'tools/call', 'params': {'name': 'analyze_derived_column', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 254, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7cd422485af7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 273, 'method': 'tools/call', 'params': {'name': 'analyze_excel_source', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 273, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dd0f0b68a1a3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 290, 'method': 'tools/call', 'params': {'name': 'analyze_excel_source', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 290, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "34aaacd7c2e3",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 291, 'method': 'tools/call', 'params': {'name': 'analyze_export_column', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 291, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0bf6cd655143",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 308, 'method': 'tools/call', 'params': {'name': 'analyze_export_column', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 308, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5de8f74a1296",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 309, 'method': 'tools/call', 'params': {'name': 'analyze_flat_file_destination', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 309, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c0fef9a5fdd9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 326, 'method': 'tools/call', 'params': {'name': 'analyze_flat_file_destination', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 326, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "05b8f025df02",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 327, 'method': 'tools/call', 'params': {'name': 'analyze_flat_file_source', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 327, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "80b3c4b256ac",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 344, 'method': 'tools/call', 'params': {'name': 'analyze_flat_file_source', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 344, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "facf4606cb52",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 363, 'method': 'tools/call', 'params': {'name': 'analyze_lookup', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 363, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "eb54733dde47",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 380, 'method': 'tools/call', 'params': {'name': 'analyze_lookup', 'arguments': {'file_path': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 380, 'result': {'content': [{'type': 'text', 'text': 'Error: open /home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/gossisMCP/file:/etc/passwd: no such file or directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "37060a2af8ba",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "go",
+   "esempio_server": "gh:MCPRUNNER/gossisMCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 381, 'method': 'tools/call', 'params': {'name': 'analyze_merge_join', 'arguments': {'file_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 381, 'result': {'content': [{'type': 'text', 'text': 'Error: read /home/tecnico/gsafe/w2/work/etc/passwd: is a directory'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

@@ -1,0 +1,968 @@
+{
+ "batch": 7,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "e5a94fd71083",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:storypixel/mcp-taskwarrior-ai",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'task_context_set', 'arguments': {'context': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': -32603, 'message': \"MCP error -32603: Taskwarrior error: Command failed: task context define '; DROP TABLE users; -- project:'; DROP TABLE users; -- or +'; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "686b16b4e740",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:growvv/Android-Automation-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'android_open_app', 'arguments': {'packageName': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool android_open_app: Error executing command \\'android_open_app\\': Failed to open app __import__(\\'os\\').system(\\'id\\'): Command failed: adb shell monkey -p __import__(\\'os\\').system(\\'id\\') -c android.intent.category.LAUNCHER 1\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ea4a76ff430d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:growvv/Android-Automation-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'android_open_app', 'arguments': {'packageName': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool android_open_app: Error executing command \\'android_open_app\\': Failed to open app require(\\'child_process\\').execSync(\\'id\\').toString(): Command failed: adb shell monkey -p require(\\'child_process\\').execSync(\\'id\\').toString() -c android.intent.category.LAUNCHER 1\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ad5c382644e8",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:growvv/Android-Automation-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'android_open_app', 'arguments': {'packageName': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool android_open_app: Error executing command \\'android_open_app\\': Failed to open app eval(\\'1+1\\'): Command failed: adb shell monkey -p eval(\\'1+1\\') -c android.intent.category.LAUNCHER 1\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "47011c967939",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:growvv/Android-Automation-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'android_open_app', 'arguments': {'packageName': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing tool android_open_app: Error executing command 'android_open_app': Failed to open app ' OR 1=1; --: Command failed: adb shell monkey -p ' OR 1=1; -- -c android.intent.category.LAUNCHER 1\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4bb46c7346fc",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:growvv/Android-Automation-MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'android_open_app', 'arguments': {'packageName': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing tool android_open_app: Error executing command 'android_open_app': Failed to open app '; DROP TABLE users; --: Command failed: adb shell monkey -p '; DROP TABLE users; -- -c android.intent.category.LAUNCHER 1\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cce2d9de90eb",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 275, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 275, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: /etc/passwd\\n/bin/sh: 1: /etc/passwd: Permission denied\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b3c66bb37b77",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 282, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 282, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: word unexpected (expecting \")\")\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "98c71f3e4740",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 283, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 283, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: word unexpected (expecting \")\")\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d036e29f00c7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 284, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 284, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: word unexpected (expecting \")\")\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be4259b67097",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 285, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 285, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Command failed: ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ddccf9c0c7d7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 286, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 286, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Command failed: '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a6e4435add9",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 318, 'method': 'tools/call', 'params': {'name': 'npm_command', 'arguments': {'command': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 318, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: npm __import__(\\'os\\').system(\\'id\\') \\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b51d9698d196",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 319, 'method': 'tools/call', 'params': {'name': 'npm_command', 'arguments': {'command': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 319, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: npm require(\\'child_process\\').execSync(\\'id\\').toString() \\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "23f2e306ac2f",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 320, 'method': 'tools/call', 'params': {'name': 'npm_command', 'arguments': {'command': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 320, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: npm eval(\\'1+1\\') \\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f59ff251d767",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 321, 'method': 'tools/call', 'params': {'name': 'npm_command', 'arguments': {'command': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 321, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Command failed: npm ' OR 1=1; -- \\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "219af967b440",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 322, 'method': 'tools/call', 'params': {'name': 'npm_command', 'arguments': {'command': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 322, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Command failed: npm '; DROP TABLE users; -- \\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bc884e9be670",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'apply_config', 'arguments': {'filepath': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32603, 'message': 'MCP error -32603: Weik.io CLI error: Command failed: weikio config apply __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "972ef66ddf84",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'apply_config', 'arguments': {'filepath': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 31, 'error': {'code': -32603, 'message': 'MCP error -32603: Weik.io CLI error: Command failed: weikio config apply require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "44c91813c13d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'apply_config', 'arguments': {'filepath': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 32, 'error': {'code': -32603, 'message': 'MCP error -32603: Weik.io CLI error: Command failed: weikio config apply eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "15b52dbe5807",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'apply_config', 'arguments': {'filepath': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 33, 'error': {'code': -32603, 'message': \"MCP error -32603: Weik.io CLI error: Command failed: weikio config apply ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "92bcc69e4167",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@weikio/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'apply_config', 'arguments': {'filepath': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 34, 'error': {'code': -32603, 'message': \"MCP error -32603: Weik.io CLI error: Command failed: weikio config apply '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e91ee1a87d4",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9be34fb72de4",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "713ce9bc0c5d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 5, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ffaf4643c343",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 6, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2c2242215f59",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 7, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "05a0d25efcca",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 8, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4ebf5305d32c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 9, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "42d81a19b62c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 10, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "93b8a98a84c2",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 11, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "deb91def4fd5",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ff176df1b941",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b78d0262432d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a3640dcdc72d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b01ea3e73f57",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ae806ca63a07",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 17, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fca895afbf8e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 18, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "004cfd990733",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 19, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 19, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "089026a2b611",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "hubble-mcp-ubuntu",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'connect-ssh', 'arguments': {'input': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'error': {'code': -32603, 'message': 'Error executing tool connect-ssh: Failed to connect to SSH server: Either PASSWORD or PRIVATE_KEY_PATH must be set in environment variables'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5edefa0d94e0",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 120, 'method': 'tools/call', 'params': {'name': 'retrieve_metadata', 'arguments': {'source_dir': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 120, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf retrieve metadata --source-dir __import__(\\'os\\').system(\\'id\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6a5682f5fcec",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 121, 'method': 'tools/call', 'params': {'name': 'retrieve_metadata', 'arguments': {'source_dir': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 121, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf retrieve metadata --source-dir require(\\'child_process\\').execSync(\\'id\\').toString() --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8df01956ebca",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 122, 'method': 'tools/call', 'params': {'name': 'retrieve_metadata', 'arguments': {'source_dir': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 122, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf retrieve metadata --source-dir eval(\\'1+1\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6d9c293ce604",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 123, 'method': 'tools/call', 'params': {'name': 'retrieve_metadata', 'arguments': {'source_dir': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 123, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf retrieve metadata --source-dir ' OR 1=1; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e6e57135830c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 124, 'method': 'tools/call', 'params': {'name': 'retrieve_metadata', 'arguments': {'source_dir': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 124, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf retrieve metadata --source-dir '; DROP TABLE users; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d2491f43c8bd",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 138, 'method': 'tools/call', 'params': {'name': 'project_generate', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 138, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf project generate --name __import__(\\'os\\').system(\\'id\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "71c5e732eb91",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 139, 'method': 'tools/call', 'params': {'name': 'project_generate', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 139, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf project generate --name require(\\'child_process\\').execSync(\\'id\\').toString() --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ba16a2da1c6f",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 140, 'method': 'tools/call', 'params': {'name': 'project_generate', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 140, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf project generate --name eval(\\'1+1\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2dc0ecf40706",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 141, 'method': 'tools/call', 'params': {'name': 'project_generate', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 141, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf project generate --name ' OR 1=1; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "63c89c6e84e1",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 142, 'method': 'tools/call', 'params': {'name': 'project_generate', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 142, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf project generate --name '; DROP TABLE users; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e3c5bde7976a",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 156, 'method': 'tools/call', 'params': {'name': 'apex_generate_class', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 156, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf apex generate class -n __import__(\\'os\\').system(\\'id\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bdc03a6abcf3",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 157, 'method': 'tools/call', 'params': {'name': 'apex_generate_class', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 157, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf apex generate class -n require(\\'child_process\\').execSync(\\'id\\').toString() --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b15561e0f8ba",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 158, 'method': 'tools/call', 'params': {'name': 'apex_generate_class', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 158, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf apex generate class -n eval(\\'1+1\\') --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e7cbb941a70c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 159, 'method': 'tools/call', 'params': {'name': 'apex_generate_class', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 159, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf apex generate class -n ' OR 1=1; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c7a57ef0ac8c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 160, 'method': 'tools/call', 'params': {'name': 'apex_generate_class', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 160, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf apex generate class -n '; DROP TABLE users; -- --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4f693ad4fc68",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 174, 'method': 'tools/call', 'params': {'name': 'apex_generate_trigger', 'arguments': {'event': 'test', 'sobject': 'test', 'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 174, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf apex generate trigger -n __import__(\\'os\\').system(\\'id\\') --event test --sobject test --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f475e47a91d7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 175, 'method': 'tools/call', 'params': {'name': 'apex_generate_trigger', 'arguments': {'event': 'test', 'sobject': 'test', 'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 175, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf apex generate trigger -n require(\\'child_process\\').execSync(\\'id\\').toString() --event test --sobject test --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "01fcc0996e73",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 176, 'method': 'tools/call', 'params': {'name': 'apex_generate_trigger', 'arguments': {'event': 'test', 'sobject': 'test', 'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 176, 'error': {'code': -32603, 'message': 'Salesforce CLI Error: Command failed: sf apex generate trigger -n eval(\\'1+1\\') --event test --sobject test --json\\nDetails: /bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "af70585005d8",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 177, 'method': 'tools/call', 'params': {'name': 'apex_generate_trigger', 'arguments': {'event': 'test', 'sobject': 'test', 'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 177, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf apex generate trigger -n ' OR 1=1; -- --event test --sobject test --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "707eae43e1e8",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "salesforce-cli-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 178, 'method': 'tools/call', 'params': {'name': 'apex_generate_trigger', 'arguments': {'event': 'test', 'sobject': 'test', 'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 178, 'error': {'code': -32603, 'message': \"Salesforce CLI Error: Command failed: sf apex generate trigger -n '; DROP TABLE users; -- --event test --sobject test --json\\nDetails: /bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

@@ -1,0 +1,968 @@
+{
+ "batch": 70,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "78c896c18700",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@hugolc/teste-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'getenv', 'arguments': {'name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'whoami; cat /etc/passwd: Não definido'}]}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f3286097e7b2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@hugolc/teste-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'getenv', 'arguments': {'name': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'file:///etc/passwd: Não definido'}]}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "705319446170",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/gonmcptool",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 276, 'method': 'tools/call', 'params': {'name': 'localizationDelete', 'arguments': {'key': 'test', 'filePath': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '刪除失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 273}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bb834a80b863",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/gonmcptool",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 329, 'method': 'tools/call', 'params': {'name': 'localizationFindLongValues', 'arguments': {'threshold': 1, 'filePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '搜尋超長文字失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 327}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1b8e3fc064bc",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/mcp-hello-world",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'location': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in ../../../etc/passwd: Sunny, 75 degrees Fahrenheit.'}], 'isError': False}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "69dd587953a5",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/mcp-hello-world",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'location': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in /etc/passwd: Sunny, 75 degrees Fahrenheit.'}], 'isError': False}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d8508243e61e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/mcp-hello-world",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'location': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in whoami; cat /etc/passwd: Sunny, 75 degrees Fahrenheit.'}], 'isError': False}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "56df4a3c0ec1",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/mcp-hello-world",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'get_weather', 'arguments': {'location': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Weather in file:///etc/passwd: Sunny, 75 degrees Fahrenheit.'}], 'isError': False}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fd023fcc214c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/roo-code-memory-bank-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'append_memory_bank_entry', 'arguments': {'entry': 'test', 'file_name': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"status\": \"error\",\\n \"message\": \"Failed to append to file ../../../etc/passwd: EISDIR: illegal operation on a directory, open \\'/home/tecnico/Desktop/Pipeline/etc/passwd\\'\"\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 57}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc4cfc05b7f7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/simple-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 202, 'method': 'tools/call', 'params': {'name': 'localizationGetByKey', 'arguments': {'key': 'test', 'filePath': '....//....//etc/shadow'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '查詢失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 201}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f69a6596a6d2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@john050605/ssh-mcp-server-npx",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'ssh_connect_with_password', 'arguments': {'username': 'test', 'password': 'test', 'host': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to connect to test@../../../etc/passwd:22. Please check your credentials and network connectivity.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "02af62b2b834",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@john050605/ssh-mcp-server-npx",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'ssh_connect_with_password', 'arguments': {'username': 'test', 'password': 'test', 'host': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to connect to test@/etc/passwd:22. Please check your credentials and network connectivity.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "39c447bfaf9c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@john050605/ssh-mcp-server-npx",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'ssh_connect_with_password', 'arguments': {'username': 'test', 'password': 'test', 'host': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to connect to test@whoami; cat /etc/passwd:22. Please check your credentials and network connectivity.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f2b3eb5a4107",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@john050605/ssh-mcp-server-npx",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'ssh_connect_with_password', 'arguments': {'username': 'test', 'password': 'test', 'host': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to connect to test@file:///etc/passwd:22. Please check your credentials and network connectivity.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ec3357653584",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mcpcn/mac-mail-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'mail_mailboxes', 'arguments': {'account': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error with mail_mailboxes operation: Error getting mailboxes for account ../../../etc/passwd: 无法访问 Mail 应用。错误：无法访问 Mail 应用。请检查：\\n1. Mail 应用是否已配置邮件账户\\n2. 系统偏好设置 > 安全性与隐私 > 隐私 > 自动化，确保您的终端/MCP客户端有权限控制 Mail\\n3. 尝试手动打开 Mail 应用并确保其正常运行'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a6ba4772f6c7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mcpcn/mac-mail-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'mail_mailboxes', 'arguments': {'account': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error with mail_mailboxes operation: Error getting mailboxes for account /etc/passwd: 无法访问 Mail 应用。错误：无法访问 Mail 应用。请检查：\\n1. Mail 应用是否已配置邮件账户\\n2. 系统偏好设置 > 安全性与隐私 > 隐私 > 自动化，确保您的终端/MCP客户端有权限控制 Mail\\n3. 尝试手动打开 Mail 应用并确保其正常运行'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0551f7e28836",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mcpcn/mac-mail-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'mail_mailboxes', 'arguments': {'account': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error with mail_mailboxes operation: Error getting mailboxes for account whoami; cat /etc/passwd: 无法访问 Mail 应用。错误：无法访问 Mail 应用。请检查：\\n1. Mail 应用是否已配置邮件账户\\n2. 系统偏好设置 > 安全性与隐私 > 隐私 > 自动化，确保您的终端/MCP客户端有权限控制 Mail\\n3. 尝试手动打开 Mail 应用并确保其正常运行'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "49f20c987f59",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mcpcn/mac-mail-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'mail_mailboxes', 'arguments': {'account': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error with mail_mailboxes operation: Error getting mailboxes for account file:///etc/passwd: 无法访问 Mail 应用。错误：无法访问 Mail 应用。请检查：\\n1. Mail 应用是否已配置邮件账户\\n2. 系统偏好设置 > 安全性与隐私 > 隐私 > 自动化，确保您的终端/MCP客户端有权限控制 Mail\\n3. 尝试手动打开 Mail 应用并确保其正常运行'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f23974d5f2bd",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mseep/simple-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 221, 'method': 'tools/call', 'params': {'name': 'localizationSearch', 'arguments': {'searchText': 'test', 'filePath': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '搜尋失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 219}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "646c931b3ebb",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@mseep/simple-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 312, 'method': 'tools/call', 'params': {'name': 'localizationFindMissing', 'arguments': {'language': 'test', 'filePath': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '搜尋缺少翻譯項目失敗: 無法讀取檔案 ../../../etc/passwd: Error: EISDIR: illegal operation on a directory, read'}]}, 'jsonrpc': '2.0', 'id': 309}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6e29d2444c58",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'mysql_describeTable', 'arguments': {'table': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to describe table ../../../etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3c501a15aa86",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'mysql_describeTable', 'arguments': {'table': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to describe table /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c3e8a2630a6e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'mysql_describeTable', 'arguments': {'table': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to describe table whoami; cat /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0a9b81623b40",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'mysql_describeTable', 'arguments': {'table': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to describe table file:///etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "042b9c02c699",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'mysql_generateTestData', 'arguments': {'count': 1, 'table': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to generate test data for ../../../etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 57}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4f14cfcef633",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 59, 'method': 'tools/call', 'params': {'name': 'mysql_generateTestData', 'arguments': {'count': 1, 'table': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to generate test data for /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 59}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "48248c74936f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 61, 'method': 'tools/call', 'params': {'name': 'mysql_generateTestData', 'arguments': {'count': 1, 'table': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to generate test data for whoami; cat /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 61}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ba829ef37f45",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 74, 'method': 'tools/call', 'params': {'name': 'mysql_generateTestData', 'arguments': {'count': 1, 'table': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to generate test data for file:///etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 74}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e8b446789f81",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'mysql_listIndexes', 'arguments': {'table': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to list indexes for ../../../etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 111}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "36d1843a1b59",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'tools/call', 'params': {'name': 'mysql_listIndexes', 'arguments': {'table': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to list indexes for /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 113}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7438835077f",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 115, 'method': 'tools/call', 'params': {'name': 'mysql_listIndexes', 'arguments': {'table': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to list indexes for whoami; cat /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 115}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9e85b00c42b6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 128, 'method': 'tools/call', 'params': {'name': 'mysql_listIndexes', 'arguments': {'table': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to list indexes for file:///etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 128}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "418b4862b1af",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 147, 'method': 'tools/call', 'params': {'name': 'mysql_update', 'arguments': {'data': 'test', 'where': 'test', 'table': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to update records in ../../../etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 147}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "778141c90642",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 149, 'method': 'tools/call', 'params': {'name': 'mysql_update', 'arguments': {'data': 'test', 'where': 'test', 'table': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to update records in /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 149}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ae5d55194404",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 151, 'method': 'tools/call', 'params': {'name': 'mysql_update', 'arguments': {'data': 'test', 'where': 'test', 'table': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to update records in whoami; cat /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 151}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b1e648475576",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 164, 'method': 'tools/call', 'params': {'name': 'mysql_update', 'arguments': {'data': 'test', 'where': 'test', 'table': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to update records in file:///etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 164}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4d6ad593e172",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 165, 'method': 'tools/call', 'params': {'name': 'mysql_delete', 'arguments': {'where': 'test', 'table': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to delete records from ../../../etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 165}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e2c3456fab17",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 167, 'method': 'tools/call', 'params': {'name': 'mysql_delete', 'arguments': {'where': 'test', 'table': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to delete records from /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 167}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8eb992891bda",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 169, 'method': 'tools/call', 'params': {'name': 'mysql_delete', 'arguments': {'where': 'test', 'table': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to delete records from whoami; cat /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 169}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ab00454675c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 182, 'method': 'tools/call', 'params': {'name': 'mysql_delete', 'arguments': {'where': 'test', 'table': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to delete records from file:///etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 182}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "923ca2e0af3b",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 237, 'method': 'tools/call', 'params': {'name': 'mysql_summarizeTable', 'arguments': {'table': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to summarize table ../../../etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 237}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "86da8f9348a6",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 239, 'method': 'tools/call', 'params': {'name': 'mysql_summarizeTable', 'arguments': {'table': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to summarize table /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 239}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3c98e57f6751",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 241, 'method': 'tools/call', 'params': {'name': 'mysql_summarizeTable', 'arguments': {'table': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to summarize table whoami; cat /etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 241}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "922748c76a49",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@rolandohuber/mysql-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 254, 'method': 'tools/call', 'params': {'name': 'mysql_summarizeTable', 'arguments': {'table': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Failed to summarize table file:///etc/passwd: Error: Failed to connect to MySQL: AggregateError'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 254}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1a4605a22af7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@smcphub/local-dev",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '/bin/sh: 1: ../../../etc/passwd: not found\\n'}]}, 'jsonrpc': '2.0', 'id': 75}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "370cbfbb547c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "anymize-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'file_anonymization', 'arguments': {'path': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error processing file ../../../etc/passwd: Access denied: Path /home/tecnico/Desktop/etc/passwd is not within allowed directories. Use list_allowed_directories to see available paths.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "698ea3091422",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "anymize-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'file_anonymization', 'arguments': {'path': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error processing file /etc/passwd: Access denied: Path /etc/passwd is not within allowed directories. Use list_allowed_directories to see available paths.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b51c0a4f6989",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "anymize-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'file_anonymization', 'arguments': {'path': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error processing file whoami; cat /etc/passwd: Access denied: Path /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/anymize-mcp__npx/whoami; cat /etc/passwd is not within allowed directories. Use list_allowed_directories to see available paths.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 43}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4ae3c47d9886",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "anymize-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'file_anonymization', 'arguments': {'path': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error processing file file:///etc/passwd: Access denied: Path /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/anymize-mcp__npx/file:/etc/passwd is not within allowed directories. Use list_allowed_directories to see available paths.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "166192ceb5b2",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "browser-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'browser-console', 'arguments': {'url': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '[2026-07-18T03:36:06.433Z] [info] Navigating to ../../../etc/passwd...\\n[2026-07-18T03:36:06.434Z] [error] Failed to navigate to ../../../etc/passwd: Protocol error (Page.navigate): Cannot navigate to invalid URL\\n[2026-07-18T03:36:06.435Z] [error] Failed to capture console: Protocol error (Page.navigate): Cannot navigate to invalid URL'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 3}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c3a43b9ce5c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "browser-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'browser-console', 'arguments': {'url': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '[2026-07-18T03:36:06.981Z] [info] Navigating to /etc/passwd...\\n[2026-07-18T03:36:06.982Z] [error] Failed to navigate to /etc/passwd: Protocol error (Page.navigate): Cannot navigate to invalid URL\\n[2026-07-18T03:36:06.982Z] [error] Failed to capture console: Protocol error (Page.navigate): Cannot navigate to invalid URL'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 5}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "67a117d3f42c",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "browser-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'browser-console', 'arguments': {'url': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '[2026-07-18T03:36:07.539Z] [info] Navigating to whoami; cat /etc/passwd...\\n[2026-07-18T03:36:07.540Z] [error] Failed to navigate to whoami; cat /etc/passwd: Protocol error (Page.navigate): Cannot navigate to invalid URL\\n[2026-07-18T03:36:07.540Z] [error] Failed to capture console: Protocol error (Page.navigate): Cannot navigate to invalid URL'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 7}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d71aa81a1d15",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "evm-actions-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 75, 'method': 'tools/call', 'params': {'name': 'get_balance', 'arguments': {'address': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching balance: Failed to resolve ENS name ../../../etc/passwd: Invalid label \"\"\\u200e: empty label'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 75}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9995152b2758",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "evm-actions-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 93, 'method': 'tools/call', 'params': {'name': 'get_erc20_balance', 'arguments': {'tokenAddress': 'test', 'address': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching ERC20 balance for ../../../etc/passwd: Invalid address or ENS name: test'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 93}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7039609d3452",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "evm-actions-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 95, 'method': 'tools/call', 'params': {'name': 'get_erc20_balance', 'arguments': {'tokenAddress': 'test', 'address': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching ERC20 balance for /etc/passwd: Invalid address or ENS name: test'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 95}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6504097c6227",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "evm-actions-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 97, 'method': 'tools/call', 'params': {'name': 'get_erc20_balance', 'arguments': {'tokenAddress': 'test', 'address': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching ERC20 balance for whoami; cat /etc/passwd: Invalid address or ENS name: test'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 97}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2e7c6c5f22f7",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "evm-actions-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 110, 'method': 'tools/call', 'params': {'name': 'get_erc20_balance', 'arguments': {'tokenAddress': 'test', 'address': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching ERC20 balance for file:///etc/passwd: Invalid address or ENS name: test'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 110}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "585cbcdddc3a",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "evm-actions-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 111, 'method': 'tools/call', 'params': {'name': 'get_token_balance', 'arguments': {'ownerAddress': 'test', 'tokenAddress': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error fetching token balance: Failed to resolve ENS name ../../../etc/passwd: Invalid label \"\"\\u200e: empty label'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 111}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c25613dbafe0",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "evm-actions-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 165, 'method': 'tools/call', 'params': {'name': 'is_contract', 'arguments': {'address': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error checking if address is a contract: Failed to resolve ENS name ../../../etc/passwd: Invalid label \"\"\\u200e: empty label'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 165}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d5b3864e6b80",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "juan-course-binancemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'get_price', 'arguments': {'symbol': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting price from CoinGecko for FILE:///ETC/PASSWD: 429 {\"status\":{\"error_code\":429,\"error_message\":\"You\\'ve exceeded the Rate Limit. Please visit https://www.coingecko.com/en/api/pricing to subscribe to our API plans for higher rate limits.\"}}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

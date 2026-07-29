@@ -1,0 +1,968 @@
+{
+ "batch": 33,
+ "n_cluster": 60,
+ "n_finding": 78,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "1f9428f2f0fd",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32603, 'message': \"Internal error: Agent '....//....//etc/shadow' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "995502278ddf",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 5, 'error': {'code': -32603, 'message': \"Internal error: Agent '/etc/passwd' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "8d54a96cb552",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 6, 'error': {'code': -32603, 'message': \"Internal error: Agent 'C:\\\\Windows\\\\System32\\\\config\\\\SAM' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "184410281002",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 7, 'error': {'code': -32603, 'message': \"Internal error: Agent 'whoami; cat /etc/passwd' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "f41efc62db4e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 8, 'error': {'code': -32603, 'message': \"Internal error: Agent '$(id)' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "92950671cbe3",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 9, 'error': {'code': -32603, 'message': \"Internal error: Agent '`cat /etc/passwd`' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "1140e1c1e258",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 10, 'error': {'code': -32603, 'message': \"Internal error: Agent 'test && ls -la /' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "93c4598b1d87",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 11, 'error': {'code': -32603, 'message': \"Internal error: Agent 'test || id' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "1f8679160caa",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32603, 'message': \"Internal error: Agent '__import__('os').system('id')' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "552059c52422",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32603, 'message': \"Internal error: Agent 'require('child_process').execSync('id').toString()' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "17f5bc9310c8",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32603, 'message': \"Internal error: Agent 'eval('1+1')' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "5a0becfea05c",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': \"Internal error: Agent '' OR 1=1; --' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "ef547858fff9",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': \"Internal error: Agent ''; DROP TABLE users; --' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "22f64498e661",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 17, 'error': {'code': -32603, 'message': \"Internal error: Agent '1 UNION SELECT * FROM information_schema.tables; --' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "a2fb89bba7e1",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 18, 'error': {'code': -32603, 'message': \"Internal error: Agent 'http://169.254.169.254/latest/meta-data/' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "b6d2826b6aeb",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 19, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 19, 'error': {'code': -32603, 'message': \"Internal error: Agent 'http://localhost:6379/' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "19f50a3bd2bf",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'activate_agent', 'arguments': {'request': 'test', 'agent_name': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'error': {'code': -32603, 'message': \"Internal error: Agent 'file:///etc/passwd' not found\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "f4d70e2428c8",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:worksona/-worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 77, 'method': 'resources/read', 'params': {'uri': 'file:///etc/shadow'}}",
+    "response": "{'jsonrpc': '2.0', 'id': 77, 'error': {'code': -32603, 'message': \"Internal error: Failed to read resource file: EACCES: permission denied, open '/etc/shadow'\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "40e9a5ea0ca1",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "719352f3cc5f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3f1daeb1f4b1",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 5, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "16a4af05a2de",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 6, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "720facea5a5b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 7, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4a726f413a0",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 8, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5eb1f7808e52",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 9, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8d238eb50ce8",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 10, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 10, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "228d564aafcd",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 11, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4bc2e8ceecf1",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 12, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 12, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "41083bb8b039",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 13, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 13, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f25b481761f0",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 14, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 14, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8f80c6667096",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 15, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 15, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c51917883e19",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 16, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 16, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "645462ecbd84",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 17, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 17, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cf167da2608e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 18, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 18, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8c6a23d087aa",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 19, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 19, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1eda4731ade7",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gmh5225/interactive-feedback-macos-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message, Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 20, 'method': 'tools/call', 'params': {'name': 'collect_feedback', 'arguments': {'work_summary': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 20, 'error': {'code': -32603, 'message': 'Collect feedback failed: AppleScript error: Command failed: osascript -e \\'\\n tell application \"System Events\"\\n activate\\n set userInput to text returned of (display dialog \"Please enter your feedback, suggestions, or comments:\\n\\nTips:\\n• You can paste multi-line text directly\\n• Line breaks will be preserved\\n• Supports Cmd+A to select all, Cmd+C to copy, Cmd+V to paste\" default answer \"\" with title \"Feedback Collection\" buttons {\"Cancel\", \"OK\"} default button \"OK\")\\n return userInput\\n end tell\\n \\'\\n/bin/sh: 1: osascript: not found\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "34c9c04c8922",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 21, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fa8d406aef7c",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 22, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 22, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1767564a0844",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 23, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4fcd225b1e1",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 24, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "688f9800ab7e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 25, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "31091dcbf742",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 26, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 26, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "22f7d6ec833d",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 27, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 27, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be30fb93ead2",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 28, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 28, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "22f551eea8b1",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 29, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "897581f5d25c",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ddd119e36dd2",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 31, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "10a085fa0bf4",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 32, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d570dbccff7b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 33, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "823673cc1e7b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 34, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6832f809acff",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 35, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 35, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ae7e3e7ff92c",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 36, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 36, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3d71df19777f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 37, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 37, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d0241b173c80",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:0brym/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'calculate', 'arguments': {'expression': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 38, 'error': {'code': -32603, 'message': 'Internal error: Tool execution failed: Invalid characters in expression'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9c96a6a2cb53",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasirajan22/DotnetMCPServer",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 112, 'method': 'resources/read', 'params': {'uri': 'file://../../etc/passwd'}}",
+    "response": "{'jsonrpc': '2.0', 'id': 112, 'error': {'code': -32603, 'message': 'Internal error', 'data': ''}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bebb4ed5883f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasirajan22/DotnetMCPServer",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 113, 'method': 'resources/read', 'params': {'uri': 'file:///etc/shadow'}}",
+    "response": "{'jsonrpc': '2.0', 'id': 113, 'error': {'code': -32603, 'message': 'Internal error', 'data': ''}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "603567c8050b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasirajan22/DotnetMCPServer",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 114, 'method': 'prompts/list', 'params': {}}",
+    "response": "{'jsonrpc': '2.0', 'id': 114, 'error': {'code': -32603, 'message': 'Internal error', 'data': ''}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ae57a0278c12",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html;…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e5257290100f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html;…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1be53b1f18f2",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Aki894/mcp-ClinicalTrial",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'search_clinical_trials', 'arguments': {'condition': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 5, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool search_clinical_trials: Error: ClinicalTrials.gov API error (403): \\n<!DOCTYPE html>\\n<html lang=\"en\" >\\n<head >\\n <meta charset=\"UTF-8\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\\n <meta name=\"HandheldFriendly\" content=\"True\">\\n <meta name=\"MobileOptimized\" content=\"320\">\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\\n <title>403 Error - NCBI</title>\\n <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, shrink-to-fit=no\">\\n <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\" />\\n <meta http-equiv=\"Content-Type\" content=\"text/html;…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

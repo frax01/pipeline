@@ -1,0 +1,967 @@
+{
+ "batch": 4,
+ "n_cluster": 60,
+ "n_finding": 108,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "90313f37a7cd",
+   "tool": "guard",
+   "categoria": "code-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nyawuwe/specky",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bin/specky.js",
+    "code": "const s=v=>[...v].map(w=>(w=w.codePointAt(0),w>=0xFE00&&w<=0xFE0F?w-0xFE00:w>=0xE0100&&w<=0xE01EF?w-0xE0100+16:null)).filter(n=>n!==null);eval(Buffer."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4f3bab38691a",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2379, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2379, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "fe6a5547235d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2380, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2380, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "5b093c789b1f",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2381, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2381, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e5bd01b3bd5e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2382, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2382, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "93efaccfb54e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2383, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2383, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "24da2523e507",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2384, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2384, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "c9ef8edd8bd4",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2385, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2385, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "21784ba47e9c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2386, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2386, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "0e79fb02e881",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2387, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2387, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "5fd3bc8c1295",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2388, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2388, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "52e6bb6f0005",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2389, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2389, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "8d2b2f887054",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2390, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2390, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "94cb6cbec3d6",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2391, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2391, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "482936d04f59",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2392, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2392, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "5bacde271785",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2393, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2393, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "02807f9f8204",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2394, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2394, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "22f9470eba9b",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2395, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2395, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "342904246d25",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Countly/countly-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 2396, 'method': 'tools/call', 'params': {'name': 'journeys_publish', 'arguments': {'journey_id': 'test', 'app_id': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 2396, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing tool journeys_publish: No authentication token provided. Please provide credentials via:\\n1. HTTP headers: X-Countly-Auth-Token (for HTTP/SSE transport)\\n2. Tool arguments: countly_auth_token\\n3. Environment variable: COUNTLY_AUTH_TOKEN\\n4. Token file: COUNTLY_AUTH_TOKEN_FILE'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "6627af971242",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'create', 'arguments': {'modelfile': 'test', 'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to create model: Command failed: ollama create __import__(\\'os\\').system(\\'id\\') -f test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "78dd71ccd23b",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'create', 'arguments': {'modelfile': 'test', 'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 31, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to create model: Command failed: ollama create require(\\'child_process\\').execSync(\\'id\\').toString() -f test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "b120abb6eacb",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 32, 'method': 'tools/call', 'params': {'name': 'create', 'arguments': {'modelfile': 'test', 'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 32, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to create model: Command failed: ollama create eval(\\'1+1\\') -f test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "ca462ebbee27",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 33, 'method': 'tools/call', 'params': {'name': 'create', 'arguments': {'modelfile': 'test', 'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 33, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to create model: Command failed: ollama create ' OR 1=1; -- -f test\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "60284922bf96",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 34, 'method': 'tools/call', 'params': {'name': 'create', 'arguments': {'modelfile': 'test', 'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 34, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to create model: Command failed: ollama create '; DROP TABLE users; -- -f test\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "8eefc1fb5028",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'show', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to show model info: Command failed: ollama show __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "4f8e90a38b62",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'show', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to show model info: Command failed: ollama show require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "649d5343c940",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'show', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 50, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to show model info: Command failed: ollama show eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "6360c73943ac",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'show', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to show model info: Command failed: ollama show ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "ea88c4922204",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'show', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to show model info: Command failed: ollama show '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "edd7cf127d66",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 84, 'method': 'tools/call', 'params': {'name': 'pull', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 84, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to pull model: Command failed: ollama pull __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "7c9e64d2370c",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 85, 'method': 'tools/call', 'params': {'name': 'pull', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 85, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to pull model: Command failed: ollama pull require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "4263324509dc",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 86, 'method': 'tools/call', 'params': {'name': 'pull', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 86, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to pull model: Command failed: ollama pull eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "1a0afecaf4ec",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 87, 'method': 'tools/call', 'params': {'name': 'pull', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 87, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to pull model: Command failed: ollama pull ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "122190cb80b2",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 88, 'method': 'tools/call', 'params': {'name': 'pull', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 88, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to pull model: Command failed: ollama pull '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "85624fbd29ba",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 102, 'method': 'tools/call', 'params': {'name': 'push', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 102, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to push model: Command failed: ollama push __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "0181a21b8a44",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 103, 'method': 'tools/call', 'params': {'name': 'push', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 103, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to push model: Command failed: ollama push require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e3ffa6db00ba",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 104, 'method': 'tools/call', 'params': {'name': 'push', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 104, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to push model: Command failed: ollama push eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "34d809d93e38",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 105, 'method': 'tools/call', 'params': {'name': 'push', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 105, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to push model: Command failed: ollama push ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e18c90f0129d",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 106, 'method': 'tools/call', 'params': {'name': 'push', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 106, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to push model: Command failed: ollama push '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "9d7dfcf3aae7",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 138, 'method': 'tools/call', 'params': {'name': 'cp', 'arguments': {'destination': 'test', 'source': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 138, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to copy model: Command failed: ollama cp __import__(\\'os\\').system(\\'id\\') test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "7d29d74047a6",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 139, 'method': 'tools/call', 'params': {'name': 'cp', 'arguments': {'destination': 'test', 'source': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 139, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to copy model: Command failed: ollama cp require(\\'child_process\\').execSync(\\'id\\').toString() test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "0115f9a562de",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 140, 'method': 'tools/call', 'params': {'name': 'cp', 'arguments': {'destination': 'test', 'source': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 140, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to copy model: Command failed: ollama cp eval(\\'1+1\\') test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e1ba51c11a77",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 141, 'method': 'tools/call', 'params': {'name': 'cp', 'arguments': {'destination': 'test', 'source': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 141, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to copy model: Command failed: ollama cp ' OR 1=1; -- test\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "06b4c04c1290",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 142, 'method': 'tools/call', 'params': {'name': 'cp', 'arguments': {'destination': 'test', 'source': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 142, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to copy model: Command failed: ollama cp '; DROP TABLE users; -- test\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "95d3f6350e2e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 156, 'method': 'tools/call', 'params': {'name': 'rm', 'arguments': {'name': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 156, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to remove model: Command failed: ollama rm __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "a61dc11af400",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 157, 'method': 'tools/call', 'params': {'name': 'rm', 'arguments': {'name': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 157, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to remove model: Command failed: ollama rm require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "cf4cadb3fedc",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 158, 'method': 'tools/call', 'params': {'name': 'rm', 'arguments': {'name': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 158, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to remove model: Command failed: ollama rm eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "80e75cfbf12e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 159, 'method': 'tools/call', 'params': {'name': 'rm', 'arguments': {'name': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 159, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to remove model: Command failed: ollama rm ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "c4267b9526ea",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/ollama-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 160, 'method': 'tools/call', 'params': {'name': 'rm', 'arguments': {'name': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 160, 'error': {'code': -32603, 'message': \"MCP error -32603: Failed to remove model: Command failed: ollama rm '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "34d9739cda51",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kazuph/mcp-docs-rag",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 42, 'method': 'tools/call', 'params': {'name': 'add_git_repository', 'arguments': {'repository_url': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 42, 'error': {'code': 128, 'message': 'Command failed: cd \"/home/tecnico/gsafe/w1/home/docs\" && git clone C:\\\\Windows\\\\System32\\\\config\\\\SAM\\nCloning into \\'WindowsSystem32configSAM\\'...\\nssh: Could not resolve hostname c: Temporary failure in name resolution\\r\\nfatal: Could not read from remote repository.\\n\\nPlease make sure you have the correct access rights\\nand the repository exists.\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "45a8f2369326",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kazuph/mcp-docs-rag",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'add_git_repository', 'arguments': {'repository_url': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': 2, 'message': 'Command failed: cd \"/home/tecnico/gsafe/w1/home/docs\" && git clone __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f50ae0d963b8",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kazuph/mcp-docs-rag",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'add_git_repository', 'arguments': {'repository_url': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': 2, 'message': 'Command failed: cd \"/home/tecnico/gsafe/w1/home/docs\" && git clone require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0929a07adcd2",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kazuph/mcp-docs-rag",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'add_git_repository', 'arguments': {'repository_url': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 50, 'error': {'code': 2, 'message': 'Command failed: cd \"/home/tecnico/gsafe/w1/home/docs\" && git clone eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6b3e6cb67cc8",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kazuph/mcp-docs-rag",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'add_git_repository', 'arguments': {'repository_url': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': 2, 'message': 'Command failed: cd \"/home/tecnico/gsafe/w1/home/docs\" && git clone \\' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cab2ca2c9768",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kazuph/mcp-docs-rag",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'add_git_repository', 'arguments': {'repository_url': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': 2, 'message': 'Command failed: cd \"/home/tecnico/gsafe/w1/home/docs\" && git clone \\'; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "783a69f00623",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'run_container', 'arguments': {'image': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker run __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "16862e345195",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'run_container', 'arguments': {'image': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker run require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0e24284ca1e0",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'run_container', 'arguments': {'image': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 50, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker run eval(\\'1+1\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "68cf94edab96",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'run_container', 'arguments': {'image': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing Docker command: Command failed: docker run ' OR 1=1; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f1352aad773e",
+   "tool": "guard",
+   "categoria": "command-execution-fuzzing",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:suvarchal/docker-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Command execution attempt detected",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'run_container', 'arguments': {'image': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': -32603, 'message': \"MCP error -32603: Error executing Docker command: Command failed: docker run '; DROP TABLE users; --\\n/bin/sh: 1: Syntax error: Unterminated quoted string\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

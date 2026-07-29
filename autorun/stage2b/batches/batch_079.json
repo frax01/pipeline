@@ -1,0 +1,908 @@
+{
+ "batch": 79,
+ "n_cluster": 60,
+ "n_finding": 65,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "8019eef2a122",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:aplavin/julia-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_server.py",
+    "code": "await session.execute(\"1 + 1\", timeout=30.0)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "76ae6388e6a7",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:bastetlu299/multi-agent-cs-a2a-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp/mcp_server.py",
+    "code": "cur.execute(f\"UPDATE customers SET {', '.join(fields)} WHERE id = ?\", values)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "90d1d43e313c",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:baturorkun/maven-dep-vuln-scan-remediator-ai-rag",
+   "evidenza": {
+    "tipo": "static",
+    "file": "llm-agent/tools.py",
+    "code": "project_risks = session.run(f\"\"\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5275cd382b72",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:baturorkun/maven-dep-vuln-scan-remediator-ai-rag",
+   "evidenza": {
+    "tipo": "static",
+    "file": "llm-agent/tools.py",
+    "code": "root_cause_risks = session.run(f\"\"\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3d25ecaeb533",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:baturorkun/maven-dep-vuln-scan-remediator-ai-rag",
+   "evidenza": {
+    "tipo": "static",
+    "file": "llm-agent/tools.py",
+    "code": "risky_deps = session.run(f\"\"\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5d68e9ea29f2",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:bcfmtolgahan/prometheus-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/prometheus_mcp_server/server.py",
+    "code": "up_result = await client.query(promql=f'up{{job=\"{job}\"}}')"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ffa580fa1bfe",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:btafoya/mailsandbox",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/storage/schemas.go",
+    "code": "rows, err := db.Query(`SELECT version FROM ` + tenant(\"darwin_migrations\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ceb7abaa96d2",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:caohaotiantian/joern_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/joern_mcp/joern/server.py",
+    "code": "result = await self.client.execute(\"1 + 1\", use_sync_endpoint=True)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "02d517bf96ec",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:caseys/ksp-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/lib/mechjeb/execute-node.ts",
+    "code": "await conn.raw(`SET WARPMODE TO \"${warpMode}\". SET WARP TO ${currentWarp + 1}.`, 2000);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4512d193718",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:caseys/ksp-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/lib/mechjeb/landing/autopilot.ts",
+    "code": "await conn.raw(`SET WARPMODE TO \"${warpMode}\". SET WARP TO ${currentWarp + 1}.`, 2000);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "54bd795d69af",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:caseys/ksp-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/lib/kos/warp.ts",
+    "code": "await conn.raw("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8055b485cc1d",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:codeforall/citus-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/mcpserver/tools/list_distributed_tables.go",
+    "code": "rows, err := deps.Pool.Query(ctx, q, schemaFilter, cursorSchema, cursorName, limit+1)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "58323f978976",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:danieleugenewilliams/othello-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/storage/conversation.go",
+    "code": "rows, err := s.db.Query(sqlQuery, \"%\"+query+\"%\", limit)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6aa712fa7117",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:developerjillur/wordpress-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.js",
+    "code": "const [sizeResult] = await connection.execute(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9eae841b736b",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:developerjillur/wordpress-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.js",
+    "code": "const [tableStats] = await connection.execute(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ff3d878abb8d",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:developerjillur/wordpress-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.js",
+    "code": "const [stats] = await connection.execute(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c500102cffc2",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:dolphina02/supersetAddAiChat",
+   "evidenza": {
+    "tipo": "static",
+    "file": "superset/utils/encrypt.py",
+    "code": "return conn.execute(f\"SELECT id, {','.join(column_names)} FROM {table_name}\") # noqa: S608"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c893112df82e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:dublyo/mcp-gateway",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/profiles/database.go",
+    "code": "rows, err := db.Query(\"EXPLAIN ANALYZE \" + sqlStr)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "48ffa73a5816",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ghadfield32/nba_api_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nba_api_mcp/data/expand_scope.py",
+    "code": "filtered_df = duckdb.query(f\"SELECT * FROM table WHERE {where_clause}\").to_df()"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b620d458e4a0",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ghadfield32/nba_api_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nba_api_mcp/data/expand_scope.py",
+    "code": "sorted_df = duckdb.query(f\"SELECT * FROM table ORDER BY {order_clause}\").to_df()"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9aab2de4b0b2",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:giridhar82/HelloMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/database/connectors/oracle.py",
+    "code": "cur.execute(\"EXPLAIN PLAN FOR \" + query)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "64574d7a47f1",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:giridhar82/HelloMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/database/connectors/mysql.py",
+    "code": "cur.execute(\"EXPLAIN \" + query)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8d32ebb74c22",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:giridhar82/HelloMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/database/connectors/postgresql.py",
+    "code": "cursor.execute(\"EXPLAIN \" + query)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7be537954521",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:git-aditya-star/clickhouse-mcp-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "clickhouse_mcp_server.py",
+    "code": "clickhouse_client.query(f\"\"\"CREATE TABLE {table_name}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a1bcd9c8c7a0",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:git-aditya-star/clickhouse-mcp-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "clickhouse_mcp_server.py",
+    "code": "clickhouse_client.query(f\"DROP TABLE {table_name}\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3baf7d5fe7a6",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hahayo/CC-memory",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/services/delivery-queue.ts",
+    "code": "const updated = await db.execute(sql`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a59f318df5aa",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:hyunjunjeon/mcp-for-retriever-demo",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/retrievers/postgres.py",
+    "code": "await conn.execute(\"UPDATE counts SET value = value + 1\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "afbbfb9fa7cf",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:i0Ta07/MCP.ExpenseTracker",
+   "evidenza": {
+    "tipo": "static",
+    "file": "main/main.py",
+    "code": "cur.execute(f\"SELECT {', '.join(update_fields)} FROM expenses WHERE id = %s AND user_id = %s\",(expense_id,user_id))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8c8266635591",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "docker",
+   "esempio_server": "gh:jborjar/api-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/database.py",
+    "code": "cursor.execute(\"SELECT COUNT(DISTINCT CardName + ISNULL(FederalTaxID, '')) FROM SAP_PROVEEDORES\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2522fa57417",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:jpotter80/mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "servers/mojo-manual-mcp/runtime/search.py",
+    "code": "plan = self.db_connection.execute(\"EXPLAIN \" + query, [query_vector]).fetchall()"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b2af942ea25d",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:khanglvm/tool-hub-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/storage/usage.go",
+    "code": "rows, err := s.db.Query(query, toolName, since.Format(time.RFC3339))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a99a9c42c056",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/enhanced-memory-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nmf/graph_ops.py",
+    "code": "session.run(f\"\"\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "350aa35757b7",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:marc-shade/enhanced-memory-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "nmf/graph_ops.py",
+    "code": "result = session.run(f\"\"\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4f25ae09553",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:novvoo/mcpchat",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/services/tool-metadata-service.ts",
+    "code": "await client.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "78d15db04ad2",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:novvoo/mcpchat",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/services/dynamic-config-service.ts",
+    "code": "await client.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a75d0b92daf1",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:novvoo/mcpchat",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/services/dynamic-pattern-learner.ts",
+    "code": "await client.query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "288d4078bc94",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:oikonai/code-ingest",
+   "evidenza": {
+    "tipo": "static",
+    "file": "modules/ingest/services/surrealdb_vector_client.py",
+    "code": "self.client.query(f\"REMOVE TABLE {table_name};\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6b5cb11bd96f",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:oikonai/code-ingest",
+   "evidenza": {
+    "tipo": "static",
+    "file": "modules/ingest/services/surrealdb_vector_client.py",
+    "code": "result = self.client.query(f\"INFO FOR TABLE {table_name};\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e84a1b7fbe6a",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:oikonai/code-ingest",
+   "evidenza": {
+    "tipo": "static",
+    "file": "modules/ingest/services/surrealdb_vector_client.py",
+    "code": "self.client.query(f\"DELETE {table_name}:`{record_id}`;\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "832a551ad9b9",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pgtgrly/bombe-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/bombe/ui_api/inspector.py",
+    "code": "rows = db.query(f\"SELECT COUNT(*) AS cnt FROM {table};\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "93b664c878ba",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:prashantpandeygit/vecmem",
+   "evidenza": {
+    "tipo": "static",
+    "file": "vecmem_mcp_server/server.py",
+    "code": "cur.execute(\"SELECT id, text FROM memory WHERE id=?\", (idx + 1,))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "72823dd6780e",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ramonemaxi/python-mcp-timesheet-assistant",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/db_utils.py",
+    "code": "cur.execute(f\"UPDATE timesheets SET {', '.join(sets)} WHERE id = ?\", tuple(params))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "93fee95c83f6",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:robertmeisner/mcp_sqlite_memory_bank",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_sqlite_memory_bank/tools/llm_optimization.py",
+    "code": "sample_result = conn.execute(text(f\"SELECT id, {', '.join(content_columns)} FROM `{table_name}` LIMIT 20\"))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "080f587b82b2",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:saibhossain/multi-agent-ai",
+   "evidenza": {
+    "tipo": "static",
+    "file": "Backend/db.py",
+    "code": "cursor.execute(\"SELECT answer FROM faq WHERE question LIKE %s LIMIT 1\", (\"%\" + query_text + \"%\",))"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d30169899941",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:scopweb/mcp-go-mysql",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cmd/tools.go",
+    "code": "result, err := client.Query(\"EXPLAIN \" + sql)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e261171ac8d1",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:senhub-io/mcp-server-prtg",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/database/queries.go",
+    "code": "groupRows, err := db.Query(ctx, groupQuery, \"%\"+searchTerm+\"%\", limit)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "af6c1bfb4550",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:senhub-io/mcp-server-prtg",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/database/queries.go",
+    "code": "deviceRows, err := db.Query(ctx, deviceQuery, \"%\"+searchTerm+\"%\", limit)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "db368168cdc4",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:senhub-io/mcp-server-prtg",
+   "evidenza": {
+    "tipo": "static",
+    "file": "internal/database/queries.go",
+    "code": "sensorRows, err := db.Query(ctx, sensorQuery, \"%\"+searchTerm+\"%\", limit)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bddcd79da6bc",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:sycbs4t2dx-hue/mcp-enterprise-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp_core/code_knowledge_service.py",
+    "code": "self.db.execute(sync_sql, {"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cbff360f61ca",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:viktorprogger/mcp-memory",
+   "evidenza": {
+    "tipo": "static",
+    "file": "graph.go",
+    "code": "rows, err := m.db.Query(\"SELECT e.id, e.name, e.entity_type, o.content FROM entities e LEFT JOIN observations o ON o.entity_id=e.id WHERE e.name IN (\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4224644c2f0",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:viktorprogger/mcp-memory",
+   "evidenza": {
+    "tipo": "static",
+    "file": "graph.go",
+    "code": "rrows, err := m.db.Query(\"SELECT e1.name, e2.name, r.relation_type FROM relations r JOIN entities e1 ON e1.id=r.from_id JOIN entities e2 ON e2.id=r.to"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5c7a940ea684",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:zeroinfinity03/sqlite3-mcpserver",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/sqlite3_mcp/server.py",
+    "code": "rows = conn.execute(\"EXPLAIN QUERY PLAN \" + sql, params or {}).fetchall()"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e743e936efe9",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:forest6511/secretctl",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pkg/vault/vault.go",
+    "code": "rows, err := v.db.Query(`"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "275d1db92f95",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:silkspace/llm-knowledge-graph",
+   "evidenza": {
+    "tipo": "static",
+    "file": "kg_production.py",
+    "code": "df = self.db.query(f\"SELECT id, {text_fields} FROM documents WHERE summary IS NOT NULL\")"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "af739353ccfe",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gregordimi/mcptodo",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server/server.ts",
+    "code": "await db.run('UPDATE tasks SET position = position + 1 WHERE status = ? AND position >= ?', newStatus, newPosition);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6ce32fd90352",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "securitylens-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/jsBackup/index.js",
+    "code": "db.query(\"SELECT * FROM users WHERE id = \" + userId);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c32273f2e70",
+   "tool": "guard",
+   "categoria": "sql-injection-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "securitylens-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/patterns/index.ts",
+    "code": "db.query(\"SELECT * FROM users WHERE id = \" + userId);"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "be33b8d6f186",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kingler/vividwalls-mas",
+   "evidenza": {
+    "tipo": "static",
+    "file": "assets/static/vividwalls-copilot-enhanced.js",
+    "code": "const response = await fetch(CONFIG.n8nEndpoint, {"
+   },
+   "n_finding": 3,
+   "n_server": 1
+  },
+  {
+   "id": "a93818470502",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kingler/vividwalls-mas",
+   "evidenza": {
+    "tipo": "static",
+    "file": "services/plugins/vividwalls-copilot-plugin/assets/vividwalls-copilot-enhanced.js",
+    "code": "const response = await fetch(CONFIG.n8nEndpoint, {"
+   },
+   "n_finding": 3,
+   "n_server": 1
+  },
+  {
+   "id": "86a883ff7ae7",
+   "tool": "guard",
+   "categoria": "ssrf-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Calvin-Francis/memory-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/services/embedding.js",
+    "code": "const response = await fetch(CONFIG.embeddings.apiUrl, {"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  }
+ ]
+}

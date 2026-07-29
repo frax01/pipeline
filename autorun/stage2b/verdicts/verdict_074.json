@@ -1,0 +1,305 @@
+{
+ "batch": 74,
+ "verdetti": [
+  {
+   "id": "5bebd3fd4fc3",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "315384749822",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "eac2845423bc",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "e9d5472215a8",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "7739cc890b92",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "8a70cf2f5c5d",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "a6fa9cd1742e",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "33732790c1ef",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "813048073c81",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "f7485ba86a8f",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "fb42212c725f",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "70c87e02ac6e",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "cd0aa15dc0f4",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "7e6bb5cf88a0",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "7ed79d36f62b",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "97dde19ec338",
+   "verdetto": "FP",
+   "motivo": "risposta e' il messaggio generico di configurazione MySQL mancante, nessun segreto reale divulgato"
+  },
+  {
+   "id": "6dc2b73f16d8",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "ef18b7f31a0f",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "a970a294903a",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "2cc60d47e850",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "b0c7af8e358a",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "31d0178e8acd",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "2d6debcf40d3",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "61409c326a33",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "7ab016bc9781",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "abff60bbed92",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "995b174fd9e7",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "b5092d5b0f97",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "ee4cee20361b",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "7bec1e081441",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "70e257a3ccdb",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "491381d143c5",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "a2a86a6e58f5",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "129504e72a4b",
+   "verdetto": "FP",
+   "motivo": "risposta e' un docker-compose.yml di esempio statico, nessuna password o segreto valorizzato presente"
+  },
+  {
+   "id": "c16f3c8a6202",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "e8b6001f115d",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "dc83ccc7dab7",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "56c351f8160b",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "85c1d561c534",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "b47680d51f1c",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "6dc1fae10bda",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "93cac7c051d5",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "547fc293a305",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "c7b9b9bb8fa7",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "9fe96eb9cc7a",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "c9f7413415aa",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "1edeb0d179a1",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "b6578ea93217",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "78e84f4547fd",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "aca536d75906",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "01e8a28ab1c1",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "80abb8b7ddea",
+   "verdetto": "FP",
+   "motivo": "risposta e' una guida di setup che legge la chiave da process.env.PRIVATE_KEY, nessun valore reale esposto"
+  },
+  {
+   "id": "4495c2326542",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "579b82ee2503",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "9339b8faf902",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "d3475ccd7134",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "5df86706f8cb",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "b60b602a34af",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "ddf5ebb5d14b",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  },
+  {
+   "id": "c58a22dc6f60",
+   "verdetto": "FP",
+   "motivo": "risposta indica esplicitamente has_private_key:false, nessuna chiave presente da divulgare"
+  }
+ ]
+}

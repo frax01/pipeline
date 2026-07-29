@@ -1,0 +1,948 @@
+{
+ "batch": 36,
+ "n_cluster": 60,
+ "n_finding": 71,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "e540d65762ca",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 130, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 130, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"....//....//etc/shadow\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'....//....//etc/shadow\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "db1feb7bd1a0",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 131, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 131, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"/etc/passwd\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'/etc/passwd\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3ba66b56fc78",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 132, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 132, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\config\\\\\\\\SAM\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'C:\\\\\\\\Windows\\\\\\\\System32\\\\\\\\config\\\\\\\\SAM\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "45c6022f53fb",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 133, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"whoami; cat /etc/passwd\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'whoami; cat /etc/passwd\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7a19cd21ff55",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 134, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 134, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"$(id)\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'$(id)\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a0c567939445",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 135, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 135, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"`cat /etc/passwd`\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'`cat /etc/passwd`\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f454a7b4e245",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 136, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 136, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"test && ls -la /\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'test && ls -la /\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "202833950383",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 137, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 137, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"test || id\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'test || id\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "58d2e3d6f093",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 138, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 138, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"__import__(\\'os\\').system(\\'id\\')\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'__import__(\\'os\\').system(\\'id\\')\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5586913dcfc4",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 139, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 139, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"require(\\'child_process\\').execSync(\\'id\\').toString()\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'require(\\'child_process\\').execSync(\\'id\\').toString()\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0a6a36b83296",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 140, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 140, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"eval(\\'1+1\\')\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'eval(\\'1+1\\')\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "715262a51531",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 141, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 141, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"\\' OR 1=1; --\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'\\' OR 1=1; --\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b85ad4d387ab",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 142, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 142, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"\\'; DROP TABLE users; --\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'\\'; DROP TABLE users; --\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cf375717620e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 143, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 143, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"1 UNION SELECT * FROM information_schema.tables; --\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'1 UNION SELECT * FROM information_schema.tables; --\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b5aac2f67f35",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 144, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 144, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"http://169.254.169.254/latest/meta-data/\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'http://169.254.169.254/latest/meta-data/\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "84fd6b933e90",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 145, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 145, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"http://localhost:6379/\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'http://localhost:6379/\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "18e3c308472b",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:liukeyu800/mcp-server-chart-offline",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 146, 'method': 'tools/call', 'params': {'name': 'generate_line_chart', 'arguments': {'data': [], 'theme': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 146, 'error': {'code': -32602, 'message': 'MCP error -32602: Invalid parameters: [\\n {\\n \"code\": \"too_small\",\\n \"minimum\": 1,\\n \"type\": \"array\",\\n \"inclusive\": true,\\n \"exact\": false,\\n \"message\": \"Line chart data cannot be empty.\",\\n \"path\": [\\n \"data\"\\n ]\\n },\\n {\\n \"received\": \"file:///etc/passwd\",\\n \"code\": \"invalid_enum_value\",\\n \"options\": [\\n \"default\",\\n \"academy\"\\n ],\\n \"path\": [\\n \"theme\"\\n ],\\n \"message\": \"Invalid enum value. Expected \\'default\\' | \\'academy\\', received \\'file:///etc/passwd\\'\"\\n }\\n]'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "61929241419f",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kwanLeeFrmVi/mcp-git",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'git_diff_unstaged', 'arguments': {'repo_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 21, 'error': {'code': -32603, 'message': 'Git command failed: warning: Not a git repository. Use --no-index to compare two paths outside a working tree\\nusage: git diff --no-index [<options>] <path> <path>\\n\\nDiff output format options\\n -p, --patch generate patch\\n -s, --no-patch suppress diff output\\n -u generate patch\\n -U, --unified[=<n>] generate diffs with <n> lines context\\n -W, --[no-]function-context\\n generate diffs with <n> lines context\\n --raw generate the diff in raw format\\n --patch-with-raw synonym for \\'-p --raw\\'\\n --patch-with-stat synonym for \\'-p --stat\\'\\n --numstat machine friendly --stat\\n --shortstat output only the last line of --stat\\n -X, …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "da58853de829",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kwanLeeFrmVi/mcp-git",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'git_diff_staged', 'arguments': {'repo_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 39, 'error': {'code': -32603, 'message': 'Git command failed: error: unknown option `cached\\'\\nusage: git diff --no-index [<options>] <path> <path>\\n\\nDiff output format options\\n -p, --patch generate patch\\n -s, --no-patch suppress diff output\\n -u generate patch\\n -U, --unified[=<n>] generate diffs with <n> lines context\\n -W, --[no-]function-context\\n generate diffs with <n> lines context\\n --raw generate the diff in raw format\\n --patch-with-raw synonym for \\'-p --raw\\'\\n --patch-with-stat synonym for \\'-p --stat\\'\\n --numstat machine friendly --stat\\n --shortstat output only the last line of --stat\\n -X, --dirstat[=<param1,param2>...]\\n output the distribution o…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "98667d9e0ccf",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kwanLeeFrmVi/mcp-git",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'git_diff', 'arguments': {'target': 'test', 'repo_path': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 57, 'error': {'code': -32603, 'message': 'Git command failed: warning: Not a git repository. Use --no-index to compare two paths outside a working tree\\nusage: git diff --no-index [<options>] <path> <path>\\n\\nDiff output format options\\n -p, --patch generate patch\\n -s, --no-patch suppress diff output\\n -u generate patch\\n -U, --unified[=<n>] generate diffs with <n> lines context\\n -W, --[no-]function-context\\n generate diffs with <n> lines context\\n --raw generate the diff in raw format\\n --patch-with-raw synonym for \\'-p --raw\\'\\n --patch-with-stat synonym for \\'-p --stat\\'\\n --numstat machine friendly --stat\\n --shortstat output only the last line of --stat\\n -X, …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1222e6213177",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentics-ai/code-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 293, 'method': 'tools/call', 'params': {'name': 'pip_install', 'arguments': {'requirements_file': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 293, 'error': {'code': -32603, 'message': \"MCP error -32603: Tool execution failed: Command failed: pip3 install --no-cache-dir -r /etc/passwd\\nWARNING: Ignoring invalid distribution ~yping-extensions (/home/tecnico/pipeline-env/lib/python3.12/site-packages)\\nERROR: Invalid requirement: 'root:x:0:0:root:/root:/bin/bash' (from line 1 of /etc/passwd)\\nHint: It looks like a path. File 'root:x:0:0:root:/root:/bin/bash' does not exist.\\n\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "77407beb1bb5",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': '../../../etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 39, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: ../../../etc/passwd'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d93cddee3e38",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 40, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': '....//....//etc/shadow'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 40, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: ....//....//etc/shadow'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2a2bd44b448",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': '/etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 41, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: /etc/passwd'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "360ba8a12583",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 42, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 42, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b50ea065d5d9",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 43, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: whoami; cat /etc/passwd'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e802548e22db",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 44, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': '$(id)'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 44, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: $(id)'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4d5985356922",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 45, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': '`cat /etc/passwd`'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 45, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: `cat /etc/passwd`'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "345297518fed",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 46, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': 'test && ls -la /'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 46, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: test && ls -la /'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f2a61ae2e0fb",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 47, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': 'test || id'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 47, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: test || id'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fe879c0a0211",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': \"__import__('os').system('id')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': 500, 'message': \"MCP error 500: Failed to open Cline tab: No instance found with id: __import__('os').system('id')\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fbce42c26b02",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': \"require('child_process').execSync('id').toString()\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': 500, 'message': \"MCP error 500: Failed to open Cline tab: No instance found with id: require('child_process').execSync('id').toString()\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5fba19bf5278",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 50, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': \"eval('1+1')\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 50, 'error': {'code': 500, 'message': \"MCP error 500: Failed to open Cline tab: No instance found with id: eval('1+1')\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8fc760674b3e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 51, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': \"' OR 1=1; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 51, 'error': {'code': 500, 'message': \"MCP error 500: Failed to open Cline tab: No instance found with id: ' OR 1=1; --\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "30526b818f3e",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 52, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': \"'; DROP TABLE users; --\"}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 52, 'error': {'code': 500, 'message': \"MCP error 500: Failed to open Cline tab: No instance found with id: '; DROP TABLE users; --\"}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a07c76ff5af9",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 53, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': '1 UNION SELECT * FROM information_schema.tables; --'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 53, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: 1 UNION SELECT * FROM information_schema.tables; --'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3a479a100edb",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 54, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': 'http://169.254.169.254/latest/meta-data/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 54, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: http://169.254.169.254/latest/meta-data/'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ae5a75507100",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 55, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': 'http://localhost:6379/'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 55, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: http://localhost:6379/'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b00cd32cc9d3",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cursor-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 56, 'method': 'tools/call', 'params': {'name': 'open_cline_tab', 'arguments': {'instanceId': 'file:///etc/passwd'}}}",
+    "response": "{'jsonrpc': '2.0', 'id': 56, 'error': {'code': 500, 'message': 'MCP error 500: Failed to open Cline tab: No instance found with id: file:///etc/passwd'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0d0cdc876773",
+   "tool": "guard",
+   "categoria": "information-disclosure-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "worksona-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 76, 'method': 'resources/read', 'params': {'uri': 'file://../../etc/passwd'}}",
+    "response": "{'jsonrpc': '2.0', 'id': 76, 'error': {'code': -32603, 'message': 'Internal error: Failed to read resource file: Resource file not found: ../../etc/passwd'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c5d66fa664aa",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Dicklesworthstone/ultimate_mcp_server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "ultimate_mcp_server/core/state_store.py",
+    "code": "self._in_memory_store[namespace] = pickle.loads(data)"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "89cb3cdfbe84",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:vitorpavinato/ncbi-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/ncbi_mcp_server/cache.py",
+    "code": "cache_entry = pickle.loads(data)"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "e362eb427e0a",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:Alby2007/PLTM-MCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/storage/redis_cache.py",
+    "code": "return pickle.loads(value)"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "8b11db15e86a",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Katya-AI-Systems-LLC/AIDomesticCoreAIJ",
+   "evidenza": {
+    "tipo": "static",
+    "file": "sdk/utils/serialization.py",
+    "code": "return pickle.loads(data)"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "d5be9d51104d",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:baerautotech/cflow-platform",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cflow_platform/core/bmad_context_serialization.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "dd7f2eae05ae",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:inclusionAI/AWorld",
+   "evidenza": {
+    "tipo": "static",
+    "file": "aworld/core/storage/multi_process_store.py",
+    "code": "datas = pickle.loads(shm.buf.tobytes())"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "6a4d5017869d",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:inclusionAI/AWorld",
+   "evidenza": {
+    "tipo": "static",
+    "file": "aworld/events/redis_backend.py",
+    "code": "data = pickle.loads(message_content.get(b\"data\"))"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "1c81d34d6736",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:jacobeverist/ts_api",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cache.py",
+    "code": "return pickle.loads(decompressed)"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "a375aa6c1d64",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:lukeplausin/mcp-server-trading212",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/t212.py",
+    "code": "return pickle.loads(cached_data)"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "cf021547b797",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:mmw1984/hk-bus-eta-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/win32/lib/win32timezone.py",
+    "code": ">>> tz == pickle.loads(pickle.dumps(tz))"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "c3ee16d5a25b",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nphenix/unitylangpx",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/core/async_cache.py",
+    "code": "value = pickle.loads(value_data)"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "c373baf25745",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pydantic/pydantic",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pydantic/v1/parse.py",
+    "code": "return pickle.loads(bb)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "984271967849",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:pydantic/pydantic",
+   "evidenza": {
+    "tipo": "static",
+    "file": "pydantic/deprecated/parse.py",
+    "code": "return pickle.loads(bb)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "393cf349d9f9",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:santoshray02/csv-editor",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/csv_editor/models/history_manager.py",
+    "code": "snapshot = pickle.load(sf)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "405b1aff2cb4",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:AgentOps-AI/agentops",
+   "evidenza": {
+    "tipo": "static",
+    "file": "app/api/agentops/api/encoders/spans.py",
+    "code": "return pickle.loads(binary_data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3f30799db6b6",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:baidubce/app-builder",
+   "evidenza": {
+    "tipo": "static",
+    "file": "python/mcp_server/sse.py",
+    "code": "json_data = pickle.loads(message[\"data\"])"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "54b6461805b9",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:ariunbolor/nsaf-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "externals/utils/serialization.py",
+    "code": "return pickle.loads(data)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6747837c021c",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Shy2593666979/AgentChat",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/backend/agentchat/services/redis.py",
+    "code": "return pickle.loads(value) if value else None"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "29901b8062ea",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:alizdavoodi/MCPDocSearch",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp_server/data_loader.py",
+    "code": "cached_metadata, cached_chunks = pickle.load(f_cache)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f799c77c5c00",
+   "tool": "guard",
+   "categoria": "insecure-deserialization-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:modelscope/MCPBench",
+   "evidenza": {
+    "tipo": "static",
+    "file": "langProBe/synced_mcp_client.py",
+    "code": "func_name, args, kwargs = pickle.loads(request)"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

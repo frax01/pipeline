@@ -1,0 +1,968 @@
+{
+ "batch": 56,
+ "n_cluster": 60,
+ "n_finding": 221,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "1e48f413c059",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:omd0/srt-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Unknown tool: query'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 59}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "e6478877aa51",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "go",
+   "esempio_server": "gh:aphilas/pgmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'jsonrpc': '2.0', 'result': None, 'error': {'code': -32600, 'message': 'Invalid request: unsupported JSON-RPC version'}, 'id': 9000}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "32b8d9a6b684",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chunknet/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'request timeout (code=TIMEOUT, version=6.15.0)'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 89}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "cc0f52be0837",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lespaceman/athena-browser-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\"error\":\"All browser modes exhausted. Last error: Failed to launch browser (isolated): Failed to connect to browser: Missing X server to start the headful browser. Either set headless to true or use xvfb-run to run your Puppeteer script..\"}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 468}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "9ffd077bd580",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-agent-planning",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Blocker management failed: No active project context found. Initialize a project context first.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 179}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "f578e8b0e17d",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcpserverwyfff",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: API Error (500): No error message'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 54}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "d5d943d2af51",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:FelixFoster/mcp-enhance-prompt",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Prompt Pilot API error: 401 Unauthorized\\n{\"code\":401,\"msg\":\"Missing API key. Generate or view your MCP API key at https://promptpilot.online/subscription, then call this endpoint with Authorization: Bearer <key> or x-api-key.\",\"data\":null,\"error\":\"missing_api_key\"}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "54c0c05730a6",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:firecrawl/firecrawl-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '3.0', 'id': 9001, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"data\": {\\n \"web\": [\\n {\\n \"url\": \"https://www.cyberciti.biz/faq/understanding-etcpasswd-file-format/\",\\n \"title\": \"Understanding /etc/passwd File Format - nixCraft\",\\n \"description\": \"The /etc/passwd is a plain text file. It contains a list of the system\\'s accounts, giving for each account some useful information like user ID, ...\",\\n \"position\": 1\\n },\\n {\\n \"url\": \"https://man7.org/linux/man-pages/man5/passwd.5.html\",\\n \"title\": \"passwd(5) - Linux manual page - man7.org\",\\n \"description\": \"The /etc/passwd file is a text file that describes user login accounts for the system. It should have read permission allowed fo…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d068e6ad5d56",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gigachadtrey/websimm",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"status\": \"healthy\",\\n \"message\": \"WebSim API is accessible\",\\n \"timestamp\": \"2026-07-13T14:42:16.957Z\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 448}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "332276a811a6",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gigachadtrey/websimm",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '3.0', 'id': 9001, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"status\": \"healthy\",\\n \"message\": \"WebSim API is accessible\",\\n \"timestamp\": \"2026-07-13T14:42:16.959Z\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 450}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "26bd90a66526",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gigachadtrey/websimm",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"status\": \"healthy\",\\n \"message\": \"WebSim API is accessible\",\\n \"timestamp\": \"2026-07-13T14:42:16.996Z\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 449}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e0e9477d4dd",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gigachadtrey/websimm",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"status\": \"healthy\",\\n \"message\": \"WebSim API is accessible\",\\n \"timestamp\": \"2026-07-13T14:42:17.104Z\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 452}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e9b1473e3c84",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kongyo2/Stellaris-Modding-MCP-Server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '3.0', 'id': 9001, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'text': 'Error: Error: CWToolsコンフィグの取得に失敗しました: Failed to fetch tags: 403 rate limit exceeded', 'type': 'text'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 35}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "229aee1a8198",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kongyo2/Stellaris-Modding-MCP-Server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'text': 'Error: Error: CWToolsコンフィグの取得に失敗しました: Failed to fetch tags: 403 rate limit exceeded', 'type': 'text'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 36}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "952b876c5ccc",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kongyo2/Stellaris-Modding-MCP-Server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'text': 'Error: Error: CWToolsコンフィグの取得に失敗しました: Failed to fetch tags: 403 rate limit exceeded', 'type': 'text'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 37}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fec1ec0d1339",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kmwebnet/MCP-Server-for-sensor-device",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'jsonrpc': '2.0', 'id': 114, 'result': {}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5df022bbd2cc",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:InstalabsAI/instagit",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Failed to clone repository\\n\\n---\\nTier: free'}]}, 'jsonrpc': '2.0', 'id': 20}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "514448305a33",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Kong/menu-mpc",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"restaurant\": \"For Five Coffee\",\\n \"totalItems\": 44,\\n \"categories\": [\\n \"BEVERAGES\",\\n \"COFFEE\",\\n \"DRIP + COLD BREW\",\\n \"FOR FIVE COOKIES\",\\n \"GRAB N GO\",\\n \"PASTRIES\"\\n ],\\n \"items\": [\\n {\\n \"name\": \"Coconut Water\",\\n \"description\": \"\",\\n \"price\": \"$5.95\",\\n \"category\": \"BEVERAGES\"\\n },\\n {\\n \"name\": \"Flavored Pellegrino\",\\n \"description\": \"\",\\n \"price\": \"$4.95\",\\n \"category\": \"BEVERAGES\"\\n },\\n {\\n \"name\": \"For Five Water\",\\n \"description\": \"\",\\n \"price\": \"$4.95\",\\n \"category\": \"BEVERAGES\"\\n },\\n {\\n \"name\": \"Pellegrino Sparkling Water\",\\n \"description\": \"\",\\n \"price\": \"$4.95\",\\n \"category\": \"BEVERAGES\"\\n },\\n {\\n \"name\": \"Perrier\",\\n…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0f99844774e7",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Taki-Ta/mongodb-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"timezone\": \"Asia/Shanghai\",\\n \"timestamp\": 1784424604615,\\n \"time\": \"2026-07-19T09:30:04.615+08:00\",\\n \"format\": \"ISO 8601 format with timezone\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 146}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "094fc3548d2b",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:greatSumini/naver-finance-crawl-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"count\": 29,\\n \"data\": [\\n {\\n \"rank\": 1,\\n \"code\": \"000660\",\\n \"name\": \"SK하이닉스\",\\n \"searchRatio\": \"18.89%\",\\n \"currentPrice\": 1842000,\\n \"priceChange\": 0,\\n \"changeRate\": \"-11.53%\",\\n \"volume\": 5524726,\\n \"openPrice\": 1902000,\\n \"highPrice\": 1919000,\\n \"lowPrice\": 1821000,\\n \"per\": 17.79,\\n \"roe\": 44.15\\n },\\n {\\n \"rank\": 2,\\n \"code\": \"005930\",\\n \"name\": \"삼성전자\",\\n \"searchRatio\": \"16.63%\",\\n \"currentPrice\": 255000,\\n \"priceChange\": 0,\\n \"changeRate\": \"-8.77%\",\\n \"volume\": 26605948,\\n \"openPrice\": 264500,\\n \"highPrice\": 265500,\\n \"lowPrice\": 252500,\\n \"per\": 20.61,\\n \"roe\": 10.85\\n },\\n {\\n \"rank\": 3,\\n \"code\": \"042660\",…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3b4b887ea728",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Harshit-Saini0/clear-skies",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': ''}]}, 'jsonrpc': '2.0', 'id': 236}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9a43378ff37b",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "go",
+   "esempio_server": "gh:aphilas/pgmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'jsonrpc': '2.0', 'result': None, 'error': {'code': -32600, 'message': 'Invalid request: unsupported JSON-RPC version'}, 'id': 9002}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9d2253ed0148",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "go",
+   "esempio_server": "gh:aphilas/pgmcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'jsonrpc': '2.0', 'result': None, 'error': {'code': -32600, 'message': 'Invalid request: unsupported JSON-RPC version'}, 'id': 9010}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "18952eb6b224",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:besal101/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'MCP error -32001: Request timed out'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "98d84b19f020",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chunknet/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'request timeout (code=TIMEOUT, version=6.15.0)'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 91}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a8c1746b966d",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chunknet/mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'request timeout (code=TIMEOUT, version=6.15.0)'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 92}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7d6884fbe921",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:critesjosh/aztec-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'No matches found for \"test && ls -la /\". Try a different error message, code, or hex signature.\\n\\nNo matching errors found. Try:\\n- A numeric error code (e.g., `2002`)\\n- A hex signature (e.g., `0xa5b2ba17`)\\n- An error message substring (e.g., `insufficient fee`)'}]}, 'jsonrpc': '2.0', 'id': 136}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "37db11ee66d8",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:critesjosh/aztec-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '3.0', 'id': 9001, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'No matches found for \"test || id\". Try a different error message, code, or hex signature.\\n\\nNo matching errors found. Try:\\n- A numeric error code (e.g., `2002`)\\n- A hex signature (e.g., `0xa5b2ba17`)\\n- An error message substring (e.g., `insufficient fee`)'}]}, 'jsonrpc': '2.0', 'id': 137}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f48c5dc11224",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:critesjosh/aztec-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'No matches found for \"__import__(\\'os\\').system(\\'id\\')\". Try a different error message, code, or hex signature.\\n\\nNo matching errors found. Try:\\n- A numeric error code (e.g., `2002`)\\n- A hex signature (e.g., `0xa5b2ba17`)\\n- An error message substring (e.g., `insufficient fee`)'}]}, 'jsonrpc': '2.0', 'id': 138}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "91a1e06af8a7",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:critesjosh/aztec-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'No matches found for \"require(\\'child_process\\').execSync(\\'id\\').toString()\". Try a different error message, code, or hex signature.\\n\\nNo matching errors found. Try:\\n- A numeric error code (e.g., `2002`)\\n- A hex signature (e.g., `0xa5b2ba17`)\\n- An error message substring (e.g., `insufficient fee`)'}]}, 'jsonrpc': '2.0', 'id': 139}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9b5b09612da6",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lin0304/puffer.fi-defi-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"Failed to create Everclear intent: Invalid chain names: eval(\\'1+1\\') -> test\",\\n \"fallback\": {\\n \"message\": \"Use execute_bridge tool for fallback bridge instructions\",\\n \"supportedChains\": [\\n \"Ethereum\",\\n \"Base\",\\n \"Arbitrum\",\\n \"Apechain\",\\n \"BNB Chain\",\\n \"Berachain\",\\n \"Soneium\",\\n \"Zircuit\",\\n \"Holesky\"\\n ],\\n \"supportedTokens\": [\\n \"pufETH\",\\n \"xpufETH\",\\n \"ETH\",\\n \"USDC\",\\n \"USDT\"\\n ]\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 140}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9b42bd009359",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lin0304/puffer.fi-defi-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '3.0', 'id': 9001, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"Failed to create Everclear intent: Invalid chain names: \\' OR 1=1; -- -> test\",\\n \"fallback\": {\\n \"message\": \"Use execute_bridge tool for fallback bridge instructions\",\\n \"supportedChains\": [\\n \"Ethereum\",\\n \"Base\",\\n \"Arbitrum\",\\n \"Apechain\",\\n \"BNB Chain\",\\n \"Berachain\",\\n \"Soneium\",\\n \"Zircuit\",\\n \"Holesky\"\\n ],\\n \"supportedTokens\": [\\n \"pufETH\",\\n \"xpufETH\",\\n \"ETH\",\\n \"USDC\",\\n \"USDT\"\\n ]\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 141}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8d9eed17a7ff",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lin0304/puffer.fi-defi-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"Failed to create Everclear intent: Invalid chain names: \\'; DROP TABLE users; -- -> test\",\\n \"fallback\": {\\n \"message\": \"Use execute_bridge tool for fallback bridge instructions\",\\n \"supportedChains\": [\\n \"Ethereum\",\\n \"Base\",\\n \"Arbitrum\",\\n \"Apechain\",\\n \"BNB Chain\",\\n \"Berachain\",\\n \"Soneium\",\\n \"Zircuit\",\\n \"Holesky\"\\n ],\\n \"supportedTokens\": [\\n \"pufETH\",\\n \"xpufETH\",\\n \"ETH\",\\n \"USDC\",\\n \"USDT\"\\n ]\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 142}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "37d61803c100",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lin0304/puffer.fi-defi-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"Failed to create Everclear intent: Invalid chain names: 1 UNION SELECT * FROM information_schema.tables; -- -> test\",\\n \"fallback\": {\\n \"message\": \"Use execute_bridge tool for fallback bridge instructions\",\\n \"supportedChains\": [\\n \"Ethereum\",\\n \"Base\",\\n \"Arbitrum\",\\n \"Apechain\",\\n \"BNB Chain\",\\n \"Berachain\",\\n \"Soneium\",\\n \"Zircuit\",\\n \"Holesky\"\\n ],\\n \"supportedTokens\": [\\n \"pufETH\",\\n \"xpufETH\",\\n \"ETH\",\\n \"USDC\",\\n \"USDT\"\\n ]\\n }\\n}'}]}, 'jsonrpc': '2.0', 'id': 143}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c717fe812495",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:alii13/accessibility-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"[Tool: create_session] Session error: [create_session: https://1 UNION SELECT * FROM information_schema.tables; --] Unexpected error: [object Object]\\\\n\\\\nSuggestion: The session may have expired. Please create a new session.\",\\n \"category\": \"session\",\\n \"retryable\": false,\\n \"suggestion\": \"The session may have expired. Please create a new session.\"\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 53}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "359c5087ff15",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:alii13/accessibility-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '3.0', 'id': 9001, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"[Tool: create_session] Session error: [create_session: http://169.254.169.254/latest/meta-data/] Unexpected error: [object Object]\\\\n\\\\nSuggestion: The session may have expired. Please create a new session.\",\\n \"category\": \"session\",\\n \"retryable\": false,\\n \"suggestion\": \"The session may have expired. Please create a new session.\"\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 54}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5c2d63adee2a",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:matthicks05/openei-rates-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'OpenEI API error: Failed to visualize rate schedule: Unexpected token \\'E\\', \"Error gett\"... is not valid JSON'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 74}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1092f39743b3",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/midhunxavier_opcua_mcp_npx_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: The connection cannot be established with server opc.tcp://localhost:4840 .\\nPlease check that the server is up and running or your network configuration.\\nErr = (connect ECONNREFUSED ::1:4840\\nconnect ECONNREFUSED 127.0.0.1:4840)'}]}, 'jsonrpc': '2.0', 'id': 127}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3d5714a726a4",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/midhunxavier_opcua_mcp_npx_server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: The connection cannot be established with server opc.tcp://localhost:4840 .\\nPlease check that the server is up and running or your network configuration.\\nErr = (connect ECONNREFUSED ::1:4840\\nconnect ECONNREFUSED 127.0.0.1:4840)'}]}, 'jsonrpc': '2.0', 'id': 128}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9968177e6356",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-agent-planning",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Blocker management failed: No active project context found. Initialize a project context first.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 181}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "34382a034e27",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcp-agent-planning",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '❌ Blocker management failed: No active project context found. Initialize a project context first.'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 182}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ae7989b84c6",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcpserverwyfff",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: API Error (500): No error message'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 55}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c6581b8b7052",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "mcpserverwyfff",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: API Error (500): No error message'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf557b7fb480",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "opcua-mcp-npx-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: The connection cannot be established with server opc.tcp://localhost:4840 .\\nPlease check that the server is up and running or your network configuration.\\nErr = (connect ECONNREFUSED ::1:4840\\nconnect ECONNREFUSED 127.0.0.1:4840)'}]}, 'jsonrpc': '2.0', 'id': 128}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5bf1d3640e9d",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "valjs-mcp-alpha",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'baby_name': 'Julie'}, 'jsonrpc': '2.0', 'id': 110}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "60cb0356ff98",
+   "tool": "guard",
+   "categoria": "protocol-missing-id",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "@itbox/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts requests without required ID field",
+    "payload": "{'jsonrpc': '2.0', 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'MCP error -32602: Tool query not found'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 59}"
+   },
+   "n_finding": 4,
+   "n_server": 4
+  },
+  {
+   "id": "a69a124c853a",
+   "tool": "guard",
+   "categoria": "protocol-missing-id",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:omd0/srt-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts requests without required ID field",
+    "payload": "{'jsonrpc': '2.0', 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Unknown tool: query'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 59}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "02564c120f2f",
+   "tool": "guard",
+   "categoria": "protocol-missing-id",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:gigachadtrey/websimm",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts requests without required ID field",
+    "payload": "{'jsonrpc': '2.0', 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"success\": true,\\n \"status\": \"healthy\",\\n \"message\": \"WebSim API is accessible\",\\n \"timestamp\": \"2026-07-13T14:42:17.106Z\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 451}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6d727df6fbc2",
+   "tool": "guard",
+   "categoria": "protocol-missing-id",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kongyo2/Stellaris-Modding-MCP-Server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts requests without required ID field",
+    "payload": "{'jsonrpc': '2.0', 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'text': 'Error: Error: CWToolsコンフィグの取得に失敗しました: Failed to fetch tags: 403 rate limit exceeded', 'type': 'text'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "75e1030f86d2",
+   "tool": "guard",
+   "categoria": "protocol-missing-id",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:critesjosh/aztec-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts requests without required ID field",
+    "payload": "{'jsonrpc': '2.0', 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'No matches found for \"eval(\\'1+1\\')\". Try a different error message, code, or hex signature.\\n\\nNo matching errors found. Try:\\n- A numeric error code (e.g., `2002`)\\n- A hex signature (e.g., `0xa5b2ba17`)\\n- An error message substring (e.g., `insufficient fee`)'}]}, 'jsonrpc': '2.0', 'id': 140}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0567f8df4cb4",
+   "tool": "guard",
+   "categoria": "protocol-missing-id",
+   "severita": "low",
+   "linguaggio": "go",
+   "esempio_server": "gh:rubys/mcp-time-progress-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts requests without required ID field",
+    "payload": "{'jsonrpc': '2.0', 'method': 'tools/list'}",
+    "response": "{'jsonrpc': '2.0', 'id': 26, 'result': {'content': [{'type': 'text', 'text': 'done'}]}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "863c1ca75d09",
+   "tool": "guard",
+   "categoria": "protocol-missing-id",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:alii13/accessibility-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts requests without required ID field",
+    "payload": "{'jsonrpc': '2.0', 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n \"error\": \"[Tool: track_accessibility] Unexpected error: [audit_url: http://169.254.169.254/latest/meta-data/] Unexpected error: [object Object]\",\\n \"category\": \"unknown\",\\n \"retryable\": false,\\n \"suggestion\": \"An unexpected error occurred. Please try again.\"\\n}'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 180}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6243058750e0",
+   "tool": "guard",
+   "categoria": "protocol-path-traversal",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "@holder-mcp/local-knowledge-base",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Path traversal information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9040, 'method': 'tools/call', 'params': {'name': 'test', 'arguments': {'data': 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA…",
+    "response": "{'jsonrpc': '2.0', 'id': 9033, 'error': {'code': -32601, 'message': '方法未找到: tools/../../../etc/passwd'}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f500ccb0c815",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:prashantrathi8579/prashant_ts_binance_mcp_test",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'get_price', 'arguments': {'symbol': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting price for ../../../ETC/PASSWD: 403 <!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/loose.dtd\">\\n<HTML><HEAD><META HTTP-EQUIV=\"Content-Type\" CONTENT=\"text/html; charset=iso-8859-1\">\\n<TITLE>ERROR: The request could not be satisfied</TITLE>\\n</HEAD><BODY>\\n<H1>403 ERROR</H1>\\n<H2>The request could not be satisfied.</H2>\\n<HR noshade size=\"1px\">\\nRequest blocked.\\nWe can\\'t connect to the server for this app or website at this time. There might be too much traffic or a configuration error. Try again later, or contact the app or website owner.\\n<BR clear=\"all\">\\nIf you provide content to cu…"
+   },
+   "n_finding": 48,
+   "n_server": 48
+  },
+  {
+   "id": "4842cb617379",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "aicoe-course-binancemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 21, 'method': 'tools/call', 'params': {'name': 'get_price_price_change', 'arguments': {'symbol': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting price change for ../../../ETC/PASSWD: 403'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 21}"
+   },
+   "n_finding": 26,
+   "n_server": 26
+  },
+  {
+   "id": "cb3eed14987e",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "aicoe-course-binancemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'get_price_price_change', 'arguments': {'symbol': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting price change for /ETC/PASSWD: 400'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 23}"
+   },
+   "n_finding": 26,
+   "n_server": 26
+  },
+  {
+   "id": "ebc434761187",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "aicoe-course-binancemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'get_price_price_change', 'arguments': {'symbol': 'whoami; cat /etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting price change for WHOAMI; CAT /ETC/PASSWD: 400'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 25}"
+   },
+   "n_finding": 26,
+   "n_server": 26
+  },
+  {
+   "id": "2e6a5d0ed608",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "aicoe-course-binancemcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 38, 'method': 'tools/call', 'params': {'name': 'get_price_price_change', 'arguments': {'symbol': 'file:///etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error getting price change for FILE:///ETC/PASSWD: 400'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 38}"
+   },
+   "n_finding": 26,
+   "n_server": 26
+  },
+  {
+   "id": "6d3bc51926e9",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Beyond-Network-AI/beyond-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 39, 'method': 'tools/call', 'params': {'name': 'search-bulk-channels', 'arguments': {'queries': [], 'platform': '../../../etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error performing bulk channel search on ../../../etc/passwd: Provider for platform '../../../etc/passwd' not found\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 39}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  },
+  {
+   "id": "c53f38785486",
+   "tool": "guard",
+   "categoria": "sensitive-info-disclosed-fuzzing",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Beyond-Network-AI/beyond-mcp-server",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Sensitive information disclosed: passwd:",
+    "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'search-bulk-channels', 'arguments': {'queries': [], 'platform': '/etc/passwd'}}}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': \"Error performing bulk channel search on /etc/passwd: Provider for platform '/etc/passwd' not found\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 41}"
+   },
+   "n_finding": 3,
+   "n_server": 3
+  }
+ ]
+}

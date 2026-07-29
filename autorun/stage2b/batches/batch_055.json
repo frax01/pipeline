@@ -1,0 +1,921 @@
+{
+ "batch": 55,
+ "n_cluster": 60,
+ "n_finding": 97,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "a0f7f507d3b8",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:OSBDSD/ClaudeTimeMCP",
+   "evidenza": {
+    "tipo": "static",
+    "file": "_archive_mcp/index.js",
+    "code": "description: 'Get detailed activity logs with timestamps and full context. Use this to answer questions about specific work done, tools used, files ed"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "92d3ec606ebf",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "python",
+   "esempio_server": "gh:Simulation-Theory/coremcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server.py",
+    "code": "description=f\"A general-purpose tool to execute a read-only SQL SELECT query directly against the Oracle database. You can use this for complex joins"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2b2c87aab9e1",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Tourettes99/rabbit-r1-sdk-idea-helper-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "index.js",
+    "code": "description: 'Prepares context for generating 20 creative and unique Rabbit R1 creation app ideas based on the current SDK structure and features. Aft"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fc77214cc3c3",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:Xeel-Lab/electronics_demo",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/server_python/main.py",
+    "code": "description=f\"{widget.title}. When filtering by category or context, always pass 'category' and 'context' as an array of strings (e.g. [\\\"phones\\\", \\\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "912c67a95cf8",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:adinschmidt/fastmail-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "description: 'List emails from a mailbox (JMAP). You MUST call list_mailboxes first to get the mailbox ID — pass the id field, not the name.',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d4f22d6ef664",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:anatolykoptev/n8n-mcp-agent",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/admin-tools.ts",
+    "code": "description: 'Delete a credential by ID. You must be the owner of the credentials.',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7461487b6529",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:asabya/openapi-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bin/cli.mjs",
+    "code": "`:\"\"}nd.exports.dump=Fw});var rd=j((EO,ye)=>{\"use strict\";var id=Pp(),Nw=td();function _s(e,n){return function(){throw new Error(\"Function yaml.\"+e+\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e65ade5d9f7a",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chatbotkit/mcp-widgets",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cdn/widgets/rich-data-card.js",
+    "code": "`,document.head.appendChild(e)}})();var J=ai(Wo(),1),Uf={success:{borderColor:\"#22c55e\",bgColor:\"#f0fdf4\",iconColor:\"#16a34a\"},error:{borderColor:\"#ef"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bf7e593c51a8",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:chtx729/weather-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "api/mcp-server.cjs",
+    "code": "`),n=n.replace(/\\\\r/g,\"\\r\")),e[r]=n}return e}function rw(t){t=t||{};let e=$f(t);t.path=e;let a=Fe.configDotenv(t);if(!a.parsed){let i=new Error(`MISSI"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "644c99169476",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dennisonbertram/mcp-proxy-wrapper",
+   "evidenza": {
+    "tipo": "static",
+    "file": "_next/static/chunks/833-922b1e172e901dfb.js",
+    "code": "(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[833],{5202:function(){!function(){\"use strict\";function e(e){var t=!0,n=!1,r=null,a={text:!0,"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a478d9ae44d3",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dennisonbertram/mcp-proxy-wrapper",
+   "evidenza": {
+    "tipo": "static",
+    "file": "_next/static/chunks/7833-657a5fb84984d93d.js",
+    "code": "(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[7833],{5202:function(){!function(){\"use strict\";function e(e){var t=!0,n=!1,r=null,a={text:!0"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ef9997c7e570",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dunn-stephen/blueshift-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/index.ts",
+    "code": "description: 'Permanently delete all personal data of a customer. This action is irreversible and takes a couple of hours to complete. If there are mu"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2e4da0e6f2c0",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:dunn-stephen/blueshift-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/index.ts",
+    "code": "description: 'Permanently delete all personal data associated with a customer and remove them from tracking. This action is irreversible and takes a c"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0cad0b6a12c2",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:edgargomero/kntor-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/create-customer.ts",
+    "code": "description: 'MANDATORY for AI agents. You MUST save the customer needs, requirements, and conversation summary here. Include what services they need,"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "75f854eb6cce",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:elijahmg/spotify-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "client.ts",
+    "code": "description: 'You are a web search agent. Use it to find recommendations. You must search for tracks from different artists.',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac03cfc5fe5e",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:haja-ran/wa-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp/src/data/components.ts",
+    "code": "description: 'The dialog\\'s label as displayed in the header. You should always include a relevant label, as it is required for proper accessibility."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e19c4d6cf21",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:haja-ran/wa-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp/src/data/components.ts",
+    "code": "description: 'The drawer\\'s label as displayed in the header. You should always include a relevant label, as it is required for proper accessibility."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "71a5059cd062",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:klaushofrichter/een-api-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/definitions.ts",
+    "code": "description: 'Set the active account for subsequent API calls. You must call this before making any API calls.',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8458f8c72035",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:malibuiconic/malibu_mcp_vs_code_extension",
+   "evidenza": {
+    "tipo": "static",
+    "file": "out/extension.js",
+    "code": "(()=>{var e={28:(e,a,n)=>{var i=n(8051),t=n(9500),o=n(6276);function s(e,a){return e<a?-1:e>a?1:0}e.exports=function(e,a,n,s){var r=t(e,n);return i(e,"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4f2050b6e38f",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mohdsaleh/magic-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "previewer/_next/static/chunks/npm.zod-b23fa2126330b560.js",
+    "code": "\"use strict\";(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[4347],{43415:(e,t,a)=>{var r,s,i,n,d,u;let o;a.d(t,{Ik:()=>eR,Yj:()=>eE,zM:()=>e"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ef6a1db9e313",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:monteslu/agentgate",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/routes/readme.js",
+    "code": "description: 'For write operations (POST/PUT/DELETE), you must submit requests to the write queue. A human will review and approve or reject your requ"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "da0fba68824d",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:patakuti/local-knowledge-rag-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp-server.ts",
+    "code": "description: '⭐ RECOMMENDED: Generate a comprehensive markdown report using template-driven mode. ⚡ QUICK START: Just provide variables and omit templ"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0b338c067a73",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:patakuti/local-knowledge-rag-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp-server.ts",
+    "code": "description: '⚠️ DESTRUCTIVE: Delete all embeddings for THIS WORKSPACE ONLY. Other workspaces are not affected. Use this to clean up workspace data or"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e3c74d3aee10",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pkyanam/claude-ps5-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "description: 'Register your PS5 for Remote Play. This is required once before using wake commands. Your PS5 must be turned ON and on the same network."
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1f745f936084",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:scorecard-ai/scorecard-node",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "\"## update\\n\\n`client.metrics.update(metricId: string, body?: { evalType: 'ai'; outputType: 'int'; description?: string; evalModelName?: string; guide"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a37257b949f9",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:simulation-theory/help-scout-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/index.ts",
+    "code": "description: 'STEP 1: Always use this FIRST when searching conversations. Lists all available inboxes or filters by name. CRITICAL: When a user mentio"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "24845055c0ee",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Happy-Technologies-LLC/mcp-servicenow-nodejs",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp-server-consolidated.js",
+    "code": "description: '⚠️ CREATES (not executes) a fix script file for MANUAL execution. ServiceNow REST API does NOT support direct script execution. This too"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8ba4c370ed6e",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SamueleReply/contentstack-cursor-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "mcp-server.js",
+    "code": "description: 'Update an existing global field schema. Use contentstack_get_global_field first to retrieve the current schema, then modify it. Each fie"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2b3347f7a64",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:tan-yong-sheng/cloudflare-image-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "workers/src/endpoints/mcp-endpoint.ts",
+    "code": "description: 'STEP 1: List all available image generation models with their model_ids and supported task types (text-to-image, image-to-image). After"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2e0a9f00141",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Jau-app/jaumemory-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/mcp/tools/authenticate.ts",
+    "code": "description: 'Complete MCP authentication with the auth token you received from the web approval page. You MUST have clicked the link, approved in you"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6bcb2c00ab36",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:markstiles/mcp-sitecore-search-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/search/ai-search.ts",
+    "code": "description: 'Get AI-powered exact answers or related questions for a search query. You must pass at least one of exact_answer or related_questions. U"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "888530447292",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:t402-io/t402",
+   "evidenza": {
+    "tipo": "static",
+    "file": "sdks/go/http/svm_paywall_template_inline.go",
+    "code": "const SVMPaywallTemplateInline = \"<!DOCTYPE html><html lang=\\\"en\\\"><head>\\n <meta charset=\\\"UTF-8\\\">\\n <meta name=\\\"viewport\\\" content=\\"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0fd6059ff21f",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:t402-io/t402",
+   "evidenza": {
+    "tipo": "static",
+    "file": "sdks/go/http/tron_paywall_template_inline.go",
+    "code": "const TRONPaywallTemplateInline = \"<!DOCTYPE html><html lang=\\\"en\\\"><head>\\n <meta charset=\\\"UTF-8\\\">\\n <meta name=\\\"viewport\\\" content="
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5ae45623993d",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:t402-io/t402",
+   "evidenza": {
+    "tipo": "static",
+    "file": "sdks/typescript/packages/http/paywall/src/tron/gen/template-inline.ts",
+    "code": "export const TRON_PAYWALL_TEMPLATE_INLINE = \"<!DOCTYPE html><html lang=\\\"en\\\"><head>\\n <meta charset=\\\"UTF-8\\\">\\n <meta name=\\\"viewport\\"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "27edef5d2b0f",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:t402-io/t402",
+   "evidenza": {
+    "tipo": "static",
+    "file": "sdks/typescript/packages/http/paywall/src/svm/gen/template-inline.ts",
+    "code": "export const SVM_PAYWALL_TEMPLATE_INLINE = \"<!DOCTYPE html><html lang=\\\"en\\\"><head>\\n <meta charset=\\\"UTF-8\\\">\\n <meta name=\\\"viewport\\\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e1b97514dd57",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:uniswap/spec-workflow-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/create-spec-doc.ts",
+    "code": "description: 'Create spec document. CRITICAL: Only creates ONE document at a time. You MUST get user review after EACH document before creating the ne"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2ed4a7e1e49a",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:xmindltd/mapify-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bin/cli.mjs",
+    "code": "var k;(function(r){r.assertEqual=s=>s;function e(s){}r.assertIs=e;function t(s){throw new Error}r.assertNever=t,r.arrayToEnum=s=>{let a={};for(let o o"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "da237944640b",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:somayaj/mcp-agents-groq",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/tools/search.ts",
+    "code": "description: 'Search for information and fetch REAL-TIME financial data from Yahoo Finance. For ANY financial data analysis, stock prices, commodity p"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c025632669f8",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@iflow-mcp/cocos-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "source/tools/node-tools.ts",
+    "code": "description: 'Create a new node in the scene. Supports creating empty nodes, nodes with components, or instantiating from assets (prefabs, etc.). IMPO"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3e2029d02e5f",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@jsr2npm/yao__gpt-vis-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bundle.mjs",
+    "code": "forInitialStepDescription: (steps, state) => `Workflow initialized with ${steps.length} steps. You MUST start the workflow with the first step to \\`${"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c07e7a9f21ca",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@shoppercontextprotocol/local-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/server.ts",
+    "code": "description: 'BEFORE USING THIS ENSURE THE DOMAIN SUPPORTS SCP BY CALLING scp_discover FIRST. Authorize access to a merchant\\'s customer context via S"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "952f300eac05",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@surfai/docs-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "node.index.js",
+    "code": "var D;(function(X){X.assertEqual=(Q)=>Q;function $(Q){}X.assertIs=$;function W(Q){throw new Error}X.assertNever=W,X.arrayToEnum=(Q)=>{let H={};for(let"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "41bd6d29f36b",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@surfai/docs-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bun.index.js",
+    "code": "var D;(function(X){X.assertEqual=(Q)=>Q;function $(Q){}X.assertIs=$;function W(Q){throw new Error}X.assertNever=W,X.arrayToEnum=(Q)=>{let H={};for(let"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "008b662106f3",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@transactcampus/int-payments-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bundle/index.js",
+    "code": "`),n=n.replace(/\\\\r/g,\"\\r\")),e[r]=n}return e}function Ql(a){a=a||{};let e=Ks(a);a.path=e;let t=Se.configDotenv(a);if(!t.parsed){let i=new Error(`MISSI"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4597a2814c7a",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "@transactcampus/int-payments-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "bundle/index.js",
+    "code": "${JSON.stringify(o,null,2)}`},{type:\"text\",text:\"If there are more than 5 results, present the data in a table format.\"}],structuredContent:{transacti"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6b4de6429fea",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "replicate-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/predictions/get-predictions.js",
+    "code": "description: 'Get the current state of a prediction.\\n\\nExample cURL request:\\n\\n```console\\ncurl -s \\\\\\n -H \"Authorization: Bearer $REPLICATE_API_TO"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "71e2db06bc7f",
+   "tool": "guard",
+   "categoria": "prompt-injection-static",
+   "severita": "critical",
+   "linguaggio": "nodejs",
+   "esempio_server": "replicate-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "tools/predictions/get-predictions.mjs",
+    "code": "description: 'Get the current state of a prediction.\\n\\nExample cURL request:\\n\\n```console\\ncurl -s \\\\\\n -H \"Authorization: Bearer $REPLICATE_API_TO"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "37ee1c151871",
+   "tool": "guard",
+   "categoria": "protocol-information-disclosure",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasirajan22/DotnetMCPServer",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9011}",
+    "response": "{'jsonrpc': '2.0', 'id': 9011, 'error': {'code': -32603, 'message': 'Internal error', 'data': ''}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8e108977f98b",
+   "tool": "guard",
+   "categoria": "protocol-information-disclosure",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasirajan22/DotnetMCPServer",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9020, 'method': 12345}",
+    "response": "{'jsonrpc': '2.0', 'id': 9020, 'error': {'code': -32603, 'message': 'Internal error', 'data': ''}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "72cca3be971b",
+   "tool": "guard",
+   "categoria": "protocol-information-disclosure",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasirajan22/DotnetMCPServer",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9030, 'method': ''}",
+    "response": "{'jsonrpc': '2.0', 'id': 9030, 'error': {'code': -32603, 'message': 'Internal error', 'data': ''}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "299ea0e9ef54",
+   "tool": "guard",
+   "categoria": "protocol-information-disclosure",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasirajan22/DotnetMCPServer",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9031, 'method': ' '}",
+    "response": "{'jsonrpc': '2.0', 'id': 9031, 'error': {'code': -32603, 'message': 'Internal error', 'data': ''}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8518e87a4aae",
+   "tool": "guard",
+   "categoria": "protocol-information-disclosure",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasirajan22/DotnetMCPServer",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9032, 'method': 'tools/\\x00list'}",
+    "response": "{'jsonrpc': '2.0', 'id': 9032, 'error': {'code': -32603, 'message': 'Internal error', 'data': ''}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ccc2881c3756",
+   "tool": "guard",
+   "categoria": "protocol-information-disclosure",
+   "severita": "medium",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:kasirajan22/DotnetMCPServer",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Debug information disclosure in error message",
+    "payload": "{'jsonrpc': '2.0', 'id': 9033, 'method': 'tools/../../../etc/passwd'}",
+    "response": "{'jsonrpc': '2.0', 'id': 9033, 'error': {'code': -32603, 'message': 'Internal error', 'data': ''}}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e65628aa0436",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:SufyaanKhateeb/MCP",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'MCP error -32001: Request timed out'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 22}"
+   },
+   "n_finding": 20,
+   "n_server": 11
+  },
+  {
+   "id": "327f6d2901ee",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "@itbox/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'MCP error -32602: Tool query not found'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 57}"
+   },
+   "n_finding": 8,
+   "n_server": 4
+  },
+  {
+   "id": "fc22971d443c",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:omd0/srt-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Unknown tool: query'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 57}"
+   },
+   "n_finding": 4,
+   "n_server": 2
+  },
+  {
+   "id": "09bcf1dcb08c",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "@itbox/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'MCP error -32602: Tool query not found'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 58}"
+   },
+   "n_finding": 4,
+   "n_server": 4
+  },
+  {
+   "id": "ef653c93a53b",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "@itbox/mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'id': 9010, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'MCP error -32602: Tool query not found'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 59}"
+   },
+   "n_finding": 4,
+   "n_server": 4
+  },
+  {
+   "id": "4891e92c6365",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:pidanmeng/mcp-scan-qr",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '1.0', 'id': 9000, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'text': '{\\n \"success\": false,\\n \"message\": \"Cannot read properties of undefined (reading \\'urls\\')\"\\n}', 'type': 'text'}]}, 'jsonrpc': '2.0', 'id': 56}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  },
+  {
+   "id": "91a73bb34824",
+   "tool": "guard",
+   "categoria": "protocol-invalid-jsonrpc-version",
+   "severita": "low",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:omd0/srt-mcp",
+   "evidenza": {
+    "tipo": "fuzzing",
+    "issue": "Server accepts invalid JSON-RPC protocol version",
+    "payload": "{'jsonrpc': '', 'id': 9002, 'method': 'tools/list'}",
+    "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Unknown tool: query'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 58}"
+   },
+   "n_finding": 2,
+   "n_server": 2
+  }
+ ]
+}

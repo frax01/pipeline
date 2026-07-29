@@ -1,0 +1,908 @@
+{
+ "batch": 31,
+ "n_cluster": 60,
+ "n_finding": 60,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "6f2e7c7c3c71",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:oregister/openregister-typescript",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'package main\\n\\nimport (\\n\\t\"context\"\\n\\n\\t\"github.com/oregister/openregister-go\"\\n\\t\"github.com/oregister/openregister-go/option\"\\n)\\n\\nfunc main()"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0ae0d6dee068",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:oregister/openregister-typescript",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Openregister Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/openregister-sdk.svg?label=pypi%20(stab"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d3cdc1184c4c",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:cameronrye/atproto-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/utils/config.ts",
+    "code": "ATPROTO_PASSWORD: 'atproto.password',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4df88ba97f8e",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:cameronrye/atproto-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/utils/config.ts",
+    "code": "ATPROTO_CLIENT_SECRET: 'atproto.clientSecret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5917a451a929",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:defai-digital/ax-cli",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/core/src/utils/config-migrator.ts",
+    "code": "apiKey: 'API Key (re-enter for security)',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "974dfae59042",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:backstage/community-plugins",
+   "evidenza": {
+    "tipo": "static",
+    "file": "workspaces/mend/plugins/mend-backend/src/api/index.ts",
+    "code": "AUTH_TOKEN = 'Authorization',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b842f0b5e200",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:writer/writer-node",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Writer Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/writer-sdk.svg?label=pypi%20(stable))](https:"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "af40f0cb0834",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ruisu2000p/xbrl-api-minimal",
+   "evidenza": {
+    "tipo": "static",
+    "file": "lib/infrastructure/cache-manager.ts",
+    "code": "private readonly KEY_PREFIX = 'apikey:'"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6b3631ad2c99",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:DayMoonDevelopment/post-for-me-typescript",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Post For Me Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/post_for_me.svg?label=pypi%20(stable))]("
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ad7aa5eb7bfe",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:sendblue-api/sendblue-ts",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Sendblue API Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/sendblue.svg?label=pypi%20(stable))](ht"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6c604fc814d6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:fashn-AI/fashn-typescript-sdk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Fashn Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/fashn.svg?label=pypi%20(stable))](https://pypi"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0bb39d2808f6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/api-standards/src/standards.ts",
+    "code": "apiKey: 'X-API-Key: <api-key>',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2c3de145a684",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/id/server-simple.js",
+    "code": "mfaSecret: 'REDACTED',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a2ae56b3758f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/analizai/src/services/analizaiService.ts",
+    "code": "apiKey: 'GA4-***-HIDDEN',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3011d52417e7",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/romai/packages/romai-mcp/validate-phase-3.mjs",
+    "code": "jwtSecret: 'integration-test',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b53d36929112",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/romai/packages/romai-mcp/validate-phase-3.mjs",
+    "code": "jwtSecret: 'status-test',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5a152a39ece0",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/romai/packages/romai-mcp/src/validation/validate-phase-3-security-monitoring.ts",
+    "code": "jwtSecret: 'REDACTED',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "36749dde2686",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/romai/packages/romai-mcp/src/validation/validate-phase-3-security-monitoring.ts",
+    "code": "jwtSecret: 'integration-test-secret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a9d09a65eaa0",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/romai/packages/romai-mcp/src/validation/validate-phase-3-security-monitoring.ts",
+    "code": "jwtSecret: 'perf-test-secret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "075f837fb0bb",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/romai/packages/romai-mcp/src/validation/validate-phase-3-security-monitoring.ts",
+    "code": "jwtSecret: 'hardening-test-secret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ec6ebb344bc7",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/aide/src/vs/platform/encryption/common/encryptionService.ts",
+    "code": "gnomeLibsecret = 'gnome-libsecret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ff4dfed1ab63",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:codai-ecosystem/codai-project",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/aide/src/vs/platform/encryption/common/encryptionService.ts",
+    "code": "gnomeLibsecret = 'gnome_libsecret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "68b3f967281d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:shubha95m/playwrightMcpServer",
+   "evidenza": {
+    "tipo": "static",
+    "file": "cli/index.js",
+    "code": "const prompt = 'Enter access password: ';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9f2459cadb65",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Finch-API/finch-api-node",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'require \"finch_api\"\\n\\nfinch = FinchAPI::Client.new(client_id: \"4ab15e51-11ad-49f4-acae-f343b7794375\", client_secret: \"My Client Secret\")\\n\\nconnecti"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ef424638879f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Finch-API/finch-api-node",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'require \"finch_api\"\\n\\nfinch = FinchAPI::Client.new(client_id: \"4ab15e51-11ad-49f4-acae-f343b7794375\", client_secret: \"My Client Secret\")\\n\\naccount"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "06f73955d23c",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Finch-API/finch-api-node",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Finch Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/finch-api.svg?label=pypi%20(stable))](https://"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e4f124331bd",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Finch-API/finch-api-node",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Finch Ruby API library\\n\\nThe Finch Ruby library provides convenient access to the Finch REST API from any Ruby 3.2.0+ application. It ships with c"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3c775e7eff37",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:hyperspell/node-sdk",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Hyperspell Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/hyperspell.svg?label=pypi%20(stable))](ht"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b1701e96aafe",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:LocalStack/localstack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "localstack-core/localstack/utils/java.py",
+    "code": "store_passwd = \"localstack\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8b07757ff5e1",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:LocalStack/localstack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "localstack-core/localstack/aws/api/config/__init__.py",
+    "code": "AWS_SecretsManager_Secret = \"AWS::SecretsManager::Secret\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1c276b49d1ed",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:LocalStack/localstack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "localstack-core/localstack/aws/api/config/__init__.py",
+    "code": "AWS_MSK_BatchScramSecret = \"AWS::MSK::BatchScramSecret\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "2c8010a108c6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "python",
+   "esempio_server": "gh:LocalStack/localstack",
+   "evidenza": {
+    "tipo": "static",
+    "file": "localstack-core/localstack/aws/api/config/__init__.py",
+    "code": "AWS_Location_APIKey = \"AWS::Location::APIKey\""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ba4b0147c19d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Crownpeak/dqm-react-component",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/hooks/useAuthentication.ts",
+    "code": "apiKey: 'BACKEND_SESSION',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7b3f7f487804",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:Crownpeak/dqm-react-component",
+   "evidenza": {
+    "tipo": "static",
+    "file": "server-ui/src/i18n.ts",
+    "code": "api_key: 'API-Schlüssel',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4c74f4294735",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:flowglad/flowglad-node",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/client.ts",
+    "code": "\"The FLOWGLAD_SECRET_KEY environment variable is missing or empty; either provide it, or instantiate the Flowglad client with an apiKey option, like n"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0cedd2aa39a9",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ForestAdmin/agent-nodejs",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/forest-cloud/src/services/starting-agent-locally.ts",
+    "code": "authSecret: 'REDACTED'.repeat(8),"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "196fd9dc832c",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentfront/frontmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "libs/sdk/src/agent/adapters/openai.adapter.ts",
+    "code": "apiKey: '__client_provided__',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "19f49a06d42f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentfront/frontmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "libs/sdk/src/agent/adapters/anthropic.adapter.ts",
+    "code": "apiKey: '__client_provided__',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4f548fbd6ec2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:agentfront/frontmcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "libs/auth/src/session/secure-store-backends.ts",
+    "code": "const DEFAULT_KEY_PREFIX = 'mcp:secret:';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e4ee61ef8443",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:honojs/middleware",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/oauth-providers/mocks.ts",
+    "code": "access_token: 'REDACTED',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "868659fb3d51",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:honojs/middleware",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/oauth-providers/mocks.ts",
+    "code": "access_token: 'REDACTED',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6be67d6fc3c3",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:InsForge/InsForge",
+   "evidenza": {
+    "tipo": "static",
+    "file": "backend/src/utils/next-actions.ts",
+    "code": "CHECK_API_KEY: 'Check the API key is valid or generate a new API key.',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4b5fe1ba957e",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:imagekit-developer/imagekit-nodejs",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/local-docs-search.ts",
+    "code": "'# Image Kit Python API library\\n\\n<!-- prettier-ignore -->\\n[![PyPI version](https://img.shields.io/pypi/v/imagekitio.svg?label=pypi%20(stable))](htt"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6eadfd962794",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:lanjunfei/paperllm_mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "test_api.py",
+    "code": "API_KEY = \"ee77fa74-8d51-4ab4-9099-6fb369f73a73:REDACTED\" # 替换为您的API密钥"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "aae84267fe73",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:magiclane/magiclane-mcp-server",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/map-server-http.ts",
+    "code": "if (copy.params.apiKey) copy.params.apiKey = 'REDACTED';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8d01837035f3",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:dhyansraj/mcp-mesh",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/runtime/python/_mcp_mesh/engine/native_clients/openai_native.py",
+    "code": "\"explicit api_key argument. Set OPENAI_API_KEY or pass api_key= \""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bef0528391d6",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "go",
+   "esempio_server": "gh:dhyansraj/mcp-mesh",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/runtime/python/_mcp_mesh/engine/native_clients/anthropic_native.py",
+    "code": "\"explicit api_key argument. Set ANTHROPIC_API_KEY or pass api_key= \""
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "a9ef49cd541c",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:nahisaho/katashiro",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/collector/src/logging/sensitive-data-masker.ts",
+    "code": "parsed.password = '[MASKED]';"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3fbc299baeff",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mrlynn/netpad-v3",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/app/api/workflows/process/route.ts",
+    "code": "secret: 'Optional authentication secret',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3e163d789c0f",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:mrlynn/netpad-v3",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/mcp-server/src/documentation.ts",
+    "code": "apiKey: 'np_live_xxxxx', // or np_test_xxxxx"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e351c9e5989b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:rejot-dev/rejot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "apps/mcp/rejot-mcp-client.ts",
+    "code": "password: \"postgres\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7e482a7e65b",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:smith-horn/skillsmith",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/cli/src/commands/login.test-helpers.ts",
+    "code": "access_token: 'jwt.access',"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "dc132957101c",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:t402-io/t402",
+   "evidenza": {
+    "tipo": "static",
+    "file": "services/sandbox/src/routes/supported.js",
+    "code": "signatureSecret: \"sandbox-webhook-test-secret\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "571843892377",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:semicolon-devteam/semo",
+   "evidenza": {
+    "tipo": "static",
+    "file": "semo-system/_archived/semo-hooks/src/lib/tokens.generated.ts",
+    "code": "DB_PASSWORD: \"REDACTED:REDACTED\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6289b6c7d6e7",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:semicolon-devteam/semo",
+   "evidenza": {
+    "tipo": "static",
+    "file": "packages/_archived/mcp-server/src/hooks/lib/tokens.generated.ts",
+    "code": "DB_PASSWORD: \"REDACTED:REDACTED\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "b6329e7939ed",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:tonk-labs/tinyfoot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "rust/tonk-ui/assets/webawesome/chunks/chunk.22GDIZST.js",
+    "code": "hidePassword: \"Passwort verbergen\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "e235d89ca6d2",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:tonk-labs/tinyfoot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "rust/tonk-ui/assets/webawesome/chunks/chunk.22GDIZST.js",
+    "code": "showPassword: \"Passwort anzeigen\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "76a0cbfe0283",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:tonk-labs/tinyfoot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "rust/tonk-ui/assets/webawesome/chunks/chunk.5OV4QM6R.js",
+    "code": "hidePassword: \"Hide password\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "fb795e707b72",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "unknown",
+   "esempio_server": "gh:tonk-labs/tinyfoot",
+   "evidenza": {
+    "tipo": "static",
+    "file": "rust/tonk-ui/assets/webawesome/chunks/chunk.5OV4QM6R.js",
+    "code": "showPassword: \"Show password\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f56f5543962d",
+   "tool": "guard",
+   "categoria": "hardcoded-credential-static",
+   "severita": "high",
+   "linguaggio": "nodejs",
+   "esempio_server": "gh:ToolJet/tooljet-mcp",
+   "evidenza": {
+    "tipo": "static",
+    "file": "src/index.ts",
+    "code": "password: \"12343242353252\","
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

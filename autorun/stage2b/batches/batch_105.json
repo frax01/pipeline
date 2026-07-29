@@ -1,0 +1,848 @@
+{
+ "batch": 105,
+ "n_cluster": 60,
+ "n_finding": 104,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "0d5ac32cc8dd",
+   "tool": "watch",
+   "categoria": "data-exfiltration",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"line-desktop-mcp\", \"language\": \"nodejs\", \"id\": \"CONVERSATION_EXFILTRATION_TRIGGER\", \"category\": \"data-exfiltration\", \"description\": \"Conversation history exfiltration trigger detected\", \"file\": \"src/server.js\", \"line\": 195, \"evidence\": \"description: 'Extract conversation history from a specific LINE group chat or individual chat, when a more complete set of content is needed, such as for summarizing or analyzing data over a period of time.',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"exfiltration_in_description\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "86f765f9c11b",
+   "tool": "watch",
+   "categoria": "data-exfiltration",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"line-desktop-mcp\", \"language\": \"nodejs\", \"id\": \"CONVERSATION_EXFILTRATION_TRIGGER\", \"category\": \"data-exfiltration\", \"description\": \"Conversation history exfiltration trigger detected\", \"file\": \"src/server.js\", \"line\": 218, \"evidence\": \"description: 'Extract conversation history from a specific LINE group chat or individual chat, when a quick response is needed, only retrieve the most recent few messages.',\", \"source\": \"Trail of Bits research\", \"filter_confidence\": \"exfiltration_in_description\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "ee3b4793e284",
+   "tool": "watch",
+   "categoria": "data-exfiltration",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/TM9657/flow-like\", \"language\": \"nodejs\", \"id\": \"MAGIC_PARAMETER_INJECTION\", \"category\": \"data-exfiltration\", \"description\": \"Magic parameter detected - extracts sensitive AI context\", \"file\": \"apps/docs/src/generated/catalog-nodes.ts\", \"line\": 48, \"evidence\": \"\\\"schema\\\": \\\"{\\\\\\\"$schema\\\\\\\":\\\\\\\"https://json-schema.org/draft/2020-12/schema\\\\\\\",\\\\\\\"title\\\\\\\":\\\\\\\"Agent\\\\\\\",\\\\\\\"type\\\\\\\":\\\\\\\"object\\\\\\\",\\\\\\\"properties\\\\\\\":{\\\\\\\"model\\\\\\\":{\\\\\\\"description\\\\\\\":\\\\\\\"The LLM model id backing this agent\\\\\\\",\\\\\\\"$ref\\\\\\\":\\\\\\\"#/$defs/Bit\\\\\\\"},\\\\\\\"model_display_name\\\\\\\":{\\\\\\\"description\\\\\\\":\\\\\\\"Model display name\\\\\\\",\\\\\\\"type\\\\\\\":[\\\\\\\"string\\\\\\\",\\\\\\\"null\\\\\\\"]},\\\\\\\"max_iter…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ac71440d00fd",
+   "tool": "watch",
+   "categoria": "data-exfiltration",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Cyberpion-Github/ionix-mcp-server\", \"language\": \"python\", \"id\": \"DATA_EXFILTRATION\", \"category\": \"data-exfiltration\", \"description\": \"Potential data exfiltration detected\", \"file\": \"ionix.py\", \"line\": 2022, \"evidence\": \"data = fetch(\\\"scoring/score/history/\\\", params=params, account_name=account_name)\", \"source\": \"HiddenLayer research\", \"filter_confidence\": \"http_exfiltration_payload\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1e34682f2cdb",
+   "tool": "watch",
+   "categoria": "data-exfiltration",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Kamalud33n/MCP\", \"language\": \"python\", \"id\": \"DATA_EXFILTRATION\", \"category\": \"data-exfiltration\", \"description\": \"Potential data exfiltration detected\", \"file\": \"static/app.js\", \"line\": 138, \"evidence\": \"const res = await fetch(api.prompt, { method:\\\"POST\\\", headers: {\\\"Content-Type\\\":\\\"application/json\\\"}, body: JSON.stringify({prompt}) });\", \"source\": \"HiddenLayer research\", \"filter_confidence\": \"http_exfiltration_payload\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7e6851f31aaa",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/git_tools.py\", \"line\": 31, \"evidence\": \"r = cli.exec(cmd, cwd=req.project_dir)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 4,
+   "n_server": 1
+  },
+  {
+   "id": "2c2340146f80",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/S-Corkum/mirdan\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/mirdan/core/violation_explainer.py\", \"line\": 130, \"evidence\": \"\\\"exec() can execute arbitrary code strings, with risks similar to eval() for dynamic input.\\\"\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "acc33d111f53",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/pyrex41/mcp-cli\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/tools/RunCliTool.ts\", \"line\": 19, \"evidence\": \"const child: ChildProcess = spawn(baseCli, input.args);\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "0319729c99c1",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ooples/token-optimizer-mcp\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/utils/safe-exec.ts\", \"line\": 18, \"evidence\": \"* `execSync(`...${userInput}...`)` in tool code. Route everything through the\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "79338ad2faa8",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/muse-code-space/test-genie-mcp\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/analyzers/securityAnalyzer.ts\", \"line\": 287, \"evidence\": \"recommendation: 'Switch to `spawn(cmd, [arg1, arg2, ...])` with argv arrays so the shell never parses the args.',\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "36ff4d4245cc",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/django.py\", \"line\": 30, \"evidence\": \"r = cli.exec(f'{prefix}python manage.py {req.manage_args}', cwd=req.project_dir, env=req.env, timeout=req.timeout)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "bffedd7f1580",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/git_tools.py\", \"line\": 130, \"evidence\": \"r = cli.exec(\\\"git fetch --all --prune\\\", cwd=req.project_dir, timeout=120)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "7a875093774c",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/git_tools.py\", \"line\": 137, \"evidence\": \"r = cli.exec(f\\\"git reset --hard {req.remote}/{req.branch}\\\", cwd=req.project_dir, timeout=60)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "a01d628652d1",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/git_tools.py\", \"line\": 144, \"evidence\": \"r = cli.exec(f\\\"git pull {req.remote} {req.branch}\\\", cwd=req.project_dir, timeout=120)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "207f6ce16cb0",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/git_tools.py\", \"line\": 146, \"evidence\": \"r = cli.exec(\\\"git pull\\\", cwd=req.project_dir, timeout=120)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "f0cd39ff2656",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/git_tools.py\", \"line\": 195, \"evidence\": \"chmod = cli.exec(f\\\"chmod +x {req.script}\\\", cwd=req.project_dir)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "7cbb5f9e4612",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/git_tools.py\", \"line\": 197, \"evidence\": \"r = cli.exec(f'{prefix}bash -e ./{req.script}', cwd=req.project_dir, timeout=req.timeout)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "5e844b7c1528",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/systemd.py\", \"line\": 27, \"evidence\": \"r = cli.exec(f\\\"systemctl {req.action} {req.name}\\\")\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "fdb80f96fa7e",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/alokchoudharyguliya/MCP\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_server/tools/tmux.py\", \"line\": 37, \"evidence\": \"create = cli.exec(f\\\"tmux new-session -d -s {sess}\\\", cwd=req.cwd)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "7a23236cd91b",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/antra-tess/terminal-sessions-mcp\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/mcp/mcp-server.ts\", \"line\": 147, \"evidence\": \"const result = await this.getClient().exec(sessionId, params.command, params.timeout);\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "c37821042699",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/fonCki/mcp-security-linter\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/analyzers/command-exec.js\", \"line\": 11, \"evidence\": \"* - MCP tool arguments → exec/spawn (NEW: args.command, destructured params)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "e25a11206b13",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/huggingface/huggingface.js\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"packages/ollama-utils/src/chat-template-automap.ts\", \"line\": 1297, \"evidence\": \"gguf: \\\"{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) -%}\\\\n{%- set emit = namespace(started=false) -%}\\\\n\\\\n{# ---------- Build base system message (always emitted) ---------- #}\\\\n{%- set base_system = 'You are rnj-1, a foundation model trained by Essential AI.\\\\\\\\n' -%}\\\\n\\\\n{# ---------- Optional tools preface as a synthetic system message -------…"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "9b3bf53cb1cc",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/weapp-vite/weapp-vite\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"apps/vite-native/utils/cos-wx-sdk-v5.js\", \"line\": 10124, \"evidence\": \"exec = /^http(s)?:\\\\/\\\\/(.*?)\\\\//.exec(this.params.url);\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "91f6bf1017db",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/jagreehal/autotel\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"packages/autotel-mongoose/src/instrumentation.ts\", \"line\": 289, \"evidence\": \"* sets db.query.text AFTER extraction, then wraps exec() to finalize span.\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "25a0450139aa",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ofri-peretz/eslint\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"benchmarks/corpus/CWE-078/vulnerable/exec-concat.js\", \"line\": 8, \"evidence\": \"exec('ls ' + userInput);\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "a51333094dbd",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/ofri-peretz/eslint\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"benchmarks/corpus/CWE-1333/vulnerable/trade-off.js\", \"line\": 8, \"evidence\": \"const result = validator.exec(userInput);\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "eaeb4211dc43",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"codeguard-mcp\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/scanners/vulnerability-scanner.ts\", \"line\": 223, \"evidence\": \"command_injection: 'Avoid exec() with user input. Use child_process.spawn() with argument arrays instead.',\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "cc5535030f1b",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"securitylens-mcp\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/jsBackup/index.js\", \"line\": 345, \"evidence\": \"exec('ls -la ' + userInput);\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "50e2d0e0ed63",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"securitylens-mcp\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/patterns/index.ts\", \"line\": 271, \"evidence\": \"exec('ls -la ' + userInput);\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "bdb198fde4e9",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/modelcontextprotocol/python-sdk\", \"language\": \"python\", \"id\": \"SSRF_VULNERABILITY\", \"category\": \"input-validation\", \"description\": \"SSRF vulnerability - fetches any URL\", \"file\": \"src/mcp/server/connection.py\", \"line\": 318, \"evidence\": \"raw = await self.send_raw_request(req.method, dump_params(req.params), opts)\", \"source\": \"PromptHub research (30% affected)\", \"filter_confidence\": \"ssrf_pattern_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "29959becdfdb",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/cloudwarriors-ai/openapi-mcp-server\", \"language\": \"nodejs\", \"id\": \"SSRF_VULNERABILITY\", \"category\": \"input-validation\", \"description\": \"SSRF vulnerability - fetches any URL\", \"file\": \"src/tools/request.ts\", \"line\": 166, \"evidence\": \"const response = await ctx.deps.http.request(params.method as HttpMethod, params.path, {\", \"source\": \"PromptHub research (30% affected)\", \"filter_confidence\": \"ssrf_pattern_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "ae554ea60e2c",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/gyash1512/mcp-sdk-ts\", \"language\": \"nodejs\", \"id\": \"SSRF_VULNERABILITY\", \"category\": \"input-validation\", \"description\": \"SSRF vulnerability - fetches any URL\", \"file\": \"examples/demo-mcp/index.ts\", \"line\": 92, \"evidence\": \"const response = await ctx.http.get(input.endpoint);\", \"source\": \"PromptHub research (30% affected)\", \"filter_confidence\": \"ssrf_pattern_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "a69951d739f3",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/minorumochizuki2015-ship-it/mcp-gateway-gemini3\", \"language\": \"nodejs\", \"id\": \"SSRF_VULNERABILITY\", \"category\": \"input-validation\", \"description\": \"SSRF vulnerability - fetches any URL\", \"file\": \"src/mcp_gateway/gateway.py\", \"line\": 3460, \"evidence\": \"url, headers = _build_upstream_test_request(req.base_url, provider, req.api_key)\", \"source\": \"PromptHub research (30% affected)\", \"filter_confidence\": \"ssrf_pattern_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "c24d560f2bdf",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/nlgbao1340/Automation-Pentest-Tool-with-MCP\", \"language\": \"python\", \"id\": \"PATH_TRAVERSAL\", \"category\": \"input-validation\", \"description\": \"Path traversal vulnerability - accesses files outside directory\", \"file\": \"backend/engines/sast/tools/report_finding.py\", \"line\": 191, \"evidence\": \"description=\\\"os.path.join(base_dir, request.args.get('filename')) without normalization allows ../ traversal\\\",\", \"source\": \"PromptHub research (22% affected)\", \"filter_confidence\": \"path_traversal_with_user_input\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "792d72ddb2da",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/actions-marketplace-validations/fonCki_mcp-security-linter\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/analyzers/command-exec.js\", \"line\": 11, \"evidence\": \"* - MCP tool arguments → exec/spawn (NEW: args.command, destructured params)\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4ae08b01ebeb",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Frostday/Agent4Molecule\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"mcp_agent/enzygen_server.py\", \"line\": 781, \"evidence\": \"os.system(f\\\"rm -f {ENZYGEN_PATH}/data/input.json\\\")\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "ffb8fab70b41",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Frostday/Agent4Molecule\", \"language\": \"python\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/mcp_agent/enzygen_server.py\", \"line\": 762, \"evidence\": \"os.system(f\\\"rm -f {ENZYGEN_PATH}/data/input.json\\\")\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5d7a33ff98a2",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/cline/cline\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"apps/examples/cli-agent/src/index.ts\", \"line\": 19, \"evidence\": \"const proc = Bun.spawn([\\\"sh\\\", \\\"-c\\\", input.command], {\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "18b66d4a0a29",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/avids2/memorix\", \"language\": \"nodejs\", \"id\": \"COMMAND_INJECTION_RISK\", \"category\": \"input-validation\", \"description\": \"Command injection vulnerability - append && rm -rf /\", \"file\": \"src/codegraph/external-provider.ts\", \"line\": 232, \"evidence\": \"child = spawn(launch.executable, [...launch.prefixArgs, ...input.args], {\", \"source\": \"PromptHub research (43% affected)\", \"filter_confidence\": \"command_injection_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "375c357e6efc",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/vectorize-io/hindsight\", \"language\": \"nodejs\", \"id\": \"SSRF_VULNERABILITY\", \"category\": \"input-validation\", \"description\": \"SSRF vulnerability - fetches any URL\", \"file\": \"hindsight-api-slim/hindsight_api/engine/providers/gemini_llm.py\", \"line\": 1022, \"evidence\": \"gemini_request = GeminiLLM._openai_body_to_gemini_request(req.get(\\\"body\\\") or {})\", \"source\": \"PromptHub research (30% affected)\", \"filter_confidence\": \"ssrf_pattern_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3a916427cc00",
+   "tool": "watch",
+   "categoria": "input-validation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/frontal-labs/mcp-server\", \"language\": \"nodejs\", \"id\": \"SSRF_VULNERABILITY\", \"category\": \"input-validation\", \"description\": \"SSRF vulnerability - fetches any URL\", \"file\": \"src/adapters/generic-adapter.ts\", \"line\": 230, \"evidence\": \"const response = await ctx.client.request(input.method, resolvedPath, {\", \"source\": \"PromptHub research (30% affected)\", \"filter_confidence\": \"ssrf_pattern_confirmed\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f48ac16b5e4f",
+   "tool": "watch",
+   "categoria": "prompt-injection",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/coletaylor788/productivity-mcp-servers\", \"language\": \"nodejs\", \"id\": \"TOOL_DESCRIPTION_INJECTION\", \"category\": \"prompt-injection\", \"description\": \"Suspicious prompt injection in tool description\", \"file\": \"packages/mcp-hooks/evals/generate-config.ts\", \"line\": 221, \"evidence\": \"{ key: \\\"homoglyph_smuggling\\\", description: \\\"Cyrillic/Greek/fullwidth lookalikes spelling out an injection instruction. e.g. '\\\\u0406gn\\\\u043ere prev\\\\u0456ous \\\\u0456nstruct\\\\u0456ons' (using Cyrillic \\\\u0406/\\\\u043e/\\\\u0456) — visually reads as 'Ignore previous instructions'.\\\", difficulty: \\\"hard\\\" },\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"kept\", \"llm_bucket\"…"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "1f33636e89d0",
+   "tool": "watch",
+   "categoria": "prompt-injection",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/metorial/metorial-platform\", \"language\": \"nodejs\", \"id\": \"TOOL_DESCRIPTION_INJECTION\", \"category\": \"prompt-injection\", \"description\": \"Suspicious prompt injection in tool description\", \"file\": \"src/subspace/modules/connection/src/protoguard/filters/index.ts\", \"line\": 178, \"evidence\": \"description: 'Attempts to ignore previous instructions.'\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_prompt_injection_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "259a43f0d7ac",
+   "tool": "watch",
+   "categoria": "prompt-injection",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/glincker/glin-profanity\", \"language\": \"nodejs\", \"id\": \"TOOL_DESCRIPTION_INJECTION\", \"category\": \"prompt-injection\", \"description\": \"Suspicious prompt injection in tool description\", \"file\": \"packages/js/src/scanners/patterns/injection-patterns.ts\", \"line\": 44, \"evidence\": \"description: 'Classic \\\"ignore previous instructions\\\" override',\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_prompt_injection_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d78314ed86d4",
+   "tool": "watch",
+   "categoria": "prompt-injection",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/glincker/glin-profanity\", \"language\": \"nodejs\", \"id\": \"TOOL_DESCRIPTION_INJECTION\", \"category\": \"prompt-injection\", \"description\": \"Suspicious prompt injection in tool description\", \"file\": \"packages/js/src/scanners/patterns/injection-patterns.ts\", \"line\": 58, \"evidence\": \"description: 'Forget prior instructions or training',\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_prompt_injection_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0a33158ddf19",
+   "tool": "watch",
+   "categoria": "prompt-injection",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/glincker/glin-profanity\", \"language\": \"nodejs\", \"id\": \"TOOL_DESCRIPTION_INJECTION\", \"category\": \"prompt-injection\", \"description\": \"Suspicious prompt injection in tool description\", \"file\": \"packages/py/glin_profanity/scanners/patterns/injection_patterns.py\", \"line\": 63, \"evidence\": \"description='Classic \\\"ignore previous instructions\\\" override',\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_prompt_injection_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7d1fe127adeb",
+   "tool": "watch",
+   "categoria": "prompt-injection",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/glincker/glin-profanity\", \"language\": \"nodejs\", \"id\": \"TOOL_DESCRIPTION_INJECTION\", \"category\": \"prompt-injection\", \"description\": \"Suspicious prompt injection in tool description\", \"file\": \"packages/py/glin_profanity/scanners/patterns/injection_patterns.py\", \"line\": 85, \"evidence\": \"description=\\\"Forget prior instructions or training\\\",\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_prompt_injection_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "f59218ba4057",
+   "tool": "watch",
+   "categoria": "prompt-injection",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/EarthmanWeb/claude-flow-plugin\", \"language\": \"nodejs\", \"id\": \"TOOL_DESCRIPTION_INJECTION\", \"category\": \"prompt-injection\", \"description\": \"Suspicious prompt injection in tool description\", \"file\": \"v3/@claude-flow/cli/src/commands/security.ts\", \"line\": 435, \"evidence\": \"{ command: 'claude-flow security defend -i \\\"ignore previous instructions\\\"', description: 'Scan text for threats' },\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_prompt_injection_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00a9b22afd54",
+   "tool": "watch",
+   "categoria": "prompt-injection",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/Emasoft/claude-plugins-validation\", \"language\": \"python\", \"id\": \"TOOL_DESCRIPTION_INJECTION\", \"category\": \"prompt-injection\", \"description\": \"Suspicious prompt injection in tool description\", \"file\": \"scripts/validate_security.py\", \"line\": 5352, \"evidence\": \"**A PR description that says \\\"ignore previous instructions\\\"**.\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_prompt_injection_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "6d6afea484fe",
+   "tool": "watch",
+   "categoria": "prompt-injection",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/tomgutt/tg-productboard-mcp\", \"language\": \"nodejs\", \"id\": \"TOOL_DESCRIPTION_INJECTION\", \"category\": \"prompt-injection\", \"description\": \"Suspicious prompt injection in tool description\", \"file\": \"src/note/get_notes.ts\", \"line\": 53, \"evidence\": \"\\\"description\\\": \\\"Return only notes from a specific external source system (e.g. 'intercom', 'zendesk'). Maps to 'metadata[source][system]' on GET /notes, or 'filter.metadata.source.system' on POST /notes/search.\\\"\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"kept\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"uncertain_prompt_injection_trigger\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8976a3fc69fb",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/topoteretes/cognee\", \"language\": \"python\", \"id\": \"SESSION_ID_IN_URL\", \"category\": \"protocol-violation\", \"description\": \"Session ID in URL - exposes sensitive identifiers\", \"file\": \"cognee-frontend/src/data/prompts.ts\", \"line\": 67, \"evidence\": \"GET $COGNEE_BASE_URL/api/v1/datasets/?session_id=<session-id>\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"session_id_in_url_construction\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "8485705afc07",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/getsentry/sentry-mcp\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/mcp-server/src/cli/usage.ts\", \"line\": 22, \"evidence\": \"--insecure-http Use http:// for self-hosted --host values\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "9c40ebdec911",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/airano-ir/mcphub\", \"language\": \"python\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"server.py\", \"line\": 200, \"evidence\": \"r\\\"^http://127\\\\.0\\\\.0\\\\.1:\\\\d+/.*\\\",\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "a62c03ef9f3c",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/d4vinci/scrapling\", \"language\": \"python\", \"id\": \"SESSION_ID_IN_URL\", \"category\": \"protocol-violation\", \"description\": \"Session ID in URL - exposes sensitive identifiers\", \"file\": \"scrapling/spiders/engine.py\", \"line\": 50, \"evidence\": \"return await self.session_manager.fetch(Request(url, sid=sid))\", \"source\": \"VulnerableMCP database\", \"filter_confidence\": \"session_id_in_url_construction\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "e70b68516f71",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/frontegg/frontegg-mcp-server\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"src/tools/platforms/ios-detector.ts\", \"line\": 50, \"evidence\": \"why: 'Your Info.plist has NSAllowsArbitraryLoads = true, which globally disables App Transport Security. Even if your Frontegg base URL is HTTPS today, this exposes your app to plaintext exfiltration if any other library or future code uses http://. Apple may also reject the app review with this set.',\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket…"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "4ce4a124958b",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/gbrlcustodio/pipefy-mcp-server\", \"language\": \"python\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/auth/src/pipefy_auth/settings.py\", \"line\": 286, \"evidence\": \"\\\"may use http:// and internal hosts; local development only; do \\\"\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "ca1e7ed68c6b",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/gbrlcustodio/pipefy-mcp-server\", \"language\": \"python\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/cli/src/pipefy_cli/main.py\", \"line\": 68, \"evidence\": \"\\\"Allow http:// and private hosts (overrides env for this process). \\\"\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "8806c3ebf7a8",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "python",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/gbrlcustodio/pipefy-mcp-server\", \"language\": \"python\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"packages/sdk/src/pipefy_sdk/settings.py\", \"line\": 73, \"evidence\": \"\\\"may use http:// and internal hosts; local development only; do not enable in production.\\\"\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "ddb45c9a6d8e",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/blackms/aistack\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"src/web/routes/sso.ts\", \"line\": 97, \"evidence\": \"const nameID = new URL(url, 'http://x').searchParams.get('nameID') ?? '';\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  },
+  {
+   "id": "57785d72944b",
+   "tool": "watch",
+   "categoria": "protocol-violation",
+   "severita": null,
+   "linguaggio": "nodejs",
+   "esempio_server": "",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"github_url\": \"https://github.com/blackms/aistack\", \"language\": \"nodejs\", \"id\": \"INSECURE_TRANSPORT\", \"category\": \"protocol-violation\", \"description\": \"Insecure HTTP transport detected\", \"file\": \"src/web/routes/sso.ts\", \"line\": 99, \"evidence\": \"new URL(url, 'http://x').searchParams.get('sessionIndex') ?? undefined;\", \"source\": \"Security best practices\", \"filter_confidence\": \"insecure_http_to_external\", \"llm_bucket\": \"UNCERTAIN\", \"bucket_reason\": \"\"}"
+   },
+   "n_finding": 2,
+   "n_server": 1
+  }
+ ]
+}

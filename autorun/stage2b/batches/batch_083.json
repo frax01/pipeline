@@ -1,0 +1,498 @@
+{
+ "batch": 83,
+ "n_cluster": 35,
+ "n_finding": 35,
+ "istruzioni": "Per ogni cluster assegnare verdetto VP (vero positivo, vulnerabilita' reale e raggiungibile) o FP (falso positivo), con motivazione breve.",
+ "cluster": [
+  {
+   "id": "0795c23d00ae",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:ianhi/jupyterlab-claude-code",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"troubleshoot\", \"tool_description\": \"Diagnose why notebook edits may not be syncing or persisting. Reports connection/RTC health and, for a given notebook, sync state, browser peers, a forced-save result, and a disk-vs-room round-trip check that detects split-brain (wrong/second server). Use when edits don't show up in the browser or on disk.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"don't show\"], \"llm_risk\": \"NOT_AVAILABLE\", \"llm_analysis\": \"LLM analysis was not executed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00499b6a20a6",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:lespaceman/athena-browser-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"type\", \"tool_description\": \"Type text into an input field or text area (by `eid`). Set `clear` to replace existing content instead of appending. Returns a fresh page snapshot reflecting the updated field and any resulting changes (validation, autocomplete, etc.).\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users:**\\nNO\\nThe provided description does not contain any hidden instructions or settings that would affect the AI model's behavior without user knowledge.\\n\\n**2. Instructions to access sensitive files (li…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "513b2feb140a",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:m0nkmaster/msteams-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"teams_wait_for_reply\", \"tool_description\": \"Block until a new message arrives in a conversation, then return only the new messages. Polls server-side so you make one tool call instead of repeatedly reading the thread. Read-only and idempotent: it never posts (pair it with teams_send_message), and re-running with after=nextAfter resumes from the same point. The block is capped (~110s) to stay under client timeouts; on timeout it returns timedOut=true with nextAfter — just call again to keep waiting. By default the baseline is your most recent message, so after a teams_send_message you can call this with no \\\"after\\\" to wait for the reply.\", \"category\": \"hidden-instructions\", \"r…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1654c1ebf83c",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:mediagraph-io/mediagraph-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"merge_tags\", \"tool_description\": \"Merge one tag into another. With set_synonym=true, the source tag is preserved as a synonym of the target instead of being deleted.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users: NO**\\n\\nThe tool description is straightforward and doesn't mention any hidden instructions or AI-specific configuration options. The language used is simple and intuitive, making it unlikely to hide AI-specific instructions.\\n\\n**Instructions to access sensitive files (like SSH keys, .env files, etc.…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d2d4be83c5dc",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:pdfcrowd/pdfcrowd-mcp-pdf-export",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"pdfcrowd_create_pdf\", \"tool_description\": \"Export any content (including charts) to PDF.\\nIf input isn't HTML, create a well-designed layout first.\\nIMPORTANT: Call pdfcrowd_info(topic: \\\"parameters\\\") to get the full input schema.\\nIMPORTANT: Before creating HTML, first call pdfcrowd_info(topic: \\\"html_layout\\\") to get the layout guidelines.\\nDo NOT pass PDFCrowd API parameters - this tool has its own schema.\\n\\nOn error: Read the error message carefully and follow its guidance. Report configuration issues to the user instead of trying other PDF tools.\\n\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\"…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d35e398c97f5",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:platform-engineering-labs/formae-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"extract_resources\", \"tool_description\": \"Extract resources as PKL infrastructure code. Runs 'formae extract' to export matching resources as a PKL forma file that can be incorporated into an IaC codebase.\\n\\nUse this tool when you need to see the PKL representation of existing resources — typically unmanaged resources that the user wants to bring under formae management. The extracted PKL can then be merged into the user's existing forma files.\\n\\nThe query parameter selects which resources to extract. Always include at least one filter to avoid extracting the entire inventory.\\n\\nReturns the extracted PKL source code as text.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDI…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1ebbcba31852",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:scarecr0w12/whmcs-mcp-tool",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"whmcs_add_ticket_note\", \"tool_description\": \"Add an admin-only internal note to a ticket. Notes are not visible to the client and do not trigger email notifications.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"not visible\"], \"llm_risk\": \"NOT_AVAILABLE\", \"llm_analysis\": \"LLM analysis was not executed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "621b46c90d05",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:coladapo/purmemo-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"generate_handoff_brief\", \"tool_description\": \"Generate a surgical context brief for a new AI session. Instead of re-explaining your context, the AI already knows where you left off.\\n\\nUses a 5-layer compaction hierarchy to maximize signal in ~2,000 tokens:\\n1. Intent — What you were trying to accomplish (never cut)\\n2. Decisions — What was decided and completed\\n3. Open Loops — Blockers, unresolved items, active todos\\n4. Context — Technologies, entities, project details\\n5. Content — Brief excerpts (trimmed to fit budget)\\n\\nCall this at the start of a new session or when switching projects to give the AI instant context.\\nNo new data is generated — composes from your existi…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "83646152be38",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:zenskar/mcp-zenskar",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"createPlan\", \"tool_description\": \"Create a new plan — a reusable contract template with phased pricing. Hits POST /plans (same Plan table the Zenskar app's PlansV2 page reads). The request body shape is NESTED, not flat: top-level fields are name, status, schedule, optional description, optional phases[]. Currency is set per-pricing inside phase.pricings[].pricing.pricing_data.currency, NOT at the top level. A plan with no phases is unusable in the UI — always include at least one phase. Plan starts as 'draft'; the user must publish it to make it active.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"always include\"], \"llm_risk\": \"NOT_AVAILABLE\", \"llm…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d7d378e99e34",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:wernerglinka/metalsmith-plugin-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"get-template\", \"tool_description\": \"Retrieve the exact content of a specific template file. Run list-templates first to see available names. Use these templates verbatim instead of improvising.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's the analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users: NO**\\nNo mention of any hidden instructions or parameters that might not be visible to users. The description is straightforward and provides clear guidance on how to use the tool.\\n\\n**Instructions to access sensitive files (like SSH keys, .env files, etc.): NO**\\nThe des…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "8483a88f470a",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:fastmcp-me/mirror-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"reflect\", \"tool_description\": \"Enable targeted LLM self-reflection with customizable prompts for specialized analysis. Use custom system_prompt and user_prompt parameters to get focused, expert-level reflections instead of generic responses. Particularly effective for domain-specific analysis, critical thinking, coaching perspectives, and structured output formats.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users**: NO\\n\\nThe description doesn't mention any hidden instructions or parameters that aren't visible t…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "bb2e50878154",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:growsurf/growsurf-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"growsurf_record_sale\", \"tool_description\": \"Record a sale/transaction for an affiliate program. Use webhooks to know when commissions are added. Requires at least one transaction identifier (externalId, transactionId, orderId, paymentId, invoiceId, paymentIntentId, or chargeId) so repeated calls are de-duplicated instead of double-paying the referrer; reuse the same one when refunding. Targets `campaignId` if you pass it, otherwise GROWSURF_CAMPAIGN_ID.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is my analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to user…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9863a79e97ff",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:jwikman/bc-code-intelligence-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"ask_bc_expert\", \"tool_description\": \"Consult a BC specialist for direct expert guidance. Returns specialist instructions and relevant BC knowledge. Auto-selects best specialist or use preferred_specialist parameter. Set autonomous_mode=true for structured action plans instead of conversational responses.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is the analysis:\\n\\n**Hidden instructions to the AI model that aren't visible to users**: NO\\nThere are no hidden instructions in this tool description that aren't visible to users. The description only provides information about how to use the too…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "617c86de6d26",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:littlebearapps/outlook-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"read-email\", \"tool_description\": \"Read a single email by id (read-only). Default: returns the full message body (HTML stripped to text by default), subject, from/to/cc, receivedDateTime, conversationId, attachments metadata, and webLink as Markdown. With `headersMode: true`: returns RFC-822 forensic headers instead (DKIM, SPF, DMARC, Received chain, Message-ID, Authentication-Results) — pair with `importantOnly: true` for the security-relevant subset, `groupByType: true` for category-bucketed view, or `raw: true` for JSON instead of Markdown. With `includeHeaders: true` (non-headers-mode): adds basic headers alongside body. Use `outputVerbosity` (minimal/standard/full) to cont…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "76f16498c1f1",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:marian-craciunescu/ssh-mcp-server-secured",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"ssh_execute\", \"tool_description\": \"Run a command on a connection. Large output is returned as a downloadable URI instead of inline.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users:** NO\\nThere are no hidden instructions or parameters in this tool description that would allow an attacker to manipulate the AI model without user knowledge.\\n\\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.)**: NO\\nThe tool description does not mention accessing any specific files, including sensitive…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c6f881b7838b",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:sweetrb/apple-mail-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"reply-to-message\", \"tool_description\": \"Use when: replying to an existing message by id, preserving its threading headers. Set replyAll for all recipients; set send=false to save as a draft instead of sending.\\nReturns: a confirmation that the reply was sent or saved as a draft.\\nDo not use when: composing a brand-new message (use send-email / create-draft) or forwarding to new recipients (use forward-message).\\nSafety: with the default send=true this SENDS real email immediately and cannot be unsent — require explicit user confirmation of the recipients and body, or pass send=false to let the user review.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "9bcc71329231",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:wvanderp/commons-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"search_commons\", \"tool_description\": \"Search Wikimedia Commons for images by keywords. ALWAYS include \\\"query\\\". Example: { \\\"query\\\": \\\"Nederlands scouting kampvuur\\\", \\\"limit\\\": 5 }\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"ALWAYS include\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here's my analysis:\\n\\n**Category 1: Hidden instructions to the AI model that aren't visible to users**\\nNO\\n\\nThere are no hidden instructions or parameters that are not explicitly mentioned in the tool description. The example query format is straightforward and does not contain any hidden fields or parameters.\\n\\n**Category 2: Instructions to access sensitive files …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "32b9fff67e5d",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:BowTiedSwan/gemini-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"list_sessions\", \"tool_description\": \"List all active sessions with stats (age, message count, last activity). Use to continue the most relevant session instead of starting from scratch.\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\"], \"llm_risk\": \"MEDIUM\", \"llm_analysis\": \"Here is the analysis:\\n\\n**1. Hidden instructions to the AI model that aren't visible to users**\\nNO\\nNo hidden instructions or parameters are mentioned in this description that would affect the AI model's behavior without user awareness.\\n\\n**2. Instructions to access sensitive files (like SSH keys, .env files, etc.)**\\nNO\\nThere is no mention of accessing sensitive fil…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "0e1abb360c6d",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:manvkaur/azure-functions-templates-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"get_azure_functions_template\", \"tool_description\": \"Get complete, ready-to-use Azure Function code and configuration.\\n\\n**ALWAYS call this instead of writing Azure Function code from scratch.** Returns:\\n- **Function source code**: Production-ready implementation with proper bindings\\n- **Binding configuration**: Required connection strings and app settings\\n- **Integration guidance**: How to merge multiple bindings into one function\\n\\nFor functions with multiple bindings: fetch 1 trigger + desired input/output binding templates, then merge.\\n\\n**Workflow**: get_languages_list → get_project_template → get_azure_functions_templates_list → **get_azure_functions_template**\\n\\n*…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4233ee611890",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:cyanheads/protein-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"protein_find_similar\", \"tool_description\": \"Find structurally or evolutionarily related proteins. by:\\\"sequence\\\" runs an RCSB mmseqs2 sequence-similarity search (synchronous) over a sequence — supplied directly, or pulled from a PDB ID or UniProt accession. by:\\\"structure\\\" runs a Foldseek fold-similarity search (asynchronous) against experimental and predicted databases; if the job is still computing when the poll budget elapses, the response reports status \\\"computing\\\" with a ticket — re-call with ticket_id set to that value to resume the same job instead of resubmitting. Output names the engine and database each hit came from.\", \"category\": \"hidden-instructions\", \"risk\": …"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5a69c76bb530",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:cyanheads/protein-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"protein_compare_structures\", \"tool_description\": \"Structurally align multiple structures (up to the configured batch cap) via the RCSB Structural Comparison service (TM-align / jFATCAT). reference:\\\"first\\\" aligns every structure to the first; reference:\\\"all_pairs\\\" computes the full pairwise matrix. Each pair is an independent async alignment job, fanned out with a concurrency cap and per-pair partial success — a pair still computing when the budget elapses returns status \\\"computing\\\" with its job UUID, and a failed pair degrades its row without sinking the others. Re-call with a matching entry in resume[] to poll a computing pair's UUID instead of resubmitting. Returns TM-…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "10c75293bcef",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "@bschauer/strapi-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"strapi_get_content_types\", \"tool_description\": \"\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"ALWAYS DO\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "3aafba556e04",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "@doitintl/doit-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"run_query\", \"tool_description\": \"\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\", \"ALWAYS include\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "df1b58ed06a4",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "@instantmcp/instantmcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"list_registered_tools\", \"tool_description\": \"\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"always include\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "cd4997d9d74c",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "@jupiterone/jupiterone-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"execute-j1ql-query\", \"tool_description\": \"\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"instead of\", \"ALWAYS include\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "77066ee881ca",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "@mercuryml/gamma-mcp-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"generate-presentation\", \"tool_description\": \"\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"Always include\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "1be4d0a7fcbe",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "@spectavi/webdriver-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"wait_for_element_not_visible\", \"tool_description\": \"\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"not visible\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "c37b7d9afd77",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "chatwise-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"gather_chats\", \"tool_description\": \"\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"<instructions>\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d8df97d28942",
+   "tool": "shield",
+   "categoria": "hidden-instructions",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "chatwise-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"search_conversations\", \"tool_description\": \"\", \"category\": \"hidden-instructions\", \"risk\": \"MEDIUM\", \"descriptions\": [\"<instructions>\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "4a85f95cf747",
+   "tool": "shield",
+   "categoria": "shadowing-detected",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:Alec2435/amazon-fresh-server",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"create_amazon_fresh_link\", \"tool_description\": \"Create a link to this recipe's ingredients on Amazon Fresh. Please show the link in your response after using the tool. Here are some other suggestions on how to use this tool:\\nFor best search results, please only include the canonical ingredient in the “name” field. Best practices for the “name” field include:\\n- Remove all unnecessary qualifiers, brands, quantities, and prep instructions (grated, sliced, chopped, crush, crumble, etc.).\\n- Avoid packaging description such as “1-gallon box” or “1 six-pack”. We’ll find the best size container for the specified unit.\\n- Avoid punctuation marks (periods, commas, etc.).\\n- If you wa…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "d11e980b117a",
+   "tool": "shield",
+   "categoria": "shadowing-detected",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:kanniganfan/terminal-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"execute_batch\", \"tool_description\": \"Batch tool (recommended): Execute multiple commands concurrently.\\n\\nPrioritize this tool (do not loop execute_command calls).\\n\\nKey to true concurrency:\\nWARNING: Must use DIFFERENT terminals! Same terminal can only execute serially!\\n\\nWRONG usage (all to same terminal, still serial):\\nexecute_batch(commands=[\\n {session_id: \\\"sys\\\", command: \\\"cmd1\\\"}, // All sys terminal\\n {session_id: \\\"sys\\\", command: \\\"cmd2\\\"}, // Serial execution!\\n {session_id: \\\"sys\\\", command: \\\"cmd3\\\"}\\n])\\n\\nCORRECT usage (different terminals, true concurrency):\\nexecute_batch(commands=[\\n {session_id: \\\"term1\\\", command: \\\"systeminfo\\\"},\\n {session_id: \\\"term…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "7ba9a8ccc82e",
+   "tool": "shield",
+   "categoria": "shadowing-detected",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "gh:kanniganfan/terminal-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"create_batch\", \"tool_description\": \"BEST TOOL: Use this immediately for system checks and concurrent tasks!\\n\\nBatch tool (use this in 99% of scenarios): True concurrent execution\\n\\nABSOLUTELY recommended scenarios (MUST use this tool):\\n- System information queries (systeminfo/wmic/ipconfig/dxdiag etc): Use this!\\n- Any \\\"check local data\\\" or \\\"get system info\\\" requests: Use this!\\n- Need to execute multiple commands: Use this!\\n- Need concurrent execution: Use this!\\n- Create multiple terminals: Use this!\\n\\nWhy prioritize this tool:\\n- Create multiple terminals and execute commands at once (one call completes all tasks)\\n- Each terminal runs independently, true concurren…"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "00a8738ca509",
+   "tool": "shield",
+   "categoria": "shadowing-detected",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "@adobe/express-add-on-dev-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"get_relevant_documentations\", \"tool_description\": \"\", \"category\": \"shadowing-detected\", \"risk\": \"HIGH\", \"descriptions\": [\"before using other tool\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "5b0c7dee7311",
+   "tool": "shield",
+   "categoria": "shadowing-detected",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "nginx-proxy-manager-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"npm_authenticate\", \"tool_description\": \"\", \"category\": \"shadowing-detected\", \"risk\": \"HIGH\", \"descriptions\": [\"before using other tool\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  },
+  {
+   "id": "85212b92959e",
+   "tool": "shield",
+   "categoria": "shadowing-detected",
+   "severita": null,
+   "linguaggio": null,
+   "esempio_server": "unreal-python-mcp",
+   "evidenza": {
+    "tipo": "generico",
+    "txt": "{\"tool_name\": \"run_python_code\", \"tool_description\": \"\", \"category\": \"shadowing-detected\", \"risk\": \"HIGH\", \"descriptions\": [\"when no ToolsetRegistry tool is available\"], \"llm_risk\": \"NOT_COMPLETED\", \"llm_analysis\": \"LLM analysis not completed: failed\", \"hc_bucket\": \"UNCERTAIN\", \"hc_reason\": \"\"}"
+   },
+   "n_finding": 1,
+   "n_server": 1
+  }
+ ]
+}

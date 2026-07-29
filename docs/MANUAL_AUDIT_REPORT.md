@@ -221,16 +221,16 @@ Verifica fetchando il valore concreto di `evidence`:
 
 | # | Server | File | Evidence | Verdetto |
 |---|--------|------|----------|:--------:|
-| 1 | `ChromeDevTools/chrome-devtools-mcp` | `tools/performance.ts:229` | `key=AIzaSyBn5gimNjhiEyA_euicSKko6IlD3HdgUfk` | **FP (FP)** — Google CrUX API key pubblica (documentata da Google come key di lettura non ristretta). |
+| 1 | `ChromeDevTools/chrome-devtools-mcp` | `tools/performance.ts:229` | `key=AIzaSy_REDACTED` | **FP (FP)** — Google CrUX API key pubblica (documentata da Google come key di lettura non ristretta). |
 | 2 | `istanadodan/mcp_py_exam` | `.env:1` | `GOOGLE_API_KEY=AIzaSyDy6v...` | **VP-C (VP-C)** — `.env` committato con Google API key reale. |
 | 3 | `istanadodan/mcp_py_exam` | `gemini_cli_mcp/.env` | stesso | **VP-C (VP-C)** |
 | 4 | `istanadodan/mcp_py_exam` | `openai-mcp/.env` | `OBSIDIAN_API_KEY="dff0f...868"` | **VP-C (VP-C)** |
 | 5 | `istanadodan/mcp_py_exam` | `python-mcp-server/.env` | stesso Google key | **VP-C (VP)** |
 | 6 | `snyk-labs/mcp-server-npm` | `index.js:60` | `Bearer ghp_A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0uV1wX2yZ3aB4c` | **VP-L (VP)** — repo dimostrativo di Snyk Labs, token finto formato corretto (V2 reproduce instructions documentate). Pattern reale ma valore fittizio. |
-| 7 | `reyer3/mcp-intranet-onbotgo` | `config.py:44` | `default="AIzaSyAXtP5xZXh3glObbvk6FHMbfe1o0_9dVwY"` | **VP-C (VP)** — Google API key in default Pydantic. |
-| 8 | `Garblesnarff/gemini-mcp-server` | `config.js:24` | `'AIzaSyD0AGPlaa8aV8NCFu5xVPMRLdGaamRDIvc'` | **VP-C (VP)** |
-| 9 | `Garblesnarff/gemini-mcp-server` | `config.js:25` | `'AIzaSyC8BW5mHihe4jV-hczXrvgNcPo_dMdtEas'` | **VP-C (VP)** |
-| 10 | `Garblesnarff/gemini-mcp-server` | `config.js:26` | `'AIzaSyD6Ki3ZtL19-Km9y8EQcywZvHJLDiRDyNk'` | **VP-C (VP)** |
+| 7 | `reyer3/mcp-intranet-onbotgo` | `config.py:44` | `default="AIzaSy_REDACTED"` | **VP-C (VP)** — Google API key in default Pydantic. |
+| 8 | `Garblesnarff/gemini-mcp-server` | `config.js:24` | `'AIzaSy_REDACTED'` | **VP-C (VP)** |
+| 9 | `Garblesnarff/gemini-mcp-server` | `config.js:25` | `'AIzaSy_REDACTED'` | **VP-C (VP)** |
+| 10 | `Garblesnarff/gemini-mcp-server` | `config.js:26` | `'AIzaSy_REDACTED'` | **VP-C (VP)** |
 
 **Aggregato top 10**: 8 VP-C, 1 VP-L, 1 FP → 80% VP-C, 10% FP.
 

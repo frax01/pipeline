@@ -1,194 +1,195 @@
-# Pipeline — Analisi di sicurezza di server MCP
+# Pipeline — Security Analysis of MCP Servers
 
-Pipeline distribuita per l'analisi di sicurezza di **69.104 server MCP (Model
-Context Protocol)** raccolti da GitHub (60.205) e npm/NPX (8.899). L'analisi è
-condotta con **7 strumenti** eseguiti in parallelo su **9 VM**, seguita da un
-processo di triage e validazione che riduce milioni di finding grezzi a un
-insieme di **veri positivi (VP)** azionabili.
+Distributed pipeline for the security analysis of **69,104 MCP (Model Context
+Protocol) servers** collected from GitHub (60,205) and npm/NPX (8,899). The
+analysis is carried out with **7 tools** running in parallel on **9 VMs**,
+followed by a triage and validation process that reduces millions of raw
+findings to a set of actionable **true positives (TPs)**.
 
-Questo repository contiene il **codice** della pipeline (raccolta del dataset,
-esecuzione, wrapper dei tool, post-processing, aggregazione) e la
-**documentazione/risultati** in forma leggibile. I dataset grezzi e gli output
-JSON pesanti (decine di GB) sono archiviati separatamente — vedere [§ Dati](#dati).
+This repository contains the pipeline **code** (dataset collection, execution,
+tool wrappers, post-processing, aggregation) and the
+**documentation/results** in readable form. Raw datasets and heavy JSON outputs
+(tens of GB) are archived separately — see [§ Data](#data).
 
-## Pipeline end-to-end
+## End-to-end pipeline
 
 ```
-web_crawler/        raccolta degli URL dei server MCP da 17 directory pubbliche
+web_crawler/        collection of MCP server URLs from 17 public directories
       │
       ▼
-hashAnalysis/       deduplica per hash del contenuto  ──►  dataset unico (69.104)
+hashAnalysis/       dedup by content hash  ──►  unified dataset (69,104)
       │
       ▼
-deploy.py / launch.py    esecuzione dei 7 tool su 9 VM (uno per VM)
-      │                  (frameworks/ esegue+parsa, npm_runner/ builda i repo)
+deploy.py / launch.py    execution of the 7 tools on 9 VMs (one per VM)
+      │                  (frameworks/ runs+parses, npm_runner/ builds the repos)
       ▼
-<tool>/merge_stats.py    merge degli shard delle 9 VM, per ogni tool
+<tool>/merge_stats.py    merge of the shards from the 9 VMs, for each tool
       │
       ▼
-<tool>/postprocessing/   triage a 3 stadi (filtro regex → classificatori → merge)
+<tool>/postprocessing/   3-stage triage (regex filter → classifiers → merge)
       │
       ▼
-cross_framework/    consenso dei VP tra i 7 tool (Tier 1/2/3)
+cross_framework/    TP consensus across the 7 tools (Tier 1/2/3)
       │
       ▼
-docs/               validazione manuale + report finali
+docs/               manual validation + final reports
 ```
 
-## Documentazione
+## Documentation
 
-| Documento | Contenuto |
+| Document | Content |
 |-----------|-----------|
-| [docs/METHODOLOGY.md](docs/METHODOLOGY.md) | Architettura, i 7 tool, workflow di triage a 3 stadi, consenso cross-framework |
-| [docs/THREAT_ANALYSIS_REPORT.md](docs/THREAT_ANALYSIS_REPORT.md) | Report completo dei risultati per categoria di minaccia |
-| [docs/MANUAL_AUDIT_REPORT.md](docs/MANUAL_AUDIT_REPORT.md) | Sintesi della validazione manuale dei VP contro il codice sorgente reale |
-| [docs/MANUAL.md](docs/MANUAL.md) | Tabelle dettagliate di verifica manuale per categoria (verdetto per ogni server) |
-| [docs/MANUAL_CHECKLIST.md](docs/MANUAL_CHECKLIST.md) | Checklist dei controlli manuali eseguiti per ciascuna delle 17 categorie |
-| [docs/STATE_OF_THE_ART.md](docs/STATE_OF_THE_ART.md) | Stato dell'arte: paper accademici analizzati per la tesi |
-| [web_crawler/README.md](web_crawler/README.md) | Dettaglio degli scraper di raccolta del dataset (17 sorgenti) |
+| [docs/METHODOLOGY.md](docs/METHODOLOGY.md) | Architecture, the 7 tools, 3-stage triage workflow, cross-framework consensus |
+| [docs/THREAT_ANALYSIS_REPORT.md](docs/THREAT_ANALYSIS_REPORT.md) | Full report of the results by threat category |
+| [docs/MANUAL_AUDIT_REPORT.md](docs/MANUAL_AUDIT_REPORT.md) | Summary of the manual validation of the TPs against the real source code |
+| [docs/MANUAL.md](docs/MANUAL.md) | Detailed manual verification tables by category (verdict for each server) |
+| [docs/MANUAL_CHECKLIST.md](docs/MANUAL_CHECKLIST.md) | Checklist of the manual checks performed for each of the 17 categories |
+| [docs/STATE_OF_THE_ART.md](docs/STATE_OF_THE_ART.md) | State of the art: academic papers reviewed for the thesis |
+| [web_crawler/README.md](web_crawler/README.md) | Details of the dataset collection scrapers (17 sources) |
 
-## Struttura del repository
+## Repository structure
 
 ```
 pipeline/
-├── README.md                     questo file
-├── deploy.py                     orchestratore VM (deploy / launch / pull / merge / status / tail)
-├── launch.py                     launcher locale dei tool (start / resume / status / kill)
-├── pull_partial_results.sh       aggregazione risultati parziali dalle VM
-├── 0.0. All servers unified (69104).xlsx   dataset unico di input
-├── requirements.txt              dipendenze Python
-├── package.json / tsconfig.json  progetto Node/TS per l'helper MCP SDK (frameworks/listTools.ts)
+├── README.md                     this file
+├── deploy.py                     VM orchestrator (deploy / launch / pull / merge / status / tail)
+├── launch.py                     local tool launcher (start / resume / status / kill)
+├── pull_partial_results.sh       aggregation of partial results from the VMs
+├── 0.0. All servers unified (69104).xlsx   unified input dataset
+├── requirements.txt              Python dependencies
+├── package.json / tsconfig.json  Node/TS project for the MCP SDK helper (frameworks/listTools.ts)
 │
-├── web_crawler/                  raccolta URL dei server MCP (17 scraper + run_all.py) — vedi suo README
-├── hashAnalysis/                 deduplica del dataset per hash del contenuto
-│   ├── hash_analyzer.py             clona ogni repo e calcola l'hash del contenuto
-│   ├── remove_true_duplicates.py    rimozione dei duplicati esatti
-│   ├── remove_from_excel.py         pulizia delle righe nel dataset .xlsx
-│   ├── clean_slashes_and_git.py     normalizzazione degli URL
-│   └── vm/                          varianti per l'esecuzione su VM
+├── web_crawler/                  collection of MCP server URLs (17 scrapers + run_all.py) — see its README
+├── hashAnalysis/                 dataset dedup by content hash
+│   ├── hash_analyzer.py             clones each repo and computes the content hash
+│   ├── remove_true_duplicates.py    removal of exact duplicates
+│   ├── remove_from_excel.py         cleanup of the rows in the .xlsx dataset
+│   ├── clean_slashes_and_git.py     URL normalization
+│   └── vm/                          variants for execution on the VMs
 │
-├── functions/                    utility condivise
-│   ├── config.py                    path, comandi, VM, mappe delle categorie (config centrale)
-│   ├── helper.py                    esecuzione processi e helper generici
-│   ├── buildConfig.py               clone repo, build della config MCP, ensure bun/npm
-│   ├── hash.py / hashCache.py       hashing del contenuto (per la deduplica)
-│   ├── stats.py                     aggregazione delle statistiche per tool
-│   └── recapFramework.py            riepilogo per server
+├── functions/                    shared utilities
+│   ├── config.py                    paths, commands, VMs, category maps (central config)
+│   ├── helper.py                    process execution and generic helpers
+│   ├── buildConfig.py               repo clone, MCP config build, ensure bun/npm
+│   ├── hash.py / hashCache.py       content hashing (for the dedup)
+│   ├── stats.py                     aggregation of the statistics per tool
+│   └── recapFramework.py            per-server recap
 │
-├── frameworks/                   wrapper di esecuzione/parsing dei tool
+├── frameworks/                   tool execution/parsing wrappers
 │   ├── mcpGuard.py mcpWatch.py mcpScan.py mcpShield.py
 │   ├── mcpSecurityScan.py mcpCheck.py fuzzing.py llmAnalysis.py
-│   └── listTools.ts                 (TS) si connette a un server MCP via stdio e ne elenca i tool
+│   └── listTools.ts                 (TS) connects to an MCP server over stdio and lists its tools
 │
-├── npm_runner/                   build dei repo prima dell'analisi (`npm run build`)
-│   ├── npm_build.sh                 versione bash (Linux/VM)
-│   └── npm_build.ps1                versione PowerShell (Windows)
+├── npm_runner/                   build of the repos before the analysis (`npm run build`)
+│   ├── npm_build.sh                 bash version (Linux/VM)
+│   └── npm_build.ps1                PowerShell version (Windows)
 │
-├── monitorVM/                    monitor.py — dashboard a terminale dello stato dei tool sulle 9 VM
+├── monitorVM/                    monitor.py — terminal dashboard of the tool status on the 9 VMs
 │
-├── mcp_guard/             un tool — STESSA struttura per tutti i 7:
-│   ├── run_<tool>.py               esecuzione (locale o su VM)
-│   ├── merge_stats.py              merge degli shard delle 9 VM
-│   ├── commands.md  howDoesItWork.md   doc del tool (+ changes.md dove presente)
-│   └── postprocessing/             triage dei risultati:
-│       ├── stage1_filter.py            Stage 1 — filtro regex
+├── mcp_guard/             one tool — SAME structure for all 7:
+│   ├── run_<tool>.py               execution (local or on VM)
+│   ├── merge_stats.py              merge of the shards from the 9 VMs
+│   ├── commands.md  howDoesItWork.md   tool docs (+ changes.md where present)
+│   └── postprocessing/             results triage:
+│       ├── stage1_filter.py            Stage 1 — regex filter
 │       ├── stage2_pipeline.py          Stage 2A/2B + merge
-│       ├── classifiers/                classificatori Stage 2B (per categoria)
-│       └── special/                    script per scopi specifici
-├── mcp_watch/  fuzzing/  mcp_scan/  mcp_shield/  mcp_security_scan/  mcp_check/   (idem)
+│       ├── classifiers/                Stage 2B classifiers (per category)
+│       └── special/                    scripts for specific purposes
+├── mcp_watch/  fuzzing/  mcp_scan/  mcp_shield/  mcp_security_scan/  mcp_check/   (same)
 │
-├── cross_framework/      aggregazione dei VP tra i 7 tool (consenso Tier 1/2/3)
-│   ├── cross_framework_consensus.py    consenso principale
-│   ├── _aggregate_threats.py           aggregazione per categoria di minaccia
-│   ├── _verify_credleak.py             verifica mirata dei credential leak
-│   ├── _find_missing.py                ricerca dei finding mancanti tra i tool
-│   └── check_pt_fuzz.py                cross-check path-traversal vs fuzzing
+├── cross_framework/      aggregation of the TPs across the 7 tools (Tier 1/2/3 consensus)
+│   ├── cross_framework_consensus.py    main consensus
+│   ├── _aggregate_threats.py           aggregation by threat category
+│   ├── _verify_credleak.py             targeted verification of the credential leaks
+│   ├── _find_missing.py                search for findings missing from the other tools
+│   └── check_pt_fuzz.py                path-traversal vs fuzzing cross-check
 │
-└── docs/                 documentazione e report (vedi tabella sopra)
+└── docs/                 documentation and reports (see table above)
 ```
 
-> Il prefisso numerico `NN_` degli scraper in `web_crawler/` segue la numerazione
-> delle fonti nella tesi. Gli scraper sono **17** ma le fonti **18**: `17_npm.py`
-> raccoglie dal registry npm sia i server **npm** sia i **npx-runnable** (sono
-> pacchetti npm, stesso scrape → fonti 17 e 18). `npm_runner/` **non** è una fonte
-> di raccolta: è lo step di build (`npm run build`) usato in fase di analisi.
+> The numeric prefix `NN_` of the scrapers in `web_crawler/` follows the
+> numbering of the sources in the thesis. The scrapers are **17** but the sources
+> are **18**: `17_npm.py` collects from the npm registry both the **npm** servers
+> and the **npx-runnable** ones (they are npm packages, same scrape → sources 17
+> and 18). `npm_runner/` is **not** a collection source: it is the build step
+> (`npm run build`) used during the analysis phase.
 
-## I 7 strumenti
+## The 7 tools
 
-| Tool | VM | Cosa rileva |
+| Tool | VM | What it detects |
 |------|----|-------------|
-| **mcp-guard** | VM1 | Path traversal, command/SQL/code injection, SSRF, credenziali (SAST + fuzzing) |
-| **mcp-watch** | VM2 | Credenziali hardcoded, data exfiltration, protocol violation, tool poisoning |
-| **tool_fuzzing** | VM3 | Crash/DoS, error disclosure, injection eseguita (input malformati) |
-| **mcp-scan** | VM4 | Prompt injection, untrusted content, capability distruttive |
-| **mcp-shield** | VM5 | Hidden instructions / tool shadowing (analisi semantica LLM) |
-| **mcp-security-scan** | VM6 | Capability pericolose, rug pull, accesso a file sensibili |
-| **mcp-check** | VM7 | Conformance al protocollo MCP |
+| **mcp-guard** | VM1 | Path traversal, command/SQL/code injection, SSRF, credentials (SAST + fuzzing) |
+| **mcp-watch** | VM2 | Hardcoded credentials, data exfiltration, protocol violations, tool poisoning |
+| **tool_fuzzing** | VM3 | Crash/DoS, error disclosure, executed injection (malformed input) |
+| **mcp-scan** | VM4 | Prompt injection, untrusted content, destructive capabilities |
+| **mcp-shield** | VM5 | Hidden instructions / tool shadowing (LLM semantic analysis) |
+| **mcp-security-scan** | VM6 | Dangerous capabilities, rug pull, access to sensitive files |
+| **mcp-check** | VM7 | MCP protocol conformance |
 
-Le VM8–VM9 ospitano ruoli aggiuntivi di aggregazione/validazione (`scanorama`,
-`validator`) — vedi la mappa delle VM nel docstring di [`deploy.py`](deploy.py).
+VM8–VM9 host additional aggregation/validation roles (`scanorama`,
+`validator`) — see the VM map in the docstring of [`deploy.py`](deploy.py).
 
-## Avvio rapido
+## Quick start
 
 ```bash
 pip install -r requirements.txt
-npm install                 # solo se serve l'helper TypeScript frameworks/listTools.ts (MCP SDK)
-# I 7 framework di scanning si installano a parte (vedi i commands.md dei tool).
+npm install                 # only if the TypeScript helper frameworks/listTools.ts (MCP SDK) is needed
+# The 7 scanning frameworks are installed separately (see the commands.md of each tool).
 ```
 
-Ogni entry point supporta `--help`. **Non** esiste un singolo comando che esegua
-l'intera analisi (69.104 server × 7 tool): è distribuita su 9 VM per progetto.
-Percorso consigliato:
+Every entry point supports `--help`. There is **no** single command that runs
+the whole analysis (69,104 servers × 7 tools): it is distributed over 9 VMs per
+project. Recommended path:
 
 ```bash
-# 0. (opzionale) ricostruire il dataset dalle directory MCP pubbliche
-python web_crawler/run_all.py             # --list, --only, --skip ; vedi web_crawler/README.md
-#    poi deduplica per ottenere il dataset unico (es.):
+# 0. (optional) rebuild the dataset from the public MCP directories
+python web_crawler/run_all.py             # --list, --only, --skip ; see web_crawler/README.md
+#    then dedup to obtain the unified dataset (e.g.):
 python hashAnalysis/hash_analyzer.py
 python hashAnalysis/remove_true_duplicates.py
 
-# 1. provare UN tool in locale su pochi server (funziona ovunque, Windows incluso)
-python launch.py scan --start 0           # oppure: python mcp_scan/run_scan.py --start 0 --end 20
+# 1. try ONE tool locally on a few servers (works anywhere, Windows included)
+python launch.py scan --start 0           # or: python mcp_scan/run_scan.py --start 0 --end 20
 
-# 2. esecuzione distribuita completa, orchestrata da deploy.py
+# 2. full distributed execution, orchestrated by deploy.py
 python deploy.py --help                   # deploy / launch / pull / merge / status / tail
-python deploy.py --status                 # stato dei tool su tutte le VM
-#    i comandi esatti per ogni tool sono in <tool>/commands.md
+python deploy.py --status                 # tool status on all the VMs
+#    the exact commands for each tool are in <tool>/commands.md
 
-# 3. monitorare l'avanzamento sulle VM
+# 3. monitor the progress on the VMs
 python monitorVM/monitor.py
 
-# 4. post-processing / triage a 3 stadi (per ogni tool)
+# 4. post-processing / 3-stage triage (for each tool)
 python mcp_guard/postprocessing/stage1_filter.py
 python mcp_guard/postprocessing/stage2_pipeline.py --category all --merge
 
-# 5. consenso cross-tool dei VP
+# 5. cross-tool consensus of the TPs
 python cross_framework/cross_framework_consensus.py
 ```
 
-I parametri di configurazione (path del dataset, directory dei framework,
-comandi, indirizzi delle VM) sono centralizzati in
+The configuration parameters (dataset path, framework directories, commands, VM
+addresses) are centralized in
 [`functions/config.py`](functions/config.py).
 
-## Dati
+## Data
 
-Per mantenere il repository leggero e pulito, **non** sono versionati:
-i pull grezzi dalle VM, gli output JSON degli scanner, gli `.xlsx` per-sorgente
-del `web_crawler/` e gli intermedi del post-processing (decine di GB). Restano
-invece il **codice** che li produce e i **report** leggibili. Per ri-eseguire gli
-`stage2_pipeline.py` in `*/postprocessing/` è necessario ripristinare i dati
-grezzi.
+To keep the repository light and clean, the following are **not** versioned:
+the raw pulls from the VMs, the scanner JSON outputs, the per-source `.xlsx`
+files of `web_crawler/` and the post-processing intermediates (tens of GB). What
+remains is the **code** that produces them and the readable **reports**. To
+re-run the `stage2_pipeline.py` scripts in `*/postprocessing/` the raw data must
+be restored.
 
-> Nota sui dati pubblicati: i valori delle credenziali di terze parti emerse come
-> *findings* dell'analisi sono **mascherati** (placeholder) nei report e nel
-> dataset `.xlsx` versionati.
+> Note on the published data: the values of the third-party credentials that
+> emerged as *findings* of the analysis are **masked** (placeholders) in the
+> versioned reports and in the `.xlsx` dataset.
 
-## Risultati in sintesi
+## Results in brief
 
-L'analisi produce, dopo il triage a 3 stadi e la validazione manuale, l'insieme
-dei veri positivi per categoria di minaccia (SQL injection, credential leak,
-SSRF, prompt injection, command/code injection, dangerous capabilities, untrusted
-content, ecc.). Il dettaglio completo è in
-[docs/THREAT_ANALYSIS_REPORT.md](docs/THREAT_ANALYSIS_REPORT.md), la validazione
-manuale di sintesi in [docs/MANUAL_AUDIT_REPORT.md](docs/MANUAL_AUDIT_REPORT.md) e
-le tabelle dettagliate per categoria in [docs/MANUAL.md](docs/MANUAL.md).
+After the 3-stage triage and the manual validation, the analysis produces the
+set of true positives by threat category (SQL injection, credential leak, SSRF,
+prompt injection, command/code injection, dangerous capabilities, untrusted
+content, etc.). The full detail is in
+[docs/THREAT_ANALYSIS_REPORT.md](docs/THREAT_ANALYSIS_REPORT.md), the summary of
+the manual validation in [docs/MANUAL_AUDIT_REPORT.md](docs/MANUAL_AUDIT_REPORT.md)
+and the detailed per-category tables in [docs/MANUAL.md](docs/MANUAL.md).

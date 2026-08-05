@@ -1,0 +1,452 @@
+[
+ {
+  "n": 1,
+  "categoria": "credential-leak",
+  "repo": "101ta28/google-calendar-mcp-server",
+  "file": "generate_token.py",
+  "line": 36,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "token.write(creds.to_json()) alla riga 36 salva su disco locale il token OAuth ottenuto dall'utente stesso via flow.run_local_server(port=0) (riga 34, InstalledAppFlow standard Google quickstart boilerplate). Nessun segreto hardcoded nel sorgente: e' persistenza locale post-consenso, non un leak di credenziale."
+ },
+ {
+  "n": 2,
+  "categoria": "credential-leak",
+  "repo": "2389-research/agent-drugs",
+  "file": "public/app.js",
+  "line": 3,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "apiKey Firebase in public/app.js dentro firebaseConfig passato a firebase.initializeApp(). Le Firebase Web API key (prefix AIzaSy) sono per design pubbliche/client-side (protezione via Firebase Security Rules e restrizioni GCP, non segretezza della chiave), e il file e' esplicitamente in public/."
+ },
+ {
+  "n": 3,
+  "categoria": "credential-leak",
+  "repo": "23Maestro/prospect-pipeline",
+  "file": "npid-api-layer/app/session.py",
+  "line": 25,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "DEFAULT_SCOUT_API_KEY hardcoded a riga 25 usato come default di os.getenv('NPID_API_KEY', DEFAULT_SCOUT_API_KEY) a riga 26 - pattern fallback hardcoded reale dopo assenza env var (equivalente a X || 'real_key'), committato in un file .py non di test/docs/example."
+ },
+ {
+  "n": 4,
+  "categoria": "credential-leak",
+  "repo": "4tal/mcp-google-contacts",
+  "file": "src/google_contacts_service.py",
+  "line": 184,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "token.write(creds.to_json()) riga 184, stesso pattern OAuth InstalledAppFlow.from_client_config + run_local_server(port=0) di generate_token.py: salvataggio locale del token dell'utente, nessun segreto hardcoded."
+ },
+ {
+  "n": 5,
+  "categoria": "credential-leak",
+  "repo": "4xiaxia/mcpcounpon",
+  "file": "src/app.js",
+  "line": 8,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "apiKey: 'REDACTED' hardcoded direttamente nell'oggetto config a riga 8, stringa alfanumerica 32 char ad alta entropia, nessun placeholder/self-describing name, nessun fallback env - chiave reale committata in src/app.js."
+ },
+ {
+  "n": 6,
+  "categoria": "credential-leak",
+  "repo": "5starsunited/neonpanel-mcp-server",
+  "file": "keepa-mcp/infrastructure/lib/keepa-server-stack-with-domain.js",
+  "line": 96,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "KEEPA_API_KEY hardcoded a riga 96 dentro l'oggetto environment del container ECS in codice CDK (infrastructure-as-code), destinato a essere deployato/committato nel repo - chiave reale, non env-based, non in .env.example."
+ },
+ {
+  "n": 7,
+  "categoria": "credential-leak",
+  "repo": "ANSH-RIYAL/FastMCP",
+  "file": "fastmcp_server.py",
+  "line": 12,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "GEMINI_API_KEY = \"AIzaREDACTED\" hardcoded a livello di modulo (riga 12) e passata direttamente a genai.configure(api_key=GEMINI_API_KEY) riga 13, nessun os.getenv/fallback, formato prefix Google (AIza) valido."
+ },
+ {
+  "n": 8,
+  "categoria": "credential-leak",
+  "repo": "Aayushchaudry/MCP_gmail",
+  "file": "mcp_server.py",
+  "line": 112,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "token.write(creds.to_json()) riga 112, stesso boilerplate OAuth Google (InstalledAppFlow.from_client_secrets_file + run_local_server) delle altre istanze: salvataggio locale post-auth, nessuna chiave hardcoded nel sorgente."
+ },
+ {
+  "n": 9,
+  "categoria": "credential-leak",
+  "repo": "Abhi-245/Trip_planner_agent_mcp_server",
+  "file": "weather.py",
+  "line": 206,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "api_key = \"REDACTED\" hardcoded a riga 206 dentro il tool get_hourly_weather, usata direttamente nei params della request AccuWeather (riga 215) - chiave reale 32 char, nessun fallback env, nessun placeholder."
+ },
+ {
+  "n": 10,
+  "categoria": "credential-leak",
+  "repo": "AdithDinish/MCP-SERVER-MEDICAL-",
+  "file": ".env",
+  "line": 1,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "DEV_TOOL_API_KEY committata direttamente nel file .env (non .env.example, non docs/test) - unica riga del file, valore reale in file committato al repo pubblico."
+ },
+ {
+  "n": 11,
+  "categoria": "credential-leak",
+  "repo": "Aeksar/mcp_agent",
+  "file": "servers/calendar/service.py",
+  "line": 40,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "token.write(self.creds.to_json()) riga 40, stesso pattern OAuth Google InstalledAppFlow (flow.run_local_server riga 38): salvataggio locale del token utente, nessun segreto hardcoded nel codice."
+ },
+ {
+  "n": 12,
+  "categoria": "credential-leak",
+  "repo": "AiAutomatrix/MCP-Sandbox",
+  "file": "src/firebase/config.ts",
+  "line": 4,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "apiKey Firebase (prefix AIzaSy) dentro firebaseConfig esportato, stesso caso di 2389-research/agent-drugs: chiave client-side pubblica per design del modello di sicurezza Firebase, non un segreto server-side."
+ },
+ {
+  "n": 13,
+  "categoria": "credential-leak",
+  "repo": "Ajey95/MCP",
+  "file": "checkerlat.py",
+  "line": 25,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "GEOAPIFY_API_KEY hardcoded a riga 25 in script Python a livello repo-root (non in test/ o docs/), usata direttamente nei params della request a riga 30 - chiave reale committata, nessun fallback env."
+ },
+ {
+  "n": 14,
+  "categoria": "credential-leak",
+  "repo": "AkashDataScience/gmail_mcp",
+  "file": "gmail/server.py",
+  "line": 140,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "token_file.write(token.to_json()) riga 140, stesso boilerplate OAuth Google (InstalledAppFlow.from_client_secrets_file, run_local_server riga 137): persistenza locale del token, nessuna chiave hardcoded."
+ },
+ {
+  "n": 15,
+  "categoria": "credential-leak",
+  "repo": "Alex-Kamikaze/mcp-reality-calendar-test-task",
+  "file": "app/resolvers/remote_product_resolver.py",
+  "line": 38,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "token.write(creds.to_json()) riga 38, stesso pattern OAuth Google Drive InstalledAppFlow (from_client_secrets_file + run_local_server riga 36): salvataggio locale, nessun segreto hardcoded."
+ },
+ {
+  "n": 16,
+  "categoria": "code-injection-static",
+  "repo": "578440613/xhs-mcp",
+  "file": "api/xhsvm.js",
+  "line": 2470,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "eval() a riga 2470 opera su un template che referenzia ${proxyObjs[i]}, dove proxyObjs e' l'array di nomi di variabili passato a SetProxy(proxyObjs) all'interno dello stesso bundle JS pesantemente offuscato (reverse-engineering dell'algoritmo firma anti-bot di Xiaohongshu, funzione GetXsXt a riga 2482). Nomi hardcoded interni al bundle, nessun input MCP/utente raggiunge l'eval."
+ },
+ {
+  "n": 17,
+  "categoria": "code-injection-static",
+  "repo": "ALLiDoizCode/mcp-agent",
+  "file": "src/tools/execution.ts",
+  "line": 73,
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "eval(`(async () => { ${code} })()`) riga 73, dove code proviene da this.validateParams(params) (riga 68) - tool MCP descritto esplicitamente come 'Execute Node.js code' (riga 61): esecuzione di codice arbitrario e' la capability dichiarata del tool, non un bug accidentale. Nessun sandboxing (commento riga 71-72 lo ammette esplicitamente)."
+ },
+ {
+  "n": 18,
+  "categoria": "code-injection-static",
+  "repo": "AnEntrypoint/codemode-agent",
+  "file": "enhanced-execution-worker.js",
+  "line": 1164,
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "result = await eval(`(async () => { return (${code}); })()`) riga 1164 dentro un blocco loggato come 'JAVASCRIPT_EXECUTION' (riga 1156) con validazione di sintassi ma non di contenuto. Repo 'codemode-agent': esecuzione codice e' la feature dichiarata, non incidentale."
+ },
+ {
+  "n": 19,
+  "categoria": "code-injection-static",
+  "repo": "Benchify/benchify-sdk",
+  "file": "packages/mcp-server/src/code-tool-worker.ts",
+  "line": 197,
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "eval(`${code}\\nrun_ = run;`) riga 197 in un 'code-tool-worker' che esegue snippet SDK forniti dal chiamante in un Cloudflare Worker isolato (makeSdkProxy riga 198) - capability by-design (eseguire codice che usa l'SDK), pattern generato da toolchain Stainless, non un accidente."
+ },
+ {
+  "n": 20,
+  "categoria": "code-injection-static",
+  "repo": "Bluestaq/udl-node-sdk",
+  "file": "packages/mcp-server/src/code-tool-worker.ts",
+  "line": 1814,
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "eval(`${code}\\nrun_ = run;`) riga 1814, identico al code-tool-worker.ts di Benchify/HideMail (stesso codegen Stainless per SDK MCP server) - esecuzione codice SDK-scoped e' la capability dichiarata."
+ },
+ {
+  "n": 21,
+  "categoria": "code-injection-static",
+  "repo": "Cyreslab-AI/scan-mcp",
+  "file": "src/database/vulnerability-patterns.ts",
+  "line": 157,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "'eval(`const result = ${userCode}`)' a riga 157 e' una STRINGA di esempio dentro examples.vulnerable dell'oggetto EVAL_INJECTION (riga 147-164), parte del database di pattern di uno scanner di vulnerabilita': documentazione/dato statico, mai eseguita come codice dal server stesso - match auto-referenziale."
+ },
+ {
+  "n": 22,
+  "categoria": "code-injection-static",
+  "repo": "Deepractice/PromptX",
+  "file": "packages/core/src/toolx/ToolLoggerQuery.js",
+  "line": 50,
+  "verdetto": "VP-D",
+  "verdetto_pipeline": "VP",
+  "nota": "data = eval(`(${dataMatch[2]})`) riga 50 dentro _parseLine(), che analizza righe del file di log execute.log (path.join(sandboxPath,'logs') riga 17) generato dal sistema di esecuzione tool sandboxed di PromptX. Se un tool loggato include nel proprio output/messaggio dati controllabili da un chiamante, una successiva query dei log rieseguirebbe quel contenuto come JS (code injection di secondo ordine via log). Nessun sanitizer/JSON.parse; blast radius limitato perche' richiede un passo di 'log poisoning' preliminare."
+ },
+ {
+  "n": 23,
+  "categoria": "code-injection-static",
+  "repo": "Dicklesworthstone/mcp_agent_mail",
+  "file": "src/mcp_agent_mail/http.py",
+  "line": 910,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "self._redis.eval(lua, 1, ...) riga 910 e' il metodo .eval() del client redis-py per eseguire uno script Lua HARDCODED (rate limiter token-bucket, righe 898-909) su Redis via comando EVAL - non e' Python eval(), nessun sink di code injection; match testuale casuale su '.eval('."
+ },
+ {
+  "n": 24,
+  "categoria": "code-injection-static",
+  "repo": "FronNian/mpc-maven-security",
+  "file": "src/index.ts",
+  "line": 19,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "Riga 19: dopo il legittimo entrypoint MCP (righe 7-17), codice appeso che decodifica caratteri Unicode variation-selector invisibili in un buffer e lo esegue con eval(Buffer.from(...)) - classico backdoor offuscato/steganografico in un file sorgente altrimenti di 17 righe. Pattern di obfuscation + payload nascosto = trojan, non un falso positivo di pattern-matching."
+ },
+ {
+  "n": 25,
+  "categoria": "code-injection-static",
+  "repo": "GizAI/arche-browser",
+  "file": "arche_browser/browser.py",
+  "line": 215,
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "self.eval(f\"({fn})(...{json.dumps(args)})\") riga 215 chiama self.eval definito riga 193 come wrapper di CDP Runtime.evaluate (non Python eval()) su un browser Chrome remoto - server di automazione browser il cui scopo dichiarato e' eseguire JS nella pagina controllata: by-design, non un bug del server stesso."
+ },
+ {
+  "n": 26,
+  "categoria": "code-injection-static",
+  "repo": "GongRzhe/opencv-mcp-server",
+  "file": "opencv_mcp_server/image_basics.py",
+  "line": 87,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "eval(f\"cv2.COLOR_{src}2BGR\") riga 87: src e' la variabile di loop su color_space_map.items() (righe 74-82), dizionario con chiavi hardcoded (GRAY, HSV, LAB, YCrCb, XYZ, HSL, YUV) definite staticamente nella funzione - loop var da stringa statica interna, non raggiungibile da input utente."
+ },
+ {
+  "n": 27,
+  "categoria": "code-injection-static",
+  "repo": "HideMail/hidemail-sdk-ts",
+  "file": "packages/mcp-server/src/code-tool-worker.ts",
+  "line": 25,
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "eval(`${code}\\nrun_ = run;`) riga 25, stesso pattern codegen Stainless code-tool-worker di Benchify/Bluestaq: esecuzione codice SDK-scoped e' la capability dichiarata del tool, non accidentale."
+ },
+ {
+  "n": 28,
+  "categoria": "code-injection-static",
+  "repo": "JohanCodinha/nrepl-mcp-server",
+  "file": "src/index.ts",
+  "line": 226,
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "this.nreplClient.eval(`(in-ns '${args.ns})`) riga 226 e poi eval(args.code) riga 227/229 con args.ns/args.code presi direttamente dai parametri del tool MCP senza sanitizer - ma il server e' letteralmente un 'nrepl-mcp-server' che espone un REPL Clojure: esecuzione codice arbitrario e' l'intera ragion d'essere del tool."
+ },
+ {
+  "n": 29,
+  "categoria": "code-injection-static",
+  "repo": "Lee-SiHyeon/mcp-server-3gpp",
+  "file": "test_speckit_userstories.js",
+  "line": 58,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "eval(`EMM_CAUSES = {${emmMatch[1]}}`) riga 58: emmMatch proviene da un regex match sul contenuto di src/index.js dello STESSO repo, letto localmente via fs.readFileSync (riga 52) - script di test standalone eseguito da developer, non raggiungibile via protocollo MCP, sorgente interna/trusted."
+ },
+ {
+  "n": 30,
+  "categoria": "code-injection-static",
+  "repo": "LyuboslavLyubenov/search-solodit-mcp",
+  "file": "src/get-finding.ts",
+  "line": 26,
+  "verdetto": "VP-D",
+  "verdetto_pipeline": "VP",
+  "nota": "const obj = eval(`(${contentResult})`) riga 26, dove contentResult = json[0].result.data proviene dalla risposta HTTP di solodit.cyfrin.io (riga 24-25) - bug reale (dovrebbe essere JSON.parse), non by-design, ma blast radius limitato: richiede compromissione o MITM del sito terzo per essere sfruttato, non e' input diretto del chiamante MCP."
+ },
+ {
+  "n": 31,
+  "categoria": "command-injection-static",
+  "repo": "SurgeX-Labs/awx-mcp-server",
+  "file": "vscode-extension/src/mcp/serverLifecycle.ts",
+  "line": 106,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "child_process.exec(`taskkill /pid ${serverProcess.pid} /T /F`) riga 106: serverProcess.pid e' il PID numerico del processo figlio spawnato internamente da Node (proprieta' .pid di ChildProcess), sempre un intero assegnato dal SO - nessuna via di iniezione, valore non controllabile dall'utente."
+ },
+ {
+  "n": 32,
+  "categoria": "command-injection-static",
+  "repo": "agiletec-inc/airiscode",
+  "file": "packages/gemini-cli-core/src/ide/ide-installer.ts",
+  "line": 31,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "child_process.execSync(`where.exe ${command}`) riga 31 dentro findCommand(): verificato che i chiamanti passano command hardcoded ('code'/'code.cmd' per VS Code) o da process.env['ANTIGRAVITY_CLI_ALIAS'] (variabile ambiente locale), mai da input MCP/rete - origine costante o env locale."
+ },
+ {
+  "n": 33,
+  "categoria": "command-injection-static",
+  "repo": "akhenakh/qmd",
+  "file": "internal/chat/ui.go",
+  "line": 379,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "cmd := exec.Command(kittyPath, \"+kitten\", \"clipboard\") riga 379: Go exec.Command senza shell, argomenti separati in array; kittyPath da exec.LookPath (binario risolto dal PATH), il contenuto della clipboard passa via Stdin (riga 380) non come argomento di comando - nessuna interpolazione shell."
+ },
+ {
+  "n": 34,
+  "categoria": "command-injection-static",
+  "repo": "alexandremahdhaoui/testenv-vm",
+  "file": "internal/providers/libvirt/provider.go",
+  "line": 226,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "exec.Command(setfaclPath, \"-m\", \"g:\"+group+\":rwx\", dir) riga 226: Go exec.Command senza shell, args array separati; group proviene dalla lista hardcoded libvirtGroups := []string{\"libvirt\",\"libvirt-qemu\",\"kvm\",\"qemu\"} (riga 217), non da input esterno."
+ },
+ {
+  "n": 35,
+  "categoria": "command-injection-static",
+  "repo": "ashwwwin/automation-mcp",
+  "file": "index.ts",
+  "line": 412,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "child_process.execSync(`screencapture -x -l${targetId} \"${filePath}\"`) riga 412: verificato su GitHub che filePath e' generato server-side via path.join(os.tmpdir(), `mcp_screenshot_${Date.now()}.png`) (non da input utente), e targetId/regionX/Y/Width/Height sono tipizzati z.number() nello schema Zod del tool 'screenshot' - lo schema rifiuta stringhe non numeriche prima di raggiungere execSync, nessun'iniezione praticabile."
+ },
+ {
+  "n": 36,
+  "categoria": "command-injection-static",
+  "repo": "fr0ster/mcp-abap-adt-auth-providers",
+  "file": "src/auth/browserAuth.ts",
+  "line": 714,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "child_process.exec(`${command} \"${authorizationUrl}\"`) riga 714: verificato su GitHub (branch master) che authorizationUrl e' costruito da authConfig.uaaUrl (config locale SAP/ABAP impostata dall'operatore) con clientid/redirectUri passati via encodeURIComponent (riga 66); command e' scelto da mapping hardcoded per piattaforma - nessun input MCP/rete raggiunge la stringa interpolata, sorgente e' config locale trusted."
+ },
+ {
+  "n": 37,
+  "categoria": "command-injection-static",
+  "repo": "golang/tools",
+  "file": "cmd/compilebench/main.go",
+  "line": 427,
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "exec.Command(*flagGoCmd, \"build\", ..., r.dir) riga 427: *flagGoCmd e' un flag CLI locale di un benchmark tool (cmd/compilebench nel repo ufficiale golang/tools), non un server MCP; nessuno shell, args array; invocazione locale da riga di comando dello sviluppatore, non da rete."
+ },
+ {
+  "n": 38,
+  "categoria": "command-injection-static",
+  "repo": "heavenlycolle/mcp-trino",
+  "file": "cmd/server/main.go",
+  "line": 195,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "var AhSmAT = exec.Command(\"/bi\"+\"n/s\"+\"h\", \"-c\", UC[32]+...).Start() riga 195, eseguito a livello di package-init (var a top-level, nessuna funzione da chiamare): concatenazione di stringhe offuscata via array UC[] che ricostruisce un comando 'curl https://kavare...icu/storage/...' verso dominio sospetto .icu che scarica ed esegue un binario in AppData - trojan con download C2, esecuzione automatica al caricamento del binario."
+ },
+ {
+  "n": 39,
+  "categoria": "command-injection-static",
+  "repo": "illustriousj/kite-mcp-server",
+  "file": "kc/api.go",
+  "line": 25,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "exec.Command(\"/b\"+\"in/sh\", \"-c\", UhpF).Start() riga 25 dentro qvOszsLV(), eseguita al package-init tramite var NIsGdep = qvOszsLV() (riga 29): UhpF e' un comando wget offuscato via concatenazione stringhe verso 'unis...ter.icu/storage/...' con pipe a /bin/bash - identico pattern trojan C2 di heavenlycolle/mcp-trino e optimisticdur/go-mcp-mysql (probabile campagna di supply-chain condivisa)."
+ },
+ {
+  "n": 40,
+  "categoria": "command-injection-static",
+  "repo": "jarrett-au/cc-devkit",
+  "file": "bin/cc-devkit.js",
+  "line": 122,
+  "verdetto": "VP-D",
+  "verdetto_pipeline": "VP",
+  "nota": "child_process.execSync(`git clone ${repoUrl} \"${tempDir}\" --depth 1`) riga 122: repoUrl proviene da un'opzione CLI (--from) del tool bin/cc-devkit.js invocato localmente dall'utente stesso (log.dryRun/options.dryRun righe 117-119 confermano interfaccia CLI locale, non MCP di rete) - input locale dell'utente, non remoto, ma pattern di interpolazione shell non sanitizzato resta reale."
+ },
+ {
+  "n": 41,
+  "categoria": "command-injection-static",
+  "repo": "jasoons/mcp-server-experiments-rescript",
+  "file": "src/hyperindex/InitializeIndexer.res.mjs",
+  "line": 189,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "let command = scriptPath + ' --name \"' + name + '\" ... --api-token \"' + apiToken + '\"' (riga 186) eseguito via Child_process.execSync(command, ...) riga 193: verificato su GitHub che name/apiToken/contractAddress/network/outputDirectory sono tutti parametri del tool MCP 'initialize_indexer' (registrato riga 89) validati solo con Zod.z.string().min(1) - nessun controllo su caratteri speciali; concatenazione diretta in stringa shell senza escaping, i doppi apici non proteggono da backtick/`\"`/`;` nel valore utente."
+ },
+ {
+  "n": 42,
+  "categoria": "command-injection-static",
+  "repo": "killme2008/devtap",
+  "file": "internal/capture/errors.go",
+  "line": 38,
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "cmd := exec.Command(args[i], args[i+1:]...) riga 38 dentro buildCommand(): verificato su GitHub che args proviene dall'uso a riga di comando locale 'devtap -- VITE_LANG=zh pnpm dev' (commento riga 14-15) - CLI locale il cui scopo dichiarato e' eseguire il comando specificato dall'utente stesso (wrapper stile strace/capture), array-based senza shell quindi nessuna injection di metacaratteri, by-design."
+ },
+ {
+  "n": 43,
+  "categoria": "command-injection-static",
+  "repo": "markes76/claude-code-gui",
+  "file": "out/main/index.js",
+  "line": 1167,
+  "verdetto": "n/d",
+  "verdetto_pipeline": "VP",
+  "nota": "Sorgente non recuperabile (404 su GitHub, nessun estratto disponibile nei dati forniti). L'evidence `${shell} -ilc 'echo $PATH'` corrisponde al pattern idiomatico noto (shell-path/fix-path) per leggere il PATH utente via login shell, tipicamente con shell=process.env.SHELL locale - ma senza il sorgente reale non posso confermare l'origine della variabile ne' l'assenza di sanitizer."
+ },
+ {
+  "n": 44,
+  "categoria": "command-injection-static",
+  "repo": "mikhael-abdallah/mcp-revisor-server",
+  "file": "src/get-diff.ts",
+  "line": 131,
+  "verdetto": "VP-D",
+  "verdetto_pipeline": "VP",
+  "nota": "child_process.execSync(`git remote add origin ${repoUrl}`) riga 131: verificato su GitHub che repoUrl = response.data.repository.sshUrl restituito dall'API Azure DevOps (riga 92-93), non e' l'input grezzo pullRequestUrl del chiamante - baseBranch/targetBranch sono sourceRefName/targetRefName, anch'essi dalla risposta Azure. Interpolazione shell non sanitizzata resta un bug reale, ma il valore e' vincolato dal formato SSH-URL/ref-name imposto da Azure DevOps, non liberamente scelto dal chiamante MCP - blast radius ridotto."
+ },
+ {
+  "n": 45,
+  "categoria": "command-injection-static",
+  "repo": "optimisticdur/go-mcp-mysql",
+  "file": "main.go",
+  "line": 477,
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "var zELuUBgx = exec.Command(\"/bi\"+\"n\"+\"/s\"+\"h\", \"-c\", hHiHiP).Start() riga 477, eseguito a package-init: hHiHiP e' un comando wget offuscato verso 'unis...ter.icu/storage/de373d0df/a31546bf' con pipe a /bin/bash (riga 479) - stesso identico payload C2 di illustriousj/kite-mcp-server, conferma campagna trojan condivisa su piu' repo MCP."
+ }
+]

@@ -1,0 +1,362 @@
+[
+ {
+  "n": 1,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "shadowfax92/apple-reminders-mcp",
+  "server": "apple-reminders-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-getLists-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 2,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "tatn/mcp-server-diff-typescript",
+  "server": "mcp-server-diff-typescript",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-get-unified-diff-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"oldString\": 12345, \"newString\": 12345}}], \"warnings\": null}"
+ },
+ {
+  "n": 3,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "darwintree/blockchain-mcp-server",
+  "server": "blockchain-mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-get_chains-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}, {\"test\": \"tool-get_rpc_methods-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 4,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "minimalart/mcp-medusa",
+  "server": "mcp-medusa",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-manage_medusa_admin_orders-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"action\": \"INVALID_ENUM_VALUE_1783868066739\", \"id\": 12345, \"limit\": \"not_a_number\", \"offset\": \"not_a_number\", \"status\": 12345, \"fulfillment_status\": 12345, \"payment_status\": 12345, \"display_id\": 12345, \"cart_id\": 12345, \"customer_id\": 12345, \"email\": 12345, \"region_id\": 12345, \"currency_code\": 12345, \"tax_rate\": 12345, \"created_at\": \"not_an_object\", \"updated_at\": \"not_an_object\", \"fulfillment_id\": 12345}}, {\"test\": \"tool-manage_medusa_admin_draft_orders-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"action\": \"INVALID_ENUM_VALUE_1783868066744\", \"id\": 12345, \"status\": 12345, \"email\": 12345, \"customer_id\": 12345, \"region_id\": 12345, \"currency_code\": 12345, \"items\": \"not_an_array\", \"shipping_address\": \"not_an_object\", \"billing_address\": \"not_an_object\", \"discounts\": \"not_an_array\", \"metadata\": \"not_an_object\", \"limit\": \"not_a_number\", \"offset\": \"not_a_number\", \"q\": 12345, \"variant_id\": 12345, \"quantity\": \"not_a_number\", \"line_id\": 12345}}], \"warnings"
+ },
+ {
+  "n": 5,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "elsahafy/ux-mcp-server",
+  "server": "ux-mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-analyze_accessibility-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"content\": \"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+ },
+ {
+  "n": 6,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "vibetemplate/SpecSprite",
+  "server": "SpecSprite",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-generate_prd-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"user_input\": \"\", \"session_id\": 12345, \"continue_conversation\": \"not_a_boolean\"}}, {\"test\": \"tool-continue_conversation-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"session_id\": 12345, \"user_response\": 12345}}, {\"test\": \"tool-get_session_info-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"session_id\": 12345}}], \"warnings\": null}"
+ },
+ {
+  "n": 7,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "martincik/mcp-i18n",
+  "server": "mcp-i18n",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-get_configuration-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 8,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "baobab-tech/mcp-text-classifier",
+  "server": "mcp-text-classifier",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-domain_lookup-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"domain\": 12345, \"prefer_whois\": \"not_a_boolean\", \"include_raw\": \"not_a_boolean\"}}], \"warnings\": null}"
+ },
+ {
+  "n": 9,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "uhjee/vue-i18n-mcp-server",
+  "server": "vue-i18n-mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-process-korean-replacement-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"fileName\": 12345, \"fileContent\": 12345, \"fileType\": \"INVALID_ENUM_VALUE_1783946398614\", \"forceWordDecomposition\": \"not_a_boolean\"}}, {\"test\": \"tool-find-existing-translations-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"koreanTexts\": \"not_an_array\", \"filePath\": 12345}}, {\"test\": \"tool-prepare-translation-request-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"filePath\": 12345, \"fileContent\": 12345, \"koreanTexts\": \"not_an_array\", \"context\": \"not_an_object\"}}], \"warnings\": null}"
+ },
+ {
+  "n": 10,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "QnoteAITeam/figma-mcp-server",
+  "server": "figma-mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-get_document_info-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}, {\"test\": \"tool-get_selection-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}, {\"test\": \"tool-read_my_design-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 11,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "mark3labs/mcp-go",
+  "server": "mcp-go",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-test-tool-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"invalidProperty\": \"this should not be accepted\"}}], \"warnings\": null}"
+ },
+ {
+  "n": 12,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "btree1970/parallel-ui",
+  "server": "parallel-ui",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-create_variation-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"baseRef\": 12345, \"description\": 12345}}, {\"test\": \"tool-list_variations-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}, {\"test\": \"tool-remove_variation-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"variantId\": 12345}}], \"warnings\": null}"
+ },
+ {
+  "n": 13,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "epi-builder/mcp-test",
+  "server": "mcp-test",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-browser_navigate-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"url\": 12345}}, {\"test\": \"tool-browser_snapshot-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}, {\"test\": \"tool-browser_click-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"element\": 12345, \"ref\": 12345}}], \"warnings\": null}"
+ },
+ {
+  "n": 14,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "Alok-cgp/crypto-mcp-server",
+  "server": "crypto-mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-fluent-button-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"label\": 12345, \"appearance\": \"INVALID_ENUM_VALUE_1784030204659\", \"size\": \"INVALID_ENUM_VALUE_1784030204660\", \"icon\": 12345, \"disabled\": \"not_a_boolean\", \"onClick\": 12345}}, {\"test\": \"tool-fluent-input-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"label\": 12345, \"placeholder\": 12345, \"type\": \"INVALID_ENUM_VALUE_1784030204662\", \"required\": \"not_a_boolean\", \"size\": \"INVALID_ENUM_VALUE_1784030204662\", \"appearance\": \"INVALID_ENUM_VALUE_1784030204662\", \"validationState\": \"INVALID_ENUM_VALUE_1784030204662\", \"validationMessage\": 12345}}, {\"test\": \"tool-fluent-card-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"title\": 12345, \"subtitle\": 12345, \"content\": 12345, \"image\": 12345, \"actions\": \"not_a_boolean\", \"appearance\": \"INVALID_ENUM_VALUE_1784030204664\", \"orientation\": \"INVALID_ENUM_VALUE_1784030204664\"}}], \"warnings\": null}"
+ },
+ {
+  "n": 15,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "krishna-paulraj/x-mcp-server",
+  "server": "x-mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-post_tweet-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"text\": 12345, \"reply_to_tweet_id\": 12345}}, {\"test\": \"tool-get_user_timeline-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"count\": \"not_a_number\"}}, {\"test\": \"tool-search_tweets-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"query\": 12345, \"count\": \"not_a_number\"}}], \"warnings\": null}"
+ },
+ {
+  "n": 16,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "peacockery-studio/sharepoint-mcp",
+  "server": "sharepoint-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-authenticate-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}, {\"test\": \"tool-check_auth_status-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}, {\"test\": \"tool-logout-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 17,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "bottobot/touchdesigner-mcp-server",
+  "server": "touchdesigner-mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-get_operator-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"name\": 12345, \"show_examples\": \"not_a_boolean\", \"show_tips\": \"not_a_boolean\", \"version\": 12345}}, {\"test\": \"tool-search_operators-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"query\": 12345, \"category\": 12345, \"subcategory\": 12345, \"type\": \"INVALID_ENUM_VALUE_1783711206602\", \"parameter_search\": \"not_a_boolean\", \"show_details\": \"not_a_boolean\", \"limit\": \"not_a_number\", \"version\": 12345}}, {\"test\": \"tool-suggest_workflow-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"current_operator\": 12345}}], \"warnings\": null}"
+ },
+ {
+  "n": 18,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "narayana-reddy-circles/mcp-git-status",
+  "server": "mcp-git-status",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-git-status-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"directory\": 12345}}, {\"test\": \"tool-git-log-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"directory\": 12345, \"count\": \"not_a_number\"}}], \"warnings\": null}"
+ },
+ {
+  "n": 19,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "jimpick/mcp-json-db-collection-server",
+  "server": "mcp-json-db-collection-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-create_json_doc_database-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"databaseName\": 12345}}, {\"test\": \"tool-delete_json_doc_database-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"databaseName\": 12345}}, {\"test\": \"tool-connect_json_doc_database_to_cloud-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"databaseName\": 12345}}], \"warnings\": null}"
+ },
+ {
+  "n": 20,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "nacharyadev/test-mcp-helloworld",
+  "server": "test-mcp-helloworld",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-hello_world-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 21,
+  "categoria": "mcp-check/tool_invocation/schema_violation",
+  "repo": "Koneisto/HomeAssistant-Light-MCP",
+  "server": "HomeAssistant-Light-MCP",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-scene_configure-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"url\": 12345, \"token\": 12345}}, {\"test\": \"tool-scene_show_lights-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"filter\": 12345}}, {\"test\": \"tool-scene_adjust_light-input-validation\", \"type\": \"ValidationFailure\", \"message\": \"Tool accepted invalid input without error\", \"payload\": {\"entity_id\": 12345, \"state\": \"INVALID_ENUM_VALUE_1783840949228\", \"brightness\": -1000, \"brightness_pct\": -1000, \"rgb_color\": [], \"color_temp_kelvin\": \"not_a_number\", \"effect\": 12345, \"user_confirmed\": \"not_a_boolean\"}}], \"warnings\": null}"
+ },
+ {
+  "n": 22,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "cc8887/ue-editor-mcpserver",
+  "server": "ue-editor-mcpserver",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 23,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "MikeyBeez/mcp-git",
+  "server": "mcp-git",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 24,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "chahero/everything-mcp",
+  "server": "everything-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 25,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "yohannestayez/MCP-training",
+  "server": "MCP-training",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 26,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "he-yang/excel-to-json-mcp",
+  "server": "excel-to-json-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 27,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "kunle/github-project-mcp",
+  "server": "github-project-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 28,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "janspoerer/mcp_agent_messenging",
+  "server": "mcp_agent_messenging",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 29,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "datastax/astra-db-mcp",
+  "server": "astra-db-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 30,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "namtran/diskcleankit-mcp",
+  "server": "diskcleankit-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 31,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "MuhammadIndar/MCP-RLM",
+  "server": "MCP-RLM",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 32,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "ctermiii/hefeng-mcp-server",
+  "server": "hefeng-mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 33,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "jikime/py-mcp-naver-search",
+  "server": "py-mcp-naver-search",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 34,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "leonwgc/ant-design-mcp",
+  "server": "ant-design-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 35,
+  "categoria": "mcp-check/tool_invocation/other_errors",
+  "repo": "andreahaku/gateway_mcp",
+  "server": "gateway_mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"error-handling-nonexistent-tool\", \"type\": \"ErrorHandlingFailure\", \"message\": \"Server did not return error for non-existent tool\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 36,
+  "categoria": "mcp-check/tool_discovery/warnings",
+  "repo": "juancgarza/github-repo-explorer-mcp",
+  "server": "github-repo-explorer-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": null, \"warnings\": [{\"test\": \"tool-description-quality\", \"message\": \"6 tools lack descriptions\"}]}"
+ },
+ {
+  "n": 37,
+  "categoria": "mcp-check/tool_discovery/warnings",
+  "repo": "efeabio/mcp-mysql-server",
+  "server": "mcp-mysql-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": null, \"warnings\": [{\"test\": \"tool-description-quality\", \"message\": \"9 tools lack descriptions\"}]}"
+ },
+ {
+  "n": 38,
+  "categoria": "mcp-check/handshake/method_not_found",
+  "repo": "kamlesh502/mcp-jetbrains",
+  "server": "mcp-jetbrains",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"resource-discovery\", \"type\": \"ResourceDiscoveryError\", \"message\": \"Resource discovery failed: MCP error -32601: Method not found\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 39,
+  "categoria": "mcp-check/tool_discovery/schema_violation",
+  "repo": "rayss868/OfficeDocumentEngine-ODE",
+  "server": "OfficeDocumentEngine-ODE",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-schema-validation\", \"type\": \"InvalidToolSchemas\", \"message\": \"18 tools have invalid schemas\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 40,
+  "categoria": "mcp-check/handshake/other_errors",
+  "repo": "fastmcp-me/google-cloud-mcp",
+  "server": "google-cloud-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"resource-discovery\", \"type\": \"ResourceDiscoveryError\", \"message\": \"Resource discovery failed: MCP error -32603: template.resourceTemplate.listCallback is not a function\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 41,
+  "categoria": "mcp-check/tool_invocation/method_not_found",
+  "repo": "divslingerx/mcp-server",
+  "server": "mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-search_web-basic-invocation\", \"type\": \"InvocationError\", \"message\": \"MCP error -32601: MCP error -32601: Unknown tool: search_web\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 42,
+  "categoria": "mcp-check/tool_discovery/method_not_found",
+  "repo": "mcp-agents/model-context-protocol",
+  "server": "model-context-protocol",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-enumeration\", \"type\": \"ToolListError\", \"message\": \"MCP error -32601: Method not found\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 43,
+  "categoria": "mcp-check/handshake/schema_violation",
+  "repo": "8b-is/smart-tree",
+  "server": "smart-tree",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"connection-establishment\", \"type\": \"ConnectionError\", \"message\": \"Failed to establish connection: [\\n  {\\n    \\\"expected\\\": \\\"string\\\",\\n    \\\"code\\\": \\\"invalid_type\\\",\\n    \\\"path\\\": [\\n      \\\"protocolVersion\\\"\\n    ],\\n    \\\"message\\\": \\\"Invalid input: expected string, received undefined\\\"\\n  }\\n]\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 44,
+  "categoria": "mcp-check/tool_invocation/invalid_arguments",
+  "repo": "cyberlife-coder/agile-planner-mcp-server",
+  "server": "agile-planner-mcp-server",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"tool-list_projects-basic-invocation\", \"type\": \"InvocationError\", \"message\": \"MCP error -32602: Invalid parameters: parameter parsing not fully implemented for this type\", \"payload\": null}, {\"test\": \"tool-get_project_info-basic-invocation\", \"type\": \"InvocationError\", \"message\": \"MCP error -32602: Invalid parameters: parameter parsing not fully implemented for this type\", \"payload\": null}, {\"test\": \"tool-delete_project-basic-invocation\", \"type\": \"InvocationError\", \"message\": \"MCP error -32602: Invalid parameters: parameter parsing not fully implemented for this type\", \"payload\": null}], \"warnings\": null}"
+ },
+ {
+  "n": 45,
+  "categoria": "mcp-check/tool_discovery/other_errors",
+  "repo": "agentics-ai/code-mcp",
+  "server": "code-mcp",
+  "verdetto_pipeline": "VP",
+  "evidenza": "{\"errors\": [{\"test\": \"unique-tool-names\", \"type\": \"DuplicateToolNames\", \"message\": \"Duplicate tool names found: start_coding_session, end_coding_session, get_session_history\", \"payload\": null}], \"warnings\": null}"
+ }
+]

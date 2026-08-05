@@ -1,0 +1,596 @@
+[
+ {
+  "categoria": "sql-injection",
+  "repo": "AIxMath/Acorn-MCP",
+  "file": "acorn_mcp/database.py",
+  "line": 143,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in acorn_mcp/database.py at line 143. Code: cursor = conn.execute(f\"SELECT COUNT(*) FROM items{where_clause}\", params)",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 589,
+   "estratto": "  131|             params = []\n  132| \n  133|             if query:\n  134|                 conditions.append(\"(name LIKE ? OR source LIKE ?)\")\n  135|                 term = f\"%{query.strip()}%\"\n  136|                 params.extend([term, term])\n  137| \n  138|             if kind:\n  139|                 conditions.append(\"kind = ?\")\n  140|                 params.append(kind)\n  141| \n  142|             where_clause = \" WHERE \" + \" AND \".join(conditions) if conditions else \"\"\n  143|             cursor = conn.execute(f\"SELECT COUNT(*) FROM items{where_clause}\", params)\n  144|             (count,) = cursor.fetchone()\n  145|             return count\n  146|         finally:\n  147|             conn.close()\n  148| \n  149|     return await _run_in_executor(_count)\n  150| \n  151| \n  152| async def get_items(limit: int, offset: int = 0, query: Optional[str] = None, kind: Optional[str] = None) -> List[Dict]:\n  153|     \"\"\"Return a slice of items ordered by recency.\"\"\"\n  154|     if limit < 1:\n  155|         raise ValueError(\"Limit must be at least 1\")"
+  },
+  "branch": "main",
+  "n": 9
+ },
+ {
+  "categoria": "sql-injection",
+  "repo": "AKSHITHAPRIYADARSHINI/MCP-Enabled-Intelligent-Query-Agent-with-LangChain-LangGraph-and-Streamlit",
+  "file": "src/mcp_postgres_tool.py",
+  "line": 80,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/mcp_postgres_tool.py at line 80. Code: cursor.execute(f\"\"\"",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 132,
+   "estratto": "   68|             cursor = conn.cursor()\n   69|             \n   70|             # Get table names\n   71|             cursor.execute(\"\"\"\n   72|                 SELECT table_name \n   73|                 FROM information_schema.tables \n   74|                 WHERE table_schema = 'public'\n   75|             \"\"\")\n   76|             tables = [row[0] for row in cursor.fetchall()]\n   77|             \n   78|             schema_info = {}\n   79|             for table in tables:\n   80|                 cursor.execute(f\"\"\"\n   81|                     SELECT column_name, data_type \n   82|                     FROM information_schema.columns \n   83|                     WHERE table_name = '{table}'\n   84|                 \"\"\")\n   85|                 columns = {row[0]: row[1] for row in cursor.fetchall()}\n   86|                 schema_info[table] = columns\n   87|             \n   88|             cursor.close()\n   89|             conn.close()\n   90|             return schema_info\n   91|         except Exception as e:\n   92|             return {\"error\": str(e)}"
+  },
+  "http": 404,
+  "branch": "master",
+  "n": 10
+ },
+ {
+  "categoria": "sql-injection",
+  "repo": "AbhishekPandey91/MCP_Server_Client",
+  "file": "sql_server.py",
+  "line": 172,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in sql_server.py at line 172. Code: cursor.execute(f\"PRAGMA table_info({table_name})\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 419,
+   "estratto": "  160|     \n  161|     Args:\n  162|         table_name: Name of the table to describe\n  163|     \n  164|     Returns:\n  165|         Dictionary containing column definitions with names and types\n  166|     \n  167|     Example:\n  168|         describe_table(\"customers\")\n  169|     \"\"\"\n  170|     try:\n  171|         cursor = conn.cursor()\n  172|         cursor.execute(f\"PRAGMA table_info({table_name})\")\n  173|         columns = cursor.fetchall()\n  174|         \n  175|         if not columns:\n  176|             return {\"error\": f\"Table '{table_name}' does not exist\"}\n  177|         \n  178|         schema = []\n  179|         for col in columns:\n  180|             schema.append({\n  181|                 \"column_id\": col[0],\n  182|                 \"name\": col[1],\n  183|                 \"type\": col[2],\n  184|                 \"not_null\": bool(col[3]),"
+  },
+  "branch": "main",
+  "n": 11
+ },
+ {
+  "categoria": "sql-injection",
+  "repo": "AbhitejT/movie-mcp-assistant",
+  "file": "movie-mcp-system/src/core/core/rag_postgres_server.py",
+  "line": 86,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in movie-mcp-system/src/core/core/rag_postgres_server.py at line 86. Code: cursor.execute(f\"\"\"",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 430,
+   "estratto": "   74|         return self.ollama_client\n   75|     \n   76|     def initialize_vector_extension(self):\n   77|         \"\"\"Initialize pgvector extension and create vector tables.\"\"\"\n   78|         logger.info(\"Initializing vector extension and tables...\")\n   79|         \n   80|         with self.get_connection() as conn:\n   81|             with conn.cursor() as cursor:\n   82|                 # Enable pgvector extension\n   83|                 cursor.execute(\"CREATE EXTENSION IF NOT EXISTS vector;\")\n   84|                 \n   85|                 # Create table for movie plot embeddings\n   86|                 cursor.execute(f\"\"\"\n   87|                     CREATE TABLE IF NOT EXISTS movie_plot_embeddings (\n   88|                         id SERIAL PRIMARY KEY,\n   89|                         imdb_id VARCHAR(20) NOT NULL,\n   90|                         title TEXT NOT NULL,\n   91|                         plot_synopsis TEXT NOT NULL,\n   92|                         tags TEXT,\n   93|                         split VARCHAR(10),\n   94|                         synopsis_source VARCHAR(50),\n   95|                         embedding vector({self.embedding_dimension}),\n   96|                         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,\n   97|                         UNIQUE(imdb_id)\n   98|                     );"
+  },
+  "branch": "main",
+  "n": 12
+ },
+ {
+  "categoria": "sql-injection",
+  "repo": "AdityaShekhawat16/MCP_SERVER_LOCAL_FILES_ACCESS",
+  "file": "mcp_Server.py",
+  "line": 167,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in mcp_Server.py at line 167. Code: cursor.execute(f\"PRAGMA table_info({t_name});\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 210,
+   "estratto": "  155|         \n  156|         cursor.execute(\"SELECT name FROM sqlite_master WHERE type='table';\")\n  157|         tables = cursor.fetchall()\n  158|         \n  159|         if not tables:\n  160|             conn.close()\n  161|             return \"Database is empty.\"\n  162|             \n  163|         report = f\"Schema for {filename}:\\n\"\n  164|         for table in tables:\n  165|             t_name = table[0]\n  166|             report += f\"\\nTable: {t_name}\\n\" + \"-\" * 20 + \"\\n\"\n  167|             cursor.execute(f\"PRAGMA table_info({t_name});\")\n  168|             for col in cursor.fetchall():\n  169|                 report += f\"  - {col[1]} ({col[2]})\\n\"\n  170|                 \n  171|         conn.close()\n  172|         return report\n  173|     except Exception as e:\n  174|         return f\"Error: {str(e)}\"\n  175| \n  176| @mcp.tool()\n  177| def run_sql_query(filename: str, query: str) -> str:\n  178|     \"\"\"\n  179|     Executes a SQL query (SELECT, INSERT, UPDATE, DELETE, CREATE TABLE)."
+  },
+  "branch": "main",
+  "n": 13
+ },
+ {
+  "categoria": "sql-injection",
+  "repo": "AdityaT-19NA/mcp-data-analysis",
+  "file": "src/mcp_data_analysis/tools/database_tools.py",
+  "line": 71,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/mcp_data_analysis/tools/database_tools.py at line 71. Code: count_result = conn.execute(text(f\"SELECT COUNT(*) as count FROM `{table}`\"))",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 546,
+   "estratto": "   59|         try:\n   60|             engine = self._get_mysql_engine()\n   61|             \n   62|             # Get table information\n   63|             with engine.connect() as conn:\n   64|                 # Get all tables\n   65|                 result = conn.execute(text(\"SHOW TABLES\"))\n   66|                 tables = [row[0] for row in result]\n   67|                 \n   68|                 table_info = []\n   69|                 for table in tables:\n   70|                     # Get row count\n   71|                     count_result = conn.execute(text(f\"SELECT COUNT(*) as count FROM `{table}`\"))\n   72|                     row_count = count_result.fetchone()[0]\n   73|                     \n   74|                     # Get columns\n   75|                     col_result = conn.execute(text(f\"SHOW COLUMNS FROM `{table}`\"))\n   76|                     columns = []\n   77|                     for col in col_result:\n   78|                         columns.append({\n   79|                             \"name\": col[0],\n   80|                             \"type\": col[1],\n   81|                             \"nullable\": col[2] == \"YES\",\n   82|                             \"key\": col[3],\n   83|                             \"default\": col[4]"
+  },
+  "branch": "main",
+  "n": 14
+ },
+ {
+  "categoria": "sql-injection",
+  "repo": "AgentWong/iac-memory-mcp-server",
+  "file": "src/iac_memory_mcp_server/shared.py",
+  "line": 80,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/iac_memory_mcp_server/shared.py at line 80. Code: conn.execute(f\"DELETE FROM {table_name}\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 135,
+   "estratto": "   68|                 raise RuntimeError(\"Failed to enable foreign keys\")\n   69| \n   70|             # Clear all tables in a single transaction\n   71|             conn.execute(\"BEGIN IMMEDIATE\")\n   72|             try:\n   73|                 # Get all table names dynamically\n   74|                 tables = conn.execute(\n   75|                     \"SELECT name FROM sqlite_master WHERE type='table' AND name NOT LIKE 'sqlite_%'\"\n   76|                 ).fetchall()\n   77| \n   78|                 # Clear each table\n   79|                 for (table_name,) in tables:\n   80|                     conn.execute(f\"DELETE FROM {table_name}\")\n   81|                 conn.commit()\n   82|             except:\n   83|                 conn.rollback()\n   84|                 raise\n   85| \n   86|             # Verify all tables exist\n   87|             tables = conn.execute(\n   88|                 \"SELECT name FROM sqlite_master WHERE type='table'\"\n   89|             ).fetchall()\n   90|             table_names = [t[0] for t in tables]\n   91| \n   92|             # Check for required tables"
+  },
+  "branch": "main",
+  "n": 15
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "23Maestro/prospect-pipeline",
+  "file": "src/lib/head-scout-schedules.ts",
+  "line": 558,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/lib/head-scout-schedules.ts at line 558. Code: const response = await apiFetch(`/calendar/booked-meeting/details?${params.toString()}`);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 798,
+   "estratto": "  546|   eventId: string;\n  547|   eventDate: string;\n  548| }): Promise<BookedMeetingDetailsResponse> {\n  549|   logInfo('BOOKED_MEETING_DETAILS', 'request', 'start', {\n  550|     eventId: args.eventId,\n  551|     eventDate: args.eventDate,\n  552|   });\n  553| \n  554|   const params = new URLSearchParams({\n  555|     event_id: args.eventId,\n  556|     event_date: args.eventDate,\n  557|   });\n  558|   const response = await apiFetch(`/calendar/booked-meeting/details?${params.toString()}`);\n  559| \n  560|   if (!response.ok) {\n  561|     const errorText = await response.text();\n  562|     const message = errorText.slice(0, 200) || `Booked meeting details HTTP ${response.status}`;\n  563|     logFailure('BOOKED_MEETING_DETAILS', 'request', message, {\n  564|       eventId: args.eventId,\n  565|       eventDate: args.eventDate,\n  566|       statusCode: response.status,\n  567|       responsePreview: errorText.slice(0, 120),\n  568|     });\n  569|     throw new Error(message);\n  570|   }"
+  },
+  "branch": "main",
+  "n": 1
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "AaronBakerDev/weave",
+  "file": "apps/chatgpt-ui/app/a/[id]/route.ts",
+  "line": 13,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in apps/chatgpt-ui/app/a/[id]/route.ts at line 13. Code: const res = await fetch(`${API_BASE}/v1/artifacts/${params.id}/download`, { headers, cache: 'no-store' });",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 25,
+   "estratto": "    1| import type { NextRequest } from 'next/server';\n    2| \n    3| const API_BASE = process.env.PYTHON_API_BASE || 'http://localhost:8000';\n    4| const DEBUG_USER = process.env.UI_DEBUG_USER;\n    5| const isDev = process.env.NODE_ENV !== 'production';\n    6| \n    7| export async function GET(req: NextRequest, { params }: { params: { id: string } }) {\n    8|   const auth = req.headers.get('authorization');\n    9|   const headers: Record<string, string> = {};\n   10|   if (auth) headers['authorization'] = auth;\n   11|   if (isDev && DEBUG_USER) headers['X-Debug-User'] = DEBUG_USER;\n   12| \n   13|   const res = await fetch(`${API_BASE}/v1/artifacts/${params.id}/download`, { headers, cache: 'no-store' });\n   14|   if (!res.ok) {\n   15|     const body = await res.text();\n   16|     return new Response(body, { status: res.status, headers: { 'content-type': res.headers.get('content-type') || 'application/json' } });\n   17|   }\n   18|   const data = await res.json();\n   19|   const url = data?.url;\n   20|   if (!url || typeof url !== 'string') {\n   21|     return new Response(JSON.stringify({ error: 'No URL in artifact response' }), { status: 502 });\n   22|   }\n   23|   return Response.redirect(url, 302);\n   24| }\n   25| "
+  },
+  "http": 404,
+  "branch": "master",
+  "n": 2
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "AbdulwahidHusein/LogflareMCP",
+  "file": "src/logflare.ts",
+  "line": 18,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/logflare.ts at line 18. Code: const response = await fetch(`${LOGFLARE_API_BASE_URL}/api/query?${params.toString()}`, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 72,
+   "estratto": "    6| import { LogflareApiConfig } from \"./types.js\";\n    7| \n    8| /**\n    9|  * Executes a BigQuery SQL query against Logflare.\n   10|  */\n   11| export async function executeQuery(\n   12|   sql: string,\n   13|   config: LogflareApiConfig\n   14| ): Promise<unknown> {\n   15|   const params = new URLSearchParams({ bq_sql: sql });\n   16|   params.append(\"source\", config.sourceToken);\n   17| \n   18|   const response = await fetch(`${LOGFLARE_API_BASE_URL}/api/query?${params.toString()}`, {\n   19|     headers: {\n   20|       Authorization: `Bearer ${config.apiKey}`,\n   21|       Accept: \"application/json\",\n   22|     },\n   23|   });\n   24| \n   25|   if (!response.ok) {\n   26|     throw new Error(`Logflare API Error: ${await response.text()}`);\n   27|   }\n   28| \n   29|   const data = await response.json();\n   30|   return data.result || data;"
+  },
+  "branch": "main",
+  "n": 3
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "AlexisTrouve/mcp-claude-duo",
+  "file": "mcp-partner/tools/leave_conversation.js",
+  "line": 22,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in mcp-partner/tools/leave_conversation.js at line 22. Code: const response = await brokerFetch(`/conversations/${args.conversation}/leave`, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 44,
+   "estratto": "   10|         type: \"string\",\n   11|         description: \"ID de la conversation a quitter\",\n   12|       },\n   13|     },\n   14|     required: [\"conversation\"],\n   15|   },\n   16| };\n   17| \n   18| export async function handler(args) {\n   19|   try {\n   20|     await ensureRegistered();\n   21| \n   22|     const response = await brokerFetch(`/conversations/${args.conversation}/leave`, {\n   23|       method: \"POST\",\n   24|       body: JSON.stringify({}),\n   25|     });\n   26| \n   27|     if (response.error) {\n   28|       return {\n   29|         content: [{ type: \"text\", text: `Erreur: ${response.error}` }],\n   30|         isError: true,\n   31|       };\n   32|     }\n   33| \n   34|     const archived = response.archived ? \" (conversation archivee car plus de participants)\" : \"\";"
+  },
+  "branch": "main",
+  "n": 4
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "AsloWaves/unified-mcp-api",
+  "file": "src/routes/render.ts",
+  "line": 30,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/routes/render.ts at line 30. Code: const response = await fetch(`${RENDER_API_BASE}/services?${params.toString()}`, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 472,
+   "estratto": "   18| };\n   19| \n   20| // List services\n   21| router.get('/services', async (req: Request, res: Response, next: NextFunction) => {\n   22|   try {\n   23|     const { limit = '20', cursor, includePreviews = 'false' } = req.query;\n   24| \n   25|     const params = new URLSearchParams();\n   26|     params.append('limit', limit as string);\n   27|     if (cursor) params.append('cursor', cursor as string);\n   28|     if (includePreviews === 'true') params.append('includePreviews', 'true');\n   29| \n   30|     const response = await fetch(`${RENDER_API_BASE}/services?${params.toString()}`, {\n   31|       headers: getRenderHeaders()\n   32|     });\n   33| \n   34|     if (!response.ok) {\n   35|       const error = await response.json();\n   36|       throw createError(error.message || 'Failed to list services', response.status);\n   37|     }\n   38| \n   39|     const data = await response.json();\n   40|     res.json(data);\n   41|   } catch (error) {\n   42|     next(error);"
+  },
+  "branch": "main",
+  "n": 5
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "BallisticMystik/OpenOrdinal-mcp",
+  "file": "src/stitch-mcp-tools.ts",
+  "line": 342,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/stitch-mcp-tools.ts at line 342. Code: const metadataResponse = await fetch(`https://api.openordinals.org/inscription/${args.inscription_id}/metadata`);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 446,
+   "estratto": "  330|         success: false,\n  331|         error: error instanceof Error ? error.message : 'Unknown error occurred'\n  332|       };\n  333|     }\n  334|   }\n  335| \n  336|   /**\n  337|    * Handle stitch_ordinals_by_metadata tool\n  338|    */\n  339|   async handleStitchByMetadata(args: any): Promise<any> {\n  340|     try {\n  341|       // First, fetch the metadata from the inscription\n  342|       const metadataResponse = await fetch(`https://api.openordinals.org/inscription/${args.inscription_id}/metadata`);\n  343|       \n  344|       if (!metadataResponse.ok) {\n  345|         return {\n  346|           success: false,\n  347|           error: `Failed to fetch metadata for inscription ${args.inscription_id}`\n  348|         };\n  349|       }\n  350| \n  351|       const metadata = await metadataResponse.json();\n  352|       \n  353|       if (!metadata.stitch || !metadata.stitch.parts) {\n  354|         return {"
+  },
+  "branch": "main",
+  "n": 6
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "BranchManager69/dexter-mcp",
+  "file": "toolsets/solana/index.mjs",
+  "line": 272,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in toolsets/solana/index.mjs at line 272. Code: const result = await apiFetch(`/api/solana/balances?${params.toString()}`, { method: 'GET' }, extra);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 537,
+   "estratto": "  260| \n  261|     if (!targetWallet) {\n  262|       return {\n  263|         content: [{ type: 'text', text: JSON.stringify({ error: 'wallet_address_required' }) }],\n  264|         isError: true,\n  265|         _meta: { ...BALANCES_WIDGET_META },\n  266|       };\n  267|     }\n  268| \n  269|     const params = new URLSearchParams({ walletAddress: targetWallet });\n  270|     if (min_ui != null) params.set('minUi', String(min_ui));\n  271|     if (limit != null) params.set('limit', String(limit));\n  272|     const result = await apiFetch(`/api/solana/balances?${params.toString()}`, { method: 'GET' }, extra);\n  273|     return { \n  274|       structuredContent: result, \n  275|       content: [{ type: 'text', text: JSON.stringify(result.balances || []) }],\n  276|       _meta: { ...BALANCES_WIDGET_META },\n  277|     };\n  278|   });\n  279| \n  280|   const sendInputShape = {\n  281|     wallet_address: z.string().trim().optional()\n  282|       .describe('Source wallet address to send FROM. If omitted, uses your default managed wallet.'),\n  283|     recipient_type: z.enum(['wallet', 'twitter']).optional()\n  284|       .describe('Type of recipient: \"wallet\" for Solana address, \"twitter\" for linked Twitter handle. Defaults to \"wallet\".'),"
+  },
+  "branch": "main",
+  "n": 7
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "DODOTMBOT/MCP",
+  "file": "app/(protected)/marketplace/lib/services/marketplace-service.ts",
+  "line": 35,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in app/(protected)/marketplace/lib/services/marketplace-service.ts at line 35. Code: const response = await fetch(`${API_BASE}?${params.toString()}`);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 186,
+   "estratto": "   23|    */\n   24|   async getProducts(filters: ProductFilters = {}): Promise<ProductListResponse> {\n   25|     const params = new URLSearchParams();\n   26|     \n   27|     if (filters.search) params.append(\"search\", filters.search);\n   28|     if (filters.category) params.append(\"category\", filters.category);\n   29|     if (filters.priceMin) params.append(\"priceMin\", filters.priceMin.toString());\n   30|     if (filters.priceMax) params.append(\"priceMax\", filters.priceMax.toString());\n   31|     if (filters.inStock !== undefined) params.append(\"inStock\", filters.inStock.toString());\n   32|     if (filters.rating) params.append(\"rating\", filters.rating.toString());\n   33|     if (filters.location) params.append(\"location\", filters.location);\n   34| \n   35|     const response = await fetch(`${API_BASE}?${params.toString()}`);\n   36|     \n   37|     if (!response.ok) {\n   38|       throw new Error(\"Ошибка при загрузке товаров\");\n   39|     }\n   40|     \n   41|     return response.json();\n   42|   }\n   43| \n   44|   /**\n   45|    * Получить товар по ID\n   46|    */\n   47|   async getProduct(id: string): Promise<Product> {"
+  },
+  "branch": "main",
+  "n": 8
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "DavidROliverBA/NotionModeller",
+  "file": "src/hooks/useNotionSearch.ts",
+  "line": 76,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/hooks/useNotionSearch.ts at line 76. Code: const response = await fetch(`/api/notion/search?${params.toString()}`, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 164,
+   "estratto": "   64| \n   65|       try {\n   66|         setIsLoading(true)\n   67|         setError(null)\n   68| \n   69|         // Build query parameters\n   70|         const params = new URLSearchParams()\n   71|         if (query) params.set('query', query)\n   72|         if (filter) params.set('filter', filter)\n   73|         params.set('page_size', pageSize.toString())\n   74|         if (cursor) params.set('start_cursor', cursor)\n   75| \n   76|         const response = await fetch(`/api/notion/search?${params.toString()}`, {\n   77|           signal: abortController.current.signal,\n   78|         })\n   79| \n   80|         if (!response.ok) {\n   81|           throw new Error(`Search failed: ${response.statusText}`)\n   82|         }\n   83| \n   84|         const data: SearchResponse = await response.json()\n   85| \n   86|         setResults(data.results)\n   87|         setHasMore(data.has_more)\n   88|         setNextCursor(data.next_cursor)"
+  },
+  "branch": "main",
+  "n": 9
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "Doriandarko/sora-mcp",
+  "file": "src/server.ts",
+  "line": 224,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/server.ts at line 224. Code: const response = await fetch(`${SORA_API_BASE}/videos?${params.toString()}`, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 538,
+   "estratto": "  212|             limit: z.number().optional().default(20).describe('Number of videos to retrieve'),\n  213|             after: z.string().optional().describe('Identifier for pagination - get videos after this ID'),\n  214|             order: z.enum(['asc', 'desc']).optional().default('desc').describe('Sort order by timestamp')\n  215|         }\n  216|     },\n  217|     async ({ limit = 20, after, order = 'desc' }) => {\n  218|         try {\n  219|             const params = new URLSearchParams();\n  220|             params.append('limit', String(limit));\n  221|             if (after) params.append('after', after);\n  222|             params.append('order', order);\n  223| \n  224|             const response = await fetch(`${SORA_API_BASE}/videos?${params.toString()}`, {\n  225|                 method: 'GET',\n  226|                 headers: {\n  227|                     'Authorization': `Bearer ${OPENAI_API_KEY}`\n  228|                 }\n  229|             });\n  230| \n  231|             if (!response.ok) {\n  232|                 const errorText = await response.text();\n  233|                 throw new Error(`Sora API error: ${response.status} - ${errorText}`);\n  234|             }\n  235| \n  236|             const output = await response.json() as Record<string, unknown>;"
+  },
+  "branch": "main",
+  "n": 10
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "Ed1s0nZ/CyberStrikeAI",
+  "file": "web/static/js/rbac.js",
+  "line": 1106,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in web/static/js/rbac.js at line 1106. Code: const res = await apiFetch(`/api/audit/logs?${params.toString()}`);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 1569,
+   "estratto": " 1094|     }\n 1095|     rbacState.auditLoading = true;\n 1096|     box.innerHTML = `<div class=\"rbac-picker-status\">${rbacT('common.loading', '加载中…')}</div>`;\n 1097|     try {\n 1098|         const params = new URLSearchParams({\n 1099|             category: 'rbac',\n 1100|             related_user_id: user.id,\n 1101|             page: String(rbacState.auditPage + 1),\n 1102|             page_size: String(rbacState.auditPageSize),\n 1103|         });\n 1104|         if (rbacState.auditAction) params.set('action', rbacState.auditAction);\n 1105|         if (rbacState.auditResourceType) params.set('resource_type', rbacState.auditResourceType);\n 1106|         const res = await apiFetch(`/api/audit/logs?${params.toString()}`);\n 1107|         const result = await res.json().catch(() => ({}));\n 1108|         if (!res.ok) throw new Error(result.error || rbacT('rbac.errors.loadAuditFailed', '加载审计记录失败'));\n 1109|         rbacState.auditLogs = result.logs || [];\n 1110|         rbacState.auditTotal = Number(result.total || 0);\n 1111|         renderRbacAuditLogs();\n 1112|         renderRbacAuditPagination();\n 1113|     } catch (error) {\n 1114|         box.innerHTML = `<div class=\"rbac-picker-status is-error\">${rbacEscape(error.message || rbacT('rbac.errors.loadAuditFailed', '加载审计记录失败'))} <button type=\"button\" class=\"btn-link\" onclick=\"loadRbacUserAuditLogs()\">${rbacT('rbac.retry', '重试')}</button></div>`;\n 1115|         renderRbacAuditPagination();\n 1116|     } finally {\n 1117|         rbacState.auditLoading = false;\n 1118|     }"
+  },
+  "branch": "main",
+  "n": 11
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "Embassy-of-the-Free-Mind/sourcelibrary-v2",
+  "file": "src/hooks/usePairedEdition.ts",
+  "line": 32,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/hooks/usePairedEdition.ts at line 32. Code: fetch(`/api/books/${encodeURIComponent(bookId)}/paired-edition?${params.toString()}`, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 45,
+   "estratto": "   20| ): PairedEdition | null {\n   21|   const [paired, setPaired] = useState<PairedEdition | null>(null);\n   22| \n   23|   useEffect(() => {\n   24|     // Only the registered manuscript has an overlay. book id is stable for the\n   25|     // life of a reader session, so no synchronous clear is needed here.\n   26|     if (bookId !== MARCIANUS_BOOK_ID) return;\n   27|     const ctrl = new AbortController();\n   28|     const params = new URLSearchParams();\n   29|     if (pageId) params.set('pageId', pageId);\n   30|     if (pageNumber != null) params.set('page', String(pageNumber));\n   31| \n   32|     fetch(`/api/books/${encodeURIComponent(bookId)}/paired-edition?${params.toString()}`, {\n   33|       signal: ctrl.signal,\n   34|     })\n   35|       .then((r) => (r.ok ? r.json() : { paired: null }))\n   36|       .then((data: PairedEditionResponse) => setPaired(data.paired))\n   37|       .catch((err) => {\n   38|         if (err?.name !== 'AbortError') setPaired(null);\n   39|       });\n   40| \n   41|     return () => ctrl.abort();\n   42|   }, [bookId, pageId, pageNumber]);\n   43| \n   44|   return paired;"
+  },
+  "branch": "main",
+  "n": 12
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "F8ai/metrc-mcp",
+  "file": "lib/tool-executor.js",
+  "line": 177,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in lib/tool-executor.js at line 177. Code: return metrcFetch(`/harvests/v2/${args.harvest_id}`, { licenseNumber: args.license_number });",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 646,
+   "estratto": "  165|         GrowthPhase: args.growth_phase,\n  166|         GrowthDate: args.growth_date,\n  167|         NewLocation: args.new_location,\n  168|       }];\n  169|       return metrcFetch(\n  170|         '/plantbatches/v2/growthphase',\n  171|         { licenseNumber: args.license_number },\n  172|         { method: 'POST', body }\n  173|       );\n  174|     }\n  175| \n  176|     case 'metrc_get_harvest':\n  177|       return metrcFetch(`/harvests/v2/${args.harvest_id}`, { licenseNumber: args.license_number });\n  178| \n  179|     case 'metrc_get_package':\n  180|       if (args.package_label != null) {\n  181|         return metrcFetch(`/packages/v2/${encodeURIComponent(args.package_label)}`, { licenseNumber: args.license_number });\n  182|       } else if (args.package_id != null) {\n  183|         return metrcFetch(`/packages/v2/${args.package_id}`, { licenseNumber: args.license_number });\n  184|       }\n  185|       throw new Error('Provide package_id or package_label');\n  186| \n  187|     case 'metrc_get_plant':\n  188|       if (args.plant_label != null) {\n  189|         return metrcFetch(`/plants/v2/${encodeURIComponent(args.plant_label)}`, { licenseNumber: args.license_number });"
+  },
+  "branch": "main",
+  "n": 13
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "Franciskkang/mcp-server",
+  "file": "src/index.ts",
+  "line": 455,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/index.ts at line 455. Code: const response = await fetch(`${apiUrl}?${params.toString()}`, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 1230,
+   "estratto": "  443|         async ({ address }) => {\n  444|             try {\n  445|                 // Nominatim API 엔드포인트\n  446|                 const apiUrl = 'https://nominatim.openstreetmap.org/search'\n  447|                 const params = new URLSearchParams({\n  448|                     q: address,\n  449|                     format: 'json',\n  450|                     limit: '1',\n  451|                     addressdetails: '1'\n  452|                 })\n  453| \n  454|                 // User-Agent 헤더는 Nominatim 사용 정책에 따라 필수입니다\n  455|                 const response = await fetch(`${apiUrl}?${params.toString()}`, {\n  456|                     headers: {\n  457|                         'User-Agent': 'MCP-Geocode-Tool/1.0'\n  458|                     }\n  459|                 })\n  460| \n  461|                 if (!response.ok) {\n  462|                     throw new Error(`API 요청 실패: ${response.status} ${response.statusText}`)\n  463|                 }\n  464| \n  465|                 const data = await response.json()\n  466| \n  467|                 if (!Array.isArray(data) || data.length === 0) {"
+  },
+  "branch": "main",
+  "n": 14
+ },
+ {
+  "categoria": "ssrf",
+  "repo": "GoPlausible/algorand-mcp",
+  "file": "src/tools/apiManager/nfd/index.ts",
+  "line": 341,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/tools/apiManager/nfd/index.ts at line 341. Code: const response = await fetch(`${NFD_API_URL}/nfd/${params.nameOrID}?${searchParams}`);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 645,
+   "estratto": "  329| \n  330| \n  331| \n  332| async function getNFD(\n  333|   params: { nameOrID: string; view?: 'tiny' | 'brief' | 'full'; poll?: boolean; nocache?: boolean }\n  334| ): Promise<NFDRecord> {\n  335|   try {\n  336|     const searchParams = new URLSearchParams();\n  337|     if (params.view) searchParams.append('view', params.view);\n  338|     if (params.poll) searchParams.append('poll', params.poll.toString());\n  339|     if (params.nocache) searchParams.append('nocache', params.nocache.toString());\n  340|     \n  341|     const response = await fetch(`${NFD_API_URL}/nfd/${params.nameOrID}?${searchParams}`);\n  342|     if (!response.ok) {\n  343|       throw new Error(`HTTP error! status: ${response.status}`);\n  344|     }\n  345|     return await response.json();\n  346|   } catch (error) {\n  347|     if (error instanceof McpError) {\n  348|       throw error;\n  349|     }\n  350|     throw new McpError(\n  351|       ErrorCode.InternalError,\n  352|       `Failed to get NFD: ${error instanceof Error ? error.message : String(error)}`\n  353|     );"
+  },
+  "branch": "main",
+  "n": 15
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "517739/Trace_mcp",
+  "file": "app/tools/trace_svnd_diag/test_without_infra.py",
+  "line": 176,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in app/tools/trace_svnd_diag/test_without_infra.py at line 176. Code: origin_path = os.path.join(args.data_root, f\"{args.split}.jsonl\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 210,
+   "estratto": "  164|     # SVND 的优势：直接从 pt 文件加载 stats，因此即使 limit=50，归一化标准也是全局正确的！\n  165|     print(f\"[Info] Loading model from {args.model_path} ...\")\n  166|     ckpt = torch.load(args.model_path, map_location=device)\n  167|     stats = ckpt[\"stats\"]\n  168|     \n  169|     # 逻辑修正：如果是 limit 模式，我们可以放宽 keep_types 限制，允许预测所有已知类别\n  170|     # 但为了稳妥，我们还是优先用训练时确定的 keep_types\n  171|     keep_types = set(ckpt.get(\"keep_types\", [])) if ckpt.get(\"keep_types\", None) is not None else None\n  172|     \n  173|     api_sz, st_sz, node_sz, type_names, ctx_dim = vocab_sizes_from_meta(args.data_root)\n  174| \n  175|     # 2. 物理切片 (Temp File)\n  176|     origin_path = os.path.join(args.data_root, f\"{args.split}.jsonl\")\n  177|     actual_path = create_temp_subset(origin_path, args.limit)\n  178| \n  179|     # 3. 加载数据集 (fit_stats=False, 使用全局 stats)\n  180|     ds = TraceDataset(actual_path, task=\"multihead\", fit_stats=False, stats=stats, keep_types=keep_types)\n  181|     loader = DataLoader(ds, batch_size=args.batch_size, shuffle=False, collate_fn=collate_multi)\n  182| \n  183|     # 清理临时文件\n  184|     if actual_path != origin_path:\n  185|         try: os.remove(actual_path)\n  186|         except: pass\n  187| \n  188|     # 4. 加载模型权重"
+  },
+  "branch": "main",
+  "n": 1
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "AI-Hub-Admin/omni-file-converter-mcp",
+  "file": "src/omni_file_converter_mcp/server.py",
+  "line": 118,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/omni_file_converter_mcp/server.py at line 118. Code: image_path = os.path.join(output_folder, f'{output_file_name}_{page_num + 1}.{output_format.lower()}')",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 135,
+   "estratto": "  106|         if output_file_name == \"\" or output_file_name is None:\n  107|             output_file_name = file_name_clean\n  108| \n  109|         # Start Processing\n  110|         pdf_document = fitz.open(input_path)\n  111|         \n  112|         zoom_x=2.0\n  113|         zoom_y=2.0\n  114|         for page_num in range(len(pdf_document)):\n  115|             page = pdf_document.load_page(page_num)\n  116|             mat = fitz.Matrix(zoom_x, zoom_y)\n  117|             pix = page.get_pixmap(matrix=mat)\n  118|             image_path = os.path.join(output_folder, f'{output_file_name}_{page_num + 1}.{output_format.lower()}')\n  119|             pix.save(image_path)\n  120|         # \n  121|         pdf_document.close()\n  122| \n  123|     except Exception as e:\n  124|         print (f\"Failed to Convert Pdf to Images with error {e}\")\n  125|     \n  126| def test_convert_pdf_to_images():\n  127|     \n  128|     input_path = \"./example.pdf\"\n  129|     output_format = \"jpg\"\n  130|     output_folder = \"./convert_output\""
+  },
+  "branch": "main",
+  "n": 2
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "ATOI-Ming/FreeCAD-MCP",
+  "file": "freecad_mcp_server.py",
+  "line": 216,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in freecad_mcp_server.py at line 216. Code: macro_path = os.path.join(macro_dir, f\"{macro_name}.FCMacro\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 550,
+   "estratto": "  204|             return self.handle_run_macro(params.get(\"macro_path\"), params.get(\"params\"))\n  205|         elif command_type == \"validate_macro_code\":\n  206|             return self.handle_validate_macro_code(params.get(\"macro_name\"), params.get(\"code\"))\n  207|         elif command_type == \"set_view\":\n  208|             return self.handle_set_view(params.get(\"view_type\"))\n  209|         elif command_type == \"get_report\":\n  210|             return self.handle_get_report()\n  211|         return {\"result\": \"error\", \"message\": f\"未知命令: {command_type}\"}\n  212| \n  213|     def handle_create_macro(self, macro_name, template_type=\"default\"):\n  214|         try:\n  215|             macro_dir = App.getUserMacroDir()\n  216|             macro_path = os.path.join(macro_dir, f\"{macro_name}.FCMacro\")\n  217|             template_map = {\n  218|                 \"default\": \"# FreeCAD Macro\\n\",\n  219|                 \"basic\": \"import FreeCAD as App\\nimport FreeCADGui as Gui\\n\\n\",\n  220|                 \"part\": \"import FreeCAD as App\\nimport FreeCADGui as Gui\\nimport Part\\n\\n\",\n  221|                 \"sketch\": \"import FreeCAD as App\\nimport FreeCADGui as Gui\\nimport Sketcher\\n\\n\"\n  222|             }\n  223|             template = template_map.get(template_type, \"# FreeCAD Macro\\n\")\n  224|             with open(macro_path, \"w\", encoding='utf-8') as f:\n  225|                 f.write(template)\n  226|             log_message(f\"宏文件创建成功: {macro_path}\")\n  227|             return {\"result\": \"success\", \"message\": f\"宏文件创建成功: {macro_path}\"}\n  228|         except Exception as e:"
+  },
+  "branch": "main",
+  "n": 3
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "AgentX-ai/youtube-dlp-server",
+  "file": "src/youtube_dlp_server/helper.py",
+  "line": 214,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/youtube_dlp_server/helper.py at line 214. Code: \"outtmpl\": os.path.join(output_dir, f\"{filename_prefix}.%(ext)s\"),",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 917,
+   "estratto": "  202|         subtitle_languages: List of subtitle language codes\n  203| \n  204|     Returns:\n  205|         Dictionary containing download result information\n  206|     \"\"\"\n  207|     try:\n  208|         # Ensure output directory exists\n  209|         Path(output_dir).mkdir(parents=True, exist_ok=True)\n  210| \n  211|         # Base yt-dlp options\n  212|         ydl_opts = {\n  213|             **_get_base_ydl_opts(),\n  214|             \"outtmpl\": os.path.join(output_dir, f\"{filename_prefix}.%(ext)s\"),\n  215|             \"progress_hooks\": [DownloadProgressHook()],\n  216|             \"no_warnings\": False,\n  217|             \"extract_flat\": False,\n  218|         }\n  219| \n  220|         # Configure format selection based on type and quality\n  221|         if format_type == \"audio\":\n  222|             if audio_quality == \"mp3\":\n  223|                 ydl_opts.update(\n  224|                     {\n  225|                         \"format\": \"bestaudio/best\",\n  226|                         \"postprocessors\": ["
+  },
+  "branch": "main",
+  "n": 4
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "AltairaLabs/CodeGen-MCP",
+  "file": "internal/worker/checkpointer.go",
+  "line": 58,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in internal/worker/checkpointer.go at line 58. Code: checkpointPath := filepath.Join(c.checkpointDir, checkpointID+checkpointExt)",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 421,
+   "estratto": "   46| }\n   47| \n   48| // Checkpoint creates a checkpoint of a session\n   49| //\n   50| //nolint:lll // Protobuf types create inherently long function signatures\n   51| func (c *Checkpointer) Checkpoint(ctx context.Context, req *protov1.CheckpointRequest) (*protov1.CheckpointResponse, error) {\n   52| \tcheckpointID, err := c.CreateCheckpoint(ctx, req.SessionId, req.Incremental)\n   53| \tif err != nil {\n   54| \t\treturn nil, err\n   55| \t}\n   56| \n   57| \t// Get checkpoint file stats\n   58| \tcheckpointPath := filepath.Join(c.checkpointDir, checkpointID+checkpointExt)\n   59| \tstat, err := os.Stat(checkpointPath)\n   60| \tif err != nil {\n   61| \t\treturn nil, fmt.Errorf(\"failed to stat checkpoint: %w\", err)\n   62| \t}\n   63| \n   64| \tmetadata := &protov1.CheckpointMetadata{\n   65| \t\tSessionId:         req.SessionId,\n   66| \t\tCreatedAtMs:       time.Now().UnixMilli(),\n   67| \t\tChecksumSha256:    checkpointID, // Use checkpoint ID as identifier\n   68| \t\tInstalledPackages: []string{},   // Could be enhanced to track packages\n   69| \t\tModifiedFiles:     []string{},   // Could be enhanced to track files\n   70| \t}"
+  },
+  "branch": "main",
+  "n": 5
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "Amaze-with-AI/PCAP-Analyzer",
+  "file": "mcp_server.py",
+  "line": 44,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in mcp_server.py at line 44. Code: pcap_with_ext = os.path.join(PCAPS_DIR, f\"{filename}.pcap\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 376,
+   "estratto": "   32| def find_pcap_file(filename: str) -> str:\n   33|     \"\"\"Find PCAP file in PCAPs folder or return absolute path if provided\"\"\"\n   34|     if os.path.isabs(filename) and os.path.exists(filename):\n   35|         return filename\n   36|     \n   37|     # Check in PCAPs directory\n   38|     pcap_path = os.path.join(PCAPS_DIR, filename)\n   39|     if os.path.exists(pcap_path):\n   40|         return pcap_path\n   41|     \n   42|     # If filename doesn't have extension, try adding .pcap\n   43|     if not filename.endswith('.pcap'):\n   44|         pcap_with_ext = os.path.join(PCAPS_DIR, f\"{filename}.pcap\")\n   45|         if os.path.exists(pcap_with_ext):\n   46|             return pcap_with_ext\n   47|     \n   48|     return filename  # Return original if not found\n   49| \n   50| # Create FastMCP server\n   51| mcp = FastMCP(\"PCAP Analyzer\")\n   52| \n   53| @mcp.tool()\n   54| def load_pcap_file(pcap_file: str) -> str:\n   55|     \"\"\"Load and analyze a PCAP file for network flow analysis\"\"\"\n   56|     global analyzer, current_pcap, analysis_results"
+  },
+  "branch": "main",
+  "n": 6
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "Anubis44197/ILK-MCP",
+  "file": "arsiv_temizleyici.py",
+  "line": 55,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in arsiv_temizleyici.py at line 55. Code: new_path = os.path.join(TARGET_BOOKS, f\"{new_folder_name}_v{counter}\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 71,
+   "estratto": "   43|             main_file = max(files, key=lambda f: os.path.getsize(os.path.join(path, f)))\n   44|             file_name_no_ext = os.path.splitext(main_file)[0]\n   45|             \n   46|             # Klasör adını dosya adına benzet\n   47|             new_folder_name = clean_name(file_name_no_ext)\n   48|             \n   49|             if new_folder_name.lower() == item.lower(): continue # Zaten doğru\n   50|             \n   51|             # Çakışma Kontrolü\n   52|             new_path = os.path.join(TARGET_BOOKS, new_folder_name)\n   53|             counter = 2\n   54|             while os.path.exists(new_path):\n   55|                 new_path = os.path.join(TARGET_BOOKS, f\"{new_folder_name}_v{counter}\")\n   56|                 counter += 1\n   57|                 \n   58|             try:\n   59|                 os.rename(path, new_path)\n   60|                 print(f\"✅ Klasör Adı Düzeltildi: '{item}' -> '{os.path.basename(new_path)}'\")\n   61|             except Exception as e:\n   62|                 print(f\"❌ Hata: {e}\")\n   63| \n   64|     # 2. Başıboş Dosyaları Klasörle\n   65|     # (Önceki kodun aynısı ama isim mantığı düzeltildi)\n   66|     \n   67|     print(\"\\n✨ Düzenleme Bitti.\")"
+  },
+  "branch": "main",
+  "n": 7
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "Biomolecular-Design-Nexus/mmseqs2_mcp",
+  "file": "src/server.py",
+  "line": 123,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/server.py at line 123. Code: query_fasta = os.path.join(work_dir, f\"{sequence_name}.fasta\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 364,
+   "estratto": "  111|     # Determine if we need to use a temporary directory\n  112|     use_temp_dir = output_dir is None\n  113|     if use_temp_dir:\n  114|         temp_dir = tempfile.mkdtemp(prefix=\"mmseqs2_\")\n  115|         work_dir = temp_dir\n  116|     else:\n  117|         work_dir = output_dir\n  118|         os.makedirs(work_dir, exist_ok=True)\n  119| \n  120|     try:\n  121|         # Create query FASTA file if sequence is provided\n  122|         if sequence:\n  123|             query_fasta = os.path.join(work_dir, f\"{sequence_name}.fasta\")\n  124|             with open(query_fasta, 'w') as f:\n  125|                 f.write(f\">{sequence_name}\\n{sequence}\\n\")\n  126|         else:\n  127|             query_fasta = fasta_file\n  128|             # Extract sequence name from fasta file for output naming\n  129|             with open(fasta_file, 'r') as f:\n  130|                 first_line = f.readline().strip()\n  131|                 if first_line.startswith('>'):\n  132|                     sequence_name = first_line[1:].split()[0]\n  133| \n  134|         # Define file paths\n  135|         query_db = os.path.join(work_dir, f\"{sequence_name}_db\")"
+  },
+  "branch": "main",
+  "n": 8
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "BlackSnufkin/LitterBox",
+  "file": "app/analyzers/dynamic/yara_analyzer.py",
+  "line": 239,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in app/analyzers/dynamic/yara_analyzer.py at line 239. Code: filepath = os.path.join(rules_dir, potential_name + ext)",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 276,
+   "estratto": "  227|         if not description:\n  228|             return None\n  229| \n  230|         rules_dir = os.path.dirname(self.config['analysis']['dynamic']['yara']['rules_path'])\n  231| \n  232|         words = re.split(r'[:\\s]', description)\n  233|         if not words:\n  234|             return None\n  235| \n  236|         for i in range(min(4, len(words))):\n  237|             potential_name = '_'.join(words[:i + 1]).lower()\n  238|             for ext in ['.yar', '.yara']:\n  239|                 filepath = os.path.join(rules_dir, potential_name + ext)\n  240|                 if os.path.exists(filepath):\n  241|                     return filepath\n  242| \n  243|         return None\n  244| \n  245|     def _get_rule_filepath_from_rule_name(self, rule_name):\n  246|         if not rule_name:\n  247|             return None\n  248| \n  249|         rules_dir = os.path.dirname(self.config['analysis']['dynamic']['yara']['rules_path'])\n  250| \n  251|         variations = ["
+  },
+  "branch": "main",
+  "n": 9
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "Capsnow467/capcut-mcp-api",
+  "file": "save_draft_impl.py",
+  "line": 123,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in save_draft_impl.py at line 123. Code: 'args': (remote_url, os.path.join(current_dir, f\"{draft_id}/assets/audio/{material_name}\")),",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 715,
+   "estratto": "  111|                 material_name = audio.material_name\n  112|                 # Use helper function to build path\n  113|                 if draft_folder:\n  114|                     audio.replace_path = build_asset_path(draft_folder, draft_id, \"audio\", material_name)\n  115|                 if not remote_url:\n  116|                     logger.warning(f\"Audio file {material_name} has no remote_url, skipping download.\")\n  117|                     continue\n  118|                 \n  119|                 # Add audio download task\n  120|                 download_tasks.append({\n  121|                     'type': 'audio',\n  122|                     'func': download_file,\n  123|                     'args': (remote_url, os.path.join(current_dir, f\"{draft_id}/assets/audio/{material_name}\")),\n  124|                     'material': audio\n  125|                 })\n  126|         \n  127|         # Collect video and image download tasks\n  128|         videos = script.materials.videos\n  129|         if videos:\n  130|             for video in videos:\n  131|                 remote_url = video.remote_url\n  132|                 material_name = video.material_name\n  133|                 \n  134|                 if video.material_type == 'photo':\n  135|                     # Use helper function to build path"
+  },
+  "branch": "main",
+  "n": 10
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "ChrisWilliamson11/blender-assistant-mcp",
+  "file": "blender_assistant_mcp/tools/polyhaven_tools.py",
+  "line": 269,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in blender_assistant_mcp/tools/polyhaven_tools.py at line 269. Code: file_path = os.path.join(download_dir, f\"{asset_id}_{resolution}.{file_format}\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 1084,
+   "estratto": "  257|     resolution = _solve_resolution(available_res, resolution)\n  258| \n  259|     if resolution not in hdri_files[file_format]:\n  260|         available = \", \".join(hdri_files[file_format].keys())\n  261|         raise ValueError(f\"Resolution '{resolution}' not available for format '{file_format}'. Available: {available}\")\n  262| \n  263|     download_url = hdri_files[file_format][resolution][\"url\"]\n  264| \n  265|     # Download the file\n  266|     download_dir = os.path.join(bpy.app.tempdir, \"polyhaven_hdris\")\n  267|     os.makedirs(download_dir, exist_ok=True)\n  268| \n  269|     file_path = os.path.join(download_dir, f\"{asset_id}_{resolution}.{file_format}\")\n  270| \n  271|     print(f\"[PolyHaven] Downloading {asset_id} ({resolution}, {file_format})...\")\n  272| \n  273|     # Download with progress bar (if context available)\n  274|     wm = bpy.context.window_manager\n  275|     has_progress = wm is not None\n  276| \n  277|     if has_progress:\n  278|         try:\n  279|             wm.progress_begin(0, 100)\n  280|         except:\n  281|             has_progress = False"
+  },
+  "branch": "main",
+  "n": 11
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "DIME-LAB/RoboManufac-MCP",
+  "file": "ros-mcp-server/primitives/verify_final_assembly_pose.py",
+  "line": 110,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in ros-mcp-server/primitives/verify_final_assembly_pose.py at line 110. Code: os.path.join(symmetry_dir, f\"{object_name}*_symmetry.json\"),",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 537,
+   "estratto": "   98|     - Identity (0°): object as-is\n   99|     - 180° around Y: object flipped, but looks the same\n  100|     \n  101|     To generate equivalent targets:\n  102|     R_equivalent = R_target × R_symmetry  (object-frame rotation)\n  103|     \"\"\"\n  104|     \n  105|     @staticmethod\n  106|     def load_symmetry_data(object_name, symmetry_dir):\n  107|         \"\"\"Load fold symmetry JSON\"\"\"\n  108|         patterns = [\n  109|             os.path.join(symmetry_dir, f\"{object_name}_symmetry.json\"),\n  110|             os.path.join(symmetry_dir, f\"{object_name}*_symmetry.json\"),\n  111|             os.path.join(symmetry_dir, f\"{object_name.replace('_scaled70', '')}*_symmetry.json\"),\n  112|         ]\n  113|         \n  114|         for pattern in patterns:\n  115|             if '*' in pattern:\n  116|                 matches = glob.glob(pattern)\n  117|                 if matches:\n  118|                     with open(matches[0], 'r') as f:\n  119|                         return json.load(f)\n  120|             elif os.path.exists(pattern):\n  121|                 with open(pattern, 'r') as f:\n  122|                     return json.load(f)"
+  },
+  "branch": "main",
+  "n": 12
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "DanilaFe/chapel-support",
+  "file": "chapel-support.py",
+  "line": 243,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in chapel-support.py at line 243. Code: fixed_path = os.path.join(tempdir, f\"fixed_{program_name}\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 299,
+   "estratto": "  231|                     rule_name = parts[1].strip()\n  232|                     rule_counts[rule_name] = rule_counts.get(rule_name, 0) + 1\n  233|         \n  234|         # Count total warnings\n  235|         total_warnings = sum(rule_counts.values()) if rule_counts else 0\n  236|         \n  237|         # If fix flag is True, create a copy and run with --fixit\n  238|         fixed_code = program_text\n  239|         fix_stats = {}\n  240|         \n  241|         if fix and total_warnings > 0:\n  242|             # Create a copy of the file for fixing\n  243|             fixed_path = os.path.join(tempdir, f\"fixed_{program_name}\")\n  244|             shutil.copy(program_path, fixed_path)\n  245|             \n  246|             # Run chplcheck with --fixit\n  247|             fixit_cmd = f\"{lint_cmd.replace(program_path, '')} --fixit {fixed_path}\"\n  248|             fix_start_time = time.time()\n  249|             fixit_result = subprocess.run(fixit_cmd, shell=True, check=False, capture_output=True)\n  250|             fix_duration = time.time() - fix_start_time\n  251|             \n  252|             # Get fixit output for debugging if needed\n  253|             _ = fixit_result.stdout.decode(\"utf-8\") + fixit_result.stderr.decode(\"utf-8\")\n  254|             \n  255|             # Read the fixed file"
+  },
+  "branch": "main",
+  "n": 13
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "Dicklesworthstone/ultimate_mcp_server",
+  "file": "ultimate_mcp_server/core/state_store.py",
+  "line": 234,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in ultimate_mcp_server/core/state_store.py at line 234. Code: file_path = os.path.join(self._persistence_dir, f\"{namespace}.pickle\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 295,
+   "estratto": "  222|         Notes:\n  223|             - This method is a no-op if persistence_dir is not configured\n  224|             - Uses aiofiles for non-blocking async file I/O\n  225|             - The file is named \"{namespace}.pickle\" and stored in the persistence_dir\n  226|             - The entire namespace is serialized in a single operation, which may be\n  227|               inefficient for very large namespaces\n  228|             - This method is called internally by set() and delete() methods\n  229|               after modifying namespace data\n  230|         \"\"\"\n  231|         if not self._persistence_dir:\n  232|             return\n  233| \n  234|         file_path = os.path.join(self._persistence_dir, f\"{namespace}.pickle\")\n  235|         async with aiofiles.open(file_path, \"wb\") as f:\n  236|             await f.write(pickle.dumps(self._in_memory_store[namespace]))\n  237| \n  238|     async def _load_namespace(self, namespace: str) -> None:\n  239|         \"\"\"\n  240|         Load a namespace's data from disk into memory.\n  241| \n  242|         This private method handles loading serialized state data from disk into the in-memory store.\n  243|         It is called automatically by the get() method when a namespace is requested but not yet\n  244|         loaded in memory. The method implements the lazy-loading pattern, only reading from disk\n  245|         when necessary.\n  246| "
+  },
+  "branch": "main",
+  "n": 14
+ },
+ {
+  "categoria": "path-traversal-static",
+  "repo": "FranckDubray/dragonfly-mcp-server",
+  "file": "src/tools/_dev_navigator/release_index/builder.py",
+  "line": 177,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/tools/_dev_navigator/release_index/builder.py at line 177. Code: release_dir = os.path.join(\"sqlite3\", repo_slug, f\"{tag_name or 'no-tag'}__{shortsha}\")",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 319,
+   "estratto": "  165|         try:\n  166|             os.remove(db_path + suffix)\n  167|         except FileNotFoundError:\n  168|             pass\n  169|         except Exception:\n  170|             pass\n  171| \n  172| \n  173| def build_index(path: str, tag_name: str | None, commit_hash: str, analyzer_version: str,\n  174|                 config_fingerprint: str, budgets: Dict[str, Any]) -> Tuple[str, str]:\n  175|     repo_slug = make_repo_slug(path)\n  176|     shortsha = commit_hash[:8]\n  177|     release_dir = os.path.join(\"sqlite3\", repo_slug, f\"{tag_name or 'no-tag'}__{shortsha}\")\n  178|     os.makedirs(release_dir, exist_ok=True)\n  179|     db_path = os.path.join(release_dir, \"index.db\")\n  180| \n  181|     # Overwrite if exists (fresh rebuild)\n  182|     _remove_if_exists(db_path)\n  183| \n  184|     conn = sqlite3.connect(db_path)\n  185|     try:\n  186|         _ddl(conn)\n  187|         cur = conn.cursor()\n  188| \n  189|         # Accumulate dir stats"
+  },
+  "branch": "main",
+  "n": 15
+ }
+]

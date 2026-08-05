@@ -1,0 +1,107 @@
+{
+ "batch": 4,
+ "cluster": [
+  {
+   "id": "67a158a7c352",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "xiaozhigetassetpricemcp",
+     "file": "getassetprice.py",
+     "line": 21,
+     "evidence": "BTMC_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "736ea000cdfa",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "prospect-pipeline",
+     "file": "npid-api-layer/app/session.py",
+     "line": 25,
+     "evidence": "DEFAULT_SCOUT_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "bcaba0a82cad",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "monday.com-mcp-server",
+     "file": "monday-mcp-server.js",
+     "line": 4,
+     "evidence": "const MONDAY_API_KEY = 'REDACTED"
+    }
+   ]
+  },
+  {
+   "id": "8b8196fcfdf6",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "mcp-api-master-integration",
+     "file": "email-campaign/deploy-instagram-workflow.js",
+     "line": 11,
+     "evidence": "const JWT_TOKEN = 'eyJREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "aa1050cc1c59",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "Dhan-MCP-Trading",
+     "file": "config.py",
+     "line": 8,
+     "evidence": "DHAN_ACCESS_TOKEN = \"eyJREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "243539e53956",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "wyze-mcp-server",
+     "file": "src/constants.ts",
+     "line": 10,
+     "evidence": "export const AUTH_API_KEY = \"REDACTED\";"
+    }
+   ]
+  }
+ ]
+}

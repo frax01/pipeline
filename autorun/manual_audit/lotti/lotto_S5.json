@@ -1,0 +1,572 @@
+[
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "deobfuscate-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "The deobfuscate tool caches uploaded/deobfuscated bundles and the get_module, list_modules, and search_modules endpoints explicitly return or search the cached module source code, enabling retrieval of potentially private or proprietary code."
+   }
+  },
+  "n": 1
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@iflow-mcp/githubmcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "The tool fetches PR files, diffs, comments, and reviews and accepts an optional personal access token, enabling access to private or enterprise repositories' code and review history."
+   }
+  },
+  "n": 2
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "ref-mcp-cli",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "ref_search_documentation can include ref_src=private to search a user's private docs, repos, and PDFs, and ref_read_url reads the content of URLs returned by searches, enabling retrieval of private/non-public documentation."
+   }
+  },
+  "n": 3
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@copado-mcp/copado-ai",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "read_dialogue_with_messages explicitly returns a dialogue with all its messages (personal communications), and list_integrations/configure_integration expose organization integration configuration that can include credentials, which are enterprise-sensitive."
+   }
+  },
+  "n": 4
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "unreal-engine-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "Tools like unreal-engine-mcp-server/manage_asset can list, search, and read asset metadata and source-control state, and unreal-engine-mcp-server/inspect can read arbitrary UObject properties and project/editor settings, which exposes non-public project or enterprise assets and configuration."
+   }
+  },
+  "n": 5
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "aibiao-excel-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "The MCP exposes APIs that return full chat contents and messages (get_chat, list_chats with includeMessages) and can return underlying spreadsheet/chart data (list_charts with includeData), thereby exposing private user documents and conversation history."
+   }
+  },
+  "n": 6
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "nginx-proxy-manager-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "Tools such as npm_list_certificates and npm_list_access_lists explicitly expose TLS certificate data and access-list entries (which include usernames/passwords), and npm_get_audit_log returns private activity; npm_authenticate also accepts a user password."
+   }
+  },
+  "n": 7
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "mcp-mia-narrative",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "generate_contextual_audio explicitly accepts \"conversationContext\" (private conversation transcripts) to narrate, and read_file_aloud reads arbitrary local text files; explicitly reading personal communications maps to the \"medium\" category."
+   }
+  },
+  "n": 8
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@bigcookie/mcp-audio-to-text",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "The transcribe_audio tool accepts a file_path for audio or video and returns a text transcription, which can expose private conversations, voicemails, meetings, and other sensitive PII contained in those recordings."
+   }
+  },
+  "n": 9
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@iflow-mcp/mcp-sysoperator",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "The server includes a vault_decrypt_string tool that explicitly decrypts Ansible Vault secrets (reads sensitive secrets), and AWS management tools that can list/read cloud resources (S3 objects, IAM roles/policies, RDS instances), which are explicit access to private/enterprise data."
+   }
+  },
+  "n": 10
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "ssl-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "Tool descriptions state \"获取证书列表\", \"获取SSL证书下载链接\", and \"获取SSL证书的详细信息\", which explicitly return certificate data and a download link that can expose SSL certificate material (including private key artefacts and domain-specific credentials)."
+   }
+  },
+  "n": 11
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "zuora-memory-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "The search_memories tool's stated purpose is to \"Search for memories in the Zuora Developer Memory Store,\" which directly returns user personal memories and therefore can expose private or sensitive user information."
+   }
+  },
+  "n": 12
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@iflow-mcp/mongodb-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "The aggregate and sample tools directly return documents from specified database collections (and explain analyzes pipelines), which can expose stored private or proprietary records such as user communications, financial or account data, and credentials."
+   }
+  },
+  "n": 13
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "motiff-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "The get_motiff_node tool returns a complete, high-fidelity HTML page for a Motiff document/node given docId and nodeId, enabling retrieval of unpublished or proprietary design files. Motiff is described as a design tool like Figma, so the tool directly accesses enterprise/private UI assets rather than public data."
+   }
+  },
+  "n": 14
+ },
+ {
+  "sotto_categoria": "scan/W017_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@ahmedrowaihi/azure-mcp-fastmcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Sensitive Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Sensitive Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve highly sensitive or non-public information, such as personal communications, financial records, or credential vaults.\nRather than limiting data access to public sources, these tools expose critically private user data directly into the agent's context.\n",
+    "severity": "medium",
+    "explanation": "\nLoading sensitive data into an AI agent's context dramatically increases the risk of unauthorized disclosure through prompt injection attacks, logging leaks, or model provider access.\nOnce private emails, credentials, or financial information enters the agent's session, a single exploit or misconfiguration can exfiltrate confidential data to attackers or expose it in unintended system outputs.\n",
+    "evidence": "Tools such as workItem-list / workItem-executeQuery / workItem-get, team-list-members, team-capacity, and wiki-page-get explicitly return private work items, team member identities/capacity, and internal wiki content — all enterprise-private data."
+   }
+  },
+  "n": 15
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@mcp-apps/pdf-tools-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The extract_text tool returns full page text from a provided PDF filePath, get_pdf_form_elements returns form field names/types, and fill_pdf_form reads an input PDF to populate fields — together they can expose private or non-public content stored in local PDF files."
+   }
+  },
+  "n": 16
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "mcp-webresearch-stealthified",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The tools perform Google and Scholar searches and can navigate to and extract arbitrary URLs (and take screenshots), so they can access local/internal or non-public pages if pointed there; this capability aligns with the \"low\" risk category for arbitrary URL fetchers."
+   }
+  },
+  "n": 17
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "tcping-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The tcping, validate_firewall_rule, and network_scan tools can probe arbitrary hosts and port ranges, revealing whether internal/private services or open ports exist (firewall/connectivity state), but they do not explicitly retrieve emails, credentials, or other highly sensitive data."
+   }
+  },
+  "n": 18
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@mcpcn/text-watermark-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "Both tools take an inputPath to read image files from the local filesystem (or user-provided paths), exposing local/non-critical user data such as personal images; this aligns with the \"Local Workspace & Files\" low-risk category."
+   }
+  },
+  "n": 19
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@iflow-mcp/browser-tools-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The MCP exposes retrieval of console logs, network logs (including \"ALL our network logs\"), screenshots, and selected DOM elements, which can surface local or non-critical private data (page content, internal endpoints, or request details) but does not explicitly read emails, financial records, or credential vaults."
+   }
+  },
+  "n": 20
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "mcp-rag-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The rag-server can add documents from arbitrary directory/file paths (including .json/.txt/.md/.csv) into an index and return document chunks via query_documents, exposing local or user-provided files and their contents."
+   }
+  },
+  "n": 21
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@open-mcp/together-ai",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "Tools such as together-ai/get_files and together-ai/get_files_id_content explicitly list user files and return file contents, and together-ai/sessions_list and together-ai/tci_execute can expose session files or code outputs; this targets local/non-critical user data rather than highly sensitive categories."
+   }
+  },
+  "n": 22
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@iflow-mcp/mcp-server-chatppt",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "Tools like query_ppt, download_ppt, and editor_ppt return preview/download/editor URLs for user-generated PPTs, and build_ppt_by_file fetches user-supplied file URLs — these explicitly expose local or non-public user documents and generated artifacts."
+   }
+  },
+  "n": 23
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@stone181/sd-image-gen-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The upscale_sd_images tool takes image file paths as input and therefore can read user-local images (private photos/files). Other tools only list or set models or generate new images and do not explicitly retrieve additional sensitive data."
+   }
+  },
+  "n": 24
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@iflow-mcp/file-finder-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The search_files tool enumerates local filenames containing a fragment, which can reveal workspace or user-local filenames (project names, document names) that may be non-public. It does not explicitly claim to read file contents, emails, or credential stores."
+   }
+  },
+  "n": 25
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "mcp-domain-guard",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "Both tools take arbitrary URLs/hostnames and return live website/SSL information; because they resolve and query external (and potentially internal) endpoints they expose local/non-critical data access consistent with a low risk."
+   }
+  },
+  "n": 26
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@iflow-mcp/mcp-memory-domain-knowledge",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The read tools return full node information and observation content (read_graph/open_nodes) and allow keyword searches across entity fields and observations (search_nodes), which exposes local workspace/notes-style user data."
+   }
+  },
+  "n": 27
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "playwrightess-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The tool executes JavaScript in a persistent Playwright browser context, allowing navigation to arbitrary URLs and access to page content, cookies, local storage, and internal endpoints, which can expose local or non-critical private data."
+   }
+  },
+  "n": 28
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "mcp-node-env-debugger",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The tools expose environment variables and process info such as HOME (/home/tecnico), USER/LOGNAME (tecnico), PWD (/home/tecnico/Desktop/Pipeline), PATH, and package.json location, revealing local usernames and filesystem paths but not explicit secrets or enterprise data."
+   }
+  },
+  "n": 29
+ },
+ {
+  "sotto_categoria": "scan/W018_npx",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "xcode-i18n-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Workspace Data Exposure.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Workspace Data Exposure Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that retrieve local workspace files, project code, or user-managed data stores.\nWhile less sensitive than personal communications or financial records, these tools still expose non-public information such as proprietary code, local notes, or development artifacts into the agent's context.\n",
+    "severity": "low",
+    "explanation": "\nLoading workspace data into an AI agent's context introduces risk of intellectual property leakage or inadvertent disclosure of internal project details.\nIf the agent is compromised through prompt injection or logging vulnerabilities, attackers can access proprietary source code, architectural decisions, or internal documentation that should remain confidential.\n",
+    "evidence": "The tools explicitly read local Xcode project and localization files (.pbxproj and .xcstrings) and can expose project strings and language configuration from the developer's workspace, which is local/non-critical data."
+   }
+  },
+  "n": 30
+ }
+]

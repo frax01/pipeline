@@ -1,0 +1,6 @@
+@reboot bash -lc 'cd ~/pipeline_rerun && nohup bash guardian.sh > guardian.log 2>&1 &'
+*/20 * * * * /bin/bash /home/tecnico/shield_reaper.sh >/dev/null 2>&1
+*/15 * * * * /bin/bash /home/tecnico/watch_sbx/watch_keeper.sh >/dev/null 2>&1
+*/30 * * * * /bin/bash /home/tecnico/watch_diskcleaner.sh >/dev/null 2>&1
+*/15 * * * * /bin/bash /home/tecnico/watch2/keeper2.sh >/dev/null 2>&1
+@reboot /bin/bash /home/tecnico/watch2/keeper2.sh >/dev/null 2>&1

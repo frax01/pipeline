@@ -1,0 +1,950 @@
+{
+ "batch": 3,
+ "cluster": [
+  {
+   "id": "9675e70f7bd5",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "mcp-deploy",
+     "file": "vapi-server.js",
+     "line": 6,
+     "evidence": "const JUVONNO_API_KEY = 'REDACTED';"
+    },
+    {
+     "server": "mcp-deploy",
+     "file": "vapi-server.js",
+     "line": 6,
+     "evidence": "const JUVONNO_API_KEY = 'REDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "146840333a6a",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "env-committato",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "CostExplorerMCP",
+     "file": "cognito_config.env",
+     "line": 3,
+     "evidence": "export BEARER_TOKEN=\"eyJREDACTED"
+    },
+    {
+     "server": "CostExplorerMCP",
+     "file": "cognito_config.env",
+     "line": 3,
+     "evidence": "export BEARER_TOKEN=\"eyJREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "678f48f73f61",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "MCP",
+     "file": "checkerlat.py",
+     "line": 25,
+     "evidence": "GEOAPIFY_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "MCP",
+     "file": "checkerlat.py",
+     "line": 25,
+     "evidence": "GEOAPIFY_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "7327193becc1",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "MCPAddIn",
+     "file": "ecosystem.config.js",
+     "line": 91,
+     "evidence": "OPENWEATHER_API_KEY: 'REDACTED'"
+    },
+    {
+     "server": "MCPAddIn",
+     "file": "ecosystem.config.js",
+     "line": 91,
+     "evidence": "OPENWEATHER_API_KEY: 'REDACTED'"
+    }
+   ]
+  },
+  {
+   "id": "e88da109d2c7",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "forest-fire-mcp",
+     "file": "forest_fire_mcp_server.py",
+     "line": 19,
+     "evidence": "KAKAO_REST_API_KEY = \"REDACTED\"  # 카카오 REST API 키 (주소 검색용)"
+    },
+    {
+     "server": "forest-fire-mcp",
+     "file": "forest_fire_mcp_server.py",
+     "line": 19,
+     "evidence": "KAKAO_REST_API_KEY = \"REDACTED\"  # 카카오 REST API 키 (주소 검색용)"
+    }
+   ]
+  },
+  {
+   "id": "88b16f7cd16c",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "mcp-codebase-insight",
+     "file": "setup_qdrant_collection.py",
+     "line": 9,
+     "evidence": "api_key='eyJREDACTED'"
+    },
+    {
+     "server": "mcp-codebase-insight",
+     "file": "setup_qdrant_collection.py",
+     "line": 9,
+     "evidence": "api_key='eyJREDACTED'"
+    }
+   ]
+  },
+  {
+   "id": "e694b577f82b",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "superstore-mcp",
+     "file": "src/ordersApi.ts",
+     "line": 48,
+     "evidence": "const BFF_API_KEY = 'REDACTED';"
+    },
+    {
+     "server": "superstore-mcp",
+     "file": "src/ordersApi.ts",
+     "line": 48,
+     "evidence": "const BFF_API_KEY = 'REDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "a1d9893be43e",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "mcpserver-gdp",
+     "file": "tools/usinflation_tool.py",
+     "line": 8,
+     "evidence": "FRED_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "mcpserver-gdp",
+     "file": "tools/usinflation_tool.py",
+     "line": 8,
+     "evidence": "FRED_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "57e4de5a5a7c",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "ecs_mcp_server",
+     "file": "src/utils/const.ts",
+     "line": 1,
+     "evidence": "export const YUNPAN_API_KEY = \"REDACTED\";"
+    },
+    {
+     "server": "ecs_mcp_server",
+     "file": "src/utils/const.ts",
+     "line": 1,
+     "evidence": "export const YUNPAN_API_KEY = \"REDACTED\";"
+    }
+   ]
+  },
+  {
+   "id": "ce3d32beaaf3",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "nuvemshop-mcp-server",
+     "file": "main.py",
+     "line": 100,
+     "evidence": "access_token = \"REDACTED\""
+    },
+    {
+     "server": "nuvemshop-mcp-server",
+     "file": "main.py",
+     "line": 100,
+     "evidence": "access_token = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "54d283bfe689",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "jamf-mcp-server",
+     "file": "src/server/chatgpt-endpoints.ts",
+     "line": 7,
+     "evidence": "const DEV_TOKEN = 'eyJREDACTED"
+    },
+    {
+     "server": "jamf-mcp-server",
+     "file": "src/server/chatgpt-endpoints.ts",
+     "line": 7,
+     "evidence": "const DEV_TOKEN = 'eyJREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "ee51ee9d85b5",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "2025-06-18-uk-crime-mcp",
+     "file": "src/index.ts",
+     "line": 6,
+     "evidence": "const GEOCODING_API_KEY='REDACTED';"
+    },
+    {
+     "server": "2025-06-18-uk-crime-mcp",
+     "file": "src/index.ts",
+     "line": 6,
+     "evidence": "const GEOCODING_API_KEY='REDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "7f0c00307f65",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "media_kit_mcp_server",
+     "file": "src/mcpClient.ts",
+     "line": 18,
+     "evidence": "DEEP_SEEK_API_KEY: \"sk-REDACTED\","
+    },
+    {
+     "server": "media_kit_mcp_server",
+     "file": "src/mcpClient.ts",
+     "line": 18,
+     "evidence": "DEEP_SEEK_API_KEY: \"sk-REDACTED\","
+    }
+   ]
+  },
+  {
+   "id": "4d3dc115c169",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "stellar-mcp-server",
+     "file": "src/passkey-kit.ts",
+     "line": 5,
+     "evidence": "const launchtubeJwt = 'eyJREDACTED"
+    },
+    {
+     "server": "stellar-mcp-server",
+     "file": "src/passkey-kit.ts",
+     "line": 5,
+     "evidence": "const launchtubeJwt = 'eyJREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "bdb092033539",
+   "n_finding": 2,
+   "n_server": 2,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "placeholder",
+   "esempi": [
+    {
+     "server": "MCP-Server",
+     "file": "index.js",
+     "line": 12,
+     "evidence": "const apiKey = \"REDACTED\"; // Your API key"
+    },
+    {
+     "server": "mcp-api-master-integration",
+     "file": "email-campaign/mailgun-sandbox-setup.js",
+     "line": 12,
+     "evidence": "apiKey: 'REDACTED', // Your API key (without 'key-' prefix)"
+    }
+   ]
+  },
+  {
+   "id": "cc2a6c7e7336",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "qloo_confidential_mcp_server",
+     "file": "src/qloo_mcp_server/constant.py",
+     "line": 2,
+     "evidence": "QLOO_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "qloo_confidential_mcp_server",
+     "file": "src/qloo_mcp_server/constant.py",
+     "line": 2,
+     "evidence": "QLOO_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "240c4503a347",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "mcp-server-blender",
+     "file": "backend/api/claude_api.py",
+     "line": 3,
+     "evidence": "CLAUDE_API_KEY = \"gsk_REDACTED\""
+    },
+    {
+     "server": "mcp-server-blender",
+     "file": "backend/api/claude_api.py",
+     "line": 3,
+     "evidence": "CLAUDE_API_KEY = \"gsk_REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "63695f230f07",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "estat-aws-mcp-server",
+     "file": "fetch_complete_household_data.py",
+     "line": 28,
+     "evidence": "ESTAT_API_KEY = 'REDACTED'"
+    },
+    {
+     "server": "estat-aws-mcp-server",
+     "file": "fetch_complete_household_data.py",
+     "line": 28,
+     "evidence": "ESTAT_API_KEY = 'REDACTED'"
+    }
+   ]
+  },
+  {
+   "id": "97fa6cfc4307",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "learnflowpro",
+     "file": "my-day-network-server/src/utils/TokenManager.ts",
+     "line": 33,
+     "evidence": "const defaultToken = 'eyJREDACTED';"
+    },
+    {
+     "server": "learnflowpro",
+     "file": "my-day-network-server/src/utils/TokenManager.ts",
+     "line": 33,
+     "evidence": "const defaultToken = 'eyJREDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "7d386387f852",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "lab2-mcp-cap",
+     "file": "srv/mcp/mcp.js",
+     "line": 5,
+     "evidence": "const SAP_API_KEY = \"REDACTED\";"
+    },
+    {
+     "server": "lab2-mcp-cap",
+     "file": "srv/mcp/mcp.js",
+     "line": 5,
+     "evidence": "const SAP_API_KEY = \"REDACTED\";"
+    }
+   ]
+  },
+  {
+   "id": "6a7a9f1a2c27",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "zerodha-mcp-server",
+     "file": "trade.ts",
+     "line": 4,
+     "evidence": "const apiSecret = \"REDACTED\";"
+    },
+    {
+     "server": "zerodha-mcp-server",
+     "file": "trade.ts",
+     "line": 4,
+     "evidence": "const apiSecret = \"REDACTED\";"
+    }
+   ]
+  },
+  {
+   "id": "905255a20a52",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "AEVO-MCP-PROJECT",
+     "file": "config.py",
+     "line": 15,
+     "evidence": "AEVO_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "AEVO-MCP-PROJECT",
+     "file": "config.py",
+     "line": 15,
+     "evidence": "AEVO_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "a4e46414b26e",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "AEVO-MCP-PROJECT",
+     "file": "config.py",
+     "line": 16,
+     "evidence": "AEVO_API_SECRET = \"REDACTED\""
+    },
+    {
+     "server": "AEVO-MCP-PROJECT",
+     "file": "config.py",
+     "line": 16,
+     "evidence": "AEVO_API_SECRET = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "0d06d22d710c",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "MCP_agent",
+     "file": "gnews_server.py",
+     "line": 21,
+     "evidence": "GNEWS_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "MCP_agent",
+     "file": "gnews_server.py",
+     "line": 21,
+     "evidence": "GNEWS_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "64ae6551024a",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "pr-mcp-server",
+     "file": "src/templates/gif-selector.ts",
+     "line": 4,
+     "evidence": "const GIPHY_API_KEY = \"REDACTED\";"
+    },
+    {
+     "server": "pr-mcp-server",
+     "file": "src/templates/gif-selector.ts",
+     "line": 4,
+     "evidence": "const GIPHY_API_KEY = \"REDACTED\";"
+    }
+   ]
+  },
+  {
+   "id": "ea8c2e56dcc7",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "agent_mcp",
+     "file": "mcp_langchain_app.py",
+     "line": 84,
+     "evidence": "OPENAI_API_KEY = \"sk-REDACTED\"    # OpenAI API 密钥"
+    },
+    {
+     "server": "agent_mcp",
+     "file": "mcp_langchain_app.py",
+     "line": 84,
+     "evidence": "OPENAI_API_KEY = \"sk-REDACTED\"    # OpenAI API 密钥"
+    }
+   ]
+  },
+  {
+   "id": "ee57d272c212",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "sdk",
+     "file": "packages/atxp-base/src/smartWalletHelpers.ts",
+     "line": 20,
+     "evidence": "const COINBASE_API_KEY = 'REDACTED';"
+    },
+    {
+     "server": "sdk",
+     "file": "packages/atxp-base/src/smartWalletHelpers.ts",
+     "line": 20,
+     "evidence": "const COINBASE_API_KEY = 'REDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "fc25c164e6db",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "defi-mcp-stellar",
+     "file": "src/services/soroswap.service.ts",
+     "line": 9,
+     "evidence": "const SOROSWAP_API_KEY = 'REDACTED';"
+    },
+    {
+     "server": "defi-mcp-stellar",
+     "file": "src/services/soroswap.service.ts",
+     "line": 9,
+     "evidence": "const SOROSWAP_API_KEY = 'REDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "37c05b1de385",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google OAuth Token",
+   "tipo_file": "esempio",
+   "forma_valore": "altro",
+   "esempi": [
+    {
+     "server": "mcp-http-webhook",
+     "file": "examples/google-drive-server-live.ts",
+     "line": 43,
+     "evidence": "accessToken: \"REDACTED"
+    },
+    {
+     "server": "mcp-http-webhook",
+     "file": "examples/google-drive-server-live.ts",
+     "line": 43,
+     "evidence": "accessToken: \"REDACTED"
+    }
+   ]
+  },
+  {
+   "id": "6a81537e9560",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "mcp-search-case",
+     "file": "lib/search.js",
+     "line": 5,
+     "evidence": "const ACCESS_TOKEN = \"eyJREDACTED"
+    },
+    {
+     "server": "mcp-search-case",
+     "file": "lib/search.js",
+     "line": 5,
+     "evidence": "const ACCESS_TOKEN = \"eyJREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "23d5c5e2c2ad",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:OpenAI Legacy Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:csk-",
+   "esempi": [
+    {
+     "server": "vcb-popia",
+     "file": "src/cerebras-service.js",
+     "line": 4,
+     "evidence": "apiKey: 'csk-REDACTED',"
+    }
+   ]
+  },
+  {
+   "id": "5041c7ad6b68",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:AWS Access Key ID",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:AKIA",
+   "esempi": [
+    {
+     "server": "ats-api",
+     "file": "mcp_server/models.py",
+     "line": 991,
+     "evidence": "'https://recruitee-main.s3.eu-central-1.amazonaws.com/candidates/36615291/pdf_cv_38swhu4w42k1.pdf?response-content-disposition=inline&response-content-type=application%2Fpdf&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credent"
+    }
+   ]
+  },
+  {
+   "id": "296e27dc1e08",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:OpenAI Legacy Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:csk-",
+   "esempi": [
+    {
+     "server": "Agentic-AI-LLM-Apps",
+     "file": "projects/multi-agent/Cerebras-Debate-Orchestrator/src/llm_interface.py",
+     "line": 8,
+     "evidence": "cerebras_client = Cerebras(api_key=\"csk-REDACTED\")"
+    }
+   ]
+  },
+  {
+   "id": "a354342aeedc",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:AWS Access Key ID",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:AKIA",
+   "esempi": [
+    {
+     "server": "glin-profanity",
+     "file": "packages/huggingface-space/app.py",
+     "line": 64,
+     "evidence": "\"access_key_id = AKIAREDACTED\","
+    }
+   ]
+  },
+  {
+   "id": "a15d15744f7e",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "youtube-music-mcp-server",
+     "file": "src/youtube-music/client.ts",
+     "line": 21,
+     "evidence": "const YTM_API_KEY = 'AIzaREDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "c44b71a38902",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:OpenAI Legacy Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "ARIES",
+     "file": "web/js/app.js",
+     "line": 15,
+     "evidence": "const OPENAI_API_KEY = 'sk-REDACTED';  // 请设置您的 API 密钥"
+    }
+   ]
+  },
+  {
+   "id": "a61f19e7bc2c",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "mcp-tool-platform",
+     "file": "server/mcp/plugins-pending/gcp-vision.ts",
+     "line": 6,
+     "evidence": "key: \"AIzaREDACTED\","
+    }
+   ]
+  },
+  {
+   "id": "40fee3751ca1",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "react-native-mcp-server",
+     "file": "src/tools/supabase-setup.ts",
+     "line": 44,
+     "evidence": "serviceKey: 'eyJREDACTED'"
+    }
+   ]
+  },
+  {
+   "id": "57441f380512",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:GitHub PAT (classic)",
+   "tipo_file": "env-committato",
+   "forma_valore": "provider:ghp_",
+   "esempi": [
+    {
+     "server": "mcp-github-agent",
+     "file": ".env",
+     "line": 2,
+     "evidence": "GITHUB_TOKEN=ghp_REDACTED"
+    }
+   ]
+  },
+  {
+   "id": "db25a9ddcde7",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:OpenAI Legacy Key",
+   "tipo_file": "env-committato",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "Reflect.app-Local-MCP",
+     "file": ".env",
+     "line": 2,
+     "evidence": "REFLECT_CLIENT_SECRET=sk-REDACTED"
+    }
+   ]
+  },
+  {
+   "id": "1e24d393618e",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "env-committato",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "calendarific-mcp-server",
+     "file": ".env",
+     "line": 1,
+     "evidence": "CALENDARIFIC_API_KEY=\"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "e3e51a0b340a",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-corta",
+   "esempi": [
+    {
+     "server": "testcollab-mcp-server",
+     "file": "scripts/bump-version.js",
+     "line": 53,
+     "evidence": "fs.writeFileSync(tmpRc, `//registry.npmjs.org/:_authToken=${token}\\n`, 'utf8');"
+    }
+   ]
+  },
+  {
+   "id": "e31d939d7511",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "placeholder",
+   "esempi": [
+    {
+     "server": "Content-Saver-MCP-Server",
+     "file": "web-ui/scripts/check-env.js",
+     "line": 16,
+     "evidence": "fs.writeFileSync(envPath, `OPENAI_API_KEY=your-api-key-here\\n`);"
+    }
+   ]
+  },
+  {
+   "id": "4faa366d8a27",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-corta",
+   "esempi": [
+    {
+     "server": "oss-nexera-debugger-mcp",
+     "file": "src/utils/tokenManager.ts",
+     "line": 169,
+     "evidence": "fs.writeFileSync(tokenPath, this.token, { mode: 0o600, encoding: 'utf8' });"
+    }
+   ]
+  },
+  {
+   "id": "c81dd2d523e9",
+   "n_finding": 1,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "placeholder",
+   "esempi": [
+    {
+     "server": "lark-office-mcp",
+     "file": "src/services/lark-client.ts",
+     "line": 77,
+     "evidence": "writeFileSync(TOKEN_FILE, JSON.stringify({ ...token, baseUrl }, null, 2));"
+    }
+   ]
+  }
+ ]
+}

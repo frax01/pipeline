@@ -9,7 +9,7 @@ framework che prima lo segnalavano e ora no.
 
 Uso:
     python autorun/analisi_concordanza.py
-    python autorun/analisi_concordanza.py --out CONCORDANZA.md
+    python autorun/analisi_concordanza.py --out docs/rirun/CONCORDANZA.md
 """
 import argparse
 import json

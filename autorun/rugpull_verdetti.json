@@ -1,0 +1,3361 @@
+[
+ {
+  "server": "878787ya/yt_mcp",
+  "tool": "fetch_comments",
+  "similarita": 0.962,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "afreakk/qutebrowser-mcp",
+  "tool": "execute_js",
+  "similarita": 0.191,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "afreakk/qutebrowser-mcp",
+  "tool": "list_tabs",
+  "similarita": 0.459,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "rete",
+   "filesystem"
+  ]
+ },
+ {
+  "server": "afreakk/qutebrowser-mcp",
+  "tool": "navigate",
+  "similarita": 0.402,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "afreakk/qutebrowser-mcp",
+  "tool": "open_tab",
+  "similarita": 0.612,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "alex_get_pool_info",
+  "similarita": 0.804,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "alex_get_swap_quote",
+  "similarita": 0.868,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "alex_list_pools",
+  "similarita": 0.885,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "alex_swap",
+  "similarita": 0.81,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "arxiv_compile_digest",
+  "similarita": 0.952,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "arxiv_search",
+  "similarita": 0.945,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "btc_sign_message",
+  "similarita": 0.916,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "call_contract",
+  "similarita": 0.944,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "credentials_list",
+  "similarita": 0.77,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "credentials_set",
+  "similarita": 0.811,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "credentials_unlock",
+  "similarita": 0.794,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "get_rune_balances",
+  "similarita": 0.89,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "get_token_balance",
+  "similarita": 0.823,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "get_token_holders",
+  "similarita": 0.513,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "get_token_info",
+  "similarita": 0.641,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "identity_register",
+  "similarita": 0.834,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "jingswap_cancel_stx",
+  "similarita": 0.814,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "jingswap_deposit_stx",
+  "similarita": 0.846,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "jingswap_get_cycle_state",
+  "similarita": 0.864,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "jingswap_get_depositors",
+  "similarita": 0.802,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "jingswap_get_user_deposit",
+  "similarita": 0.692,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "news_editor_file_review",
+  "similarita": 0.917,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "news_editor_review_signal",
+  "similarita": 0.754,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "nonce_heal",
+  "similarita": 0.966,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "ordinals_p2p_cancel",
+  "similarita": 0.862,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "ordinals_p2p_counter",
+  "similarita": 0.874,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "ordinals_p2p_create_offer",
+  "similarita": 0.901,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "ordinals_p2p_psbt_swap",
+  "similarita": 0.919,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "ordinals_p2p_transfer",
+  "similarita": 0.889,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "pillar_key_unlock",
+  "similarita": 0.78,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "pillar_send",
+  "similarita": 0.891,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "runes_get_address_activity",
+  "similarita": 0.879,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "runes_get_address_balances",
+  "similarita": 0.883,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "runes_list_etchings",
+  "similarita": 0.867,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "tenero_holder_stats",
+  "similarita": 0.842,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "tenero_market_summary",
+  "similarita": 0.851,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "tenero_token_info",
+  "similarita": 0.803,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "tenero_trending_pools",
+  "similarita": 0.845,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "tenero_wallet_holdings",
+  "similarita": 0.854,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "tenero_wallet_trades",
+  "similarita": 0.836,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "transfer_token",
+  "similarita": 0.793,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aibtcdev/aibtc-mcp-server",
+  "tool": "wallet_rotate_password",
+  "similarita": 0.904,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 42 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aler1x/monobank-mcp",
+  "tool": "get_client_info",
+  "similarita": 0.646,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aler1x/monobank-mcp",
+  "tool": "get_statement",
+  "similarita": 0.305,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "alexandreproenca/nuvemshop-mcp-server",
+  "tool": "create_billing_plan",
+  "similarita": 0.938,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "alexandreproenca/nuvemshop-mcp-server",
+  "tool": "create_customer",
+  "similarita": 0.945,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "alexandreproenca/nuvemshop-mcp-server",
+  "tool": "create_order",
+  "similarita": 0.955,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "alexandreproenca/nuvemshop-mcp-server",
+  "tool": "list_orders",
+  "similarita": 0.962,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "alexandreproenca/nuvemshop-mcp-server",
+  "tool": "update_billing_plan",
+  "similarita": 0.927,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "alexandreproenca/nuvemshop-mcp-server",
+  "tool": "update_customer",
+  "similarita": 0.941,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "algae514/terminal-mcp-server",
+  "tool": "terminal",
+  "similarita": 0.977,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "amamparo/ableton-mcp",
+  "tool": "get_track_info",
+  "similarita": 0.442,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "antonzherdev/mcp-web-inspector",
+  "tool": "evaluate",
+  "similarita": 0.903,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "antonzherdev/mcp-web-inspector",
+  "tool": "get_console_logs",
+  "similarita": 0.96,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "antonzherdev/mcp-web-inspector",
+  "tool": "get_html",
+  "similarita": 0.98,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "antonzherdev/mcp-web-inspector",
+  "tool": "get_request_details",
+  "similarita": 0.975,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "antonzherdev/mcp-web-inspector",
+  "tool": "get_text",
+  "similarita": 0.928,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "antonzherdev/mcp-web-inspector",
+  "tool": "visual_screenshot_for_humans",
+  "similarita": 0.985,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "aplavin/julia-mcp",
+  "tool": "julia_eval",
+  "similarita": 0.753,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "areaarseth/tmux-mcp",
+  "tool": "execute-command",
+  "similarita": 0.495,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "bmsoft1024/common_mcp_gateway",
+  "tool": "filesystem__read_media_file",
+  "similarita": 0.556,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "bvisible/mcp-ssh-manager",
+  "tool": "ssh_deploy",
+  "similarita": 0.056,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "credenziali",
+   "filesystem"
+  ]
+ },
+ {
+  "server": "bvisible/mcp-ssh-manager",
+  "tool": "ssh_execute_sudo",
+  "similarita": 0.003,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "credenziali",
+   "filesystem"
+  ]
+ },
+ {
+  "server": "bypawel/tachibot-mcp",
+  "tool": "nextThought",
+  "similarita": 0.992,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "bypawel/tachibot-mcp",
+  "tool": "preview_prompt_technique",
+  "similarita": 0.669,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "bypawel/tachibot-mcp",
+  "tool": "tachi",
+  "similarita": 0.867,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "esecuzione"
+  ]
+ },
+ {
+  "server": "cameronrye/gopher-mcp",
+  "tool": "gemini_batch_fetch",
+  "similarita": 0.81,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "cameronrye/gopher-mcp",
+  "tool": "gemini_fetch",
+  "similarita": 0.797,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "cameronrye/gopher-mcp",
+  "tool": "gopher_batch_fetch",
+  "similarita": 0.812,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "cameronrye/gopher-mcp",
+  "tool": "gopher_fetch",
+  "similarita": 0.969,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "chrishayuk/chuk-mcp-stage",
+  "tool": "stage_add_object",
+  "similarita": 0.951,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "chrishayuk/chuk-mcp-stage",
+  "tool": "stage_bake_simulation",
+  "similarita": 0.96,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "chrishayuk/chuk-mcp-stage",
+  "tool": "stage_bind_physics",
+  "similarita": 0.943,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "chrishayuk/chuk-mcp-stage",
+  "tool": "stage_export_scene",
+  "similarita": 0.955,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "chrishayuk/chuk-mcp-stage",
+  "tool": "stage_set_environment",
+  "similarita": 0.949,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "circuitry-dev/circuitry-mcp-server",
+  "tool": "nodes.delete",
+  "similarita": 0.477,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "codeawareness/kawa.mcp",
+  "tool": "get_relevant_context",
+  "similarita": 0.12,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "codeawareness/kawa.mcp",
+  "tool": "infer_history",
+  "similarita": 0.097,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "esecuzione"
+  ]
+ },
+ {
+  "server": "coinpaprika/dexpaprika-mcp",
+  "tool": "getTokenDetails",
+  "similarita": 0.73,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "coinpaprika/dexpaprika-mcp",
+  "tool": "getTokenPools",
+  "similarita": 0.758,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "coinstatshq/coinstats-mcp",
+  "tool": "add-portfolio-transaction",
+  "similarita": 0.402,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "coladapo/purmemo-mcp",
+  "tool": "save_conversation",
+  "similarita": 0.583,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "coo-quack/calc-mcp",
+  "tool": "jwt_decode",
+  "similarita": 0.215,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "ab_experiments_delete",
+  "similarita": 0.372,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "alerts_delete",
+  "similarita": 0.148,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "app_users_delete",
+  "similarita": 0.489,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "apps_create",
+  "similarita": 0.52,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "apps_delete",
+  "similarita": 0.387,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "apps_reset",
+  "similarita": 0.209,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione"
+  ]
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "cohorts_delete",
+  "similarita": 0.435,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "crashes_comment_delete",
+  "similarita": 0.438,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "dashboard_users",
+  "similarita": 0.423,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "dashboards_delete",
+  "similarita": 0.25,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "drill_bookmarks_delete",
+  "similarita": 0.348,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "email_reports_delete",
+  "similarita": 0.324,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "filtering_rules_delete",
+  "similarita": 0.263,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "formulas_delete",
+  "similarita": 0.383,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "formulas_list",
+  "similarita": 0.33,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "esecuzione"
+  ]
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "funnels_delete",
+  "similarita": 0.463,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "hooks_delete",
+  "similarita": 0.233,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "notes_create",
+  "similarita": 0.167,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "notes_delete",
+  "similarita": 0.144,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "rete",
+   "filesystem"
+  ]
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "remote_config_conditions_delete",
+  "similarita": 0.333,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "remote_config_parameters_add",
+  "similarita": 0.056,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "countly/countly-mcp-server",
+  "tool": "remote_config_parameters_delete",
+  "similarita": 0.531,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 22 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "danielrosehill/gemini-transcription-mcp",
+  "tool": "transcribe_audio",
+  "similarita": 0.254,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "danielrosehill/gemini-transcription-mcp",
+  "tool": "transcribe_audio_custom",
+  "similarita": 0.629,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "danielrosehill/gemini-transcription-mcp",
+  "tool": "transcribe_audio_format",
+  "similarita": 0.156,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dappros/ethora-mcp-server",
+  "tool": "ethora-app-delete-chat",
+  "similarita": 0.089,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "credenziali"
+  ]
+ },
+ {
+  "server": "dappros/ethora-mcp-server",
+  "tool": "ethora-bot-widget-v2",
+  "similarita": 0.152,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura",
+   "rete"
+  ]
+ },
+ {
+  "server": "dappros/ethora-mcp-server",
+  "tool": "ethora-chats-broadcast-job-v2",
+  "similarita": 0.162,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dappros/ethora-mcp-server",
+  "tool": "ethora-configure",
+  "similarita": 0.055,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "dappros/ethora-mcp-server",
+  "tool": "ethora-sources-docs-list-v2",
+  "similarita": 0.167,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura",
+   "cancellazione"
+  ]
+ },
+ {
+  "server": "dappros/ethora-mcp-server",
+  "tool": "ethora-sources-docs-upload-v2",
+  "similarita": 0.092,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione"
+  ]
+ },
+ {
+  "server": "dappros/ethora-mcp-server",
+  "tool": "ethora-sources-site-list-v2",
+  "similarita": 0.158,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura",
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "dappros/ethora-mcp-server",
+  "tool": "ethora-status",
+  "similarita": 0.119,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "dawncr0w/affine-mcp-server",
+  "tool": "generate_access_token",
+  "similarita": 0.441,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dawncr0w/affine-mcp-server",
+  "tool": "revoke_access_token",
+  "similarita": 0.416,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dbos-inc/dbos-mcp",
+  "tool": "cancel_workflow",
+  "similarita": 0.877,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dbos-inc/dbos-mcp",
+  "tool": "get_workflow",
+  "similarita": 0.939,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dbos-inc/dbos-mcp",
+  "tool": "list_applications",
+  "similarita": 0.895,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dbos-inc/dbos-mcp",
+  "tool": "list_executors",
+  "similarita": 0.961,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dbos-inc/dbos-mcp",
+  "tool": "list_steps",
+  "similarita": 0.933,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dbos-inc/dbos-mcp",
+  "tool": "list_workflows",
+  "similarita": 0.895,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dbos-inc/dbos-mcp",
+  "tool": "resume_workflow",
+  "similarita": 0.768,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "deejpotter/my-mcp-server",
+  "tool": "image_analyze_color_profile",
+  "similarita": 0.943,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "deejpotter/my-mcp-server",
+  "tool": "image_color_correct",
+  "similarita": 0.917,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "deepadata/deepadata-edm-mcp-server",
+  "tool": "extract_from_content",
+  "similarita": 0.991,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "deeprave/mcp-guide",
+  "tool": "category_list_files",
+  "similarita": 0.735,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "deeprave/mcp-guide",
+  "tool": "client_info",
+  "similarita": 0.88,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "deeprave/mcp-guide",
+  "tool": "send_file_content",
+  "similarita": 0.736,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "devongroff/todoist-mcp",
+  "tool": "todoist_add_context_comment",
+  "similarita": 0.451,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "doitintl/doit-mcp-server",
+  "tool": "list_platforms",
+  "similarita": 0.246,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "doitintl/doit-mcp-server",
+  "tool": "list_products",
+  "similarita": 0.291,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "doitintl/doit-mcp-server",
+  "tool": "list_roles",
+  "similarita": 0.132,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "doitintl/doit-mcp-server",
+  "tool": "update_annotation",
+  "similarita": 0.035,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "doitintl/doit-mcp-server",
+  "tool": "update_label",
+  "similarita": 0.179,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "doitintl/doit-mcp-server",
+  "tool": "validate_user",
+  "similarita": 0.037,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 6 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "credenziali"
+  ]
+ },
+ {
+  "server": "dollhousemcp/mcp-server",
+  "tool": "mcp_aql_create",
+  "similarita": 0.899,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "dollhousemcp/mcp-server",
+  "tool": "mcp_aql_execute",
+  "similarita": 0.784,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "credenziali"
+  ]
+ },
+ {
+  "server": "draco-cheng/ai-readme-mcp",
+  "tool": "update_ai_readme",
+  "similarita": 0.78,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "dynamics365ninja/d365fo-mcp-server",
+  "tool": "suggest_edt",
+  "similarita": 0.437,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "dynamics365ninja/d365fo-mcp-server",
+  "tool": "verify_d365fo_project",
+  "similarita": 0.252,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "erichung9060/android-mobile-mcp",
+  "tool": "mobile_swipe",
+  "similarita": 0.318,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "eugeneant/mcp-server-sdlxliff",
+  "tool": "qa_check_sdlxliff",
+  "similarita": 0.704,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "eugeneant/mcp-server-sdlxliff",
+  "tool": "read_sdlxliff",
+  "similarita": 0.81,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "fabiovige/mcp-mysql-simple",
+  "tool": "execute_query",
+  "similarita": 0.321,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "fakturaonline/fakturaonline-mcp",
+  "tool": "clone_invoice",
+  "similarita": 0.299,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "fakturaonline/fakturaonline-mcp",
+  "tool": "sign_in",
+  "similarita": 0.299,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "falldownthesystem/converse",
+  "tool": "chat",
+  "similarita": 0.374,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "finanzgoblin/spectra-mcp-server",
+  "tool": "pendle_list_markets",
+  "similarita": 0.994,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "fr0ster/mcp-abap-adt",
+  "tool": "SearchObject",
+  "similarita": 0.633,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "fradser/mcp-server-apple-events",
+  "tool": "calendar_events",
+  "similarita": 0.41,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "fradser/mcp-server-apple-events",
+  "tool": "reminders_tasks",
+  "similarita": 0.594,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "futuur/futuur-mcp",
+  "tool": "get_bet_simulation",
+  "similarita": 0.939,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "futuur/futuur-mcp",
+  "tool": "get_partial_sell_amount",
+  "similarita": 0.244,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "futuur/futuur-mcp",
+  "tool": "sell_bet",
+  "similarita": 0.546,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "get-technology-inc/jamf-docs-mcp-server",
+  "tool": "jamf_docs_search",
+  "similarita": 0.748,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "go-delve/mcp-dap-server",
+  "tool": "debug",
+  "similarita": 0.824,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "gotohuman/gotohuman-mcp-server",
+  "tool": "get-form-schema",
+  "similarita": 0.601,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "gotohuman/gotohuman-mcp-server",
+  "tool": "list-forms",
+  "similarita": 0.922,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "gotohuman/gotohuman-mcp-server",
+  "tool": "request-human-review-with-form",
+  "similarita": 0.642,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "grafana/mcp-grafana",
+  "tool": "get_dashboard_property",
+  "similarita": 0.764,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "gwbischof/free-will-mcp",
+  "tool": "self_prompt",
+  "similarita": 0.962,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "hakureirm/longport_mcp",
+  "tool": "call_longport_api",
+  "similarita": 0.953,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "hakureirm/longport_mcp",
+  "tool": "get_history_executions",
+  "similarita": 0.881,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "hakureirm/longport_mcp",
+  "tool": "get_today_executions",
+  "similarita": 0.881,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "hatrigt/hana-mcp-server",
+  "tool": "hana_execute_query",
+  "similarita": 0.64,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "cancellazione"
+  ]
+ },
+ {
+  "server": "hopperlabsxyz/lagoon-mcp",
+  "tool": "get_vault_composition",
+  "similarita": 0.031,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "hostinger/api-mcp-server",
+  "tool": "VPS_recreateVirtualMachineV1",
+  "similarita": 0.998,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "hostinger/api-mcp-server",
+  "tool": "VPS_setPanelPasswordV1",
+  "similarita": 0.998,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "hostinger/api-mcp-server",
+  "tool": "VPS_setRootPasswordV1",
+  "similarita": 0.997,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "hostinger/api-mcp-server",
+  "tool": "reach_createANewContactV1",
+  "similarita": 0.996,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "houtini-ai/lm",
+  "tool": "chat",
+  "similarita": 0.4,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "filesystem"
+  ]
+ },
+ {
+  "server": "houtini-ai/lm",
+  "tool": "code_task",
+  "similarita": 0.662,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "houtini-ai/lm",
+  "tool": "custom_prompt",
+  "similarita": 0.701,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "howardqin/fastmcp-opengauss",
+  "tool": "execute_query",
+  "similarita": 0.762,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "ianhi/jupyterlab-claude-code",
+  "tool": "execute_code",
+  "similarita": 0.343,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "ianhi/jupyterlab-claude-code",
+  "tool": "report_issue",
+  "similarita": 0.285,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "ignfab/geocontext",
+  "tool": "assiette_sup",
+  "similarita": 0.23,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "ignfab/geocontext",
+  "tool": "urbanisme",
+  "similarita": 0.136,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "jalpp/chessagine-mcp",
+  "tool": "fetch-lichess-game",
+  "similarita": 0.449,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "jalpp/chessagine-mcp",
+  "tool": "fetch-lichess-games",
+  "similarita": 0.355,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "jalpp/chessagine-mcp",
+  "tool": "fetch-lichess-studies",
+  "similarita": 0.737,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "jalpp/chessagine-mcp",
+  "tool": "fetch-lichess-study-pgn",
+  "similarita": 0.693,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "jiawei686/wechat-dev-mcp",
+  "tool": "evaluate",
+  "similarita": 0.526,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "jl-codes/platformio-mcp",
+  "tool": "build_project",
+  "similarita": 0.12,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "esecuzione"
+  ]
+ },
+ {
+  "server": "jl-codes/platformio-mcp",
+  "tool": "upload_firmware",
+  "similarita": 0.307,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "esecuzione",
+   "rete"
+  ]
+ },
+ {
+  "server": "k-chrispens/tiling-trees-mcp",
+  "tool": "update_tile",
+  "similarita": 0.762,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "karelxfi/portal-mcp-server",
+  "tool": "portal_get_wallet_summary",
+  "similarita": 0.036,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "filesystem"
+  ]
+ },
+ {
+  "server": "kinothe-kafkaesque/ssh-mcp-server",
+  "tool": "ssh_exec_raw",
+  "similarita": 0.658,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "kirti676/api_tester_mcp",
+  "tool": "set_env_vars",
+  "similarita": 0.955,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "kong/mcp-konnect",
+  "tool": "list_plugins",
+  "similarita": 0.734,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "langchain-ai/langsmith-mcp-server",
+  "tool": "get_billing_usage",
+  "similarita": 0.643,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "langchain-ai/langsmith-mcp-server",
+  "tool": "list_datasets",
+  "similarita": 0.207,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "langchain-ai/langsmith-mcp-server",
+  "tool": "list_examples",
+  "similarita": 0.28,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "langchain-ai/langsmith-mcp-server",
+  "tool": "list_prompts",
+  "similarita": 0.264,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "laststance/electron-mcp-server",
+  "tool": "list_electron_windows",
+  "similarita": 0.801,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "lespaceman/athena-browser-mcp",
+  "tool": "get_field",
+  "similarita": 0.537,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "lespaceman/athena-browser-mcp",
+  "tool": "get_form",
+  "similarita": 0.465,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "letoribo/mcp-graphql-enhanced",
+  "tool": "query-graphql",
+  "similarita": 0.083,
+  "verdetto": "RP-C",
+  "motivazione": "A maggio 'Execute a GraphQL query against the endpoint': sola lettura. A luglio 'Execute GraphQL operations (queries and mutations)' con 'WARNING: Mutation operations will modify persistent state'. Il tool passa da read-only a read-write: un agente che lo aveva approvato come query eseguira' mutation.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "lightningfaucet/mcp-server",
+  "tool": "register_operator",
+  "similarita": 0.786,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "linked-api/linkedapi-mcp",
+  "tool": "send_connection_request",
+  "similarita": 0.197,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "littlebearapps/outlook-mcp",
+  "tool": "manage-contact",
+  "similarita": 0.073,
+  "verdetto": "DOC",
+  "motivazione": "Sembrava un'espansione ('Full CRUD ... destructive: covers `delete`'), ma la descrizione di maggio elencava gia' per esteso 'action=update modifies a contact. action=delete removes a contact'. Nessuna capability nuova: solo l'etichetta 'destructive' resa esplicita in testa. NB: verdetto corretto dopo rilettura del testo integrale — sul troncato a 155 caratteri il `delete` di maggio non si vedeva.",
+  "capability_comparse": [
+   "filesystem"
+  ]
+ },
+ {
+  "server": "lyonk71/joplin-mcp",
+  "tool": "execute_joplin_script",
+  "similarita": 0.048,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "madllama25/fastmail-mcp",
+  "tool": "check_function_availability",
+  "similarita": 0.474,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "esecuzione"
+  ]
+ },
+ {
+  "server": "madzarm/mcp-server-gelato",
+  "tool": "configure_gelato",
+  "similarita": 0.922,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "madzarm/mcp-server-gelato",
+  "tool": "create_order",
+  "similarita": 0.917,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "madzarm/mcp-server-gelato",
+  "tool": "get_product_prices",
+  "similarita": 0.94,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "magic-spells/figma-mcp-bridge",
+  "tool": "figma_server_info",
+  "similarita": 0.62,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "mapbox/mcp-devkit-server",
+  "tool": "geojson_preview_tool",
+  "similarita": 0.969,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "mark3labs/codebench-mcp",
+  "tool": "executeJS",
+  "similarita": 0.853,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "matipojo/personal-context-mcp",
+  "tool": "setup_otp",
+  "similarita": 0.589,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "memtensor/memos-api-mcp",
+  "tool": "search_memory",
+  "similarita": 0.954,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "michaelneale/goose-app-maker-mcp",
+  "tool": "app_delete",
+  "similarita": 0.929,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "michaelneale/goose-app-maker-mcp",
+  "tool": "app_error",
+  "similarita": 0.957,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "michaelneale/goose-app-maker-mcp",
+  "tool": "app_response",
+  "similarita": 0.955,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "michaelneale/goose-app-maker-mcp",
+  "tool": "app_serve",
+  "similarita": 0.936,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "michaelneale/goose-app-maker-mcp",
+  "tool": "app_stop_server",
+  "similarita": 0.946,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "mikedaley/appleii-agent",
+  "tool": "emma_command",
+  "similarita": 0.404,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "mkxultra/claude-code-mcp",
+  "tool": "run",
+  "similarita": 0.864,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "mnehmos/rpg-mcp",
+  "tool": "narrative_manage",
+  "similarita": 0.615,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "mnehmos/rpg-mcp",
+  "tool": "npc_manage",
+  "similarita": 0.886,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "mobai-app/mobai-mcp",
+  "tool": "execute_dsl",
+  "similarita": 0.135,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "rete",
+   "credenziali"
+  ]
+ },
+ {
+  "server": "moscaverd/local-skills-mcp",
+  "tool": "get_skill",
+  "similarita": 0.467,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete",
+   "privilegi"
+  ]
+ },
+ {
+  "server": "mrelph/teamsnapmcp",
+  "tool": "teamsnap_get_event",
+  "similarita": 0.466,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "mrelph/teamsnapmcp",
+  "tool": "teamsnap_get_team",
+  "similarita": 0.639,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "nayantarasundarraj-hue/databricks-cursor-mcp",
+  "tool": "execute_sql",
+  "similarita": 0.298,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "cancellazione"
+  ]
+ },
+ {
+  "server": "nayantarasundarraj-hue/databricks-cursor-mcp",
+  "tool": "run_notebook",
+  "similarita": 0.6,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "nilsir/mcp-server-mysql",
+  "tool": "execute",
+  "similarita": 0.863,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "nilsir/mcp-server-mysql",
+  "tool": "query",
+  "similarita": 0.863,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "nobrainer-tech/langflow-mcp",
+  "tool": "run_flow",
+  "similarita": 0.903,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pantheon-security/notebooklm-mcp-secure",
+  "tool": "ask_question",
+  "similarita": 0.021,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "esecuzione"
+  ]
+ },
+ {
+  "server": "pantheon-security/notebooklm-mcp-secure",
+  "tool": "re_auth",
+  "similarita": 0.872,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pantheon-security/notebooklm-mcp-secure",
+  "tool": "setup_auth",
+  "similarita": 0.906,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "paolodalprato/notebooklm-mcp-structured",
+  "tool": "ask_question",
+  "similarita": 0.698,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "paulaigue/t212-mcp",
+  "tool": "fetch-all-pies",
+  "similarita": 0.575,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "paulaigue/t212-mcp",
+  "tool": "fetch-open-positions",
+  "similarita": 0.517,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "paulaigue/t212-mcp",
+  "tool": "fetch-position",
+  "similarita": 0.737,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "piotr-agier/google-drive-mcp",
+  "tool": "deleteRange",
+  "similarita": 0.222,
+  "verdetto": "RP-D",
+  "motivazione": "Operazione distruttiva estesa dai soli Google Docs a 'Google Docs and text/* files'. Non e' una capability nuova ma un allargamento del raggio d'azione di una gia' distruttiva.",
+  "capability_comparse": [
+   "filesystem"
+  ]
+ },
+ {
+  "server": "platano78/smart-ai-bridge",
+  "tool": "analyze_file",
+  "similarita": 0.036,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "platano78/smart-ai-bridge",
+  "tool": "backup_restore",
+  "similarita": 0.004,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura",
+   "cancellazione",
+   "filesystem"
+  ]
+ },
+ {
+  "server": "platano78/smart-ai-bridge",
+  "tool": "batch_analyze",
+  "similarita": 0.021,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura",
+   "esecuzione"
+  ]
+ },
+ {
+  "server": "platano78/smart-ai-bridge",
+  "tool": "dual_iterate",
+  "similarita": 0.015,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura",
+   "esecuzione",
+   "filesystem"
+  ]
+ },
+ {
+  "server": "platano78/smart-ai-bridge",
+  "tool": "spawn_subagent",
+  "similarita": 0.046,
+  "verdetto": "RP-D",
+  "motivazione": "A luglio compare '⚠️ DESTRUCTIVE when write_files:true: code blocks the agent emits are saved into work_directory'. A maggio la scrittura su disco non era menzionata. Il default e' pero' write_files:false e l'avviso e' esplicito: piu' probabile una disclosure migliorata che una capability aggiunta di nascosto.",
+  "capability_comparse": [
+   "filesystem"
+  ]
+ },
+ {
+  "server": "pleaseprompto/notebooklm-mcp",
+  "tool": "add_notebook",
+  "similarita": 0.159,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "pleaseprompto/notebooklm-mcp",
+  "tool": "cleanup_data",
+  "similarita": 0.052,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione"
+  ]
+ },
+ {
+  "server": "pleaseprompto/notebooklm-mcp",
+  "tool": "get_notebook",
+  "similarita": 0.212,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "pleaseprompto/notebooklm-mcp",
+  "tool": "list_notebooks",
+  "similarita": 0.215,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pleaseprompto/notebooklm-mcp",
+  "tool": "re_auth",
+  "similarita": 0.2,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pleaseprompto/notebooklm-mcp",
+  "tool": "remove_notebook",
+  "similarita": 0.147,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pleaseprompto/notebooklm-mcp",
+  "tool": "setup_auth",
+  "similarita": 0.154,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pleaseprompto/notebooklm-mcp",
+  "tool": "update_notebook",
+  "similarita": 0.176,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "delete_cloudspace",
+  "similarita": 0.646,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "delete_ondemand_node_pool",
+  "similarita": 0.516,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "delete_spot_node_pool",
+  "similarita": 0.483,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "get_cloudspace",
+  "similarita": 0.692,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "get_market_pricing",
+  "similarita": 0.747,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "get_ondemand_node_pool",
+  "similarita": 0.579,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "get_percentile_pricing",
+  "similarita": 0.734,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "get_region",
+  "similarita": 0.615,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "get_server_class",
+  "similarita": 0.583,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "get_spot_node_pool",
+  "similarita": 0.692,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "list_organizations",
+  "similarita": 0.769,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "list_regions",
+  "similarita": 0.75,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "pm990320/rackspace-spot-mcp",
+  "tool": "list_server_classes",
+  "similarita": 0.74,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 13 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "poddubnyoleg/lightdash_mcp",
+  "tool": "get-chart-details",
+  "similarita": 0.813,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "portalfnd/portalmcp",
+  "tool": "eth_create_token",
+  "similarita": 0.435,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "portalfnd/portalmcp",
+  "tool": "eth_get_token_balance",
+  "similarita": 0.86,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "prashanth684/must-gather-code-execution-mcp",
+  "tool": "mustGather_searchAnalysis",
+  "similarita": 0.946,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "professionalwiki/mediawiki-mcp-server",
+  "tool": "get-page",
+  "similarita": 0.212,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "professionalwiki/mediawiki-mcp-server",
+  "tool": "get-revision",
+  "similarita": 0.17,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "proofmath-owner/ai-filesystem-mcp",
+  "tool": "transaction",
+  "similarita": 0.018,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "cancellazione"
+  ]
+ },
+ {
+  "server": "qianchenglong/obsidian-cdp-mcp",
+  "tool": "obsidian_eval",
+  "similarita": 0.136,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "filesystem"
+  ]
+ },
+ {
+  "server": "readify-app/pilates-mcp-server",
+  "tool": "media_free_content_create_post",
+  "similarita": 0.906,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "readify-app/pilates-mcp-server",
+  "tool": "pilates_create_post",
+  "similarita": 0.933,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "remnux/remnux-mcp-server",
+  "tool": "extract_archive",
+  "similarita": 0.474,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "remnux/remnux-mcp-server",
+  "tool": "extract_iocs",
+  "similarita": 0.686,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "filesystem"
+  ]
+ },
+ {
+  "server": "remnux/remnux-mcp-server",
+  "tool": "run_tool",
+  "similarita": 0.559,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "rhombussystems/rhombus-node-mcp",
+  "tool": "access-control-tool",
+  "similarita": 0.752,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 9 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "rhombussystems/rhombus-node-mcp",
+  "tool": "clips-tool",
+  "similarita": 0.937,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 9 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "rhombussystems/rhombus-node-mcp",
+  "tool": "create-camera-policy-tool",
+  "similarita": 0.885,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 9 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "rhombussystems/rhombus-node-mcp",
+  "tool": "entity-lookup-tool",
+  "similarita": 0.749,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 9 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "rhombussystems/rhombus-node-mcp",
+  "tool": "events-tool",
+  "similarita": 0.763,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 9 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "rhombussystems/rhombus-node-mcp",
+  "tool": "get-entity-tool",
+  "similarita": 0.187,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 9 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "rhombussystems/rhombus-node-mcp",
+  "tool": "get-org-information",
+  "similarita": 0.346,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 9 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "rhombussystems/rhombus-node-mcp",
+  "tool": "reboot-cameras",
+  "similarita": 0.467,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 9 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "rhombussystems/rhombus-node-mcp",
+  "tool": "user-tool",
+  "similarita": 0.462,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 9 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "sammorrowdrums/remarkable-mcp",
+  "tool": "remarkable_image",
+  "similarita": 0.896,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "sammorrowdrums/remarkable-mcp",
+  "tool": "remarkable_status",
+  "similarita": 0.314,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "cancellazione",
+   "esecuzione",
+   "rete",
+   "credenziali",
+   "filesystem",
+   "privilegi"
+  ]
+ },
+ {
+  "server": "scottlepp/confluence-mcp",
+  "tool": "confluence_create_page_from_markdown",
+  "similarita": 0.346,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "filesystem"
+  ]
+ },
+ {
+  "server": "scottlepp/confluence-mcp",
+  "tool": "confluence_get_current_user",
+  "similarita": 0.591,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "scottlepp/confluence-mcp",
+  "tool": "confluence_update_page_from_markdown",
+  "similarita": 0.353,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "filesystem"
+  ]
+ },
+ {
+  "server": "sergaris/mcp-steam-reviews",
+  "tool": "get_game_reviews",
+  "similarita": 0.931,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "shinpr/mcp-local-rag",
+  "tool": "ingest_data",
+  "similarita": 0.37,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "shrike-security/shrike-mcp",
+  "tool": "scan_command",
+  "similarita": 0.713,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "shrike-security/shrike-mcp",
+  "tool": "scan_file_write",
+  "similarita": 0.919,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "shrike-security/shrike-mcp",
+  "tool": "scan_prompt",
+  "similarita": 0.975,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "shrike-security/shrike-mcp",
+  "tool": "scan_sql_query",
+  "similarita": 0.936,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "shrike-security/shrike-mcp",
+  "tool": "scan_web_search",
+  "similarita": 0.899,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 5 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "sinco-lab/mcp-youtube-transcript",
+  "tool": "get_transcripts",
+  "similarita": 0.938,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "sirosuzume/mcp-ts-morph",
+  "tool": "find_references_by_tsmorph",
+  "similarita": 0.076,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "credenziali"
+  ]
+ },
+ {
+  "server": "sirosuzume/mcp-ts-morph",
+  "tool": "remove_path_alias_by_tsmorph",
+  "similarita": 0.079,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "sirosuzume/mcp-ts-morph",
+  "tool": "rename_filesystem_entry_by_tsmorph",
+  "similarita": 0.09,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "sirosuzume/mcp-ts-morph",
+  "tool": "rename_symbol_by_tsmorph",
+  "similarita": 0.036,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "credenziali"
+  ]
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "bugsnag_get_current_project",
+  "similarita": 0.984,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "bugsnag_list_projects",
+  "similarita": 0.975,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "contract-testing_create_secret",
+  "similarita": 0.964,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "contract-testing_delete_secret",
+  "similarita": 0.893,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "contract-testing_get_secret",
+  "similarita": 0.913,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "contract-testing_regenerate_api_token",
+  "similarita": 0.845,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "contract-testing_update_secret",
+  "similarita": 0.959,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "qmetry_bulk_update_test_case_execution_status",
+  "similarita": 0.981,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "qmetry_create_test_case",
+  "similarita": 0.98,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "qmetry_fetch_qmetry_list_projects",
+  "similarita": 0.986,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "qmetry_fetch_test_case_executions",
+  "similarita": 0.59,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "qmetry_fetch_test_case_runs_by_test_suite_run",
+  "similarita": 0.409,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "credenziali"
+  ]
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "qmetry_requirements_linked_test_cases_to_test_suite",
+  "similarita": 0.945,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "qmetry_update_test_case",
+  "similarita": 0.997,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "reflect_connect_to_session",
+  "similarita": 0.992,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "swagger_create_portal",
+  "similarita": 0.971,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "swagger_update_portal",
+  "similarita": 0.992,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "smartbear/smartbear-mcp",
+  "tool": "zephyr_create_test_case_steps",
+  "similarita": 0.186,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 18 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "srthkdev/dbeaver-mcp-server",
+  "tool": "execute_query",
+  "similarita": 0.91,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "srthkdev/dbeaver-mcp-server",
+  "tool": "get_connection_info",
+  "similarita": 0.893,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "srthkdev/dbeaver-mcp-server",
+  "tool": "write_query",
+  "similarita": 0.913,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "st3v/running-formulas-mcp",
+  "tool": "daniels_calculate_training_paces",
+  "similarita": 0.274,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "st3v/running-formulas-mcp",
+  "tool": "daniels_predict_race_time",
+  "similarita": 0.482,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "st3v/running-formulas-mcp",
+  "tool": "mcmillan_calculate_training_paces",
+  "similarita": 0.508,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "st3v/running-formulas-mcp",
+  "tool": "mcmillan_calculate_velocity_markers",
+  "similarita": 0.542,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "st3v/running-formulas-mcp",
+  "tool": "mcmillan_heart_rate_zones",
+  "similarita": 0.57,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "st3v/running-formulas-mcp",
+  "tool": "mcmillan_predict_race_times",
+  "similarita": 0.578,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "st3v/running-formulas-mcp",
+  "tool": "riegel_predict_race_time",
+  "similarita": 0.416,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 7 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "stefanoverna/basecamp-mcp",
+  "tool": "basecamp_create_document",
+  "similarita": 0.238,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "stefanoverna/basecamp-mcp",
+  "tool": "basecamp_create_kanban_card",
+  "similarita": 0.259,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "stefanoverna/basecamp-mcp",
+  "tool": "basecamp_create_todo",
+  "similarita": 0.241,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "stefanoverna/basecamp-mcp",
+  "tool": "basecamp_update_comment",
+  "similarita": 0.27,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "stefanoverna/basecamp-mcp",
+  "tool": "basecamp_update_document",
+  "similarita": 0.271,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "stefanoverna/basecamp-mcp",
+  "tool": "basecamp_update_kanban_card",
+  "similarita": 0.332,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "stefanoverna/basecamp-mcp",
+  "tool": "basecamp_update_message",
+  "similarita": 0.27,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "stefanoverna/basecamp-mcp",
+  "tool": "basecamp_update_todo",
+  "similarita": 0.271,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "tasopen/mcp-alphabanana",
+  "tool": "generate_image",
+  "similarita": 0.959,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "thesharque/mcp-architect",
+  "tool": "delete-module",
+  "similarita": 0.319,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "cancellazione",
+   "filesystem"
+  ]
+ },
+ {
+  "server": "thesharque/mcp-architect",
+  "tool": "set-module-details",
+  "similarita": 0.156,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "cancellazione",
+   "rete"
+  ]
+ },
+ {
+  "server": "tintinwinata/mcp-server-atlassian-bitbucket",
+  "tool": "bb_update_pr",
+  "similarita": 0.844,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "vast-ai-research/tripo-mcp",
+  "tool": "create_3d_model_from_text",
+  "similarita": 0.968,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "vast-ai-research/tripo-mcp",
+  "tool": "delete_object",
+  "similarita": 0.957,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "vast-ai-research/tripo-mcp",
+  "tool": "download_polyhaven_asset",
+  "similarita": 0.97,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "vast-ai-research/tripo-mcp",
+  "tool": "execute_blender_code",
+  "similarita": 0.957,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "vast-ai-research/tripo-mcp",
+  "tool": "get_object_info",
+  "similarita": 0.973,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "vast-ai-research/tripo-mcp",
+  "tool": "get_task_status",
+  "similarita": 0.968,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "vast-ai-research/tripo-mcp",
+  "tool": "import_tripo_glb_model",
+  "similarita": 0.951,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "vast-ai-research/tripo-mcp",
+  "tool": "search_polyhaven_assets",
+  "similarita": 0.971,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 8 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "verygoodplugins/mcp-automem",
+  "tool": "delete_memory",
+  "similarita": 0.234,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "esecuzione"
+  ]
+ },
+ {
+  "server": "verygoodplugins/mcp-automem",
+  "tool": "recall_memory",
+  "similarita": 0.179,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "rete"
+  ]
+ },
+ {
+  "server": "verygoodplugins/mcp-automem",
+  "tool": "store_memory",
+  "similarita": 0.562,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura",
+   "rete"
+  ]
+ },
+ {
+  "server": "vicagbasi/mssql-mcp",
+  "tool": "execute_query",
+  "similarita": 0.731,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "wolfe-jam/claude-faf-mcp",
+  "tool": "faf_about",
+  "similarita": 0.135,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "wolfe-jam/claude-faf-mcp",
+  "tool": "faf_score",
+  "similarita": 0.166,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "wonderwhy-er/desktopcommandermcp",
+  "tool": "list_directory",
+  "similarita": 0.981,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "wyre-technology/syncro-mcp",
+  "tool": "syncro_status",
+  "similarita": 0.531,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "xgq18237/siyuan_mcp_server",
+  "tool": "render_sprig",
+  "similarita": 0.842,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zedmoster/revit-mcp",
+  "tool": "delete_elements",
+  "similarita": 0.931,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zedmoster/revit-mcp",
+  "tool": "execute_commands",
+  "similarita": 0.923,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zedmoster/revit-mcp",
+  "tool": "get_commands",
+  "similarita": 0.92,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "createPayment",
+  "similarita": 0.205,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "createProductPricing",
+  "similarita": 0.164,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "deleteContact",
+  "similarita": 0.145,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "deleteContract",
+  "similarita": 0.022,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "deleteCustomer",
+  "similarita": 0.445,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "deleteManualPayment",
+  "similarita": 0.032,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "deletePaymentMethod",
+  "similarita": 0.011,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "getInvoicePayments",
+  "similarita": 0.525,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "getInvoicePaymentsById",
+  "similarita": 0.59,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "getInvoicePaymentsWithoutRefunds",
+  "similarita": 0.485,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "listAggregates",
+  "similarita": 0.878,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "listAllPayments",
+  "similarita": 0.871,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "payInvoice",
+  "similarita": 0.316,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "refundPayment",
+  "similarita": 0.228,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zenskar/mcp-zenskar",
+  "tool": "updatePayment",
+  "similarita": 0.679,
+  "verdetto": "REL",
+  "motivazione": "Il server ha cambiato 15 descrizioni insieme: ridocumentazione di rilascio.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "zetrix-chain/zetrix-mcp-server",
+  "tool": "zetrix_get_transaction_blob",
+  "similarita": 0.004,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zetrix-chain/zetrix-mcp-server",
+  "tool": "zetrix_submit_transaction",
+  "similarita": 0.081,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "rete"
+  ]
+ },
+ {
+  "server": "zetrix-chain/zetrix-mcp-server",
+  "tool": "zetrix_test_transaction",
+  "similarita": 0.272,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zhaojian2626/figma-mcp-server",
+  "tool": "figma_download_and_simplify",
+  "similarita": 0.076,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "credenziali",
+   "privilegi"
+  ]
+ },
+ {
+  "server": "zhaojian2626/figma-mcp-server",
+  "tool": "figma_download_images",
+  "similarita": 0.243,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zhaojian2626/figma-mcp-server",
+  "tool": "figma_get_screenshot",
+  "similarita": 0.281,
+  "verdetto": "DOC",
+  "motivazione": "Riformulazione senza capability nuove segnalate.",
+  "capability_comparse": []
+ },
+ {
+  "server": "zhizhuodemao/js-reverse-mcp",
+  "tool": "break_on_xhr",
+  "similarita": 0.132,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "scrittura"
+  ]
+ },
+ {
+  "server": "zhizhuodemao/js-reverse-mcp",
+  "tool": "search_in_sources",
+  "similarita": 0.081,
+  "verdetto": "DOC",
+  "motivazione": "Letto a mano: stessa capability, descrizione piu' dettagliata. Le parole chiave nuove non corrispondono a un'azione nuova.",
+  "capability_comparse": [
+   "esecuzione",
+   "credenziali"
+  ]
+ }
+]

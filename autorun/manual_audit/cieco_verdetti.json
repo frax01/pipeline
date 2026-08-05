@@ -1,0 +1,212 @@
+[
+ {
+  "repo": "alexandremahdhaoui/testenv-vm",
+  "file": "libvirt/provider.go",
+  "line": 230,
+  "verdetto": "FP",
+  "nota": "exec.Command(setfaclPath, ...) usa args array senza shell; 'group' proviene da libvirtGroups, una slice hardcoded interna (['libvirt','libvirt-qemu','kvm','qemu']) definita in setLibvirtACLs(dir string), non da input MCP/CLI. Nessuna shell, nessuna origine tainted: nessuna command injection possibile."
+ },
+ {
+  "repo": "istanadodan/mcp_py_exam",
+  "file": "gemini_cli_mcp/.env",
+  "line": null,
+  "verdetto": "VP-C",
+  "nota": "GOOGLE_API_KEY=AIzaSy... ha prefisso e lunghezza canonici di una chiave Google API reale (39 char, entropia alta, non placeholder), committata in un file .env reale (non .env.example), nessun commento 'public/intentional'."
+ },
+ {
+  "repo": "SmartBear/smartbear-mcp",
+  "file": null,
+  "line": null,
+  "verdetto": "VP-L",
+  "nota": "Server è un wrapper ufficiale multi-prodotto SmartBear (BugSnag, Reflect, Swagger, PactFlow, QMetry, Zephyr, Collaborator) con tool di scrittura dichiarati (creazione/esecuzione test, generazione API, configurazione remota): capability by-design di un connettore verso servizi noti, non esposizione accidentale."
+ },
+ {
+  "repo": "Amlan66/SSEEnabledMCPAgent",
+  "file": "mcp_server_1.py",
+  "line": 189,
+  "verdetto": "VP-C",
+  "nota": "Tool @mcp.tool() run_python_sandbox(input: PythonCodeInput) esegue exec(input.code, allowed_globals, local_vars) con allowed_globals={'__builtins__': __builtins__} (import consentiti, commento esplicito 'Allow imports like in executor.py'). Nonostante il nome 'sandbox' e la docstring 'Run math code', non c'è alcuna whitelist/restrizione reale: input.code è tainted diretto dal tool MCP e raggiunge un exec() con accesso completo ai builtin -> RCE arbitrario sfruttabile ora, capability dichiarata (math) diversa da quella realmente esposta (exec completo)."
+ },
+ {
+  "repo": "davidf9999/gx-mcp-server",
+  "file": "sqlite_backend.py",
+  "line": 71,
+  "verdetto": "VP-D",
+  "nota": "pickle.loads(row[0]) legge da una tabella SQLite scritta dallo stesso server: DataStorage.add(df: pd.DataFrame) serializza un DataFrame costruito internamente (pickle.dumps(df)), non bytes arbitrari passati direttamente dal chiamante. Pattern reale (pickle su storage locale) ma blast radius limitato a compromissione cross-session del proprio DB, non a payload attaccante diretto."
+ },
+ {
+  "repo": "helixml/kodit",
+  "file": "chunk_files.go",
+  "line": 293,
+  "verdetto": "FP",
+  "nota": "La riga fa parte di relativeFilePath(), funzione che estrae in modo difensivo il path relativo da vecchi path assoluti legacy; il risultato passa poi per safeDiskPath(clonedPath, relPath), che con filepath.Clean + controllo prefisso rifiuta esplicitamente ogni path che esce dalla base (clonedPath). È codice di mitigazione del traversal, non un sink vulnerabile."
+ },
+ {
+  "repo": "TocharianOU/mcp-server-kibana",
+  "file": null,
+  "line": null,
+  "verdetto": "FP",
+  "nota": "Le descrizioni dei tool documentate (es. 'Get Kibana server status', 'Search saved objects', analisi dipendenze prima di eliminare oggetti) sono comandi operativi neutri; nessun linguaggio imperativo verso l'LLM tipo 'ignore previous instructions' o 'don't tell the user', nessun tag <IMPORTANT>/<system> nascosto trovato."
+ },
+ {
+  "repo": "schwarztim/sec-bloodhound-mcp",
+  "file": null,
+  "line": null,
+  "verdetto": "VP-L",
+  "nota": "Server nome 'sec-*' che wrappa BloodHound CE per Active Directory attack path analysis; documentazione esplicita su Kerberoasting, AS-REP Roasting, DCSync rights, unconstrained delegation, con disclaimer 'intended for authorized security testing only'. Capability offensiva dichiarata by-design."
+ },
+ {
+  "repo": "RaiAnsar/claude_code-gemini-mcp",
+  "file": "server.py",
+  "line": null,
+  "verdetto": "VP-D",
+  "nota": "Più punti restituiscono messaggi di errore grezzi al chiamante (message: str(e) nei tool call, 'Server v{__version__} - Gemini error: {GEMINI_ERROR}', 'Gemini not available: {GEMINI_ERROR}'): disclosure di dettagli di configurazione/eccezione Python, non contenuto di file di sistema o credenziali dirette -> debug info a basso impatto."
+ },
+ {
+  "repo": "GreatScottyMac/context-portal",
+  "file": "db/database.py",
+  "line": 535,
+  "verdetto": "FP",
+  "nota": "_get_latest_context_version(cursor, table_name) è chiamata solo con letterali hardcoded ('product_context_history', 'active_context_history') da update_product_context()/update_active_context(); table_name non deriva mai da input utente/MCP, quindi l'f-string non è sfruttabile."
+ },
+ {
+  "repo": "tevonsb/homeassistant-mcp",
+  "file": "index.ts",
+  "line": 1063,
+  "verdetto": "VP-D",
+  "nota": "fetch(`${HASS_HOST}/api/config/automation/config/${params.automation_id}`, ...): HASS_HOST è fisso (env/config del server), solo il segmento di path (automation_id) è controllato dal chiamante del tool. Nessun SSRF verso host arbitrari; al più manipolazione del path verso lo stesso host HA fidato -> blast radius limitato."
+ },
+ {
+  "repo": "xieyuschen/gopls-mcp",
+  "file": "compilebench/main.go",
+  "line": 427,
+  "verdetto": "FP",
+  "nota": "File in tools/cmd/compilebench, un benchmark CLI standalone non esposto tramite il protocollo MCP del server gopls-mcp. exec.Command(*flagGoCmd, 'build', ..., r.dir) usa args array senza shell; flagGoCmd è un flag CLI dello sviluppatore, r.dir/r.flags provengono da definizioni di benchmark interne, non da un tool MCP remoto."
+ },
+ {
+  "repo": "istanadodan/mcp_py_exam",
+  "file": "openai-mcp/.env",
+  "line": null,
+  "verdetto": "VP-C",
+  "nota": "OPENAI_API_KEY=sk-REDACTED con struttura e marcatore interno tipico delle chiavi OpenAI reali (incluso il separatore 'T3BlbkFJ'), e OBSIDIAN_API_KEY con stringa esadecimale a 64 char ad alta entropia; entrambe in un file .env committato, non .env.example, nessun commento 'public'."
+ },
+ {
+  "repo": "Teradata/teradata-mcp-server",
+  "file": null,
+  "line": null,
+  "verdetto": "VP-L",
+  "nota": "Server descritto come connettore diretto AI-agent -> database Teradata ('Connect AI agents directly to Teradata'), con moduli DBA/base/qlty che eseguono query e amministrazione DB. Esecuzione SQL è la capability dichiarata di un wrapper DB, non un'esposizione accidentale."
+ },
+ {
+  "repo": "Oortonaut/mcacp",
+  "file": "acp/agent-requests.ts",
+  "line": 107,
+  "verdetto": "VP-L",
+  "nota": "createTerminal() chiama spawn(params.command, params.args ?? [], {shell:false,...}): params.command è pienamente controllato dal chiamante, ma la creazione di un terminale/esecuzione comandi è la funzione dichiarata di questo tool ACP (agent terminal), analoga a un terminal tool di un coding agent. shell:false esclude comunque metacharacter injection classica."
+ },
+ {
+  "repo": "davidf9999/gx-mcp-server",
+  "file": "sqlite_backend.py",
+  "line": 109,
+  "verdetto": "VP-D",
+  "nota": "ValidationStorage.get() fa pickle.loads(row[0]) su dati scritti da ValidationStorage.add(result: Any), oggetto di validazione prodotto internamente dal server e poi riletto dallo stesso processo (round-trip su SQLite locale). Pattern reale ma non un payload pickle iniettato direttamente da un chiamante esterno."
+ },
+ {
+  "repo": "luckyPipewrench/pipelock",
+  "file": null,
+  "line": null,
+  "verdetto": "n/d",
+  "nota": "Repo di grandi dimensioni (Go, moduli cmd/, enterprise/, charts/) senza path/line risolti nel dataset; senza accesso a ricerca codice autenticata (GitHub code search ha risposto 403, gh CLI non disponibile) non è stato possibile individuare con certezza il sink filepath.Join/path.join specifico da valutare."
+ },
+ {
+  "repo": "neal3000/mcp_media_server",
+  "file": null,
+  "line": null,
+  "verdetto": "FP",
+  "nota": "Progetto minimale (5 commit) con soli due tool, list_movies ('Lists all media files in the Movies directory') e play_movie ('Plays a specific movie using the system's default media player'): descrizioni puramente funzionali, nessun linguaggio imperativo verso l'LLM, nessun tag di injection nascosto."
+ },
+ {
+  "repo": "schwarztim/sec-evil-winrm-mcp",
+  "file": null,
+  "line": null,
+  "verdetto": "VP-L",
+  "nota": "Server nome 'sec-*' che wrappa Evil-WinRM ('the ultimate WinRM shell for penetration testing'), documentazione esplicita su 'AI-assisted Windows post-exploitation and lateral movement', AMSI bypass, in-memory execution di assembly .NET, con disclaimer 'authorized security testing only'. Offensivo by-design."
+ },
+ {
+  "repo": "noflevi10root/mcp-test",
+  "file": "main.py",
+  "line": null,
+  "verdetto": "FP",
+  "nota": "Gli elementi trovati sono deboli: traceback completo solo se l'operatore passa esplicitamente --debug, show_status() stampa solo path locali di modules/config directory (bassa sensibilità), ed elenco dei tool disponibili è comportamento MCP standard (tools/list), non una fuga di segreti/credenziali."
+ },
+ {
+  "repo": "GreptimeTeam/greptimedb-mcp-server",
+  "file": "server.py",
+  "line": 305,
+  "verdetto": "FP",
+  "nota": "quoted_table = _quote_schema_table(table_schema, table_name) applica _quote_identifier che fa backtick-doubling (f'`{name.replace(\"`\",\"``\")}`'), e table/table_schema derivano da _split_table_reference(table, ...) dopo validate_table_name(table) a monte: doppio livello di sanitizzazione (validazione formato + escaping identifier) prima dell'f-string."
+ },
+ {
+  "repo": "tevonsb/homeassistant-mcp",
+  "file": "index.ts",
+  "line": 1087,
+  "verdetto": "VP-D",
+  "nota": "Stesso pattern del finding precedente sullo stesso file: fetch(`${HASS_HOST}/api/config/automation/config/${params.automation_id}`) in modalità GET per 'duplicate'; host fisso da config server, solo automation_id (path) controllato dal chiamante -> nessun SSRF verso host arbitrari, blast radius limitato allo stesso host HA."
+ },
+ {
+  "repo": "SurgeX-Labs/awx-mcp-server",
+  "file": null,
+  "line": null,
+  "verdetto": "VP-L",
+  "nota": "playbook_manager.py usa asyncio.create_subprocess_exec() (mai shell=True) per ansible-playbook/ansible/ansible-inventory con argomenti in array; run_adhoc_task() passa module/args utente ad 'ansible' ma senza shell, e l'esecuzione di automazione (inclusi moduli ad-hoc) è la funzione dichiarata di un MCP server che orchestrava AWX/Ansible Tower, non un'iniezione shell accidentale."
+ },
+ {
+  "repo": "istanadodan/mcp_py_exam",
+  "file": "python-mcp-server/.env",
+  "line": null,
+  "verdetto": "VP-C",
+  "nota": "Stessa GOOGLE_API_KEY=AIzaSy... (formato/lunghezza reali) riusata in un ulteriore file .env committato dello stesso repo/autore; nessun placeholder, nessuna nota 'esempio'."
+ },
+ {
+  "repo": "Vortiago/mcp-azure-devops",
+  "file": null,
+  "line": null,
+  "verdetto": "VP-L",
+  "nota": "Wrapper diretto della REST API Azure DevOps con tool di scrittura già implementati (creazione/aggiornamento work item, commenti, relazioni parent-child) oltre a lettura (WIQL, progetti, team); capability dichiarata di un connettore verso un servizio noto, autenticato via PAT."
+ },
+ {
+  "repo": "RoyRushreeta/tsai-s8-sse-mcp",
+  "file": "mcp_server_1.py",
+  "line": 189,
+  "verdetto": "VP-C",
+  "nota": "Codice identico al finding di Amlan66/SSEEnabledMCPAgent (stesso template di corso): @mcp.tool() run_python_sandbox esegue exec(input.code, {'__builtins__': __builtins__}, local_vars) con import consentiti e nessuna whitelist reale nonostante la docstring 'math sandbox' -> RCE arbitrario sfruttabile via tool MCP."
+ },
+ {
+  "repo": "nonead/nUniversal-Robots-MCP",
+  "file": "URBasic/advanced_data_recorder.py",
+  "line": 730,
+  "verdetto": "VP-D",
+  "nota": "pickle.loads(zlib.decompress(...)) legge file .pklz propri scritti dal PickleStorage stesso; self.base_path/file_prefix vengono da StorageConfig (configurabili ma non passati come parametro di un tool MCP in questo modulo). Pattern reale (deserializzazione di file locali) ma non risulta un binding diretto a un tool remoto controllabile da un chiamante esterno."
+ },
+ {
+  "repo": "IAmMarcellus/BlenderMCP",
+  "file": null,
+  "line": null,
+  "verdetto": "FP",
+  "nota": "Nessuna istruzione imperativa nascosta verso l'LLM nelle descrizioni dei tool; l'unico testo 'imperativo' trovato è un avviso di sicurezza trasparente sul tool execute_blender_code ('allows running arbitrary Python code ... potentially dangerous ... ALWAYS save your work before using it'), disclosure onesta e non tentativo di manipolare il comportamento del modello."
+ },
+ {
+  "repo": "schwarztim/sec-mimikatz-mcp",
+  "file": null,
+  "line": null,
+  "verdetto": "VP-L",
+  "nota": "Server nome 'sec-*' che wrappa Mimikatz; documentazione con terminologia MITRE esplicita (sekurlsa, LSASS dumping, DCSync attacks, Golden/Silver Ticket) e tool con nomi come mimikatz_lsadump_dcsync, con disclaimer 'authorized security testing only'. Offensivo by-design."
+ },
+ {
+  "repo": "JexinSam/mssql_mcp_server",
+  "file": "server.py",
+  "line": 82,
+  "verdetto": "VP-C",
+  "nota": "cursor.execute(f'SELECT TOP 100 * FROM {table}') dove table = uri_str[8:].split('/')[0] deriva direttamente dalla URI MCP mssql://<table>; nessun sanitizer/whitelist tra il parsing e l'esecuzione, table finisce come identifier non quotato nella query. MSSQL supporta stacked queries (';'), e la stringa può contenere qualunque carattere tranne '/' -> injection sfruttabile sul codice attuale."
+ }
+]

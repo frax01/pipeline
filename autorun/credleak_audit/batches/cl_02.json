@@ -1,0 +1,1070 @@
+{
+ "batch": 2,
+ "cluster": [
+  {
+   "id": "1022d95e1363",
+   "n_finding": 3,
+   "n_server": 2,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "env-committato",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "MCP-SERVER-MEDICAL-",
+     "file": ".env",
+     "line": 1,
+     "evidence": "DEV_TOOL_API_KEY=\"REDACTED\""
+    },
+    {
+     "server": "mcp-server-med",
+     "file": ".env",
+     "line": 1,
+     "evidence": "DEV_TOOL_API_KEY=\"REDACTED\""
+    },
+    {
+     "server": "mcp-server-med",
+     "file": ".env",
+     "line": 1,
+     "evidence": "DEV_TOOL_API_KEY=\"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "d2b5b9cfca07",
+   "n_finding": 3,
+   "n_server": 2,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "mcp-qdrant-memory",
+     "file": "src/persistence/qdrant.ts",
+     "line": 20,
+     "evidence": "apiKey: 'eyJREDACTED',"
+    },
+    {
+     "server": "mcp-qdrant-memory",
+     "file": "src/persistence/qdrant.ts",
+     "line": 20,
+     "evidence": "apiKey: 'eyJREDACTED',"
+    },
+    {
+     "server": "MCP-chat",
+     "file": "app/api/completion/route.ts",
+     "line": 9,
+     "evidence": "apiKey: 'eyJREDACTED',"
+    }
+   ]
+  },
+  {
+   "id": "d2225344e8b0",
+   "n_finding": 3,
+   "n_server": 2,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "mcp-server",
+     "file": "server.py",
+     "line": 8,
+     "evidence": "OPENWEATHERMAP_API_KEY = 'REDACTED'  # Ключ для OpenWeatherMap"
+    },
+    {
+     "server": "langchain_mcp_servers",
+     "file": "servers/weather_server.py",
+     "line": 11,
+     "evidence": "OPENWEATHERMAP_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "langchain_mcp_servers",
+     "file": "servers/weather_server.py",
+     "line": 11,
+     "evidence": "OPENWEATHERMAP_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "dbba1d40d442",
+   "n_finding": 3,
+   "n_server": 2,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "dart-mcp",
+     "file": "src/opendart_mcp/server.py",
+     "line": 26,
+     "evidence": "DEFAULT_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "weather-mcp",
+     "file": "src/index.js",
+     "line": 46,
+     "evidence": "const DEFAULT_API_KEY = 'REDACTED';"
+    },
+    {
+     "server": "weather-mcp",
+     "file": "src/index.js",
+     "line": 46,
+     "evidence": "const DEFAULT_API_KEY = 'REDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "0d6a6ee3838b",
+   "n_finding": 3,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "agentic-system-oss",
+     "file": "cluster-deployment/export_macpro51/hook_helper/ember_care.py",
+     "line": 15,
+     "evidence": "GROQ_API_KEY = \"gsk_REDACTED\""
+    },
+    {
+     "server": "agentic-system-oss",
+     "file": "cluster-deployment/export_macpro51/hook_helper/ember_groq_ollama_pipeline.py",
+     "line": 15,
+     "evidence": "GROQ_API_KEY = \"gsk_REDACTED\""
+    },
+    {
+     "server": "agentic-system-oss",
+     "file": "cluster-deployment/export_macpro51/hook_helper/ember_violation_check.py",
+     "line": 17,
+     "evidence": "GROQ_API_KEY = \"gsk_REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "b67c852ec7d0",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "env-committato",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "mcp_py_exam",
+     "file": "openai-mcp/.env",
+     "line": 5,
+     "evidence": "OBSIDIAN_API_KEY=\"REDACTED\""
+    },
+    {
+     "server": "mcp_py_exam",
+     "file": "openai-mcp/.env",
+     "line": 5,
+     "evidence": "OBSIDIAN_API_KEY=\"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "ca680e008f11",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:GitHub PAT (classic)",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:ghp_",
+   "esempi": [
+    {
+     "server": "mcp-server-npm",
+     "file": "index.js",
+     "line": 60,
+     "evidence": "\"Authorization\": \"Bearer ghp_REDACTED\""
+    },
+    {
+     "server": "mcp-server-npm",
+     "file": "index.js",
+     "line": 60,
+     "evidence": "\"Authorization\": \"Bearer ghp_REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "659bc69adf88",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "mcp-intranet-onbotgo",
+     "file": "mcp_onbotgo/config.py",
+     "line": 44,
+     "evidence": "default=\"AIzaREDACTED\","
+    },
+    {
+     "server": "mcp-intranet-onbotgo",
+     "file": "mcp_onbotgo/config.py",
+     "line": 44,
+     "evidence": "default=\"AIzaREDACTED\","
+    }
+   ]
+  },
+  {
+   "id": "48b94bfaf929",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "env-committato",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "Chatbot-PWA-frontend",
+     "file": ".env",
+     "line": 1,
+     "evidence": "GOOGLE_GENAI_API_KEY=AIzaREDACTED"
+    },
+    {
+     "server": "Chatbot-PWA-frontend",
+     "file": ".env",
+     "line": 1,
+     "evidence": "GOOGLE_GENAI_API_KEY=AIzaREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "b6ea91664685",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Docker PAT",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "MCPDCOKER",
+     "file": "temp.js",
+     "line": 8,
+     "evidence": "const isValid = await validateCredentials('saviosammy', 'dckr_pat_REDACTED');"
+    },
+    {
+     "server": "MCPDCOKER",
+     "file": "temp.js",
+     "line": 8,
+     "evidence": "const isValid = await validateCredentials('saviosammy', 'dckr_pat_REDACTED');"
+    }
+   ]
+  },
+  {
+   "id": "4df694ffd82e",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:OpenAI Legacy Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "douyin-mcp-server",
+     "file": "douyin_mcp_server/server.py",
+     "line": 41,
+     "evidence": "DOUYIN_API_KEY = CONFIG.get(\"api_key\",\"sk-REDACTED\")"
+    },
+    {
+     "server": "douyin-mcp-server",
+     "file": "douyin_mcp_server/server.py",
+     "line": 41,
+     "evidence": "DOUYIN_API_KEY = CONFIG.get(\"api_key\",\"sk-REDACTED\")"
+    }
+   ]
+  },
+  {
+   "id": "038885ff63fa",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "Supabase-MCP-SelfHosted",
+     "file": "src/supabase_server.py",
+     "line": 50,
+     "evidence": "SUPABASE_SERVICE_ROLE_KEY = \"eyJREDACTED\""
+    },
+    {
+     "server": "Supabase-MCP-SelfHosted",
+     "file": "src/supabase_server.py",
+     "line": 50,
+     "evidence": "SUPABASE_SERVICE_ROLE_KEY = \"eyJREDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "91bfcff5774a",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "news-instagram-mcp",
+     "file": "setup_production.py",
+     "line": 29,
+     "evidence": "print(\"   Value: AIzaREDACTED\")"
+    },
+    {
+     "server": "news-instagram-mcp",
+     "file": "setup_production.py",
+     "line": 29,
+     "evidence": "print(\"   Value: AIzaREDACTED\")"
+    }
+   ]
+  },
+  {
+   "id": "7af4f5d1650a",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "env-committato",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "mcp-server-git-cz",
+     "file": ".env",
+     "line": 1,
+     "evidence": "DEEPSEEK_API_KEY=\"sk-REDACTED\""
+    },
+    {
+     "server": "mcp-server-git-cz",
+     "file": ".env",
+     "line": 1,
+     "evidence": "DEEPSEEK_API_KEY=\"sk-REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "bc550137cd68",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "env-committato",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "Weather_mcp",
+     "file": ".env",
+     "line": 3,
+     "evidence": "OPENAI_API_KEY=\"sk-REDACTED\""
+    },
+    {
+     "server": "Weather_mcp",
+     "file": ".env",
+     "line": 3,
+     "evidence": "OPENAI_API_KEY=\"sk-REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "66c8165c8eb1",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:AWS Access Key ID",
+   "tipo_file": "esempio",
+   "forma_valore": "provider:AKIA",
+   "esempi": [
+    {
+     "server": "security-scanner-mcp",
+     "file": "examples/demo.ts",
+     "line": 15,
+     "evidence": "const awsKey = \"AKIAREDACTED\";"
+    },
+    {
+     "server": "security-scanner-mcp",
+     "file": "examples/demo.ts",
+     "line": 15,
+     "evidence": "const awsKey = \"AKIAREDACTED\";"
+    }
+   ]
+  },
+  {
+   "id": "0d48dc749bc3",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:JWT Token",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:eyJ",
+   "esempi": [
+    {
+     "server": "garza-home-mcp",
+     "file": "src/index.js",
+     "line": 9,
+     "evidence": "const SUPABASE_ANON_KEY = \"eyJREDACTED"
+    },
+    {
+     "server": "garza-home-mcp",
+     "file": "src/index.js",
+     "line": 9,
+     "evidence": "const SUPABASE_ANON_KEY = \"eyJREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "c60d60fe28fa",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:OpenAI Legacy Key",
+   "tipo_file": "esempio",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "MCP_based_KG_construction",
+     "file": "kg_example.py",
+     "line": 11,
+     "evidence": "api_key = \"sk-REDACTED\""
+    },
+    {
+     "server": "MCP_based_KG_construction",
+     "file": "kg_example.py",
+     "line": 11,
+     "evidence": "api_key = \"sk-REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "d95cacf4dbd8",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "blockchain-mcp",
+     "file": "main.py",
+     "line": 9,
+     "evidence": "model=Gemini(id=\"gemini-2.5-flash\", api_key=\"AIzaREDACTED\"),"
+    },
+    {
+     "server": "blockchain-mcp",
+     "file": "main.py",
+     "line": 9,
+     "evidence": "model=Gemini(id=\"gemini-2.5-flash\", api_key=\"AIzaREDACTED\"),"
+    }
+   ]
+  },
+  {
+   "id": "eebe301ea681",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Private Key Header",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "devopness",
+     "file": "packages/sdks/python/src/devopness/generated/models/credential_google_cloud.py",
+     "line": 31,
+     "evidence": "'{\\n    \"type\": \"service_account\",\\n    \"project_id\": \"project-name-12345\",\\n    \"private_key_id\": \"REDACTED\",\\n    \"private_key\": \"-----BEGIN PRIVATE KEY-----\\\\nf5RDfS3aRzGyjcKsRLqQfpDWal"
+    },
+    {
+     "server": "devopness",
+     "file": "packages/sdks/python/src/devopness/generated/models/credential_google_cloud.py",
+     "line": 31,
+     "evidence": "'{\\n    \"type\": \"service_account\",\\n    \"project_id\": \"project-name-12345\",\\n    \"private_key_id\": \"REDACTED\",\\n    \"private_key\": \"-----BEGIN PRIVATE KEY-----\\\\nf5RDfS3aRzGyjcKsRLqQfpDWal"
+    }
+   ]
+  },
+  {
+   "id": "356d8461e2a5",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "env-committato",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "my-superset-mcp-server",
+     "file": ".env",
+     "line": 3,
+     "evidence": "SECRET_KEY = \"REDACTED\""
+    },
+    {
+     "server": "my-superset-mcp-server",
+     "file": ".env",
+     "line": 3,
+     "evidence": "SECRET_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "c6cbcc826a51",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:GitHub PAT (classic)",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:ghp_",
+   "esempi": [
+    {
+     "server": "mcp-ticketer",
+     "file": "scripts/fix_mcp_configs.py",
+     "line": 29,
+     "evidence": "CANONICAL_GITHUB_TOKEN = \"ghp_REDACTED\""
+    },
+    {
+     "server": "mcp-ticketer",
+     "file": "scripts/fix_mcp_configs.py",
+     "line": 29,
+     "evidence": "CANONICAL_GITHUB_TOKEN = \"ghp_REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "0d457817ffa1",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "env-committato",
+   "forma_valore": "placeholder",
+   "esempi": [
+    {
+     "server": "Food_recommender_MCP",
+     "file": ".env",
+     "line": 1,
+     "evidence": "BAIDU_MAPS_API_KEY='REDACTED' # Note: Replace with your own API Key and leave the single quote intact (ref: https://lbsyun.baidu.com/apiconsole/key)"
+    },
+    {
+     "server": "Food_recommender_MCP",
+     "file": ".env",
+     "line": 1,
+     "evidence": "BAIDU_MAPS_API_KEY='REDACTED' # Note: Replace with your own API Key and leave the single quote intact (ref: https://lbsyun.baidu.com/apiconsole/key)"
+    }
+   ]
+  },
+  {
+   "id": "e233bd8a3939",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "env-committato",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "mcp-crypto-stock-news",
+     "file": ".env",
+     "line": 4,
+     "evidence": "CRYPTOPANIC_API_KEY=\"REDACTED\""
+    },
+    {
+     "server": "mcp-crypto-stock-news",
+     "file": ".env",
+     "line": 4,
+     "evidence": "CRYPTOPANIC_API_KEY=\"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "ac481b5a835b",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:OpenAI Legacy Key",
+   "tipo_file": "esempio",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "listed-google-mcp-server",
+     "file": "src/lib/googleAgentdemo.ts",
+     "line": 12,
+     "evidence": "const OPENAI_API_KEY = \"sk-REDACTED\";"
+    },
+    {
+     "server": "listed-google-mcp-server",
+     "file": "src/lib/googleAgentdemo.ts",
+     "line": 12,
+     "evidence": "const OPENAI_API_KEY = \"sk-REDACTED\";"
+    }
+   ]
+  },
+  {
+   "id": "e3a8c606cefb",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "mcp-registry",
+     "file": "backend/src/scripts/update-google-maps-api-key.ts",
+     "line": 12,
+     "evidence": "const newApiKey = process.argv[2] || 'AIzaREDACTED'"
+    },
+    {
+     "server": "mcp-registry",
+     "file": "backend/src/scripts/update-google-maps-api-key.ts",
+     "line": 12,
+     "evidence": "const newApiKey = process.argv[2] || 'AIzaREDACTED'"
+    }
+   ]
+  },
+  {
+   "id": "32a2d842aaa7",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "sorgente",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "MapGPT-MCP",
+     "file": "playground.ts",
+     "line": 132,
+     "evidence": "const MAPS_API_KEY = 'AIzaREDACTED';"
+    },
+    {
+     "server": "MapGPT-MCP",
+     "file": "playground.ts",
+     "line": 132,
+     "evidence": "const MAPS_API_KEY = 'AIzaREDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "0ee65886b53b",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "env-committato",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "mcp_server",
+     "file": ".env",
+     "line": 1,
+     "evidence": "AIzaREDACTED"
+    },
+    {
+     "server": "mcp_server",
+     "file": ".env",
+     "line": 1,
+     "evidence": "AIzaREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "95694c944410",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:OpenAI Legacy Key",
+   "tipo_file": "env-committato",
+   "forma_valore": "provider:csk-",
+   "esempi": [
+    {
+     "server": "mcp-demo",
+     "file": ".env",
+     "line": 1,
+     "evidence": "CEREBRAS_API_KEY=csk-REDACTED"
+    },
+    {
+     "server": "mcp-demo",
+     "file": ".env",
+     "line": 1,
+     "evidence": "CEREBRAS_API_KEY=csk-REDACTED"
+    }
+   ]
+  },
+  {
+   "id": "ec394ea00919",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "esempio",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "redaction-compliance-MCP",
+     "file": "mcp_redaction/demo_client.py",
+     "line": 25,
+     "evidence": "- GCP API: AIzaREDACTED"
+    },
+    {
+     "server": "redaction-compliance-MCP",
+     "file": "mcp_redaction/demo_client.py",
+     "line": 25,
+     "evidence": "- GCP API: AIzaREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "b7d91271de0d",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "env-committato",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "python-mcp",
+     "file": "scripts/.env",
+     "line": 1,
+     "evidence": "YOUTUBE_API_KEY=AIzaREDACTED"
+    },
+    {
+     "server": "python-mcp",
+     "file": "scripts/.env",
+     "line": 1,
+     "evidence": "YOUTUBE_API_KEY=AIzaREDACTED"
+    }
+   ]
+  },
+  {
+   "id": "aff4dc8d7d6b",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "build",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "drupaltools.github.io",
+     "file": "js/social-share-kit.min.js",
+     "line": 8,
+     "evidence": "var SocialShareKit=function(){function e(e){return g(e).share()}function t(e){\"loading\"!=document.readyState?e():document.addEventListener?document.addEventListener(\"DOMContentLoaded\",e):document.attachEvent(\"onreadystat"
+    },
+    {
+     "server": "drupaltools.github.io",
+     "file": "js/social-share-kit.min.js",
+     "line": 8,
+     "evidence": "var SocialShareKit=function(){function e(e){return g(e).share()}function t(e){\"loading\"!=document.readyState?e():document.addEventListener?document.addEventListener(\"DOMContentLoaded\",e):document.attachEvent(\"onreadystat"
+    }
+   ]
+  },
+  {
+   "id": "e6ab9a0ed70a",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:OpenAI Legacy Key",
+   "tipo_file": "esempio",
+   "forma_valore": "provider:sk-",
+   "esempi": [
+    {
+     "server": "mcp_uiux",
+     "file": "example/index.js",
+     "line": 45,
+     "evidence": "'sk-REDACTED', // 替换为你的 OpenAI API Key"
+    },
+    {
+     "server": "mcp_uiux",
+     "file": "example/index.js",
+     "line": 45,
+     "evidence": "'sk-REDACTED', // 替换为你的 OpenAI API Key"
+    }
+   ]
+  },
+  {
+   "id": "f38b9e22b247",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:GitHub PAT (classic)",
+   "tipo_file": "esempio",
+   "forma_valore": "provider:ghp_",
+   "esempi": [
+    {
+     "server": "mcp-http-webhook",
+     "file": "examples/github-server-live.ts",
+     "line": 39,
+     "evidence": "githubToken: 'ghp_REDACTED',"
+    },
+    {
+     "server": "mcp-http-webhook",
+     "file": "examples/github-server-live.ts",
+     "line": 39,
+     "evidence": "githubToken: 'ghp_REDACTED',"
+    }
+   ]
+  },
+  {
+   "id": "55eae583784e",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Google API Key",
+   "tipo_file": "esempio",
+   "forma_valore": "provider:AIzaSy",
+   "esempi": [
+    {
+     "server": "smart-mcp",
+     "file": "demos-angular/page-templates/dashboard-advanced/app.component.ts",
+     "line": 275,
+     "evidence": "loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaREDACTED&callback=' + initCallback);"
+    },
+    {
+     "server": "smart-mcp",
+     "file": "demos-angular/page-templates/dashboard-advanced/app.component.ts",
+     "line": 275,
+     "evidence": "loadScript('https://maps.googleapis.com/maps/api/js?key=AIzaREDACTED&callback=' + initCallback);"
+    }
+   ]
+  },
+  {
+   "id": "fd8c625b39e3",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "placeholder",
+   "esempi": [
+    {
+     "server": "claude-mcp",
+     "file": "bin/cli.js",
+     "line": 162,
+     "evidence": "fs.writeFileSync('.env', 'PORT=3333\\n# Add your GitHub token here\\n# GITHUB_TOKEN=your_token_here\\n');"
+    },
+    {
+     "server": "claude-mcp",
+     "file": "bin/cli.js",
+     "line": 162,
+     "evidence": "fs.writeFileSync('.env', 'PORT=3333\\n# Add your GitHub token here\\n# GITHUB_TOKEN=your_token_here\\n');"
+    }
+   ]
+  },
+  {
+   "id": "eb778a9b46ff",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "altro",
+   "esempi": [
+    {
+     "server": "purmemo-mcp",
+     "file": "bundle/server/auth/universal-auth.js",
+     "line": 338,
+     "evidence": "fs.writeFileSync(path.join(vscodeDir, 'purmemo.json'), JSON.stringify({ api_key: token }, null, 2));"
+    },
+    {
+     "server": "purmemo-mcp",
+     "file": "bundle/server/auth/universal-auth.js",
+     "line": 338,
+     "evidence": "fs.writeFileSync(path.join(vscodeDir, 'purmemo.json'), JSON.stringify({ api_key: token }, null, 2));"
+    }
+   ]
+  },
+  {
+   "id": "9a05f127434c",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "altro",
+   "esempi": [
+    {
+     "server": "cybermem",
+     "file": "packages/dashboard/app/api/settings/regenerate/route.ts",
+     "line": 21,
+     "evidence": "fs.writeFileSync(sharedEnvPath, `OM_API_KEY=${apiKey}\\n`)"
+    },
+    {
+     "server": "cybermem",
+     "file": "packages/dashboard/app/api/settings/regenerate/route.ts",
+     "line": 21,
+     "evidence": "fs.writeFileSync(sharedEnvPath, `OM_API_KEY=${apiKey}\\n`)"
+    }
+   ]
+  },
+  {
+   "id": "a5e30cb5e1dd",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "altro",
+   "esempi": [
+    {
+     "server": "gtkx",
+     "file": "scripts/e2e-registry.ts",
+     "line": 239,
+     "evidence": "writeFileSync(npmrcPath, `registry=${REGISTRY}\\n//${HOST}/:_authToken=${token}\\n`);"
+    },
+    {
+     "server": "gtkx",
+     "file": "scripts/e2e-registry.ts",
+     "line": 239,
+     "evidence": "writeFileSync(npmrcPath, `registry=${REGISTRY}\\n//${HOST}/:_authToken=${token}\\n`);"
+    }
+   ]
+  },
+  {
+   "id": "4168f80f99b6",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "altro",
+   "esempi": [
+    {
+     "server": "v0-mcp-ts",
+     "file": "scripts/setup.js",
+     "line": 51,
+     "evidence": "writeFileSync(envPath, `V0_API_KEY=${apiKey}\\nDEBUG=false\\n`);"
+    },
+    {
+     "server": "v0-mcp-ts",
+     "file": "scripts/setup.js",
+     "line": 51,
+     "evidence": "writeFileSync(envPath, `V0_API_KEY=${apiKey}\\nDEBUG=false\\n`);"
+    }
+   ]
+  },
+  {
+   "id": "edf409813bd7",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "PLAINTEXT_STORAGE",
+   "provider_rilevato": "plaintext_storage_confirmed",
+   "tipo_file": "sorgente",
+   "forma_valore": "altro",
+   "esempi": [
+    {
+     "server": "@mseep/gemini-sequential-thinking-mcp",
+     "file": "setup.js",
+     "line": 108,
+     "evidence": "fs.writeFileSync(envFile, `GEMINI_API_KEY=${apiKey}`);"
+    },
+    {
+     "server": "@mseep/gemini-sequential-thinking-mcp",
+     "file": "setup.js",
+     "line": 108,
+     "evidence": "fs.writeFileSync(envFile, `GEMINI_API_KEY=${apiKey}`);"
+    }
+   ]
+  },
+  {
+   "id": "a59aca1b0071",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "News-MCP-Server",
+     "file": "news copy.py",
+     "line": 7,
+     "evidence": "NEWS_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "News-MCP-Server",
+     "file": "news copy.py",
+     "line": 7,
+     "evidence": "NEWS_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "4d358e15c6ef",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "tapd-mcp-server",
+     "file": "src/index.js",
+     "line": 21,
+     "evidence": "const TAPD_API_KEY = 'REDACTED';"
+    },
+    {
+     "server": "tapd-mcp-server",
+     "file": "src/index.js",
+     "line": 21,
+     "evidence": "const TAPD_API_KEY = 'REDACTED';"
+    }
+   ]
+  },
+  {
+   "id": "577bf5824359",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "hex-32+",
+   "esempi": [
+    {
+     "server": "tapd-mcp-server",
+     "file": "src/index.ts",
+     "line": 16,
+     "evidence": "const IMAGE_ANALYSIS_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "tapd-mcp-server",
+     "file": "src/index.ts",
+     "line": 16,
+     "evidence": "const IMAGE_ANALYSIS_API_KEY = \"REDACTED\""
+    }
+   ]
+  },
+  {
+   "id": "75a5257da84f",
+   "n_finding": 2,
+   "n_server": 1,
+   "tipo_segnalazione": "HARDCODED_CREDENTIALS",
+   "provider_rilevato": "provider:Generic API Key Assignment",
+   "tipo_file": "sorgente",
+   "forma_valore": "stringa-alta-entropia",
+   "esempi": [
+    {
+     "server": "solana-mcp",
+     "file": "set_api_keys.py",
+     "line": 11,
+     "evidence": "BIRDEYE_API_KEY = \"REDACTED\""
+    },
+    {
+     "server": "solana-mcp",
+     "file": "set_api_keys.py",
+     "line": 11,
+     "evidence": "BIRDEYE_API_KEY = \"REDACTED\""
+    }
+   ]
+  }
+ ]
+}

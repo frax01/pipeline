@@ -1,0 +1,572 @@
+[
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "ntermcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "set_config_value can set allowedDirectories to [] (granting full filesystem access); start_process and interact_with_process allow running arbitrary shell/REPL commands; write_file/edit_block/move_file can modify or overwrite files and kill_process/force_terminate can terminate processes — together enabling arbitrary system changes locally."
+   }
+  },
+  "n": 1
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@plutojs_jia/feishu-image-upload-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The upload_image_to_feishu tool sends local images to Feishu and returns a file_token for use in multi-dimensional tables, which alters state in a shared SaaS workspace; it operates using provided personal/app tokens, enabling changes that affect the shared environment."
+   }
+  },
+  "n": 2
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "mcp-oss-upload",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The tool accepts accessKeyId/accessKeySecret, bucket, endpoint and uploads local files to OSS and returns CDN links, allowing creation or overwriting of objects in a shared cloud storage bucket and thus altering remote infrastructure state."
+   }
+  },
+  "n": 3
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "snowrail-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "Tools such as snowrail_payroll_execute, snowrail_payment_process, snowrail_treasury_test, and snowrail_process_a2a accept payment credentials (xPayment) and parameters (recipientEmail, amount, payrollId, messagePayload) that create/execute payments or payrolls. The presence of a production environment option means these actions can affect shared/financial systems and other users."
+   }
+  },
+  "n": 4
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@open-mcp/portkey-ai",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The API surface includes destructive and state-changing endpoints such as deletemodel, deleteassistant, deletefile, delete_api_keys_id_, delete_virtual_keys_slug_, delete_admin_workspaces_workspaceid_, delete_admin_users_userid_, deletevectorstore, deleteprompt, and endpoints to create API keys or virtual keys and invite/remove users, which can alter or remove shared organization/workspace resources and manage access. These capabilities affect other people and shared infrastructure rather than being limited to a single local user."
+   }
+  },
+  "n": 5
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@mcpcn/mcp-file-manager",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "file-manager-mcp/upload_file creates files on a remote \"cloud\" and returns accessible URLs (modifies remote/shared state), and file-manager-mcp/download_file can write or overwrite arbitrary local files with no size limit, enabling local damage as well."
+   }
+  },
+  "n": 6
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@earnbasejs/mcp-github",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The toolset includes create_or_update_file, push_files, create_repository, create_branch, merge_pull_request, update_issue, update_project, and other write/delete operations on repos, PRs, issues and projects, which can alter or damage shared GitHub organization or repository state."
+   }
+  },
+  "n": 7
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@iflow-mcp/grokart",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The grokart/set_api_key tool explicitly stores an xAI API key and grokart/generate_image uses the Grok-2-image model (an external service), so the server can make billed requests that consume paid API credits and incur financial cost."
+   }
+  },
+  "n": 8
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@keegancsmith/emacs-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "emacs_eval runs arbitrary Emacs Lisp in the active Emacs instance; Emacs Lisp includes functions like shell-command, call-process, start-process, delete-file, and file I/O, enabling arbitrary system command execution and file modification on the host."
+   }
+  },
+  "n": 9
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@ravenna_eng/ravenna-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The MCP server exposes create_ticket and update_ticket (including changing status, priority, and assignee), which can modify or delete items in a shared team ticketing system and thus affect other users and shared infrastructure."
+   }
+  },
+  "n": 10
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "wopee-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The dispatch_analysis and dispatch_agent tools explicitly open a real browser and navigate/follow test-case steps against web applications (external/shared targets), and the server can create/overwrite artifacts, post to the project's chat, and create GitHub issues in the connected repository—all of which modify shared/external state. These capabilities can therefore affect shared systems and external services."
+   }
+  },
+  "n": 11
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@pacifica-fi/mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The withdraw tool explicitly allows withdrawing funds from the account, and trading endpoints (openOrder, createStopOrder, cancelAllOrders, updateLeverage, updateMarginMode, bindAgentWallet) can change positions, margin usage, or delegate operations — all of which can cause direct financial impact or modify shared/external account state."
+   }
+  },
+  "n": 12
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@memtensor/memos-api-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The server exposes destructive state-modifying operations: delete_memory (removes memory entries), delete_kb_documents and remove_knowledge_base (delete documents and remove KBs), and add_feedback (modifies existing memories), plus create_knowledge_base/add_kb_document (create/alter project knowledgebases and stored docs), which can change or remove shared/project resources."
+   }
+  },
+  "n": 13
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@kasarlabs/erc721-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "The MCP exposes state-modifying actions: transferring NFTs (erc721_transfer, erc721_transfer_from, erc721_safe_transfer_from), granting/revoking operator approvals (erc721_approve, erc721_set_approval_for_all), and deploying ERC721 contracts (deploy_erc721), all of which change shared on-chain state and can affect other users or incur on-chain costs."
+   }
+  },
+  "n": 14
+ },
+ {
+  "sotto_categoria": "scan/W019_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@r-mcp/browser-tools",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "medium",
+   "message": "Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.5,
+    "title": "Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify shared infrastructure, execute arbitrary system commands, or affect other users and team resources.\nInstead of limiting changes to a single user's environment, these capabilities enable the agent to impact critical systems, shared databases, or external services.\n",
+    "severity": "medium",
+    "explanation": "\nGranting an AI agent access to shared infrastructure or system-level execution creates risk of widespread service disruption, data corruption, or financial loss.\nIf the agent hallucinates or gets exploited, it can instantly corrupt team databases, execute malicious commands across your infrastructure, or trigger irreversible financial transactions that affect your entire organization.\n",
+    "evidence": "start-chrome-debug exposes a debug browser and accepts a userDataDir (allowing use of an existing/profile with active logins) and open-url drives that browser to arbitrary sites, enabling actions that can modify state on shared web services."
+   }
+  },
+  "n": 15
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "wuying-agentbay-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The create_sandbox tool provisions a new Agentbay sandbox (modifies state by creating a resource) but offers only sandbox creation and an ID, so its impact is contained to an isolated/local sandbox rather than shared infrastructure or arbitrary system execution."
+   }
+  },
+  "n": 16
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "mcp-promptregistry",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "Tools such as add_prompt, update_prompt, delete_prompt, load_default_prompts, and refine_and_add write, overwrite, or remove prompt JSONs in the project-specific/user-global prompt directories, altering local project state but not executing arbitrary shell commands or modifying shared systems."
+   }
+  },
+  "n": 17
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "mcp-mia-narrative",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The API exposes options to save generated audio and cleaned text to specified output directories (creating or overwriting local files), but it does not expose shell execution, remote infrastructure management, or actions that affect other users or shared services."
+   }
+  },
+  "n": 18
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@memory-bank/mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The write_document tool can overwrite documents or apply JSON Patch operations (including remove) in branch or global memory banks, allowing deletion/modification of stored documents; nothing explicitly indicates modification of shared team or cloud infrastructure, so the impact is contained to the local/user memory bank."
+   }
+  },
+  "n": 19
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@mcpcn/mac-maps-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "Tools like maps_save, maps_create_guide, maps_add_to_guide, and maps_pin write or modify entries in the user's Apple Maps (favorites, guides, pins), which changes local device state; there is no indication of executing system commands or affecting shared/remote infrastructure."
+   }
+  },
+  "n": 20
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@iflow-mcp/clay-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "Endpoints allow state modification (createContact, createNote, createGroup, updateGroup which can add/remove members), so the server can change or delete data in the user's contact/groups, but it lacks arbitrary shell execution or explicit shared/team-wide destructive controls, so impact is contained to the user's account/local environment."
+   }
+  },
+  "n": 21
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "logs-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The logs/install-woodpecker tool explicitly installs monitoring software (a state-changing operation) which can modify the local environment; the logs/get-user-logs tool is read-only. No tool description indicates ability to run arbitrary shell commands or modify shared team/cloud resources, so the blast radius is contained to the local environment."
+   }
+  },
+  "n": 22
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "tamagotchi-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The API can change or delete the Tamagotchi's state (create and modify pets via feed/play/clean/sleep/wake), but those changes are confined to the virtual pet instance and there is no capability to run arbitrary shell commands or alter external/shared systems."
+   }
+  },
+  "n": 23
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@ironclads/incus-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The tools can create, start, stop, restart, delete instances and run arbitrary commands inside an instance (incus_create_instance, incus_delete_instance, incus_exec_command), which can modify or destroy local instance state, but the \"remote\" parameter is optional and no shared/team environment is explicitly specified, so the blast radius is limited to the local/isolated environment."
+   }
+  },
+  "n": 24
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "magneto-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "magneto/write-document and magneto/delete-document modify or remove files in the Magneto document store (and magneto/save-current-plan writes workspace files into Magneto); there is no tool that runs arbitrary system commands or targets shared remote infrastructure, so changes are confined to the local user/workspace."
+   }
+  },
+  "n": 25
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "rivers-radar-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The API includes destructive operations such as 删除监控 (delete monitoring) and 删除分组 (delete group) and can pause monitoring, which modify or remove state in the monitoring application; no tool grants shell access, raw SQL execution, or explicit control over other users' or external systems."
+   }
+  },
+  "n": 26
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "mcp-media-processor",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The execute-ffmpeg tool accepts arbitrary FFmpeg options and output paths (allowing overwriting or replacing files) and the image/video convert/compress/trim tools write output files to specified paths, so they can modify or delete local files but do not show capability to execute arbitrary system shell commands or change shared remote infrastructure."
+   }
+  },
+  "n": 27
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@iflow-mcp/whimsical-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The create_whimsical_diagram tool writes/creates a diagram from provided mermaid_markup and title (modifies state), but there is no indication it can execute arbitrary system commands or affect shared/team resources, so its destructive effects are limited to the local/user environment."
+   }
+  },
+  "n": 28
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "@iflow-mcp/react-native-mcp-guide",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "Tools can generate tests, remediate and refactor code, and analyze a codebase (via provided code strings or a local project_path), so they can modify or create local source/test files but do not indicate ability to execute system commands or alter shared systems."
+   }
+  },
+  "n": 29
+ },
+ {
+  "sotto_categoria": "scan/W020_npx",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "yan-task-manager-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "severity": "low",
+   "message": "Local Destructive Capabilities.",
+   "extra_data": {
+    "risk_score": 0.25,
+    "title": "Local Destructive Capabilities Detected",
+    "description": "\nThis issue occurs when an AI agent is granted access to tools that can modify or delete local files, alter personal settings, or change state within a single user's environment.\nWhile the blast radius is contained to one user's machine, these capabilities still enable irreversible changes to local data and project files.\n",
+    "severity": "low",
+    "explanation": "\nEven local-only modifications carry risk of permanent data loss or project corruption within a user's workspace.\nIf the agent misinterprets instructions or hallucinates, it can delete uncommitted work, overwrite configuration files, or corrupt local repositories, requiring manual recovery or resulting in lost productivity.\n",
+    "evidence": "The create_gray_task endpoint creates (modifies) scheduled monitoring tasks for an application, which changes server state; however, it does not expose arbitrary shell/SQL execution or clear shared-team effects, so its impact is contained to the local/task-manager scope."
+   }
+  },
+  "n": 30
+ }
+]

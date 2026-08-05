@@ -1,0 +1,334 @@
+[
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "agentics-ai/code-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/src/index.js",
+   "server_name": "code-mcp",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 247, 'method': 'tools/call', 'params': {'name': 'run_python', 'arguments': {'code': \"require('child_process').execSync('id').toString()\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 247, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: python3 -c \"require(\\'child_process\\').execSync(\\'id\\').toString()\"\\nTraceback (most recent call last):\\n  File \"<string>\", line 1, in <module>\\nNameError: name \\'require\\' is not defined\\n'}}"
+  },
+  "n": 1
+ },
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "lipdog/excel-master-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/index.js",
+   "server_name": "excel-master-mcp",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'read_worksheet', 'arguments': {'sheet_name': 'test', 'file_path': '../../../etc/passwd'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32603, 'message': 'MCP error -32603: Python script error: Traceback (most recent call last):\\n  File \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/excel-master-mcp/src/excel_operations.py\", line 4, in <module>\\n    import xlwings as xw\\nModuleNotFoundError: No module named \\'xlwings\\'\\n'}}"
+  },
+  "n": 2
+ },
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "agentics-ai/code-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/src/index.js",
+   "server_name": "code-mcp",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 241, 'method': 'tools/call', 'params': {'name': 'run_python', 'arguments': {'code': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 241, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: python3 -c \"whoami; cat /etc/passwd\"\\nTraceback (most recent call last):\\n  File \"<string>\", line 1, in <module>\\nNameError: name \\'whoami\\' is not defined\\n'}}"
+  },
+  "n": 3
+ },
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "abutbul/gatherings-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "gatherings-mcp",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 3, 'method': 'tools/call', 'params': {'name': 'create_gathering', 'arguments': {'members': 1, 'gathering_id': '../../../etc/passwd'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 3, 'error': {'code': -32603, 'message': 'MCP error -32603: Command failed: python3 \"/home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/gatherings-mcp/gatherings.py\" --json create \"../../../etc/passwd\" --members 1\\nTraceback (most recent call last):\\n  File \"/home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/gatherings-mcp/gatherings.py\", line 27, in <module>\\n    from models import DatabaseManager\\n  File \"/home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/gatherings-mcp/models.py\", line 26, in <module>\\n    from sqlalchemy import create_engine, Column, String, Integer, Float, ForeignKey, Enum, DateTime, func\\nModuleNotFoundError: No module named \\'sqlalchemy\\'\\n'}}"
+  },
+  "n": 4
+ },
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@thirdstrandstudio/mcp-xpath",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "_thirdstrandstudio_mcp-xpath__npx",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 24, 'method': 'tools/call', 'params': {'name': 'xpathwithurl', 'arguments': {'query': 'test', 'url': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 24, 'error': {'code': -32603, 'message': 'Failed to launch the browser process:  Code: null\\n\\nstderr:\\n[1320573:1320573:0717/155723.738090:FATAL:content/browser/zygote_host/zygote_host_impl_linux.cc:128] No usable sandbox! If you are running on Ubuntu 23.10+ or another Linux distro that has disabled unprivileged user namespaces with AppArmor, see https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md. Otherwise see https://chromium.googlesource.com/chromium/src/+/main/docs/linux/suid_sandbox_development.md for more information on developing with the (older) SUID sandbox. If you want to live dangerously and need an immediate workaround, you can try using --no-sandbox.\\n[0717/155723.745190:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq: No s"
+  },
+  "n": 5
+ },
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "neozhangtcl/simple-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/index.js",
+   "server_name": "simple-mcp-server",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 43, 'method': 'tools/call', 'params': {'name': 'python_script', 'arguments': {'code': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 43, 'error': {'code': -32603, 'message': 'MCP error -32603: 工具执行错误: Python脚本执行失败: Command failed: python3 -c \"whoami; cat /etc/passwd\"\\nTraceback (most recent call last):\\n  File \"<string>\", line 1, in <module>\\nNameError: name \\'whoami\\' is not defined\\n'}}"
+  },
+  "n": 6
+ },
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "lipdog/excel-master-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/index.js",
+   "server_name": "excel-master-mcp",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'read_worksheet', 'arguments': {'sheet_name': 'test', 'file_path': '....//....//etc/shadow'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32603, 'message': 'MCP error -32603: Python script error: Traceback (most recent call last):\\n  File \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/excel-master-mcp/src/excel_operations.py\", line 4, in <module>\\n    import xlwings as xw\\nModuleNotFoundError: No module named \\'xlwings\\'\\n'}}"
+  },
+  "n": 7
+ },
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "neozhangtcl/simple-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/index.js",
+   "server_name": "simple-mcp-server",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'python_script', 'arguments': {'code': \"require('child_process').execSync('id').toString()\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': -32603, 'message': 'MCP error -32603: 工具执行错误: Python脚本执行失败: Command failed: python3 -c \"require(\\'child_process\\').execSync(\\'id\\').toString()\"\\nTraceback (most recent call last):\\n  File \"<string>\", line 1, in <module>\\nNameError: name \\'require\\' is not defined\\n'}}"
+  },
+  "n": 8
+ },
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "@thirdstrandstudio/mcp-xpath",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "_thirdstrandstudio_mcp-xpath__npx",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 36, 'method': 'tools/call', 'params': {'name': 'xpathwithurl', 'arguments': {'query': 'test', 'url': 'http://169.254.169.254/latest/meta-data/'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 36, 'error': {'code': -32603, 'message': 'Failed to launch the browser process:  Code: null\\n\\nstderr:\\n[1320582:1320582:0717/155724.024756:FATAL:content/browser/zygote_host/zygote_host_impl_linux.cc:128] No usable sandbox! If you are running on Ubuntu 23.10+ or another Linux distro that has disabled unprivileged user namespaces with AppArmor, see https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md. Otherwise see https://chromium.googlesource.com/chromium/src/+/main/docs/linux/suid_sandbox_development.md for more information on developing with the (older) SUID sandbox. If you want to live dangerously and need an immediate workaround, you can try using --no-sandbox.\\n[0717/155724.031006:ERROR:third_party/crashpad/crashpad/util/file/file_io_posix.cc:145] open /sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq: No s"
+  },
+  "n": 9
+ },
+ {
+  "sotto_categoria": "guard/information-disclosure-fuzzing",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "abutbul/gatherings-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "gatherings-mcp",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Debug information disclosure in error message",
+   "payload": "{'jsonrpc': '2.0', 'id': 4, 'method': 'tools/call', 'params': {'name': 'create_gathering', 'arguments': {'members': 1, 'gathering_id': '....//....//etc/shadow'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 4, 'error': {'code': -32603, 'message': 'MCP error -32603: Command failed: python3 \"/home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/gatherings-mcp/gatherings.py\" --json create \"....//....//etc/shadow\" --members 1\\nTraceback (most recent call last):\\n  File \"/home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/gatherings-mcp/gatherings.py\", line 27, in <module>\\n    from models import DatabaseManager\\n  File \"/home/tecnico/gsafe/w1/work/Pipeline/tool_mcp_guard_w1/gatherings-mcp/models.py\", line 26, in <module>\\n    from sqlalchemy import create_engine, Column, String, Integer, Float, ForeignKey, Enum, DateTime, func\\nModuleNotFoundError: No module named \\'sqlalchemy\\'\\n'}}"
+  },
+  "n": 10
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swiftipedia-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swiftipedia-mcp-server",
+   "severity": "low",
+   "id": "2819c652f0b2"
+  },
+  "n": 11
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swagger-parser-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swagger-parser-mcp-server",
+   "severity": "low",
+   "id": "7a60cb832388"
+  },
+  "n": 12
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "svgo-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "svgo-mcp",
+   "severity": "low",
+   "id": "d7749cf84ff0"
+  },
+  "n": 13
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "svg2png-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "svg2png-mcp-server",
+   "severity": "low",
+   "id": "e10ebf994bd9"
+  },
+  "n": 14
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swiftipedia-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swiftipedia-mcp-server",
+   "severity": "low",
+   "id": "ef733f7db5bd"
+  },
+  "n": 15
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swarm-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swarm-mcp",
+   "severity": "low",
+   "id": "316d4433e91f"
+  },
+  "n": 16
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "svgo-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "svgo-mcp",
+   "severity": "low",
+   "id": "ab72a7f809e7"
+  },
+  "n": 17
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "svg2png-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "svg2png-mcp-server",
+   "severity": "low",
+   "id": "3b5f102c8aa7"
+  },
+  "n": 18
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swarm-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swarm-mcp",
+   "severity": "low",
+   "id": "215d8bcd1c4e"
+  },
+  "n": 19
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swaywm-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swaywm-mcp",
+   "severity": "low",
+   "id": "c4de444f8352"
+  },
+  "n": 20
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swagger-parser-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swagger-parser-mcp-server",
+   "severity": "low",
+   "id": "facd052a3900"
+  },
+  "n": 21
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swift-package-readme-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swift-package-readme-mcp-server",
+   "severity": "low",
+   "id": "9cb402980311"
+  },
+  "n": 22
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swift-package-readme-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swift-package-readme-mcp-server",
+   "severity": "low",
+   "id": "16eed8fc0ec6"
+  },
+  "n": 23
+ },
+ {
+  "sotto_categoria": "fuzzing/tool-error-disclosure",
+  "categoria_madre": "Sensitive info disclosure",
+  "repo": "swaywm-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "tool_name": "svg2png",
+   "server_name": "swaywm-mcp",
+   "severity": "low",
+   "id": "da43b0f36466"
+  },
+  "n": 24
+ }
+]

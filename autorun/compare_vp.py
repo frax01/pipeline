@@ -23,6 +23,7 @@ Uso:
     python autorun/compare_vp.py --out report.md # scrive un report Markdown
 """
 import argparse
+import hashlib
 import json
 from collections import defaultdict
 from pathlib import Path
@@ -51,12 +52,27 @@ def server_of(f):
     return str(u).replace("https://github.com/", "").replace("http://github.com/", "").rstrip("/")
 
 
+def _chiave(f):
+    """Identita' di un finding, ignorando i campi aggiunti dal post-processing."""
+    o = {k: v for k, v in f.items()
+         if not k.startswith("_") and k not in
+         ("llm_verdict", "llm_reason", "verdict_source", "final_verdict",
+          "final_reason", "bucket_reason", "llm_bucket", "hc_bucket", "hc_reason")}
+    return hashlib.sha1(json.dumps(o, sort_keys=True, ensure_ascii=False)
+                        .encode("utf-8", "replace")).hexdigest()
+
+
 def load(root: Path, tooldir: str, new: bool):
-    """categoria(relpath) -> (n_vp, set(server))"""
+    """categoria(relpath) -> (n_vp DISTINTI, set(server))
+
+    I worker di watch sono stati riavviati su range sovrapposti, quindi il merge
+    dei 50 shard ripete lo stesso finding piu' volte (39% di duplicati in watch,
+    ~0% negli altri tool): i VP vanno contati per contenuto, non per riga.
+    """
     base = REPO / tooldir / "postprocessing" if new else root / tooldir
-    out = {}
+    acc = {}
     if not base.is_dir():
-        return out
+        return {}
     for p in base.rglob("vp.json"):
         rel = p.relative_to(base).as_posix()
         rel = rel.replace("/filtered/llm_analysis/vp.json", "").replace("/llm_analysis/vp.json", "")
@@ -65,9 +81,9 @@ def load(root: Path, tooldir: str, new: bool):
         except Exception:
             continue
         srv = {s for s in (server_of(f) for f in its) if s}
-        n, s0 = out.get(rel, (0, set()))
-        out[rel] = (n + len(its), s0 | srv)
-    return out
+        k0, s0 = acc.get(rel, (set(), set()))
+        acc[rel] = (k0 | {_chiave(f) for f in its}, s0 | srv)
+    return {rel: (len(k), s) for rel, (k, s) in acc.items()}
 
 
 def main():
@@ -92,6 +108,11 @@ def main():
     w()
     w("> La prima analisi copriva 60.205 server GitHub + una run NPX separata poi unita;")
     w("> la rirun ha coperto i 69.104 del dataset unico in un'unica passata.")
+    w(">")
+    w("> I VP sono contati **per contenuto del finding, non per riga**: i worker di")
+    w("> watch sono stati riavviati su range sovrapposti e il merge dei suoi 50 shard")
+    w("> ripete lo stesso finding piu' volte (39% di duplicati in watch, ~0% negli")
+    w("> altri tool e nell'intera prima analisi).")
     w()
 
     w("## Per tool")

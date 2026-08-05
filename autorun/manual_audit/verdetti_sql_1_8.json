@@ -1,0 +1,41 @@
+[
+ {"n": 1, "categoria": "sql-injection", "repo": "00one00/rs_systems_mcp_health_monitor",
+  "file": "src/monitors/database_sqlite.py", "line": 215,
+  "verdetto": "FP", "verdetto_pipeline": "VP",
+  "nota": "f\"SELECT COUNT(*) FROM {table_name}\": table_name = table[0] dal loop sui risultati della query su sqlite_master (righe 204-214). Metadati interni del DB, non input MCP. Checklist §1: 'da sqlite_master -> benigno'."},
+
+ {"n": 2, "categoria": "sql-injection", "repo": "0xReLogic/Cognio",
+  "file": "src/database.py", "line": 741,
+  "verdetto": "FP", "verdetto_pipeline": "VP",
+  "nota": "f\"SELECT id {base}\": la parte interpolata (base) e' costruita solo da frammenti costanti (_PROJECT_FILTER_SQL, \" AND created_at < ?\", righe 729-737). Nessun valore esterno finisce nella stringa interpolata."},
+
+ {"n": 3, "categoria": "sql-injection", "repo": "1411430556/TrendRadar1",
+  "file": "mcp_server/services/parser_service.py", "line": 170,
+  "verdetto": "FP", "verdetto_pipeline": "VP",
+  "nota": "L'unica variabile interpolata e' placeholders, generata internamente da \",\".join(\"?\" * len(news_ids)) (riga 169): e' una stringa di soli punti interrogativi prodotta dal codice, non un dato esterno."},
+
+ {"n": 4, "categoria": "sql-injection", "repo": "1xn-labs/1xn-vmcp",
+  "file": "backend/src/vmcp/storage/migrations.py", "line": 198,
+  "verdetto": "FP", "verdetto_pipeline": "VP",
+  "nota": "Interpola datetime_type e boolean_default, entrambi scelti da un insieme chiuso di letterali in base al booleano is_postgres (righe 194-196). Codice di migrazione dello schema, non raggiungibile via MCP."},
+
+ {"n": 5, "categoria": "sql-injection", "repo": "2022201318/mcp",
+  "file": "server1.py", "line": 82,
+  "verdetto": "FP", "verdetto_pipeline": "VP",
+  "nota": "f'SELECT * FROM \"{table_name}\" LIMIT 5': table_name viene dal loop su table_names, ottenuto da information_schema.tables (righe 52-63). Stessa situazione del caso #1."},
+
+ {"n": 6, "categoria": "sql-injection", "repo": "4R9UN/mcp-kql-server",
+  "file": "mcp_kql_server/memory.py", "line": 183,
+  "verdetto": "FP", "verdetto_pipeline": "VP",
+  "nota": "f\"PRAGMA busy_timeout={busy_timeout_ms}\": il valore e' int(os.environ.get(...)) (riga 181), quindi vincolato a intero e di origine operatore. Inoltre e' un PRAGMA di configurazione, non una query su dati."},
+
+ {"n": 7, "categoria": "sql-injection", "repo": "82ch/MCP-Dandan",
+  "file": "server.py", "line": 500,
+  "verdetto": "FP", "verdetto_pipeline": "VP",
+  "nota": "f\"DELETE FROM {table}\": table itera sulla lista hardcoded tables_to_clear = ['raw_events','rpc_events','engine_results','mcpl'] (righe 489-494)."},
+
+ {"n": 8, "categoria": "sql-injection", "repo": "928871247/files-vector-mcp-server",
+  "file": "src/files_vector_mcp_server/services/database.py", "line": 33,
+  "verdetto": "FP", "verdetto_pipeline": "VP",
+  "nota": "L'f-string segnalata non contiene alcun placeholder: CREATE TABLE IF NOT EXISTS files (...) e' testo interamente statico. Match puramente lessicale sul prefisso f\"\"\". L'unica interpolazione del blocco, {self.embedding_dim}, e' in un'altra istruzione ed e' un intero di configurazione."}
+]

@@ -1,0 +1,137 @@
+[
+ {
+  "n": 1,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "PushPullCommitPush/ml-mcp",
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "runpod.py:407 run_command esegue subprocess.run([\"ssh\",\"-p\",port,host,command]) verso il pod GPU noleggiato dall'utente su RunPod: e' un wrapper SSH dichiarato di un servizio cloud, la cui funzione stessa di ml-mcp e' eseguire comandi di training sull'istanza remota dell'utente; nessuna shell locale, blast radius confinato all'infrastruttura cloud propria dell'utente."
+ },
+ {
+  "n": 2,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "HrskiEsa/Kali-mcp",
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "server.py:8 run_shell (shell=True) e' usato dal tool @mcp.tool() execute_command il cui docstring recita testualmente 'Executes ANY raw shell command in the Kali Linux environment' con esempi nmap/masscan: capacita' offensiva esplicitamente dichiarata di una suite Kali, by-design."
+ },
+ {
+  "n": 3,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "talwrii/gh-find-code-mcp",
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "main.py:56 _run_gh(args) chiama subprocess.run([gh, *args]) senza shell, ed e' invocato solo dal tool read-only search_repos che costruisce args come lista di flag tipizzati (query, --language, --topic, ecc.), nessun comando arbitrario esposto: ricerca GitHub in sola lettura, match innocuo del pattern."
+ },
+ {
+  "n": 4,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "Zodijackyl98/mcp-powertools",
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "django_server.py:39 run_django_command costruisce [PYTHON_PATH, MANAGE_PY]+args (list form, no shell) ed e' invocato solo dai tool dichiarati django_start_server/migrate/collectstatic/ecc. (list_tools riga 100+) con inputSchema tipizzati: wrapper by-design di Django manage.py, non esecuzione shell generica."
+ },
+ {
+  "n": 5,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "ParthibanRajasekaran/mcp-blueprint",
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "setup_interactive.py:14 run_command e' parte di uno script di setup interattivo (python setup_interactive.py) lanciato manualmente dallo sviluppatore in fase di installazione, non un handler di tool MCP esposto a runtime: gli argomenti sono liste statiche (pip install, pytest, pre-commit) scelte da un menu 1-3, nessun input di un modello/utente remoto raggiunge cmd."
+ },
+ {
+  "n": 6,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "elis132/everything-mcp",
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "backend.py:274 _run(cmd) lancia es.exe (Everything Search CLI di Windows/voidtools) via create_subprocess_exec con argv costruito da _base_cmd()+_split_query_terms(query), nessuna shell: e' il motore di ricerca file in sola lettura del server, operazione read-only (search/health-check), non esecuzione di comandi arbitrari."
+ },
+ {
+  "n": 7,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "diegofornalha/docker-mcp-py",
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "docker_executor.py:27 execute e' l'esecutore usato da DockerComposeExecutor.run_command per lanciare 'docker compose -f <file> -p <project> <command> <args>': wrapper dichiarato di Docker, la capacita' di eseguire comandi docker compose e' la funzione stessa del server (docker-mcp-py)."
+ },
+ {
+  "n": 8,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "allwefantasy/auto-coder",
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "auto_coder_server.py:446 execute_shell (endpoint POST /shell) esegue subprocess.run(request.query, shell=True) senza alcun sanitizer, whitelist o docstring che ne dichiari lo scopo; l'autenticazione Bearer (riga ~656) e' opzionale e va abilitata esplicitamente con --api-key, quindi di default l'endpoint e' RCE non autenticata: capacita' generica non dichiarata innestata in un server di automazione coding, non un wrapper di un servizio noto."
+ },
+ {
+  "n": 9,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "minhajms/mcp-beginner-guide",
+  "verdetto": "VP-C",
+  "verdetto_pipeline": "VP",
+  "nota": "file_tools.py:150 run_command (command.split(), nessuna whitelist) e' esposto in mcp_server.py come tool 'run_command': 'Execute shell commands' senza alcuna sandbox reale (il workspace vincola solo cwd, non il binario eseguito), nessuna autenticazione: progetto tutorial/demo ('beginner guide') che innesta esecuzione di comandi generica e non ristretta come feature accessoria di un 'Local Development Assistant', non wrapper di un servizio specifico."
+ },
+ {
+  "n": 10,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "Pratyay/mac-monitor-mcp",
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "monitor.py:179 run_command(cmd) e' un helper interno invocato solo con argv costanti hardcoded (es. [\"ps\",\"-eo\",\"pid,%cpu,comm\",\"-r\"], [\"lsof\",\"-i\",\"-n\",\"-P\"]) dalle funzioni get_cpu/memory/network_intensive_processes: nessun parametro MCP raggiunge cmd, nessuna origine tainted."
+ },
+ {
+  "n": 11,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "QuantGeekDev/docker-mcp",
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "docker_executor.py:10 execute e' identico (stesso codice, stesso autore di origine) al caso diegofornalha/docker-mcp-py: wrapper dichiarato di 'docker compose', capacita' by-design del server Docker MCP di riferimento."
+ },
+ {
+  "n": 12,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "Lillard01/quarkdown-mcp",
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "wrapper.py:37 _execute_command usa asyncio.create_subprocess_exec (no shell) con argv costruiti internamente (compile args, --help, --version) per invocare il JAR Quarkdown: docstring della classe dichiara esplicitamente 'wrapper class for executing Quarkdown operations', wrapper di un compilatore/tool esterno specifico, non shell generica."
+ },
+ {
+  "n": 13,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "mrmagicbg/mcp",
+  "verdetto": "VP-D",
+  "verdetto_pipeline": "VP",
+  "nota": "app.py:21 run_specify_command costruisce f'source ~/.local/bin/env && specify {command} {args}' con shell=True, ma il chiamante /api/process valida command contro una whitelist fissa (check/version/init/help, righe 114-117) e filtra args contro | & ; $ ` \\n (righe 123-129): sanitizer presente ma incompleto (non blocca '>' '<' ne' le virgolette), quindi injection residua possibile solo per redirezione file, non per chaining di comandi arbitrari; blast radius limitato dalla whitelist del comando base."
+ },
+ {
+  "n": 14,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "tumf/mcp-shell-server",
+  "verdetto": "VP-L",
+  "verdetto_pipeline": "VP",
+  "nota": "shell_executor.py:176 execute riceve command come List[str] (no shell=True diretto) e passa per CommandValidator, CommandPreProcessor, DirectoryManager e audit log con redazione di secret (SECRET_MARKERS riga 18-29): il nome stesso del progetto ('mcp-shell-server') dichiara che l'esecuzione di comandi shell e' la funzione by-design del server, con mitigazioni deliberate."
+ },
+ {
+  "n": 15,
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "topoteretes/cognee",
+  "verdetto": "FP",
+  "verdetto_pipeline": "VP",
+  "nota": "tools/merge_branch_diff.py:11 run_git_command e' uno script di utilita' per lo sviluppo (estrarre diff tra branch/merge-base) invocato con argv fissi (['git','merge-base',...], ['git','diff','--stat',...]), non e' un handler di tool MCP esposto al modello: nessun input remoto/LLM raggiunge command, e' tooling interno di manutenzione del repo cognee."
+ }
+]

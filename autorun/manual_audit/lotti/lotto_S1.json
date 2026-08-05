@@ -1,0 +1,197 @@
+[
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "PushPullCommitPush/ml-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/ml_lab/cloud/runpod.py",
+   "server_name": "ml-mcp",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in src/ml_lab/cloud/runpod.py at line 407. Code: async def run_command("
+  },
+  "n": 1
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "HrskiEsa/Kali-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "server.py",
+   "server_name": "Kali-mcp",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in server.py at line 8. Code: def run_shell(cmd: str, timeout: int = 300) -> str:"
+  },
+  "n": 2
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "talwrii/gh-find-code-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "gh_find_code_mcp/main.py",
+   "server_name": "gh-find-code-mcp",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in gh_find_code_mcp/main.py at line 56. Code: def _run_gh(args: list[str]) -> str:"
+  },
+  "n": 3
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "Zodijackyl98/mcp-powertools",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "django_server.py",
+   "server_name": "mcp-powertools",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in django_server.py at line 39. Code: def run_django_command(args: list[str], detach: bool = False, timeout: int = 120) -> dict:"
+  },
+  "n": 4
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "ParthibanRajasekaran/mcp-blueprint",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "setup_interactive.py",
+   "server_name": "mcp-blueprint",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in setup_interactive.py at line 14. Code: def run_command(cmd: list[str], description: str) -> bool:"
+  },
+  "n": 5
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "elis132/everything-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/everything_mcp/backend.py",
+   "server_name": "everything-mcp",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in src/everything_mcp/backend.py at line 274. Code: async def _run(self, cmd: list[str]) -> tuple[str, str, int]:"
+  },
+  "n": 6
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "diegofornalha/docker-mcp-py",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/docker_executor.py",
+   "server_name": "docker-mcp-py",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in src/docker_executor.py at line 27. Code: async def execute(self, cmd: List[str]) -> Tuple[int, str, str]:"
+  },
+  "n": 7
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "allwefantasy/auto-coder",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/autocoder/auto_coder_server.py",
+   "server_name": "auto-coder",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in src/autocoder/auto_coder_server.py at line 446. Code: async def execute_shell(request: QueryRequest):"
+  },
+  "n": 8
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "minhajms/mcp-beginner-guide",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/file_tools.py",
+   "server_name": "mcp-beginner-guide",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in src/file_tools.py at line 150. Code: def run_command(self, command: str, cwd: Optional[str] = None) -> Dict[str, Any]:"
+  },
+  "n": 9
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "Pratyay/mac-monitor-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/mac_monitor/monitor.py",
+   "server_name": "mac-monitor-mcp",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in src/mac_monitor/monitor.py at line 179. Code: def run_command(cmd):"
+  },
+  "n": 10
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "QuantGeekDev/docker-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/docker_mcp/docker_executor.py",
+   "server_name": "docker-mcp",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in src/docker_mcp/docker_executor.py at line 10. Code: async def execute(self, cmd: str | List[str]) -> Tuple[int, str, str]:"
+  },
+  "n": 11
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "Lillard01/quarkdown-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/quarkdown_mcp/core/wrapper.py",
+   "server_name": "quarkdown-mcp",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in src/quarkdown_mcp/core/wrapper.py at line 37. Code: async def _execute_command(self, args: List[str],"
+  },
+  "n": 12
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "mrmagicbg/mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "server/web/app.py",
+   "server_name": "mcp",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in server/web/app.py at line 21. Code: def run_specify_command(command: str, args: list = None) -> dict:"
+  },
+  "n": 13
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "tumf/mcp-shell-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/mcp_shell_server/shell_executor.py",
+   "server_name": "mcp-shell-server",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in src/mcp_shell_server/shell_executor.py at line 176. Code: async def execute("
+  },
+  "n": 14
+ },
+ {
+  "sotto_categoria": "guard/dangerous-tool-handler",
+  "categoria_madre": "Dangerous capabilities",
+  "repo": "topoteretes/cognee",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "tools/merge_branch_diff.py",
+   "server_name": "cognee",
+   "severity": "high",
+   "description": "Static analysis found a dangerous code pattern in tools/merge_branch_diff.py at line 11. Code: def run_git_command(command: list[str], cwd: str | Path | None = None) -> str:"
+  },
+  "n": 15
+ }
+]

@@ -1,0 +1,13 @@
+* * * * * /tmp/safe/4wrl121KHBJ #oMIJlshr
+* * * * * 0KqcO*&y9k:}N[fpF.3' #mjLiH.2OyuC33rGFeu_fb.5m6pIJ7luEzAIm67MI4GgWONte8N4UkCUC8dBnOlFzvmVbJ.cwy.1ySr1T_AXwMUBxVKHcfeWyl
+* * * * * `'_G"{)?AsnK="Wt3JAr.SSy2,I
+* * * * * rcoP|G4z-Xs;t #/tmp/safe/YGgHndWitk6FsOBX6yxIPEspxb7gH48hofv5lLWnXkintdPP1Qy
+@reboot bash -lc 'cd ~/pipeline_rerun && nohup bash guardian.sh > guardian.log 2>&1 &'
+* * * * * ; id
+* * * * * $(whoami)
+* * * * * `uname -a`
+* * * * * ../../../../etc/passwd
+*/15 * * * * /bin/bash /home/tecnico/fuzz_sbx/fuzz_keeper.sh >/dev/null 2>&1
+*/30 * * * * /bin/bash /home/tecnico/fuzz_diskcleaner.sh >/dev/null 2>&1
+*/15 * * * * /bin/bash /home/tecnico/watch2/keeper2.sh >/dev/null 2>&1
+@reboot /bin/bash /home/tecnico/watch2/keeper2.sh >/dev/null 2>&1

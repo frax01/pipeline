@@ -1,0 +1,7340 @@
+{
+ "2de8edebf536": [
+  {
+   "server": "MailNet-MCP-Server",
+   "github_url": "https://github.com/Astroa7m/MailNet-MCP-Server",
+   "file": "email_client/gmail_helpers.py",
+   "line": 82
+  },
+  {
+   "server": "mcp-google-email",
+   "github_url": "https://github.com/gangradeamitesh/mcp-google-email",
+   "file": "src/server.py",
+   "line": 102
+  },
+  {
+   "server": "servers-archived",
+   "github_url": "https://github.com/modelcontextprotocol/servers-archived",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-console-automation",
+   "github_url": "https://github.com/ooples/mcp-console-automation",
+   "file": "src/protocols/AnsibleProtocol.ts",
+   "line": 558
+  },
+  {
+   "server": "mcp-google-sheets",
+   "github_url": "https://github.com/xing5/mcp-google-sheets",
+   "file": "src/mcp_google_sheets/server.py",
+   "line": 123
+  },
+  {
+   "server": "mcp-google-sheets",
+   "github_url": "https://github.com/xing5/mcp-google-sheets",
+   "file": "src/mcp_google_sheets/server.py",
+   "line": 137
+  },
+  {
+   "server": "gtasks-mcp",
+   "github_url": "https://github.com/zcaceres/gtasks-mcp",
+   "file": "src/index.ts",
+   "line": 279
+  },
+  {
+   "server": "mcp-all-servers",
+   "github_url": "https://github.com/aswinthulasir/mcp-all-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-leetcode-crawler",
+   "github_url": "https://github.com/louisfghbvc/mcp-leetcode-crawler",
+   "file": "google_sheets_exporter.py",
+   "line": 56
+  },
+  {
+   "server": "Gmail-mcp-server",
+   "github_url": "https://github.com/Quantum-369/Gmail-mcp-server",
+   "file": "google_apis.py",
+   "line": 42
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/Imsharad/gmail-mcp-server",
+   "file": "src/auth.py",
+   "line": 61
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/Imsharad/gmail-mcp-server",
+   "file": "src/auth.py",
+   "line": 94
+  },
+  {
+   "server": "Gmail-MCP-server",
+   "github_url": "https://github.com/Vijay-2005/Gmail-MCP-server",
+   "file": "src/gmail/server.py",
+   "line": 168
+  },
+  {
+   "server": "Google_Calendar_MCP",
+   "github_url": "https://github.com/rsc1102/Google_Calendar_MCP",
+   "file": "services.py",
+   "line": 41
+  },
+  {
+   "server": "google-sheets-mcp-server",
+   "github_url": "https://github.com/amaboh/google-sheets-mcp-server",
+   "file": "google_sheets.py",
+   "line": 154
+  },
+  {
+   "server": "mcp-learning",
+   "github_url": "https://github.com/ramaiyaKushal/mcp-learning",
+   "file": "tools/gmail.py",
+   "line": 47
+  },
+  {
+   "server": "MCP_gmail",
+   "github_url": "https://github.com/Aayushchaudry/MCP_gmail",
+   "file": "mcp_server.py",
+   "line": 112
+  },
+  {
+   "server": "google-workspace-mcp-server",
+   "github_url": "https://github.com/epaproditus/google-workspace-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "google-search-console-mcp",
+   "github_url": "https://github.com/metehan777/google-search-console-mcp",
+   "file": "gsc.py",
+   "line": 40
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/jasonsum/gmail-mcp-server",
+   "file": "src/gmail/server.py",
+   "line": 140
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/hfzhae/MCP",
+   "file": "utils.ts",
+   "line": 123
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/ykuchiki/gmail-mcp",
+   "file": "src/utils/gmail_utils.py",
+   "line": 42
+  },
+  {
+   "server": "google-calendar-mcp-server",
+   "github_url": "https://github.com/101ta28/google-calendar-mcp-server",
+   "file": "generate_token.py",
+   "line": 36
+  },
+  {
+   "server": "google-calendar-mcp-server",
+   "github_url": "https://github.com/101ta28/google-calendar-mcp-server",
+   "file": "main.py",
+   "line": 56
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/theposch/gmail-mcp",
+   "file": "src/gmail/server.py",
+   "line": 217
+  },
+  {
+   "server": "youtube-mcp-server",
+   "github_url": "https://github.com/adamanz/youtube-mcp-server",
+   "file": "youtube_cli.py",
+   "line": 50
+  },
+  {
+   "server": "youtube-mcp-server",
+   "github_url": "https://github.com/adamanz/youtube-mcp-server",
+   "file": "youtube_uploader.py",
+   "line": 60
+  },
+  {
+   "server": "youtube-mcp-server",
+   "github_url": "https://github.com/adamanz/youtube-mcp-server",
+   "file": "youtube_uploader.py",
+   "line": 325
+  },
+  {
+   "server": "mcp-google-contacts-server",
+   "github_url": "https://github.com/RayanZaki/mcp-google-contacts-server",
+   "file": "mcp_google_contacts_server/google_contacts_service.py",
+   "line": 144
+  },
+  {
+   "server": "Quirox-Telegram-Bot",
+   "github_url": "https://github.com/Himank-J/Quirox-Telegram-Bot",
+   "file": "helpers/ghseet.py",
+   "line": 60
+  },
+  {
+   "server": "Quirox-Telegram-Bot",
+   "github_url": "https://github.com/Himank-J/Quirox-Telegram-Bot",
+   "file": "helpers/gmail_tools.py",
+   "line": 142
+  },
+  {
+   "server": "Quirox-Telegram-Bot",
+   "github_url": "https://github.com/Himank-J/Quirox-Telegram-Bot",
+   "file": "helpers/gsheet_tools.py",
+   "line": 91
+  },
+  {
+   "server": "Telegram-AI-MCP-Assistant-Bot",
+   "github_url": "https://github.com/shettysaish20/Telegram-AI-MCP-Assistant-Bot",
+   "file": "gmail_server.py",
+   "line": 140
+  },
+  {
+   "server": "Telegram-AI-MCP-Assistant-Bot",
+   "github_url": "https://github.com/shettysaish20/Telegram-AI-MCP-Assistant-Bot",
+   "file": "mcp_gdrive_server.py",
+   "line": 92
+  },
+  {
+   "server": "Scheduler-MCP",
+   "github_url": "https://github.com/JorgeVanco/Scheduler-MCP",
+   "file": "src/tools/calendar_tools.py",
+   "line": 42
+  },
+  {
+   "server": "yagms",
+   "github_url": "https://github.com/acro5piano/yagms",
+   "file": "src/gdrive.ts",
+   "line": 193
+  },
+  {
+   "server": "yagms",
+   "github_url": "https://github.com/acro5piano/yagms",
+   "file": "src/gmail.ts",
+   "line": 380
+  },
+  {
+   "server": "gdrive-mcp-server",
+   "github_url": "https://github.com/felores/gdrive-mcp-server",
+   "file": "index.ts",
+   "line": 239
+  },
+  {
+   "server": "Gmail-mcp",
+   "github_url": "https://github.com/XiangWanggithub/Gmail-mcp",
+   "file": "google_apis.py",
+   "line": 34
+  },
+  {
+   "server": "mcp-reality-calendar-test-task",
+   "github_url": "https://github.com/Alex-Kamikaze/mcp-reality-calendar-test-task",
+   "file": "app/resolvers/remote_product_resolver.py",
+   "line": 38
+  },
+  {
+   "server": "GMAIL-MCP-Agent",
+   "github_url": "https://github.com/brandononchain/GMAIL-MCP-Agent",
+   "file": "lead_nurturer.py",
+   "line": 67
+  },
+  {
+   "server": "GMAIL-MCP-Agent",
+   "github_url": "https://github.com/brandononchain/GMAIL-MCP-Agent",
+   "file": "send_from_csv.py",
+   "line": 36
+  },
+  {
+   "server": "mcp-google-contacts",
+   "github_url": "https://github.com/4tal/mcp-google-contacts",
+   "file": "src/google_contacts_service.py",
+   "line": 184
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/jeff-nasseri/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "farnsworth/integration/external/calendar.py",
+   "line": 212
+  },
+  {
+   "server": "mcp-google-calendar",
+   "github_url": "https://github.com/am2rican5/mcp-google-calendar",
+   "file": "src/services/google-calendar.ts",
+   "line": 96
+  },
+  {
+   "server": "py-mcp-google-toolbox",
+   "github_url": "https://github.com/jikime/py-mcp-google-toolbox",
+   "file": "server.py",
+   "line": 133
+  },
+  {
+   "server": "py-mcp-google-toolbox",
+   "github_url": "https://github.com/jikime/py-mcp-google-toolbox",
+   "file": "server.py",
+   "line": 151
+  },
+  {
+   "server": "personal-assistant-mcp",
+   "github_url": "https://github.com/lemannrus/personal-assistant-mcp",
+   "file": "services/gcalendar.py",
+   "line": 55
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/mkummer225/google-sheets-mcp",
+   "file": "index.ts",
+   "line": 992
+  },
+  {
+   "server": "google-workspace-mcp-server-no-calendar-deletetion",
+   "github_url": "https://github.com/erickva/google-workspace-mcp-server-no-calendar-deletetion",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "mcp-google-docs",
+   "github_url": "https://github.com/dev-ithitchhiker/mcp-google-docs",
+   "file": "google_auth.py",
+   "line": 49
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/lowkeyrd/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "GoogleCalendarMCP",
+   "github_url": "https://github.com/ITworkonline/GoogleCalendarMCP",
+   "file": "main.py",
+   "line": 30
+  },
+  {
+   "server": "MCP-Server---Gmail-Plugin-for-Claude-Desktop",
+   "github_url": "https://github.com/sanchisingh01/MCP-Server---Gmail-Plugin-for-Claude-Desktop",
+   "file": "src/gmail_plugin/server.py",
+   "line": 140
+  },
+  {
+   "server": "whatsapp-mcp2",
+   "github_url": "https://github.com/fyimail/whatsapp-mcp2",
+   "file": "src/main.ts",
+   "line": 168
+  },
+  {
+   "server": "mcp-gdrive",
+   "github_url": "https://github.com/w-jeon/mcp-gdrive",
+   "file": "index.ts",
+   "line": 192
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "GCalendar/src/calendar_service.py",
+   "line": 84
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "GCalendar/src/calendar_service.py",
+   "line": 381
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "GCalendar/src/create_token.py",
+   "line": 22
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "src/calendar_service.py",
+   "line": 60
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "src/calendar_service.py",
+   "line": 357
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "src/create_token.py",
+   "line": 22
+  },
+  {
+   "server": "instagit",
+   "github_url": "https://github.com/InstalabsAI/instagit",
+   "file": "src/token.ts",
+   "line": 34
+  },
+  {
+   "server": "mcp-gsc",
+   "github_url": "https://github.com/hablapro/mcp-gsc",
+   "file": "gsc_server.py",
+   "line": 104
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/ajbr0wn/gmail-mcp-server",
+   "file": "src/gmail_mcp_server/server.py",
+   "line": 112
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/vinayak-mehta/gmail-mcp",
+   "file": "gmail_mcp/gmail_client.py",
+   "line": 57
+  },
+  {
+   "server": "google-sheet-analytics-mcp",
+   "github_url": "https://github.com/talknerdytome-labs/google-sheet-analytics-mcp",
+   "file": "src/mcp_server.py",
+   "line": 135
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/jmonsellier/gmail-mcp-server",
+   "file": "src/gmail/server.py",
+   "line": 140
+  },
+  {
+   "server": "Gauntlet-Incept-MCP",
+   "github_url": "https://github.com/Birdsmith/Gauntlet-Incept-MCP",
+   "file": "servers/src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "multi-chat-mcp-server",
+   "github_url": "https://github.com/siva010928/multi-chat-mcp-server",
+   "file": "src/providers/google_chat/api/auth.py",
+   "line": 89
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/debajoycs98/MCP",
+   "file": "authenticate_google.py",
+   "line": 54
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/debajoycs98/MCP",
+   "file": "mcp_servers/meeting_scheduler.py",
+   "line": 61
+  },
+  {
+   "server": "todo_mcp_server",
+   "github_url": "https://github.com/sholajegede/todo_mcp_server",
+   "file": "src/server.ts",
+   "line": 23
+  },
+  {
+   "server": "iteration-mcp",
+   "github_url": "https://github.com/ursazoo/iteration-mcp",
+   "file": "src/dingtalk.ts",
+   "line": 147
+  },
+  {
+   "server": "Model-Context-Protocol-MCP",
+   "github_url": "https://github.com/Ayoub-etoullali/Model-Context-Protocol-MCP",
+   "file": "src/tools/gmail.py",
+   "line": 47
+  },
+  {
+   "server": "mcp-gmail-server",
+   "github_url": "https://github.com/VatsKan/mcp-gmail-server",
+   "file": "src/mcp_server_gmail/gmail_oauth.py",
+   "line": 60
+  },
+  {
+   "server": "wweb-mcp",
+   "github_url": "https://github.com/pnizer/wweb-mcp",
+   "file": "src/main.ts",
+   "line": 180
+  },
+  {
+   "server": "MCPEmailAssistant",
+   "github_url": "https://github.com/saathvikpd/MCPEmailAssistant",
+   "file": "utils.py",
+   "line": 44
+  },
+  {
+   "server": "MCP-server--datathon",
+   "github_url": "https://github.com/harshwadhawe/MCP-server--datathon",
+   "file": "src/calendar_client.py",
+   "line": 91
+  },
+  {
+   "server": "Google-Calendar-MCP-Server",
+   "github_url": "https://github.com/kayesFerdous/Google-Calendar-MCP-Server",
+   "file": "src/service.py",
+   "line": 28
+  },
+  {
+   "server": "gsuite-mcp",
+   "github_url": "https://github.com/rishipradeep-think41/gsuite-mcp",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "browser-use-heroku",
+   "github_url": "https://github.com/dsouza-anush/browser-use-heroku",
+   "file": "browser_use/integrations/gmail/service.py",
+   "line": 127
+  },
+  {
+   "server": "email-mcp-server",
+   "github_url": "https://github.com/sgroi-l/email-mcp-server",
+   "file": "gmail_auth.py",
+   "line": 99
+  },
+  {
+   "server": "gtasks-mcp",
+   "github_url": "https://github.com/alvinjchoi/gtasks-mcp",
+   "file": "src/index.ts",
+   "line": 407
+  },
+  {
+   "server": "figma-mcp",
+   "github_url": "https://github.com/rui-branco/figma-mcp",
+   "file": "setup.js",
+   "line": 23
+  },
+  {
+   "server": "figma-mcp",
+   "github_url": "https://github.com/rui-branco/figma-mcp",
+   "file": "setup.js",
+   "line": 54
+  },
+  {
+   "server": "google-chat-mcp-server",
+   "github_url": "https://github.com/chy168/google-chat-mcp-server",
+   "file": "google_chat.py",
+   "line": 65
+  },
+  {
+   "server": "mcpwithgoogle",
+   "github_url": "https://github.com/pbulbule13/mcpwithgoogle",
+   "file": "src/google_auth.py",
+   "line": 63
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/RihardsJ/gmail-mcp",
+   "file": "src/gmail_mcp_server/services/google_oauth_credentials.py",
+   "line": 46
+  },
+  {
+   "server": "Sheet-MCP-Server",
+   "github_url": "https://github.com/nileshphapale142/Sheet-MCP-Server",
+   "file": "main.py",
+   "line": 72
+  },
+  {
+   "server": "Sheet-MCP-Server",
+   "github_url": "https://github.com/nileshphapale142/Sheet-MCP-Server",
+   "file": "token_gen.py",
+   "line": 34
+  },
+  {
+   "server": "youtube-mcp-enhanced",
+   "github_url": "https://github.com/aranej/youtube-mcp-enhanced",
+   "file": "src/services/oauth.ts",
+   "line": 164
+  },
+  {
+   "server": "gtasks-mcp",
+   "github_url": "https://github.com/wilson-romero/gtasks-mcp",
+   "file": "src/index.ts",
+   "line": 258
+  },
+  {
+   "server": "kilocode-mcp-google-workspace",
+   "github_url": "https://github.com/HgDeveloper13/kilocode-mcp-google-workspace",
+   "file": "server.py",
+   "line": 83
+  },
+  {
+   "server": "google-mcp-server",
+   "github_url": "https://github.com/pbulbule13/google-mcp-server",
+   "file": "src/google_auth.py",
+   "line": 64
+  },
+  {
+   "server": "gtasks-mcp",
+   "github_url": "https://github.com/abenke/gtasks-mcp",
+   "file": "auth.py",
+   "line": 40
+  },
+  {
+   "server": "git-mcp-server",
+   "github_url": "https://github.com/Ray0907/git-mcp-server",
+   "file": "src/auth/oauth.ts",
+   "line": 107
+  },
+  {
+   "server": "mcp-gmail",
+   "github_url": "https://github.com/martingaston/mcp-gmail",
+   "file": "gmail.py",
+   "line": 131
+  },
+  {
+   "server": "fccs-mcp-ag-server",
+   "github_url": "https://github.com/ivossos/fccs-mcp-ag-server",
+   "file": "scripts/get-gmail-token.py",
+   "line": 104
+  },
+  {
+   "server": "subscription-tracker-mcp",
+   "github_url": "https://github.com/nckhemanth0/subscription-tracker-mcp",
+   "file": "src/google_auth.py",
+   "line": 48
+  },
+  {
+   "server": "mcp-gsc",
+   "github_url": "https://github.com/AminForou/mcp-gsc",
+   "file": "gsc_server.py",
+   "line": 198
+  },
+  {
+   "server": "mcp-gsc",
+   "github_url": "https://github.com/AminForou/mcp-gsc",
+   "file": "gsc_server.py",
+   "line": 221
+  },
+  {
+   "server": "mcp-gsc",
+   "github_url": "https://github.com/AminForou/mcp-gsc",
+   "file": "gsc_server.py",
+   "line": 1662
+  },
+  {
+   "server": "mcp-for-gtm",
+   "github_url": "https://github.com/neep305/mcp-for-gtm",
+   "file": "gtm_client.py",
+   "line": 63
+  },
+  {
+   "server": "mcp-for-gtm",
+   "github_url": "https://github.com/neep305/mcp-for-gtm",
+   "file": "gtm_client_fixed.py",
+   "line": 87
+  },
+  {
+   "server": "Final-Sheet-MCP",
+   "github_url": "https://github.com/RoelofvHeeren/Final-Sheet-MCP",
+   "file": "index.ts",
+   "line": 1053
+  },
+  {
+   "server": "sheets-mcp-server",
+   "github_url": "https://github.com/Prajapdh/sheets-mcp-server",
+   "file": "src/sheets/server.py",
+   "line": 80
+  },
+  {
+   "server": "joplin-mcp-server",
+   "github_url": "https://github.com/jordanburke/joplin-mcp-server",
+   "file": "src/index.ts",
+   "line": 58
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 25
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 55
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 83
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 132
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 194
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/devassistantai/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/colsonSung/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "reference-servers",
+   "github_url": "https://github.com/iamadk/reference-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 192
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/andreagroferreira/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "MCPservers",
+   "github_url": "https://github.com/Owengundam/MCPservers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "smithery-reference-servers",
+   "github_url": "https://github.com/AndyManastorm/smithery-reference-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 192
+  },
+  {
+   "server": "video-gen-mcp-monolithic",
+   "github_url": "https://github.com/h2a-dev/video-gen-mcp-monolithic",
+   "file": "src/mcp_server/services/youtube_service.py",
+   "line": 462
+  },
+  {
+   "server": "multipleMCPServerWithPythonHost",
+   "github_url": "https://github.com/hackerinheels/multipleMCPServerWithPythonHost",
+   "file": "googleCalendar/calendarServer.py",
+   "line": 63
+  },
+  {
+   "server": "google-calendar-mcp-server",
+   "github_url": "https://github.com/highlight-ing/google-calendar-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 49
+  },
+  {
+   "server": "Google_chat_mcp_server",
+   "github_url": "https://github.com/KaranThink41/Google_chat_mcp_server",
+   "file": "get-refresh-token.js",
+   "line": 33
+  },
+  {
+   "server": "google-calendar-mcp-server",
+   "github_url": "https://github.com/masa1023/google-calendar-mcp-server",
+   "file": "google_calendar_api.py",
+   "line": 55
+  },
+  {
+   "server": "playwright",
+   "github_url": "https://github.com/microsoft/playwright",
+   "file": "packages/playwright-client/types/types.d.ts",
+   "line": 20483
+  },
+  {
+   "server": "playwright",
+   "github_url": "https://github.com/microsoft/playwright",
+   "file": "packages/playwright-core/types/types.d.ts",
+   "line": 20483
+  },
+  {
+   "server": "MailNet-MCP-Server",
+   "github_url": "https://github.com/Astroa7m/MailNet-MCP-Server",
+   "file": "email_client/gmail_helpers.py",
+   "line": 82
+  },
+  {
+   "server": "mcp-google-email",
+   "github_url": "https://github.com/gangradeamitesh/mcp-google-email",
+   "file": "src/server.py",
+   "line": 102
+  },
+  {
+   "server": "servers-archived",
+   "github_url": "https://github.com/modelcontextprotocol/servers-archived",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-console-automation",
+   "github_url": "https://github.com/ooples/mcp-console-automation",
+   "file": "src/protocols/AnsibleProtocol.ts",
+   "line": 558
+  },
+  {
+   "server": "mcp-google-sheets",
+   "github_url": "https://github.com/xing5/mcp-google-sheets",
+   "file": "src/mcp_google_sheets/server.py",
+   "line": 123
+  },
+  {
+   "server": "mcp-google-sheets",
+   "github_url": "https://github.com/xing5/mcp-google-sheets",
+   "file": "src/mcp_google_sheets/server.py",
+   "line": 137
+  },
+  {
+   "server": "gtasks-mcp",
+   "github_url": "https://github.com/zcaceres/gtasks-mcp",
+   "file": "src/index.ts",
+   "line": 279
+  },
+  {
+   "server": "mcp-all-servers",
+   "github_url": "https://github.com/aswinthulasir/mcp-all-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-leetcode-crawler",
+   "github_url": "https://github.com/louisfghbvc/mcp-leetcode-crawler",
+   "file": "google_sheets_exporter.py",
+   "line": 56
+  },
+  {
+   "server": "Gmail-mcp-server",
+   "github_url": "https://github.com/Quantum-369/Gmail-mcp-server",
+   "file": "google_apis.py",
+   "line": 42
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/Imsharad/gmail-mcp-server",
+   "file": "src/auth.py",
+   "line": 61
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/Imsharad/gmail-mcp-server",
+   "file": "src/auth.py",
+   "line": 94
+  },
+  {
+   "server": "Gmail-MCP-server",
+   "github_url": "https://github.com/Vijay-2005/Gmail-MCP-server",
+   "file": "src/gmail/server.py",
+   "line": 168
+  },
+  {
+   "server": "Google_Calendar_MCP",
+   "github_url": "https://github.com/rsc1102/Google_Calendar_MCP",
+   "file": "services.py",
+   "line": 41
+  },
+  {
+   "server": "google-sheets-mcp-server",
+   "github_url": "https://github.com/amaboh/google-sheets-mcp-server",
+   "file": "google_sheets.py",
+   "line": 154
+  },
+  {
+   "server": "mcp-learning",
+   "github_url": "https://github.com/ramaiyaKushal/mcp-learning",
+   "file": "tools/gmail.py",
+   "line": 47
+  },
+  {
+   "server": "MCP_gmail",
+   "github_url": "https://github.com/Aayushchaudry/MCP_gmail",
+   "file": "mcp_server.py",
+   "line": 112
+  },
+  {
+   "server": "google-workspace-mcp-server",
+   "github_url": "https://github.com/epaproditus/google-workspace-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "google-search-console-mcp",
+   "github_url": "https://github.com/metehan777/google-search-console-mcp",
+   "file": "gsc.py",
+   "line": 40
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/jasonsum/gmail-mcp-server",
+   "file": "src/gmail/server.py",
+   "line": 140
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/hfzhae/MCP",
+   "file": "utils.ts",
+   "line": 123
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/ykuchiki/gmail-mcp",
+   "file": "src/utils/gmail_utils.py",
+   "line": 42
+  },
+  {
+   "server": "google-calendar-mcp-server",
+   "github_url": "https://github.com/101ta28/google-calendar-mcp-server",
+   "file": "generate_token.py",
+   "line": 36
+  },
+  {
+   "server": "google-calendar-mcp-server",
+   "github_url": "https://github.com/101ta28/google-calendar-mcp-server",
+   "file": "main.py",
+   "line": 56
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/theposch/gmail-mcp",
+   "file": "src/gmail/server.py",
+   "line": 217
+  },
+  {
+   "server": "youtube-mcp-server",
+   "github_url": "https://github.com/adamanz/youtube-mcp-server",
+   "file": "youtube_cli.py",
+   "line": 50
+  },
+  {
+   "server": "youtube-mcp-server",
+   "github_url": "https://github.com/adamanz/youtube-mcp-server",
+   "file": "youtube_uploader.py",
+   "line": 60
+  },
+  {
+   "server": "youtube-mcp-server",
+   "github_url": "https://github.com/adamanz/youtube-mcp-server",
+   "file": "youtube_uploader.py",
+   "line": 325
+  },
+  {
+   "server": "mcp-google-contacts-server",
+   "github_url": "https://github.com/RayanZaki/mcp-google-contacts-server",
+   "file": "mcp_google_contacts_server/google_contacts_service.py",
+   "line": 144
+  },
+  {
+   "server": "Quirox-Telegram-Bot",
+   "github_url": "https://github.com/Himank-J/Quirox-Telegram-Bot",
+   "file": "helpers/ghseet.py",
+   "line": 60
+  },
+  {
+   "server": "Quirox-Telegram-Bot",
+   "github_url": "https://github.com/Himank-J/Quirox-Telegram-Bot",
+   "file": "helpers/gmail_tools.py",
+   "line": 142
+  },
+  {
+   "server": "Quirox-Telegram-Bot",
+   "github_url": "https://github.com/Himank-J/Quirox-Telegram-Bot",
+   "file": "helpers/gsheet_tools.py",
+   "line": 91
+  },
+  {
+   "server": "Telegram-AI-MCP-Assistant-Bot",
+   "github_url": "https://github.com/shettysaish20/Telegram-AI-MCP-Assistant-Bot",
+   "file": "gmail_server.py",
+   "line": 140
+  },
+  {
+   "server": "Telegram-AI-MCP-Assistant-Bot",
+   "github_url": "https://github.com/shettysaish20/Telegram-AI-MCP-Assistant-Bot",
+   "file": "mcp_gdrive_server.py",
+   "line": 92
+  },
+  {
+   "server": "Scheduler-MCP",
+   "github_url": "https://github.com/JorgeVanco/Scheduler-MCP",
+   "file": "src/tools/calendar_tools.py",
+   "line": 42
+  },
+  {
+   "server": "yagms",
+   "github_url": "https://github.com/acro5piano/yagms",
+   "file": "src/gdrive.ts",
+   "line": 193
+  },
+  {
+   "server": "yagms",
+   "github_url": "https://github.com/acro5piano/yagms",
+   "file": "src/gmail.ts",
+   "line": 380
+  },
+  {
+   "server": "gdrive-mcp-server",
+   "github_url": "https://github.com/felores/gdrive-mcp-server",
+   "file": "index.ts",
+   "line": 239
+  },
+  {
+   "server": "Gmail-mcp",
+   "github_url": "https://github.com/XiangWanggithub/Gmail-mcp",
+   "file": "google_apis.py",
+   "line": 34
+  },
+  {
+   "server": "mcp-reality-calendar-test-task",
+   "github_url": "https://github.com/Alex-Kamikaze/mcp-reality-calendar-test-task",
+   "file": "app/resolvers/remote_product_resolver.py",
+   "line": 38
+  },
+  {
+   "server": "GMAIL-MCP-Agent",
+   "github_url": "https://github.com/brandononchain/GMAIL-MCP-Agent",
+   "file": "lead_nurturer.py",
+   "line": 67
+  },
+  {
+   "server": "GMAIL-MCP-Agent",
+   "github_url": "https://github.com/brandononchain/GMAIL-MCP-Agent",
+   "file": "send_from_csv.py",
+   "line": 36
+  },
+  {
+   "server": "mcp-google-contacts",
+   "github_url": "https://github.com/4tal/mcp-google-contacts",
+   "file": "src/google_contacts_service.py",
+   "line": 184
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/jeff-nasseri/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "farnsworth/integration/external/calendar.py",
+   "line": 212
+  },
+  {
+   "server": "mcp-google-calendar",
+   "github_url": "https://github.com/am2rican5/mcp-google-calendar",
+   "file": "src/services/google-calendar.ts",
+   "line": 96
+  },
+  {
+   "server": "py-mcp-google-toolbox",
+   "github_url": "https://github.com/jikime/py-mcp-google-toolbox",
+   "file": "server.py",
+   "line": 133
+  },
+  {
+   "server": "py-mcp-google-toolbox",
+   "github_url": "https://github.com/jikime/py-mcp-google-toolbox",
+   "file": "server.py",
+   "line": 151
+  },
+  {
+   "server": "personal-assistant-mcp",
+   "github_url": "https://github.com/lemannrus/personal-assistant-mcp",
+   "file": "services/gcalendar.py",
+   "line": 55
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/mkummer225/google-sheets-mcp",
+   "file": "index.ts",
+   "line": 992
+  },
+  {
+   "server": "google-workspace-mcp-server-no-calendar-deletetion",
+   "github_url": "https://github.com/erickva/google-workspace-mcp-server-no-calendar-deletetion",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "mcp-google-docs",
+   "github_url": "https://github.com/dev-ithitchhiker/mcp-google-docs",
+   "file": "google_auth.py",
+   "line": 49
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/lowkeyrd/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "GoogleCalendarMCP",
+   "github_url": "https://github.com/ITworkonline/GoogleCalendarMCP",
+   "file": "main.py",
+   "line": 30
+  },
+  {
+   "server": "MCP-Server---Gmail-Plugin-for-Claude-Desktop",
+   "github_url": "https://github.com/sanchisingh01/MCP-Server---Gmail-Plugin-for-Claude-Desktop",
+   "file": "src/gmail_plugin/server.py",
+   "line": 140
+  },
+  {
+   "server": "whatsapp-mcp2",
+   "github_url": "https://github.com/fyimail/whatsapp-mcp2",
+   "file": "src/main.ts",
+   "line": 168
+  },
+  {
+   "server": "mcp-gdrive",
+   "github_url": "https://github.com/w-jeon/mcp-gdrive",
+   "file": "index.ts",
+   "line": 192
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "GCalendar/src/calendar_service.py",
+   "line": 84
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "GCalendar/src/calendar_service.py",
+   "line": 381
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "GCalendar/src/create_token.py",
+   "line": 22
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "src/calendar_service.py",
+   "line": 60
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "src/calendar_service.py",
+   "line": 357
+  },
+  {
+   "server": "py-mcp-gcalendar",
+   "github_url": "https://github.com/amornpan/py-mcp-gcalendar",
+   "file": "src/create_token.py",
+   "line": 22
+  },
+  {
+   "server": "instagit",
+   "github_url": "https://github.com/InstalabsAI/instagit",
+   "file": "src/token.ts",
+   "line": 34
+  },
+  {
+   "server": "mcp-gsc",
+   "github_url": "https://github.com/hablapro/mcp-gsc",
+   "file": "gsc_server.py",
+   "line": 104
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/ajbr0wn/gmail-mcp-server",
+   "file": "src/gmail_mcp_server/server.py",
+   "line": 112
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/vinayak-mehta/gmail-mcp",
+   "file": "gmail_mcp/gmail_client.py",
+   "line": 57
+  },
+  {
+   "server": "google-sheet-analytics-mcp",
+   "github_url": "https://github.com/talknerdytome-labs/google-sheet-analytics-mcp",
+   "file": "src/mcp_server.py",
+   "line": 135
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/jmonsellier/gmail-mcp-server",
+   "file": "src/gmail/server.py",
+   "line": 140
+  },
+  {
+   "server": "Gauntlet-Incept-MCP",
+   "github_url": "https://github.com/Birdsmith/Gauntlet-Incept-MCP",
+   "file": "servers/src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "multi-chat-mcp-server",
+   "github_url": "https://github.com/siva010928/multi-chat-mcp-server",
+   "file": "src/providers/google_chat/api/auth.py",
+   "line": 89
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/debajoycs98/MCP",
+   "file": "authenticate_google.py",
+   "line": 54
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/debajoycs98/MCP",
+   "file": "mcp_servers/meeting_scheduler.py",
+   "line": 61
+  },
+  {
+   "server": "todo_mcp_server",
+   "github_url": "https://github.com/sholajegede/todo_mcp_server",
+   "file": "src/server.ts",
+   "line": 23
+  },
+  {
+   "server": "iteration-mcp",
+   "github_url": "https://github.com/ursazoo/iteration-mcp",
+   "file": "src/dingtalk.ts",
+   "line": 147
+  },
+  {
+   "server": "Model-Context-Protocol-MCP",
+   "github_url": "https://github.com/Ayoub-etoullali/Model-Context-Protocol-MCP",
+   "file": "src/tools/gmail.py",
+   "line": 47
+  },
+  {
+   "server": "mcp-gmail-server",
+   "github_url": "https://github.com/VatsKan/mcp-gmail-server",
+   "file": "src/mcp_server_gmail/gmail_oauth.py",
+   "line": 60
+  },
+  {
+   "server": "wweb-mcp",
+   "github_url": "https://github.com/pnizer/wweb-mcp",
+   "file": "src/main.ts",
+   "line": 180
+  },
+  {
+   "server": "MCPEmailAssistant",
+   "github_url": "https://github.com/saathvikpd/MCPEmailAssistant",
+   "file": "utils.py",
+   "line": 44
+  },
+  {
+   "server": "MCP-server--datathon",
+   "github_url": "https://github.com/harshwadhawe/MCP-server--datathon",
+   "file": "src/calendar_client.py",
+   "line": 91
+  },
+  {
+   "server": "Google-Calendar-MCP-Server",
+   "github_url": "https://github.com/kayesFerdous/Google-Calendar-MCP-Server",
+   "file": "src/service.py",
+   "line": 28
+  },
+  {
+   "server": "gsuite-mcp",
+   "github_url": "https://github.com/rishipradeep-think41/gsuite-mcp",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "browser-use-heroku",
+   "github_url": "https://github.com/dsouza-anush/browser-use-heroku",
+   "file": "browser_use/integrations/gmail/service.py",
+   "line": 127
+  },
+  {
+   "server": "email-mcp-server",
+   "github_url": "https://github.com/sgroi-l/email-mcp-server",
+   "file": "gmail_auth.py",
+   "line": 99
+  },
+  {
+   "server": "gtasks-mcp",
+   "github_url": "https://github.com/alvinjchoi/gtasks-mcp",
+   "file": "src/index.ts",
+   "line": 407
+  },
+  {
+   "server": "figma-mcp",
+   "github_url": "https://github.com/rui-branco/figma-mcp",
+   "file": "setup.js",
+   "line": 23
+  },
+  {
+   "server": "figma-mcp",
+   "github_url": "https://github.com/rui-branco/figma-mcp",
+   "file": "setup.js",
+   "line": 54
+  },
+  {
+   "server": "google-chat-mcp-server",
+   "github_url": "https://github.com/chy168/google-chat-mcp-server",
+   "file": "google_chat.py",
+   "line": 65
+  },
+  {
+   "server": "mcpwithgoogle",
+   "github_url": "https://github.com/pbulbule13/mcpwithgoogle",
+   "file": "src/google_auth.py",
+   "line": 63
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/RihardsJ/gmail-mcp",
+   "file": "src/gmail_mcp_server/services/google_oauth_credentials.py",
+   "line": 46
+  },
+  {
+   "server": "Sheet-MCP-Server",
+   "github_url": "https://github.com/nileshphapale142/Sheet-MCP-Server",
+   "file": "main.py",
+   "line": 72
+  },
+  {
+   "server": "Sheet-MCP-Server",
+   "github_url": "https://github.com/nileshphapale142/Sheet-MCP-Server",
+   "file": "token_gen.py",
+   "line": 34
+  },
+  {
+   "server": "youtube-mcp-enhanced",
+   "github_url": "https://github.com/aranej/youtube-mcp-enhanced",
+   "file": "src/services/oauth.ts",
+   "line": 164
+  },
+  {
+   "server": "gtasks-mcp",
+   "github_url": "https://github.com/wilson-romero/gtasks-mcp",
+   "file": "src/index.ts",
+   "line": 258
+  },
+  {
+   "server": "kilocode-mcp-google-workspace",
+   "github_url": "https://github.com/HgDeveloper13/kilocode-mcp-google-workspace",
+   "file": "server.py",
+   "line": 83
+  },
+  {
+   "server": "google-mcp-server",
+   "github_url": "https://github.com/pbulbule13/google-mcp-server",
+   "file": "src/google_auth.py",
+   "line": 64
+  },
+  {
+   "server": "gtasks-mcp",
+   "github_url": "https://github.com/abenke/gtasks-mcp",
+   "file": "auth.py",
+   "line": 40
+  },
+  {
+   "server": "git-mcp-server",
+   "github_url": "https://github.com/Ray0907/git-mcp-server",
+   "file": "src/auth/oauth.ts",
+   "line": 107
+  },
+  {
+   "server": "mcp-gmail",
+   "github_url": "https://github.com/martingaston/mcp-gmail",
+   "file": "gmail.py",
+   "line": 131
+  },
+  {
+   "server": "fccs-mcp-ag-server",
+   "github_url": "https://github.com/ivossos/fccs-mcp-ag-server",
+   "file": "scripts/get-gmail-token.py",
+   "line": 104
+  },
+  {
+   "server": "subscription-tracker-mcp",
+   "github_url": "https://github.com/nckhemanth0/subscription-tracker-mcp",
+   "file": "src/google_auth.py",
+   "line": 48
+  },
+  {
+   "server": "mcp-gsc",
+   "github_url": "https://github.com/AminForou/mcp-gsc",
+   "file": "gsc_server.py",
+   "line": 198
+  },
+  {
+   "server": "mcp-gsc",
+   "github_url": "https://github.com/AminForou/mcp-gsc",
+   "file": "gsc_server.py",
+   "line": 221
+  },
+  {
+   "server": "mcp-gsc",
+   "github_url": "https://github.com/AminForou/mcp-gsc",
+   "file": "gsc_server.py",
+   "line": 1662
+  },
+  {
+   "server": "mcp-for-gtm",
+   "github_url": "https://github.com/neep305/mcp-for-gtm",
+   "file": "gtm_client.py",
+   "line": 63
+  },
+  {
+   "server": "mcp-for-gtm",
+   "github_url": "https://github.com/neep305/mcp-for-gtm",
+   "file": "gtm_client_fixed.py",
+   "line": 87
+  },
+  {
+   "server": "Final-Sheet-MCP",
+   "github_url": "https://github.com/RoelofvHeeren/Final-Sheet-MCP",
+   "file": "index.ts",
+   "line": 1053
+  },
+  {
+   "server": "sheets-mcp-server",
+   "github_url": "https://github.com/Prajapdh/sheets-mcp-server",
+   "file": "src/sheets/server.py",
+   "line": 80
+  },
+  {
+   "server": "joplin-mcp-server",
+   "github_url": "https://github.com/jordanburke/joplin-mcp-server",
+   "file": "src/index.ts",
+   "line": 58
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 25
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 55
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 83
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 132
+  },
+  {
+   "server": "google-sheets-mcp",
+   "github_url": "https://github.com/akchro/google-sheets-mcp",
+   "file": "sheets_functions.py",
+   "line": 194
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/devassistantai/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/colsonSung/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "reference-servers",
+   "github_url": "https://github.com/iamadk/reference-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 192
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/andreagroferreira/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "MCPservers",
+   "github_url": "https://github.com/Owengundam/MCPservers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "smithery-reference-servers",
+   "github_url": "https://github.com/AndyManastorm/smithery-reference-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 192
+  },
+  {
+   "server": "video-gen-mcp-monolithic",
+   "github_url": "https://github.com/h2a-dev/video-gen-mcp-monolithic",
+   "file": "src/mcp_server/services/youtube_service.py",
+   "line": 462
+  },
+  {
+   "server": "multipleMCPServerWithPythonHost",
+   "github_url": "https://github.com/hackerinheels/multipleMCPServerWithPythonHost",
+   "file": "googleCalendar/calendarServer.py",
+   "line": 63
+  },
+  {
+   "server": "google-calendar-mcp-server",
+   "github_url": "https://github.com/highlight-ing/google-calendar-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 49
+  },
+  {
+   "server": "Google_chat_mcp_server",
+   "github_url": "https://github.com/KaranThink41/Google_chat_mcp_server",
+   "file": "get-refresh-token.js",
+   "line": 33
+  },
+  {
+   "server": "google-calendar-mcp-server",
+   "github_url": "https://github.com/masa1023/google-calendar-mcp-server",
+   "file": "google_calendar_api.py",
+   "line": 55
+  },
+  {
+   "server": "playwright",
+   "github_url": "https://github.com/microsoft/playwright",
+   "file": "packages/playwright-client/types/types.d.ts",
+   "line": 20483
+  },
+  {
+   "server": "playwright",
+   "github_url": "https://github.com/microsoft/playwright",
+   "file": "packages/playwright-core/types/types.d.ts",
+   "line": 20483
+  },
+  {
+   "server": "MCP-SERVER",
+   "github_url": "https://github.com/thanhvinh199700/MCP-SERVER",
+   "file": "src/gdrive/index.ts",
+   "line": 961
+  },
+  {
+   "server": "mcp-gdrive-server",
+   "github_url": "https://github.com/tonioshikanlu/mcp-gdrive-server",
+   "file": "index.ts",
+   "line": 193
+  },
+  {
+   "server": "gmail-mcp-server-3",
+   "github_url": "https://github.com/trymeuj/gmail-mcp-server-3",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "google-workspace-mcp-server-by-itc",
+   "github_url": "https://github.com/Yulikepython/google-workspace-mcp-server-by-itc",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "agentic-assistant",
+   "github_url": "https://github.com/amndzdzdz/agentic-assistant",
+   "file": "src/utils/google_api_utils.py",
+   "line": 26
+  },
+  {
+   "server": "Google_Calender_MCP",
+   "github_url": "https://github.com/KhurramDevOps/Google_Calender_MCP",
+   "file": "calendar_mcp.py",
+   "line": 38
+  },
+  {
+   "server": "cline",
+   "github_url": "https://github.com/cline/cline",
+   "file": "sdk/packages/core/src/extensions/mcp/config-loader.ts",
+   "line": 320
+  },
+  {
+   "server": "mcp_agent",
+   "github_url": "https://github.com/Aeksar/mcp_agent",
+   "file": "servers/calendar/service.py",
+   "line": 40
+  },
+  {
+   "server": "mcp_agent",
+   "github_url": "https://github.com/Aeksar/mcp_agent",
+   "file": "servers/sheet/service.py",
+   "line": 37
+  },
+  {
+   "server": "gmail_mcp",
+   "github_url": "https://github.com/AkashDataScience/gmail_mcp",
+   "file": "gmail/server.py",
+   "line": 140
+  },
+  {
+   "server": "GmailMCPWithAgenticArchitecture",
+   "github_url": "https://github.com/Amlan66/GmailMCPWithAgenticArchitecture",
+   "file": "action.py",
+   "line": 51
+  },
+  {
+   "server": "MCPserver-doc-analyzer",
+   "github_url": "https://github.com/ChanSuri/MCPserver-doc-analyzer",
+   "file": "arduino_api.py",
+   "line": 37
+  },
+  {
+   "server": "swagger_mcp_service",
+   "github_url": "https://github.com/Chrisliao0806/swagger_mcp_service",
+   "file": "generic_mcp/gmail_server.py",
+   "line": 90
+  },
+  {
+   "server": "MCP_servers",
+   "github_url": "https://github.com/Daniboycg/MCP_servers",
+   "file": "mcp-server-git-source/src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "MCP-server--datathon-main",
+   "github_url": "https://github.com/Darshil4154/MCP-server--datathon-main",
+   "file": "src/calendar_client.py",
+   "line": 127
+  },
+  {
+   "server": "mcp-project",
+   "github_url": "https://github.com/GeorgeKlemperer/mcp-project",
+   "file": "tools/google/google_apis.py",
+   "line": 64
+  },
+  {
+   "server": "mcp-server-testing",
+   "github_url": "https://github.com/aiden1909/mcp-server-testing",
+   "file": "GDrive/gdrive_server.py",
+   "line": 55
+  },
+  {
+   "server": "systemprompt-mcp-google",
+   "github_url": "https://github.com/ajacobm/systemprompt-mcp-google",
+   "file": "src/services/google-auth-service.ts",
+   "line": 84
+  },
+  {
+   "server": "google-search-console-mcp-chatgpt",
+   "github_url": "https://github.com/aminforou/google-search-console-mcp-chatgpt",
+   "file": "mcp_gsc/gsc_server.py",
+   "line": 674
+  },
+  {
+   "server": "mcp_google_tasks",
+   "github_url": "https://github.com/andiazo/mcp_google_tasks",
+   "file": "google_tasks.py",
+   "line": 37
+  },
+  {
+   "server": "mcp-server-pypi",
+   "github_url": "https://github.com/aniket-raskar1/mcp-server-pypi",
+   "file": "gmail_mcp_server/server.py",
+   "line": 39
+  },
+  {
+   "server": "mcp-server-pypi",
+   "github_url": "https://github.com/aniket-raskar1/mcp-server-pypi",
+   "file": "gmail_mcp_server/server.py",
+   "line": 51
+  },
+  {
+   "server": "Fabric-AI-Gateway",
+   "github_url": "https://github.com/ankinguyen-engineer-2002/Fabric-AI-Gateway",
+   "file": "src/utils/fabric_client_wrapper.py",
+   "line": 39
+  },
+  {
+   "server": "gmail_mcp_server",
+   "github_url": "https://github.com/ansh-wappnet/gmail_mcp_server",
+   "file": "gmail_mcp_server/oauth.py",
+   "line": 33
+  },
+  {
+   "server": "gmail_mcp_server",
+   "github_url": "https://github.com/ansh-wappnet/gmail_mcp_server",
+   "file": "gmail_mcp_server/oauth.py",
+   "line": 50
+  },
+  {
+   "server": "slides-mcp-server",
+   "github_url": "https://github.com/arjuns-ti/slides-mcp-server",
+   "file": "src/drive_client.py",
+   "line": 210
+  },
+  {
+   "server": "gdrive-mcp-server",
+   "github_url": "https://github.com/arnavdani/gdrive-mcp-server",
+   "file": "gdrive_mcp_server.py",
+   "line": 40
+  },
+  {
+   "server": "yet-another-google-mcp",
+   "github_url": "https://github.com/artoxem-dev/yet-another-google-mcp",
+   "file": "mcp_google/auth.py",
+   "line": 44
+  },
+  {
+   "server": "ticktick-mcp",
+   "github_url": "https://github.com/ashishdev007/ticktick-mcp",
+   "file": "ticktick_mcp/google_calendar_client.py",
+   "line": 75
+  },
+  {
+   "server": "MCP_UseCases",
+   "github_url": "https://github.com/asit-piri/MCP_UseCases",
+   "file": "src/google_auth.py",
+   "line": 44
+  },
+  {
+   "server": "multi-mcp-agent",
+   "github_url": "https://github.com/aviban15/multi-mcp-agent",
+   "file": "mcp_server_4.py",
+   "line": 50
+  },
+  {
+   "server": "ai-distiller-mcp",
+   "github_url": "https://github.com/axonempire/ai-distiller-mcp",
+   "file": "server/gmail.py",
+   "line": 151
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "oauth_setup.py",
+   "line": 31
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "services/services.py",
+   "line": 30
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "services/services.py",
+   "line": 40
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "services/services.py",
+   "line": 67
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "services/services.py",
+   "line": 77
+  },
+  {
+   "server": "mcp-scheduler",
+   "github_url": "https://github.com/bdwiii/mcp-scheduler",
+   "file": "auth/google_auth.py",
+   "line": 24
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/biguz-commits/mcp-servers",
+   "file": "app/gmail/gmail.py",
+   "line": 33
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/bitflower/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "google_doc_any_format_mcp",
+   "github_url": "https://github.com/chen-star/google_doc_any_format_mcp",
+   "file": "google_drive_client.py",
+   "line": 42
+  },
+  {
+   "server": "robinsonai-mcp-servers",
+   "github_url": "https://github.com/christcr2012/robinsonai-mcp-servers",
+   "file": "standalone/integration-servers/google-workspace-mcp/generate_files.py",
+   "line": 52
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/chuanmingliu/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/classifyingcompany/mcp-servers",
+   "file": "calendar_server.py",
+   "line": 36
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/classifyingcompany/mcp-servers",
+   "file": "gmail_server.py",
+   "line": 41
+  },
+  {
+   "server": "minimal-google-calendar-mcp-server",
+   "github_url": "https://github.com/cnayan/minimal-google-calendar-mcp-server",
+   "file": "src/GCalendarAPI.py",
+   "line": 44
+  },
+  {
+   "server": "google-workspace-mcp",
+   "github_url": "https://github.com/craibo/google-workspace-mcp",
+   "file": "src/auth.py",
+   "line": 39
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/cutsome/gmail-mcp",
+   "file": "mcp_gmail_server/gmail_auth.py",
+   "line": 79
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/daleding2023/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "csv-mcp-server",
+   "github_url": "https://github.com/dhaan-ish/csv-mcp-server",
+   "file": "generate_token/generate_oauth_token.py",
+   "line": 104
+  },
+  {
+   "server": "csv-mcp-server",
+   "github_url": "https://github.com/dhaan-ish/csv-mcp-server",
+   "file": "mcp_csv_analyzer/server.py",
+   "line": 407
+  },
+  {
+   "server": "egain-mcp-server",
+   "github_url": "https://github.com/eGain/egain-mcp-server",
+   "file": "src/hooks/auth-hook.ts",
+   "line": 752
+  },
+  {
+   "server": "egain-mcp-server",
+   "github_url": "https://github.com/eGain/egain-mcp-server",
+   "file": "src/hooks/auth-hook.ts",
+   "line": 785
+  },
+  {
+   "server": "docugen",
+   "github_url": "https://github.com/eagleisbatman/docugen",
+   "file": "docugen_mcp_server.py",
+   "line": 100
+  },
+  {
+   "server": "ej-mcp-server-gdrive",
+   "github_url": "https://github.com/ejoyee/ej-mcp-server-gdrive",
+   "file": "index.ts",
+   "line": 308
+  },
+  {
+   "server": "mcp-universe",
+   "github_url": "https://github.com/eliumusk/mcp-universe",
+   "file": "mcpuniverse/mcp/servers/google_sheets/server.py",
+   "line": 77
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/faresibrahim32/mcp-server",
+   "file": "main.py",
+   "line": 150
+  },
+  {
+   "server": "assistant-mcp",
+   "github_url": "https://github.com/frnnk/assistant-mcp",
+   "file": "src/auth/providers/google_provider.py",
+   "line": 56
+  },
+  {
+   "server": "a2aProjects",
+   "github_url": "https://github.com/gauthiii/a2aProjects",
+   "file": "reddit/googleDocs.py",
+   "line": 56
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/gkdivya/gmail-mcp-server",
+   "file": "gmail_server.py",
+   "line": 204
+  },
+  {
+   "server": "mcp-google-sheets",
+   "github_url": "https://github.com/global-mysterysnailrevolution/mcp-google-sheets",
+   "file": "src/mcp_google_sheets/server.py",
+   "line": 114
+  },
+  {
+   "server": "mcp_gmail_gdrive",
+   "github_url": "https://github.com/gvbigdata/mcp_gmail_gdrive",
+   "file": "gmail_drive_mcp.py",
+   "line": 45
+  },
+  {
+   "server": "mcp_gmail_gdrive",
+   "github_url": "https://github.com/gvbigdata/mcp_gmail_gdrive",
+   "file": "gmail_drive_rest.py",
+   "line": 41
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/highlight-ing/gmail-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 50
+  },
+  {
+   "server": "google-docs-mcp-server",
+   "github_url": "https://github.com/highlight-ing/google-docs-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 63
+  },
+  {
+   "server": "gsuite-wasm-mcp",
+   "github_url": "https://github.com/highlight-ing/gsuite-wasm-mcp",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "gsuite-wasm-mcp",
+   "github_url": "https://github.com/highlight-ing/gsuite-wasm-mcp",
+   "file": "google-calendar-mcp-server/get-refresh-token.js",
+   "line": 49
+  },
+  {
+   "server": "gsuite-wasm-mcp",
+   "github_url": "https://github.com/highlight-ing/gsuite-wasm-mcp",
+   "file": "google-gmail-mcp-server/get-refresh-token.js",
+   "line": 50
+  },
+  {
+   "server": "mcp-dynamic-test",
+   "github_url": "https://github.com/hitesh-s0lanki-striq/mcp-dynamic-test",
+   "file": "src/tools/gsc_server.py",
+   "line": 120
+  },
+  {
+   "server": "seo-mcp-poc",
+   "github_url": "https://github.com/hitesh-s0lanki-striq/seo-mcp-poc",
+   "file": "src/tools/gsc_server.py",
+   "line": 120
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/jasonmorganson/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "google-tasks-mcp-server",
+   "github_url": "https://github.com/jessdejong/google-tasks-mcp-server",
+   "file": "server.py",
+   "line": 97
+  },
+  {
+   "server": "MCP-Server-based-Ai-Automation-hub",
+   "github_url": "https://github.com/Maheshnath09/MCP-Server-based-Ai-Automation-hub",
+   "file": "src/auth.py",
+   "line": 41
+  },
+  {
+   "server": "mcp-poc",
+   "github_url": "https://github.com/Marufakamallabonno/mcp-poc",
+   "file": "server/google_sheet.py",
+   "line": 83
+  },
+  {
+   "server": "mindual-mcp",
+   "github_url": "https://github.com/Mindual-AI/mindual-mcp",
+   "file": "src/agent/google_calendar_auth.py",
+   "line": 32
+  },
+  {
+   "server": "mcp-file-manager",
+   "github_url": "https://github.com/NestorZuno/mcp-file-manager",
+   "file": "utils/drive_handler.py",
+   "line": 43
+  },
+  {
+   "server": "mcp-cleaner",
+   "github_url": "https://github.com/jrigo07/mcp-cleaner",
+   "file": "google_auth.py",
+   "line": 61
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/kazmi-y/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "my-mcp-servers",
+   "github_url": "https://github.com/keitasunaga/my-mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "gcalendar-mcp",
+   "github_url": "https://github.com/kfinkels/gcalendar-mcp",
+   "file": "gcalendar_mcp/auth.py",
+   "line": 58
+  },
+  {
+   "server": "trakt.tv-mcp",
+   "github_url": "https://github.com/kofort9/trakt.tv-mcp",
+   "file": "src/domain/trakt/oauth.ts",
+   "line": 236
+  },
+  {
+   "server": "my-mcp-server",
+   "github_url": "https://github.com/kouyou7035/my-mcp-server",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "calendar-MCP",
+   "github_url": "https://github.com/kurocafe/calendar-MCP",
+   "file": "app/calendar_service.py",
+   "line": 30
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "mcp-server/src/simpleTokenManager.ts",
+   "line": 41
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "mcp-server/src/tokenManager.ts",
+   "line": 114
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "my-day-network-server/src/utils/TokenManager.ts",
+   "line": 45
+  },
+  {
+   "server": "gmail-advancing-mcp",
+   "github_url": "https://github.com/markreveley/gmail-advancing-mcp",
+   "file": "src/gmail_advancing_mcp/utils/gmail_client.py",
+   "line": 66
+  },
+  {
+   "server": "openmemory-mcp",
+   "github_url": "https://github.com/mikkel-ts/openmemory-mcp",
+   "file": "embedchain/embedchain/loaders/gmail.py",
+   "line": 59
+  },
+  {
+   "server": "unified-mcp-server",
+   "github_url": "https://github.com/mpalpha/unified-mcp-server",
+   "file": "src/tools/workflow.js",
+   "line": 128
+  },
+  {
+   "server": "agentic-email-system-mcp-servers",
+   "github_url": "https://github.com/mukilan-2003/agentic-email-system-mcp-servers",
+   "file": "mcp_server.py",
+   "line": 41
+  },
+  {
+   "server": "gsc-mcp-server",
+   "github_url": "https://github.com/naihaoko/gsc-mcp-server",
+   "file": "gsc_server.py",
+   "line": 110
+  },
+  {
+   "server": "gsc-mcp-server",
+   "github_url": "https://github.com/naihaoko/gsc-mcp-server",
+   "file": "gsc_server.py",
+   "line": 135
+  },
+  {
+   "server": "google_calendar_mcp_server_fastmcp",
+   "github_url": "https://github.com/olympos-ai/google_calendar_mcp_server_fastmcp",
+   "file": "calendar_mcp_server.py",
+   "line": 38
+  },
+  {
+   "server": "google_calendar_mcp_server_fastmcp",
+   "github_url": "https://github.com/olympos-ai/google_calendar_mcp_server_fastmcp",
+   "file": "quickstart.py",
+   "line": 35
+  },
+  {
+   "server": "google-task-mcp",
+   "github_url": "https://github.com/omshejul/google-task-mcp",
+   "file": "google_tasks_mcp.py",
+   "line": 229
+  },
+  {
+   "server": "lap_mcpserveroauthexample",
+   "github_url": "https://github.com/paolol/lap_mcpserveroauthexample",
+   "file": "server.py",
+   "line": 36
+  },
+  {
+   "server": "lap_mcpserveroauthexample",
+   "github_url": "https://github.com/paolol/lap_mcpserveroauthexample",
+   "file": "utils/gcal_auth.py",
+   "line": 25
+  },
+  {
+   "server": "mcp_youtrack",
+   "github_url": "https://github.com/paolol/mcp_youtrack",
+   "file": "utils/gcal_auth.py",
+   "line": 24
+  },
+  {
+   "server": "mr-tools",
+   "github_url": "https://github.com/peteknowsai/mr-tools",
+   "file": "tools/gmail/gmail.ts",
+   "line": 79
+  },
+  {
+   "server": "mr-tools",
+   "github_url": "https://github.com/peteknowsai/mr-tools",
+   "file": "tools/google-calendar/gcal.ts",
+   "line": 68
+  },
+  {
+   "server": "gemini-cli-gdrive-mcp",
+   "github_url": "https://github.com/pkarstaedt/gemini-cli-gdrive-mcp",
+   "file": "server.py",
+   "line": 203
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/prathapmahi/mcp-server",
+   "file": "gmail/server.py",
+   "line": 140
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/rafoyer/mcp-servers",
+   "file": "src/gdrive/index.js",
+   "line": 155
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/rafoyer/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/rajganesh-75/gmail-mcp-server",
+   "file": "server.py",
+   "line": 48
+  },
+  {
+   "server": "youtube-sched-mcp",
+   "github_url": "https://github.com/razzacktiger/youtube-sched-mcp",
+   "file": "oauth_setup.py",
+   "line": 76
+  },
+  {
+   "server": "youtube-sched-mcp",
+   "github_url": "https://github.com/razzacktiger/youtube-sched-mcp",
+   "file": "src/utils.py",
+   "line": 129
+  },
+  {
+   "server": "todo-mcp-server",
+   "github_url": "https://github.com/rcm-webdev/todo-mcp-server",
+   "file": "src/server.ts",
+   "line": 24
+  },
+  {
+   "server": "gmail-workflow-automation-mcp-server",
+   "github_url": "https://github.com/reachanwesha/gmail-workflow-automation-mcp-server",
+   "file": "main.py",
+   "line": 67
+  },
+  {
+   "server": "gmail-mcp-agent",
+   "github_url": "https://github.com/rmisegal/gmail-mcp-agent",
+   "file": "src/gmail_mcp_server.py",
+   "line": 143
+  },
+  {
+   "server": "mcp-google-calendar",
+   "github_url": "https://github.com/rossifire/mcp-google-calendar",
+   "file": "src/auth/googleAuth.ts",
+   "line": 72
+  },
+  {
+   "server": "chatterbox_mcp_server",
+   "github_url": "https://github.com/ruandv/chatterbox_mcp_server",
+   "file": "whatsappServer/src/server.ts",
+   "line": 188
+  },
+  {
+   "server": "mcp-server-assistant",
+   "github_url": "https://github.com/saikrishna0716/mcp-server-assistant",
+   "file": "gmail-api.py",
+   "line": 46
+  },
+  {
+   "server": "godri",
+   "github_url": "https://github.com/sebastienmorand-loreal/godri",
+   "file": "src/godri/services/auth_service.py",
+   "line": 62
+  },
+  {
+   "server": "servers-mcp",
+   "github_url": "https://github.com/shaikabdulsalam02/servers-mcp",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-ai-agent",
+   "github_url": "https://github.com/shilpaj1994/mcp-ai-agent",
+   "file": "mcp_servers/gmail_server.py",
+   "line": 92
+  },
+  {
+   "server": "mcp-starter-kit",
+   "github_url": "https://github.com/sholajegede/mcp-starter-kit",
+   "file": "src/cli/create-app.ts",
+   "line": 579
+  },
+  {
+   "server": "mcp-starter-kit",
+   "github_url": "https://github.com/sholajegede/mcp-starter-kit",
+   "file": "src/core/server/index.ts",
+   "line": 23
+  },
+  {
+   "server": "personal-ai-assistant",
+   "github_url": "https://github.com/simranjotkaur6/personal-ai-assistant",
+   "file": "centralized_assistant.py",
+   "line": 125
+  },
+  {
+   "server": "personal-ai-assistant",
+   "github_url": "https://github.com/simranjotkaur6/personal-ai-assistant",
+   "file": "tools/email_tool.py",
+   "line": 68
+  },
+  {
+   "server": "my-first-mcp-server",
+   "github_url": "https://github.com/sreerajchintham/my-first-mcp-server",
+   "file": "reauthorize_google_apis.py",
+   "line": 59
+  },
+  {
+   "server": "mcp",
+   "github_url": "https://github.com/sries74/mcp",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp_project_1",
+   "github_url": "https://github.com/sumit-1492/mcp_project_1",
+   "file": "src/google_auth.py",
+   "line": 47
+  },
+  {
+   "server": "mcp-agent-project-EAG-V2-",
+   "github_url": "https://github.com/suryaashish130703/mcp-agent-project-EAG-V2-",
+   "file": "auth_gdrive.py",
+   "line": 98
+  },
+  {
+   "server": "mcp-agent-project-EAG-V2-",
+   "github_url": "https://github.com/suryaashish130703/mcp-agent-project-EAG-V2-",
+   "file": "auth_gmail.py",
+   "line": 98
+  },
+  {
+   "server": "mcp-agent-project-EAG-V2-",
+   "github_url": "https://github.com/suryaashish130703/mcp-agent-project-EAG-V2-",
+   "file": "mcp_server_gdrive.py",
+   "line": 51
+  },
+  {
+   "server": "MCP-Chatbot",
+   "github_url": "https://github.com/susavlsh10/MCP-Chatbot",
+   "file": "mcp_servers/gmail_mcp_server.py",
+   "line": 44
+  },
+  {
+   "server": "MCP-Chatbot",
+   "github_url": "https://github.com/susavlsh10/MCP-Chatbot",
+   "file": "mcp_servers/google_calendar_server.py",
+   "line": 161
+  },
+  {
+   "server": "Custom-MCP-server-to-paint-in-Python",
+   "github_url": "https://github.com/sushant097/Custom-MCP-server-to-paint-in-Python",
+   "file": "gmail-mcp/gmail_server.py",
+   "line": 50
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/tarunkumarchelumalla/gmail-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "express-and-invoice-processing-server",
+   "github_url": "https://github.com/tmabdull/express-and-invoice-processing-server",
+   "file": "src/auth/credentials.py",
+   "line": 90
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/torresmateo/gmail-mcp-server",
+   "file": "src/gmail/service.py",
+   "line": 77
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/trasousa/mcp-server",
+   "file": "mcp_server/gmail/server.py",
+   "line": 96
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/vuutla/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mem0",
+   "github_url": "https://github.com/wagyog2023/mem0",
+   "file": "embedchain/embedchain/loaders/gmail.py",
+   "line": 59
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/xXxnewbie/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "MCPFullDemo",
+   "github_url": "https://github.com/Ranxin2023/MCPFullDemo",
+   "file": "authorization/authorize_gmail.py",
+   "line": 33
+  },
+  {
+   "server": "sheet-mcp",
+   "github_url": "https://github.com/Roelovanheeren/sheet-mcp",
+   "file": "src/mcp_google_sheets/server.py",
+   "line": 83
+  },
+  {
+   "server": "gemini_stock_analysis",
+   "github_url": "https://github.com/SG87/gemini_stock_analysis",
+   "file": "gemini_stock_analysis/sheets/reader.py",
+   "line": 47
+  },
+  {
+   "server": "Gmail_MCP_Project",
+   "github_url": "https://github.com/SahajRohilla/Gmail_MCP_Project",
+   "file": "services/gmail_service.py",
+   "line": 168
+  },
+  {
+   "server": "Mcp-reddit-and-playo",
+   "github_url": "https://github.com/SaranprasathAR/Mcp-reddit-and-playo",
+   "file": "playo_mcp.py",
+   "line": 225
+  },
+  {
+   "server": "mcp_arena",
+   "github_url": "https://github.com/SatyamSingh8306/mcp_arena",
+   "file": "mcp_arena/presents/mail.py",
+   "line": 83
+  },
+  {
+   "server": "TSAI_EAG_v2_sse_mcp_S8",
+   "github_url": "https://github.com/Shankarganesh127/TSAI_EAG_v2_sse_mcp_S8",
+   "file": "debug_google_auth.py",
+   "line": 69
+  },
+  {
+   "server": "TSAI_EAG_v2_sse_mcp_S8",
+   "github_url": "https://github.com/Shankarganesh127/TSAI_EAG_v2_sse_mcp_S8",
+   "file": "mcp_server_google.py",
+   "line": 45
+  },
+  {
+   "server": "Sheets-MCP",
+   "github_url": "https://github.com/Shashank-0018/Sheets-MCP",
+   "file": "src/google-sheets-api-server.ts",
+   "line": 317
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/Shreykhanna/gmail-mcp-server",
+   "file": "src/auth/auth.ts",
+   "line": 29
+  },
+  {
+   "server": "Life-Inbox-Zero",
+   "github_url": "https://github.com/SifatSikder/Life-Inbox-Zero",
+   "file": "agents/ingestion_agent.py",
+   "line": 25
+  },
+  {
+   "server": "gmail-drive-mcp-server",
+   "github_url": "https://github.com/SmitPatel-31/gmail-drive-mcp-server",
+   "file": "auth.js",
+   "line": 122
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/Soab42/mcp-server",
+   "file": "generate_token.py",
+   "line": 48
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/semaes111/MCP",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "servers-archived",
+   "github_url": "https://github.com/Hisma/servers-archived",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-google-calendar-am2rican5",
+   "github_url": "https://github.com/fastmcp-me/mcp-google-calendar-am2rican5",
+   "file": "src/services/google-calendar.ts",
+   "line": 96
+  },
+  {
+   "server": "gemini-grounding-mcp",
+   "github_url": "https://github.com/yuki-yano/gemini-grounding-mcp",
+   "file": "src/auth/oauth2.ts",
+   "line": 58
+  },
+  {
+   "server": "gtm-mcp",
+   "github_url": "https://github.com/pouyanafisi/gtm-mcp",
+   "file": "src/auth-helper.ts",
+   "line": 125
+  },
+  {
+   "server": "stock-market",
+   "github_url": "https://github.com/suhail-ak-s/stock-market",
+   "file": "bin/cli.js",
+   "line": 177
+  },
+  {
+   "server": "@asthestarslept/iteration-mcp",
+   "github_url": "@asthestarslept/iteration-mcp",
+   "file": "src/dingtalk.ts",
+   "line": 147
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "bin/mcp-server.js",
+   "line": 50891
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "bin/mcp-server.js",
+   "line": 50915
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "esm/src/hooks/auth-hook.js",
+   "line": 662
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "esm/src/hooks/auth-hook.js",
+   "line": 693
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "src/hooks/auth-hook.ts",
+   "line": 752
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "src/hooks/auth-hook.ts",
+   "line": 785
+  },
+  {
+   "server": "@greycollarai/mcpkit",
+   "github_url": "@greycollarai/mcpkit",
+   "file": "integrations/google/gdrive/index.ts",
+   "line": 180
+  },
+  {
+   "server": "@mseep/mcp-firebird",
+   "github_url": "@mseep/mcp-firebird",
+   "file": "documentacion/CodigoEjemploOficial/src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "bim-portal-mcp",
+   "github_url": "bim-portal-mcp",
+   "file": "src/bim-api-client.ts",
+   "line": 189
+  },
+  {
+   "server": "mcp-google-drive-server",
+   "github_url": "mcp-google-drive-server",
+   "file": "src/server.ts",
+   "line": 84
+  },
+  {
+   "server": "MCP-R",
+   "github_url": "https://github.com/Ziqiao-git/MCP-R",
+   "file": "Orchestrator/mcpuniverse/mcp/servers/google_sheets/server.py",
+   "line": 77
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/Karthik152299/gmail-mcp",
+   "file": "gmail_auth.py",
+   "line": 60
+  },
+  {
+   "server": "visa-mcp-server",
+   "github_url": "https://github.com/Kimmoteemu/visa-mcp-server",
+   "file": "sheets.py",
+   "line": 40
+  },
+  {
+   "server": "paragonos-google-sheets-mcp",
+   "github_url": "https://github.com/Paragon-OS/paragonos-google-sheets-mcp",
+   "file": "src/mcp_google_sheets/server.py",
+   "line": 83
+  },
+  {
+   "server": "mcp-automation-1-enhanced",
+   "github_url": "https://github.com/PavanRam/mcp-automation-1-enhanced",
+   "file": "gmail-server.py",
+   "line": 142
+  },
+  {
+   "server": "mcp-automation-1-enhanced-perception",
+   "github_url": "https://github.com/PavanRam/mcp-automation-1-enhanced-perception",
+   "file": "gmail-server.py",
+   "line": 142
+  },
+  {
+   "server": "Stonks",
+   "github_url": "https://github.com/Pbonmars-20031006/Stonks",
+   "file": "server.py",
+   "line": 42
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/Pinkish-Warrior/gmail-mcp-server",
+   "file": "gmail_server.py",
+   "line": 96
+  },
+  {
+   "server": "Personal-MCP-Agent",
+   "github_url": "https://github.com/PoorneshShiva/Personal-MCP-Agent",
+   "file": "src/mcp_server/utils/google_services.py",
+   "line": 72
+  },
+  {
+   "server": "mcp-server-testing",
+   "github_url": "https://github.com/aiden1909/mcp-server-testing",
+   "file": "GDrive/gdrive_server.py",
+   "line": 55
+  },
+  {
+   "server": "systemprompt-mcp-google",
+   "github_url": "https://github.com/ajacobm/systemprompt-mcp-google",
+   "file": "src/services/google-auth-service.ts",
+   "line": 84
+  },
+  {
+   "server": "google-search-console-mcp-chatgpt",
+   "github_url": "https://github.com/aminforou/google-search-console-mcp-chatgpt",
+   "file": "mcp_gsc/gsc_server.py",
+   "line": 674
+  },
+  {
+   "server": "mcp_google_tasks",
+   "github_url": "https://github.com/andiazo/mcp_google_tasks",
+   "file": "google_tasks.py",
+   "line": 37
+  },
+  {
+   "server": "mcp-server-pypi",
+   "github_url": "https://github.com/aniket-raskar1/mcp-server-pypi",
+   "file": "gmail_mcp_server/server.py",
+   "line": 39
+  },
+  {
+   "server": "mcp-server-pypi",
+   "github_url": "https://github.com/aniket-raskar1/mcp-server-pypi",
+   "file": "gmail_mcp_server/server.py",
+   "line": 51
+  },
+  {
+   "server": "Fabric-AI-Gateway",
+   "github_url": "https://github.com/ankinguyen-engineer-2002/Fabric-AI-Gateway",
+   "file": "src/utils/fabric_client_wrapper.py",
+   "line": 39
+  },
+  {
+   "server": "gmail_mcp_server",
+   "github_url": "https://github.com/ansh-wappnet/gmail_mcp_server",
+   "file": "gmail_mcp_server/oauth.py",
+   "line": 33
+  },
+  {
+   "server": "gmail_mcp_server",
+   "github_url": "https://github.com/ansh-wappnet/gmail_mcp_server",
+   "file": "gmail_mcp_server/oauth.py",
+   "line": 50
+  },
+  {
+   "server": "slides-mcp-server",
+   "github_url": "https://github.com/arjuns-ti/slides-mcp-server",
+   "file": "src/drive_client.py",
+   "line": 210
+  },
+  {
+   "server": "gdrive-mcp-server",
+   "github_url": "https://github.com/arnavdani/gdrive-mcp-server",
+   "file": "gdrive_mcp_server.py",
+   "line": 40
+  },
+  {
+   "server": "yet-another-google-mcp",
+   "github_url": "https://github.com/artoxem-dev/yet-another-google-mcp",
+   "file": "mcp_google/auth.py",
+   "line": 44
+  },
+  {
+   "server": "ticktick-mcp",
+   "github_url": "https://github.com/ashishdev007/ticktick-mcp",
+   "file": "ticktick_mcp/google_calendar_client.py",
+   "line": 75
+  },
+  {
+   "server": "MCP_UseCases",
+   "github_url": "https://github.com/asit-piri/MCP_UseCases",
+   "file": "src/google_auth.py",
+   "line": 44
+  },
+  {
+   "server": "multi-mcp-agent",
+   "github_url": "https://github.com/aviban15/multi-mcp-agent",
+   "file": "mcp_server_4.py",
+   "line": 50
+  },
+  {
+   "server": "ai-distiller-mcp",
+   "github_url": "https://github.com/axonempire/ai-distiller-mcp",
+   "file": "server/gmail.py",
+   "line": 151
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "oauth_setup.py",
+   "line": 31
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "services/services.py",
+   "line": 30
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "services/services.py",
+   "line": 40
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "services/services.py",
+   "line": 67
+  },
+  {
+   "server": "vin-agent",
+   "github_url": "https://github.com/baazilakhlaque/vin-agent",
+   "file": "services/services.py",
+   "line": 77
+  },
+  {
+   "server": "mcp-scheduler",
+   "github_url": "https://github.com/bdwiii/mcp-scheduler",
+   "file": "auth/google_auth.py",
+   "line": 24
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/biguz-commits/mcp-servers",
+   "file": "app/gmail/gmail.py",
+   "line": 33
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/bitflower/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "google_doc_any_format_mcp",
+   "github_url": "https://github.com/chen-star/google_doc_any_format_mcp",
+   "file": "google_drive_client.py",
+   "line": 42
+  },
+  {
+   "server": "robinsonai-mcp-servers",
+   "github_url": "https://github.com/christcr2012/robinsonai-mcp-servers",
+   "file": "standalone/integration-servers/google-workspace-mcp/generate_files.py",
+   "line": 52
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/chuanmingliu/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/classifyingcompany/mcp-servers",
+   "file": "calendar_server.py",
+   "line": 36
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/classifyingcompany/mcp-servers",
+   "file": "gmail_server.py",
+   "line": 41
+  },
+  {
+   "server": "minimal-google-calendar-mcp-server",
+   "github_url": "https://github.com/cnayan/minimal-google-calendar-mcp-server",
+   "file": "src/GCalendarAPI.py",
+   "line": 44
+  },
+  {
+   "server": "google-workspace-mcp",
+   "github_url": "https://github.com/craibo/google-workspace-mcp",
+   "file": "src/auth.py",
+   "line": 39
+  },
+  {
+   "server": "gmail-mcp",
+   "github_url": "https://github.com/cutsome/gmail-mcp",
+   "file": "mcp_gmail_server/gmail_auth.py",
+   "line": 79
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/daleding2023/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "csv-mcp-server",
+   "github_url": "https://github.com/dhaan-ish/csv-mcp-server",
+   "file": "generate_token/generate_oauth_token.py",
+   "line": 104
+  },
+  {
+   "server": "csv-mcp-server",
+   "github_url": "https://github.com/dhaan-ish/csv-mcp-server",
+   "file": "mcp_csv_analyzer/server.py",
+   "line": 407
+  },
+  {
+   "server": "egain-mcp-server",
+   "github_url": "https://github.com/eGain/egain-mcp-server",
+   "file": "src/hooks/auth-hook.ts",
+   "line": 752
+  },
+  {
+   "server": "egain-mcp-server",
+   "github_url": "https://github.com/eGain/egain-mcp-server",
+   "file": "src/hooks/auth-hook.ts",
+   "line": 785
+  },
+  {
+   "server": "docugen",
+   "github_url": "https://github.com/eagleisbatman/docugen",
+   "file": "docugen_mcp_server.py",
+   "line": 100
+  },
+  {
+   "server": "ej-mcp-server-gdrive",
+   "github_url": "https://github.com/ejoyee/ej-mcp-server-gdrive",
+   "file": "index.ts",
+   "line": 308
+  },
+  {
+   "server": "mcp-universe",
+   "github_url": "https://github.com/eliumusk/mcp-universe",
+   "file": "mcpuniverse/mcp/servers/google_sheets/server.py",
+   "line": 77
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/faresibrahim32/mcp-server",
+   "file": "main.py",
+   "line": 150
+  },
+  {
+   "server": "assistant-mcp",
+   "github_url": "https://github.com/frnnk/assistant-mcp",
+   "file": "src/auth/providers/google_provider.py",
+   "line": 56
+  },
+  {
+   "server": "a2aProjects",
+   "github_url": "https://github.com/gauthiii/a2aProjects",
+   "file": "reddit/googleDocs.py",
+   "line": 56
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/gkdivya/gmail-mcp-server",
+   "file": "gmail_server.py",
+   "line": 204
+  },
+  {
+   "server": "mcp-google-sheets",
+   "github_url": "https://github.com/global-mysterysnailrevolution/mcp-google-sheets",
+   "file": "src/mcp_google_sheets/server.py",
+   "line": 114
+  },
+  {
+   "server": "mcp_gmail_gdrive",
+   "github_url": "https://github.com/gvbigdata/mcp_gmail_gdrive",
+   "file": "gmail_drive_mcp.py",
+   "line": 45
+  },
+  {
+   "server": "mcp_gmail_gdrive",
+   "github_url": "https://github.com/gvbigdata/mcp_gmail_gdrive",
+   "file": "gmail_drive_rest.py",
+   "line": 41
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/highlight-ing/gmail-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 50
+  },
+  {
+   "server": "google-docs-mcp-server",
+   "github_url": "https://github.com/highlight-ing/google-docs-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 63
+  },
+  {
+   "server": "gsuite-wasm-mcp",
+   "github_url": "https://github.com/highlight-ing/gsuite-wasm-mcp",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "gsuite-wasm-mcp",
+   "github_url": "https://github.com/highlight-ing/gsuite-wasm-mcp",
+   "file": "google-calendar-mcp-server/get-refresh-token.js",
+   "line": 49
+  },
+  {
+   "server": "gsuite-wasm-mcp",
+   "github_url": "https://github.com/highlight-ing/gsuite-wasm-mcp",
+   "file": "google-gmail-mcp-server/get-refresh-token.js",
+   "line": 50
+  },
+  {
+   "server": "mcp-dynamic-test",
+   "github_url": "https://github.com/hitesh-s0lanki-striq/mcp-dynamic-test",
+   "file": "src/tools/gsc_server.py",
+   "line": 120
+  },
+  {
+   "server": "seo-mcp-poc",
+   "github_url": "https://github.com/hitesh-s0lanki-striq/seo-mcp-poc",
+   "file": "src/tools/gsc_server.py",
+   "line": 120
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/jasonmorganson/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "google-tasks-mcp-server",
+   "github_url": "https://github.com/jessdejong/google-tasks-mcp-server",
+   "file": "server.py",
+   "line": 97
+  },
+  {
+   "server": "mcp-cleaner",
+   "github_url": "https://github.com/jrigo07/mcp-cleaner",
+   "file": "google_auth.py",
+   "line": 61
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/kazmi-y/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "my-mcp-servers",
+   "github_url": "https://github.com/keitasunaga/my-mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "gcalendar-mcp",
+   "github_url": "https://github.com/kfinkels/gcalendar-mcp",
+   "file": "gcalendar_mcp/auth.py",
+   "line": 58
+  },
+  {
+   "server": "trakt.tv-mcp",
+   "github_url": "https://github.com/kofort9/trakt.tv-mcp",
+   "file": "src/domain/trakt/oauth.ts",
+   "line": 236
+  },
+  {
+   "server": "my-mcp-server",
+   "github_url": "https://github.com/kouyou7035/my-mcp-server",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "calendar-MCP",
+   "github_url": "https://github.com/kurocafe/calendar-MCP",
+   "file": "app/calendar_service.py",
+   "line": 30
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "mcp-server/src/simpleTokenManager.ts",
+   "line": 41
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "mcp-server/src/tokenManager.ts",
+   "line": 114
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "my-day-network-server/src/utils/TokenManager.ts",
+   "line": 45
+  },
+  {
+   "server": "gmail-advancing-mcp",
+   "github_url": "https://github.com/markreveley/gmail-advancing-mcp",
+   "file": "src/gmail_advancing_mcp/utils/gmail_client.py",
+   "line": 66
+  },
+  {
+   "server": "openmemory-mcp",
+   "github_url": "https://github.com/mikkel-ts/openmemory-mcp",
+   "file": "embedchain/embedchain/loaders/gmail.py",
+   "line": 59
+  },
+  {
+   "server": "unified-mcp-server",
+   "github_url": "https://github.com/mpalpha/unified-mcp-server",
+   "file": "src/tools/workflow.js",
+   "line": 128
+  },
+  {
+   "server": "agentic-email-system-mcp-servers",
+   "github_url": "https://github.com/mukilan-2003/agentic-email-system-mcp-servers",
+   "file": "mcp_server.py",
+   "line": 41
+  },
+  {
+   "server": "gsc-mcp-server",
+   "github_url": "https://github.com/naihaoko/gsc-mcp-server",
+   "file": "gsc_server.py",
+   "line": 110
+  },
+  {
+   "server": "gsc-mcp-server",
+   "github_url": "https://github.com/naihaoko/gsc-mcp-server",
+   "file": "gsc_server.py",
+   "line": 135
+  },
+  {
+   "server": "google_calendar_mcp_server_fastmcp",
+   "github_url": "https://github.com/olympos-ai/google_calendar_mcp_server_fastmcp",
+   "file": "calendar_mcp_server.py",
+   "line": 38
+  },
+  {
+   "server": "google_calendar_mcp_server_fastmcp",
+   "github_url": "https://github.com/olympos-ai/google_calendar_mcp_server_fastmcp",
+   "file": "quickstart.py",
+   "line": 35
+  },
+  {
+   "server": "google-task-mcp",
+   "github_url": "https://github.com/omshejul/google-task-mcp",
+   "file": "google_tasks_mcp.py",
+   "line": 229
+  },
+  {
+   "server": "lap_mcpserveroauthexample",
+   "github_url": "https://github.com/paolol/lap_mcpserveroauthexample",
+   "file": "server.py",
+   "line": 36
+  },
+  {
+   "server": "lap_mcpserveroauthexample",
+   "github_url": "https://github.com/paolol/lap_mcpserveroauthexample",
+   "file": "utils/gcal_auth.py",
+   "line": 25
+  },
+  {
+   "server": "mcp_youtrack",
+   "github_url": "https://github.com/paolol/mcp_youtrack",
+   "file": "utils/gcal_auth.py",
+   "line": 24
+  },
+  {
+   "server": "mr-tools",
+   "github_url": "https://github.com/peteknowsai/mr-tools",
+   "file": "tools/gmail/gmail.ts",
+   "line": 79
+  },
+  {
+   "server": "mr-tools",
+   "github_url": "https://github.com/peteknowsai/mr-tools",
+   "file": "tools/google-calendar/gcal.ts",
+   "line": 68
+  },
+  {
+   "server": "gemini-cli-gdrive-mcp",
+   "github_url": "https://github.com/pkarstaedt/gemini-cli-gdrive-mcp",
+   "file": "server.py",
+   "line": 203
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/prathapmahi/mcp-server",
+   "file": "gmail/server.py",
+   "line": 140
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/rafoyer/mcp-servers",
+   "file": "src/gdrive/index.js",
+   "line": 155
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/rafoyer/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/rajganesh-75/gmail-mcp-server",
+   "file": "server.py",
+   "line": 48
+  },
+  {
+   "server": "youtube-sched-mcp",
+   "github_url": "https://github.com/razzacktiger/youtube-sched-mcp",
+   "file": "oauth_setup.py",
+   "line": 76
+  },
+  {
+   "server": "youtube-sched-mcp",
+   "github_url": "https://github.com/razzacktiger/youtube-sched-mcp",
+   "file": "src/utils.py",
+   "line": 129
+  },
+  {
+   "server": "todo-mcp-server",
+   "github_url": "https://github.com/rcm-webdev/todo-mcp-server",
+   "file": "src/server.ts",
+   "line": 24
+  },
+  {
+   "server": "gmail-workflow-automation-mcp-server",
+   "github_url": "https://github.com/reachanwesha/gmail-workflow-automation-mcp-server",
+   "file": "main.py",
+   "line": 67
+  },
+  {
+   "server": "gmail-mcp-agent",
+   "github_url": "https://github.com/rmisegal/gmail-mcp-agent",
+   "file": "src/gmail_mcp_server.py",
+   "line": 143
+  },
+  {
+   "server": "mcp-google-calendar",
+   "github_url": "https://github.com/rossifire/mcp-google-calendar",
+   "file": "src/auth/googleAuth.ts",
+   "line": 72
+  },
+  {
+   "server": "chatterbox_mcp_server",
+   "github_url": "https://github.com/ruandv/chatterbox_mcp_server",
+   "file": "whatsappServer/src/server.ts",
+   "line": 188
+  },
+  {
+   "server": "mcp-server-assistant",
+   "github_url": "https://github.com/saikrishna0716/mcp-server-assistant",
+   "file": "gmail-api.py",
+   "line": 46
+  },
+  {
+   "server": "godri",
+   "github_url": "https://github.com/sebastienmorand-loreal/godri",
+   "file": "src/godri/services/auth_service.py",
+   "line": 62
+  },
+  {
+   "server": "servers-mcp",
+   "github_url": "https://github.com/shaikabdulsalam02/servers-mcp",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-ai-agent",
+   "github_url": "https://github.com/shilpaj1994/mcp-ai-agent",
+   "file": "mcp_servers/gmail_server.py",
+   "line": 92
+  },
+  {
+   "server": "mcp-starter-kit",
+   "github_url": "https://github.com/sholajegede/mcp-starter-kit",
+   "file": "src/cli/create-app.ts",
+   "line": 579
+  },
+  {
+   "server": "mcp-starter-kit",
+   "github_url": "https://github.com/sholajegede/mcp-starter-kit",
+   "file": "src/core/server/index.ts",
+   "line": 23
+  },
+  {
+   "server": "personal-ai-assistant",
+   "github_url": "https://github.com/simranjotkaur6/personal-ai-assistant",
+   "file": "centralized_assistant.py",
+   "line": 125
+  },
+  {
+   "server": "personal-ai-assistant",
+   "github_url": "https://github.com/simranjotkaur6/personal-ai-assistant",
+   "file": "tools/email_tool.py",
+   "line": 68
+  },
+  {
+   "server": "my-first-mcp-server",
+   "github_url": "https://github.com/sreerajchintham/my-first-mcp-server",
+   "file": "reauthorize_google_apis.py",
+   "line": 59
+  },
+  {
+   "server": "mcp",
+   "github_url": "https://github.com/sries74/mcp",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp_project_1",
+   "github_url": "https://github.com/sumit-1492/mcp_project_1",
+   "file": "src/google_auth.py",
+   "line": 47
+  },
+  {
+   "server": "mcp-agent-project-EAG-V2-",
+   "github_url": "https://github.com/suryaashish130703/mcp-agent-project-EAG-V2-",
+   "file": "auth_gdrive.py",
+   "line": 98
+  },
+  {
+   "server": "mcp-agent-project-EAG-V2-",
+   "github_url": "https://github.com/suryaashish130703/mcp-agent-project-EAG-V2-",
+   "file": "auth_gmail.py",
+   "line": 98
+  },
+  {
+   "server": "mcp-agent-project-EAG-V2-",
+   "github_url": "https://github.com/suryaashish130703/mcp-agent-project-EAG-V2-",
+   "file": "mcp_server_gdrive.py",
+   "line": 51
+  },
+  {
+   "server": "MCP-Chatbot",
+   "github_url": "https://github.com/susavlsh10/MCP-Chatbot",
+   "file": "mcp_servers/gmail_mcp_server.py",
+   "line": 44
+  },
+  {
+   "server": "MCP-Chatbot",
+   "github_url": "https://github.com/susavlsh10/MCP-Chatbot",
+   "file": "mcp_servers/google_calendar_server.py",
+   "line": 161
+  },
+  {
+   "server": "Custom-MCP-server-to-paint-in-Python",
+   "github_url": "https://github.com/sushant097/Custom-MCP-server-to-paint-in-Python",
+   "file": "gmail-mcp/gmail_server.py",
+   "line": 50
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/tarunkumarchelumalla/gmail-mcp-server",
+   "file": "get-refresh-token.js",
+   "line": 28
+  },
+  {
+   "server": "express-and-invoice-processing-server",
+   "github_url": "https://github.com/tmabdull/express-and-invoice-processing-server",
+   "file": "src/auth/credentials.py",
+   "line": 90
+  },
+  {
+   "server": "gmail-mcp-server",
+   "github_url": "https://github.com/torresmateo/gmail-mcp-server",
+   "file": "src/gmail/service.py",
+   "line": 77
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/trasousa/mcp-server",
+   "file": "mcp_server/gmail/server.py",
+   "line": 96
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/vuutla/mcp-servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mem0",
+   "github_url": "https://github.com/wagyog2023/mem0",
+   "file": "embedchain/embedchain/loaders/gmail.py",
+   "line": 59
+  },
+  {
+   "server": "servers",
+   "github_url": "https://github.com/xXxnewbie/servers",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/semaes111/MCP",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "servers-archived",
+   "github_url": "https://github.com/Hisma/servers-archived",
+   "file": "src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "mcp-google-calendar-am2rican5",
+   "github_url": "https://github.com/fastmcp-me/mcp-google-calendar-am2rican5",
+   "file": "src/services/google-calendar.ts",
+   "line": 96
+  },
+  {
+   "server": "gemini-grounding-mcp",
+   "github_url": "https://github.com/yuki-yano/gemini-grounding-mcp",
+   "file": "src/auth/oauth2.ts",
+   "line": 58
+  },
+  {
+   "server": "gtm-mcp",
+   "github_url": "https://github.com/pouyanafisi/gtm-mcp",
+   "file": "src/auth-helper.ts",
+   "line": 125
+  },
+  {
+   "server": "stock-market",
+   "github_url": "https://github.com/suhail-ak-s/stock-market",
+   "file": "bin/cli.js",
+   "line": 177
+  },
+  {
+   "server": "@asthestarslept/iteration-mcp",
+   "github_url": "@asthestarslept/iteration-mcp",
+   "file": "src/dingtalk.ts",
+   "line": 147
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "bin/mcp-server.js",
+   "line": 50891
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "bin/mcp-server.js",
+   "line": 50915
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "esm/src/hooks/auth-hook.js",
+   "line": 662
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "esm/src/hooks/auth-hook.js",
+   "line": 693
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "src/hooks/auth-hook.ts",
+   "line": 752
+  },
+  {
+   "server": "@egain/egain-mcp-server",
+   "github_url": "@egain/egain-mcp-server",
+   "file": "src/hooks/auth-hook.ts",
+   "line": 785
+  },
+  {
+   "server": "@greycollarai/mcpkit",
+   "github_url": "@greycollarai/mcpkit",
+   "file": "integrations/google/gdrive/index.ts",
+   "line": 180
+  },
+  {
+   "server": "@mseep/mcp-firebird",
+   "github_url": "@mseep/mcp-firebird",
+   "file": "documentacion/CodigoEjemploOficial/src/gdrive/index.ts",
+   "line": 193
+  },
+  {
+   "server": "bim-portal-mcp",
+   "github_url": "bim-portal-mcp",
+   "file": "src/bim-api-client.ts",
+   "line": 189
+  },
+  {
+   "server": "mcp-google-drive-server",
+   "github_url": "mcp-google-drive-server",
+   "file": "src/server.ts",
+   "line": 84
+  }
+ ],
+ "edfbaafa8511": [
+  {
+   "server": "xiaozhigetassetpricemcp",
+   "github_url": "https://github.com/TrBaPhong/xiaozhigetassetpricemcp",
+   "file": "getassetprice.py",
+   "line": 17
+  },
+  {
+   "server": "mcp-agent-chatbot",
+   "github_url": "https://github.com/adyl-s/mcp-agent-chatbot",
+   "file": "weatherserver.py",
+   "line": 6
+  },
+  {
+   "server": "nba-analytics-mcp",
+   "github_url": "https://github.com/nikhilkichili/nba-analytics-mcp",
+   "file": "nba_odds_server.py",
+   "line": 19
+  },
+  {
+   "server": "nba-analytics-mcp",
+   "github_url": "https://github.com/nikhilkichili/nba-analytics-mcp",
+   "file": "odds_collector.py",
+   "line": 19
+  },
+  {
+   "server": "mcpGOTAS",
+   "github_url": "https://github.com/caiovicentino/mcpGOTAS",
+   "file": "check_payment.py",
+   "line": 7
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "scripts/post_assimilate_hackathon.py",
+   "line": 26
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "scripts/post_farns_announcement.py",
+   "line": 6
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "scripts/post_farns_v2_announcement.py",
+   "line": 6
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "scripts/submit_hackathon.py",
+   "line": 7
+  },
+  {
+   "server": "mcp-postiz",
+   "github_url": "https://github.com/manbodyslam/mcp-postiz",
+   "file": "debug-response.js",
+   "line": 3
+  },
+  {
+   "server": "china-weather-mcp",
+   "github_url": "https://github.com/nanchengjiumeng/china-weather-mcp",
+   "file": "src/index.ts",
+   "line": 9
+  },
+  {
+   "server": "nba-analytics-mcp",
+   "github_url": "https://github.com/nikhilkichili/nba-analytics-mcp",
+   "file": "nba_odds_server.py",
+   "line": 19
+  },
+  {
+   "server": "nba-analytics-mcp",
+   "github_url": "https://github.com/nikhilkichili/nba-analytics-mcp",
+   "file": "odds_collector.py",
+   "line": 19
+  },
+  {
+   "server": "mcpGOTAS",
+   "github_url": "https://github.com/caiovicentino/mcpGOTAS",
+   "file": "check_payment.py",
+   "line": 7
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "scripts/post_assimilate_hackathon.py",
+   "line": 26
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "scripts/post_farns_announcement.py",
+   "line": 6
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "scripts/post_farns_v2_announcement.py",
+   "line": 6
+  },
+  {
+   "server": "Farnsworth",
+   "github_url": "https://github.com/timowhite88/Farnsworth",
+   "file": "scripts/submit_hackathon.py",
+   "line": 7
+  },
+  {
+   "server": "mcp-postiz",
+   "github_url": "https://github.com/manbodyslam/mcp-postiz",
+   "file": "debug-response.js",
+   "line": 3
+  },
+  {
+   "server": "china-weather-mcp",
+   "github_url": "https://github.com/nanchengjiumeng/china-weather-mcp",
+   "file": "src/index.ts",
+   "line": 9
+  },
+  {
+   "server": "dart-mcp",
+   "github_url": "https://github.com/Dayoooun/dart-mcp",
+   "file": "api/index.py",
+   "line": 11
+  },
+  {
+   "server": "dart-mcp",
+   "github_url": "https://github.com/Dayoooun/dart-mcp",
+   "file": "scripts/update_companies.py",
+   "line": 17
+  },
+  {
+   "server": "crypto_mcp_server",
+   "github_url": "https://github.com/Ibook000/crypto_mcp_server",
+   "file": "weather_mcp_server.py",
+   "line": 11
+  },
+  {
+   "server": "travel-agent-mcp-server",
+   "github_url": "https://github.com/alan5543/travel-agent-mcp-server",
+   "file": "apiService.py",
+   "line": 663
+  },
+  {
+   "server": "claude-odoo-api",
+   "github_url": "https://github.com/bmya/claude-odoo-api",
+   "file": "create_odoo_invoices.py",
+   "line": 4
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/gloomysunday28/mcp-server",
+   "file": "src/index.ts",
+   "line": 22
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/gloomysunday28/mcp-server",
+   "file": "src/sse.ts",
+   "line": 22
+  },
+  {
+   "server": "weather_mcp",
+   "github_url": "https://github.com/Michaelliu1989/weather_mcp",
+   "file": "weather.py",
+   "line": 10
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/lamdt1/mcp-servers",
+   "file": "src/mp3ApiClient.ts",
+   "line": 72
+  },
+  {
+   "server": "tally_mcp_server",
+   "github_url": "https://github.com/sarvajeet2003/tally_mcp_server",
+   "file": "src/index.ts",
+   "line": 10
+  },
+  {
+   "server": "voike",
+   "github_url": "https://github.com/Rishhhhh/voike",
+   "file": "scripts/voikefib.py",
+   "line": 12
+  },
+  {
+   "server": "doppio-coffee-mcp",
+   "github_url": "https://github.com/tomas-chudjak/doppio-coffee-mcp",
+   "file": "src/index.ts",
+   "line": 26
+  },
+  {
+   "server": "mcp-weather-service",
+   "github_url": "mcp-weather-service",
+   "file": "index.js",
+   "line": 4
+  },
+  {
+   "server": "mcp-weather-service",
+   "github_url": "mcp-weather-service",
+   "file": "server.js",
+   "line": 5
+  },
+  {
+   "server": "mp3-mcp-server",
+   "github_url": "mp3-mcp-server",
+   "file": "src/mp3ApiClient.ts",
+   "line": 72
+  },
+  {
+   "server": "travel-agent-mcp-server",
+   "github_url": "https://github.com/alan5543/travel-agent-mcp-server",
+   "file": "apiService.py",
+   "line": 663
+  },
+  {
+   "server": "claude-odoo-api",
+   "github_url": "https://github.com/bmya/claude-odoo-api",
+   "file": "create_odoo_invoices.py",
+   "line": 4
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/gloomysunday28/mcp-server",
+   "file": "src/index.ts",
+   "line": 22
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/gloomysunday28/mcp-server",
+   "file": "src/sse.ts",
+   "line": 22
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/lamdt1/mcp-servers",
+   "file": "src/mp3ApiClient.ts",
+   "line": 72
+  },
+  {
+   "server": "tally_mcp_server",
+   "github_url": "https://github.com/sarvajeet2003/tally_mcp_server",
+   "file": "src/index.ts",
+   "line": 10
+  },
+  {
+   "server": "doppio-coffee-mcp",
+   "github_url": "https://github.com/tomas-chudjak/doppio-coffee-mcp",
+   "file": "src/index.ts",
+   "line": 26
+  },
+  {
+   "server": "mcp-weather-service",
+   "github_url": "mcp-weather-service",
+   "file": "index.js",
+   "line": 4
+  },
+  {
+   "server": "mcp-weather-service",
+   "github_url": "mcp-weather-service",
+   "file": "server.js",
+   "line": 5
+  },
+  {
+   "server": "mp3-mcp-server",
+   "github_url": "mp3-mcp-server",
+   "file": "src/mp3ApiClient.ts",
+   "line": 72
+  }
+ ],
+ "4e9535e8b20f": [
+  {
+   "server": "gorse",
+   "github_url": "https://github.com/dataontap/gorse",
+   "file": "static/firebase-auth.js",
+   "line": 7
+  },
+  {
+   "server": "gorse",
+   "github_url": "https://github.com/dataontap/gorse",
+   "file": "static/firebase-init.js",
+   "line": 4
+  },
+  {
+   "server": "profile-researcher",
+   "github_url": "https://github.com/amankale376/profile-researcher",
+   "file": "src/index.ts",
+   "line": 152
+  },
+  {
+   "server": "PistachioMCP",
+   "github_url": "https://github.com/jack-beanstalk-2022/PistachioMCP",
+   "file": "src/utils/ServerStorageUtils.ts",
+   "line": 29
+  },
+  {
+   "server": "bbq-mcp",
+   "github_url": "https://github.com/jweingardt12/bbq-mcp",
+   "file": "src/services/thermoworks.ts",
+   "line": 25
+  },
+  {
+   "server": "bbq-mcp",
+   "github_url": "https://github.com/jweingardt12/bbq-mcp",
+   "file": "src/services/thermoworks.ts",
+   "line": 34
+  },
+  {
+   "server": "gorse",
+   "github_url": "https://github.com/dataontap/gorse",
+   "file": "static/firebase-auth.js",
+   "line": 7
+  },
+  {
+   "server": "gorse",
+   "github_url": "https://github.com/dataontap/gorse",
+   "file": "static/firebase-init.js",
+   "line": 4
+  },
+  {
+   "server": "profile-researcher",
+   "github_url": "https://github.com/amankale376/profile-researcher",
+   "file": "src/index.ts",
+   "line": 152
+  },
+  {
+   "server": "PistachioMCP",
+   "github_url": "https://github.com/jack-beanstalk-2022/PistachioMCP",
+   "file": "src/utils/ServerStorageUtils.ts",
+   "line": 29
+  },
+  {
+   "server": "bbq-mcp",
+   "github_url": "https://github.com/jweingardt12/bbq-mcp",
+   "file": "src/services/thermoworks.ts",
+   "line": 25
+  },
+  {
+   "server": "bbq-mcp",
+   "github_url": "https://github.com/jweingardt12/bbq-mcp",
+   "file": "src/services/thermoworks.ts",
+   "line": 34
+  },
+  {
+   "server": "agent-drugs",
+   "github_url": "https://github.com/2389-research/agent-drugs",
+   "file": "public/app.js",
+   "line": 3
+  },
+  {
+   "server": "agent-drugs",
+   "github_url": "https://github.com/2389-research/agent-drugs",
+   "file": "public/oauth-authorize.js",
+   "line": 3
+  },
+  {
+   "server": "cline",
+   "github_url": "https://github.com/jobikinobi/cline",
+   "file": "src/services/auth/config.ts",
+   "line": 3
+  },
+  {
+   "server": "cline",
+   "github_url": "https://github.com/maxwongfong/cline",
+   "file": "src/services/auth/config.ts",
+   "line": 3
+  },
+  {
+   "server": "figma-replica-MCP",
+   "github_url": "https://github.com/titfortit/figma-replica-MCP",
+   "file": "check-signups.js",
+   "line": 6
+  },
+  {
+   "server": "figma-replica-MCP",
+   "github_url": "https://github.com/titfortit/figma-replica-MCP",
+   "file": "check-stats.js",
+   "line": 6
+  },
+  {
+   "server": "figma-replica-MCP",
+   "github_url": "https://github.com/titfortit/figma-replica-MCP",
+   "file": "src/firebase.ts",
+   "line": 7
+  },
+  {
+   "server": "figma-replica-MCP",
+   "github_url": "https://github.com/titfortit/figma-replica-MCP",
+   "file": "view-signups.js",
+   "line": 6
+  },
+  {
+   "server": "frihet-mcp",
+   "github_url": "https://github.com/berthelius/frihet-mcp",
+   "file": "workers/remote-mcp/src/login-page.ts",
+   "line": 260
+  },
+  {
+   "server": "Echo",
+   "github_url": "https://github.com/Precision-Recall/Echo",
+   "file": "gemini_live_mcp/echo_frontend/lib/firebase.ts",
+   "line": 6
+  },
+  {
+   "server": "cline",
+   "github_url": "https://github.com/jobikinobi/cline",
+   "file": "src/services/auth/config.ts",
+   "line": 3
+  },
+  {
+   "server": "cline",
+   "github_url": "https://github.com/maxwongfong/cline",
+   "file": "src/services/auth/config.ts",
+   "line": 3
+  },
+  {
+   "server": "figma-replica-MCP",
+   "github_url": "https://github.com/titfortit/figma-replica-MCP",
+   "file": "check-signups.js",
+   "line": 6
+  },
+  {
+   "server": "figma-replica-MCP",
+   "github_url": "https://github.com/titfortit/figma-replica-MCP",
+   "file": "check-stats.js",
+   "line": 6
+  },
+  {
+   "server": "figma-replica-MCP",
+   "github_url": "https://github.com/titfortit/figma-replica-MCP",
+   "file": "src/firebase.ts",
+   "line": 7
+  },
+  {
+   "server": "figma-replica-MCP",
+   "github_url": "https://github.com/titfortit/figma-replica-MCP",
+   "file": "view-signups.js",
+   "line": 6
+  },
+  {
+   "server": "frihet-mcp",
+   "github_url": "https://github.com/berthelius/frihet-mcp",
+   "file": "workers/remote-mcp/src/login-page.ts",
+   "line": 272
+  }
+ ],
+ "656a0d4bebc9": [
+  {
+   "server": "xhs-mcp",
+   "github_url": "https://github.com/lastkimi/xhs-mcp",
+   "file": "unified-cover-generator.js",
+   "line": 31
+  },
+  {
+   "server": "generate-hypothesis-mcp",
+   "github_url": "https://github.com/daiduo2/generate-hypothesis-mcp",
+   "file": "app/core/moa.py",
+   "line": 55
+  },
+  {
+   "server": "generate-hypothesis-mcp",
+   "github_url": "https://github.com/daiduo2/generate-hypothesis-mcp",
+   "file": "app/core/moa.py",
+   "line": 70
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "data/env_e.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "data/env_evaluate.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "data/finance_e.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "data/finance_evaluate.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/env_e.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/env_evaluate.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/finance_e.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/finance_e1.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/finance_evaluate.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/pol_evaluate.py",
+   "line": 21
+  },
+  {
+   "server": "xhs-mcp",
+   "github_url": "https://github.com/lastkimi/xhs-mcp",
+   "file": "unified-cover-generator.js",
+   "line": 31
+  },
+  {
+   "server": "generate-hypothesis-mcp",
+   "github_url": "https://github.com/daiduo2/generate-hypothesis-mcp",
+   "file": "app/core/moa.py",
+   "line": 55
+  },
+  {
+   "server": "generate-hypothesis-mcp",
+   "github_url": "https://github.com/daiduo2/generate-hypothesis-mcp",
+   "file": "app/core/moa.py",
+   "line": 70
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "data/env_e.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "data/env_evaluate.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "data/finance_e.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "data/finance_evaluate.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/env_e.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/env_evaluate.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/finance_e.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/finance_e1.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/finance_evaluate.py",
+   "line": 14
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/pol_evaluate.py",
+   "line": 21
+  }
+ ],
+ "db477a8b538e": [
+  {
+   "server": "After-Efffect-MCP",
+   "github_url": "https://github.com/Starlightmii/After-Efffect-MCP",
+   "file": ".env",
+   "line": 3
+  },
+  {
+   "server": "After-Efffect-MCP",
+   "github_url": "https://github.com/Starlightmii/After-Efffect-MCP",
+   "file": "server/.env",
+   "line": 3
+  },
+  {
+   "server": "After-Efffect-MCP",
+   "github_url": "https://github.com/Starlightmii/After-Efffect-MCP",
+   "file": ".env",
+   "line": 3
+  },
+  {
+   "server": "After-Efffect-MCP",
+   "github_url": "https://github.com/Starlightmii/After-Efffect-MCP",
+   "file": "server/.env",
+   "line": 3
+  },
+  {
+   "server": "MCP-server--datathon-main",
+   "github_url": "https://github.com/Darshil4154/MCP-server--datathon-main",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "mcp-directory",
+   "github_url": "https://github.com/DigitalCreationsCo/mcp-directory",
+   "file": "backend/.env",
+   "line": 16
+  },
+  {
+   "server": "mcp-server-cap-odata",
+   "github_url": "https://github.com/Harikapudotam/mcp-server-cap-odata",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcpservertest",
+   "github_url": "https://github.com/amritpattnaik/mcpservertest",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp_autogen_server",
+   "github_url": "https://github.com/janhavihood4/mcp_autogen_server",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp_memory",
+   "github_url": "https://github.com/NeoTecDigital/mcp_memory",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "mcp_server-ts",
+   "github_url": "https://github.com/leduy23/mcp_server-ts",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "@mcp-registry/mcp-telegram-ai-assistant",
+   "github_url": "@mcp-registry/mcp-telegram-ai-assistant",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "@mcp-registry/mcp-telegram-content-generator",
+   "github_url": "@mcp-registry/mcp-telegram-content-generator",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "altikulac-otel-mcp",
+   "github_url": "altikulac-otel-mcp",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "gs-mcp",
+   "github_url": "gs-mcp",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "smart-task-manager",
+   "github_url": "https://github.com/TahaHuzaifa141/smart-task-manager",
+   "file": ".env",
+   "line": 11
+  },
+  {
+   "server": "smart-task-manager",
+   "github_url": "https://github.com/TahaHuzaifa141/smart-task-manager",
+   "file": "backend/.env",
+   "line": 11
+  },
+  {
+   "server": "smart-task-manager",
+   "github_url": "https://github.com/TahaHuzaifa141/smart-task-manager",
+   "file": "mcp-server/.env",
+   "line": 5
+  },
+  {
+   "server": "mcpservertest",
+   "github_url": "https://github.com/amritpattnaik/mcpservertest",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp_autogen_server",
+   "github_url": "https://github.com/janhavihood4/mcp_autogen_server",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp_server-ts",
+   "github_url": "https://github.com/leduy23/mcp_server-ts",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "@mcp-registry/mcp-telegram-ai-assistant",
+   "github_url": "@mcp-registry/mcp-telegram-ai-assistant",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "@mcp-registry/mcp-telegram-content-generator",
+   "github_url": "@mcp-registry/mcp-telegram-content-generator",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "altikulac-otel-mcp",
+   "github_url": "altikulac-otel-mcp",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "gs-mcp",
+   "github_url": "gs-mcp",
+   "file": ".env",
+   "line": 2
+  }
+ ],
+ "a6a1f24786da": [
+  {
+   "server": "gemini-mcp-server",
+   "github_url": "https://github.com/Garblesnarff/gemini-mcp-server",
+   "file": "src/config.js",
+   "line": 24
+  },
+  {
+   "server": "gemini-mcp-server",
+   "github_url": "https://github.com/Garblesnarff/gemini-mcp-server",
+   "file": "src/config.js",
+   "line": 25
+  },
+  {
+   "server": "gemini-mcp-server",
+   "github_url": "https://github.com/Garblesnarff/gemini-mcp-server",
+   "file": "src/config.js",
+   "line": 26
+  },
+  {
+   "server": "news-instagram-mcp",
+   "github_url": "https://github.com/zegh6389/news-instagram-mcp",
+   "file": "mcp_launcher.py",
+   "line": 22
+  },
+  {
+   "server": "news-instagram-mcp",
+   "github_url": "https://github.com/zegh6389/news-instagram-mcp",
+   "file": "setup_production.py",
+   "line": 49
+  },
+  {
+   "server": "generate-hypothesis-mcp",
+   "github_url": "https://github.com/daiduo2/generate-hypothesis-mcp",
+   "file": "app/core/moa.py",
+   "line": 64
+  },
+  {
+   "server": "gemini-mcp-server",
+   "github_url": "https://github.com/Garblesnarff/gemini-mcp-server",
+   "file": "src/config.js",
+   "line": 24
+  },
+  {
+   "server": "gemini-mcp-server",
+   "github_url": "https://github.com/Garblesnarff/gemini-mcp-server",
+   "file": "src/config.js",
+   "line": 25
+  },
+  {
+   "server": "gemini-mcp-server",
+   "github_url": "https://github.com/Garblesnarff/gemini-mcp-server",
+   "file": "src/config.js",
+   "line": 26
+  },
+  {
+   "server": "news-instagram-mcp",
+   "github_url": "https://github.com/zegh6389/news-instagram-mcp",
+   "file": "mcp_launcher.py",
+   "line": 22
+  },
+  {
+   "server": "news-instagram-mcp",
+   "github_url": "https://github.com/zegh6389/news-instagram-mcp",
+   "file": "setup_production.py",
+   "line": 49
+  },
+  {
+   "server": "generate-hypothesis-mcp",
+   "github_url": "https://github.com/daiduo2/generate-hypothesis-mcp",
+   "file": "app/core/moa.py",
+   "line": 64
+  },
+  {
+   "server": "MCP-Sandbox",
+   "github_url": "https://github.com/AiAutomatrix/MCP-Sandbox",
+   "file": "src/firebase/config.ts",
+   "line": 4
+  },
+  {
+   "server": "mcp-maps-broken",
+   "github_url": "https://github.com/GenJess/mcp-maps-broken",
+   "file": "map_app.ts",
+   "line": 99
+  },
+  {
+   "server": "MCP-Maps-3D",
+   "github_url": "https://github.com/k4ilham/MCP-Maps-3D",
+   "file": "map_app.ts",
+   "line": 87
+  },
+  {
+   "server": "erpnext_mcp_server",
+   "github_url": "https://github.com/manotluijiu/erpnext_mcp_server",
+   "file": "erpnext_mcp_server/boot.py",
+   "line": 27
+  },
+  {
+   "server": "cloved",
+   "github_url": "https://github.com/design-juspay/cloved",
+   "file": "apps/firebase-app/lib/firebase.ts",
+   "line": 31
+  },
+  {
+   "server": "assay-mcp-server",
+   "github_url": "https://github.com/cirruslycurious/assay-mcp-server",
+   "file": "src/firebase.ts",
+   "line": 13
+  },
+  {
+   "server": "MCP-Maps-3D",
+   "github_url": "https://github.com/PEAC337/MCP-Maps-3D",
+   "file": "map_app.ts",
+   "line": 87
+  },
+  {
+   "server": "MCP-Maps-3D",
+   "github_url": "https://github.com/k4ilham/MCP-Maps-3D",
+   "file": "map_app.ts",
+   "line": 87
+  },
+  {
+   "server": "erpnext_mcp_server",
+   "github_url": "https://github.com/manotluijiu/erpnext_mcp_server",
+   "file": "erpnext_mcp_server/boot.py",
+   "line": 27
+  },
+  {
+   "server": "cloved",
+   "github_url": "https://github.com/design-juspay/cloved",
+   "file": "apps/firebase-app/lib/firebase.ts",
+   "line": 31
+  },
+  {
+   "server": "assay-mcp-server",
+   "github_url": "https://github.com/cirruslycurious/assay-mcp-server",
+   "file": "src/firebase.ts",
+   "line": 13
+  }
+ ],
+ "584dbbeea26f": [
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "LLM_entity_extract.py",
+   "line": 97
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/decision_network/score_semantics.py",
+   "line": 20
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/semantic_reliability_gemma.py",
+   "line": 23
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "LLM_entity_extract.py",
+   "line": 97
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/decision_network/score_semantics.py",
+   "line": 20
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "exps/semantic_reliability_gemma.py",
+   "line": 23
+  },
+  {
+   "server": "listed-google-mcp-server",
+   "github_url": "https://github.com/lin-working-bot/listed-google-mcp-server",
+   "file": "scripts/scrape.py",
+   "line": 58
+  },
+  {
+   "server": "Evaluation_MCPGen",
+   "github_url": "https://github.com/zoe-yyx/Evaluation_MCPGen",
+   "file": "tasks/workflow_shuffling.py",
+   "line": 1225
+  },
+  {
+   "server": "Evaluation_MCPGen",
+   "github_url": "https://github.com/zoe-yyx/Evaluation_MCPGen",
+   "file": "tasks/workflow_shuffling_mcp.py",
+   "line": 547
+  },
+  {
+   "server": "mcp-amz-listing-optimizer_infinitecommerce",
+   "github_url": "mcp-amz-listing-optimizer_infinitecommerce",
+   "file": "main.py",
+   "line": 160
+  },
+  {
+   "server": "mcp-amz-listing-optimizer_infinitecommerce",
+   "github_url": "mcp-amz-listing-optimizer_infinitecommerce",
+   "file": "main.py",
+   "line": 309
+  },
+  {
+   "server": "mcp-amz-listing-optimizer_infinitecommerce2025",
+   "github_url": "mcp-amz-listing-optimizer_infinitecommerce2025",
+   "file": "main.py",
+   "line": 162
+  },
+  {
+   "server": "mcp-amz-listing-optimizer_infinitecommerce2025",
+   "github_url": "mcp-amz-listing-optimizer_infinitecommerce2025",
+   "file": "main.py",
+   "line": 319
+  },
+  {
+   "server": "tts-fast-mcp",
+   "github_url": "tts-fast-mcp",
+   "file": "tts-mcp.js",
+   "line": 33
+  },
+  {
+   "server": "listed-google-mcp-server",
+   "github_url": "https://github.com/lin-working-bot/listed-google-mcp-server",
+   "file": "scripts/scrape.py",
+   "line": 58
+  },
+  {
+   "server": "Evaluation_MCPGen",
+   "github_url": "https://github.com/zoe-yyx/Evaluation_MCPGen",
+   "file": "tasks/workflow_shuffling.py",
+   "line": 1225
+  },
+  {
+   "server": "Evaluation_MCPGen",
+   "github_url": "https://github.com/zoe-yyx/Evaluation_MCPGen",
+   "file": "tasks/workflow_shuffling_mcp.py",
+   "line": 547
+  },
+  {
+   "server": "mcp-amz-listing-optimizer_infinitecommerce",
+   "github_url": "mcp-amz-listing-optimizer_infinitecommerce",
+   "file": "main.py",
+   "line": 160
+  },
+  {
+   "server": "mcp-amz-listing-optimizer_infinitecommerce",
+   "github_url": "mcp-amz-listing-optimizer_infinitecommerce",
+   "file": "main.py",
+   "line": 309
+  },
+  {
+   "server": "mcp-amz-listing-optimizer_infinitecommerce2025",
+   "github_url": "mcp-amz-listing-optimizer_infinitecommerce2025",
+   "file": "main.py",
+   "line": 162
+  },
+  {
+   "server": "mcp-amz-listing-optimizer_infinitecommerce2025",
+   "github_url": "mcp-amz-listing-optimizer_infinitecommerce2025",
+   "file": "main.py",
+   "line": 319
+  },
+  {
+   "server": "tts-fast-mcp",
+   "github_url": "tts-fast-mcp",
+   "file": "tts-mcp.js",
+   "line": 33
+  }
+ ],
+ "f560ce7ec36c": [
+  {
+   "server": "mcp_py_exam",
+   "github_url": "https://github.com/istanadodan/mcp_py_exam",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp_py_exam",
+   "github_url": "https://github.com/istanadodan/mcp_py_exam",
+   "file": "gemini_cli_mcp/.env",
+   "line": 1
+  },
+  {
+   "server": "mcp_py_exam",
+   "github_url": "https://github.com/istanadodan/mcp_py_exam",
+   "file": "python-mcp-server/.env",
+   "line": 1
+  },
+  {
+   "server": "resume-mcp",
+   "github_url": "https://github.com/sms03/resume-mcp",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "mcp_py_exam",
+   "github_url": "https://github.com/istanadodan/mcp_py_exam",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp_py_exam",
+   "github_url": "https://github.com/istanadodan/mcp_py_exam",
+   "file": "gemini_cli_mcp/.env",
+   "line": 1
+  },
+  {
+   "server": "mcp_py_exam",
+   "github_url": "https://github.com/istanadodan/mcp_py_exam",
+   "file": "python-mcp-server/.env",
+   "line": 1
+  },
+  {
+   "server": "resume-mcp",
+   "github_url": "https://github.com/sms03/resume-mcp",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "Research-Assistant-Agent-using-MCP-and-Google-ADK",
+   "github_url": "https://github.com/Anshul-ydv/Research-Assistant-Agent-using-MCP-and-Google-ADK",
+   "file": "adk/research_upgrade/.env",
+   "line": 2
+  },
+  {
+   "server": "Pokemon_MCP_Server",
+   "github_url": "https://github.com/Devansh-react/Pokemon_MCP_Server",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcpservertest",
+   "github_url": "https://github.com/amritpattnaik/mcpservertest",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "sidehelp",
+   "github_url": "https://github.com/groupthinking/sidehelp",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "adk-simple-mcp-demo-with-armour",
+   "github_url": "https://github.com/suryapa1/adk-simple-mcp-demo-with-armour",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "entertainment-mcp",
+   "github_url": "https://github.com/Rohit-KK15/entertainment-mcp",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "MCP-Shipping-Order-System-with-Approval-Workflow",
+   "github_url": "https://github.com/SahSanjeev/MCP-Shipping-Order-System-with-Approval-Workflow",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp-github-agent",
+   "github_url": "https://github.com/Sonal0409/mcp-github-agent",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/Kamalud33n/MCP",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "mcpservertest",
+   "github_url": "https://github.com/amritpattnaik/mcpservertest",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "sidehelp",
+   "github_url": "https://github.com/groupthinking/sidehelp",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "adk-simple-mcp-demo-with-armour",
+   "github_url": "https://github.com/suryapa1/adk-simple-mcp-demo-with-armour",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "6047ad754c37": [
+  {
+   "server": "GTM-MCP",
+   "github_url": "https://github.com/ambit1977/GTM-MCP",
+   "file": "src/oauth2-auth.js",
+   "line": 78
+  },
+  {
+   "server": "bear-mcp",
+   "github_url": "https://github.com/philgetzen/bear-mcp",
+   "file": "src/index-db.ts",
+   "line": 56
+  },
+  {
+   "server": "bear-mcp",
+   "github_url": "https://github.com/philgetzen/bear-mcp",
+   "file": "src/index.ts",
+   "line": 49
+  },
+  {
+   "server": "GTM-MCP",
+   "github_url": "https://github.com/ambit1977/GTM-MCP",
+   "file": "src/oauth2-auth.js",
+   "line": 78
+  },
+  {
+   "server": "bear-mcp",
+   "github_url": "https://github.com/philgetzen/bear-mcp",
+   "file": "src/index-db.ts",
+   "line": 56
+  },
+  {
+   "server": "bear-mcp",
+   "github_url": "https://github.com/philgetzen/bear-mcp",
+   "file": "src/index.ts",
+   "line": 49
+  },
+  {
+   "server": "claude-code-plugins",
+   "github_url": "https://github.com/jeremylongshore/claude-code-plugins",
+   "file": "plugins/mcp/slack-channel/features/steps/sendable.ts",
+   "line": 69
+  },
+  {
+   "server": "pokemonmarket-mcp",
+   "github_url": "https://github.com/joshuajbouw/pokemonmarket-mcp",
+   "file": "src/unicity/identity.ts",
+   "line": 91
+  },
+  {
+   "server": "photon",
+   "github_url": "https://github.com/portel-dev/photon",
+   "file": "src/daemon/constructor-env-replay.ts",
+   "line": 151
+  },
+  {
+   "server": "sas-score-mcp-serverjs",
+   "github_url": "https://github.com/sassoftware/sas-score-mcp-serverjs",
+   "file": "scripts/refreshtoken.js",
+   "line": 11
+  },
+  {
+   "server": "in10x-mcp",
+   "github_url": "in10x-mcp",
+   "file": "bin/install.js",
+   "line": 88
+  },
+  {
+   "server": "mcp-server--HTTP-API-integrated-with-windsurf",
+   "github_url": "https://github.com/VIGNESH-2232005/mcp-server--HTTP-API-integrated-with-windsurf",
+   "file": "src/oauth_flow.js",
+   "line": 20
+  },
+  {
+   "server": "gdrive-comments",
+   "github_url": "https://github.com/cloudsecurityalliance/gdrive-comments",
+   "file": "experiments/comment-lifecycle/probe_lifecycle.py",
+   "line": 60
+  },
+  {
+   "server": "gdrive-comments",
+   "github_url": "https://github.com/cloudsecurityalliance/gdrive-comments",
+   "file": "experiments/comment-lifecycle/probe_lifecycle.py",
+   "line": 64
+  },
+  {
+   "server": "gdrive-comments",
+   "github_url": "https://github.com/cloudsecurityalliance/gdrive-comments",
+   "file": "experiments/docs-suggestions/probe_suggestions.py",
+   "line": 43
+  },
+  {
+   "server": "claude-code-plugins",
+   "github_url": "https://github.com/jeremylongshore/claude-code-plugins",
+   "file": "plugins/mcp/slack-channel/features/steps/sendable.ts",
+   "line": 69
+  },
+  {
+   "server": "pokemonmarket-mcp",
+   "github_url": "https://github.com/joshuajbouw/pokemonmarket-mcp",
+   "file": "src/unicity/identity.ts",
+   "line": 91
+  },
+  {
+   "server": "photon",
+   "github_url": "https://github.com/portel-dev/photon",
+   "file": "src/daemon/constructor-env-replay.ts",
+   "line": 151
+  },
+  {
+   "server": "sas-score-mcp-serverjs",
+   "github_url": "https://github.com/sassoftware/sas-score-mcp-serverjs",
+   "file": "scripts/refreshtoken.js",
+   "line": 11
+  },
+  {
+   "server": "in10x-mcp",
+   "github_url": "in10x-mcp",
+   "file": "bin/install.js",
+   "line": 88
+  }
+ ],
+ "e3d668e251b4": [
+  {
+   "server": "ncp",
+   "github_url": "https://github.com/portel-dev/ncp",
+   "file": "src/code-mode/bindings-manager.ts",
+   "line": 282
+  },
+  {
+   "server": "ncp",
+   "github_url": "https://github.com/portel-dev/ncp",
+   "file": "src/code-mode/bindings-manager.ts",
+   "line": 282
+  },
+  {
+   "server": "banbury-mcp-server",
+   "github_url": "https://github.com/banbury-inc/banbury-mcp-server",
+   "file": "main.js",
+   "line": 46
+  },
+  {
+   "server": "unified-mcp-server",
+   "github_url": "https://github.com/mpalpha/unified-mcp-server",
+   "file": "src/memory/canonical.js",
+   "line": 116
+  },
+  {
+   "server": "gsc-mcp-server",
+   "github_url": "https://github.com/sofianbettayeb/gsc-mcp-server",
+   "file": "src/auth.ts",
+   "line": 111
+  },
+  {
+   "server": "client-ts",
+   "github_url": "https://github.com/EyevinnOSC/client-ts",
+   "file": "packages/cli/src/login.ts",
+   "line": 22
+  },
+  {
+   "server": "bit",
+   "github_url": "https://github.com/teambit/bit",
+   "file": "scopes/harmony/api-server/api-server.main.runtime.ts",
+   "line": 271
+  },
+  {
+   "server": "vscode-remote-mcp",
+   "github_url": "vscode-remote-mcp",
+   "file": "src/tools/deploy_vscode_instance.js",
+   "line": 521
+  },
+  {
+   "server": "vscode-remote-mcp",
+   "github_url": "vscode-remote-mcp",
+   "file": "vsc-remote/scripts/postinstall.js",
+   "line": 407
+  },
+  {
+   "server": "vscode-remote-mcp",
+   "github_url": "vscode-remote-mcp",
+   "file": "vsc-remote/src/mcp-sdk-server.js",
+   "line": 102
+  },
+  {
+   "server": "banbury-mcp-server",
+   "github_url": "https://github.com/banbury-inc/banbury-mcp-server",
+   "file": "main.js",
+   "line": 46
+  },
+  {
+   "server": "unified-mcp-server",
+   "github_url": "https://github.com/mpalpha/unified-mcp-server",
+   "file": "src/memory/canonical.js",
+   "line": 116
+  },
+  {
+   "server": "gsc-mcp-server",
+   "github_url": "https://github.com/sofianbettayeb/gsc-mcp-server",
+   "file": "src/auth.ts",
+   "line": 111
+  },
+  {
+   "server": "client-ts",
+   "github_url": "https://github.com/EyevinnOSC/client-ts",
+   "file": "packages/cli/src/login.ts",
+   "line": 22
+  },
+  {
+   "server": "bit",
+   "github_url": "https://github.com/teambit/bit",
+   "file": "scopes/harmony/api-server/api-server.main.runtime.ts",
+   "line": 271
+  },
+  {
+   "server": "vscode-remote-mcp",
+   "github_url": "vscode-remote-mcp",
+   "file": "src/tools/deploy_vscode_instance.js",
+   "line": 521
+  },
+  {
+   "server": "vscode-remote-mcp",
+   "github_url": "vscode-remote-mcp",
+   "file": "vsc-remote/scripts/postinstall.js",
+   "line": 407
+  },
+  {
+   "server": "vscode-remote-mcp",
+   "github_url": "vscode-remote-mcp",
+   "file": "vsc-remote/src/mcp-sdk-server.js",
+   "line": 102
+  }
+ ],
+ "f1f74f858da0": [
+  {
+   "server": "Project-One",
+   "github_url": "https://github.com/MatheusgVentura/Project-One",
+   "file": "api_mcp.py",
+   "line": 93
+  },
+  {
+   "server": "MCPs",
+   "github_url": "https://github.com/Mokksh-bhatt/MCPs",
+   "file": "mcp-bearer-token/mcp_starter.py",
+   "line": 24
+  },
+  {
+   "server": "cs_android_mcp",
+   "github_url": "https://github.com/steveday763/cs_android_mcp",
+   "file": "src/api.ts",
+   "line": 7
+  },
+  {
+   "server": "Project-One",
+   "github_url": "https://github.com/MatheusgVentura/Project-One",
+   "file": "api_mcp.py",
+   "line": 93
+  },
+  {
+   "server": "MCPs",
+   "github_url": "https://github.com/Mokksh-bhatt/MCPs",
+   "file": "mcp-bearer-token/mcp_starter.py",
+   "line": 24
+  },
+  {
+   "server": "cs_android_mcp",
+   "github_url": "https://github.com/steveday763/cs_android_mcp",
+   "file": "src/api.ts",
+   "line": 7
+  },
+  {
+   "server": "excel-master-mcp",
+   "github_url": "https://github.com/lipdog/excel-master-mcp",
+   "file": "src/excel_instructions_generator.py",
+   "line": 10
+  },
+  {
+   "server": "excel-master-mcp",
+   "github_url": "https://github.com/lipdog/excel-master-mcp",
+   "file": "src/financial_operations.py",
+   "line": 12
+  },
+  {
+   "server": "Crawl4AI-RAG-MCP-Server",
+   "github_url": "https://github.com/Anshumaan031/Crawl4AI-RAG-MCP-Server",
+   "file": "src/api.py",
+   "line": 29
+  },
+  {
+   "server": "mcp-tool-platform",
+   "github_url": "https://github.com/Cursedpotential/mcp-tool-platform",
+   "file": "server/mcp/plugins-pending/gcp-document-ai.ts",
+   "line": 24
+  },
+  {
+   "server": "MCP-Server",
+   "github_url": "https://github.com/f114112140-star/MCP-Server",
+   "file": "mcp_server.py",
+   "line": 13
+  },
+  {
+   "server": "mcp-backend",
+   "github_url": "https://github.com/mcp-nae/mcp-backend",
+   "file": "client.py",
+   "line": 17
+  },
+  {
+   "server": "mcp-pokemon-server",
+   "github_url": "https://github.com/timex9/mcp-pokemon-server",
+   "file": "app/llm_player.py",
+   "line": 5
+  },
+  {
+   "server": "MCP-Server",
+   "github_url": "https://github.com/f114112140-star/MCP-Server",
+   "file": "mcp_server.py",
+   "line": 13
+  },
+  {
+   "server": "mcp-backend",
+   "github_url": "https://github.com/mcp-nae/mcp-backend",
+   "file": "client.py",
+   "line": 17
+  },
+  {
+   "server": "mcp-pokemon-server",
+   "github_url": "https://github.com/timex9/mcp-pokemon-server",
+   "file": "app/llm_player.py",
+   "line": 5
+  }
+ ],
+ "dc983687c433": [
+  {
+   "server": "damn-vulnerable-MCP-server",
+   "github_url": "https://github.com/harishsg993010/damn-vulnerable-MCP-server",
+   "file": "challenges/hard/challenge10/server.py",
+   "line": 45
+  },
+  {
+   "server": "damn-vulnerable-MCP-server",
+   "github_url": "https://github.com/harishsg993010/damn-vulnerable-MCP-server",
+   "file": "challenges/hard/challenge10/server.py",
+   "line": 46
+  },
+  {
+   "server": "damn-vulnerable-MCP-server",
+   "github_url": "https://github.com/harishsg993010/damn-vulnerable-MCP-server",
+   "file": "challenges/hard/challenge10/server.py",
+   "line": 45
+  },
+  {
+   "server": "damn-vulnerable-MCP-server",
+   "github_url": "https://github.com/harishsg993010/damn-vulnerable-MCP-server",
+   "file": "challenges/hard/challenge10/server.py",
+   "line": 46
+  },
+  {
+   "server": "Symprise-Studio2",
+   "github_url": "https://github.com/TheoSym/Symprise-Studio2",
+   "file": "packages/pieces/community/cal-com/src/lib/triggers/index.ts",
+   "line": 100
+  },
+  {
+   "server": "apivideo",
+   "github_url": "https://github.com/ag2-mcp-servers/apivideo",
+   "file": "mcp_server/models.py",
+   "line": 19
+  },
+  {
+   "server": "Translationx-mcp-server",
+   "github_url": "https://github.com/Deep-Intelligent-Pharma/Translationx-mcp-server",
+   "file": "src/tools/file_tools.py",
+   "line": 91
+  },
+  {
+   "server": "Translationx-mcp-server",
+   "github_url": "https://github.com/Deep-Intelligent-Pharma/Translationx-mcp-server",
+   "file": "src/tools/file_tools.py",
+   "line": 91
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "mcp-server/src/simpleTokenManager.ts",
+   "line": 33
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "mcp-server/src/tokenManager.ts",
+   "line": 72
+  },
+  {
+   "server": "rt-buildwgt-mcp",
+   "github_url": "rt-buildwgt-mcp",
+   "file": "request.js",
+   "line": 9
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "mcp-server/src/simpleTokenManager.ts",
+   "line": 33
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "mcp-server/src/tokenManager.ts",
+   "line": 72
+  },
+  {
+   "server": "rt-buildwgt-mcp",
+   "github_url": "rt-buildwgt-mcp",
+   "file": "request.js",
+   "line": 9
+  }
+ ],
+ "1a41187db1f1": [
+  {
+   "server": "modjules",
+   "github_url": "https://github.com/davideast/modjules",
+   "file": "examples/proxy-firebase/src/auth.ts",
+   "line": 13
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/grid/collaborative/index.js",
+   "line": 43
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/grid/datagrid-bind-to-firestore/index.js",
+   "line": 37
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/grid/datagrid-bind-to-firestore/index.ts",
+   "line": 52
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/grid/grid-firebase-integration/index.js",
+   "line": 49
+  },
+  {
+   "server": "mcp-with-extension",
+   "github_url": "https://github.com/PriyanshuProgrammer/mcp-with-extension",
+   "file": "client-example.js",
+   "line": 7
+  },
+  {
+   "server": "modjules",
+   "github_url": "https://github.com/davideast/modjules",
+   "file": "examples/proxy-firebase/src/auth.ts",
+   "line": 13
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/grid/collaborative/index.js",
+   "line": 43
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/grid/datagrid-bind-to-firestore/index.js",
+   "line": 37
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/grid/datagrid-bind-to-firestore/index.ts",
+   "line": 52
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/grid/grid-firebase-integration/index.js",
+   "line": 49
+  }
+ ],
+ "f3dfae6f15a2": [
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/ChiragPatankar/MCP",
+   "file": "mcp-backend/src/index.ts",
+   "line": 29
+  },
+  {
+   "server": "webforge-mcp",
+   "github_url": "https://github.com/joytorm/webforge-mcp",
+   "file": "src/db/client.ts",
+   "line": 5
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/ChiragPatankar/MCP",
+   "file": "mcp-backend/src/index.ts",
+   "line": 29
+  },
+  {
+   "server": "webforge-mcp",
+   "github_url": "https://github.com/joytorm/webforge-mcp",
+   "file": "src/db/client.ts",
+   "line": 5
+  },
+  {
+   "server": "people-mcp-python",
+   "github_url": "https://github.com/sanjayamirthraj/people-mcp-python",
+   "file": "src/face_recognition_server.py",
+   "line": 18
+  },
+  {
+   "server": "people-mcp-python",
+   "github_url": "https://github.com/sanjayamirthraj/people-mcp-python",
+   "file": "src/server.py",
+   "line": 43
+  },
+  {
+   "server": "people-mcp-python",
+   "github_url": "https://github.com/sanjayamirthraj/people-mcp-python",
+   "file": "src/server_backup.py",
+   "line": 11
+  },
+  {
+   "server": "people-mcp-python",
+   "github_url": "https://github.com/sanjayamirthraj/people-mcp-python",
+   "file": "src/face_recognition_server.py",
+   "line": 18
+  },
+  {
+   "server": "people-mcp-python",
+   "github_url": "https://github.com/sanjayamirthraj/people-mcp-python",
+   "file": "src/server.py",
+   "line": 43
+  },
+  {
+   "server": "people-mcp-python",
+   "github_url": "https://github.com/sanjayamirthraj/people-mcp-python",
+   "file": "src/server_backup.py",
+   "line": 11
+  }
+ ],
+ "08ca7eaedc64": [
+  {
+   "server": "mcp_postgresql",
+   "github_url": "https://github.com/anass1209/mcp_postgresql",
+   "file": "With_CMD/config.py",
+   "line": 21
+  },
+  {
+   "server": "Nigeria_tourism_api_mcp_server",
+   "github_url": "https://github.com/jedi132000/Nigeria_tourism_api_mcp_server",
+   "file": "data_collection_tools.py",
+   "line": 52
+  },
+  {
+   "server": "mcp-server_web_tools",
+   "github_url": "https://github.com/khaihuynhvn/mcp-server_web_tools",
+   "file": "tools/mcp_web_search/constants.py",
+   "line": 7
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/mmirajdeep/MCP",
+   "file": "tools/retrival_tools.py",
+   "line": 13
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/zhama-ai/mcp-server",
+   "file": "src/config/index.ts",
+   "line": 21
+  },
+  {
+   "server": "mcp_postgresql",
+   "github_url": "https://github.com/anass1209/mcp_postgresql",
+   "file": "With_CMD/config.py",
+   "line": 21
+  },
+  {
+   "server": "Nigeria_tourism_api_mcp_server",
+   "github_url": "https://github.com/jedi132000/Nigeria_tourism_api_mcp_server",
+   "file": "data_collection_tools.py",
+   "line": 52
+  },
+  {
+   "server": "mcp-server_web_tools",
+   "github_url": "https://github.com/khaihuynhvn/mcp-server_web_tools",
+   "file": "tools/mcp_web_search/constants.py",
+   "line": 7
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/mmirajdeep/MCP",
+   "file": "tools/retrival_tools.py",
+   "line": 13
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/zhama-ai/mcp-server",
+   "file": "src/config/index.ts",
+   "line": 21
+  }
+ ],
+ "32e3c2897b5e": [
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release-with-token.js",
+   "line": 77
+  },
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release.js",
+   "line": 130
+  },
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release.js",
+   "line": 142
+  },
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release.js",
+   "line": 152
+  },
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release.js",
+   "line": 161
+  },
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release-with-token.js",
+   "line": 77
+  },
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release.js",
+   "line": 130
+  },
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release.js",
+   "line": 142
+  },
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release.js",
+   "line": 152
+  },
+  {
+   "server": "port-mcp-gateway",
+   "github_url": "port-mcp-gateway",
+   "file": "release.js",
+   "line": 161
+  }
+ ],
+ "42b5da1239ad": [
+  {
+   "server": "ice-locator-mcp",
+   "github_url": "https://github.com/trose/ice-locator-mcp",
+   "file": "web-app/generate_basic_pages.py",
+   "line": 152
+  },
+  {
+   "server": "ice-locator-mcp",
+   "github_url": "https://github.com/trose/ice-locator-mcp",
+   "file": "web-app/generate_simple_pages.py",
+   "line": 152
+  },
+  {
+   "server": "ice-locator-mcp",
+   "github_url": "https://github.com/trose/ice-locator-mcp",
+   "file": "web-app/generate_static_pages.py",
+   "line": 185
+  },
+  {
+   "server": "ice-locator-mcp",
+   "github_url": "https://github.com/trose/ice-locator-mcp",
+   "file": "web-app/generate_static_pages_clean.py",
+   "line": 190
+  },
+  {
+   "server": "ice-locator-mcp",
+   "github_url": "https://github.com/trose/ice-locator-mcp",
+   "file": "web-app/generate_basic_pages.py",
+   "line": 152
+  },
+  {
+   "server": "ice-locator-mcp",
+   "github_url": "https://github.com/trose/ice-locator-mcp",
+   "file": "web-app/generate_simple_pages.py",
+   "line": 152
+  },
+  {
+   "server": "ice-locator-mcp",
+   "github_url": "https://github.com/trose/ice-locator-mcp",
+   "file": "web-app/generate_static_pages.py",
+   "line": 185
+  },
+  {
+   "server": "ice-locator-mcp",
+   "github_url": "https://github.com/trose/ice-locator-mcp",
+   "file": "web-app/generate_static_pages_clean.py",
+   "line": 190
+  }
+ ],
+ "72c45c53056a": [
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/layout/overview/index.js",
+   "line": 14
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/splitter/orientation/index.js",
+   "line": 38
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/splitter/orientation/index.ts",
+   "line": 60
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/tabs/label-settings/index.ts",
+   "line": 47
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/layout/overview/index.js",
+   "line": 14
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/splitter/orientation/index.js",
+   "line": 38
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/splitter/orientation/index.ts",
+   "line": 60
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos/tabs/label-settings/index.ts",
+   "line": 47
+  }
+ ],
+ "a81676d9fe78": [
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/fist-maestro/mcp-servers",
+   "file": "src/weather/config/index.ts",
+   "line": 3
+  },
+  {
+   "server": "douban-mcp",
+   "github_url": "https://github.com/moria97/douban-mcp",
+   "file": "src/api.ts",
+   "line": 153
+  },
+  {
+   "server": "mcp-servers",
+   "github_url": "https://github.com/fist-maestro/mcp-servers",
+   "file": "src/weather/config/index.ts",
+   "line": 3
+  },
+  {
+   "server": "douban-mcp",
+   "github_url": "https://github.com/moria97/douban-mcp",
+   "file": "src/api.ts",
+   "line": 153
+  },
+  {
+   "server": "doc-mcp-server",
+   "github_url": "https://github.com/my-mcp-hub/doc-mcp-server",
+   "file": "src/tools/registerWatermarkJsPlus.ts",
+   "line": 32
+  },
+  {
+   "server": "douban-mcp",
+   "github_url": "douban-mcp",
+   "file": "src/api.ts",
+   "line": 145
+  },
+  {
+   "server": "doc-mcp-server",
+   "github_url": "https://github.com/my-mcp-hub/doc-mcp-server",
+   "file": "src/tools/registerWatermarkJsPlus.ts",
+   "line": 32
+  },
+  {
+   "server": "douban-mcp",
+   "github_url": "douban-mcp",
+   "file": "src/api.ts",
+   "line": 145
+  }
+ ],
+ "cf31d7be1f82": [
+  {
+   "server": "remote-mcp-server-authless",
+   "github_url": "https://github.com/evimeyer/remote-mcp-server-authless",
+   "file": "src/index.ts",
+   "line": 16
+  },
+  {
+   "server": "myweight-mcp-server",
+   "github_url": "https://github.com/shinichi-takayanagi/myweight-mcp-server",
+   "file": "src/weight.ts",
+   "line": 54
+  },
+  {
+   "server": "remote-mcp-server-authless",
+   "github_url": "https://github.com/evimeyer/remote-mcp-server-authless",
+   "file": "src/index.ts",
+   "line": 16
+  },
+  {
+   "server": "myweight-mcp-server",
+   "github_url": "https://github.com/shinichi-takayanagi/myweight-mcp-server",
+   "file": "src/weight.ts",
+   "line": 54
+  },
+  {
+   "server": "zerodha-mcp-server",
+   "github_url": "https://github.com/omkarjoshi9/zerodha-mcp-server",
+   "file": "trade.ts",
+   "line": 4
+  },
+  {
+   "server": "Mcp_trade",
+   "github_url": "https://github.com/Sekharcode5/Mcp_trade",
+   "file": "trade.ts",
+   "line": 6
+  },
+  {
+   "server": "zerodha-mcp-server",
+   "github_url": "https://github.com/omkarjoshi9/zerodha-mcp-server",
+   "file": "trade.ts",
+   "line": 4
+  }
+ ],
+ "f4cf4378960e": [
+  {
+   "server": "mcp-emust",
+   "github_url": "mcp-emust",
+   "file": "tools/ChangeTagStatus.ts",
+   "line": 26
+  },
+  {
+   "server": "mcp-emust",
+   "github_url": "mcp-emust",
+   "file": "tools/GenerateQRCode.ts",
+   "line": 26
+  },
+  {
+   "server": "mcp-emust",
+   "github_url": "mcp-emust",
+   "file": "tools/checkTagStatus.ts",
+   "line": 21
+  },
+  {
+   "server": "mcp-api-master-integration",
+   "github_url": "https://github.com/Jmoney1214/mcp-api-master-integration",
+   "file": "email-campaign/n8n-campaign-trigger.js",
+   "line": 11
+  },
+  {
+   "server": "mcp-emust",
+   "github_url": "mcp-emust",
+   "file": "tools/ChangeTagStatus.ts",
+   "line": 26
+  },
+  {
+   "server": "mcp-emust",
+   "github_url": "mcp-emust",
+   "file": "tools/GenerateQRCode.ts",
+   "line": 26
+  },
+  {
+   "server": "mcp-emust",
+   "github_url": "mcp-emust",
+   "file": "tools/checkTagStatus.ts",
+   "line": 21
+  }
+ ],
+ "deabaa347efb": [
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/pratik2374/mcp-server",
+   "file": "Task1 setup/flashcard.py",
+   "line": 11
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/pratik2374/mcp-server",
+   "file": "Task1 setup/lessonPlan.py",
+   "line": 9
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/pratik2374/mcp-server",
+   "file": "Task1 setup/mcq.py",
+   "line": 9
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/pratik2374/mcp-server",
+   "file": "Task1 setup/flashcard.py",
+   "line": 11
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/pratik2374/mcp-server",
+   "file": "Task1 setup/lessonPlan.py",
+   "line": 9
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/pratik2374/mcp-server",
+   "file": "Task1 setup/mcq.py",
+   "line": 9
+  }
+ ],
+ "b358b7ca4106": [
+  {
+   "server": "mcp-server-git-cz",
+   "github_url": "https://github.com/FradSer/mcp-server-git-cz",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "mcp-server-git-cz",
+   "github_url": "https://github.com/FradSer/mcp-server-git-cz",
+   "file": ".env",
+   "line": 2
+  },
+  {
+   "server": "Simple_mcp_server",
+   "github_url": "https://github.com/yuvraj1898/Simple_mcp_server",
+   "file": "mcpclient/.env",
+   "line": 1
+  },
+  {
+   "server": "integrating-tools-with-mcp-server",
+   "github_url": "https://github.com/souhardraut007/integrating-tools-with-mcp-server",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "integrating-tools-with-mcp-server",
+   "github_url": "https://github.com/souhardraut007/integrating-tools-with-mcp-server",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "ff24d8bf5ac5": [
+  {
+   "server": "ldims-backend-mcp",
+   "github_url": "https://github.com/windhood-jza/ldims-backend-mcp",
+   "file": "scripts/update-env-token.js",
+   "line": 3
+  },
+  {
+   "server": "ldims-backend-mcp",
+   "github_url": "https://github.com/windhood-jza/ldims-backend-mcp",
+   "file": "scripts/update-env-token.js",
+   "line": 3
+  },
+  {
+   "server": "upstox-mcp-server",
+   "github_url": "https://github.com/nitesh-nandan/upstox-mcp-server",
+   "file": "src/auth/auth_manager.py",
+   "line": 85
+  },
+  {
+   "server": "MultiAgent_with_MCP",
+   "github_url": "https://github.com/Roksana18cse04/MultiAgent_with_MCP",
+   "file": "app/services/token_manager.py",
+   "line": 78
+  },
+  {
+   "server": "upstox-mcp-server",
+   "github_url": "https://github.com/nitesh-nandan/upstox-mcp-server",
+   "file": "src/auth/auth_manager.py",
+   "line": 85
+  }
+ ],
+ "dbad9bd7dfd4": [
+  {
+   "server": "daylite-claude-connector",
+   "github_url": "https://github.com/wimwoeber/daylite-claude-connector",
+   "file": "src/daylite-rest-client.ts",
+   "line": 64
+  },
+  {
+   "server": "daylite-claude-connector",
+   "github_url": "https://github.com/wimwoeber/daylite-claude-connector",
+   "file": "src/daylite-rest-client.ts",
+   "line": 64
+  },
+  {
+   "server": "cline",
+   "github_url": "https://github.com/cline/cline",
+   "file": "apps/vscode/src/services/mcp/settingsLock.ts",
+   "line": 94
+  },
+  {
+   "server": "dropbox-mcp",
+   "github_url": "https://github.com/fm-phibia/dropbox-mcp",
+   "file": "src/index.ts",
+   "line": 88
+  },
+  {
+   "server": "dropbox-mcp",
+   "github_url": "https://github.com/fm-phibia/dropbox-mcp",
+   "file": "src/index.ts",
+   "line": 88
+  }
+ ],
+ "d6cb09e4962b": [
+  {
+   "server": "chrome-devtools-mcp",
+   "github_url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+   "file": "src/tools/performance.ts",
+   "line": 241
+  },
+  {
+   "server": "chrome-devtools-mcp",
+   "github_url": "https://github.com/ChromeDevTools/chrome-devtools-mcp",
+   "file": "src/tools/performance.ts",
+   "line": 241
+  },
+  {
+   "server": "chrome-devtools-mcp",
+   "github_url": "https://github.com/nimbus21/chrome-devtools-mcp",
+   "file": "src/tools/performance.ts",
+   "line": 227
+  },
+  {
+   "server": "chrome-devtools-mcp",
+   "github_url": "https://github.com/nimbus21/chrome-devtools-mcp",
+   "file": "src/tools/performance.ts",
+   "line": 227
+  }
+ ],
+ "b1f473c9fea3": [
+  {
+   "server": "FastMCP",
+   "github_url": "https://github.com/ANSH-RIYAL/FastMCP",
+   "file": "fastmcp_server.py",
+   "line": 12
+  },
+  {
+   "server": "FastMCP",
+   "github_url": "https://github.com/ANSH-RIYAL/FastMCP",
+   "file": "fastmcp_server.py",
+   "line": 12
+  },
+  {
+   "server": "44AutoScriptGenwithPWwithMCP",
+   "github_url": "https://github.com/baluvreddy/44AutoScriptGenwithPWwithMCP",
+   "file": "generate_and_runall.js",
+   "line": 7
+  },
+  {
+   "server": "44AutoScriptGenwithPWwithMCP",
+   "github_url": "https://github.com/baluvreddy/44AutoScriptGenwithPWwithMCP",
+   "file": "generate_and_runall.js",
+   "line": 7
+  }
+ ],
+ "9018aa7a3bad": [
+  {
+   "server": "DeepSearch-MCP",
+   "github_url": "https://github.com/yuemingruoan/DeepSearch-MCP",
+   "file": ".env",
+   "line": 4
+  },
+  {
+   "server": "mcp-kimi",
+   "github_url": "https://github.com/adamleen/mcp-kimi",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "DeepSearch-MCP",
+   "github_url": "https://github.com/yuemingruoan/DeepSearch-MCP",
+   "file": ".env",
+   "line": 4
+  },
+  {
+   "server": "mcp-kimi",
+   "github_url": "https://github.com/adamleen/mcp-kimi",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "83ec4b6305e5": [
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": ".env",
+   "line": 4
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": ".env",
+   "line": 4
+  },
+  {
+   "server": "graphitiMCP",
+   "github_url": "https://github.com/dev8372/graphitiMCP",
+   "file": "mcp_server/.env",
+   "line": 11
+  },
+  {
+   "server": "graphitiMCP",
+   "github_url": "https://github.com/dev8372/graphitiMCP",
+   "file": "mcp_server/.env",
+   "line": 11
+  }
+ ],
+ "edf49852b32d": [
+  {
+   "server": "enhanced-google-maps-mcp",
+   "github_url": "https://github.com/NewbieNL/enhanced-google-maps-mcp",
+   "file": "config.js",
+   "line": 1
+  },
+  {
+   "server": "enhanced-google-maps-mcp",
+   "github_url": "https://github.com/NewbieNL/enhanced-google-maps-mcp",
+   "file": "config.js",
+   "line": 1
+  },
+  {
+   "server": "adk-alloydb",
+   "github_url": "https://github.com/fathiajama-oss/adk-alloydb",
+   "file": "places_proxy.py",
+   "line": 7
+  },
+  {
+   "server": "adk-alloydb",
+   "github_url": "https://github.com/fathiajama-oss/adk-alloydb",
+   "file": "places_proxy.py",
+   "line": 7
+  }
+ ],
+ "1ca013ca5680": [
+  {
+   "server": "MCP-SERVER-PG",
+   "github_url": "https://github.com/divyanshu-vashu/MCP-SERVER-PG",
+   "file": "#sample_example/ev-journey-insight-main/.env",
+   "line": 1
+  },
+  {
+   "server": "MCP-SERVER-PG",
+   "github_url": "https://github.com/divyanshu-vashu/MCP-SERVER-PG",
+   "file": "#sample_example/ev-journey-insight-main copy/.env",
+   "line": 1
+  },
+  {
+   "server": "MCP-SERVER-PG",
+   "github_url": "https://github.com/divyanshu-vashu/MCP-SERVER-PG",
+   "file": "#sample_example/ev-journey-insight-main/.env",
+   "line": 1
+  },
+  {
+   "server": "MCP-SERVER-PG",
+   "github_url": "https://github.com/divyanshu-vashu/MCP-SERVER-PG",
+   "file": "#sample_example/ev-journey-insight-main copy/.env",
+   "line": 1
+  }
+ ],
+ "1e9416218a5b": [
+  {
+   "server": "@aiondadotcom/mcp-gemini-image",
+   "github_url": "@aiondadotcom/mcp-gemini-image",
+   "file": "generate-house-image.js",
+   "line": 7
+  },
+  {
+   "server": "@aiondadotcom/mcp-gemini-image",
+   "github_url": "@aiondadotcom/mcp-gemini-image",
+   "file": "list-models.js",
+   "line": 3
+  },
+  {
+   "server": "@aiondadotcom/mcp-gemini-image",
+   "github_url": "@aiondadotcom/mcp-gemini-image",
+   "file": "generate-house-image.js",
+   "line": 7
+  },
+  {
+   "server": "@aiondadotcom/mcp-gemini-image",
+   "github_url": "@aiondadotcom/mcp-gemini-image",
+   "file": "list-models.js",
+   "line": 3
+  }
+ ],
+ "200f093fc110": [
+  {
+   "server": "rag_mcp",
+   "github_url": "https://github.com/Pond500/rag_mcp",
+   "file": "examples/progressive_extraction_demo.py",
+   "line": 37
+  },
+  {
+   "server": "rag_mcp",
+   "github_url": "https://github.com/Pond500/rag_mcp",
+   "file": "examples/progressive_extraction_demo.py",
+   "line": 79
+  },
+  {
+   "server": "rag_mcp",
+   "github_url": "https://github.com/Pond500/rag_mcp",
+   "file": "examples/progressive_extraction_demo.py",
+   "line": 173
+  },
+  {
+   "server": "rag_mcp",
+   "github_url": "https://github.com/Pond500/rag_mcp",
+   "file": "examples/progressive_extraction_demo.py",
+   "line": 217
+  }
+ ],
+ "7ea0333a932e": [
+  {
+   "server": "onenote-mcp",
+   "github_url": "https://github.com/danosb/onenote-mcp",
+   "file": "authenticate.js",
+   "line": 36
+  },
+  {
+   "server": "onenote-mcp",
+   "github_url": "https://github.com/danosb/onenote-mcp",
+   "file": "authenticate.js",
+   "line": 36
+  },
+  {
+   "server": "@iflow-mcp/onenote-mcp",
+   "github_url": "@iflow-mcp/onenote-mcp",
+   "file": "authenticate.js",
+   "line": 36
+  },
+  {
+   "server": "@iflow-mcp/onenote-mcp",
+   "github_url": "@iflow-mcp/onenote-mcp",
+   "file": "authenticate.js",
+   "line": 36
+  }
+ ],
+ "5f04423feacd": [
+  {
+   "server": "model-context-protocols",
+   "github_url": "https://github.com/Monsoft-Solutions/model-context-protocols",
+   "file": "packages/mcp-eraser-diagram/scripts/setup.js",
+   "line": 44
+  },
+  {
+   "server": "model-context-protocols",
+   "github_url": "https://github.com/Monsoft-Solutions/model-context-protocols",
+   "file": "packages/mcp-eraser-diagram/scripts/setup.js",
+   "line": 44
+  },
+  {
+   "server": "@monsoft/mcp-eraser-diagram",
+   "github_url": "@monsoft/mcp-eraser-diagram",
+   "file": "scripts/setup.js",
+   "line": 44
+  },
+  {
+   "server": "@monsoft/mcp-eraser-diagram",
+   "github_url": "@monsoft/mcp-eraser-diagram",
+   "file": "scripts/setup.js",
+   "line": 44
+  }
+ ],
+ "62eb739e4812": [
+  {
+   "server": "create-mcp-client",
+   "github_url": "create-mcp-client",
+   "file": "examples/apps/cli/trmx-agent/src/config.ts",
+   "line": 345
+  },
+  {
+   "server": "ex-mcp",
+   "github_url": "ex-mcp",
+   "file": "examples/apps/cli/trmx-agent/src/config.ts",
+   "line": 345
+  },
+  {
+   "server": "create-mcp-client",
+   "github_url": "create-mcp-client",
+   "file": "examples/apps/cli/trmx-agent/src/config.ts",
+   "line": 345
+  },
+  {
+   "server": "ex-mcp",
+   "github_url": "ex-mcp",
+   "file": "examples/apps/cli/trmx-agent/src/config.ts",
+   "line": 345
+  }
+ ],
+ "35be5f3a7489": [
+  {
+   "server": "neo",
+   "github_url": "https://github.com/divin3circle/neo",
+   "file": "scripts/stockPrices.js",
+   "line": 5
+  },
+  {
+   "server": "neo",
+   "github_url": "https://github.com/divin3circle/neo",
+   "file": "scripts/stockPrices.js",
+   "line": 5
+  },
+  {
+   "server": "mcpcounpon",
+   "github_url": "https://github.com/4xiaxia/mcpcounpon",
+   "file": "src/app.js",
+   "line": 8
+  },
+  {
+   "server": "mcp_location-intelligence",
+   "github_url": "https://github.com/WaliedCheetos/mcp_location-intelligence",
+   "file": "src/resources/common/config/config.js",
+   "line": 4
+  }
+ ],
+ "61a6b697961e": [
+  {
+   "server": "neo",
+   "github_url": "https://github.com/divin3circle/neo",
+   "file": "src/helpers.ts",
+   "line": 28
+  },
+  {
+   "server": "neo",
+   "github_url": "https://github.com/divin3circle/neo",
+   "file": "src/helpers.ts",
+   "line": 28
+  },
+  {
+   "server": "mcp-registry",
+   "github_url": "https://github.com/mcpmessenger/mcp-registry",
+   "file": "backend/src/scripts/update-brave-search-api-key.ts",
+   "line": 11
+  },
+  {
+   "server": "mcp-registry",
+   "github_url": "https://github.com/mcpmessenger/mcp-registry",
+   "file": "backend/src/scripts/update-brave-search-api-key.ts",
+   "line": 11
+  }
+ ],
+ "a694488a234c": [
+  {
+   "server": "RapidAPI_mcp",
+   "github_url": "https://github.com/SecurFi/RapidAPI_mcp",
+   "file": "twitter_crawler.py",
+   "line": 24
+  },
+  {
+   "server": "RapidAPI_mcp",
+   "github_url": "https://github.com/SecurFi/RapidAPI_mcp",
+   "file": "twitter_crawler.py",
+   "line": 24
+  },
+  {
+   "server": "Trip_planner_agent_mcp_server",
+   "github_url": "https://github.com/Abhi-245/Trip_planner_agent_mcp_server",
+   "file": "weather.py",
+   "line": 206
+  },
+  {
+   "server": "pizza-mcp",
+   "github_url": "https://github.com/Prosigliere/pizza-mcp",
+   "file": "adapter.py",
+   "line": 15
+  }
+ ],
+ "0cc1fb2dc174": [
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/razvan1326/mcp-server",
+   "file": "src/oauth-manager.js",
+   "line": 205
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/razvan1326/mcp-server",
+   "file": "src/server.js",
+   "line": 434
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/razvan1326/mcp-server",
+   "file": "src/oauth-manager.js",
+   "line": 205
+  },
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/razvan1326/mcp-server",
+   "file": "src/server.js",
+   "line": 434
+  }
+ ],
+ "681a1b53bc98": [
+  {
+   "server": "MCP-server-Python",
+   "github_url": "https://github.com/ShivamPansuriya/MCP-server-Python",
+   "file": "dynamic_tool_middleware.py",
+   "line": 121
+  },
+  {
+   "server": "MCP-server-Python",
+   "github_url": "https://github.com/ShivamPansuriya/MCP-server-Python",
+   "file": "dynamic_tool_middleware.py",
+   "line": 237
+  },
+  {
+   "server": "MCP-server-Python",
+   "github_url": "https://github.com/ShivamPansuriya/MCP-server-Python",
+   "file": "dynamic_tool_middleware.py",
+   "line": 121
+  },
+  {
+   "server": "MCP-server-Python",
+   "github_url": "https://github.com/ShivamPansuriya/MCP-server-Python",
+   "file": "dynamic_tool_middleware.py",
+   "line": 237
+  }
+ ],
+ "d2d902795045": [
+  {
+   "server": "ai_collaboration_mcp_server",
+   "github_url": "https://github.com/atsuki-sakai/ai_collaboration_mcp_server",
+   "file": "scripts/debug-startup.js",
+   "line": 23
+  },
+  {
+   "server": "ai_collaboration_mcp_server",
+   "github_url": "https://github.com/atsuki-sakai/ai_collaboration_mcp_server",
+   "file": "scripts/verify-deepseek.js",
+   "line": 18
+  },
+  {
+   "server": "ai_collaboration_mcp_server",
+   "github_url": "https://github.com/atsuki-sakai/ai_collaboration_mcp_server",
+   "file": "scripts/debug-startup.js",
+   "line": 23
+  },
+  {
+   "server": "ai_collaboration_mcp_server",
+   "github_url": "https://github.com/atsuki-sakai/ai_collaboration_mcp_server",
+   "file": "scripts/verify-deepseek.js",
+   "line": 18
+  }
+ ],
+ "0e141d15d829": [
+  {
+   "server": "chargenow-mcp",
+   "github_url": "https://github.com/cevatkerim/chargenow-mcp",
+   "file": "src/index.ts",
+   "line": 512
+  },
+  {
+   "server": "chargenow-mcp",
+   "github_url": "https://github.com/cevatkerim/chargenow-mcp",
+   "file": "src/index.ts",
+   "line": 512
+  },
+  {
+   "server": "chargenow-mcp",
+   "github_url": "chargenow-mcp",
+   "file": "src/index.ts",
+   "line": 512
+  },
+  {
+   "server": "chargenow-mcp",
+   "github_url": "chargenow-mcp",
+   "file": "src/index.ts",
+   "line": 512
+  }
+ ],
+ "19ac5dbaf5b6": [
+  {
+   "server": "neonpanel-mcp-server",
+   "github_url": "https://github.com/5starsunited/neonpanel-mcp-server",
+   "file": "keepa-mcp/infrastructure/lib/keepa-server-stack-with-domain.js",
+   "line": 96
+  },
+  {
+   "server": "neonpanel-mcp-server",
+   "github_url": "https://github.com/5starsunited/neonpanel-mcp-server",
+   "file": "keepa-mcp/infrastructure/lib/keepa-server-stack-with-domain.ts",
+   "line": 85
+  },
+  {
+   "server": "neonpanel-mcp-server",
+   "github_url": "https://github.com/5starsunited/neonpanel-mcp-server",
+   "file": "keepa-mcp/infrastructure/lib/keepa-server-stack.js",
+   "line": 73
+  },
+  {
+   "server": "neonpanel-mcp-server",
+   "github_url": "https://github.com/5starsunited/neonpanel-mcp-server",
+   "file": "keepa-mcp/infrastructure/lib/keepa-server-stack.ts",
+   "line": 53
+  }
+ ],
+ "e1ec50ab50bb": [
+  {
+   "server": "zerodha-mcp-server",
+   "github_url": "https://github.com/bondeyash/zerodha-mcp-server",
+   "file": "trade.ts",
+   "line": 7
+  },
+  {
+   "server": "zerodha-mcp-server",
+   "github_url": "https://github.com/nipun1311/zerodha-mcp-server",
+   "file": "trade.ts",
+   "line": 6
+  },
+  {
+   "server": "zerodha-mcp-server",
+   "github_url": "https://github.com/bondeyash/zerodha-mcp-server",
+   "file": "trade.ts",
+   "line": 7
+  },
+  {
+   "server": "zerodha-mcp-server",
+   "github_url": "https://github.com/nipun1311/zerodha-mcp-server",
+   "file": "trade.ts",
+   "line": 6
+  }
+ ],
+ "1022d95e1363": [
+  {
+   "server": "MCP-SERVER-MEDICAL-",
+   "github_url": "https://github.com/AdithDinish/MCP-SERVER-MEDICAL-",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp-server-med",
+   "github_url": "mcp-server-med",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp-server-med",
+   "github_url": "mcp-server-med",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "d2b5b9cfca07": [
+  {
+   "server": "mcp-qdrant-memory",
+   "github_url": "https://github.com/delorenj/mcp-qdrant-memory",
+   "file": "src/persistence/qdrant.ts",
+   "line": 20
+  },
+  {
+   "server": "mcp-qdrant-memory",
+   "github_url": "https://github.com/delorenj/mcp-qdrant-memory",
+   "file": "src/persistence/qdrant.ts",
+   "line": 20
+  },
+  {
+   "server": "MCP-chat",
+   "github_url": "https://github.com/Mehedad1948/MCP-chat",
+   "file": "app/api/completion/route.ts",
+   "line": 9
+  }
+ ],
+ "d2225344e8b0": [
+  {
+   "server": "mcp-server",
+   "github_url": "https://github.com/VenGr0/mcp-server",
+   "file": "server.py",
+   "line": 8
+  },
+  {
+   "server": "langchain_mcp_servers",
+   "github_url": "https://github.com/aryaman45/langchain_mcp_servers",
+   "file": "servers/weather_server.py",
+   "line": 11
+  },
+  {
+   "server": "langchain_mcp_servers",
+   "github_url": "https://github.com/aryaman45/langchain_mcp_servers",
+   "file": "servers/weather_server.py",
+   "line": 11
+  }
+ ],
+ "dbba1d40d442": [
+  {
+   "server": "dart-mcp",
+   "github_url": "https://github.com/Dayoooun/dart-mcp",
+   "file": "src/opendart_mcp/server.py",
+   "line": 26
+  },
+  {
+   "server": "weather-mcp",
+   "github_url": "https://github.com/shekharboppanapally/weather-mcp",
+   "file": "src/index.js",
+   "line": 46
+  },
+  {
+   "server": "weather-mcp",
+   "github_url": "https://github.com/shekharboppanapally/weather-mcp",
+   "file": "src/index.js",
+   "line": 46
+  }
+ ],
+ "0d6a6ee3838b": [
+  {
+   "server": "agentic-system-oss",
+   "github_url": "https://github.com/marc-shade/agentic-system-oss",
+   "file": "cluster-deployment/export_macpro51/hook_helper/ember_care.py",
+   "line": 15
+  },
+  {
+   "server": "agentic-system-oss",
+   "github_url": "https://github.com/marc-shade/agentic-system-oss",
+   "file": "cluster-deployment/export_macpro51/hook_helper/ember_groq_ollama_pipeline.py",
+   "line": 15
+  },
+  {
+   "server": "agentic-system-oss",
+   "github_url": "https://github.com/marc-shade/agentic-system-oss",
+   "file": "cluster-deployment/export_macpro51/hook_helper/ember_violation_check.py",
+   "line": 17
+  }
+ ],
+ "b67c852ec7d0": [
+  {
+   "server": "mcp_py_exam",
+   "github_url": "https://github.com/istanadodan/mcp_py_exam",
+   "file": "openai-mcp/.env",
+   "line": 5
+  },
+  {
+   "server": "mcp_py_exam",
+   "github_url": "https://github.com/istanadodan/mcp_py_exam",
+   "file": "openai-mcp/.env",
+   "line": 5
+  }
+ ],
+ "ca680e008f11": [
+  {
+   "server": "mcp-server-npm",
+   "github_url": "https://github.com/snyk-labs/mcp-server-npm",
+   "file": "index.js",
+   "line": 60
+  },
+  {
+   "server": "mcp-server-npm",
+   "github_url": "https://github.com/snyk-labs/mcp-server-npm",
+   "file": "index.js",
+   "line": 60
+  }
+ ],
+ "659bc69adf88": [
+  {
+   "server": "mcp-intranet-onbotgo",
+   "github_url": "https://github.com/reyer3/mcp-intranet-onbotgo",
+   "file": "mcp_onbotgo/config.py",
+   "line": 44
+  },
+  {
+   "server": "mcp-intranet-onbotgo",
+   "github_url": "https://github.com/reyer3/mcp-intranet-onbotgo",
+   "file": "mcp_onbotgo/config.py",
+   "line": 44
+  }
+ ],
+ "48b94bfaf929": [
+  {
+   "server": "Chatbot-PWA-frontend",
+   "github_url": "https://github.com/Pratham-Jain-3903/Chatbot-PWA-frontend",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "Chatbot-PWA-frontend",
+   "github_url": "https://github.com/Pratham-Jain-3903/Chatbot-PWA-frontend",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "b6ea91664685": [
+  {
+   "server": "MCPDCOKER",
+   "github_url": "https://github.com/sirsambhav221/MCPDCOKER",
+   "file": "temp.js",
+   "line": 8
+  },
+  {
+   "server": "MCPDCOKER",
+   "github_url": "https://github.com/sirsambhav221/MCPDCOKER",
+   "file": "temp.js",
+   "line": 8
+  }
+ ],
+ "4df694ffd82e": [
+  {
+   "server": "douyin-mcp-server",
+   "github_url": "https://github.com/xray918/douyin-mcp-server",
+   "file": "douyin_mcp_server/server.py",
+   "line": 41
+  },
+  {
+   "server": "douyin-mcp-server",
+   "github_url": "https://github.com/xray918/douyin-mcp-server",
+   "file": "douyin_mcp_server/server.py",
+   "line": 41
+  }
+ ],
+ "038885ff63fa": [
+  {
+   "server": "Supabase-MCP-SelfHosted",
+   "github_url": "https://github.com/abdqum/Supabase-MCP-SelfHosted",
+   "file": "src/supabase_server.py",
+   "line": 50
+  },
+  {
+   "server": "Supabase-MCP-SelfHosted",
+   "github_url": "https://github.com/abdqum/Supabase-MCP-SelfHosted",
+   "file": "src/supabase_server.py",
+   "line": 50
+  }
+ ],
+ "91bfcff5774a": [
+  {
+   "server": "news-instagram-mcp",
+   "github_url": "https://github.com/zegh6389/news-instagram-mcp",
+   "file": "setup_production.py",
+   "line": 29
+  },
+  {
+   "server": "news-instagram-mcp",
+   "github_url": "https://github.com/zegh6389/news-instagram-mcp",
+   "file": "setup_production.py",
+   "line": 29
+  }
+ ],
+ "7af4f5d1650a": [
+  {
+   "server": "mcp-server-git-cz",
+   "github_url": "https://github.com/FradSer/mcp-server-git-cz",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp-server-git-cz",
+   "github_url": "https://github.com/FradSer/mcp-server-git-cz",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "bc550137cd68": [
+  {
+   "server": "Weather_mcp",
+   "github_url": "https://github.com/LiuKeTong713/Weather_mcp",
+   "file": ".env",
+   "line": 3
+  },
+  {
+   "server": "Weather_mcp",
+   "github_url": "https://github.com/LiuKeTong713/Weather_mcp",
+   "file": ".env",
+   "line": 3
+  }
+ ],
+ "66c8165c8eb1": [
+  {
+   "server": "security-scanner-mcp",
+   "github_url": "https://github.com/ongjin/security-scanner-mcp",
+   "file": "examples/demo.ts",
+   "line": 15
+  },
+  {
+   "server": "security-scanner-mcp",
+   "github_url": "https://github.com/ongjin/security-scanner-mcp",
+   "file": "examples/demo.ts",
+   "line": 15
+  }
+ ],
+ "0d48dc749bc3": [
+  {
+   "server": "garza-home-mcp",
+   "github_url": "https://github.com/itsablabla/garza-home-mcp",
+   "file": "src/index.js",
+   "line": 9
+  },
+  {
+   "server": "garza-home-mcp",
+   "github_url": "https://github.com/itsablabla/garza-home-mcp",
+   "file": "src/index.js",
+   "line": 9
+  }
+ ],
+ "c60d60fe28fa": [
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "kg_example.py",
+   "line": 11
+  },
+  {
+   "server": "MCP_based_KG_construction",
+   "github_url": "https://github.com/turambar928/MCP_based_KG_construction",
+   "file": "kg_example.py",
+   "line": 11
+  }
+ ],
+ "d95cacf4dbd8": [
+  {
+   "server": "blockchain-mcp",
+   "github_url": "https://github.com/Siddid-Soni/blockchain-mcp",
+   "file": "main.py",
+   "line": 9
+  },
+  {
+   "server": "blockchain-mcp",
+   "github_url": "https://github.com/Siddid-Soni/blockchain-mcp",
+   "file": "main.py",
+   "line": 9
+  }
+ ],
+ "eebe301ea681": [
+  {
+   "server": "devopness",
+   "github_url": "https://github.com/devopness/devopness",
+   "file": "packages/sdks/python/src/devopness/generated/models/credential_google_cloud.py",
+   "line": 31
+  },
+  {
+   "server": "devopness",
+   "github_url": "https://github.com/devopness/devopness",
+   "file": "packages/sdks/python/src/devopness/generated/models/credential_google_cloud.py",
+   "line": 31
+  }
+ ],
+ "356d8461e2a5": [
+  {
+   "server": "my-superset-mcp-server",
+   "github_url": "https://github.com/agent-hellboy/my-superset-mcp-server",
+   "file": ".env",
+   "line": 3
+  },
+  {
+   "server": "my-superset-mcp-server",
+   "github_url": "https://github.com/agent-hellboy/my-superset-mcp-server",
+   "file": ".env",
+   "line": 3
+  }
+ ],
+ "c6cbcc826a51": [
+  {
+   "server": "mcp-ticketer",
+   "github_url": "https://github.com/bobmatnyc/mcp-ticketer",
+   "file": "scripts/fix_mcp_configs.py",
+   "line": 29
+  },
+  {
+   "server": "mcp-ticketer",
+   "github_url": "https://github.com/bobmatnyc/mcp-ticketer",
+   "file": "scripts/fix_mcp_configs.py",
+   "line": 29
+  }
+ ],
+ "0d457817ffa1": [
+  {
+   "server": "Food_recommender_MCP",
+   "github_url": "https://github.com/brightmoonflame/Food_recommender_MCP",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "Food_recommender_MCP",
+   "github_url": "https://github.com/brightmoonflame/Food_recommender_MCP",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "e233bd8a3939": [
+  {
+   "server": "mcp-crypto-stock-news",
+   "github_url": "https://github.com/chabchoubmedaziz/mcp-crypto-stock-news",
+   "file": ".env",
+   "line": 4
+  },
+  {
+   "server": "mcp-crypto-stock-news",
+   "github_url": "https://github.com/chabchoubmedaziz/mcp-crypto-stock-news",
+   "file": ".env",
+   "line": 4
+  }
+ ],
+ "ac481b5a835b": [
+  {
+   "server": "listed-google-mcp-server",
+   "github_url": "https://github.com/lin-working-bot/listed-google-mcp-server",
+   "file": "src/lib/googleAgentdemo.ts",
+   "line": 12
+  },
+  {
+   "server": "listed-google-mcp-server",
+   "github_url": "https://github.com/lin-working-bot/listed-google-mcp-server",
+   "file": "src/lib/googleAgentdemo.ts",
+   "line": 12
+  }
+ ],
+ "e3a8c606cefb": [
+  {
+   "server": "mcp-registry",
+   "github_url": "https://github.com/mcpmessenger/mcp-registry",
+   "file": "backend/src/scripts/update-google-maps-api-key.ts",
+   "line": 12
+  },
+  {
+   "server": "mcp-registry",
+   "github_url": "https://github.com/mcpmessenger/mcp-registry",
+   "file": "backend/src/scripts/update-google-maps-api-key.ts",
+   "line": 12
+  }
+ ],
+ "32a2d842aaa7": [
+  {
+   "server": "MapGPT-MCP",
+   "github_url": "https://github.com/priyanshscpp/MapGPT-MCP",
+   "file": "playground.ts",
+   "line": 132
+  },
+  {
+   "server": "MapGPT-MCP",
+   "github_url": "https://github.com/priyanshscpp/MapGPT-MCP",
+   "file": "playground.ts",
+   "line": 132
+  }
+ ],
+ "0ee65886b53b": [
+  {
+   "server": "mcp_server",
+   "github_url": "https://github.com/sach969/mcp_server",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp_server",
+   "github_url": "https://github.com/sach969/mcp_server",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "95694c944410": [
+  {
+   "server": "mcp-demo",
+   "github_url": "https://github.com/simplic8/mcp-demo",
+   "file": ".env",
+   "line": 1
+  },
+  {
+   "server": "mcp-demo",
+   "github_url": "https://github.com/simplic8/mcp-demo",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "ec394ea00919": [
+  {
+   "server": "redaction-compliance-MCP",
+   "github_url": "https://github.com/sunkencity999/redaction-compliance-MCP",
+   "file": "mcp_redaction/demo_client.py",
+   "line": 25
+  },
+  {
+   "server": "redaction-compliance-MCP",
+   "github_url": "https://github.com/sunkencity999/redaction-compliance-MCP",
+   "file": "mcp_redaction/demo_client.py",
+   "line": 25
+  }
+ ],
+ "b7d91271de0d": [
+  {
+   "server": "python-mcp",
+   "github_url": "https://github.com/tsoernes/python-mcp",
+   "file": "scripts/.env",
+   "line": 1
+  },
+  {
+   "server": "python-mcp",
+   "github_url": "https://github.com/tsoernes/python-mcp",
+   "file": "scripts/.env",
+   "line": 1
+  }
+ ],
+ "aff4dc8d7d6b": [
+  {
+   "server": "drupaltools.github.io",
+   "github_url": "https://github.com/drupaltools/drupaltools.github.io",
+   "file": "js/social-share-kit.min.js",
+   "line": 8
+  },
+  {
+   "server": "drupaltools.github.io",
+   "github_url": "https://github.com/drupaltools/drupaltools.github.io",
+   "file": "js/social-share-kit.min.js",
+   "line": 8
+  }
+ ],
+ "e6ab9a0ed70a": [
+  {
+   "server": "mcp_uiux",
+   "github_url": "https://github.com/shadowcz007/mcp_uiux",
+   "file": "example/index.js",
+   "line": 45
+  },
+  {
+   "server": "mcp_uiux",
+   "github_url": "https://github.com/shadowcz007/mcp_uiux",
+   "file": "example/index.js",
+   "line": 45
+  }
+ ],
+ "f38b9e22b247": [
+  {
+   "server": "mcp-http-webhook",
+   "github_url": "mcp-http-webhook",
+   "file": "examples/github-server-live.ts",
+   "line": 39
+  },
+  {
+   "server": "mcp-http-webhook",
+   "github_url": "mcp-http-webhook",
+   "file": "examples/github-server-live.ts",
+   "line": 39
+  }
+ ],
+ "55eae583784e": [
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos-angular/page-templates/dashboard-advanced/app.component.ts",
+   "line": 275
+  },
+  {
+   "server": "smart-mcp",
+   "github_url": "smart-mcp",
+   "file": "demos-angular/page-templates/dashboard-advanced/app.component.ts",
+   "line": 275
+  }
+ ],
+ "fd8c625b39e3": [
+  {
+   "server": "claude-mcp",
+   "github_url": "https://github.com/tremaynet/claude-mcp",
+   "file": "bin/cli.js",
+   "line": 162
+  },
+  {
+   "server": "claude-mcp",
+   "github_url": "https://github.com/tremaynet/claude-mcp",
+   "file": "bin/cli.js",
+   "line": 162
+  }
+ ],
+ "eb778a9b46ff": [
+  {
+   "server": "purmemo-mcp",
+   "github_url": "https://github.com/coladapo/purmemo-mcp",
+   "file": "bundle/server/auth/universal-auth.js",
+   "line": 338
+  },
+  {
+   "server": "purmemo-mcp",
+   "github_url": "https://github.com/coladapo/purmemo-mcp",
+   "file": "bundle/server/auth/universal-auth.js",
+   "line": 338
+  }
+ ],
+ "9a05f127434c": [
+  {
+   "server": "cybermem",
+   "github_url": "https://github.com/mikhailkogan17/cybermem",
+   "file": "packages/dashboard/app/api/settings/regenerate/route.ts",
+   "line": 21
+  },
+  {
+   "server": "cybermem",
+   "github_url": "https://github.com/mikhailkogan17/cybermem",
+   "file": "packages/dashboard/app/api/settings/regenerate/route.ts",
+   "line": 21
+  }
+ ],
+ "a5e30cb5e1dd": [
+  {
+   "server": "gtkx",
+   "github_url": "https://github.com/eugeniodepalo/gtkx",
+   "file": "scripts/e2e-registry.ts",
+   "line": 239
+  },
+  {
+   "server": "gtkx",
+   "github_url": "https://github.com/eugeniodepalo/gtkx",
+   "file": "scripts/e2e-registry.ts",
+   "line": 239
+  }
+ ],
+ "4168f80f99b6": [
+  {
+   "server": "v0-mcp-ts",
+   "github_url": "https://github.com/nicotordev/v0-mcp-ts",
+   "file": "scripts/setup.js",
+   "line": 51
+  },
+  {
+   "server": "v0-mcp-ts",
+   "github_url": "https://github.com/nicotordev/v0-mcp-ts",
+   "file": "scripts/setup.js",
+   "line": 51
+  }
+ ],
+ "edf409813bd7": [
+  {
+   "server": "@mseep/gemini-sequential-thinking-mcp",
+   "github_url": "@mseep/gemini-sequential-thinking-mcp",
+   "file": "setup.js",
+   "line": 108
+  },
+  {
+   "server": "@mseep/gemini-sequential-thinking-mcp",
+   "github_url": "@mseep/gemini-sequential-thinking-mcp",
+   "file": "setup.js",
+   "line": 108
+  }
+ ],
+ "a59aca1b0071": [
+  {
+   "server": "News-MCP-Server",
+   "github_url": "https://github.com/Danieljoh98/News-MCP-Server",
+   "file": "news copy.py",
+   "line": 7
+  },
+  {
+   "server": "News-MCP-Server",
+   "github_url": "https://github.com/Danieljoh98/News-MCP-Server",
+   "file": "news copy.py",
+   "line": 7
+  }
+ ],
+ "4d358e15c6ef": [
+  {
+   "server": "tapd-mcp-server",
+   "github_url": "https://github.com/jiangwen0259/tapd-mcp-server",
+   "file": "src/index.js",
+   "line": 21
+  },
+  {
+   "server": "tapd-mcp-server",
+   "github_url": "https://github.com/jiangwen0259/tapd-mcp-server",
+   "file": "src/index.js",
+   "line": 21
+  }
+ ],
+ "577bf5824359": [
+  {
+   "server": "tapd-mcp-server",
+   "github_url": "https://github.com/jiangwen0259/tapd-mcp-server",
+   "file": "src/index.ts",
+   "line": 16
+  },
+  {
+   "server": "tapd-mcp-server",
+   "github_url": "https://github.com/jiangwen0259/tapd-mcp-server",
+   "file": "src/index.ts",
+   "line": 16
+  }
+ ],
+ "75a5257da84f": [
+  {
+   "server": "solana-mcp",
+   "github_url": "https://github.com/omaidf/solana-mcp",
+   "file": "set_api_keys.py",
+   "line": 11
+  },
+  {
+   "server": "solana-mcp",
+   "github_url": "https://github.com/omaidf/solana-mcp",
+   "file": "set_api_keys.py",
+   "line": 11
+  }
+ ],
+ "9675e70f7bd5": [
+  {
+   "server": "mcp-deploy",
+   "github_url": "https://github.com/SiteGlue/mcp-deploy",
+   "file": "vapi-server.js",
+   "line": 6
+  },
+  {
+   "server": "mcp-deploy",
+   "github_url": "https://github.com/SiteGlue/mcp-deploy",
+   "file": "vapi-server.js",
+   "line": 6
+  }
+ ],
+ "146840333a6a": [
+  {
+   "server": "CostExplorerMCP",
+   "github_url": "https://github.com/milan9527/CostExplorerMCP",
+   "file": "cognito_config.env",
+   "line": 3
+  },
+  {
+   "server": "CostExplorerMCP",
+   "github_url": "https://github.com/milan9527/CostExplorerMCP",
+   "file": "cognito_config.env",
+   "line": 3
+  }
+ ],
+ "678f48f73f61": [
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/Ajey95/MCP",
+   "file": "checkerlat.py",
+   "line": 25
+  },
+  {
+   "server": "MCP",
+   "github_url": "https://github.com/Ajey95/MCP",
+   "file": "checkerlat.py",
+   "line": 25
+  }
+ ],
+ "7327193becc1": [
+  {
+   "server": "MCPAddIn",
+   "github_url": "https://github.com/bobhuff0/MCPAddIn",
+   "file": "ecosystem.config.js",
+   "line": 91
+  },
+  {
+   "server": "MCPAddIn",
+   "github_url": "https://github.com/bobhuff0/MCPAddIn",
+   "file": "ecosystem.config.js",
+   "line": 91
+  }
+ ],
+ "e88da109d2c7": [
+  {
+   "server": "forest-fire-mcp",
+   "github_url": "https://github.com/daniel8824-del/forest-fire-mcp",
+   "file": "forest_fire_mcp_server.py",
+   "line": 19
+  },
+  {
+   "server": "forest-fire-mcp",
+   "github_url": "https://github.com/daniel8824-del/forest-fire-mcp",
+   "file": "forest_fire_mcp_server.py",
+   "line": 19
+  }
+ ],
+ "88b16f7cd16c": [
+  {
+   "server": "mcp-codebase-insight",
+   "github_url": "https://github.com/tosin2013/mcp-codebase-insight",
+   "file": "setup_qdrant_collection.py",
+   "line": 9
+  },
+  {
+   "server": "mcp-codebase-insight",
+   "github_url": "https://github.com/tosin2013/mcp-codebase-insight",
+   "file": "setup_qdrant_collection.py",
+   "line": 9
+  }
+ ],
+ "e694b577f82b": [
+  {
+   "server": "superstore-mcp",
+   "github_url": "https://github.com/ai-protocols/superstore-mcp",
+   "file": "src/ordersApi.ts",
+   "line": 48
+  },
+  {
+   "server": "superstore-mcp",
+   "github_url": "https://github.com/ai-protocols/superstore-mcp",
+   "file": "src/ordersApi.ts",
+   "line": 48
+  }
+ ],
+ "a1d9893be43e": [
+  {
+   "server": "mcpserver-gdp",
+   "github_url": "https://github.com/Moderator11/mcpserver-gdp",
+   "file": "tools/usinflation_tool.py",
+   "line": 8
+  },
+  {
+   "server": "mcpserver-gdp",
+   "github_url": "https://github.com/Moderator11/mcpserver-gdp",
+   "file": "tools/usinflation_tool.py",
+   "line": 8
+  }
+ ],
+ "57e4de5a5a7c": [
+  {
+   "server": "ecs_mcp_server",
+   "github_url": "https://github.com/Qihoo360/ecs_mcp_server",
+   "file": "src/utils/const.ts",
+   "line": 1
+  },
+  {
+   "server": "ecs_mcp_server",
+   "github_url": "https://github.com/Qihoo360/ecs_mcp_server",
+   "file": "src/utils/const.ts",
+   "line": 1
+  }
+ ],
+ "ce3d32beaaf3": [
+  {
+   "server": "nuvemshop-mcp-server",
+   "github_url": "https://github.com/AlexandreProenca/nuvemshop-mcp-server",
+   "file": "main.py",
+   "line": 100
+  },
+  {
+   "server": "nuvemshop-mcp-server",
+   "github_url": "https://github.com/AlexandreProenca/nuvemshop-mcp-server",
+   "file": "main.py",
+   "line": 100
+  }
+ ],
+ "54d283bfe689": [
+  {
+   "server": "jamf-mcp-server",
+   "github_url": "https://github.com/dbankscard/jamf-mcp-server",
+   "file": "src/server/chatgpt-endpoints.ts",
+   "line": 7
+  },
+  {
+   "server": "jamf-mcp-server",
+   "github_url": "https://github.com/dbankscard/jamf-mcp-server",
+   "file": "src/server/chatgpt-endpoints.ts",
+   "line": 7
+  }
+ ],
+ "ee51ee9d85b5": [
+  {
+   "server": "2025-06-18-uk-crime-mcp",
+   "github_url": "https://github.com/matthew-noeticos/2025-06-18-uk-crime-mcp",
+   "file": "src/index.ts",
+   "line": 6
+  },
+  {
+   "server": "2025-06-18-uk-crime-mcp",
+   "github_url": "https://github.com/matthew-noeticos/2025-06-18-uk-crime-mcp",
+   "file": "src/index.ts",
+   "line": 6
+  }
+ ],
+ "7f0c00307f65": [
+  {
+   "server": "media_kit_mcp_server",
+   "github_url": "https://github.com/hanqizheng/media_kit_mcp_server",
+   "file": "src/mcpClient.ts",
+   "line": 18
+  },
+  {
+   "server": "media_kit_mcp_server",
+   "github_url": "https://github.com/hanqizheng/media_kit_mcp_server",
+   "file": "src/mcpClient.ts",
+   "line": 18
+  }
+ ],
+ "4d3dc115c169": [
+  {
+   "server": "stellar-mcp-server",
+   "github_url": "https://github.com/kalepail/stellar-mcp-server",
+   "file": "src/passkey-kit.ts",
+   "line": 5
+  },
+  {
+   "server": "stellar-mcp-server",
+   "github_url": "https://github.com/kalepail/stellar-mcp-server",
+   "file": "src/passkey-kit.ts",
+   "line": 5
+  }
+ ],
+ "bdb092033539": [
+  {
+   "server": "MCP-Server",
+   "github_url": "https://github.com/Ansh642/MCP-Server",
+   "file": "index.js",
+   "line": 12
+  },
+  {
+   "server": "mcp-api-master-integration",
+   "github_url": "https://github.com/Jmoney1214/mcp-api-master-integration",
+   "file": "email-campaign/mailgun-sandbox-setup.js",
+   "line": 12
+  }
+ ],
+ "cc2a6c7e7336": [
+  {
+   "server": "qloo_confidential_mcp_server",
+   "github_url": "https://github.com/ckagrawal89/qloo_confidential_mcp_server",
+   "file": "src/qloo_mcp_server/constant.py",
+   "line": 2
+  },
+  {
+   "server": "qloo_confidential_mcp_server",
+   "github_url": "https://github.com/ckagrawal89/qloo_confidential_mcp_server",
+   "file": "src/qloo_mcp_server/constant.py",
+   "line": 2
+  }
+ ],
+ "240c4503a347": [
+  {
+   "server": "mcp-server-blender",
+   "github_url": "https://github.com/gyan-max/mcp-server-blender",
+   "file": "backend/api/claude_api.py",
+   "line": 3
+  },
+  {
+   "server": "mcp-server-blender",
+   "github_url": "https://github.com/gyan-max/mcp-server-blender",
+   "file": "backend/api/claude_api.py",
+   "line": 3
+  }
+ ],
+ "63695f230f07": [
+  {
+   "server": "estat-aws-mcp-server",
+   "github_url": "https://github.com/ht-fujimoto/estat-aws-mcp-server",
+   "file": "fetch_complete_household_data.py",
+   "line": 28
+  },
+  {
+   "server": "estat-aws-mcp-server",
+   "github_url": "https://github.com/ht-fujimoto/estat-aws-mcp-server",
+   "file": "fetch_complete_household_data.py",
+   "line": 28
+  }
+ ],
+ "97fa6cfc4307": [
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "my-day-network-server/src/utils/TokenManager.ts",
+   "line": 33
+  },
+  {
+   "server": "learnflowpro",
+   "github_url": "https://github.com/ladyk666/learnflowpro",
+   "file": "my-day-network-server/src/utils/TokenManager.ts",
+   "line": 33
+  }
+ ],
+ "7d386387f852": [
+  {
+   "server": "lab2-mcp-cap",
+   "github_url": "https://github.com/leandrodantelab2dev/lab2-mcp-cap",
+   "file": "srv/mcp/mcp.js",
+   "line": 5
+  },
+  {
+   "server": "lab2-mcp-cap",
+   "github_url": "https://github.com/leandrodantelab2dev/lab2-mcp-cap",
+   "file": "srv/mcp/mcp.js",
+   "line": 5
+  }
+ ],
+ "6a7a9f1a2c27": [
+  {
+   "server": "zerodha-mcp-server",
+   "github_url": "https://github.com/nipun1311/zerodha-mcp-server",
+   "file": "trade.ts",
+   "line": 4
+  },
+  {
+   "server": "zerodha-mcp-server",
+   "github_url": "https://github.com/nipun1311/zerodha-mcp-server",
+   "file": "trade.ts",
+   "line": 4
+  }
+ ],
+ "905255a20a52": [
+  {
+   "server": "AEVO-MCP-PROJECT",
+   "github_url": "https://github.com/rohithatmakuri-187/AEVO-MCP-PROJECT",
+   "file": "config.py",
+   "line": 15
+  },
+  {
+   "server": "AEVO-MCP-PROJECT",
+   "github_url": "https://github.com/rohithatmakuri-187/AEVO-MCP-PROJECT",
+   "file": "config.py",
+   "line": 15
+  }
+ ],
+ "a4e46414b26e": [
+  {
+   "server": "AEVO-MCP-PROJECT",
+   "github_url": "https://github.com/rohithatmakuri-187/AEVO-MCP-PROJECT",
+   "file": "config.py",
+   "line": 16
+  },
+  {
+   "server": "AEVO-MCP-PROJECT",
+   "github_url": "https://github.com/rohithatmakuri-187/AEVO-MCP-PROJECT",
+   "file": "config.py",
+   "line": 16
+  }
+ ],
+ "0d06d22d710c": [
+  {
+   "server": "MCP_agent",
+   "github_url": "https://github.com/tenoch1986/MCP_agent",
+   "file": "gnews_server.py",
+   "line": 21
+  },
+  {
+   "server": "MCP_agent",
+   "github_url": "https://github.com/tenoch1986/MCP_agent",
+   "file": "gnews_server.py",
+   "line": 21
+  }
+ ],
+ "64ae6551024a": [
+  {
+   "server": "pr-mcp-server",
+   "github_url": "https://github.com/valentin-harrang/pr-mcp-server",
+   "file": "src/templates/gif-selector.ts",
+   "line": 4
+  },
+  {
+   "server": "pr-mcp-server",
+   "github_url": "https://github.com/valentin-harrang/pr-mcp-server",
+   "file": "src/templates/gif-selector.ts",
+   "line": 4
+  }
+ ],
+ "ea8c2e56dcc7": [
+  {
+   "server": "agent_mcp",
+   "github_url": "https://github.com/wongyan-data/agent_mcp",
+   "file": "mcp_langchain_app.py",
+   "line": 84
+  },
+  {
+   "server": "agent_mcp",
+   "github_url": "https://github.com/wongyan-data/agent_mcp",
+   "file": "mcp_langchain_app.py",
+   "line": 84
+  }
+ ],
+ "ee57d272c212": [
+  {
+   "server": "sdk",
+   "github_url": "https://github.com/atxp-dev/sdk",
+   "file": "packages/atxp-base/src/smartWalletHelpers.ts",
+   "line": 20
+  },
+  {
+   "server": "sdk",
+   "github_url": "https://github.com/atxp-dev/sdk",
+   "file": "packages/atxp-base/src/smartWalletHelpers.ts",
+   "line": 20
+  }
+ ],
+ "fc25c164e6db": [
+  {
+   "server": "defi-mcp-stellar",
+   "github_url": "defi-mcp-stellar",
+   "file": "src/services/soroswap.service.ts",
+   "line": 9
+  },
+  {
+   "server": "defi-mcp-stellar",
+   "github_url": "defi-mcp-stellar",
+   "file": "src/services/soroswap.service.ts",
+   "line": 9
+  }
+ ],
+ "37c05b1de385": [
+  {
+   "server": "mcp-http-webhook",
+   "github_url": "mcp-http-webhook",
+   "file": "examples/google-drive-server-live.ts",
+   "line": 43
+  },
+  {
+   "server": "mcp-http-webhook",
+   "github_url": "mcp-http-webhook",
+   "file": "examples/google-drive-server-live.ts",
+   "line": 43
+  }
+ ],
+ "6a81537e9560": [
+  {
+   "server": "mcp-search-case",
+   "github_url": "mcp-search-case",
+   "file": "lib/search.js",
+   "line": 5
+  },
+  {
+   "server": "mcp-search-case",
+   "github_url": "mcp-search-case",
+   "file": "lib/search.js",
+   "line": 5
+  }
+ ],
+ "23d5c5e2c2ad": [
+  {
+   "server": "vcb-popia",
+   "github_url": "https://github.com/Tommy0Storm/vcb-popia",
+   "file": "src/cerebras-service.js",
+   "line": 4
+  }
+ ],
+ "5041c7ad6b68": [
+  {
+   "server": "ats-api",
+   "github_url": "https://github.com/ag2-mcp-servers/ats-api",
+   "file": "mcp_server/models.py",
+   "line": 991
+  }
+ ],
+ "296e27dc1e08": [
+  {
+   "server": "Agentic-AI-LLM-Apps",
+   "github_url": "https://github.com/mohammadreza-mohammadi94/Agentic-AI-LLM-Apps",
+   "file": "projects/multi-agent/Cerebras-Debate-Orchestrator/src/llm_interface.py",
+   "line": 8
+  }
+ ],
+ "a354342aeedc": [
+  {
+   "server": "glin-profanity",
+   "github_url": "https://github.com/glincker/glin-profanity",
+   "file": "packages/huggingface-space/app.py",
+   "line": 64
+  }
+ ],
+ "a15d15744f7e": [
+  {
+   "server": "youtube-music-mcp-server",
+   "github_url": "https://github.com/CaullenOmdahl/youtube-music-mcp-server",
+   "file": "src/youtube-music/client.ts",
+   "line": 21
+  }
+ ],
+ "c44b71a38902": [
+  {
+   "server": "ARIES",
+   "github_url": "https://github.com/Chieko-Seren/ARIES",
+   "file": "web/js/app.js",
+   "line": 15
+  }
+ ],
+ "a61f19e7bc2c": [
+  {
+   "server": "mcp-tool-platform",
+   "github_url": "https://github.com/Cursedpotential/mcp-tool-platform",
+   "file": "server/mcp/plugins-pending/gcp-vision.ts",
+   "line": 6
+  }
+ ],
+ "40fee3751ca1": [
+  {
+   "server": "react-native-mcp-server",
+   "github_url": "https://github.com/JacobOmateq/react-native-mcp-server",
+   "file": "src/tools/supabase-setup.ts",
+   "line": 44
+  }
+ ],
+ "57441f380512": [
+  {
+   "server": "mcp-github-agent",
+   "github_url": "https://github.com/Sonal0409/mcp-github-agent",
+   "file": ".env",
+   "line": 2
+  }
+ ],
+ "db25a9ddcde7": [
+  {
+   "server": "Reflect.app-Local-MCP",
+   "github_url": "https://github.com/John42506176Linux/Reflect.app-Local-MCP",
+   "file": ".env",
+   "line": 2
+  }
+ ],
+ "1e24d393618e": [
+  {
+   "server": "calendarific-mcp-server",
+   "github_url": "https://github.com/Noa-limoy/calendarific-mcp-server",
+   "file": ".env",
+   "line": 1
+  }
+ ],
+ "e3e51a0b340a": [
+  {
+   "server": "testcollab-mcp-server",
+   "github_url": "https://github.com/tcsoftinc/testcollab-mcp-server",
+   "file": "scripts/bump-version.js",
+   "line": 53
+  }
+ ],
+ "e31d939d7511": [
+  {
+   "server": "Content-Saver-MCP-Server",
+   "github_url": "https://github.com/Annanerdstation/Content-Saver-MCP-Server",
+   "file": "web-ui/scripts/check-env.js",
+   "line": 16
+  }
+ ],
+ "4faa366d8a27": [
+  {
+   "server": "oss-nexera-debugger-mcp",
+   "github_url": "https://github.com/NexeraDigital/oss-nexera-debugger-mcp",
+   "file": "src/utils/tokenManager.ts",
+   "line": 169
+  }
+ ],
+ "c81dd2d523e9": [
+  {
+   "server": "lark-office-mcp",
+   "github_url": "https://github.com/YSzEthan/lark-office-mcp",
+   "file": "src/services/lark-client.ts",
+   "line": 77
+  }
+ ],
+ "67a158a7c352": [
+  {
+   "server": "xiaozhigetassetpricemcp",
+   "github_url": "https://github.com/TrBaPhong/xiaozhigetassetpricemcp",
+   "file": "getassetprice.py",
+   "line": 21
+  }
+ ],
+ "736ea000cdfa": [
+  {
+   "server": "prospect-pipeline",
+   "github_url": "https://github.com/23Maestro/prospect-pipeline",
+   "file": "npid-api-layer/app/session.py",
+   "line": 25
+  }
+ ],
+ "bcaba0a82cad": [
+  {
+   "server": "monday.com-mcp-server",
+   "github_url": "https://github.com/Chrissy265/monday.com-mcp-server",
+   "file": "monday-mcp-server.js",
+   "line": 4
+  }
+ ],
+ "8b8196fcfdf6": [
+  {
+   "server": "mcp-api-master-integration",
+   "github_url": "https://github.com/Jmoney1214/mcp-api-master-integration",
+   "file": "email-campaign/deploy-instagram-workflow.js",
+   "line": 11
+  }
+ ],
+ "aa1050cc1c59": [
+  {
+   "server": "Dhan-MCP-Trading",
+   "github_url": "https://github.com/LakshyaKumar11/Dhan-MCP-Trading",
+   "file": "config.py",
+   "line": 8
+  }
+ ],
+ "243539e53956": [
+  {
+   "server": "wyze-mcp-server",
+   "github_url": "https://github.com/Porkbutts/wyze-mcp-server",
+   "file": "src/constants.ts",
+   "line": 10
+  }
+ ]
+}

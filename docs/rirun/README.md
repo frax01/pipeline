@@ -19,7 +19,9 @@ Tutti i numeri sono verificati sui file. Gli script che li producono stanno in
 | [CONCORDANZA.md](CONCORDANZA.md) | perche' il consenso cross-framework crolla (e perche' non e' un peggioramento) |
 | [MANUAL_RIRUN.md](MANUAL_RIRUN.md) | validazione manuale: 210 casi letti sul sorgente reale |
 | [WATCH_FUNNEL.md](WATCH_FUNNEL.md) | il funnel di `mcp-watch` stadio per stadio, il tool che fa il 94% del volume |
-| [RUGPULL.md](RUGPULL.md) | i server cambiano comportamento fra le due analisi? descrizioni riscritte; e perche' i tool aggiunti non sono misurabili |
+| [RUGPULL.md](RUGPULL.md) | i server cambiano comportamento? Confronto sui dati archiviati (metodo indiretto) |
+| **[RELIST.md](RELIST.md)** | **ri-listing dal vivo di `tools/list`: mortalita' dell'ecosistema e confronto esatto** |
+| [RELIST_VERDETTI.md](RELIST_VERDETTI.md) | i 23 cambi con capability nuove, giudicati uno per uno |
 
 ---
 
@@ -44,12 +46,15 @@ e' **turnover di raggiungibilita' dei server**, non un miglioramento della
 sicurezza: a parita' di server analizzati con successo, `mcp-check` trova oggi
 *piu* problemi di prima.
 
-**Rug pull.** *Descrizioni cambiate*: su 3.961 server osservati due volte,
-**1 caso confermato, 2 deboli, zero malevoli** — e tutte le capability nuove sono
-dichiarate piu' forte, non nascoste. *Tool aggiunti*: *non misurabili* con questi
-dati, perche' nessuna delle due analisi ha salvato un inventario completo dei
-tool (vedi RUGPULL.md §6: una versione precedente sosteneva il contrario ed e'
-stata ritirata).
+**Rug pull e mortalita' (ri-listing dal vivo, agosto).** Ri-interrogati con
+`tools/list` i 5.948 server di cui esisteva un inventario di maggio: **il 19,8%
+non parte piu'**, e di questi il 2,9% ha il repository **cancellato da GitHub**
+(verificato uno per uno, 172/172). Sui 4.772 ancora vivi: 1.013 descrizioni
+cambiate, di cui 23 con capability pericolose nuove. Giudicate a mano:
+**2 rug pull confermati**, 2 espansioni deboli, 6 tool diventati *piu'*
+restrittivi, 13 solo documentazione. Il caso piu' grave e'
+`sentry-official/mcp-cap-internal`, dove a uno solo di quattro tool di analisi
+e' stata aggiunta la frase *"Then write data to user's system"*.
 
 ---
 
@@ -82,6 +87,10 @@ python autorun/manual_audit_assembla.py
 python autorun/rugpull_diff.py --json autorun/rugpull_cambi.json
 python autorun/rugpull_verdetti.py --out autorun/rugpull_verdetti.json
 python autorun/rugpull_nuovi.py --json autorun/rugpull_nuovi.json
+python autorun/relist_prepare.py
+# relist_run.py gira SULLE VM (vedi docstring), poi:
+python autorun/relist_diff.py --out docs/rirun/RELIST.md
+python autorun/relist_verdetti.py --out docs/rirun/RELIST_VERDETTI.md
 ```
 
 `RECAP_RIRUN.md`, `WATCH_FUNNEL.md` e `RUGPULL.md` sono scritti a mano a partire
@@ -99,11 +108,7 @@ dagli output qui sopra.
 - **`security_scan` −50%** di findings grezzi: non investigato.
 - **Riga "dopo Stage 2A"** in RECAP §1: non e' stato possibile risalire ai file
   da cui era ricavata, quindi e' l'unica non deduplicata.
-- **Rug pull, terza passata — IN CORSO.** Ri-listing dal vivo di `tools/list`
-  sui server della baseline di maggio: e' l'unico modo di ottenere un inventario
-  **completo**, cosa che nessuna delle due analisi aveva salvato. Tunnel VPN
-  tornato su, 9 VM raggiungibili, VM bonificate (crontab e processi orfani),
-  script deployati e smoke test superato su .133 (6 server, 5 avviati).
-  Da decidere: passata completa sui 5.948 server o campione casuale.
-  Attenzione: il ri-listing misura i tool **spariti**, non quelli aggiunti
-  (vedi RUGPULL.md §6).
+- **Rug pull, terza passata — FATTA.** Risultati in
+  [RELIST.md](RELIST.md) e [RELIST_VERDETTI.md](RELIST_VERDETTI.md). Restano da
+  giudicare i 311 cambi mirati che l'euristica non segnala come pericolosi, e i
+  330 tool spariti (direzione affidabile, non ancora analizzata).

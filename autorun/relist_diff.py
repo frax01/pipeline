@@ -111,23 +111,57 @@ def main():
     w(f"| di cui con linguaggio direttivo comparso | {sum(1 for x in cam if x['iniettivo_comparso']):,} |")
     w()
 
-    per = Counter(x["server"] for x in agg)
-    mirati = [x for x in agg if x["pericolosa"] and per[x["server"]] <= 3]
-    w(f"## Da leggere a mano: {len(mirati)} aggiunte mirate e pericolose")
-    w()
-    for x in sorted(mirati, key=lambda z: z["server"]):
-        w(f"### `{x['server']}` :: `{x['tool']}`")
-        w(f"{x['descrizione'][:400]}")
-        w()
+    # I "tool comparsi" non sono analizzabili (vedi asimmetria sopra): elencarli
+    # suggerirebbe conclusioni che i dati non reggono. L'analisi si fa sui cambi
+    # di descrizione, che confrontano la stessa coppia (server, tool).
+    perc = Counter(c["server"] for c in cam)
+    rilascio = [c for c in cam if perc[c["server"]] >= 5]
+    mirati = [c for c in cam if perc[c["server"]] < 5]
 
-    sost = sorted([c for c in cam if c["similarita"] < 0.9],
-                  key=lambda c: c["similarita"])
-    w(f"## Descrizioni riscritte in modo sostanziale: {len(sost)}")
+    w("## Descrizioni cambiate: chi le ha cambiate")
     w()
-    for c in sost[:80]:
-        w(f"### `{c['server']}` :: `{c['tool']}` — similarita' {c['similarita']:.0%}")
+    w("| | server | cambi |")
+    w("|---|---:|---:|")
+    w(f"| riscritture di rilascio (>=5 tool insieme) | "
+      f"{len({c['server'] for c in rilascio}):,} | {len(rilascio):,} |")
+    w(f"| **cambi mirati** (1-4 tool) | "
+      f"{len({c['server'] for c in mirati}):,} | **{len(mirati):,}** |")
+    w()
+
+    CAP = {"scrittura": r"\b(write|create|update|modify|insert|upsert|patch|mutation|mutate)\b",
+           "cancellazione": r"\b(delete|remove|drop|destroy|purge|truncate|wipe|erase)\b",
+           "esecuzione": r"\b(execute|exec|run|spawn|shell|command|eval|subprocess|bash|powershell)\b",
+           "privilegi": r"\b(admin|root|sudo|privileg|grant|elevat)\b"}
+    espansioni = []
+    for c in mirati:
+        pri, dop = c["prima"].lower(), c["dopo"].lower()
+        nuove = [k for k, p in CAP.items()
+                 if re.search(p, dop) and not re.search(p, pri)]
+        if nuove:
+            espansioni.append((c, nuove))
+
+    w(f"## Da leggere a mano: {len(espansioni)} cambi mirati con capability nuove")
+    w()
+    w("Sono i casi in cui un tool dichiara oggi un'azione pericolosa che a maggio")
+    w("non dichiarava, su server che non hanno riscritto tutta la documentazione.")
+    w("L'euristica e' sbilanciata verso il recall: vanno letti uno per uno.")
+    w()
+    for c, nuove in sorted(espansioni, key=lambda x: x[0]["similarita"]):
+        w(f"### `{c['server']}` :: `{c['tool']}`")
+        w(f"*similarita' {c['similarita']:.0%} · comparse: {', '.join(nuove)}*")
+        w()
         w(f"- **maggio**: {c['prima'][:300]}")
         w(f"- **oggi**: {c['dopo'][:300]}")
+        w()
+
+    sost = sorted([c for c in mirati if c["similarita"] < 0.9],
+                  key=lambda c: c["similarita"])
+    w(f"## Altri cambi mirati sostanziali (similarita' <90%): {len(sost)}")
+    w()
+    for c in sost[:60]:
+        w(f"### `{c['server']}` :: `{c['tool']}` — similarita' {c['similarita']:.0%}")
+        w(f"- **maggio**: {c['prima'][:250]}")
+        w(f"- **oggi**: {c['dopo'][:250]}")
         w()
 
     if a.out:

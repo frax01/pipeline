@@ -98,10 +98,14 @@ def main():
     # Il floor dello shard va ricordato: se si riprende con --start -1 e il file
     # di stats manca o e' azzerato, senza floor la VM ripartirebbe da 0 e
     # rifarebbe lo shard di un'altra.
-    floor = st.get("range_start", a.start if a.start >= 0 else 0)
     if a.start >= 0:
-        floor = a.start
-    inizio = max(st.get("last_index", floor - 1) + 1, floor)
+        # range esplicito: comanda lui. Senza questo, il `last_index` di uno
+        # shard precedente gia' concluso (piu' alto del nuovo range) produce un
+        # intervallo vuoto e il processo esce subito senza fare nulla.
+        floor = inizio = a.start
+    else:
+        floor = st.get("range_start", 0)
+        inizio = max(st.get("last_index", floor - 1) + 1, floor)
     st["range_start"] = floor
 
     print(f"[relist] range [{inizio}, {fine}) su {len(chiavi):,} server")
@@ -126,7 +130,12 @@ def main():
                 lang = detect_language(repo_path) if repo_path else None
 
             if not repo_path:
-                esito, tools = "clone_failed", None
+                # `clone_repo` restituisce None anche quando il repo non esiste
+                # piu' (cancellato o reso privato). Verificato su tutti i 172
+                # casi del 2026-08: 172/172 rispondono "Repository not found".
+                # Va distinto dal server che c'e' ma non parte: sono due forme
+                # diverse di mortalita'.
+                esito, tools = "repo_sparito", None
             else:
                 _, command, args = build_mcp_config(repo_path, lang)
                 if not command:

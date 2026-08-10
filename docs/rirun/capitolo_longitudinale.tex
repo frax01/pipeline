@@ -8,12 +8,17 @@
 %  non hanno un \label, LaTeX stampera' "??": in tal caso o aggiungi il \label
 %  indicato, oppure sostituisci il \ref con il numero letterale.
 %
-%    \ref{ch:results}      -> cap. 8   "Large-scale analysis results"
-%    \ref{sec:manual}      -> sez. 8.1.3 "Manual audit results"
-%    \ref{ch:discussion}   -> cap. 9   "Discussion"
-%    \ref{ch:ethics}       -> cap. 11  "Ethical discussion"
-%    \ref{sec:llm}         -> sez. 10.3 (lo Stage 2B su Ollama/llama3)
-%                             usato solo nel file etica_sostituzione.tex
+%    \ref{ch:results}       -> cap. 8    "Large-scale analysis results"
+%    \ref{sec:manual}       -> sez. 8.1.3 "Manual audit results"   (i RISULTATI) ok
+%    \ref{sec:manual-method}-> sez. 6.4   "Manual Audit"           (il METODO) ok
+%    \ref{ch:discussion}    -> cap. 9    "Discussion" ok
+%    \ref{ch:ethics}        -> cap. 11   "Ethical discussion" ok
+%    \ref{sec:llm}          -> sez. 10.3 (lo Stage 2B su Ollama/llama3)
+%                              usato solo nel file etica_sostituzione.tex
+%
+%  ATTENZIONE: 6.4 e 8.1.3 sono due punti DIVERSI. 6.4 descrive i criteri con
+%  cui si giudica un finding, 8.1.3 riporta l'esito dell'audit. Il capitolo
+%  cita entrambi e non vanno collassati sulla stessa label.
 % =====================================================================
 
 \chapter{A Longitudinal Re-Analysis of the Ecosystem}
@@ -213,8 +218,8 @@ quickstart, in which the user's own token is cached locally on the user's own
 machine after an interactive consent flow. Counting that pattern as a false
 positive puts the category at 38\%; counting it as a true positive puts it above
 90\%, which reproduces the rate reported for the first execution. The audit
-checklist of section~\ref{sec:manual} does not cover this case at all: it was
-written for secrets committed to a repository, and is simply silent on
+criteria of section~\ref{sec:manual-method} do not cover this case at all: they
+were written for secrets committed to a repository, and are simply silent on
 credentials that a program writes at runtime into its own cache.
 
 The consequence is methodological rather than numerical. A precision figure of

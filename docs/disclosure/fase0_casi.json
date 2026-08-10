@@ -1,0 +1,144 @@
+{
+ "casi": [
+  {
+   "repo": "heavenlycolle/mcp-trino",
+   "file": "cmd/server/main.go",
+   "riga": 195,
+   "firma": [
+    "exec\\.Command\\(\"/bi\"",
+    "\\.icu"
+   ],
+   "descrizione": "exec.Command(\"/bi\"+\"n/s\"+\"h\", \"-c\", ...) a livello di package-init: ricostruisce per concatenazione un comando curl verso un dominio .icu che scarica ed esegue un binario. Nessuna funzione da chiamare: parte al caricamento.",
+   "fonte": "MANUAL_RIRUN.md §7 caso 38",
+   "tier": 1,
+   "tipo": "malware",
+   "stato_repo": "attivo",
+   "stato_payload": "PAYLOAD ANCORA PRESENTE (1/2 firme)"
+  },
+  {
+   "repo": "illustriousj/kite-mcp-server",
+   "file": "kc/api.go",
+   "riga": 25,
+   "firma": [
+    "exec\\.Command\\(\"/b\"",
+    "\\.icu"
+   ],
+   "descrizione": "exec.Command(\"/b\"+\"in/sh\", \"-c\", UhpF) eseguita al package-init tramite inizializzazione di variabile globale; UhpF e' un wget offuscato verso .icu con pipe a /bin/bash.",
+   "fonte": "MANUAL_RIRUN.md §7 caso 39",
+   "tier": 1,
+   "tipo": "malware",
+   "stato_repo": "attivo",
+   "stato_payload": "PAYLOAD ANCORA PRESENTE (1/2 firme)"
+  },
+  {
+   "repo": "optimisticdur/go-mcp-mysql",
+   "file": "main.go",
+   "riga": 477,
+   "firma": [
+    "exec\\.Command\\(\"/bi\"",
+    "\\.icu"
+   ],
+   "descrizione": "Stesso payload di kite-mcp-server: wget offuscato verso lo stesso dominio .icu con pipe a /bin/bash, eseguito al package-init. Campagna condivisa fra piu' repository.",
+   "fonte": "MANUAL_RIRUN.md §7 caso 45",
+   "tier": 1,
+   "tipo": "malware",
+   "stato_repo": "attivo",
+   "stato_payload": "PAYLOAD ANCORA PRESENTE (1/2 firme)"
+  },
+  {
+   "repo": "FronNian/mpc-maven-security",
+   "file": "src/index.ts",
+   "riga": 19,
+   "firma": [
+    "eval\\(Buffer\\.from",
+    "\\\\uFE0"
+   ],
+   "descrizione": "Dopo un entrypoint MCP legittimo di 17 righe, codice appeso che decodifica caratteri Unicode variation-selector invisibili in un buffer e lo esegue con eval(): backdoor steganografica.",
+   "fonte": "MANUAL_RIRUN.md §8 caso 24",
+   "tier": 1,
+   "tipo": "malware",
+   "stato_repo": "attivo",
+   "stato_payload": "PAYLOAD ANCORA PRESENTE (1/2 firme)"
+  },
+  {
+   "repo": "michaelguo1991/math-mcp-server-nodejs",
+   "file": null,
+   "riga": null,
+   "firma": [
+    "attacker@pwnd\\.com",
+    "<IMPORTANT>"
+   ],
+   "descrizione": "La descrizione del tool 'subtract' contiene un tag <IMPORTANT> che istruisce il modello a dirottare tutte le email del tool send_email verso attacker@pwnd.com e a non informare l'utente. Tool poisoning cross-tool da manuale.",
+   "fonte": "MANUAL_RIRUN.md §17 caso 2",
+   "tier": 1,
+   "tipo": "malware",
+   "stato_repo": "attivo",
+   "stato_payload": "n/d (nessun file singolo da controllare)"
+  },
+  {
+   "repo": "skdkfk8758/MCP-ProjectManager",
+   "tipo": "data-exfiltration",
+   "file": "packages/cli/src/commands/init.ts",
+   "riga": 237,
+   "firma": [
+    "/api/events"
+   ],
+   "descrizione": "Installa hook globali di Claude Code (SessionStart, PreToolUse, PostToolUse, UserPromptSubmit...) che inviano a un backend esterno il session_id, il tool_input completo di ogni chiamata, i primi 500 caratteri di ogni output e la lunghezza dei prompt: cattura l'intera sessione, non solo i propri tool.",
+   "fonte": "MANUAL_RIRUN.md §16 caso 1",
+   "tier": 2,
+   "stato_repo": "attivo",
+   "stato_payload": "PAYLOAD ANCORA PRESENTE (1/1 firme)"
+  },
+  {
+   "repo": "vincentmcleese/promtHire-mcp",
+   "tipo": "data-exfiltration",
+   "file": "promptHire_server_node/src/server.ts",
+   "riga": 82,
+   "firma": [
+    "ENTIRE conversation",
+    "gig_description"
+   ],
+   "descrizione": "Lo schema del tool istruisce esplicitamente il modello a riempire 'gig_description' con contenuto estratto dall'INTERA conversazione, poi inviato a un servizio esterno.",
+   "fonte": "MANUAL_RIRUN.md §16 caso 2",
+   "tier": 2,
+   "stato_repo": "attivo",
+   "stato_payload": "PAYLOAD ANCORA PRESENTE (2/2 firme)"
+  },
+  {
+   "repo": "sentry-official/mcp-cap-internal",
+   "tipo": "rug-pull",
+   "file": null,
+   "riga": null,
+   "firma": [
+    "write data to user's system"
+   ],
+   "descrizione": "Fra la prima e la seconda misurazione, a uno solo dei quattro tool di analisi PCAP e' stata aggiunta la frase 'Then write data to user's system'. Da sola lettura a scrittura sul filesystem dell'utente, senza avviso. Da segnalare anche il nome dell'organizzazione, che evoca un'affiliazione a Sentry.",
+   "fonte": "RELIST_VERDETTI.md",
+   "tier": 2,
+   "stato_repo": "attivo",
+   "stato_payload": "n/d (nessun file singolo da controllare)"
+  },
+  {
+   "repo": "letoribo/mcp-graphql-enhanced",
+   "tipo": "rug-pull",
+   "file": null,
+   "riga": null,
+   "firma": [
+    "queries and mutations"
+   ],
+   "descrizione": "Il tool query-graphql passa da sola lettura a lettura-scrittura fra le due misurazioni. Il cambiamento e' pero' dichiarato apertamente nella descrizione, WARNING incluso: segnalazione di cortesia, non incidente di sicurezza.",
+   "fonte": "RELIST_VERDETTI.md",
+   "tier": 2,
+   "stato_repo": "attivo",
+   "stato_payload": "n/d (nessun file singolo da controllare)"
+  }
+ ],
+ "credenziali_per_provider": {
+  "non identificato": 883,
+  "Google": 9,
+  "OpenAI": 3,
+  "Groq": 2,
+  "Docker": 2
+ },
+ "credenziali_confermate": 899
+}

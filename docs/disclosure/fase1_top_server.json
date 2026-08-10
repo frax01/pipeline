@@ -1,0 +1,442 @@
+[
+ {
+  "repo": "TauqeerAhmad5201/docker-mcp-extension",
+  "frameworks": [
+   "guard",
+   "scan",
+   "security_scan"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 6,
+  "categorie": {
+   "command-injection-fuzzing": 2,
+   "path-traversal-fuzzing": 2,
+   "dangerous-capabilities": 1,
+   "server-level": 1
+  },
+  "popolarita": "1 stelle"
+ },
+ {
+  "repo": "Streen9/terminal-mcp",
+  "frameworks": [
+   "guard",
+   "scan",
+   "security_scan"
+  ],
+  "findings_gravi": 3,
+  "findings_totali": 5,
+  "categorie": {
+   "path-traversal-fuzzing": 2,
+   "command-injection-fuzzing": 1,
+   "dangerous-capabilities": 1,
+   "server-level": 1
+  },
+  "popolarita": "1 stelle"
+ },
+ {
+  "repo": "chargenow-mcp",
+  "frameworks": [
+   "guard",
+   "scan",
+   "watch"
+  ],
+  "findings_gravi": 3,
+  "findings_totali": 4,
+  "categorie": {
+   "credential-leak": 2,
+   "hardcoded-credential-static": 1,
+   "server-level": 1
+  },
+  "popolarita": "29 dl/mese"
+ },
+ {
+  "repo": "davejohnson/infraprint",
+  "frameworks": [
+   "guard",
+   "scan",
+   "security_scan"
+  ],
+  "findings_gravi": 2,
+  "findings_totali": 5,
+  "categorie": {
+   "ssrf-static": 3,
+   "dangerous-capabilities": 1,
+   "server-level": 1
+  },
+  "popolarita": "1 stelle"
+ },
+ {
+  "repo": "@iflow-mcp/ollama-mcp",
+  "frameworks": [
+   "guard",
+   "scan"
+  ],
+  "findings_gravi": 33,
+  "findings_totali": 39,
+  "categorie": {
+   "command-execution-fuzzing": 30,
+   "path-traversal-fuzzing": 4,
+   "command-injection-fuzzing": 3,
+   "server-level": 2
+  },
+  "popolarita": "344 dl/mese"
+ },
+ {
+  "repo": "nm-mcp-ollama",
+  "frameworks": [
+   "guard",
+   "scan"
+  ],
+  "findings_gravi": 33,
+  "findings_totali": 39,
+  "categorie": {
+   "command-execution-fuzzing": 30,
+   "path-traversal-fuzzing": 4,
+   "command-injection-fuzzing": 3,
+   "server-level": 2
+  },
+  "popolarita": "38 dl/mese"
+ },
+ {
+  "repo": "thekaranpargaie/kube-mcp",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 20,
+  "findings_totali": 39,
+  "categorie": {
+   "command-injection-fuzzing": 19,
+   "path-traversal-fuzzing": 19,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "0 stelle"
+ },
+ {
+  "repo": "lox/tmux-mcp-server",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 19,
+  "findings_totali": 19,
+  "categorie": {
+   "command-injection-fuzzing": 18,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "6 stelle"
+ },
+ {
+  "repo": "Shreesha4994/sap-btp-cf-mcp-server",
+  "frameworks": [
+   "guard",
+   "scan"
+  ],
+  "findings_gravi": 13,
+  "findings_totali": 32,
+  "categorie": {
+   "path-traversal-fuzzing": 19,
+   "command-injection-fuzzing": 12,
+   "server-level": 1
+  },
+  "popolarita": "0 stelle"
+ },
+ {
+  "repo": "@iflow-mcp/quip-server",
+  "frameworks": [
+   "guard",
+   "scan"
+  ],
+  "findings_gravi": 13,
+  "findings_totali": 15,
+  "categorie": {
+   "code-injection-fuzzing": 13,
+   "server-level": 2
+  },
+  "popolarita": "25 dl/mese"
+ },
+ {
+  "repo": "mjrestivo16/mcp-kubernetes",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 12,
+  "findings_totali": 24,
+  "categorie": {
+   "path-traversal-fuzzing": 12,
+   "command-injection-fuzzing": 11,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "repo non trovato"
+ },
+ {
+  "repo": "codingsasi/ddev-mcp",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 11,
+  "findings_totali": 21,
+  "categorie": {
+   "command-injection-fuzzing": 10,
+   "path-traversal-fuzzing": 10,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "13 stelle"
+ },
+ {
+  "repo": "shiiman/multi-agent-mcp",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 8,
+  "findings_totali": 8,
+  "categorie": {
+   "dangerous-tool-handler-static": 7,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "0 stelle"
+ },
+ {
+  "repo": "Anansitrading/sprite-mcp-server",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 7,
+  "findings_totali": 14,
+  "categorie": {
+   "path-traversal-fuzzing": 7,
+   "command-injection-fuzzing": 6,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "0 stelle"
+ },
+ {
+  "repo": "timesheet-mcp-server",
+  "frameworks": [
+   "guard",
+   "scan"
+  ],
+  "findings_gravi": 7,
+  "findings_totali": 9,
+  "categorie": {
+   "tool-level": 4,
+   "server-level": 3,
+   "hardcoded-credential-static": 2
+  },
+  "popolarita": "47 dl/mese"
+ },
+ {
+  "repo": "solon07/mcp-devops-assistant",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 6,
+  "findings_totali": 11,
+  "categorie": {
+   "command-injection-fuzzing": 5,
+   "path-traversal-fuzzing": 5,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "0 stelle"
+ },
+ {
+  "repo": "bigcodegen/mcp-neovim-server",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 6,
+  "findings_totali": 6,
+  "categorie": {
+   "code-injection-static": 5,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "319 stelle"
+ },
+ {
+  "repo": "TeodorTrotea/mcptest",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 11,
+  "categorie": {
+   "path-traversal-fuzzing": 7,
+   "command-injection-fuzzing": 3,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "0 stelle"
+ },
+ {
+  "repo": "@egyleader/dart-mcp-server",
+  "frameworks": [
+   "guard",
+   "scan"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 10,
+  "categorie": {
+   "command-injection-fuzzing": 4,
+   "path-traversal-fuzzing": 4,
+   "server-level": 2
+  },
+  "popolarita": "176 dl/mese"
+ },
+ {
+  "repo": "rangta10/kali-mcp-server",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 7,
+  "categorie": {
+   "command-injection-fuzzing": 3,
+   "path-traversal-fuzzing": 3,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "3 stelle"
+ },
+ {
+  "repo": "andrewgazelka/arc-mcp",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 4,
+  "categorie": {
+   "code-injection-static": 3,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "1 stelle"
+ },
+ {
+  "repo": "Ghostwillower/Pc-MCP",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 4,
+  "categorie": {
+   "dangerous-tool-handler-static": 3,
+   "dangerous-capabilities": 1
+  },
+  "popolarita": "0 stelle"
+ },
+ {
+  "repo": "triepod-ai/mcp_vulnerable_testbed",
+  "frameworks": [
+   "guard",
+   "shield"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 4,
+  "categorie": {
+   "hidden-instructions": 2,
+   "dangerous-tool-handler-static": 1,
+   "insecure-deserialization-static": 1
+  }
+ },
+ {
+  "repo": "douban-mcp",
+  "frameworks": [
+   "guard",
+   "watch"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 4,
+  "categorie": {
+   "hardcoded-credential-static": 2,
+   "credential-leak": 2
+  }
+ },
+ {
+  "repo": "mcp-amz-listing-optimizer_infinitecommerce",
+  "frameworks": [
+   "guard",
+   "watch"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 4,
+  "categorie": {
+   "hardcoded-credential-static": 2,
+   "credential-leak": 2
+  }
+ },
+ {
+  "repo": "mcp-amz-listing-optimizer_infinitecommerce2025",
+  "frameworks": [
+   "guard",
+   "watch"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 4,
+  "categorie": {
+   "hardcoded-credential-static": 2,
+   "credential-leak": 2
+  }
+ },
+ {
+  "repo": "mcp-weather-service",
+  "frameworks": [
+   "guard",
+   "watch"
+  ],
+  "findings_gravi": 4,
+  "findings_totali": 4,
+  "categorie": {
+   "hardcoded-credential-static": 2,
+   "credential-leak": 2
+  }
+ },
+ {
+  "repo": "GitJuhb/zellij-mcp-server",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 3,
+  "findings_totali": 7,
+  "categorie": {
+   "path-traversal-fuzzing": 4,
+   "command-injection-fuzzing": 2,
+   "dangerous-capabilities": 1
+  }
+ },
+ {
+  "repo": "iris-networks/terminal_mcp",
+  "frameworks": [
+   "guard",
+   "security_scan"
+  ],
+  "findings_gravi": 3,
+  "findings_totali": 6,
+  "categorie": {
+   "path-traversal-fuzzing": 3,
+   "command-injection-fuzzing": 2,
+   "dangerous-capabilities": 1
+  }
+ },
+ {
+  "repo": "ntermcp",
+  "frameworks": [
+   "guard",
+   "scan"
+  ],
+  "findings_gravi": 3,
+  "findings_totali": 6,
+  "categorie": {
+   "tool-level": 3,
+   "server-level": 2,
+   "path-traversal-fuzzing": 1
+  }
+ }
+]

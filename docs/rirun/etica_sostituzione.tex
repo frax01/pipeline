@@ -1,0 +1,33 @@
+% =====================================================================
+%  SOSTITUZIONE per il capitolo "Ethical discussion".
+%
+%  Nel testo attuale la frase da sostituire e' quella che comincia con
+%  "Second, the LLM components of the pipeline run on a local Ollama instance..."
+%  e finisce con "...the dependency on a paid API."
+%
+%  Il resto del capitolo resta invariato. La sostituzione serve perche' la
+%  seconda misurazione (capitolo \ref{ch:longitudinal}) ha risolto lo Stage 2B
+%  con un modello ospitato, il che rende falsa l'affermazione originale.
+% =====================================================================
+
+Second, the treatment of the LLM component differs between the two measurements
+reported in this work, and the difference is relevant to the privacy posture of
+the study. In the first execution the Stage 2B classifier ran on a local Ollama
+instance serving \texttt{llama3} on the analysis host (Section~\ref{sec:llm}),
+so that no source code and no finding payload left the machine, which avoided
+both the privacy concerns of remote analysis and any dependency on a paid API.
+In the second execution the same stage was resolved by a hosted model, because
+the local path was not available on the machine that performed the
+post-processing. What was transmitted in that case were the derived findings and
+not the full source of the analysed servers; those findings, however, include
+the evidence field of the \texttt{credential-leak} category, so credentials that
+third parties had embedded in their own public repositories were sent to an
+external provider in the course of the classification. We consider this a
+genuine limitation of the second measurement rather than a neutral
+implementation detail, and we state it explicitly so that the two measurements
+are not read as having equivalent guarantees. In neither execution was any
+credential surfaced by the pipeline ever used, tested or otherwise exercised
+against the corresponding service: findings are reported as evidence of poor
+coding practice and not as verified live secrets. A study that must preserve the
+stronger guarantee should keep the classification stage local, at the cost of
+the accuracy difference discussed in section~\ref{sec:long:deviations}.

@@ -45,6 +45,7 @@ docs/               manual validation + final reports
 | [docs/MANUAL.md](docs/MANUAL.md) | Detailed manual verification tables by category (verdict for each server) |
 | [docs/MANUAL_CHECKLIST.md](docs/MANUAL_CHECKLIST.md) | Checklist of the manual checks performed for each of the 17 categories |
 | [docs/STATE_OF_THE_ART.md](docs/STATE_OF_THE_ART.md) | State of the art: academic papers reviewed for the thesis |
+| [docs/DATA.md](docs/DATA.md) | Index of the archived data: what is in each archive, how to restore it, how to get access |
 | [web_crawler/README.md](web_crawler/README.md) | Details of the dataset collection scrapers (17 sources) |
 
 ## Repository structure
@@ -179,6 +180,12 @@ files of `web_crawler/` and the post-processing intermediates (tens of GB). What
 remains is the **code** that produces them and the readable **reports**. To
 re-run the `stage2_pipeline.py` scripts in `*/postprocessing/` the raw data must
 be restored.
+
+**[docs/DATA.md](docs/DATA.md) is the index of the archived data**: what each
+archive contains (~37 GB unpacked, 3.6 GB compressed, in four archives), how to
+unpack them back over a clone to restore the original tree, and what can be
+re-run once that is done. The archives are not published — see that document
+for access.
 
 > Note on the published data: the values of the third-party credentials that
 > emerged as *findings* of the analysis are **masked** (placeholders) in the

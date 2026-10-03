@@ -55,7 +55,7 @@ e una segnalazione che lo dia per malevolo perde credibilita' se cosi' non e'.
 
 ## Tier 3 — credenziali di terzi · **canale: fornitore, ma copre un sesto**
 
-897 credenziali confermate. L'ipotesi iniziale era di raggrupparle per fornitore
+899 credenziali confermate. L'ipotesi iniziale era di raggrupparle per fornitore
 e chiederne la revoca, riducendo 897 contatti a una decina. **La verifica la
 smentisce in gran parte:**
 
@@ -68,7 +68,7 @@ smentisce in gran parte:**
 | GitHub | 1 | 1 |
 | **non attribuibile** | **769** | **331** |
 
-Solo **128 chiavi su 897, il 14%**, portano un prefisso riconoscibile o un nome
+Solo **128 chiavi su 899, il 14%**, portano un prefisso riconoscibile o un nome
 di variabile che identifichi il servizio. Le restanti 769 sono assegnate a
 identificatori generici e non hanno un destinatario naturale.
 

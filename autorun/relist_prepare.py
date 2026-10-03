@@ -2,13 +2,21 @@
 """
 relist_prepare.py — costruisce la baseline di maggio per il ri-listing dei tool.
 
-Estrae dai finding X-01 di `mcp-security-scan` della prima analisi l'inventario
-COMPLETO dei tool di ogni server (nel campo `details` c'e' l'intera lista
-restituita da `tools/list`, non solo i tool segnalati).
+Estrae dai finding X-01 di `mcp-security-scan` della prima analisi i tool di
+ogni server con la loro descrizione.
 
-Questa e' la fotografia contro cui confrontare il ri-listing di oggi: stessa
-sorgente semantica (cio' che il server dichiara interrogandolo dal vivo), quindi
-il confronto e' esatto e non euristico.
+ATTENZIONE alla natura di questa baseline. X-01 e' "Dangerous capability
+detection in tools": nel campo `details` mette **solo i tool che ha giudicato
+pericolosi**, non l'intera lista restituita da `tools/list`. Verificato su casi
+concreti: per `aardeshir/youtube-mcp` registra il solo `delete_playlist` mentre
+il server ne espone cinque; sui 4.772 server confrontabili sono 16.303 tool
+contro i 68.739 del ri-listing di oggi.
+
+Ne seguono due cose. Il confronto delle descrizioni e' esatto sui nomi presenti
+in entrambe le fotografie, perche' entrambe riportano cio' che il server dichiara
+via protocollo. Ma la copertura e' asimmetrica: un tool sparito lo si conta con
+sicurezza, un tool che appare solo oggi non e' distinguibile da uno che c'era e
+che X-01 non riteneva pericoloso.
 
 Uso:
     python autorun/relist_prepare.py

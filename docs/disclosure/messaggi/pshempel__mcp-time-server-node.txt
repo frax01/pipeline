@@ -1,0 +1,63 @@
+Subject: Responsible disclosure: hardcoded credential in pshempel/mcp-time-server-node
+
+Hello,
+
+My name is Francesco Martignoni. I am a former Master's student at Politecnico
+di Milano, where, as part of my thesis project, I conducted a large-scale
+analysis of the Model Context Protocol (MCP) ecosystem, with a particular
+focus on identifying potential security vulnerabilities and misconfigurations
+in publicly available MCP servers.
+
+As part of this research, we analysed 69,104 publicly published MCP servers.
+Your repository was identified during one of our security checks, and I am
+contacting you as part of our responsible disclosure process to privately
+report a potential issue that may warrant your attention.
+
+Specifically, we identified what appear to be 3 hardcoded credentials in the
+following locations (including credentials for OpenAI):
+
+  * research/openwebui-explicit-tool-test.js:5   (OpenAI)
+  * research/openwebui-tool-test.js:7   (OpenAI)
+  * research/openwebui-integration-test.js:6   (OpenAI)
+
+I am deliberately not including the values in this email. We have never used
+the credentials, attempted to authenticate with them, invoked any associated
+API, or otherwise tested whether they are currently active. The findings were
+initially identified through static analysis and subsequently manually
+reviewed to reduce the likelihood of a false positive.
+
+If these values correspond to valid credentials, removing them from the
+current version of the source code would not, by itself, fully address the
+exposure, as the values may remain accessible through the repository's Git
+history. In such cases, the standard remediation would be to issue new
+credentials, update the relevant configuration to use them, and subsequently
+revoke or retire the exposed ones. More generally, credentials committed to a
+public repository should be considered potentially compromised regardless of
+whether they are still active, as publicly available source code may be
+continuously indexed and scanned by automated systems.
+
+If, on the other hand, the identified values are merely placeholders, example
+credentials, or credentials that have already been rotated or revoked, no
+further action may be necessary, and I apologise for any unnecessary
+notification.
+
+This message is solely intended as a responsible disclosure of the finding. No
+action or response is required from you within any particular timeframe, and
+we are not requesting anything in return. The study is academic in nature, and
+your repository is not individually identified in the resulting research.
+
+Should you require any further information or clarification regarding the
+study, the methodology, or this disclosure, please feel free to contact any of
+the researchers involved:
+
+  * Francesco Martignoni - Former Master's Student, Politecnico di Milano -
+    francesco.martignoni@mail.polimi.it
+  * Michele Carminati - Associate Professor, Politecnico di Milano, DEIB -
+    michele.carminati@polimi.it
+  * Stefano Longari - Assistant Professor, Politecnico di Milano, DEIB -
+    stefano.longari@polimi.it
+
+Kind regards,
+Francesco Martignoni
+Politecnico di Milano
+francesco.martignoni@mail.polimi.it

@@ -1,0 +1,67 @@
+Subject: One hardening question about vim_search (and four findings we discarded)
+
+Hello,
+
+My name is Francesco Martignoni. I am a former Master's student at Politecnico
+di Milano, where, as part of my thesis project, I conducted a large-scale
+analysis of the Model Context Protocol (MCP) ecosystem, with a particular focus
+on identifying potential security vulnerabilities and misconfigurations in
+publicly available MCP servers.
+
+Your project was flagged by our pipeline with five findings in src/neovim.ts. I
+read all five against the source before writing, and I want to be clear that
+four of them are false positives. I am reporting the fifth, and I am telling you
+about the other four because a report that only lists hits is not much use to
+you.
+
+Discarded, with the reason:
+
+  * line 345, getpos("'${mark}") - mark iterates over a literal alphabet.
+  * line 360, getreg('${reg}') - reg iterates over a literal list.
+  * line 540, setreg('${register}', ...) - register is constrained by the Zod
+    schema of vim_register to /^[a-z"]$/, and manageMacro applies an equivalent
+    check, so no metacharacter reaches the expression.
+  * line 175, system('${shellCommand}') - this is the declared behaviour of
+    vim_command for arguments starting with '!', it is gated behind
+    ALLOW_SHELL_COMMANDS and disabled by default. That is an opt-in capability,
+    not a defect.
+
+The one I would ask you to look at is line 665, in searchInBuffer:
+
+    nvim.eval(`searchcount({"pattern": "${searchPattern.replace(/"/g, '\\"')}", ...
+
+The pattern parameter of vim_search is declared as z.string() with no
+constraint, and the escaping here handles the double-quote character but not the
+backslash. A pattern ending in a backslash, or containing a backslash before a
+quote, can therefore terminate the Vimscript string literal early, and what
+follows is evaluated by eval() as expression rather than read as data. Since
+Vimscript expressions can reach system(), the ceiling on this is command
+execution rather than a malformed search.
+
+I want to be equally plain that we have not demonstrated exploitation: I read
+the code, I did not build a working payload. It may well be that some property
+of the surrounding call prevents it. If it does not, escaping the backslash
+before the quote, or passing the pattern through a parameter rather than
+interpolating it into the expression, would close it. The wholeWord branch at
+line 654 wraps the same value and inherits the same question.
+
+This message is solely intended as a responsible disclosure. No action or
+response is required from you within any particular timeframe, and we are not
+requesting anything in return. The study is academic in nature, and your
+repository is not individually identified in the resulting research.
+
+Should you require any further information or clarification regarding the study,
+the methodology, or this disclosure, please feel free to contact any of the
+researchers involved:
+
+  * Francesco Martignoni - Former Master's Student, Politecnico di Milano -
+    francesco.martignoni@mail.polimi.it
+  * Michele Carminati - Associate Professor, Politecnico di Milano, DEIB -
+    michele.carminati@polimi.it
+  * Stefano Longari - Assistant Professor, Politecnico di Milano, DEIB -
+    stefano.longari@polimi.it
+
+Kind regards,
+Francesco Martignoni
+Politecnico di Milano
+francesco.martignoni@mail.polimi.it

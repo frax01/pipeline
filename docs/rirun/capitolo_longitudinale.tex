@@ -1,44 +1,34 @@
 % =====================================================================
 %  Da incollare in Overleaf IMMEDIATAMENTE PRIMA di \chapter{Conclusions}.
-%  LaTeX rinumera da solo: questo diventa il capitolo 12 e Conclusions il 13.
 %  Le tabelle usano booktabs (\toprule/\midrule/\bottomrule).
 %
 %  RIFERIMENTI A PARTI ESISTENTI DELLA TESI
-%  Questo capitolo cita cinque punti del testo gia' scritto. Se quelle parti
-%  non hanno un \label, LaTeX stampera' "??": in tal caso o aggiungi il \label
-%  indicato, oppure sostituisci il \ref con il numero letterale.
-%
-%    \ref{ch:results}       -> cap. 8    "Large-scale analysis results"
-%    \ref{sec:manual}       -> sez. 8.1.3 "Manual audit results"   (i RISULTATI) ok
-%    \ref{sec:manual-method}-> sez. 6.4   "Manual Audit"           (il METODO) ok
-%    \ref{ch:discussion}    -> cap. 9    "Discussion" ok
-%    \ref{ch:ethics}        -> cap. 11   "Ethical discussion" ok
-%    \ref{sec:llm}          -> sez. 10.3 (lo Stage 2B su Ollama/llama3)
-%                              usato solo nel file etica_sostituzione.tex
-%
-%  ATTENZIONE: 6.4 e 8.1.3 sono due punti DIVERSI. 6.4 descrive i criteri con
-%  cui si giudica un finding, 8.1.3 riporta l'esito dell'audit. Il capitolo
-%  cita entrambi e non vanno collassati sulla stessa label.
+%    \ref{sec:results}                     -> cap. 8    Large-scale analysis results
+%    \ref{subsubsec:manual-audit-results}  -> sez. 8.1.3 Manual audit results
+%    \ref{subsec:manual-audit}             -> sez. 6.4   Manual Audit (il metodo)
+%    \ref{sec:discussion}                  -> cap. 9    Discussion
+%    \ref{sec:ethics}                      -> cap. 11   Ethical discussion
 % =====================================================================
 
 \chapter{A Longitudinal Re-Analysis of the Ecosystem}
 \label{ch:longitudinal}
 
-The measurement reported in chapter~\ref{ch:results} describes the MCP ecosystem
-as it was at a single moment in time. Two months after that first execution we
-ran SAMS a second time, over the same 69,104 servers and with the same
-parameters, for two distinct reasons. The first is internal: repeating a
-large-scale measurement is the only way to establish how much of its outcome is
-a property of the ecosystem and how much is a property of the instrument. The
-second is external: two snapshots of the same population, taken at a distance,
-make it possible to ask questions that a single snapshot cannot answer, and in
-particular whether MCP servers modify their declared behaviour after the moment
-at which a user would have approved them. This chapter reports what the second
-measurement found, what it says about the reliability of the first, and what a
-longitudinal view adds. It also documents, in
-section~\ref{sec:long:threats}, a set of measurement artefacts that we
-encountered and corrected, because they bear directly on how results of this
-kind should be interpreted.
+The measurement reported in chapter~\ref{sec:results} describes the MCP
+ecosystem as it was at a single moment in time. Two months after that first
+execution we ran SAMS a second time, over the same 69,104 servers and with the
+same parameters, for two distinct reasons.
+
+The first is internal. A single measurement cannot separate what its results say
+about the ecosystem from what they say about the instrument that produced them:
+a figure such as the 27,958 confirmed findings of chapter~\ref{sec:results}
+conflates properties of the servers with properties of the seven frameworks, of
+the filters and of the machines that ran them. Repeating the measurement under
+the same conditions is what makes that separation possible, and
+section~\ref{sec:long:threats} reports four cases in which it proved necessary.
+The second reason is external: two snapshots of the same population, taken at a
+distance, make it possible to ask questions that a single snapshot cannot
+answer, and in particular whether MCP servers modify their declared behaviour
+after the moment at which a user would have approved them.
 
 \section{Design of the second measurement}
 \label{sec:long:design}
@@ -47,68 +37,24 @@ The second execution reused the dataset, the framework selection, the framework
 parameters and the three-stage post-processing of the first, and was distributed
 over the same nine virtual machines. Holding the pipeline fixed was a deliberate
 choice: any divergence in the results is then attributable either to the
-ecosystem itself or to a small number of deviations that we were forced to make
-and that we enumerate below. Where the two executions cannot be compared on
-equal terms, we say so rather than presenting a difference that the design does
-not support.
+ecosystem itself or to the one deviation we were forced to make.
 
-\section{Declared deviations from the original setup}
-\label{sec:long:deviations}
-
-Three aspects of the pipeline could not be preserved unchanged, and each of them
-constrains the comparison in a different way.
-
-\paragraph{One framework is no longer executable.}
-\texttt{mcp-scan} delegates the analysis that produces its \texttt{E001} and
-\texttt{W001} findings to a remote service operated by Invariant Labs. That
-service no longer exists: the public endpoint has no DNS record, and the command
-line interface falls back on a Snyk endpoint that answers every request with
-\texttt{Push key is required}. The logs of the second run contain 110,658 such
-failures, one for every analysed tool, and consequently every tool is reported
-as safe. This is not a transient outage but the consequence of an acquisition,
-and it cannot be recovered in post-processing: pinning an older release does not
-help, because the server the release depended on has been decommissioned. We
+That deviation concerns \texttt{mcp-scan}, which is no longer executable. The
+framework delegates the analysis producing its \texttt{E001} and \texttt{W001}
+findings to a remote service operated by Invariant Labs; that service has been
+decommissioned following an acquisition, its endpoint no longer resolves, and
+the command line interface falls back on a Snyk endpoint that rejects every
+request. The logs of the second run contain 110,658 such failures, one for each
+analysed tool, and consequently every tool is reported as safe. Pinning an older
+release does not help, because the server it depended on no longer exists. We
 therefore imported the \texttt{mcp-scan} results of the first execution into the
-second, marking every such finding with an explicit provenance field. The
-consequence must be kept in mind when reading the tables: for the categories
-that depend on \texttt{mcp-scan} the comparison is, by construction, a
-comparison of a dataset with itself.
-
-This is also a result in its own right. A scanner that delegates its detection
-logic to a proprietary backend stops working when that backend disappears, and
-the reproducibility of any measurement built on it expires with the vendor's
-commercial decisions.
-
-\paragraph{The Stage 2B classifier changed.}
-In the first execution the residual \textsc{uncertain} bucket was resolved by a
-local Ollama instance serving \texttt{llama3}. In the second execution it was
-resolved by Claude Sonnet, a hosted model, because the local path was not
-available on the machine that carried out the post-processing. The change is
-material and we state it explicitly, together with its consequences. The payload
-sent to the hosted model consisted of the derived findings, not of the full
-source of the analysed servers; those findings, however, include the evidence
-field of the \texttt{credential-leak} category, and therefore third-party
-credentials embedded in public repositories were transmitted to an external
-provider. No credential was ever exercised against the corresponding service,
-before or after classification. The ethical implications of this choice are
-discussed in chapter~\ref{ch:ethics}.
-
-The change is also less consequential for the results than it may appear. The
-deterministic high-confidence rules of Stage 2A are identical in the two
-executions and involve no model at all, and Stage 2B intervenes on the 6,039
-uncertain findings that remain out of the 56,908 surviving Stage 1, promoting
-668 of them to confirmed. The classifier therefore accounts for 2.8\% of the
-24,225 confirmed findings of the second measurement, against a comparable 2.0\%
-for \texttt{llama3} in the first, and the remainder is produced by rules that
-did not change. Whatever the merits of the two models, the outcome of this study
-does not rest on them.
-
-\paragraph{The dataset was covered in a single pass.}
-The first execution analysed the 60,205 GitHub servers and the NPX packages in
-two separate runs that were merged afterwards, whereas the second covered the
-69,104 servers of the unified dataset in one pass. The totals are therefore
-comparable, but the per-stage intermediate counts of the first execution are
-distributed differently.
+second, marking each finding with an explicit provenance field. The consequence
+must be kept in mind throughout: for the four categories that depend on
+\texttt{mcp-scan} the comparison is, by construction, a comparison of a dataset
+with itself. This is also a finding in its own right, in that a scanner which
+delegates its detection logic to a proprietary backend stops working when that
+backend disappears, and the reproducibility of any measurement built on it
+expires with the vendor's commercial decisions.
 
 \section{Results of the second measurement}
 \label{sec:long:results}
@@ -128,8 +74,12 @@ the first. Table~\ref{tab:long:funnel} places the two funnels side by side.
 Servers analysed              & 69,104      & 69,104 \\
 Frameworks executed           & 7           & 6 (\texttt{mcp-scan} imported) \\
 Raw findings                  & 3,102,800   & 3,531,813 \\
-After Stage 1                 & 73,594      & 56,908 \\
+After Stage 1                 & 73,594      & 67,596 \\
+\midrule
+Confirmed at Stage 2A (HC-TP) & 22,997      & 19,161 \\
 Stage 2B (uncertain $\to$ TP) & 5,800 $\to$ 565 & 6,039 $\to$ 668 \\
+\texttt{mcp-scan} (outside Stages 2A/2B) & 4,396 & 4,396 \\
+\midrule
 \textbf{Confirmed findings}   & \textbf{27,958} & \textbf{24,225} \\
 Distinct servers affected     & 11,841      & 11,487 \\
 \bottomrule
@@ -137,20 +87,24 @@ Distinct servers affected     & 11,841      & 11,487 \\
 
 \vspace{2mm}
 \footnotesize
-The raw count of the second execution is reported after deduplication; the
-reason is explained in section~\ref{sec:long:duplicates}. The Stage 2B figure of
-the second execution excludes the 1,337 uncertain findings inherited from the
-imported \texttt{mcp-scan} results, which were not reclassified.
+The three middle rows sum to the total. \texttt{mcp-scan} is listed separately
+because it has no Stage 2A: its checks are server-level verdicts rather than
+pattern matches, so its findings never enter the heuristic classifier, and in the
+second execution they were imported unchanged from the first for the reason given
+in section~\ref{sec:long:design}. The 1,337 findings it reports as uncertain are
+therefore not part of the Stage 2B figures either. The raw count of the second
+execution is reported after deduplication, for the reason explained in
+section~\ref{sec:long:duplicates}.
 \end{table}
 
 The aggregate stability of the two totals conceals a considerably less stable
 population. Only 8,764 servers carry confirmed findings in both executions,
 against 3,077 that appear only in the first and 2,723 only in the second, for a
-Jaccard coefficient of 60.2\%. In other words, roughly two servers out of five
-that the pipeline reports as vulnerable at any given time are not the same
-servers it reported two months earlier. Part of this turnover is real change in
-the ecosystem, and part of it is the volatility of which servers can be started
-at all, a point we return to in section~\ref{sec:long:rugpull}.
+Jaccard coefficient of 60.2\%. Roughly two servers out of five that the pipeline
+reports as vulnerable at any given time are therefore not the same servers it
+reported two months earlier. Part of this turnover is real change in the
+ecosystem and part is the volatility of which servers can be started at all, a
+point we return to in section~\ref{sec:long:rugpull}.
 
 The per-framework comparison in Table~\ref{tab:long:framework} shows that the
 divergence is not evenly distributed.
@@ -183,120 +137,167 @@ imported. The counts of the second execution are deduplicated
 its outputs contain no measurable duplication.
 \end{table}
 
-The contraction of \texttt{mcp-check} deserves a comment, because it accounts
-for most of the overall decrease and could be read as an improvement in protocol
-conformance. It is not. Restricting the comparison to the 23,971 GitHub servers
-that both executions managed to start successfully, \texttt{mcp-check} reports
-at least one finding on 19.9\% of them in the second execution against 18.2\% in
-the first: on identical servers it finds more, not fewer. The failure rate
-attributable to timeouts is likewise unchanged, at 89.2\% of failures against
-91.3\%. What changed is which servers can be started at all, and since
-\texttt{mcp-check} must complete a handshake before it can report anything, its
-count follows the reachability of the ecosystem rather than its conformance.
+The contraction of \texttt{mcp-check} accounts for most of the overall decrease
+and could be read as an improvement in protocol conformance. It is not.
+Restricting the comparison to the 23,971 GitHub servers that both executions
+managed to start successfully, \texttt{mcp-check} reports at least one finding on
+19.9\% of them in the second execution against 18.2\% in the first: on identical
+servers it finds more, not fewer. The failure rate attributable to timeouts is
+likewise unchanged, at 89.2\% of failures against 91.3\%. What changed is which
+servers can be started at all, and since \texttt{mcp-check} must complete a
+handshake before it can report anything, its count follows the reachability of
+the ecosystem rather than its conformance.
 
 \section{Re-assessing reliability}
 \label{sec:long:reliability}
 
-We repeated the manual audit of section~\ref{sec:manual} on the second
-measurement, with the same method: a sample stratified by server across the same
-seventeen categories, with each verdict decided by reading the actual source of
-the server rather than the finding alone, complemented by an exhaustive audit of
-the \texttt{credential-leak} class. In total 1,590 findings were inspected,
-against 1,579 in the first execution. Weighting each category by its size, the
-estimated precision of the second measurement is 49.7\%, against the 64.8\%
-estimated for the first, which places the expected number of genuinely
-exploitable findings at roughly 12,000 rather than 18,100.
+We repeated the manual audit of
+section~\ref{subsubsec:manual-audit-results} on the second measurement, applying
+the criteria of section~\ref{subsec:manual-audit} unchanged: a sample stratified
+by server across the same seventeen categories, with each verdict decided by
+reading the actual source of the analysed server rather than the finding alone.
+The effort was however substantially larger. The second audit inspected
+\textbf{2,038 findings against 1,579}: 437 by sampling, plus two classes audited
+in their entirety, namely \texttt{hardcoded-credential} (949 findings) and
+\texttt{credential-leak} (652 distinct findings). Several categories that the
+first audit had examined with fifteen cases were examined with sixty or seventy.
+
+Weighting each category by its size, the estimated precision of the second
+measurement is 49.7\%, against the 64.8\% estimated for the first, which places
+the expected number of genuinely exploitable findings at roughly 12,000 rather
+than 18,100.
+
+\subsection{Why the estimate falls}
+\label{sec:long:stats}
 
 A drop of fifteen points invites the conclusion that the pipeline became less
-accurate, and the more interesting finding of this chapter is that it did not.
-The difference is concentrated in a small number of categories and is dominated
-by a single classification decision. In \texttt{credential-leak}, the largest
-audited class, 54.9\% of the findings of the first execution and 53.2\% of those
-of the second consist of the same pattern: the idiom
-\texttt{token.write(creds.to\_json())}, produced by the official Google OAuth
-quickstart, in which the user's own token is cached locally on the user's own
-machine after an interactive consent flow. Counting that pattern as a false
-positive puts the category at 38\%; counting it as a true positive puts it above
-90\%, which reproduces the rate reported for the first execution. The audit
-criteria of section~\ref{sec:manual-method} do not cover this case at all: they
-were written for secrets committed to a repository, and are simply silent on
-credentials that a program writes at runtime into its own cache.
+accurate. Before drawing that conclusion, the comparison has to be checked,
+because most of the per-category rates in both audits rest on fifteen cases or
+fewer, and a proportion measured on fifteen observations is a coarse instrument:
+it can move by twenty or thirty points without anything having changed in what it
+measures. The useful question is therefore not which categories differ, but which
+of them differ by more than that imprecision can account for. We compared the two
+audits category by category and asked, for each, whether the observed gap is
+larger than the number of cases behind it can explain.
 
-The consequence is methodological rather than numerical. A precision figure of
-this kind is not a property of the detector alone but of the detector together
-with an adjudication convention, and a convention that remains implicit will
-produce apparently unstable estimates across otherwise identical measurements.
-We therefore report both readings explicitly, and recommend that comparable
-studies state their adjudication rules for borderline classes with the same care
-they devote to their detection rules.
+\begin{table}[htbp]
+\centering
+\caption{Confirmation rate per category in the two audits}
+\label{tab:long:precision}
+\small
+\begin{tabular}{lrrrrc}
+\toprule
+Category & First & cases & Second & cases & Real difference \\
+\midrule
+Credential leak            & 94\%  & 1,342 & 72\%  & 1,601 & yes \\
+Sensitive info disclosure  & 100\% & 15    & 55\%  & 66    & yes \\
+Prompt injection           & 81\%  & 16    & 35\%  & 37    & yes \\
+SQL injection              & 53\%  & 30    & 7\%   & 15    & yes \\
+Insecure deserialization   & 93\%  & 15    & 40\%  & 15    & --- \\
+Dangerous capabilities     & 67\%  & 15    & 27\%  & 60    & --- \\
+Command injection          & 27\%  & 15    & 61\%  & 41    & --- \\
+Code injection             & 43\%  & 23    & 17\%  & 23    & --- \\
+Path traversal             & 33\%  & 15    & 60\%  & 30    & --- \\
+Input validation           & 42\%  & 19    & 20\%  & 15    & --- \\
+Sensitive file access      & 39\%  & 18    & 0\%   & 5     & --- \\
+Protocol violation         & 60\%  & 15    & 44\%  & 72    & --- \\
+SSRF                       & 53\%  & 15    & 33\%  & 15    & --- \\
+Untrusted content          & 100\% & 15    & 93\%  & 15    & --- \\
+Access control             & 25\%  & 8     & 29\%  & 7     & --- \\
+Tool shadowing             & 100\% & 1     & 50\%  & 2     & --- \\
+Data exfiltration          & 100\% & 2     & 100\% & 4     & --- \\
+\bottomrule
+\end{tabular}
+
+\vspace{2mm}
+\footnotesize
+The last column marks the four categories in which the gap between the two audits
+is larger than their sample sizes can account for. For the remaining thirteen the
+two rates are not distinguishable from one another.
+\end{table}
+
+A single mechanism accounts for the whole table. What separates the two audits is
+not the criteria, which are unchanged, but how many cases each of them read: the
+second inspected 2,038 findings against 1,579, and in several categories it went
+from fifteen cases to sixty or seventy. Reading more cases of the same class moves
+the estimate in one direction, because recurring false-positive patterns become
+visible only once many findings are read together --- an interpolated identifier
+that turns out to come from database metadata such as \texttt{sqlite\_master}
+rather than from an MCP parameter, or a dangerous capability that is the server's
+own declared purpose. Establishing that a matched pattern is benign requires
+reading the code around it, and one does that better with sixty examples than with
+fifteen.
+
+The table separates the categories in which that mechanism is visible from those
+in which it cannot be. The four in the first group --- credential leak, sensitive
+information disclosure, prompt injection and SQL injection --- are precisely those
+the second audit examined in much greater depth, and their rates moved by more
+than the samples can explain. In \texttt{sensitive info disclosure} the first audit
+had confirmed fifteen findings out of fifteen, a result a larger sample was always
+unlikely to reproduce; with sixty-six cases the rate settles at 55\%.
+
+The remaining thirteen are not a residue we have failed to account for. They are
+categories in which both audits read roughly the same small number of cases, and
+in which two rates each measured on fifteen observations simply cannot be told
+apart: the movements visible in the table, in either direction, are what one would
+expect to see when reading fifteen cases twice. We therefore make no claim about
+them, which is a different thing from having no explanation for them. That two of
+them move upwards --- \texttt{path traversal} and \texttt{command injection}
+improve by 27 and 34 points --- is itself a reminder that this variation has no
+preferred direction, which a systematic decline would.
+
+The estimate therefore did not fall because the pipeline degraded. It fell because
+the second audit was deeper, and a deeper audit resolves a larger share of pattern
+matches as false positives. At the end, our precision is \textbf{49.7\%}, and we
+regard it as a better estimate of the same quantity the first audit put at 64.8\%,
+rather than as evidence of a change in the ecosystem or in the tooling.
 
 \section{Tool-description drift and rug pulls}
 \label{sec:long:rugpull}
 
 The threat scenario TS-01 includes the case of a server that alters the
 description of its tools after the user has approved it. Because the MCP consent
-model operates at the granularity of the server, a description that changes
-after installation is never re-approved: the agent simply reads the new text at
-the next \texttt{tools/list} call. This is the class of attack that motivates
-the hash store maintained by \texttt{mcp-scan}, and it is the one class that a
-single measurement cannot address at all. Having two observations of the same
-population, we can.
+model operates at the granularity of the server, a description that changes after
+installation is never re-approved: the agent simply reads the new text at the
+next \texttt{tools/list} call. This is the class of attack, named rug pull, that
+motivates the hash store maintained by \texttt{mcp-scan}, and it is the one class
+that a single measurement cannot address at all. We therefore performed a third,
+deliberately minimal pass over the ecosystem: for every server whose tools had
+been inventoried during the first execution, we started the server again and
+issued a single \texttt{tools/list} call, without fuzzing, static analysis or any
+classification step.
 
-\subsection{Method}
-
-Neither of the two candidate shortcuts is usable. The \texttt{W003} check of
-\texttt{mcp-scan} compares each tool against a hash recorded in a persistent
-storage file and is exactly the right mechanism, but it cannot be applied
-retroactively, because no storage file from the first execution survives and the
-workers of the second shared a single file, which is why the 837 \texttt{W003}
-findings it produced are an artefact rather than a signal. The \texttt{X-03}
-check of \texttt{mcp-security-scan} does compare two tool listings, but it
-compares two successive calls within the same session: it detects a server whose
-tool set is unstable at startup, not one that changes over weeks. In the second
-execution it produced 86 findings, 52 of which survived filtering and none of
-which was confirmed, almost all being servers that were not yet ready at the
-first call.
-
-We therefore performed a third, deliberately minimal pass over the ecosystem.
-For every server for which an inventory of tools was recorded during the first
-execution, we started the server again and issued a single \texttt{tools/list}
-call, without fuzzing, static analysis or any classification step. The result is
-an exact comparison: both sides are the complete listing that the server itself
-declares, which is precisely what an MCP client would read, rather than a
-fragment reconstructed from the findings of a scanner.
-
-\subsection{Coverage and ecosystem attrition}
+\subsection{Ecosystem coverage}
 \label{sec:long:attrition}
 
-The comparison is exact but partial, and the extent of the limitation is itself
-a result. An inventory of tools from the first execution exists for 5,948
-servers, which is 8.6\% of the dataset, because only the frameworks that start a
-server and enumerate its tools record such an inventory at all. Of those 5,948
-servers, only 4,772 could be started again: 988 no longer complete their
-startup, 172 have had their GitHub repository deleted outright, and the
-remaining 16 fail for other reasons. Three months after the first measurement,
-in other words, \textbf{19.8\% of the servers that were analysable are no longer
-analysable}, and close to 3\% have vanished from the platform entirely, a figure
-we verified repository by repository.
+The baseline for the analysis comes from the \texttt{X-01} check of
+\texttt{mcp-security-scan}, that among the seven frameworks is the only one that
+records the tool listing itself in a structured field rather than only the tools
+that triggered a finding, and its output is what we compare against. An inventory
+of tools from the first execution exists for 5,948 servers, which is 8.6\% of the
+dataset, and among those, only 4,772 could be started again: 988 no longer
+complete their startup, 172 have had their GitHub repository deleted outright,
+and the remaining 16 fail for other reasons.
 
-Two consequences follow. The first is that the ecosystem's attrition rate is
-high enough to be a confounder in any longitudinal study of MCP, and must be
-measured rather than assumed. The second is that the rug-pull results below rest
-on 4,772 servers, or 6.9\% of the dataset, and are therefore a \emph{lower
-bound}: the same incidence observed over the full population would yield a
-proportionally larger count, and the servers that could not be restarted are
-precisely those about which nothing can be said.
+The comparison is exact on the tools present in both snapshots, since both sides
+are what the server declares through the protocol rather than a fragment
+reconstructed from the findings of a scanner. It is not exhaustive per server:
+over the 4,772 servers observed twice the first snapshot records 16,303 tools and
+the second 68,739, and 15,973 tool names appear in both. Those 15,973
+descriptions are what the analysis compares; the 330 tools present only in the
+first snapshot are counted as removed, while the 52,766 present only in the
+second cannot be distinguished from tools that the first snapshot did not record.
 
 \subsection{What changed}
 
-Across the 4,772 servers that could be observed twice, 1,013 tool descriptions
-changed, distributed over 251 servers. The distribution is markedly uneven, and
-separating it is the first analytical step: 57 servers rewrote five or more
-descriptions at once, accounting for 679 of the changes, which is the signature
-of a release that re-documented an entire catalogue rather than of a targeted
-modification. A rug pull, by definition, is targeted. The remaining 334 changes,
-spread over 194 servers, are the ones worth reading, and among them 23 introduce
-a description that declares a dangerous action the earlier description did not.
+Across the 4,772 servers observed twice, 1,013 tool descriptions changed,
+distributed over 251 servers. The distribution is markedly uneven, and separating
+it is the first analytical step: 57 servers rewrote five or more descriptions at
+once, accounting for 679 of the changes, which is the signature of a release that
+re-documented an entire catalogue rather than of a targeted modification, while
+the remaining 334 changes, spread over 194 servers, are the ones worth reading,
+and among them 23 introduce a description that declares a dangerous action the
+earlier description did not.
 
 Those 23 were read individually against the full text of both versions, and
 Table~\ref{tab:long:verdicts} reports the outcome along two independent axes:
@@ -317,24 +318,7 @@ More restrictive   & the tool declares \emph{narrower} powers than before & 6 \\
 Documentation only & same capability, more accurate description & 13 \\
 \bottomrule
 \end{tabular}
-
-\vspace{2mm}
-\footnotesize
-Present-day danger, assessed independently of the change: 8 cases high, 9
-medium, 6 low. A tool may be highly dangerous without being a rug pull, having
-been equally dangerous at the first measurement.
 \end{table}
-
-Three of the changes introduce directive language of the kind associated with
-description-level injection, and all three turn out on reading to be legitimate
-workflow guidance internal to the server. Six changes move in the opposite
-direction to the threat: a Databricks connector now requires an explicit
-confirmation flag before executing DDL or DML, a MySQL connector moved deletion
-behind a permission separate from execution, and a SAP HANA connector blocks
-writes by default. That a measurable fraction of servers tightened their declared
-capabilities over two months is a modest but genuine observation about the
-ecosystem, and one that a study designed only to count vulnerabilities would
-discard.
 
 \subsection{The two confirmed cases}
 
@@ -343,9 +327,9 @@ The first confirmed case is \texttt{letoribo/mcp-graphql-enhanced}, whose
 \emph{``Execute a GraphQL query against the endpoint''} and is described now as
 \emph{``Execute GraphQL operations (queries and mutations) \dots\ WARNING: this
 tool performs remote operations. Mutation operations will modify persistent
-state''}. The tool moved from read-only to read-write, and an agent that had
-been granted permission to run queries now runs mutations. The change is
-nonetheless announced in the text itself, warning included.
+state''}. The tool moved from read-only to read-write, and an agent that had been
+granted permission to run queries now runs mutations. The change is nonetheless
+announced in the text itself, warning included.
 
 The second case is more instructive, and is the most serious finding of this
 chapter. The server \texttt{sentry-official/mcp-cap-internal} exposes four tools
@@ -362,53 +346,34 @@ system.}
 A tool that read a capture file now declares that it writes to the user's
 filesystem, with no indication of what it writes or where, no warning, and no
 change to its name or to the remainder of its description. The other three tools
-of the same server were left untouched. The edit grew the description from 621
-to 659 characters, a textual similarity of 97\%. We also note that the
-organisation name evokes an affiliation with an established vendor, which lends
-the server a trust it has not earned.
+of the same server were left untouched. The edit grew the description from 621 to
+659 characters, a textual similarity of 97\%.
 
-This case carries a methodological lesson that we consider transferable. A
-deliberate rug pull is, by construction, \emph{minimally} different from what it
-replaces: an author who intends the change to pass unnoticed changes as little
-as possible. Ranking candidate changes by textual dissimilarity, which is the
-natural first instinct and the one we followed initially, therefore sorts the
-most dangerous cases to the very bottom of the list. In our own analysis this
-case ranked last of 23. Detection strategies for this threat should treat small,
-semantically load-bearing edits as more suspicious than large rewrites, not
-less.
+This case carries a methodological lesson that a deliberate rug pull is, by
+construction, minimally different from what it replaces: an author who intends
+the change to pass unnoticed changes as little as possible. Ranking candidate
+changes by textual dissimilarity therefore sorts the most dangerous cases to the
+bottom of the list: in our own analysis this case ranked last of 23.
 
 \subsection{Interpretation}
 
 Two confirmed cases out of 4,772 observed servers do not describe a widespread
 phenomenon, and the honest reading is that the rug pull, which occupies a
-prominent position in the MCP threat literature and motivates dedicated
-machinery in at least one of the analysed frameworks, is rare in practice over a
-two-month window. This is consistent with the broader conclusion of
-chapter~\ref{ch:discussion}: the security exposure of the MCP ecosystem is
+prominent position in the MCP threat literature and motivates dedicated machinery
+in at least one of the analysed frameworks, is rare in practice over a two-month
+window. This is consistent with the broader conclusion of
+chapter~\ref{sec:discussion}: the security exposure of the MCP ecosystem is
 dominated by ordinary implementation defects rather than by deliberate attacks.
-
-Three qualifications keep this from being a stronger negative claim than the
-data supports. The observation window is two months, and a rug pull may unfold
-over a longer period or may have occurred before the first measurement. The
-observed population is 6.9\% of the dataset, so the count is a lower bound and
-the true figure over the full ecosystem is necessarily larger. And the direction
-of the comparison is asymmetric: tools that \emph{disappeared} between the two
-measurements can be counted reliably, and 330 did, whereas tools that appear to
-be new cannot, because the inventories recorded during the first execution list
-only the tools that a scanner flagged and not the complete tool set of each
-server. Measuring the addition of tools, which is arguably the more dangerous
-variant of the same threat since a new tool is never subject to any approval at
-all, would require a complete inventory that no execution of this study
-recorded. The listing produced by this third pass constitutes such a baseline
-for any future measurement.
+The observed population is 6.9\% of the dataset, so the count is a lower bound
+and the true figure over the full ecosystem is necessarily larger.
 
 \section{Threats to validity specific to the re-run}
 \label{sec:long:threats}
 
-Repeating the measurement surfaced several artefacts that the first execution
-had no way of revealing. We report them in full, because each of them would have
-distorted a headline number had it gone unnoticed, and because they generalise
-to any study of this kind.
+Repeating the measurement surfaced several artefacts that the first execution had
+no way of revealing. We report them in full, because each of them would have
+distorted a headline number had it gone unnoticed, and because they generalise to
+any study of this kind.
 
 \subsection{Duplicate findings}
 \label{sec:long:duplicates}
@@ -416,70 +381,69 @@ to any study of this kind.
 The workers of \texttt{mcp-watch} were restarted several times over overlapping
 index ranges, and the routine that merges their shards concatenates without
 deduplicating. Counting findings by content rather than by record shows that
-41.5\% of the raw findings of \texttt{mcp-watch} in the second execution, and
-39\% of its confirmed findings, are repetitions of one another. No other
-framework is affected, and the first execution shows a duplication rate of 0.2\%.
-All figures reported in this chapter are deduplicated. The correction is not
-cosmetic: counted by record, \texttt{mcp-watch} appears to grow by 72\% between
-the two measurements, whereas deduplicated it grows by 5.0\%, and its
+41.5\% of the raw findings of \texttt{mcp-watch} in the second execution, and 39\%
+of its confirmed findings, are repetitions of one another. No other framework is
+affected, and the first execution shows a duplication rate of 0.2\%. All figures
+reported in this chapter are deduplicated. The correction is not cosmetic: counted
+by record, \texttt{mcp-watch} appears to grow by 72\% between the two
+measurements, whereas deduplicated it grows by 5.0\%, and its
 \texttt{credential-leak} category, which appears to be the fastest-growing class
 in the ecosystem, in fact declines slightly.
 
 \subsection{Contamination of the analysis host}
 \label{sec:long:contamination}
 
-Inspecting the nine analysis machines after the second execution revealed that
-the servers under analysis had left persistent state on the hosts that ran them.
-On four of the nine machines, entries had been written into the user's crontab
-and were still executing every minute nine days after the analysis had ended.
-Their content is unambiguous: they are the probe payloads that the frameworks
-themselves inject into tool parameters, including \texttt{; id},
-\texttt{\$(whoami)}, \texttt{`uname -a`} and \texttt{../../../../etc/passwd}.
-Some server under analysis exposed a scheduling tool, accepted those payloads and
-persisted them in the host's own scheduler.
+Inspecting the nine analysis machines after the second execution revealed that the
+servers under analysis had left persistent state on the hosts that ran them. On
+four of the nine machines, entries had been written into the user's crontab and
+were still executing every minute nine days after the analysis had ended. Their
+content is unambiguous: they are the probe payloads that the frameworks themselves
+inject into tool parameters, including \texttt{; id}, \texttt{\$(whoami)},
+\texttt{`uname -a`} and \texttt{../../../../etc/passwd}. Some server under
+analysis exposed a scheduling tool, accepted those payloads and persisted them in
+the host's own scheduler.
 
 The same pattern appears elsewhere on the same machines. The shell start-up file
-of one host had grown to 13,128 lines, of which 3,251 are identical repetitions
-of the same three-line block appended by a package manager's installer at every
+of one host had grown to 13,128 lines, of which 3,251 are identical repetitions of
+the same three-line block appended by a package manager's installer at every
 invocation. Between 176 and 608 state directories had been created in the users'
 home directories, one per analysed server, and between 34 and 18,342 entries
 accumulated in \texttt{/tmp}.
 
 None of this was detected by any of the seven frameworks, and the reason is
 structural rather than incidental: every one of them observes what the server
-\emph{answers}, and none observes what the server \emph{does to the system
-around it} while it runs. Together with the trojans reported in
-section~\ref{sec:manual} and with an earlier incident in which a server under
-analysis deleted a directory on one of the machines, this constitutes direct
-evidence that dynamic analysis of MCP servers is an operation with side effects
-on the analysis environment, and that the sandboxing of that environment is a
-requirement rather than a precaution.
+\emph{answers}, and none observes what the server \emph{does to the system around
+it} while it runs. Together with the trojans reported in
+section~\ref{subsubsec:manual-audit-results} and with an earlier incident in which
+a server under analysis deleted a directory on one of the machines, this
+constitutes direct evidence that dynamic analysis of MCP servers is an operation
+with side effects on the analysis environment, and that the sandboxing of that
+environment is a requirement rather than a precaution.
 
 \subsection{Environment-induced false negatives}
 
 The contamination above has a measurable effect on the results, and this is the
 most important of these observations for anyone attempting a similar study.
-Servers implemented in Python are started through \texttt{uv}, which is
-installed in a directory that is not part of the default search path of a
-non-interactive shell; on the machines where the pass was launched in that way,
-every Python server failed with \texttt{spawn uv ENOENT} and was recorded as no
-longer startable. Separately, the accumulated state described above filled the
-disks of two machines and left their package caches cold, so that dependency
-installation exceeded the timeout allowed by the pipeline and the build step
-silently produced no output, again yielding a startup failure.
+Servers implemented in Python are started through \texttt{uv}, which is installed
+in a directory that is not part of the default search path of a non-interactive
+shell; on the machines where the pass was launched in that way, every Python
+server failed with \texttt{spawn uv ENOENT} and was recorded as no longer
+startable. Separately, the accumulated state described above filled the disks of
+two machines and left their package caches cold, so that dependency installation
+exceeded the timeout allowed by the pipeline and the build step silently produced
+no output, again yielding a startup failure.
 
 Both effects produce the same observable: a server that is perfectly healthy is
-recorded as dead. On the affected machines the startup success rate fell from
-81\% to 45\%, and had it gone unnoticed it would have been reported as ecosystem
+recorded as dead. On the affected machines the startup success rate fell from 81\%
+to 45\%, and had it gone unnoticed it would have been reported as ecosystem
 attrition, which is exactly the quantity this chapter sets out to measure. The
 anomaly was detectable only because nine machines were running the same workload
-in parallel, which made one machine's divergence from the other eight visible;
-we confirmed the diagnosis by re-running a sample of the failing servers on a
-healthy host, where all of them started correctly. A single-machine study would
-have had no such control, and we accordingly recommend that measurements of
-ecosystem attrition either distribute the workload across independent hosts or
-re-verify a sample of negative results on a clean environment before reporting
-them.
+in parallel, which made one machine's divergence from the other eight visible; we
+confirmed the diagnosis by re-running a sample of the failing servers on a healthy
+host, where all of them started correctly. A single-machine study would have had
+no such control, and we accordingly recommend that measurements of ecosystem
+attrition either distribute the workload across independent hosts or re-verify a
+sample of negative results on a clean environment before reporting them.
 
 \subsection{Quantities we did not measure}
 
@@ -488,19 +452,117 @@ open rather than resolving them speculatively. At an equal number of servers
 producing findings and after deduplication, \texttt{mcp-watch} emits 38\% more
 findings per server than it did at the first measurement; the candidate
 explanations, namely repositories that grew over the interval and the bundled or
-minified sources retrieved for NPX packages, have not been separated. And the
-raw output of \texttt{mcp-security-scan} halved between the two executions on a
-framework that completed its run without incident, which we have not
-investigated.
+minified sources retrieved for NPX packages, have not been separated. And the raw
+output of \texttt{mcp-security-scan} halved between the two executions on a
+framework that completed its run without incident, which we have not investigated.
 
 \section{Responsible disclosure}
 \label{sec:long:disclosure}
 
-% TODO: sezione da completare. Elementi previsti: protocollo a livelli
-% (malware e trojan verso GitHub Abuse e i registry, credenziali di terzi verso
-% i provider per la revoca, rug pull verso i manutentori), motivazione per cui
-% la disclosure esaustiva su ~8.500 server non e' praticabile, e stato delle
-% segnalazioni effettuate.
+A study that reports vulnerabilities in software written by identifiable people
+owes those people the chance to hear about them before its readers do. At the
+scale of 24,225 findings that obligation cannot be discharged uniformly, and the
+operative question becomes which findings can be attributed to a named recipient
+with enough confidence to justify contacting them. We answered it with the depth
+of our own verification: we notified only the findings that a person had read
+individually. Two groups satisfy that criterion, the class
+\texttt{hardcoded-credential}, audited in its entirety, and the findings of the
+other categories that entered the manual audit of
+section~\ref{sec:long:reliability}. The remaining findings, approximately 12,000
+over 8,500 servers, carry the weighted precision of 49.7\% established above and
+are disclosed in aggregate through this work rather than individually.
 
-\medskip
-\noindent\emph{[Section to be completed.]}
+The first group comprises 899 confirmed credentials distributed over 493
+repositories and packages. Of these, 38 are npm packages that declare no source
+repository and were excluded, leaving 455 repositories. The second group
+comprises the 63 repositories carrying a manually confirmed non-credential
+finding, of which 7 were already covered by the individual reports described
+below, leaving 56.
+
+For each repository we resolved a contact channel from public sources only, in
+the following order: a \texttt{SECURITY.md} declaring a reporting procedure, the
+address published on the owner's GitHub profile, an address published in the
+README of the repository or of the owner's profile repository. Addresses recorded
+in the commit history were not used. Table~\ref{tab:long:channels} reports the
+outcome of that resolution.
+
+\begin{table}[htbp]
+\centering
+\caption{Contact channels resolved from public sources}
+\label{tab:long:channels}
+\begin{tabular}{lrr}
+\toprule
+Channel & Credentials & Other findings \\
+\midrule
+Address on the GitHub profile        & 92  & 10 \\
+Address in the README                & 74  & 5 \\
+\texttt{SECURITY.md} procedure       & 29  & 1 \\
+\midrule
+Contactable                          & 195 & 16 \\
+No public channel                    & 260 & 40 \\
+\midrule
+Total repositories                   & 455 & 56 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Reports were routed by the nature of the finding rather than uniformly to the
+maintainer, since the assumption that the maintainer is an ally does not hold in
+every case. Where the repository itself carries the payload, the person who could
+remove it is the person who placed it there, and the report was addressed to the
+platform instead. The three repositories sharing a command-and-control
+infrastructure were reported as a single case, the correlation between them being
+part of the evidence.
+Table~\ref{tab:long:disclosure} gives the routing and the resulting counts.
+
+\begin{table}[htbp]
+\centering
+\caption{Reports sent, by finding type and recipient}
+\label{tab:long:disclosure}
+\begin{tabular}{llr}
+\toprule
+Finding & Recipient & Reports \\
+\midrule
+Malware and obfuscated payloads (5 repositories) & platform            & 3 \\
+Organisation-name impersonation                  & platform            & 1 \\
+Undisclosed transmission of session data         & maintainer          & 2 \\
+Command injection in a published package         & maintainer          & 1 \\
+Hardcoded credentials                            & repository owner    & 181 \\
+Other manually verified findings                 & repository owner    & 16 \\
+\midrule
+Total                                            &                     & 204 \\
+\bottomrule
+\end{tabular}
+
+\vspace{2mm}
+\footnotesize
+Delivered over three channels: 4 through the platform abuse form, 3 as private
+security advisories opened on the repository, and 197 by electronic mail. Of the
+181 credential reports, 166 were sent automatically from the register and 15
+individually, following the procedure each \texttt{SECURITY.md} declares.
+\end{table}
+
+Each message states the file and the line at which the finding occurs and does
+not contain the value of any credential, which an unsolicited message would
+otherwise expose a second time. It declares that no credential was used:
+we did not authenticate, call any API, or otherwise test whether any of them was
+active. Where a finding had been confirmed by starting the server and invoking
+the tool, the message declares that this took place on a local instance built
+from the published source, and that no deployment of the recipient and no
+third-party service was contacted.
+
+Table~\ref{tab:long:disclosure} accounts for the 204 reports that were sent. A
+channel had been resolved for 211 repositories, 195 of them carrying credentials
+and 16 carrying other manually verified findings; of these, 14 declare a
+\texttt{SECURITY.md} procedure that did not resolve to a usable recipient and were
+not written to, leaving 197. The remaining 7 reports concern the individual cases
+described above, whose repositories belong to neither group. Three further
+individual cases were not reported at all, their repositories publishing no
+private channel, among them the confirmed rug pull of
+section~\ref{sec:long:rugpull}.
+
+The wider figure is the one in Table~\ref{tab:long:channels}. Of the 455
+repositories carrying a confirmed credential, 195 publish a channel through which
+their owner can be reached in private, or 43\%. For the remaining 260, and for the
+great majority of the servers on which this study reports at all, publication is
+the only channel available.

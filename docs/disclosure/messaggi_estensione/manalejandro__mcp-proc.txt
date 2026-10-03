@@ -1,0 +1,57 @@
+Subject: Responsible disclosure: security finding in manalejandro/mcp-proc
+
+Hello,
+
+My name is Francesco Martignoni. I am a former Master's student at Politecnico
+di Milano, where, as part of my thesis project, I conducted a large-scale
+analysis of the Model Context Protocol (MCP) ecosystem, with a particular
+focus on identifying potential security vulnerabilities and misconfigurations
+in publicly available MCP servers.
+
+As part of this research, we analysed 69,104 publicly published MCP servers.
+The great majority of the findings produced by an analysis of this scale are
+never individually verified, and we do not report those. Your repository is
+among the much smaller set in which a finding was selected for manual review
+and confirmed by a person reading the source code, which is why we are writing
+to you specifically.
+
+The confirmed finding concerns a command injection through a parameter that is
+not an executor, in tool read_sysctl:
+
+read_sysctl is not declared as a command executor, yet its parameter reaches a
+shell.
+
+We confirmed this by starting the server and calling the tool in an isolated
+local environment, on our own instance built from your published source. We
+did not interact with any deployment of yours, nor with any third-party
+service.
+
+Two caveats, stated plainly. Our pipeline has a measured precision of
+approximately 50%, so although this particular finding was reviewed by hand,
+we would ask you to verify it independently before acting on it. And a finding
+of this kind may well describe a capability that is intentional for a tool of
+this purpose: in that case the question is not whether to remove it, but
+whether it is scoped and documented clearly enough for the user who approves
+the server. Because MCP grants approval per server rather than per tool, a
+user who approves one tool implicitly approves the others.
+
+This message is solely intended as a responsible disclosure of the finding. No
+action or response is required from you within any particular timeframe, and
+we are not requesting anything in return. The study is academic in nature, and
+your repository is not individually identified in the resulting research.
+
+Should you require any further information or clarification regarding the study,
+the methodology, or this disclosure, please feel free to contact any of the
+researchers involved:
+
+  * Francesco Martignoni - Former Master's Student, Politecnico di Milano -
+    francesco.martignoni@mail.polimi.it
+  * Michele Carminati - Associate Professor, Politecnico di Milano, DEIB -
+    michele.carminati@polimi.it
+  * Stefano Longari - Assistant Professor, Politecnico di Milano, DEIB -
+    stefano.longari@polimi.it
+
+Kind regards,
+Francesco Martignoni
+Politecnico di Milano
+francesco.martignoni@mail.polimi.it

@@ -1,0 +1,59 @@
+Subject: Responsible disclosure: unsanitised argument in ollama-mcp
+
+Hello,
+
+My name is Francesco Martignoni. I am a former Master's student at Politecnico
+di Milano, where, as part of my thesis project, I conducted a large-scale
+analysis of the Model Context Protocol (MCP) ecosystem, with a particular focus
+on identifying potential security vulnerabilities and misconfigurations in
+publicly available MCP servers.
+
+As part of this research, we analysed 69,104 publicly published MCP servers. The
+great majority of the findings produced by an analysis of this scale are never
+individually verified, and we do not report those. Your package is among the much
+smaller set in which a finding was reviewed by a person, which is why we are
+writing to you specifically. I am contacting you at the maintainer address
+published in the npm registry, as the package declares no repository or homepage.
+
+The finding concerns the tool that runs "ollama create". The model name it
+receives appears to be concatenated into a shell command without sanitisation.
+We observed this indirectly but unambiguously: supplying a name containing shell
+metacharacters produced a shell syntax error in the response, which means the
+value reached a shell as syntax rather than as an argument. A name chosen more
+carefully would not produce an error.
+
+We confirmed this by installing the package and calling the tool in an isolated
+local environment, on our own machine. We did not interact with any deployment of
+yours, nor with any third-party service, and we did not attempt to execute any
+command beyond what was needed to establish that concatenation occurs.
+
+The usual remediation is to pass arguments as a list to the process rather than
+building a command string for a shell, so that no value is ever parsed as shell
+syntax.
+
+Two caveats, stated plainly. Our pipeline has a measured precision of
+approximately 50%, so although this particular finding was reviewed by hand, we
+would ask you to verify it independently before acting on it. And we note that
+the package "nm-mcp-ollama" carries what appears to be the same code and the same
+finding: if the two share a source, fixing it once may cover both.
+
+This message is solely intended as a responsible disclosure of the finding. No
+action or response is required from you within any particular timeframe, and we
+are not requesting anything in return. The study is academic in nature, and your
+package is not individually identified in the resulting research.
+
+Should you require any further information or clarification regarding the study,
+the methodology, or this disclosure, please feel free to contact any of the
+researchers involved:
+
+  * Francesco Martignoni - Former Master's Student, Politecnico di Milano -
+    francesco.martignoni@mail.polimi.it
+  * Michele Carminati - Associate Professor, Politecnico di Milano, DEIB -
+    michele.carminati@polimi.it
+  * Stefano Longari - Assistant Professor, Politecnico di Milano, DEIB -
+    stefano.longari@polimi.it
+
+Kind regards,
+Francesco Martignoni
+Politecnico di Milano
+francesco.martignoni@mail.polimi.it

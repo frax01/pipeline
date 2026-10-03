@@ -1,6 +1,6 @@
 # Pipeline — Security Analysis of MCP Servers
 
-Distributed pipeline for the security analysis of **69,104 MCP (Model Context
+Dveveloped a pipeline for the security analysis of **69,104 MCP (Model Context
 Protocol) servers** collected from GitHub (60,205) and npm/NPX (8,899). The
 analysis is carried out with **7 tools** running in parallel on **9 VMs**,
 followed by a triage and validation process that reduces millions of raw
@@ -14,7 +14,7 @@ tool wrappers, post-processing, aggregation) and the
 ## End-to-end pipeline
 
 ```
-web_crawler/        collection of MCP server URLs from 17 public directories
+web_crawler/        collection of MCP server URLs from 18 public directories
       │
       ▼
 hashAnalysis/       dedup by content hash  ──►  unified dataset (69,104)

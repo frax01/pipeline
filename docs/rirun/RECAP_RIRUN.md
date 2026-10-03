@@ -135,13 +135,31 @@ maggior parte era duplicazione, il resto e' l'aumento di densita' qui sopra.
 
 | | maggio | luglio |
 |---|---:|---:|
-| finding ispezionati a mano | 1.579 | **1.590** |
+| finding ispezionati a mano | 1.579 | **2.038** |
 | precisione pesata | **64,8%** | **49,7%** |
 | VP realmente sfruttabili | ~18.111 | **~12.042** |
 
+I 2.038 della seconda run sono **437 a campione** + due categorie auditate per
+intero: `hardcoded-credential` (949) e `credential-leak` (652 finding distinti).
+
 Criterio: **confermato = VP-C + VP-D** (sfruttabile, anche con impatto limitato).
 I **VP-L** (capability dichiarata dal server, non sfruttabile da sola) contano
-come non confermati, come nella prima analisi.
+come non confermati, come nella prima analisi. **Le regole sono le stesse delle
+due run**: quello che cambia e' la profondita' dell'audit, non il criterio.
+
+### Perche' la precisione scende
+
+Non perche' la pipeline sia peggiorata. Il secondo audit ha letto **piu' casi per
+categoria** (fino a 60-72 dove il primo si era fermato a 15), e leggere piu' casi
+della stessa classe fa emergere pattern ricorrenti di falso positivo che con 15
+campioni restano invisibili. Due categorie infatti **migliorano** (path traversal
++23, command injection +41), cosa che non succederebbe con un degrado sistematico.
+
+Test statistico (Fisher esatto + correzione Holm-Bonferroni su 17 confronti):
+**solo 4 categorie su 17** restano significative — credential leak, sensitive
+info disclosure, prompt injection, SQL injection. Per le altre 13 le due misure
+**non sono statisticamente distinguibili**: le differenze anche di 30 punti sono
+compatibili con la variabilita' campionaria su n=15.
 
 ---
 

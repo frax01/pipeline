@@ -11,6 +11,34 @@ studio. Ogni fase lascia traccia qui.
 | 3 | invio, dagli account dell'autore | da fare |
 | 4 | esiti e stesura di §12.7 | da fare |
 
+**Perimetro definitivo (2026-08-11).** Il destinatario e' sempre **l'owner del
+repository**, tranne dove l'owner e' il problema (malware) o dove la questione
+riguarda la piattaforma (nome dell'organizzazione). Due decisioni prese
+esplicitamente:
+
+* **Niente segnalazioni ai fornitori.** La scelta di revocare una credenziale
+  appartiene a chi la possiede: avvisare il fornitore scavalca l'owner e puo'
+  spegnergli un servizio in produzione senza preavviso. Nel messaggio all'owner
+  si consiglia la rotazione, non si chiede a nessun altro la revoca.
+* **Niente notifica di massa sulle vulnerabilita' generiche.** Su 6.179
+  repository la precisione pesata e' del 49,7%: scrivere a tutti significa
+  sbagliare in meta' dei casi, il che danneggia i destinatari e lo studio. Si
+  notifica dove la precisione lo consente e l'azione e' chiara.
+
+| gruppo | casi | destinatario |
+|---|---:|---|
+| trojan coordinati | 3 repo, 1 segnalazione | GitHub Abuse |
+| backdoor steganografica | 1 | GitHub Abuse |
+| tool poisoning | 1 | GitHub Abuse |
+| esfiltrazione | 2 | owner |
+| rug pull `sentry-official` | 1 | owner |
+| nome organizzazione | 1 | GitHub |
+| rug pull dichiarato | 1 | owner (cortesia) |
+| **credenziali confermate** | **455 repo** | owner |
+| alta diffusione | 2 | owner |
+| ~~fornitori~~ | — | **rimosso** |
+
+
 > **Nessuna delle operazioni svolte finora ha contattato alcun soggetto.** La
 > Fase 0 usa esclusivamente `git ls-remote` e `raw.githubusercontent.com`, cioe'
 > lettura di metadati e file pubblici, senza autenticazione, senza clone e senza
@@ -73,11 +101,11 @@ I due casi di esfiltrazione sono i piu' delicati da formulare, perche' il
 comportamento potrebbe essere intenzionale e dichiarato altrove nel progetto: la
 segnalazione va scritta come richiesta di chiarimento prima che come accusa.
 
-### Tier 3 — credenziali di terzi
+### Tier 3 — credenziali di terzi (impostazione superata, vedi FASE1/FASE2)
 
-**897 credenziali confermate** dall'audit integrale della classe
+**899 credenziali confermate** dall'audit integrale della classe
 `hardcoded-credential`. Il piano prevedeva di raggrupparle per provider e
-chiedere la revoca a ciascuno, evitando 897 contatti individuali. La verifica
+chiedere la revoca a ciascuno, evitando 899 contatti individuali. La verifica
 mostra che **la strada copre una minoranza dei casi**:
 
 | provider | chiavi | repository |
@@ -89,7 +117,7 @@ mostra che **la strada copre una minoranza dei casi**:
 | GitHub | 1 | 1 |
 | **non identificabile** | **769** | **331** |
 
-Solo **128 chiavi su 897, il 14%**, portano un marcatore che consente di
+Solo **128 chiavi su 899, il 14%**, portano un marcatore che consente di
 attribuirle a un fornitore — un prefisso riconoscibile (`AIza`, `sk-`, `gsk_`)
 o un nome di variabile parlante. Le altre 769 sono assegnate a identificatori
 generici (`API_KEY`, `TOKEN`, `SECRET`) senza indicazione del servizio: non
